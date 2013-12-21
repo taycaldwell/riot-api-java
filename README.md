@@ -1,4 +1,6 @@
 riot-api-java
 =============
 
-A simple, Riot Games API Beta wrapper for Java. 
+A simple to use, Riot Games API Beta wrapper for Java.
+
+This project is still under development.
