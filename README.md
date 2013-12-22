@@ -33,8 +33,7 @@ This library can be used strictly according to the [Riot API Documentation](http
 ```
 
 Available getter and setter methods also allow you to accomplish similar tasks in a different way.
-Below is an example of how to set your region. Because the region was set before the method to get a
-summoner name was called, there is no need to pass the region parameter.
+Below is an example of how to set your region. Because the region was set before a method was called, there is no need to pass in the region parameter.
 
 ```java
 
