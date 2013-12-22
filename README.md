@@ -14,6 +14,7 @@ Download the .jar file, and add it as an external library to your project.
 If you are using Eclipse, this can be done by right clicking your project, and selecting:
 
 Build Path -> Configure Build Path -> Libraries -> Add External Jars
+
 and selecting the jar under the Order and Export tab.
 
 ## Examples
@@ -40,8 +41,10 @@ public class Example {
 
 ```
 
+
 Available getter and setter methods also allow you to accomplish similar tasks in a different way.
 Below is an example of how to set your region. Because the region was set before a method was called, there is no need to pass in the region parameter.
+
 
 ```java
 
@@ -67,7 +70,9 @@ public class Example {
 
 ```
 
+
 Object Oriented principles are also supported, but be aware of your personal rate limit. Any method call from the RiotAPI is a request that counts towards your rate limit.
+
 
 
 ```java
@@ -91,6 +96,7 @@ public class Example {
 }
 
 ```
+
 
 ## Downloads
 [Download (Version 1.0)](https://www.dropbox.com/s/te7kxqqrhzsp60e/riot-api-java.jar)
