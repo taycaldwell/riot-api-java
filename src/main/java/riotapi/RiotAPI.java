@@ -293,7 +293,7 @@ public class RiotAPI {
 		String url = getBaseURL() + getRegion() + "/v1.2/summoner/" + ids + "/name?api_key=" + getKey();
 		SummonerNameList summonerNameList = new Gson().fromJson(RiotAPI.request(url), SummonerNameList.class);
 	    
-	    	return summonerNameList;
+		return summonerNameList;
 	}
 	
 	public List<Team> getTeams(String region, long summonerId){
@@ -301,7 +301,7 @@ public class RiotAPI {
 		String url = getBaseURL() + region + "/v2.2/team/by-summoner/" + summonerId + "?api_key=" + getKey();
 		List<Team> teamList = new Gson().fromJson(RiotAPI.request(url), new TypeToken<List<Team>>(){}.getType());
 		
-	    	return teamList;
+		return teamList;
 	}
 	
 	public List<Team> getTeams(long summonerId){
@@ -309,7 +309,7 @@ public class RiotAPI {
 		String url = getBaseURL() + getRegion() + "/v2.2/team/by-summoner/" + summonerId + "?api_key=" + getKey();
 		List<Team> teamList = new Gson().fromJson(RiotAPI.request(url), new TypeToken<List<Team>>(){}.getType());
 		
-	    	return teamList;
+		return teamList;
 	}
 	
 	public static String request(String url) {
@@ -336,7 +336,7 @@ public class RiotAPI {
 			e.printStackTrace();
 		}
         
-        	return sb.toString();
+		return sb.toString();
 	 }
 
 	public String getSeason() {
