@@ -47,8 +47,8 @@ public class Example {
 			
 		riotAPI.setRegion("na");
 		
-		Summoner taystee = riotAPI.getSummoner("Taystee");
-		long summonerId = taystee.getId();
+		Summoner summoner = riotAPI.getSummoner("Taystee");
+		long summonerId = summoner.getId();
 			
 		
 	}
