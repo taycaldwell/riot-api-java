@@ -12,21 +12,21 @@ This library can be used strictly according to the [Riot API Documentation](http
 
 ```java
 
-	import dto.*;
-	import main.java.riotapi.RiotAPI;
+import dto.*;
+import main.java.riotapi.RiotAPI;
 	
 
-	public class Example {
+public class Example {
 
-		public static void main(String[] args) {
+	public static void main(String[] args) {
 			
-			RiotAPI riotAPI = new RiotAPI("YOUR KEY GOES HERE");
+		RiotAPI riotAPI = new RiotAPI("YOUR KEY GOES HERE");
 		
-			Summoner summoner = riotAPI.getSummoner("na", "Taystee");
-			long summonerId = summoner.getId();
-		}
-
+		Summoner summoner = riotAPI.getSummoner("na", "Taystee");
+		long summonerId = summoner.getId();
 	}
+
+}
 
 ```
 
@@ -35,25 +35,25 @@ Below is an example of how to set your region. Because the region was set before
 
 ```java
 
-        import dto.*;
-        import main.java.riotapi.RiotAPI;
+import dto.*;
+import main.java.riotapi.RiotAPI;
 
 
-        public class Example {
+public class Example {
 
-        	public static void main(String[] args) {
+	public static void main(String[] args) {
 		
-			RiotAPI riotAPI = new RiotAPI("YOUR KEY GOES HERE");
+		RiotAPI riotAPI = new RiotAPI("YOUR KEY GOES HERE");
 			
-			riotAPI.setRegion("na");
+		riotAPI.setRegion("na");
 		
-			Summoner taystee = riotAPI.getSummoner("Taystee");
-			long summonerId = taystee.getId();
+		Summoner taystee = riotAPI.getSummoner("Taystee");
+		long summonerId = taystee.getId();
 			
 		
-		}
-
 	}
+
+}
 
 ```
 
@@ -62,13 +62,13 @@ Object Oriented principles are also supported, but be aware of your personal rat
 
 ```java
 
-        import dto.*;
-        import main.java.riotapi.RiotAPI;
+import dto.*;
+import main.java.riotapi.RiotAPI;
 
 
-        public class Example {
+public class Example {
 
-        	public static void main(String[] args) {
+	public static void main(String[] args) {
 		
 		RiotAPI riotAPI = new RiotAPI("na", "YOUR KEY GOES HERE");
 		riotAPI.setSeason("SEASON3");
@@ -76,9 +76,9 @@ Object Oriented principles are also supported, but be aware of your personal rat
 		RankedStats rankedStats = riotAPI.getRankedStats(riotAPI.getSummoner("Taystee").getId());
 			
 			
-		}
-
 	}
+
+}
 
 ```
 
