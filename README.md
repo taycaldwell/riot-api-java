@@ -1,8 +1,6 @@
 riot-api-java
 =============
 
-#riot-api-java (Version 1.0)
-
 A simple to use, Riot Games API (Beta) wrapper for Java.
 
 Version 1.0 of this library is available.
