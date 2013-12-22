@@ -57,6 +57,32 @@ Below is an example of how to set your region. Because the region was set before
 
 ```
 
+Object Oriented principles are also supported, but be aware of your personal rate limit. Any method call from the RiotAPI is a request that counts towards your rate limit.
+
+
+```java
+
+        import dto.*;
+        import main.java.riotapi.RiotAPI;
+
+
+        public class Example {
+
+        	public static void main(String[] args) {
+		
+	        	RiotAPI riotAPI = new RiotAPI("na", "YOUR KEY GOES HERE");
+	        	riotAPI.setSeason("SEASON3");
+		
+			RankedStats rankedStats = riotAPI.getRankedStats(riotAPI.getSummoner("Taystee").getId());
+			
+			
+		
+		}
+
+	}
+
+```
+
 ## Downloads
 [Download (Version 1.0)](https://www.dropbox.com/s/te7kxqqrhzsp60e/riot-api-java.jar)
 
