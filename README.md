@@ -56,7 +56,6 @@ public class Example {
 	public static void main(String[] args) {
 		
 		RiotAPI riotAPI = new RiotAPI("YOUR KEY GOES HERE");
-			
 		riotAPI.setRegion("na");
 		
 		Summoner summoner = riotAPI.getSummoner("Taystee");
