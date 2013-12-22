@@ -36,7 +36,6 @@ public class Example {
 		Summoner summoner = riotAPI.getSummoner("na", "Taystee");
 		long summonerId = summoner.getId();
 	}
-
 }
 
 ```
@@ -62,10 +61,7 @@ public class Example {
 		
 		Summoner summoner = riotAPI.getSummoner("Taystee");
 		long summonerId = summoner.getId();
-			
-		
 	}
-
 }
 
 ```
@@ -89,10 +85,7 @@ public class Example {
 		riotAPI.setSeason("SEASON3");
 		
 		RankedStats rankedStats = riotAPI.getRankedStats(riotAPI.getSummoner("Taystee").getId());
-			
-			
 	}
-
 }
 
 ```
