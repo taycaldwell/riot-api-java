@@ -62,6 +62,5 @@ Below is an example of how to set your region. Because the region was set before
 
 Please note this library makes use of [gson](http://code.google.com/p/google-gson/)
 
-Enjoy.
-
+## Disclaimer
 This product is not endorsed, certified or otherwise approved in any way by Riot Games, Inc. or any of its affiliates.
