@@ -70,7 +70,7 @@ public class Example {
 
 	public static void main(String[] args) {
 		
-		RiotAPI riotAPI = new RiotAPI("na", "YOUR KEY GOES HERE");
+		RiotAPI riotAPI = new RiotAPI("YOUR KEY GOES HERE", "na");
 		riotAPI.setSeason("SEASON3");
 		
 		RankedStats rankedStats = riotAPI.getRankedStats(riotAPI.getSummoner("Taystee").getId());
