@@ -71,7 +71,7 @@ public class Example {
 ```
 
 
-Object Oriented principles are also supported, but be aware of your personal rate limit. Any method call from the RiotAPI is a request that counts towards your rate limit.
+Object Oriented principles are also supported, but be aware of your personal rate limit. Any method call from the RiotAPI is a request that counts towards your rate limit, with exceptions to the get/set methods of the region, key, and season.
 
 
 
