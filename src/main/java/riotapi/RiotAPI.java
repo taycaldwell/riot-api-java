@@ -299,7 +299,7 @@ public class RiotAPI {
 			e.printStackTrace();
 		}
 		
-        try {
+        	try {
 			HttpURLConnection connection = (HttpURLConnection) requestURL.openConnection();
 			BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 			
@@ -312,8 +312,8 @@ public class RiotAPI {
 			e.printStackTrace();
 		}
         
-        return sb.toString();
-    }
+        	return sb.toString();
+	 }
 
 	public String getSeason() {
 		if(season.equals("")){
