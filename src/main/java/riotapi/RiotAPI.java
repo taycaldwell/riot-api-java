@@ -359,7 +359,6 @@ public class RiotAPI {
 			try {
 				throw new Exception("No key was set.");
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
