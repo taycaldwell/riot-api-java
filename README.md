@@ -15,7 +15,7 @@ This library can be used strictly according to the [Riot API Documentation](http
 
 This library also provides the feature to be more laid back with requests. If you know you want your application to only cater to the North American region, you can set this region, and not have to pass it through every single request. Like so:
 
-'''java
+```java
 
 	import dto.*;
 	import main.java.riotapi.RiotAPI;
@@ -33,10 +33,10 @@ This library also provides the feature to be more laid back with requests. If yo
 
 	}
 
-'''
+```
 
 
-'''java
+```java
 
         import dto.*;
         import main.java.riotapi.RiotAPI;
@@ -59,7 +59,7 @@ This library also provides the feature to be more laid back with requests. If yo
 
 	}
 
-'''
+```
 
 ## Downloads
 [Download (Version 1.0)](https://www.dropbox.com/s/te7kxqqrhzsp60e/riot-api-java.jar)
