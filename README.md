@@ -12,6 +12,7 @@ Tests, documentation, and a completed ReadMe will be available soon.
 Download the .jar file, and add it as an external library to your project.
 
 If you are using Eclipse, this can be done by right clicking your project, and selecting:
+
 Build Path -> Configure Build Path -> Libraries -> Add External Jars
 and selecting the jar under the Order and Export tab.
 
