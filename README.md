@@ -52,10 +52,6 @@ Below is an example of how to set your region. Because the region was set before
 			Summoner taystee = riotAPI.getSummoner("Taystee");
 			long summonerId = taystee.getId();
 			
-			riotAPI.setRegion("euw");
-			
-			Summoner tasty = riotAPI.getSummoner("Tasty");
-			
 		
 		}
 
