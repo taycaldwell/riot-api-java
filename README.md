@@ -20,7 +20,7 @@ This library can be used strictly according to the [Riot API Documentation](http
 
 		public static void main(String[] args) {
 			
-		RiotAPI riotAPI = new RiotAPI("YOUR KEY GOES HERE");
+			RiotAPI riotAPI = new RiotAPI("YOUR KEY GOES HERE");
 		
 			Summoner summoner = riotAPI.getSummoner("na", "Taystee");
 			long summonerId = summoner.getId();
@@ -43,7 +43,7 @@ Below is an example of how to set your region. Because the region was set before
 
         	public static void main(String[] args) {
 		
-	        	RiotAPI riotAPI = new RiotAPI("YOUR KEY GOES HERE");
+			RiotAPI riotAPI = new RiotAPI("YOUR KEY GOES HERE");
 			
 			riotAPI.setRegion("na");
 		
@@ -70,13 +70,12 @@ Object Oriented principles are also supported, but be aware of your personal rat
 
         	public static void main(String[] args) {
 		
-	        	RiotAPI riotAPI = new RiotAPI("na", "YOUR KEY GOES HERE");
-	        	riotAPI.setSeason("SEASON3");
+		RiotAPI riotAPI = new RiotAPI("na", "YOUR KEY GOES HERE");
+		riotAPI.setSeason("SEASON3");
 		
-			RankedStats rankedStats = riotAPI.getRankedStats(riotAPI.getSummoner("Taystee").getId());
+		RankedStats rankedStats = riotAPI.getRankedStats(riotAPI.getSummoner("Taystee").getId());
 			
 			
-		
 		}
 
 	}
