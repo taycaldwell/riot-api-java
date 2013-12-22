@@ -6,7 +6,7 @@ A simple to use, Riot Games API (Beta) wrapper for Java.
 Version 1.0 of this library is available.
 
 Tests, documentation, and a completed ReadMe will be available soon.
-## Example
+## Examples
 
 This library can be used strictly according to the [Riot API Documentation](https://developer.riotgames.com/api/methods) like so:
 
