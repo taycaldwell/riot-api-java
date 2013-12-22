@@ -365,5 +365,4 @@ public class RiotAPI {
 		this.region = region;
 	}
 
-
 }
