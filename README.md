@@ -12,9 +12,6 @@ Tests, documentation, and a completed ReadMe will be available soon.
 
 This library can be used strictly according to the [Riot API Documentation](https://developer.riotgames.com/api/methods) like so:
 
-
-This library also provides the feature to be more laid back with requests. If you know you want your application to only cater to the North American region, you can set this region, and not have to pass it through every single request. Like so:
-
 ```java
 
 	import dto.*;
@@ -25,9 +22,9 @@ This library also provides the feature to be more laid back with requests. If yo
 
 		public static void main(String[] args) {
 			
-		RiotAPI riotAPI = new RiotAPI("na", "YOUR KEY GOES HERE");
+		RiotAPI riotAPI = new RiotAPI("YOUR KEY GOES HERE");
 		
-			Summoner summoner = riotAPI.getSummoner("Taystee");
+			Summoner summoner = riotAPI.getSummoner("na", "Taystee");
 			long summonerId = summoner.getId();
 		}
 
@@ -35,6 +32,9 @@ This library also provides the feature to be more laid back with requests. If yo
 
 ```
 
+Available getter and setter methods also allow you to accomplish similar tasks in a different way.
+Below is an example of how to set your region. Because the region was set before the method to get a
+summoner name was called, there is no need to pass the region parameter.
 
 ```java
 
@@ -46,14 +46,17 @@ This library also provides the feature to be more laid back with requests. If yo
 
         	public static void main(String[] args) {
 		
-	        	RiotAPI riotAPI = new RiotAPI();
-			riotAPI.setKey("YOUR KEY GOES HERE");
+	        	RiotAPI riotAPI = new RiotAPI("YOUR KEY GOES HERE");
+			
 			riotAPI.setRegion("na");
 		
 			Summoner taystee = riotAPI.getSummoner("Taystee");
-			Summoner skrumptious = riotAPI.getSummoner("Skrumptious");
 			long summonerId = taystee.getId();
-			long summonerId = skrumptious.getId();
+			
+			riotAPI.setRegion("euw");
+			
+			Summoner tasty = riotAPI.getSummoner("Tasty");
+			
 		
 		}
 
