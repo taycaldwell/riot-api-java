@@ -3,10 +3,6 @@ riot-api-java
 
 A simple to use, Riot Games API (Beta) wrapper for Java.
 
-Version 1.0 of this library is available.
-
-Tests, documentation, and a completed ReadMe will be available soon.
-
 ## Setup
 
 Download the .jar file, and add it as an external library to your project.
