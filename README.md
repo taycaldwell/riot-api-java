@@ -37,8 +37,8 @@ public class Example {
 ```
 
 
-Available getter and setter methods also allow you to accomplish similar tasks in a different way.
-Below is an example of how to set your region. Because the region was set before a method was called, there is no need to pass in the region parameter.
+Available accessors allow you to accomplish similar tasks in a different way.
+Below is an example of how to set your region. Because the region was set before a method was called, there is no need to pass in the region parameter. This is great for the lazy programmer that knows they will only be working in one region when making multiple requests. The same can be done for the season.
 
 
 ```java
@@ -62,7 +62,7 @@ public class Example {
 ```
 
 
-Object Oriented principles are also supported, but be aware of your personal rate limit. Any method call from the RiotAPI is a request that counts towards your rate limit, with exceptions to the get/set methods of the region, key, and season.
+It is important to be aware of your personal rate limit. Any method call from the RiotAPI is a request that counts towards your rate limit, with exceptions to the accessors and mutators of region, key, and season. The below code makes 2 requests; one request for a summoner, and another for ranked stats of a summoner.
 
 
 
