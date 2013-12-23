@@ -5,7 +5,7 @@ A simple to use, Riot Games API (Beta) wrapper for Java.
 
 ## Setup
 
-Download the .jar file, and add it as an external library to your project.
+[Download](https://www.dropbox.com/s/te7kxqqrhzsp60e/riot-api-java.jar) the .jar file, and add it as an external library to your project.
 
 If you are using Eclipse, this can be done by right clicking your project, and selecting:
 
