@@ -91,7 +91,7 @@ public class Example {
 
 
 |Category|Method                                                              |Return Type           |
-|:--------------------------------------------------------------------------------------------------:|
+|:------:|:------------------------------------------------------------------:|:--------------------:|
 |Champion|getChampions(String region, boolean freeToPlay)                     |ChampionList          |
 |Game    |getRecentGames(String region, long summonerId)                      |RecentGames           |
 |League  |getLeagues(String region, long summonerId)                          |Map<String, League>   |
