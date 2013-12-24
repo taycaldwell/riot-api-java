@@ -89,27 +89,21 @@ public class Example {
 
 ### Main API Methods
 
-|Category|Method|Return Type|
-|---------------------------|
-|Champion|getChampions(String region, boolean freeToPlay)|ChampionList|
-|Game----|getRecentGames(String region, long summonerId)-|RecentGames-|
-|League|
-|--------|
-|getLeagues(String region, long summonerId)|
-|Stats|
-|--------|
-|getPlayerStatsSummary(String region, long summonerId, String season)|
-|getRankedStats(String region, long summonerId, String season)|
-|Summoner|
-|--------|
-|getMasteryPages(String region, long summonerId)|
-|getRunePages(String region, long summonerId)|
-|getSummoner(String region, String name)|
-|getSummoner(String region, long summonerId)|
-|getSummonerNameList(String region, long... summonerIds)|
-|Team|
-|--------|
-|getTeams(String region, long summonerId)|
+------------------------------------------------------------------------------------------------------
+|Category|Method                                                              |Return Type           |
+------------------------------------------------------------------------------------------------------
+|Champion|getChampions(String region, boolean freeToPlay)                     |ChampionList          |
+|Game    |getRecentGames(String region, long summonerId)                      |RecentGames           |
+|League  |getLeagues(String region, long summonerId)                          |Map<String, League>   |
+|Stats   |getPlayerStatsSummary(String region, long summonerId, String season)|PlayerStatsSummaryList|
+|Stats   |getRankedStats(String region, long summonerId, String season)       |RankedStats           |
+|Summoner|getMasteryPages(String region, long summonerId)                     |MasteryPages          |
+|Summoner|getRunePages(String region, long summonerId)                        |RunePages             |
+|Summoner|getSummoner(String region, String name)                             |Summoner              |
+|Summoner|getSummoner(String region, long summonerId)                         |Summoner              |
+|Summoner|getSummonerNameList(String region, long... summonerIds)             |SummonerNameList      |
+|Team    |getTeams(String region, long summonerId)                            |List<Team>            |
+------------------------------------------------------------------------------------------------------
 
 Full reference page coming soon.
 
