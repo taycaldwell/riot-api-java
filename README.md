@@ -89,25 +89,17 @@ public class Example {
 
 ### Main API Methods
 
-|Champion|
-|--------|
-|getChampions(String region, boolean freeToPlay)|
-
-
-|Game|
-|--------|
-|getRecentGames(String region, long summonerId)|
-
-
+|Category|Method|Return Type|
+|---------------------------|
+|Champion|getChampions(String region, boolean freeToPlay)|ChampionList|
+|Game----|getRecentGames(String region, long summonerId)-|RecentGames-|
 |League|
 |--------|
 |getLeagues(String region, long summonerId)|
-
 |Stats|
 |--------|
 |getPlayerStatsSummary(String region, long summonerId, String season)|
 |getRankedStats(String region, long summonerId, String season)|
-
 |Summoner|
 |--------|
 |getMasteryPages(String region, long summonerId)|
@@ -115,8 +107,6 @@ public class Example {
 |getSummoner(String region, String name)|
 |getSummoner(String region, long summonerId)|
 |getSummonerNameList(String region, long... summonerIds)|
-
-
 |Team|
 |--------|
 |getTeams(String region, long summonerId)|
