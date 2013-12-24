@@ -85,6 +85,43 @@ public class Example {
 
 ```
 
+## Reference
+
+### Main API Methods
+
+|Champion|
+|--------|
+|getChampions(String region, boolean freeToPlay)|
+
+
+|Game|
+|--------|
+|getRecentGames(String region, long summonerId)|
+
+
+|League|
+|--------|
+|getLeagues(String region, long summonerId)|
+
+|Stats|
+|--------|
+|getPlayerStatsSummary(String region, long summonerId, String season)|
+|getRankedStats(String region, long summonerId, String season)|
+
+|Summoner|
+|--------|
+|getMasteryPages(String region, long summonerId)|
+|getRunePages(String region, long summonerId)|
+|getSummoner(String region, String name)|
+|getSummoner(String region, long summonerId)|
+|getSummonerNameList(String region, long... summonerIds)|
+
+
+|Team|
+|--------|
+|getTeams(String region, long summonerId)|
+
+Full reference page coming soon.
 
 ## Downloads
 [Download (Version 1.0)](https://www.dropbox.com/s/te7kxqqrhzsp60e/riot-api-java.jar)
