@@ -89,9 +89,9 @@ public class Example {
 
 ### Main API Methods
 
-------------------------------------------------------------------------------------------------------
+
 |Category|Method                                                              |Return Type           |
-------------------------------------------------------------------------------------------------------
+|:--------------------------------------------------------------------------------------------------:|
 |Champion|getChampions(String region, boolean freeToPlay)                     |ChampionList          |
 |Game    |getRecentGames(String region, long summonerId)                      |RecentGames           |
 |League  |getLeagues(String region, long summonerId)                          |Map<String, League>   |
@@ -103,7 +103,7 @@ public class Example {
 |Summoner|getSummoner(String region, long summonerId)                         |Summoner              |
 |Summoner|getSummonerNameList(String region, long... summonerIds)             |SummonerNameList      |
 |Team    |getTeams(String region, long summonerId)                            |List<Team>            |
-------------------------------------------------------------------------------------------------------
+
 
 Full reference page coming soon.
 
