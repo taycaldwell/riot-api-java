@@ -38,7 +38,7 @@ public class Example {
 
 
 Available accessors allow you to accomplish similar tasks in a different way.
-Below is an example of how to set your region. Because the region was set before a method was called, there is no need to pass in the region parameter. This is great for the lazy programmer that knows they will only be working in one region when making multiple requests. The same can be done for the season.
+Below is an example of how to set your region. Because the region was set before a method was called, there is no need to pass in the region parameter. This is great for people that know they will only be working in one region when making multiple requests. The same can be done for the season.
 
 
 ```java
