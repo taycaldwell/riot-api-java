@@ -5,7 +5,7 @@ A simple to use, Riot Games API (Beta) wrapper for Java.
 
 ## Setup
 
-[Download](https://www.dropbox.com/s/te7kxqqrhzsp60e/riot-api-java.jar) the .jar file, and add it as an external library to your project.
+[Download](https://dl.dropboxusercontent.com/s/te7kxqqrhzsp60e/riot-api-java.jar?dl=1&token_hash=AAHiCwTK9cGe-G-z5_4fmobXiEP5knAoJmhCTzUN96x7bw) the .jar file, and add it as an external library to your project.
 
 If you are using Eclipse, this can be done by right clicking your project, and selecting:
 
@@ -101,14 +101,14 @@ public class Example {
 |Summoner|`getRunePages(String region, long summonerId)`                        |RunePages             |
 |Summoner|`getSummoner(String region, String name)`                             |Summoner              |
 |Summoner|`getSummoner(String region, long summonerId)`                         |Summoner              |
-|Summoner|`getSummonerNameList(String region, long... summonerIds)`             |SummonerNameList      |
+|Summoner|`getSummonerNames(String region, long... summonerIds)`             |SummonerNameList      |
 |Team    |`getTeams(String region, long summonerId)`                            |List<Team>            |
 
 
 Full reference page coming soon.
 
 ## Downloads
-[Download (Version 1.0)](https://www.dropbox.com/s/te7kxqqrhzsp60e/riot-api-java.jar)
+[Download (Version 2.0)](https://dl.dropboxusercontent.com/s/te7kxqqrhzsp60e/riot-api-java.jar?dl=1&token_hash=AAHiCwTK9cGe-G-z5_4fmobXiEP5knAoJmhCTzUN96x7bw)
 
 ## Contributing
 If you would like to contribute to this repo, please send a pull request.
