@@ -411,6 +411,8 @@ public class RiotAPI {
 	}
 	
 	public Summoner getSummoner(String region, String name) {
+		
+		name = name.replaceAll("\\s+", "");
 		String url = getBaseURL() + region + "/v1.2/summoner/by-name/" + name + "?api_key=" + getKey();
 		Summoner summoner = null;
 		try {
@@ -428,6 +430,7 @@ public class RiotAPI {
 	
 	public Summoner getSummoner(String name) {
 		
+		name = name.replaceAll("\\s+", "");
 		String url = getBaseURL() + getRegion() + "/v1.2/summoner/by-name/" + name + "?api_key=" + getKey();
 		Summoner summoner = null;
 		try {
@@ -558,7 +561,7 @@ public class RiotAPI {
 	}
 
 	public String getSeason() {
-		if(season.equals("")){
+		if(season.equals("")) {
 			try {
 				throw new Exception("No season was set.");
 			} catch (Exception e) {
@@ -568,32 +571,19 @@ public class RiotAPI {
 		return season;
 	}
 	
-	public void setSeason(String season) {
-		this.season = season;
-	}
-	
 	public String getKey() {
-		if(key.equals("YOUR API KEY")){
+		if(key.equals("YOUR API KEY")) {
 			try {
 				throw new Exception("No key was set.");
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		return key;
 	}
-
-	public void setKey(String key) {
-		this.key = key;
-	}
-
-	public String getBaseURL() {
-		return baseURL;
-	}
-
+	
 	public String getRegion() {
-		if(region.equals("")){
+		if(region.equals("")) {
 			try {
 				throw new Exception("No region was set.");
 			} catch (Exception e) {
@@ -602,10 +592,21 @@ public class RiotAPI {
 		}
 		return region;
 	}
-
+	
+	public void setSeason(String season) {
+		this.season = season;
+	}
+	
+	public void setKey(String key) {
+		this.key = key;
+	}
+	
 	public void setRegion(String region) {
 		this.region = region;
 	}
-
+	
+	public String getBaseURL() {
+		return baseURL;
+	}
 
 }
