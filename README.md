@@ -13,7 +13,7 @@ Build Path -> Configure Build Path -> Libraries -> Add External Jars
 
 and selecting the jar under the Order and Export tab.
 
-## Examples
+## Usage
 
 This library can be used strictly according to the [Riot API Documentation](https://developer.riotgames.com/api/methods) like so:
 
@@ -87,7 +87,7 @@ public class Example {
 
 ## Reference
 
-### Main API Methods
+### Strict API Methods
 
 
 |Category|Method                                                                |Return Type           |
