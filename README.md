@@ -104,8 +104,7 @@ public class Example {
 |Summoner|`getSummonerNames(String region, long... summonerIds)`             |SummonerNameList      |
 |Team    |`getTeams(String region, long summonerId)`                            |List<Team>            |
 
-
-Full reference page coming soon.
+Full documentation can be found [HERE](http://taycaldwell.github.io/riot-api-java/doc).
 
 ## Downloads
 [Download (Version 2.0)](https://dl.dropboxusercontent.com/s/te7kxqqrhzsp60e/riot-api-java.jar?dl=1&token_hash=AAHiCwTK9cGe-G-z5_4fmobXiEP5knAoJmhCTzUN96x7bw)
