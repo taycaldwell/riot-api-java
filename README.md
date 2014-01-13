@@ -1,5 +1,5 @@
 #RIOT-API-JAVA
-=============
+--------------
 
 A simple to use, Riot Games API (Beta) wrapper for Java.
 
