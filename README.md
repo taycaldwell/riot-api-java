@@ -1,4 +1,4 @@
-riot-api-java
+#RIOT-API-JAVA
 =============
 
 A simple to use, Riot Games API (Beta) wrapper for Java.
@@ -111,6 +111,9 @@ Full documentation can be found [HERE](http://taycaldwell.github.io/riot-api-jav
 
 ## Contributing
 If you would like to contribute to this repo, please send a pull request.
+
+##Discussion
+Have a suggestion, complaint, or question? Head over to the [discussion board](http://developer.riotgames.com/discussion/riot-games-api/show/aiuG9pfx), or send me an email (tcaldwel@nmsu.edu) for a quick response.
 
 ## Disclaimer
 This product is not endorsed, certified or otherwise approved in any way by Riot Games, Inc. or any of its affiliates.
