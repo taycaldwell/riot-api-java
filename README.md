@@ -107,7 +107,7 @@ public class Example {
 Full documentation can be found [HERE](http://taycaldwell.github.io/riot-api-java/doc).
 
 ## Download
-[Download (Version 2.0)](https://dl.dropboxusercontent.com/s/te7kxqqrhzsp60e/riot-api-java.jar?dl=1&token_hash=AAHiCwTK9cGe-G-z5_4fmobXiEP5knAoJmhCTzUN96x7bw)
+[Download (Version 2.1)](https://dl.dropboxusercontent.com/s/te7kxqqrhzsp60e/riot-api-java.jar?dl=1&token_hash=AAHiCwTK9cGe-G-z5_4fmobXiEP5knAoJmhCTzUN96x7bw)
 
 ## Contributing
 If you would like to contribute to this repo, please send a pull request.
