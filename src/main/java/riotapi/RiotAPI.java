@@ -33,13 +33,11 @@ public class RiotAPI {
 	
 	/**Constructor*/
 	public RiotAPI(String key) {
-		
 		this.setKey(key);
 	}
 	
 	/**Constructor*/
 	public RiotAPI(String key, String region) {
-		
 		this.setKey(key);
 		this.setRegion(region);
 	}

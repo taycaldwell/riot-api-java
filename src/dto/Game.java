@@ -9,7 +9,7 @@ public class Game {
 	private List<Player> fellowPlayers;
 	private String gameMode, gameType, subType;
 	private boolean invalid;
-	private List<RawStat> statistics;
+	private RawStats stats;
 	
 	public long getCreateDate() {
 		return createDate;
@@ -63,8 +63,8 @@ public class Game {
 		return gameMode;
 	}
 
-	public List<RawStat> getStatistics() {
-		return statistics;
+	public RawStats getStats() {
+		return stats;
 	}
 
 }

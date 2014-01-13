@@ -1,13 +1,13 @@
 package dto;
 
-import java.util.List;
+import java.util.Set;
 
 public class RecentGames {
 	
-	private List<Game> games;
+	private Set<Game> games;
 	private long summonerId;
 	
-	public List<Game> getGames() {
+	public Set<Game> getGames() {
 		return games;
 	}
 	
