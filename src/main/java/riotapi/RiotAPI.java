@@ -1,35 +1,35 @@
 package main.java.riotapi;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 import java.util.Map;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
+
 import org.apache.commons.io.IOUtils;
+
 import dto.*;
 
 
 public class RiotAPI {
 	
 	/**The base URL for all API requests*/
-	private String baseURL = "https://prod.api.pvp.net/api/lol/";
+	private final String baseURL = "https://prod.api.pvp.net/api/lol/";
 	
 	/**Your personal API key*/
-	private String key = "YOUR API KEY";
+	private String key;
 	
 	/**The desired region*/
-	private String region = ""; 
+	private String region; 
 	
 	/**The desired season*/
-	private String season = "";
+	private String season;
 	
 	/**Constructor*/
-	public RiotAPI() {
-		
-	}
+	public RiotAPI() {}
 	
 	/**Constructor*/
 	public RiotAPI(String key) {
@@ -51,16 +51,13 @@ public class RiotAPI {
 		
 		String url = getBaseURL() + getRegion() + "/v1.1/champion?api_key=" + getKey();
 	    ChampionList championList = null;
-		try {
-			championList = new Gson().fromJson(IOUtils.toString(new URL(url)), ChampionList.class);
-		} catch (JsonSyntaxException e) {
-			e.printStackTrace();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	    
+		
+			try {
+				championList = new Gson().fromJson(IOUtils.toString(new URL(url)), ChampionList.class);
+			} catch (JsonSyntaxException | IOException e) {
+				e.printStackTrace();
+			}
+		 
 	    return championList;
 	}
 	
@@ -74,16 +71,13 @@ public class RiotAPI {
 	
 		String url = getBaseURL() + region + "/v1.1/champion?api_key=" + getKey();
 	    ChampionList championList = null;
-		try {
-			championList = new Gson().fromJson(IOUtils.toString(new URL(url)), ChampionList.class);
-		} catch (JsonSyntaxException e) {
-			e.printStackTrace();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	    
+	
+			try {
+				championList = new Gson().fromJson(IOUtils.toString(new URL(url)), ChampionList.class);
+			} catch (JsonSyntaxException | IOException e) {
+				e.printStackTrace();
+			}
+
 	    return championList;
 	}
     
@@ -100,16 +94,13 @@ public class RiotAPI {
 
 		String url = getBaseURL() + getRegion() + "/v1.1/champion?freeToPlay=" + freeToPlay + "&api_key=" + getKey();
 	    ChampionList championList = null;
-		try {
-			championList = new Gson().fromJson(IOUtils.toString(new URL(url)), ChampionList.class);
-		} catch (JsonSyntaxException e) {
-			e.printStackTrace();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	    
+
+			try {
+				championList = new Gson().fromJson(IOUtils.toString(new URL(url)), ChampionList.class);
+			} catch (JsonSyntaxException | IOException e) {
+				e.printStackTrace();
+			}
+
 	    return championList;
 	}
 	
@@ -126,16 +117,13 @@ public class RiotAPI {
 		
 		String url = getBaseURL() + region + "/v1.1/champion?freeToPlay=" + freeToPlay + "&api_key=" + getKey();
 	    ChampionList championList = null;
-		try {
-			championList = new Gson().fromJson(IOUtils.toString(new URL(url)), ChampionList.class);
-		} catch (JsonSyntaxException e) {
-			e.printStackTrace();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	    
+
+			try {
+				championList = new Gson().fromJson(IOUtils.toString(new URL(url)), ChampionList.class);
+			} catch (JsonSyntaxException | IOException e) {
+				e.printStackTrace();
+			}
+
 	    return championList;
 	}
 	
@@ -149,16 +137,13 @@ public class RiotAPI {
 
 		String url = getBaseURL() + region + "/v1.1/champion?freeToPlay=true" + "&api_key=" + getKey();
 	    ChampionList championList = null;
-		try {
-			championList = new Gson().fromJson(IOUtils.toString(new URL(url)), ChampionList.class);
-		} catch (JsonSyntaxException e) {
-			e.printStackTrace();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	    
+	
+			try {
+				championList = new Gson().fromJson(IOUtils.toString(new URL(url)), ChampionList.class);
+			} catch (JsonSyntaxException | IOException e) {
+				e.printStackTrace();
+			}
+
 	    return championList;
 	}
 	
@@ -171,16 +156,13 @@ public class RiotAPI {
 
 		String url = getBaseURL() + getRegion() + "/v1.1/champion?freeToPlay=true" + "&api_key=" + getKey();
 	    ChampionList championList = null;
-		try {
-			championList = new Gson().fromJson(IOUtils.toString(new URL(url)), ChampionList.class);
-		} catch (JsonSyntaxException e) {
-			e.printStackTrace();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	    
+
+			try {
+				championList = new Gson().fromJson(IOUtils.toString(new URL(url)), ChampionList.class);
+			} catch (JsonSyntaxException | IOException e) {
+				e.printStackTrace();
+			}
+
 	    return championList;
 	}
 	
@@ -193,18 +175,15 @@ public class RiotAPI {
 	 */
 	public RecentGames getRecentGames(String region, long summonerId) {
 		
-		String url = getBaseURL() + region + "/v1.2/game/by-summoner/" + summonerId + "/recent?api_key=" + getKey();
+		String url = getBaseURL() + region + "/v1.3/game/by-summoner/" + summonerId + "/recent?api_key=" + getKey();
 	    RecentGames recentGames = null;
-		try {
-			recentGames = new Gson().fromJson(IOUtils.toString(new URL(url)), RecentGames.class);
-		} catch (JsonSyntaxException e) {
-			e.printStackTrace();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	    
+
+			try {
+				recentGames = new Gson().fromJson(IOUtils.toString(new URL(url)), RecentGames.class);
+			} catch (JsonSyntaxException | IOException e) {
+				e.printStackTrace();
+			}
+
 	    return recentGames;
 	}
 	
@@ -216,18 +195,15 @@ public class RiotAPI {
 	 */
 	public RecentGames getRecentGames(long summonerId) {
 		
-		String url = getBaseURL() + getRegion() + "/v1.2/game/by-summoner/" + summonerId + "/recent?api_key=" + getKey();
+		String url = getBaseURL() + getRegion() + "/v1.3/game/by-summoner/" + summonerId + "/recent?api_key=" + getKey();
 	    RecentGames recentGames = null;
-		try {
-			recentGames = new Gson().fromJson(IOUtils.toString(new URL(url)), RecentGames.class);
-		} catch (JsonSyntaxException e) {
-			e.printStackTrace();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	    
+
+			try {
+				recentGames = new Gson().fromJson(IOUtils.toString(new URL(url)), RecentGames.class);
+			} catch (JsonSyntaxException | IOException e) {
+				e.printStackTrace();
+			}
+    
 	    return recentGames;
 	}
 	
@@ -242,16 +218,13 @@ public class RiotAPI {
 		
 		String url = getBaseURL() + region + "/v2.2/league/by-summoner/" + summonerId + "?api_key=" + getKey();
 	    Map<String, League> leagues = null;
-		try {
-			leagues = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<Map<String, League>>(){}.getType());
-		} catch (JsonSyntaxException e) {
-			e.printStackTrace();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	    
+
+			try {
+				leagues = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<Map<String, League>>(){}.getType());
+			} catch (JsonSyntaxException | IOException e) {
+				e.printStackTrace();
+			}
+
 	    return leagues;
 	}
 	
@@ -265,16 +238,13 @@ public class RiotAPI {
 		
 		String url = getBaseURL() + getRegion() + "/v2.2/league/by-summoner/" + summonerId + "?api_key=" + getKey();
 	    Map<String, League> leagues = null;
-		try {
-			leagues = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<Map<String, League>>(){}.getType());
-		} catch (JsonSyntaxException e) {
-			e.printStackTrace();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	    
+
+			try {
+				leagues = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<Map<String, League>>(){}.getType());
+			} catch (JsonSyntaxException | IOException e) {
+				e.printStackTrace();
+			}
+
 	    return leagues;
 	}
 	
@@ -290,16 +260,13 @@ public class RiotAPI {
 		
 		String url = getBaseURL() + region + "/v1.2/stats/by-summoner/" + summonerId + "/summary?season=" + season + "&api_key=" + getKey();
 	    PlayerStatsSummaryList summaryList = null;
-		try {
-			summaryList = new Gson().fromJson(IOUtils.toString(new URL(url)), PlayerStatsSummaryList.class);
-		} catch (JsonSyntaxException e) {
-			e.printStackTrace();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	    
+
+			try {
+				summaryList = new Gson().fromJson(IOUtils.toString(new URL(url)), PlayerStatsSummaryList.class);
+			} catch (JsonSyntaxException | IOException e) {
+				e.printStackTrace();
+			}
+
 	    return summaryList;
 	}
 	
@@ -314,16 +281,13 @@ public class RiotAPI {
 		
 		String url = getBaseURL() + getRegion() + "/v1.2/stats/by-summoner/" + summonerId + "/summary?season=" + season + "&api_key=" + getKey();
 	    PlayerStatsSummaryList summaryList = null;
-		try {
-			summaryList = new Gson().fromJson(IOUtils.toString(new URL(url)), PlayerStatsSummaryList.class);
-		} catch (JsonSyntaxException e) {
-			e.printStackTrace();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	    
+			try {
+				summaryList = new Gson().fromJson(IOUtils.toString(new URL(url)), PlayerStatsSummaryList.class);
+			} catch (JsonSyntaxException | IOException e) {
+				e.printStackTrace();
+			}
+    
 	    return summaryList;
 	}
 	
@@ -338,16 +302,13 @@ public class RiotAPI {
 		
 		String url = getBaseURL() + region + "/v1.2/stats/by-summoner/" + summonerId + "/summary?season=" + getSeason() + "&api_key=" + getKey();
 	    PlayerStatsSummaryList summaryList = null;
-		try {
-			summaryList = new Gson().fromJson(IOUtils.toString(new URL(url)), PlayerStatsSummaryList.class);
-		} catch (JsonSyntaxException e) {
-			e.printStackTrace();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	    
+		
+			try {
+				summaryList = new Gson().fromJson(IOUtils.toString(new URL(url)), PlayerStatsSummaryList.class);
+			} catch (JsonSyntaxException | IOException e) {
+				e.printStackTrace();
+			}
+		 
 	    return summaryList;
 	}
 	
@@ -361,15 +322,12 @@ public class RiotAPI {
 		
 		String url = getBaseURL() + getRegion() + "/v1.2/stats/by-summoner/" + summonerId + "/summary?season=" + getSeason() + "&api_key=" + getKey();
 	    PlayerStatsSummaryList summaryList = null;
-		try {
-			summaryList = new Gson().fromJson(IOUtils.toString(new URL(url)), PlayerStatsSummaryList.class);
-		} catch (JsonSyntaxException e) {
-			e.printStackTrace();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+
+			try {
+				summaryList = new Gson().fromJson(IOUtils.toString(new URL(url)), PlayerStatsSummaryList.class);
+			} catch (JsonSyntaxException | IOException e) {
+				e.printStackTrace();
+			}
 	    
 	    return summaryList;
 	}
@@ -386,15 +344,12 @@ public class RiotAPI {
 		
 		String url = getBaseURL() + region + "/v1.2/stats/by-summoner/" + summonerId + "/ranked?season=" + season + "&api_key=" + getKey();
 	    RankedStats rankedStats = null;
-		try {
-			rankedStats = new Gson().fromJson(IOUtils.toString(new URL(url)), RankedStats.class);
-		} catch (JsonSyntaxException e) {
-			e.printStackTrace();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+
+			try {
+				rankedStats = new Gson().fromJson(IOUtils.toString(new URL(url)), RankedStats.class);
+			} catch (JsonSyntaxException | IOException e) {
+				e.printStackTrace();
+			}
 	    
 	    return rankedStats;
 	}
@@ -410,16 +365,13 @@ public class RiotAPI {
 		
 		String url = getBaseURL() + getRegion() + "/v1.2/stats/by-summoner/" + summonerId + "/ranked?season=" + season + "&api_key=" + getKey();
 	    RankedStats rankedStats = null;
-		try {
-			rankedStats = new Gson().fromJson(IOUtils.toString(new URL(url)), RankedStats.class);
-		} catch (JsonSyntaxException e) {
-			e.printStackTrace();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	    
+
+			try {
+				rankedStats = new Gson().fromJson(IOUtils.toString(new URL(url)), RankedStats.class);
+			} catch (JsonSyntaxException | IOException e) {
+				e.printStackTrace();
+			}
+
 	    return rankedStats;
 	}
 	
@@ -434,15 +386,12 @@ public class RiotAPI {
 		
 		String url = getBaseURL() + region + "/v1.2/stats/by-summoner/" + summonerId + "/ranked?season=" + getSeason() + "&api_key=" + getKey();
 	    RankedStats rankedStats = null;
-		try {
-			rankedStats = new Gson().fromJson(IOUtils.toString(new URL(url)), RankedStats.class);
-		} catch (JsonSyntaxException e) {
-			e.printStackTrace();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+
+			try {
+				rankedStats = new Gson().fromJson(IOUtils.toString(new URL(url)), RankedStats.class);
+			} catch (JsonSyntaxException | IOException e) {
+				e.printStackTrace();
+			}
 	    
 	    return rankedStats;
 	}
@@ -457,16 +406,13 @@ public class RiotAPI {
 		
 		String url = getBaseURL() + getRegion() + "/v1.2/stats/by-summoner/" + summonerId + "/ranked?season=" + getSeason() + "&api_key=" + getKey();
 	    RankedStats rankedStats = null;
-		try {
-			rankedStats = new Gson().fromJson(IOUtils.toString(new URL(url)), RankedStats.class);
-		} catch (JsonSyntaxException e) {
-			e.printStackTrace();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	    
+
+			try {
+				rankedStats = new Gson().fromJson(IOUtils.toString(new URL(url)), RankedStats.class);
+			} catch (JsonSyntaxException | IOException e) {	
+				e.printStackTrace();
+			}
+
 	    return rankedStats;
 	}
 	
@@ -481,16 +427,13 @@ public class RiotAPI {
 		
 		String url = getBaseURL() + region + "/v1.2/summoner/" + summonerId + "/masteries?api_key=" + getKey();
 	    MasteryPages masteryPages = null;
-		try {
-			masteryPages = new Gson().fromJson(IOUtils.toString(new URL(url)), MasteryPages.class);
-		} catch (JsonSyntaxException e) {
-			e.printStackTrace();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	    
+
+			try {
+				masteryPages = new Gson().fromJson(IOUtils.toString(new URL(url)), MasteryPages.class);
+			} catch (JsonSyntaxException | IOException e) {
+				e.printStackTrace();
+			}
+
 	    return masteryPages;
 	}
 	
@@ -504,15 +447,12 @@ public class RiotAPI {
 		
 		String url = getBaseURL() + getRegion() + "/v1.2/summoner/" + summonerId + "/masteries?api_key=" + getKey();
 	    MasteryPages masteryPages = null;
-		try {
-			masteryPages = new Gson().fromJson(IOUtils.toString(new URL(url)), MasteryPages.class);
-		} catch (JsonSyntaxException e) {
-			e.printStackTrace();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+
+			try {
+				masteryPages = new Gson().fromJson(IOUtils.toString(new URL(url)), MasteryPages.class);
+			} catch (JsonSyntaxException | IOException e) {
+				e.printStackTrace();
+			}
 	    
 	    return masteryPages;
 	}
@@ -528,13 +468,10 @@ public class RiotAPI {
 		
 		String url = getBaseURL() + region + "/v1.2/summoner/" + summonerId + "/runes?api_key=" + getKey();
 	    RunePages runePages = null;
+
 			try {
 				runePages = new Gson().fromJson(IOUtils.toString(new URL(url)), RunePages.class);
-			} catch (JsonSyntaxException e) {
-				e.printStackTrace();
-			} catch (MalformedURLException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
+			} catch (JsonSyntaxException | IOException e) {
 				e.printStackTrace();
 			}
 		
@@ -551,16 +488,13 @@ public class RiotAPI {
 		
 		String url = getBaseURL() + getRegion() + "/v1.2/summoner/" + summonerId + "/runes?api_key=" + getKey();
 	    RunePages runePages = null;
-		try {
-			runePages = new Gson().fromJson(IOUtils.toString(new URL(url)), RunePages.class);
-		} catch (JsonSyntaxException e) {
-			e.printStackTrace();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	    
+
+			try {
+				runePages = new Gson().fromJson(IOUtils.toString(new URL(url)), RunePages.class);
+			} catch (JsonSyntaxException | IOException e) {
+				e.printStackTrace();
+			}
+
 	    return runePages;
 	}
 	
@@ -576,16 +510,13 @@ public class RiotAPI {
 		name = name.replaceAll("\\s+", "");
 		String url = getBaseURL() + region + "/v1.2/summoner/by-name/" + name + "?api_key=" + getKey();
 		Summoner summoner = null;
-		try {
-			summoner = new Gson().fromJson(IOUtils.toString(new URL(url)), Summoner.class);
-		} catch (JsonSyntaxException e) {
-			e.printStackTrace();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	    
+
+			try {
+				summoner = new Gson().fromJson(IOUtils.toString(new URL(url)), Summoner.class);
+			} catch (JsonSyntaxException | IOException e) {
+				e.printStackTrace();
+			}
+    
 	    return summoner;
 	}
 	
@@ -600,16 +531,13 @@ public class RiotAPI {
 		name = name.replaceAll("\\s+", "");
 		String url = getBaseURL() + getRegion() + "/v1.2/summoner/by-name/" + name + "?api_key=" + getKey();
 		Summoner summoner = null;
-		try {
-			summoner = new Gson().fromJson(IOUtils.toString(new URL(url)), Summoner.class);
-		} catch (JsonSyntaxException e) {
-			e.printStackTrace();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	    
+
+			try {
+				summoner = new Gson().fromJson(IOUtils.toString(new URL(url)), Summoner.class);
+			} catch (JsonSyntaxException | IOException e) {
+				e.printStackTrace();
+			}
+ 
 	    return summoner;
 	}
 	
@@ -624,16 +552,13 @@ public class RiotAPI {
 		
 		String url = getBaseURL() + region + "/v1.2/summoner/" + summonerId + "?api_key=" + getKey();
 		Summoner summoner = null;
-		try {
-			summoner = new Gson().fromJson(IOUtils.toString(new URL(url)), Summoner.class);
-		} catch (JsonSyntaxException e) {
-			e.printStackTrace();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	    
+
+			try {
+				summoner = new Gson().fromJson(IOUtils.toString(new URL(url)), Summoner.class);
+			} catch (JsonSyntaxException | IOException e) {
+				e.printStackTrace();
+			}
+    
 	    return summoner;
 	}
 	
@@ -647,16 +572,13 @@ public class RiotAPI {
 		
 		String url = getBaseURL() + getRegion() + "/v1.2/summoner/" + summonerId + "?api_key=" + getKey();
 		Summoner summoner = null;
-		try {
-			summoner = new Gson().fromJson(IOUtils.toString(new URL(url)), Summoner.class);
-		} catch (JsonSyntaxException e) {
-			e.printStackTrace();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	    
+
+			try {
+				summoner = new Gson().fromJson(IOUtils.toString(new URL(url)), Summoner.class);
+			} catch (JsonSyntaxException | IOException e) {
+				e.printStackTrace();
+			}
+
 	    return summoner;
 	}
 	
@@ -677,16 +599,13 @@ public class RiotAPI {
 		
 		String url = getBaseURL() + region + "/v1.2/summoner/" + ids + "/name?api_key=" + getKey();
 		SummonerNameList summonerNameList = null;
-		try {
-			summonerNameList = new Gson().fromJson(IOUtils.toString(new URL(url)), SummonerNameList.class);
-		} catch (JsonSyntaxException e) {
-			e.printStackTrace();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	    
+
+			try {
+				summonerNameList = new Gson().fromJson(IOUtils.toString(new URL(url)), SummonerNameList.class);
+			} catch (JsonSyntaxException | IOException e) {
+				e.printStackTrace();
+			}
+    
 	    return summonerNameList;
 	}
 	
@@ -706,15 +625,12 @@ public class RiotAPI {
 		
 		String url = getBaseURL() + getRegion() + "/v1.2/summoner/" + ids + "/name?api_key=" + getKey();
 		SummonerNameList summonerNameList = null;
-		try {
-			summonerNameList = new Gson().fromJson(IOUtils.toString(new URL(url)), SummonerNameList.class);
-		} catch (JsonSyntaxException e) {
-			e.printStackTrace();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+
+			try {
+				summonerNameList = new Gson().fromJson(IOUtils.toString(new URL(url)), SummonerNameList.class);
+			} catch (JsonSyntaxException | IOException e) {
+				e.printStackTrace();
+			}
 	    
 	    return summonerNameList;
 	}
@@ -730,16 +646,13 @@ public class RiotAPI {
 		
 		String url = getBaseURL() + region + "/v2.2/team/by-summoner/" + summonerId + "?api_key=" + getKey();
 		List<Team> teamList = null;
-		try {
-			teamList = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<List<Team>>(){}.getType());
-		} catch (JsonSyntaxException e) {
-			e.printStackTrace();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
+
+			try {
+				teamList = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<List<Team>>(){}.getType());
+			} catch (JsonSyntaxException | IOException e) {
+				e.printStackTrace();
+			}
+	
 	    return teamList;
 	}
 	
@@ -753,61 +666,40 @@ public class RiotAPI {
 		
 		String url = getBaseURL() + getRegion() + "/v2.2/team/by-summoner/" + summonerId + "?api_key=" + getKey();
 		List<Team> teamList = null;
-		try {
-			teamList = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<List<Team>>(){}.getType());
-		} catch (JsonSyntaxException e) {
-			e.printStackTrace();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
+
+			try {
+				teamList = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<List<Team>>(){}.getType());
+			} catch (JsonSyntaxException | IOException e) {
+				e.printStackTrace();
+			}
+	
 	    return teamList;
 	}
 	
 	/**
 	 * Get the currently set season
 	 * @return The currently set season
+	 * @throws Exception 
 	 */
 	public String getSeason() {
-		if(season.equals("")) {
-			try {
-				throw new Exception("No season was set.");
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
 		return season;
 	}
 	
 	/**
 	 * Get the currently set API key
 	 * @return The currently set API key
+	 * @throws Exception 
 	 */
 	public String getKey() {
-		if(key.equals("YOUR API KEY")) {
-			try {
-				throw new Exception("No key was set.");
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
 		return key;
 	}
 	
 	/**
 	 * Get the currently set region
 	 * @return The currently set region
+	 * @throws Exception 
 	 */
 	public String getRegion() {
-		if(region.equals("")) {
-			try {
-				throw new Exception("No region was set.");
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
 		return region;
 	}
 	
