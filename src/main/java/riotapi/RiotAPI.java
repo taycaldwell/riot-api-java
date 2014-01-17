@@ -419,17 +419,38 @@ public class RiotAPI {
 	/**
 	 * Get the mastery pages of a given summoner
 	 * @param region The desired region
-	 * @param summonerId The ID of the desired summoner
-	 * @return Mastery pages of the given summoner
+	 * @param summonerIds The IDs of the desired summoners
+	 * @return A map of mastery pages of the given summoners
 	 * @see MasteryPages
 	 */
-	public MasteryPages getMasteryPages(String region, long summonerId) {
+	public Map<String, MasteryPages> getMasteryPages(String region, String summonerIds) {
 		
-		String url = getBaseURL() + region + "/v1.2/summoner/" + summonerId + "/masteries?api_key=" + getKey();
-	    MasteryPages masteryPages = null;
+		String url = getBaseURL() + region + "/v1.3/summoner/" + summonerIds + "/masteries?api_key=" + getKey();
+	    Map<String, MasteryPages> masteryPages = null;
 
 			try {
-				masteryPages = new Gson().fromJson(IOUtils.toString(new URL(url)), MasteryPages.class);
+				masteryPages = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<Map<String, MasteryPages>>(){}.getType());
+			} catch (JsonSyntaxException | IOException e) {
+				e.printStackTrace();
+			}
+
+	    return masteryPages;
+	}
+	
+	
+	/**
+	 * Get the mastery pages of a given summoner
+	 * @param summonerIds The IDs of the desired summoners
+	 * @return A map of mastery pages of the given summoners
+	 * @see MasteryPages
+	 */
+	public Map<String, MasteryPages> getMasteryPages(String summonerIds) {
+		
+		String url = getBaseURL() + getRegion() + "/v1.3/summoner/" + summonerIds + "/masteries?api_key=" + getKey();
+	    Map<String, MasteryPages> masteryPages = null;
+
+			try {
+				masteryPages = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<Map<String, MasteryPages>>(){}.getType());
 			} catch (JsonSyntaxException | IOException e) {
 				e.printStackTrace();
 			}
@@ -439,38 +460,60 @@ public class RiotAPI {
 	
 	/**
 	 * Get the mastery pages of a given summoner
-	 * @param summonerId The ID of the desired summoner
-	 * @return Mastery pages of the given summoner
+	 * @param region The desired region
+	 * @param summonerIds The IDs of the desired summoners
+	 * @return A map of mastery pages of the given summoners
 	 * @see MasteryPages
 	 */
-	public MasteryPages getMasteryPages(long summonerId) {
+	public Map<String, MasteryPages> getMasteryPages(String region, long... summonerIds) {
 		
-		String url = getBaseURL() + getRegion() + "/v1.2/summoner/" + summonerId + "/masteries?api_key=" + getKey();
-	    MasteryPages masteryPages = null;
+		String url = getBaseURL() + region + "/v1.3/summoner/" + longToString(summonerIds) + "/masteries?api_key=" + getKey();
+	    Map<String, MasteryPages> masteryPages = null;
 
 			try {
-				masteryPages = new Gson().fromJson(IOUtils.toString(new URL(url)), MasteryPages.class);
+				masteryPages = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<Map<String, MasteryPages>>(){}.getType());
 			} catch (JsonSyntaxException | IOException e) {
 				e.printStackTrace();
 			}
-	    
+
 	    return masteryPages;
 	}
 	
 	/**
-	 * Get the rune pages of a given summoner
-	 * @param region The desired region
-	 * @param summonerId The ID of the desired summoner
-	 * @return Rune pages of the given summoner
-	 * @see RunePages
+	 * Get the mastery pages of a given summoner
+	 * @param summonerIds The IDs of the desired summoners
+	 * @return A map of mastery pages of the given summoners
+	 * @see MasteryPages
 	 */
-	public RunePages getRunePages(String region, long summonerId) {
+	public Map<String, MasteryPages> getMasteryPages(long... summonerIds) {
 		
-		String url = getBaseURL() + region + "/v1.2/summoner/" + summonerId + "/runes?api_key=" + getKey();
-	    RunePages runePages = null;
+		String url = getBaseURL() + getRegion() + "/v1.3/summoner/" + longToString(summonerIds) + "/masteries?api_key=" + getKey();
+	    Map<String, MasteryPages> masteryPages = null;
 
 			try {
-				runePages = new Gson().fromJson(IOUtils.toString(new URL(url)), RunePages.class);
+				masteryPages = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<Map<String, MasteryPages>>(){}.getType());
+			} catch (JsonSyntaxException | IOException e) {
+				e.printStackTrace();
+			}
+
+	    return masteryPages;
+	}
+	
+	
+	/**
+	 * Get the rune pages of a given summoner
+	 * @param region The desired region
+	 * @param summonerIds The IDs of the desired summoners
+	 * @return A map of rune pages of the given summoners
+	 * @see RunePages
+	 */
+	public Map<String, RunePages> getRunePages(String region, String summonerIds) {
+		
+		String url = getBaseURL() + region + "/v1.3/summoner/" + summonerIds + "/runes?api_key=" + getKey();
+	    Map<String, RunePages> runePages = null;
+
+			try {
+				runePages = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<Map<String, RunePages>>(){}.getType());
 			} catch (JsonSyntaxException | IOException e) {
 				e.printStackTrace();
 			}
@@ -480,39 +523,80 @@ public class RiotAPI {
 	
 	/**
 	 * Get the rune pages of a given summoner
-	 * @param summonerId The ID of the desired summoner
-	 * @return Rune pages of the given summoner
+	 * @param summonerIds The IDs of the desired summoners
+	 * @return A map of rune pages of the given summoners
 	 * @see RunePages
 	 */
-	public RunePages getRunePages(long summonerId) {
+	public Map<String, RunePages> getRunePages(String summonerIds) {
 		
-		String url = getBaseURL() + getRegion() + "/v1.2/summoner/" + summonerId + "/runes?api_key=" + getKey();
-	    RunePages runePages = null;
+		String url = getBaseURL() + getRegion() + "/v1.3/summoner/" + summonerIds + "/runes?api_key=" + getKey();
+	    Map<String, RunePages> runePages = null;
 
 			try {
-				runePages = new Gson().fromJson(IOUtils.toString(new URL(url)), RunePages.class);
+				runePages = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<Map<String, RunePages>>(){}.getType());
 			} catch (JsonSyntaxException | IOException e) {
 				e.printStackTrace();
 			}
-
+		
 	    return runePages;
 	}
 	
 	/**
-	 * Get a summoner by name
+	 * Get the rune pages of a given summoner
 	 * @param region The desired region
-	 * @param name The name of the desired summoner
-	 * @return The desired summoner
-	 * @see Summoner
+	 * @param summonerIds The IDs of the desired summoners
+	 * @return A map of rune pages of the given summoners
+	 * @see RunePages
 	 */
-	public Summoner getSummoner(String region, String name) {
+	public Map<String, RunePages> getRunePages(String region, long... summonerIds) {
 		
-		name = name.replaceAll("\\s+", "");
-		String url = getBaseURL() + region + "/v1.2/summoner/by-name/" + name + "?api_key=" + getKey();
-		Summoner summoner = null;
+		String url = getBaseURL() + region + "/v1.3/summoner/" + longToString(summonerIds) + "/runes?api_key=" + getKey();
+	    Map<String, RunePages> runePages = null;
 
 			try {
-				summoner = new Gson().fromJson(IOUtils.toString(new URL(url)), Summoner.class);
+				runePages = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<Map<String, RunePages>>(){}.getType());
+			} catch (JsonSyntaxException | IOException e) {
+				e.printStackTrace();
+			}
+		
+	    return runePages;
+	}
+	
+	/**
+	 * Get the rune pages of a given summoner
+	 * @param summonerIds The IDs of the desired summoners
+	 * @return A map of rune pages of the given summoners
+	 * @see RunePages
+	 */
+	public Map<String, RunePages> getRunePages(long... summonerIds) {
+		
+		String url = getBaseURL() + getRegion() + "/v1.3/summoner/" + longToString(summonerIds) + "/runes?api_key=" + getKey();
+	    Map<String, RunePages> runePages = null;
+
+			try {
+				runePages = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<Map<String, RunePages>>(){}.getType());
+			} catch (JsonSyntaxException | IOException e) {
+				e.printStackTrace();
+			}
+		
+	    return runePages;
+	}
+	
+	/**
+	 * Get summoners by names
+	 * @param region The desired region
+	 * @param summonerNames The names of the desired summoners
+	 * @return A map of desired summoners
+	 * @see Summoner
+	 */
+	public Map<String, Summoner> getSummonersByName(String region, String summonerNames) {
+		
+		summonerNames = summonerNames.replaceAll("\\s+", "");
+		String url = getBaseURL() + region + "/v1.3/summoner/by-name/" + summonerNames + "?api_key=" + getKey();
+		Map<String, Summoner> summoner = null;
+
+			try {
+				summoner = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<Map<String, Summoner>>(){}.getType());
 			} catch (JsonSyntaxException | IOException e) {
 				e.printStackTrace();
 			}
@@ -521,40 +605,19 @@ public class RiotAPI {
 	}
 	
 	/**
-	 * Get a summoner by name
-	 * @param name The name of the desired summoner
-	 * @return The desired summoner
+	 * Get summoners by names
+	 * @param summonerNames The names of the desired summoners
+	 * @return A map of desired summoners
 	 * @see Summoner
 	 */
-	public Summoner getSummoner(String name) {
+	public Map<String, Summoner> getSummonersByName(String summonerNames) {
 		
-		name = name.replaceAll("\\s+", "");
-		String url = getBaseURL() + getRegion() + "/v1.2/summoner/by-name/" + name + "?api_key=" + getKey();
-		Summoner summoner = null;
+		summonerNames = summonerNames.replaceAll("\\s+", "");
+		String url = getBaseURL() + getRegion() + "/v1.3/summoner/by-name/" + summonerNames + "?api_key=" + getKey();
+		Map<String, Summoner> summoner = null;
 
 			try {
-				summoner = new Gson().fromJson(IOUtils.toString(new URL(url)), Summoner.class);
-			} catch (JsonSyntaxException | IOException e) {
-				e.printStackTrace();
-			}
- 
-	    return summoner;
-	}
-	
-	/**
-	 * Get a summoner by ID
-	 * @param region The desired region
-	 * @param summonerId The ID of the desired summoner
-	 * @return The desired summoner
-	 * @see Summoner
-	 */
-	public Summoner getSummoner(String region, long summonerId) {
-		
-		String url = getBaseURL() + region + "/v1.2/summoner/" + summonerId + "?api_key=" + getKey();
-		Summoner summoner = null;
-
-			try {
-				summoner = new Gson().fromJson(IOUtils.toString(new URL(url)), Summoner.class);
+				summoner = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<Map<String, Summoner>>(){}.getType());
 			} catch (JsonSyntaxException | IOException e) {
 				e.printStackTrace();
 			}
@@ -563,22 +626,84 @@ public class RiotAPI {
 	}
 	
 	/**
-	 * Get a summoner by ID
-	 * @param summonerId The ID of the desired summoner
-	 * @return The desired summoner
+	 * Get summoners by names
+	 * @param region The desired region
+	 * @param summonerIds The IDs of the desired summoners
+	 * @return A map of desired summoners
 	 * @see Summoner
 	 */
-	public Summoner getSummoner(long summonerId) {
-		
-		String url = getBaseURL() + getRegion() + "/v1.2/summoner/" + summonerId + "?api_key=" + getKey();
-		Summoner summoner = null;
+	public Map<String, Summoner> getSummonersById(String region, long... summonerIds) {
+			
+		String url = getBaseURL() + region + "/v1.3/summoner/" + longToString(summonerIds) + "?api_key=" + getKey();
+		Map<String, Summoner> summoner = null;
 
 			try {
-				summoner = new Gson().fromJson(IOUtils.toString(new URL(url)), Summoner.class);
+				summoner = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<Map<String, Summoner>>(){}.getType());
 			} catch (JsonSyntaxException | IOException e) {
 				e.printStackTrace();
 			}
+    
+	    return summoner;
+	}
+	
+	/**
+	 * Get summoners by names
+	 * @param summonerIds The IDs of the desired summoners
+	 * @return A map of desired summoners
+	 * @see Summoner
+	 */
+	public Map<String, Summoner> getSummonersById(long... summonerIds) {
+		
+		String url = getBaseURL() + getRegion() + "/v1.3/summoner/" + longToString(summonerIds) + "?api_key=" + getKey();
+		Map<String, Summoner> summoner = null;
 
+			try {
+				summoner = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<Map<String, Summoner>>(){}.getType());
+			} catch (JsonSyntaxException | IOException e) {
+				e.printStackTrace();
+			}
+    
+	    return summoner;
+	}
+	
+	/**
+	 * Get summoners by names
+	 * @param region The desired region
+	 * @param summonerIds The IDs of the desired summoners
+	 * @return A map of desired summoners
+	 * @see Summoner
+	 */
+	public Map<String, Summoner> getSummonersById(String region, String summonerIds) {
+		
+		String url = getBaseURL() + region + "/v1.3/summoner/" + summonerIds + "?api_key=" + getKey();
+		Map<String, Summoner> summoner = null;
+
+			try {
+				summoner = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<Map<String, Summoner>>(){}.getType());
+			} catch (JsonSyntaxException | IOException e) {
+				e.printStackTrace();
+			}
+    
+	    return summoner;
+	}
+	
+	/**
+	 * Get summoners by names
+	 * @param summonerIds The IDs of the desired summoners
+	 * @return A map of desired summoners
+	 * @see Summoner
+	 */
+	public Map<String, Summoner> getSummonersById(String summonerIds) {
+		
+		String url = getBaseURL() + getRegion() + "/v1.3/summoner/" + summonerIds + "?api_key=" + getKey();
+		Map<String, Summoner> summoner = null;
+
+			try {
+				summoner = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<Map<String, Summoner>>(){}.getType());
+			} catch (JsonSyntaxException | IOException e) {
+				e.printStackTrace();
+			}
+    
 	    return summoner;
 	}
 	
@@ -586,22 +711,15 @@ public class RiotAPI {
 	 * Get summoner names by IDs
 	 * @param region The desired region
 	 * @param summonerIds The IDs of the desired summoners
-	 * @return A list of desired summoner names
-	 * @see SummonerNameList
+	 * @return A map of desired summoner names
 	 */
-	public SummonerNameList getSummonerNames(String region, long... summonerIds){
+	public Map<String, String> getSummonerNames(String region, long... summonerIds){
 	
-		String ids = "";
-		for(int i = 0; i < summonerIds.length; i++){
-			if(i != (summonerIds.length - 1)){ ids = ids + summonerIds[i] + ", "; }
-			else { ids = ids + summonerIds[i]; }
-		}
-		
-		String url = getBaseURL() + region + "/v1.2/summoner/" + ids + "/name?api_key=" + getKey();
-		SummonerNameList summonerNameList = null;
+		String url = getBaseURL() + region + "/v1.3/summoner/" + longToString(summonerIds) + "/name?api_key=" + getKey();
+		Map<String, String> summonerNameList = null;
 
 			try {
-				summonerNameList = new Gson().fromJson(IOUtils.toString(new URL(url)), SummonerNameList.class);
+				summonerNameList = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<Map<String, String>>(){}.getType());
 			} catch (JsonSyntaxException | IOException e) {
 				e.printStackTrace();
 			}
@@ -612,26 +730,58 @@ public class RiotAPI {
 	/**
 	 * Get summoner names by IDs
 	 * @param summonerIds The IDs of the desired summoners
-	 * @return A list of desired summoner names
-	 * @see SummonerNameList
+	 * @return A map of desired summoner names
 	 */
-	public SummonerNameList getSummonerNames(long... summonerIds){
-		
-		String ids = "";
-		for(int i = 0; i < summonerIds.length; i++){
-			if(i != (summonerIds.length - 1)){ ids = ids + summonerIds[i] + ", "; }
-			else { ids = ids + summonerIds[i]; }
-		}
-		
-		String url = getBaseURL() + getRegion() + "/v1.2/summoner/" + ids + "/name?api_key=" + getKey();
-		SummonerNameList summonerNameList = null;
+	public Map<String, String> getSummonerNames(long... summonerIds){
+	
+		String url = getBaseURL() + getRegion() + "/v1.3/summoner/" + longToString(summonerIds) + "/name?api_key=" + getKey();
+		Map<String, String> summonerNameList = null;
 
 			try {
-				summonerNameList = new Gson().fromJson(IOUtils.toString(new URL(url)), SummonerNameList.class);
+				summonerNameList = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<Map<String, String>>(){}.getType());
 			} catch (JsonSyntaxException | IOException e) {
 				e.printStackTrace();
 			}
-	    
+    
+	    return summonerNameList;
+	}
+	
+	/**
+	 * Get summoner names by IDs
+	 * @param region The desired region
+	 * @param summonerIds A comma separated list of IDs of the desired summoners
+	 * @return A map of desired summoner names
+	 */
+	public Map<String, String> getSummonerNames(String region, String summonerIds){
+		
+		String url = getBaseURL() + region + "/v1.3/summoner/" + summonerIds + "/name?api_key=" + getKey();
+		Map<String, String> summonerNameList = null;
+
+			try {
+				summonerNameList = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<Map<String, String>>(){}.getType());
+			} catch (JsonSyntaxException | IOException e) {
+				e.printStackTrace();
+			}
+    
+	    return summonerNameList;
+	}
+	
+	/**
+	 * Get summoner names by IDs
+	 * @param summonerIds A comma separated list of IDs of the desired summoners
+	 * @return A map of desired summoner names
+	 */
+	public Map<String, String> getSummonerNames(String summonerIds){
+		
+		String url = getBaseURL() + getRegion() + "/v1.3/summoner/" + summonerIds + "/name?api_key=" + getKey();
+		Map<String, String> summonerNameList = null;
+
+			try {
+				summonerNameList = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<Map<String, String>>(){}.getType());
+			} catch (JsonSyntaxException | IOException e) {
+				e.printStackTrace();
+			}
+    
 	    return summonerNameList;
 	}
 	
@@ -674,6 +824,15 @@ public class RiotAPI {
 			}
 	
 	    return teamList;
+	}
+	
+	private String longToString(long... summonerIds){
+		String ids = "";
+		for(int i = 0; i < summonerIds.length; i++){
+			if(i != (summonerIds.length - 1)){ ids = ids + summonerIds[i] + ", "; }
+			else { ids = ids + summonerIds[i]; }
+		}
+		return ids;
 	}
 	
 	/**
