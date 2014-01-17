@@ -16,7 +16,7 @@ public class TeamRequestTest
 	public void setup()
 	{
 	   System.out.println("\nTest starting...");
-	   api = new RiotAPI("9fe7219e-190c-4fb1-b1d1-bdc501e9ecfa");
+	   api = new RiotAPI("YOUR-API-KEY");
 	}
 
 	@After 
