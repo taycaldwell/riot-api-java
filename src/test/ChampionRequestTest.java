@@ -9,118 +9,136 @@ public class ChampionRequestTest
 {
 	private RiotAPI api;
    
-	@Before public void setup()
+	@Before 
+	public void setup()
 	{
 	   System.out.println("\nTest starting...");
 	   api = new RiotAPI("YOUR-API-KEY");
 	}
 
-	@After public void teardown()
+	@After 
+	public void teardown()
 	{
 	   System.out.println("\nTest finished.");
 	}
 
-	@Test public void testGetChampionsValidSetRegion()
+	@Test 
+	public void testGetChampionsValidSetRegion()
 	{    
 		api.setRegion("na");
 		ChampionList champions = api.getChampions();
 	    Assert.assertNotNull(champions);
 	}
 	
-	@Test public void testGetChampionsInvalidSetRegion()
+	@Test 
+	public void testGetChampionsInvalidSetRegion()
 	{    
 		api.setRegion("br");
 		ChampionList champions = api.getChampions();
 		Assert.assertNull(champions);
 	}
 	
-	@Test public void testGetChampionsValidRegion()
+	@Test 
+	public void testGetChampionsValidRegion()
 	{    
 		ChampionList champions = api.getChampions("na");
 	    Assert.assertNotNull(champions);
 	}
 	
 	
-	@Test public void testGetChampionsInvalidRegion()
+	@Test 
+	public void testGetChampionsInvalidRegion()
 	{    
 		ChampionList champions = api.getChampions("br");
 		Assert.assertNull(champions);
 	}
 	
 	
-	@Test public void testGetChampionsValidSetRegionFreeToPlayTrue()
+	@Test 
+	public void testGetChampionsValidSetRegionFreeToPlayTrue()
 	{    
 		api.setRegion("na");
 		ChampionList champions = api.getChampions(true);
 		Assert.assertNotNull(champions);
 	}
 	
-	@Test public void testGetChampionsInvalidSetRegionFreeToPlayTrue()
+	@Test 
+	public void testGetChampionsInvalidSetRegionFreeToPlayTrue()
 	{    
 		api.setRegion("tr");
 		ChampionList champions = api.getChampions(true);
 		Assert.assertNull(champions);
 	}
 	
-	@Test public void testGetChampionsValidSetRegionFreeToPlayFalse()
+	@Test 
+	public void testGetChampionsValidSetRegionFreeToPlayFalse()
 	{    
 		api.setRegion("na");
 		ChampionList champions = api.getChampions(false);
 		Assert.assertNotNull(champions);
 	}
 	
-	@Test public void testGetChampionsInvalidSetRegionFreeToPlayFalse()
+	@Test 
+	public void testGetChampionsInvalidSetRegionFreeToPlayFalse()
 	{    
 		api.setRegion("tr");
 		ChampionList champions = api.getChampions(false);
 		Assert.assertNull(champions);
 	}
 	
-	@Test public void testGetChampionsValidRegionFreeToPlayTrue()
+	@Test 
+	public void testGetChampionsValidRegionFreeToPlayTrue()
 	{    
 		ChampionList champions = api.getChampions("na", true);
 		Assert.assertNotNull(champions);
 	}
 	
-	@Test public void testGetChampionsInvalidRegionFreeToPlayTrue()
+	@Test 
+	public void testGetChampionsInvalidRegionFreeToPlayTrue()
 	{    
 		ChampionList champions = api.getChampions("tr", true);
 		Assert.assertNull(champions);
 	}
 	
-	@Test public void testGetChampionsValidRegionFreeToPlayFalse()
+	@Test 
+	public void testGetChampionsValidRegionFreeToPlayFalse()
 	{    
 		ChampionList champions = api.getChampions("na", false);
 		Assert.assertNotNull(champions);
 	}
 	
-	@Test public void testGetChampionsInvalidRegionFreeToPlayFalse()
+	@Test 
+	public void testGetChampionsInvalidRegionFreeToPlayFalse()
 	{    
 		ChampionList champions = api.getChampions("tr", false);
 		Assert.assertNull(champions);
 	}
 	
-	@Test public void testGetFreeToPlayChampionsValidSetRegion()
+	@Test 
+	public void testGetFreeToPlayChampionsValidSetRegion()
 	{    
 		api.setRegion("na");
 		ChampionList champions = api.getFreeToPlayChampions();
 		Assert.assertNotNull(champions);
 	}
 	
-	@Test public void testGetFreeToPlayChampionsInvalidSetRegion()
+	@Test 
+	public void testGetFreeToPlayChampionsInvalidSetRegion()
 	{    
 		api.setRegion("br");
 		ChampionList champions = api.getFreeToPlayChampions();
 		Assert.assertNull(champions);
 	}
 	
-	@Test public void testGetFreeToPlayChampionsValidRegion()
+	@Test 
+	public void testGetFreeToPlayChampionsValidRegion()
 	{    
 		ChampionList champions = api.getFreeToPlayChampions("na");
 		Assert.assertNotNull(champions);
 	}
 	
-	@Test public void testGetFreeToPlayChampionsInvalidRegion()
+	@Test 
+	public void testGetFreeToPlayChampionsInvalidRegion()
 	{    
 		ChampionList champions = api.getFreeToPlayChampions("br");
 		Assert.assertNull(champions);
