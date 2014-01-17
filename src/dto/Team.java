@@ -1,6 +1,5 @@
 package dto;
 
-import java.util.Date;
 import java.util.List;
 
 public class Team {
@@ -10,7 +9,7 @@ public class Team {
 	private MessageOfDay messageOfDay;
 	private Roster roster;
 	private TeamStatSummary teamStatSummary;
-	private Date createDate, lastGameDate, lastJoinDate, 
+	private long createDate, lastGameDate, lastJoinDate, 
 				 lastJoinedRankedTeamQueueDate, modifyDate, 
 				 secondLastJoinDate, thirdLastJoinDate;
 	
@@ -46,31 +45,31 @@ public class Team {
 		return teamStatSummary;
 	}
 	
-	public Date getCreateDate() {
+	public long getCreateDate() {
 		return createDate;
 	}
 	
-	public Date getLastGameDate() {
+	public long getLastGameDate() {
 		return lastGameDate;
 	}
 	
-	public Date getLastJoinDate() {
+	public long getLastJoinDate() {
 		return lastJoinDate;
 	}
 	
-	public Date getLastJoinedRankedTeamQueueDate() {
+	public long getLastJoinedRankedTeamQueueDate() {
 		return lastJoinedRankedTeamQueueDate;
 	}
 	
-	public Date getModifyDate() {
+	public long getModifyDate() {
 		return modifyDate;
 	}
 	
-	public Date getSecondLastJoinDate() {
+	public long getSecondLastJoinDate() {
 		return secondLastJoinDate;
 	}
 	
-	public Date getThirdLastJoinDate() {
+	public long getThirdLastJoinDate() {
 		return thirdLastJoinDate;
 	}
 	

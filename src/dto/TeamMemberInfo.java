@@ -1,18 +1,16 @@
 package dto;
 
-import java.util.Date;
-
 public class TeamMemberInfo {
 	
-	private Date inviteDate, joinDate;
+	private long inviteDate, joinDate;
 	private long playerId;
 	private String status;
 	
-	public Date getInviteDate() {
+	public long getInviteDate() {
 		return inviteDate;
 	}
 	
-	public Date getJoinDate() {
+	public long getJoinDate() {
 		return joinDate;
 	}
 	
