@@ -4,13 +4,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.Map;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
-
 import org.apache.commons.io.IOUtils;
-
 import dto.*;
 
 
@@ -49,7 +46,7 @@ public class RiotAPI {
 	 */
 	public ChampionList getChampions() {
 		
-		String url = getBaseURL() + getRegion() + "/v1.1/champion?api_key=" + getKey();
+	    String url = getBaseURL() + getRegion() + "/v1.1/champion?api_key=" + getKey();
 	    ChampionList championList = null;
 		
 			try {
@@ -69,7 +66,7 @@ public class RiotAPI {
 	 */
 	public ChampionList getChampions(String region) {
 	
-		String url = getBaseURL() + region + "/v1.1/champion?api_key=" + getKey();
+	    String url = getBaseURL() + region + "/v1.1/champion?api_key=" + getKey();
 	    ChampionList championList = null;
 	
 			try {
@@ -92,7 +89,7 @@ public class RiotAPI {
 	 */
 	public ChampionList getChampions(boolean freeToPlay) {
 
-		String url = getBaseURL() + getRegion() + "/v1.1/champion?freeToPlay=" + freeToPlay + "&api_key=" + getKey();
+	    String url = getBaseURL() + getRegion() + "/v1.1/champion?freeToPlay=" + freeToPlay + "&api_key=" + getKey();
 	    ChampionList championList = null;
 
 			try {
@@ -115,7 +112,7 @@ public class RiotAPI {
 	 */
 	public ChampionList getChampions(String region, boolean freeToPlay) {
 		
-		String url = getBaseURL() + region + "/v1.1/champion?freeToPlay=" + freeToPlay + "&api_key=" + getKey();
+	    String url = getBaseURL() + region + "/v1.1/champion?freeToPlay=" + freeToPlay + "&api_key=" + getKey();
 	    ChampionList championList = null;
 
 			try {
@@ -135,7 +132,7 @@ public class RiotAPI {
 	 */
 	public ChampionList getFreeToPlayChampions(String region) {
 
-		String url = getBaseURL() + region + "/v1.1/champion?freeToPlay=true" + "&api_key=" + getKey();
+	    String url = getBaseURL() + region + "/v1.1/champion?freeToPlay=true" + "&api_key=" + getKey();
 	    ChampionList championList = null;
 	
 			try {
@@ -154,7 +151,7 @@ public class RiotAPI {
 	 */
 	public ChampionList getFreeToPlayChampions() {
 
-		String url = getBaseURL() + getRegion() + "/v1.1/champion?freeToPlay=true" + "&api_key=" + getKey();
+	    String url = getBaseURL() + getRegion() + "/v1.1/champion?freeToPlay=true" + "&api_key=" + getKey();
 	    ChampionList championList = null;
 
 			try {
@@ -175,7 +172,7 @@ public class RiotAPI {
 	 */
 	public RecentGames getRecentGames(String region, long summonerId) {
 		
-		String url = getBaseURL() + region + "/v1.3/game/by-summoner/" + summonerId + "/recent?api_key=" + getKey();
+	    String url = getBaseURL() + region + "/v1.3/game/by-summoner/" + summonerId + "/recent?api_key=" + getKey();
 	    RecentGames recentGames = null;
 
 			try {
@@ -195,7 +192,7 @@ public class RiotAPI {
 	 */
 	public RecentGames getRecentGames(long summonerId) {
 		
-		String url = getBaseURL() + getRegion() + "/v1.3/game/by-summoner/" + summonerId + "/recent?api_key=" + getKey();
+	    String url = getBaseURL() + getRegion() + "/v1.3/game/by-summoner/" + summonerId + "/recent?api_key=" + getKey();
 	    RecentGames recentGames = null;
 
 			try {
@@ -216,7 +213,7 @@ public class RiotAPI {
 	 */
 	public Map<String, League> getLeagues(String region, long summonerId) {
 		
-		String url = getBaseURL() + region + "/v2.2/league/by-summoner/" + summonerId + "?api_key=" + getKey();
+	    String url = getBaseURL() + region + "/v2.2/league/by-summoner/" + summonerId + "?api_key=" + getKey();
 	    Map<String, League> leagues = null;
 
 			try {
@@ -236,7 +233,7 @@ public class RiotAPI {
 	 */
 	public Map<String, League> getLeagues(long summonerId) {
 		
-		String url = getBaseURL() + getRegion() + "/v2.2/league/by-summoner/" + summonerId + "?api_key=" + getKey();
+	    String url = getBaseURL() + getRegion() + "/v2.2/league/by-summoner/" + summonerId + "?api_key=" + getKey();
 	    Map<String, League> leagues = null;
 
 			try {
@@ -258,7 +255,7 @@ public class RiotAPI {
 	 */
 	public PlayerStatsSummaryList getPlayerStatsSummary(String region, long summonerId, String season) {
 		
-		String url = getBaseURL() + region + "/v1.2/stats/by-summoner/" + summonerId + "/summary?season=" + season + "&api_key=" + getKey();
+	    String url = getBaseURL() + region + "/v1.2/stats/by-summoner/" + summonerId + "/summary?season=" + season + "&api_key=" + getKey();
 	    PlayerStatsSummaryList summaryList = null;
 
 			try {
@@ -279,7 +276,7 @@ public class RiotAPI {
 	 */
 	public PlayerStatsSummaryList getPlayerStatsSummary(long summonerId, String season) {
 		
-		String url = getBaseURL() + getRegion() + "/v1.2/stats/by-summoner/" + summonerId + "/summary?season=" + season + "&api_key=" + getKey();
+	    String url = getBaseURL() + getRegion() + "/v1.2/stats/by-summoner/" + summonerId + "/summary?season=" + season + "&api_key=" + getKey();
 	    PlayerStatsSummaryList summaryList = null;
 	    
 			try {
@@ -300,7 +297,7 @@ public class RiotAPI {
 	 */
 	public PlayerStatsSummaryList getPlayerStatsSummary(String region, long summonerId) {
 		
-		String url = getBaseURL() + region + "/v1.2/stats/by-summoner/" + summonerId + "/summary?season=" + getSeason() + "&api_key=" + getKey();
+	    String url = getBaseURL() + region + "/v1.2/stats/by-summoner/" + summonerId + "/summary?season=" + getSeason() + "&api_key=" + getKey();
 	    PlayerStatsSummaryList summaryList = null;
 		
 			try {
@@ -320,7 +317,7 @@ public class RiotAPI {
 	 */
 	public PlayerStatsSummaryList getPlayerStatsSummary(long summonerId) {
 		
-		String url = getBaseURL() + getRegion() + "/v1.2/stats/by-summoner/" + summonerId + "/summary?season=" + getSeason() + "&api_key=" + getKey();
+	    String url = getBaseURL() + getRegion() + "/v1.2/stats/by-summoner/" + summonerId + "/summary?season=" + getSeason() + "&api_key=" + getKey();
 	    PlayerStatsSummaryList summaryList = null;
 
 			try {
@@ -342,7 +339,7 @@ public class RiotAPI {
 	 */
 	public RankedStats getRankedStats(String region, long summonerId, String season) {
 		
-		String url = getBaseURL() + region + "/v1.2/stats/by-summoner/" + summonerId + "/ranked?season=" + season + "&api_key=" + getKey();
+	    String url = getBaseURL() + region + "/v1.2/stats/by-summoner/" + summonerId + "/ranked?season=" + season + "&api_key=" + getKey();
 	    RankedStats rankedStats = null;
 
 			try {
@@ -363,7 +360,7 @@ public class RiotAPI {
 	 */
 	public RankedStats getRankedStats(long summonerId, String season) {
 		
-		String url = getBaseURL() + getRegion() + "/v1.2/stats/by-summoner/" + summonerId + "/ranked?season=" + season + "&api_key=" + getKey();
+	    String url = getBaseURL() + getRegion() + "/v1.2/stats/by-summoner/" + summonerId + "/ranked?season=" + season + "&api_key=" + getKey();
 	    RankedStats rankedStats = null;
 
 			try {
@@ -384,7 +381,7 @@ public class RiotAPI {
 	 */
 	public RankedStats getRankedStats(String region, long summonerId) {
 		
-		String url = getBaseURL() + region + "/v1.2/stats/by-summoner/" + summonerId + "/ranked?season=" + getSeason() + "&api_key=" + getKey();
+	    String url = getBaseURL() + region + "/v1.2/stats/by-summoner/" + summonerId + "/ranked?season=" + getSeason() + "&api_key=" + getKey();
 	    RankedStats rankedStats = null;
 
 			try {
@@ -404,7 +401,7 @@ public class RiotAPI {
 	 */
 	public RankedStats getRankedStats(long summonerId) {
 		
-		String url = getBaseURL() + getRegion() + "/v1.2/stats/by-summoner/" + summonerId + "/ranked?season=" + getSeason() + "&api_key=" + getKey();
+	    String url = getBaseURL() + getRegion() + "/v1.2/stats/by-summoner/" + summonerId + "/ranked?season=" + getSeason() + "&api_key=" + getKey();
 	    RankedStats rankedStats = null;
 
 			try {
@@ -425,7 +422,7 @@ public class RiotAPI {
 	 */
 	public Map<String, MasteryPages> getMasteryPages(String region, String summonerIds) {
 		
-		String url = getBaseURL() + region + "/v1.3/summoner/" + summonerIds + "/masteries?api_key=" + getKey();
+	    String url = getBaseURL() + region + "/v1.3/summoner/" + summonerIds + "/masteries?api_key=" + getKey();
 	    Map<String, MasteryPages> masteryPages = null;
 
 			try {
@@ -446,7 +443,7 @@ public class RiotAPI {
 	 */
 	public Map<String, MasteryPages> getMasteryPages(String summonerIds) {
 		
-		String url = getBaseURL() + getRegion() + "/v1.3/summoner/" + summonerIds + "/masteries?api_key=" + getKey();
+	    String url = getBaseURL() + getRegion() + "/v1.3/summoner/" + summonerIds + "/masteries?api_key=" + getKey();
 	    Map<String, MasteryPages> masteryPages = null;
 
 			try {
@@ -467,7 +464,7 @@ public class RiotAPI {
 	 */
 	public Map<String, MasteryPages> getMasteryPages(String region, long... summonerIds) {
 		
-		String url = getBaseURL() + region + "/v1.3/summoner/" + longToString(summonerIds) + "/masteries?api_key=" + getKey();
+	    String url = getBaseURL() + region + "/v1.3/summoner/" + longToString(summonerIds) + "/masteries?api_key=" + getKey();
 	    Map<String, MasteryPages> masteryPages = null;
 
 			try {
@@ -487,7 +484,7 @@ public class RiotAPI {
 	 */
 	public Map<String, MasteryPages> getMasteryPages(long... summonerIds) {
 		
-		String url = getBaseURL() + getRegion() + "/v1.3/summoner/" + longToString(summonerIds) + "/masteries?api_key=" + getKey();
+	    String url = getBaseURL() + getRegion() + "/v1.3/summoner/" + longToString(summonerIds) + "/masteries?api_key=" + getKey();
 	    Map<String, MasteryPages> masteryPages = null;
 
 			try {
@@ -509,7 +506,7 @@ public class RiotAPI {
 	 */
 	public Map<String, RunePages> getRunePages(String region, String summonerIds) {
 		
-		String url = getBaseURL() + region + "/v1.3/summoner/" + summonerIds + "/runes?api_key=" + getKey();
+	    String url = getBaseURL() + region + "/v1.3/summoner/" + summonerIds + "/runes?api_key=" + getKey();
 	    Map<String, RunePages> runePages = null;
 
 			try {
@@ -529,7 +526,7 @@ public class RiotAPI {
 	 */
 	public Map<String, RunePages> getRunePages(String summonerIds) {
 		
-		String url = getBaseURL() + getRegion() + "/v1.3/summoner/" + summonerIds + "/runes?api_key=" + getKey();
+	    String url = getBaseURL() + getRegion() + "/v1.3/summoner/" + summonerIds + "/runes?api_key=" + getKey();
 	    Map<String, RunePages> runePages = null;
 
 			try {
@@ -550,7 +547,7 @@ public class RiotAPI {
 	 */
 	public Map<String, RunePages> getRunePages(String region, long... summonerIds) {
 		
-		String url = getBaseURL() + region + "/v1.3/summoner/" + longToString(summonerIds) + "/runes?api_key=" + getKey();
+	    String url = getBaseURL() + region + "/v1.3/summoner/" + longToString(summonerIds) + "/runes?api_key=" + getKey();
 	    Map<String, RunePages> runePages = null;
 
 			try {
@@ -570,7 +567,7 @@ public class RiotAPI {
 	 */
 	public Map<String, RunePages> getRunePages(long... summonerIds) {
 		
-		String url = getBaseURL() + getRegion() + "/v1.3/summoner/" + longToString(summonerIds) + "/runes?api_key=" + getKey();
+	    String url = getBaseURL() + getRegion() + "/v1.3/summoner/" + longToString(summonerIds) + "/runes?api_key=" + getKey();
 	    Map<String, RunePages> runePages = null;
 
 			try {
