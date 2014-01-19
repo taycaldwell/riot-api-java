@@ -29,8 +29,9 @@ public class Example {
 			
 		RiotAPI riotAPI = new RiotAPI("YOUR KEY GOES HERE");
 		
-		Summoner summoner = riotAPI.getSummoner("na", "Taystee");
-		long summonerId = summoner.getId();
+		Map<String, Summoner> summoners = riotAPI.getSummonersByName("na", "Taystee, FrenchToastKitty");
+		Summoner summoner = summoners.get("Taystee");
+		long id = summoner.getId();
 	}
 }
 
@@ -54,8 +55,9 @@ public class Example {
 		RiotAPI riotAPI = new RiotAPI("YOUR KEY GOES HERE");
 		riotAPI.setRegion("na");
 		
-		Summoner summoner = riotAPI.getSummoner("Taystee");
-		long summonerId = summoner.getId();
+		Map<String, Summoner> summoners = riotAPI.getSummonersByName("Taystee, FrenchToastKitty");
+		Summoner summoner = summoners.get("Taystee");
+		long id = summoner.getId();
 	}
 }
 
@@ -79,7 +81,7 @@ public class Example {
 		RiotAPI riotAPI = new RiotAPI("YOUR KEY GOES HERE", "na");
 		riotAPI.setSeason("SEASON3");
 		
-		RankedStats rankedStats = riotAPI.getRankedStats(riotAPI.getSummoner("Taystee").getId());
+		RankedStats rankedStats = riotAPI.getRankedStats(riotAPI.getSummonersByName("Taystee, FrenchToastKitty").get("Taystee").getId());
 	}
 }
 
@@ -90,19 +92,19 @@ public class Example {
 ### Strict API Methods
 
 
-|Category|Method                                                                |Return Type           |
-|--------|----------------------------------------------------------------------|----------------------|
-|Champion|`getChampions(String region, boolean freeToPlay)`                     |ChampionList          |
-|Game    |`getRecentGames(String region, long summonerId)`                      |RecentGames           |
-|League  |`getLeagues(String region, long summonerId)`                          |Map<String, League>   |
-|Stats   |`getPlayerStatsSummary(String region, long summonerId, String season)`|PlayerStatsSummaryList|
-|Stats   |`getRankedStats(String region, long summonerId, String season)`       |RankedStats           |
-|Summoner|`getMasteryPages(String region, long summonerId)`                     |MasteryPages          |
-|Summoner|`getRunePages(String region, long summonerId)`                        |RunePages             |
-|Summoner|`getSummoner(String region, String name)`                             |Summoner              |
-|Summoner|`getSummoner(String region, long summonerId)`                         |Summoner              |
-|Summoner|`getSummonerNames(String region, long... summonerIds)`             |SummonerNameList      |
-|Team    |`getTeams(String region, long summonerId)`                            |List<Team>            |
+|Category|Method                                                                |Return Type              |
+|--------|----------------------------------------------------------------------|-------------------------|
+|Champion|`getChampions(String region, boolean freeToPlay)`                     |ChampionList             |
+|Game    |`getRecentGames(String region, long summonerId)`                      |RecentGames              |
+|League  |`getLeagues(String region, long summonerId)`                          |Map<String, League>      |
+|Stats   |`getPlayerStatsSummary(String region, long summonerId, String season)`|PlayerStatsSummaryList   |
+|Stats   |`getRankedStats(String region, long summonerId, String season)`       |RankedStats              |
+|Summoner|`getMasteryPages(String region, long summonerId)`                     |Map<String, MasteryPages>|
+|Summoner|`getRunePages(String region, long summonerId)`                        |Map<String, RunePages>   |
+|Summoner|`getSummonersByName(String region, String names)`                     |Map<String, Summoner>    |
+|Summoner|`getSummonersById(String region, String summonerIds)`                 |Map<String, Summoner>    |
+|Summoner|`getSummonerNames(String region, String summonerIds)`             	|Map<String, String>      |
+|Team    |`getTeams(String region, long summonerId)`                            |List<Team>               |
 
 Full documentation can be found [HERE](http://taycaldwell.github.io/riot-api-java/doc).
 
