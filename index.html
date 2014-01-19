@@ -31,8 +31,7 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        
-<h2>
+        <h2>
 <a name="setup" class="anchor" href="#setup"><span class="octicon octicon-link"></span></a>Setup</h2>
 
 <p><a href="https://dl.dropboxusercontent.com/s/te7kxqqrhzsp60e/riot-api-java.jar?dl=1&amp;token_hash=AAHiCwTK9cGe-G-z5_4fmobXiEP5knAoJmhCTzUN96x7bw">Download</a> the .jar file, and add it as an external library to your project.</p>
@@ -59,8 +58,9 @@
 
         <span class="n">RiotAPI</span> <span class="n">riotAPI</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RiotAPI</span><span class="o">(</span><span class="s">"YOUR KEY GOES HERE"</span><span class="o">);</span>
 
-        <span class="n">Summoner</span> <span class="n">summoner</span> <span class="o">=</span> <span class="n">riotAPI</span><span class="o">.</span><span class="na">getSummoner</span><span class="o">(</span><span class="s">"na"</span><span class="o">,</span> <span class="s">"Taystee"</span><span class="o">);</span>
-        <span class="kt">long</span> <span class="n">summonerId</span> <span class="o">=</span> <span class="n">summoner</span><span class="o">.</span><span class="na">getId</span><span class="o">();</span>
+        <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Summoner</span><span class="o">&gt;</span> <span class="n">summoners</span> <span class="o">=</span> <span class="n">riotAPI</span><span class="o">.</span><span class="na">getSummonersByName</span><span class="o">(</span><span class="s">"na"</span><span class="o">,</span> <span class="s">"Taystee, FrenchToastKitty"</span><span class="o">);</span>
+        <span class="n">Summoner</span> <span class="n">summoner</span> <span class="o">=</span> <span class="n">summoners</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"Taystee"</span><span class="o">);</span>
+        <span class="kt">long</span> <span class="n">id</span> <span class="o">=</span> <span class="n">summoner</span><span class="o">.</span><span class="na">getId</span><span class="o">();</span>
     <span class="o">}</span>
 <span class="o">}</span>
 
@@ -81,8 +81,9 @@ Below is an example of how to set your region. Because the region was set before
         <span class="n">RiotAPI</span> <span class="n">riotAPI</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RiotAPI</span><span class="o">(</span><span class="s">"YOUR KEY GOES HERE"</span><span class="o">);</span>
         <span class="n">riotAPI</span><span class="o">.</span><span class="na">setRegion</span><span class="o">(</span><span class="s">"na"</span><span class="o">);</span>
 
-        <span class="n">Summoner</span> <span class="n">summoner</span> <span class="o">=</span> <span class="n">riotAPI</span><span class="o">.</span><span class="na">getSummoner</span><span class="o">(</span><span class="s">"Taystee"</span><span class="o">);</span>
-        <span class="kt">long</span> <span class="n">summonerId</span> <span class="o">=</span> <span class="n">summoner</span><span class="o">.</span><span class="na">getId</span><span class="o">();</span>
+        <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Summoner</span><span class="o">&gt;</span> <span class="n">summoners</span> <span class="o">=</span> <span class="n">riotAPI</span><span class="o">.</span><span class="na">getSummonersByName</span><span class="o">(</span><span class="s">"Taystee, FrenchToastKitty"</span><span class="o">);</span>
+        <span class="n">Summoner</span> <span class="n">summoner</span> <span class="o">=</span> <span class="n">summoners</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"Taystee"</span><span class="o">);</span>
+        <span class="kt">long</span> <span class="n">id</span> <span class="o">=</span> <span class="n">summoner</span><span class="o">.</span><span class="na">getId</span><span class="o">();</span>
     <span class="o">}</span>
 <span class="o">}</span>
 
@@ -102,7 +103,7 @@ Below is an example of how to set your region. Because the region was set before
         <span class="n">RiotAPI</span> <span class="n">riotAPI</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RiotAPI</span><span class="o">(</span><span class="s">"YOUR KEY GOES HERE"</span><span class="o">,</span> <span class="s">"na"</span><span class="o">);</span>
         <span class="n">riotAPI</span><span class="o">.</span><span class="na">setSeason</span><span class="o">(</span><span class="s">"SEASON3"</span><span class="o">);</span>
 
-        <span class="n">RankedStats</span> <span class="n">rankedStats</span> <span class="o">=</span> <span class="n">riotAPI</span><span class="o">.</span><span class="na">getRankedStats</span><span class="o">(</span><span class="n">riotAPI</span><span class="o">.</span><span class="na">getSummoner</span><span class="o">(</span><span class="s">"Taystee"</span><span class="o">).</span><span class="na">getId</span><span class="o">());</span>
+        <span class="n">RankedStats</span> <span class="n">rankedStats</span> <span class="o">=</span> <span class="n">riotAPI</span><span class="o">.</span><span class="na">getRankedStats</span><span class="o">(</span><span class="n">riotAPI</span><span class="o">.</span><span class="na">getSummonersByName</span><span class="o">(</span><span class="s">"Taystee, FrenchToastKitty"</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="s">"Taystee"</span><span class="o">).</span><span class="na">getId</span><span class="o">());</span>
     <span class="o">}</span>
 <span class="o">}</span>
 
@@ -149,27 +150,27 @@ Below is an example of how to set your region. Because the region was set before
 <tr>
 <td>Summoner</td>
 <td><code>getMasteryPages(String region, long summonerId)</code></td>
-<td>MasteryPages</td>
+<td>Map</td>
 </tr>
 <tr>
 <td>Summoner</td>
 <td><code>getRunePages(String region, long summonerId)</code></td>
-<td>RunePages</td>
+<td>Map</td>
 </tr>
 <tr>
 <td>Summoner</td>
-<td><code>getSummoner(String region, String name)</code></td>
-<td>Summoner</td>
+<td><code>getSummonersByName(String region, String names)</code></td>
+<td>Map</td>
 </tr>
 <tr>
 <td>Summoner</td>
-<td><code>getSummoner(String region, long summonerId)</code></td>
-<td>Summoner</td>
+<td><code>getSummonersById(String region, String summonerIds)</code></td>
+<td>Map</td>
 </tr>
 <tr>
 <td>Summoner</td>
-<td><code>getSummonerNames(String region, long... summonerIds)</code></td>
-<td>SummonerNameList</td>
+<td><code>getSummonerNames(String region, String summonerIds)</code></td>
+<td>Map</td>
 </tr>
 <tr>
 <td>Team</td>
