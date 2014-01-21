@@ -1,13 +1,12 @@
-﻿#RIOT-API-JAVA
---------------
+#RIOT-API-JAVA
 
 A simple to use, Riot Games API (Beta) wrapper for Java.
 
 ##Requirements
 
-riot-api-java requires the following libraries:
-[Commons IO 2.4](http://commons.apache.org/proper/commons-io/download_io.cgi)
-[Gson](https://code.google.com/p/google-gson/)
+**riot-api-java** requires the following libraries:
+- [Commons IO 2.4](http://commons.apache.org/proper/commons-io/download_io.cgi)
+- [Gson](https://code.google.com/p/google-gson/)
 
 ## Setup
 
