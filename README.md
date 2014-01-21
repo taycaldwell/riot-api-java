@@ -79,6 +79,9 @@ It is important to be aware of your personal rate limit. Any method call from th
 
 
 ```java
+import java.util.Map;
+import com.google.gson*;
+import org.apache.commons.io.IOUtils;
 
 import dto.*;
 import main.java.riotapi.RiotAPI;
