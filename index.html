@@ -32,6 +32,14 @@
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
         <h2>
+<a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements</h2>
+
+<p><strong>riot-api-java</strong> requires the following libraries:</p>
+
+<ul>
+<li><a href="http://commons.apache.org/proper/commons-io/download_io.cgi">Commons IO 2.4</a></li>
+<li><a href="https://code.google.com/p/google-gson/">Gson</a></li>
+</ul><h2>
 <a name="setup" class="anchor" href="#setup"><span class="octicon octicon-link"></span></a>Setup</h2>
 
 <p><a href="https://dl.dropboxusercontent.com/s/te7kxqqrhzsp60e/riot-api-java.jar?dl=1&amp;token_hash=AAHiCwTK9cGe-G-z5_4fmobXiEP5knAoJmhCTzUN96x7bw">Download</a> the .jar file, and add it as an external library to your project.</p>
@@ -47,10 +55,12 @@
 
 <p>This library can be used strictly according to the <a href="https://developer.riotgames.com/api/methods">Riot API Documentation</a> like so:</p>
 
-<div class="highlight highlight-java"><pre>
-<span class="kn">import</span> <span class="nn">dto.*</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">main.java.riotapi.RiotAPI</span><span class="o">;</span>
+<div class="highlight highlight-java"><pre><span class="kn">import</span> <span class="nn">java.util.Map</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.google.gson*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.commons.io.IOUtils</span><span class="o">;</span>
 
+<span class="kn">import</span> <span class="nn">main.java.riotapi.RiotAPI</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dto.*</span><span class="o">;</span>   
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Example</span> <span class="o">{</span>
 
@@ -58,8 +68,8 @@
 
         <span class="n">RiotAPI</span> <span class="n">riotAPI</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RiotAPI</span><span class="o">(</span><span class="s">"YOUR KEY GOES HERE"</span><span class="o">);</span>
 
-        <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Summoner</span><span class="o">&gt;</span> <span class="n">summoners</span> <span class="o">=</span> <span class="n">riotAPI</span><span class="o">.</span><span class="na">getSummonersByName</span><span class="o">(</span><span class="s">"na"</span><span class="o">,</span> <span class="s">"Taystee, FrenchToastKitty"</span><span class="o">);</span>
-        <span class="n">Summoner</span> <span class="n">summoner</span> <span class="o">=</span> <span class="n">summoners</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"Taystee"</span><span class="o">);</span>
+        <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Summoner</span><span class="o">&gt;</span> <span class="n">summoners</span> <span class="o">=</span> <span class="n">riotAPI</span><span class="o">.</span><span class="na">getSummonersByName</span><span class="o">(</span><span class="s">"na"</span><span class="o">,</span> <span class="s">"taystee, frenchtoastkitty"</span><span class="o">);</span>
+        <span class="n">Summoner</span> <span class="n">summoner</span> <span class="o">=</span> <span class="n">summoners</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"taystee"</span><span class="o">);</span>
         <span class="kt">long</span> <span class="n">id</span> <span class="o">=</span> <span class="n">summoner</span><span class="o">.</span><span class="na">getId</span><span class="o">();</span>
     <span class="o">}</span>
 <span class="o">}</span>
@@ -69,7 +79,10 @@
 <p>Available accessors allow you to accomplish similar tasks in a different way.
 Below is an example of how to set your region. Because the region was set before a method was called, there is no need to pass in the region parameter. This is great for people that know they will only be working in one region when making multiple requests. The same can be done for the season.</p>
 
-<div class="highlight highlight-java"><pre>
+<div class="highlight highlight-java"><pre><span class="kn">import</span> <span class="nn">java.util.Map</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.google.gson*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.commons.io.IOUtils</span><span class="o">;</span>
+
 <span class="kn">import</span> <span class="nn">dto.*</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">main.java.riotapi.RiotAPI</span><span class="o">;</span>
 
@@ -81,8 +94,8 @@ Below is an example of how to set your region. Because the region was set before
         <span class="n">RiotAPI</span> <span class="n">riotAPI</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RiotAPI</span><span class="o">(</span><span class="s">"YOUR KEY GOES HERE"</span><span class="o">);</span>
         <span class="n">riotAPI</span><span class="o">.</span><span class="na">setRegion</span><span class="o">(</span><span class="s">"na"</span><span class="o">);</span>
 
-        <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Summoner</span><span class="o">&gt;</span> <span class="n">summoners</span> <span class="o">=</span> <span class="n">riotAPI</span><span class="o">.</span><span class="na">getSummonersByName</span><span class="o">(</span><span class="s">"Taystee, FrenchToastKitty"</span><span class="o">);</span>
-        <span class="n">Summoner</span> <span class="n">summoner</span> <span class="o">=</span> <span class="n">summoners</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"Taystee"</span><span class="o">);</span>
+        <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Summoner</span><span class="o">&gt;</span> <span class="n">summoners</span> <span class="o">=</span> <span class="n">riotAPI</span><span class="o">.</span><span class="na">getSummonersByName</span><span class="o">(</span><span class="s">"taystee, frenchtoastkitty"</span><span class="o">);</span>
+        <span class="n">Summoner</span> <span class="n">summoner</span> <span class="o">=</span> <span class="n">summoners</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"taystee"</span><span class="o">);</span>
         <span class="kt">long</span> <span class="n">id</span> <span class="o">=</span> <span class="n">summoner</span><span class="o">.</span><span class="na">getId</span><span class="o">();</span>
     <span class="o">}</span>
 <span class="o">}</span>
@@ -103,7 +116,7 @@ Below is an example of how to set your region. Because the region was set before
         <span class="n">RiotAPI</span> <span class="n">riotAPI</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RiotAPI</span><span class="o">(</span><span class="s">"YOUR KEY GOES HERE"</span><span class="o">,</span> <span class="s">"na"</span><span class="o">);</span>
         <span class="n">riotAPI</span><span class="o">.</span><span class="na">setSeason</span><span class="o">(</span><span class="s">"SEASON3"</span><span class="o">);</span>
 
-        <span class="n">RankedStats</span> <span class="n">rankedStats</span> <span class="o">=</span> <span class="n">riotAPI</span><span class="o">.</span><span class="na">getRankedStats</span><span class="o">(</span><span class="n">riotAPI</span><span class="o">.</span><span class="na">getSummonersByName</span><span class="o">(</span><span class="s">"Taystee, FrenchToastKitty"</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="s">"Taystee"</span><span class="o">).</span><span class="na">getId</span><span class="o">());</span>
+        <span class="n">RankedStats</span> <span class="n">rankedStats</span> <span class="o">=</span> <span class="n">riotAPI</span><span class="o">.</span><span class="na">getRankedStats</span><span class="o">(</span><span class="n">riotAPI</span><span class="o">.</span><span class="na">getSummonersByName</span><span class="o">(</span><span class="s">"taystee, frenchtoastkitty"</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="s">"taystee"</span><span class="o">).</span><span class="na">getId</span><span class="o">());</span>
     <span class="o">}</span>
 <span class="o">}</span>
 
