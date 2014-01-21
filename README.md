@@ -1,3 +1,13 @@
+#RIOT-API-JAVA
+
+A simple to use, Riot Games API (Beta) wrapper for Java.
+
+##Requirements
+
+**riot-api-java** requires the following libraries:
+- [Commons IO 2.4](http://commons.apache.org/proper/commons-io/download_io.cgi)
+- [Gson](https://code.google.com/p/google-gson/)
+
 ## Setup
 
 [Download](https://dl.dropboxusercontent.com/s/te7kxqqrhzsp60e/riot-api-java.jar?dl=1&token_hash=AAHiCwTK9cGe-G-z5_4fmobXiEP5knAoJmhCTzUN96x7bw) the .jar file, and add it as an external library to your project.
@@ -13,10 +23,12 @@ and selecting the jar under the Order and Export tab.
 This library can be used strictly according to the [Riot API Documentation](https://developer.riotgames.com/api/methods) like so:
 
 ```java
+import java.util.Map;
+import com.google.gson*;
+import org.apache.commons.io.IOUtils;
 
-import dto.*;
 import main.java.riotapi.RiotAPI;
-	
+import dto.*;	
 
 public class Example {
 
@@ -24,8 +36,8 @@ public class Example {
 			
 		RiotAPI riotAPI = new RiotAPI("YOUR KEY GOES HERE");
 		
-		Map<String, Summoner> summoners = riotAPI.getSummonersByName("na", "Taystee, FrenchToastKitty");
-		Summoner summoner = summoners.get("Taystee");
+		Map<String, Summoner> summoners = riotAPI.getSummonersByName("na", "taystee, frenchtoastkitty");
+		Summoner summoner = summoners.get("taystee");
 		long id = summoner.getId();
 	}
 }
@@ -38,6 +50,9 @@ Below is an example of how to set your region. Because the region was set before
 
 
 ```java
+import java.util.Map;
+import com.google.gson*;
+import org.apache.commons.io.IOUtils;
 
 import dto.*;
 import main.java.riotapi.RiotAPI;
@@ -50,8 +65,8 @@ public class Example {
 		RiotAPI riotAPI = new RiotAPI("YOUR KEY GOES HERE");
 		riotAPI.setRegion("na");
 		
-		Map<String, Summoner> summoners = riotAPI.getSummonersByName("Taystee, FrenchToastKitty");
-		Summoner summoner = summoners.get("Taystee");
+		Map<String, Summoner> summoners = riotAPI.getSummonersByName("taystee, frenchtoastkitty");
+		Summoner summoner = summoners.get("taystee");
 		long id = summoner.getId();
 	}
 }
@@ -76,7 +91,7 @@ public class Example {
 		RiotAPI riotAPI = new RiotAPI("YOUR KEY GOES HERE", "na");
 		riotAPI.setSeason("SEASON3");
 		
-		RankedStats rankedStats = riotAPI.getRankedStats(riotAPI.getSummonersByName("Taystee, FrenchToastKitty").get("Taystee").getId());
+		RankedStats rankedStats = riotAPI.getRankedStats(riotAPI.getSummonersByName("taystee, frenchtoastkitty").get("taystee").getId());
 	}
 }
 
