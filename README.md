@@ -1,4 +1,4 @@
-#RIOT-API-JAVA
+﻿#RIOT-API-JAVA
 
 A simple to use, Riot Games API (Beta) wrapper for Java.
 
@@ -109,7 +109,7 @@ public class Example {
 |--------|----------------------------------------------------------------------|-------------------------|
 |Champion|`getChampions(String region, boolean freeToPlay)`                     |ChampionList             |
 |Game    |`getRecentGames(String region, long summonerId)`                      |RecentGames              |
-|League  |`getLeagues(String region, long summonerId)`                          |Map<String, League>      |
+|League  |`getLeagues(String region, long summonerId)`                          |List<League>             |
 |Stats   |`getPlayerStatsSummary(String region, long summonerId, String season)`|PlayerStatsSummaryList   |
 |Stats   |`getRankedStats(String region, long summonerId, String season)`       |RankedStats              |
 |Summoner|`getMasteryPages(String region, long summonerId)`                     |Map<String, MasteryPages>|
@@ -122,7 +122,16 @@ public class Example {
 Full documentation can be found [HERE](http://taycaldwell.github.io/riot-api-java/doc).
 
 ## Download
-[Download (Version 2.2)](https://dl.dropboxusercontent.com/s/te7kxqqrhzsp60e/riot-api-java.jar?dl=1&token_hash=AAHiCwTK9cGe-G-z5_4fmobXiEP5knAoJmhCTzUN96x7bw)
+[Download (Version 2.3)](https://dl.dropboxusercontent.com/s/te7kxqqrhzsp60e/riot-api-java.jar?dl=1&token_hash=AAHiCwTK9cGe-G-z5_4fmobXiEP5knAoJmhCTzUN96x7bw)
+
+## API Versions
+The current version of this library supports the following Riot Games API versions:
+- **champion-v1.1 [EUNE, EUW, NA]**
+- **game-v1.3 [EUNE, EUW, NA]**
+- **league-v2.3 [BR, EUNE, EUW, NA, TR]**
+- **stats-v1.2 [EUNE, EUW, NA]**
+- **summoner-v1.3 [EUNE, EUW, NA]**
+- **team-v2.2 [BR, EUNE, EUW, NA, TR]**
 
 ## Contributing
 If you would like to contribute to this repo, please send a pull request.

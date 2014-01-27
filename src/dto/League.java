@@ -5,7 +5,7 @@ import java.util.List;
 public class League {
 
 	private List<LeagueItem> entries;
-	private String name, queue, tier;
+	private String name, queue, tier, participantId;
 	
 	public List<LeagueItem> getEntries() {
 		return entries;
@@ -21,5 +21,10 @@ public class League {
 
 	public String getTier() {
 		return tier;
-	}	
+	}
+
+	public String getParticipantId() {
+		return participantId;
+	}
+	
 }
