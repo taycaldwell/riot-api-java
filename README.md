@@ -1,6 +1,7 @@
 ﻿#RIOT-API-JAVA
 
 A simple to use, Riot Games API (Beta) wrapper for Java.
+This library makes it easy to gather and use League of Legends data in your Java code. :)
 
 ##Requirements
 
