@@ -1,17 +1,25 @@
-﻿#RIOT-API-JAVA
+﻿# RIOT-API-JAVA
 
+## Please note - Version 0.3.0 is still in the process of being updated. The fully updated library should be available by 09/05/14. - Rithms
+-----------------------------
 A simple to use, Riot Games API (Beta) wrapper for Java.
 This library makes it easy to gather and use League of Legends data in your Java code. :)
 
-##Requirements
+## Disclaimer
+This product is not endorsed, certified or otherwise approved in any way by Riot Games, Inc. or any of its affiliates.
+
+## Download
+[Download (Version 0.3.0)]()
+
+## Requirements
 
 **riot-api-java** requires the following libraries:
-- [Commons IO 2.4](http://commons.apache.org/proper/commons-io/download_io.cgi)
-- [Gson](https://code.google.com/p/google-gson/)
+- [Apache Commons IO 2.4](http://commons.apache.org/proper/commons-io/download_io.cgi)
+- [Google Gson](https://code.google.com/p/google-gson/)
 
 ## Setup
 
-[Download](https://dl.dropboxusercontent.com/s/te7kxqqrhzsp60e/riot-api-java.jar?dl=1&token_hash=AAHiCwTK9cGe-G-z5_4fmobXiEP5knAoJmhCTzUN96x7bw) the .jar file, and add it as an external library to your project.
+[Download]() the .jar file, and add it as an external library to your project.
 
 If you are using Eclipse, this can be done by right clicking your project, and selecting:
 
@@ -37,8 +45,8 @@ public class Example {
 			
 		RiotAPI riotAPI = new RiotAPI("YOUR KEY GOES HERE");
 		
-		Map<String, Summoner> summoners = riotAPI.getSummonersByName("na", "taystee, frenchtoastkitty");
-		Summoner summoner = summoners.get("taystee");
+		Map<String, Summoner> summoners = riotAPI.getSummonersByName("na", "rithms, tryndamere");
+		Summoner summoner = summoners.get("rithms");
 		long id = summoner.getId();
 	}
 }
@@ -66,8 +74,8 @@ public class Example {
 		RiotAPI riotAPI = new RiotAPI("YOUR KEY GOES HERE");
 		riotAPI.setRegion("na");
 		
-		Map<String, Summoner> summoners = riotAPI.getSummonersByName("taystee, frenchtoastkitty");
-		Summoner summoner = summoners.get("taystee");
+		Map<String, Summoner> summoners = riotAPI.getSummonersByName("rithms, tryndamere");
+		Summoner summoner = summoners.get("rithms");
 		long id = summoner.getId();
 	}
 }
@@ -95,7 +103,7 @@ public class Example {
 		RiotAPI riotAPI = new RiotAPI("YOUR KEY GOES HERE", "na");
 		riotAPI.setSeason("SEASON3");
 		
-		RankedStats rankedStats = riotAPI.getRankedStats(riotAPI.getSummonersByName("taystee, frenchtoastkitty").get("taystee").getId());
+		RankedStats rankedStats = riotAPI.getRankedStats(riotAPI.getSummonersByName("rithms, tryndamere").get("rithms").getId());
 	}
 }
 
@@ -122,9 +130,6 @@ public class Example {
 
 Full documentation can be found [HERE](http://taycaldwell.github.io/riot-api-java/doc).
 
-## Download
-[Download (Version 2.3)](https://dl.dropboxusercontent.com/s/te7kxqqrhzsp60e/riot-api-java.jar?dl=1&token_hash=AAHiCwTK9cGe-G-z5_4fmobXiEP5knAoJmhCTzUN96x7bw)
-
 ## API Versions
 The current version of this library supports the following Riot Games API versions:
 - **champion-v1.1 [EUNE, EUW, NA]**
@@ -139,6 +144,3 @@ If you would like to contribute to this repo, please send a pull request.
 
 ##Discussion
 Have a suggestion, complaint, or question? Head over to the [discussion board](http://developer.riotgames.com/discussion/riot-games-api/show/aiuG9pfx), or send me an email (tcaldwel@nmsu.edu) for a quick response.
-
-## Disclaimer
-This product is not endorsed, certified or otherwise approved in any way by Riot Games, Inc. or any of its affiliates.
