@@ -143,4 +143,4 @@ The current version of this library supports the following Riot Games API versio
 If you would like to contribute to this repo, please send a pull request.
 
 ##Discussion
-Have a suggestion, complaint, or question? Head over to the [discussion board](http://developer.riotgames.com/discussion/riot-games-api/show/aiuG9pfx), or send me an email (tcaldwel@nmsu.edu) for a quick response.
+Have a suggestion, complaint, or question? Head over to the [discussion board](), or send me an email (tcaldwel@nmsu.edu) for a quick response.
