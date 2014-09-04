@@ -1,19 +1,22 @@
 package test;
 
-import main.java.riotapi.RiotAPI;
-import dto.*;
+import main.java.riotapi.RiotApi;
+import dto.Game.RecentGames;
+
 import org.junit.*;
+
+import constant.Region;
 
 public class GameRequestTest
 {
 	
-	private RiotAPI api;
+	private RiotApi api;
 
 	@Before 
 	public void setup()
 	{
 	   System.out.println("\nTest starting...");
-	   api = new RiotAPI("YOUR-API-KEY");
+	   api = new RiotApi("YOUR-API-KEY");
 	}
 
 	@After 
@@ -25,7 +28,7 @@ public class GameRequestTest
 	@Test 
 	public void testGetRecentGamesValidSetRegionValidId()
 	{    
-		api.setRegion("na");
+		api.setRegion(Region.NA);
 		RecentGames games = api.getRecentGames(26120541);
 	    Assert.assertNotNull(games);
 	}
@@ -33,7 +36,7 @@ public class GameRequestTest
 	@Test 
 	public void testGetRecentGamesValidSetRegionInvalidId()
 	{    
-		api.setRegion("na");
+		api.setRegion(Region.NA);
 		RecentGames games = api.getRecentGames(36849083);
 	    Assert.assertNull(games);
 	}
@@ -41,7 +44,7 @@ public class GameRequestTest
 	@Test 
 	public void testGetRecentGamesInvalidSetRegionValidId()
 	{    
-		api.setRegion("tr");
+		api.setRegion(Region.TR);
 		RecentGames games = api.getRecentGames(26120541);
 	    Assert.assertNull(games);
 	}
@@ -49,7 +52,7 @@ public class GameRequestTest
 	@Test 
 	public void testGetRecentGamesInvalidSetRegionInvalidId()
 	{    
-		api.setRegion("tr");
+		api.setRegion(Region.TR);
 		RecentGames games = api.getRecentGames(36849083);
 	    Assert.assertNull(games);
 	}
@@ -57,28 +60,28 @@ public class GameRequestTest
 	@Test 
 	public void testGetRecentGamesValidRegionValidId()
 	{    
-		RecentGames games = api.getRecentGames("na", 26120541);
+		RecentGames games = api.getRecentGames(Region.NA, 26120541);
 	    Assert.assertNotNull(games);
 	}
 	
 	@Test 
 	public void testGetRecentGamesValidRegionInvalidId()
 	{    
-		RecentGames games = api.getRecentGames("na", 36849083);
+		RecentGames games = api.getRecentGames(Region.NA, 36849083);
 	    Assert.assertNull(games);
 	}
 	
 	@Test 
 	public void testGetRecentGamesInvalidRegionValidId()
 	{    
-		RecentGames games = api.getRecentGames("tr", 26120541);
+		RecentGames games = api.getRecentGames(Region.TR, 26120541);
 	    Assert.assertNull(games);
 	}
 	
 	@Test 
 	public void testGetRecentGamesInvalidRegionInvalidId()
 	{    
-		RecentGames games = api.getRecentGames("tr", 36849083);
+		RecentGames games = api.getRecentGames(Region.TR, 36849083);
 	    Assert.assertNull(games);
 	}
 }

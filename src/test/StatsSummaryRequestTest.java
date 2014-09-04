@@ -1,20 +1,23 @@
 package test;
 
-import main.java.riotapi.RiotAPI;
-import dto.*;
+import main.java.riotapi.RiotApi;
+import dto.Stats.PlayerStatsSummaryList;
 
 import org.junit.*;
+
+import constant.Region;
+import constant.Season;
 
 public class StatsSummaryRequestTest
 {
 	
-	private RiotAPI api;
+	private RiotApi api;
 
 	@Before 
 	public void setup()
 	{
 	   System.out.println("\nTest starting...");
-	   api = new RiotAPI("YOUR-API-KEY");
+	   api = new RiotApi("YOUR-API-KEY");
 	}
 
 	@After 
@@ -26,28 +29,21 @@ public class StatsSummaryRequestTest
 	@Test 
 	public void testGetPlayerStatsSummaryValidRegionValidIdValidSeason()
 	{    
-		PlayerStatsSummaryList stats = api.getPlayerStatsSummary("euw", 32581723, "SEASON4");
+		PlayerStatsSummaryList stats = api.getPlayerStatsSummary(Region.EUW, 32581723, Season.FOUR);
 	    Assert.assertNotNull(stats);
 	}
 	
 	@Test 
 	public void testGetPlayerStatsSummaryInvalidRegionValidIdValidSeason()
 	{    
-		PlayerStatsSummaryList stats = api.getPlayerStatsSummary("tr", 32581723, "SEASON4");
+		PlayerStatsSummaryList stats = api.getPlayerStatsSummary(Region.TR, 32581723, Season.FOUR);
 	    Assert.assertNull(stats);
 	}
 	
 	@Test 
 	public void testGetPlayerStatsSummaryValidRegionInvalidIdValidSeason()
 	{    
-		PlayerStatsSummaryList stats = api.getPlayerStatsSummary("euw", 99999999, "SEASON4");
-	    Assert.assertNull(stats);
-	}
-	
-	@Test 
-	public void testGetPlayerStatsSummaryValidRegionValidIdInvalidSeason()
-	{    
-		PlayerStatsSummaryList stats = api.getPlayerStatsSummary("euw", 32581723, "SEASON99");
+		PlayerStatsSummaryList stats = api.getPlayerStatsSummary(Region.EUW, 99999999, Season.FOUR);
 	    Assert.assertNull(stats);
 	}
 	
@@ -55,16 +51,16 @@ public class StatsSummaryRequestTest
 	@Test 
 	public void testGetPlayerStatsSummarySetValidRegionValidIdValidSeason()
 	{   
-		api.setRegion("euw");
-		PlayerStatsSummaryList stats = api.getPlayerStatsSummary(32581723, "SEASON4");
+		api.setRegion(Region.EUW);
+		PlayerStatsSummaryList stats = api.getPlayerStatsSummary(32581723, Season.FOUR);
 	    Assert.assertNotNull(stats);
 	}
 	
 	@Test 
 	public void testGetPlayerStatsSummarySetInvalidRegionValidIdValidSeason()
 	{    
-		api.setRegion("tr");
-		PlayerStatsSummaryList stats = api.getPlayerStatsSummary(32581723, "SEASON4");
+		api.setRegion(Region.TR);
+		PlayerStatsSummaryList stats = api.getPlayerStatsSummary(32581723, Season.FOUR);
 	    Assert.assertNull(stats);
 	}
 	
@@ -72,26 +68,17 @@ public class StatsSummaryRequestTest
 	@Test 
 	public void testGetPlayerStatsSummaryValidRegionValidIdSetValidSeason()
 	{    
-		api.setSeason("SEASON4");
-		PlayerStatsSummaryList stats = api.getPlayerStatsSummary("euw", 32581723);
+		api.setSeason(Season.FOUR);
+		PlayerStatsSummaryList stats = api.getPlayerStatsSummary(Region.EUW, 32581723);
 	    Assert.assertNotNull(stats);
-	}
-	
-	
-	@Test 
-	public void testGetPlayerStatsSummaryValidRegionValidIdSetInvalidSeason()
-	{    
-		api.setSeason("SEASON99");
-		PlayerStatsSummaryList stats = api.getPlayerStatsSummary("euw", 32581723);
-	    Assert.assertNull(stats);
 	}
 	
 	//
 	@Test 
 	public void testGetPlayerStatsSummarySetValidRegionValidIdSetValidSeason()
 	{    
-		api.setSeason("SEASON4");
-		api.setRegion("euw");
+		api.setSeason(Season.FOUR);
+		api.setRegion(Region.EUW);
 		PlayerStatsSummaryList stats = api.getPlayerStatsSummary(32581723);
 	    Assert.assertNotNull(stats);
 	}

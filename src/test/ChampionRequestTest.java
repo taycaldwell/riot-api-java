@@ -1,19 +1,22 @@
 package test;
 
-import main.java.riotapi.RiotAPI;
-import dto.*;
+import main.java.riotapi.RiotApi;
+import dto.Champion.ChampionList;
+
 import org.junit.*;
+
+import constant.Region;
 
 
 public class ChampionRequestTest
 {
-	private RiotAPI api;
+	private RiotApi api;
    
 	@Before 
 	public void setup()
 	{
 	   System.out.println("\nTest starting...");
-	   api = new RiotAPI("YOUR-API-KEY");
+	   api = new RiotApi("YOUR-API-KEY");
 	}
 
 	@After 
@@ -25,7 +28,7 @@ public class ChampionRequestTest
 	@Test 
 	public void testGetChampionsValidSetRegion()
 	{    
-		api.setRegion("na");
+		api.setRegion(Region.NA);
 		ChampionList champions = api.getChampions();
 	    Assert.assertNotNull(champions);
 	}
@@ -33,7 +36,7 @@ public class ChampionRequestTest
 	@Test 
 	public void testGetChampionsInvalidSetRegion()
 	{    
-		api.setRegion("br");
+		api.setRegion(Region.BR);
 		ChampionList champions = api.getChampions();
 		Assert.assertNull(champions);
 	}
@@ -41,7 +44,7 @@ public class ChampionRequestTest
 	@Test 
 	public void testGetChampionsValidRegion()
 	{    
-		ChampionList champions = api.getChampions("na");
+		ChampionList champions = api.getChampions(Region.NA);
 	    Assert.assertNotNull(champions);
 	}
 	
@@ -49,7 +52,7 @@ public class ChampionRequestTest
 	@Test 
 	public void testGetChampionsInvalidRegion()
 	{    
-		ChampionList champions = api.getChampions("br");
+		ChampionList champions = api.getChampions(Region.BR);
 		Assert.assertNull(champions);
 	}
 	
@@ -57,7 +60,7 @@ public class ChampionRequestTest
 	@Test 
 	public void testGetChampionsValidSetRegionFreeToPlayTrue()
 	{    
-		api.setRegion("na");
+		api.setRegion(Region.NA);
 		ChampionList champions = api.getChampions(true);
 		Assert.assertNotNull(champions);
 	}
@@ -65,7 +68,7 @@ public class ChampionRequestTest
 	@Test 
 	public void testGetChampionsInvalidSetRegionFreeToPlayTrue()
 	{    
-		api.setRegion("tr");
+		api.setRegion(Region.TR);
 		ChampionList champions = api.getChampions(true);
 		Assert.assertNull(champions);
 	}
@@ -73,7 +76,7 @@ public class ChampionRequestTest
 	@Test 
 	public void testGetChampionsValidSetRegionFreeToPlayFalse()
 	{    
-		api.setRegion("na");
+		api.setRegion(Region.NA);
 		ChampionList champions = api.getChampions(false);
 		Assert.assertNotNull(champions);
 	}
@@ -81,7 +84,7 @@ public class ChampionRequestTest
 	@Test 
 	public void testGetChampionsInvalidSetRegionFreeToPlayFalse()
 	{    
-		api.setRegion("tr");
+		api.setRegion(Region.TR);
 		ChampionList champions = api.getChampions(false);
 		Assert.assertNull(champions);
 	}
@@ -89,35 +92,35 @@ public class ChampionRequestTest
 	@Test 
 	public void testGetChampionsValidRegionFreeToPlayTrue()
 	{    
-		ChampionList champions = api.getChampions("na", true);
+		ChampionList champions = api.getChampions(Region.NA, true);
 		Assert.assertNotNull(champions);
 	}
 	
 	@Test 
 	public void testGetChampionsInvalidRegionFreeToPlayTrue()
 	{    
-		ChampionList champions = api.getChampions("tr", true);
+		ChampionList champions = api.getChampions(Region.TR, true);
 		Assert.assertNull(champions);
 	}
 	
 	@Test 
 	public void testGetChampionsValidRegionFreeToPlayFalse()
 	{    
-		ChampionList champions = api.getChampions("na", false);
+		ChampionList champions = api.getChampions(Region.NA, false);
 		Assert.assertNotNull(champions);
 	}
 	
 	@Test 
 	public void testGetChampionsInvalidRegionFreeToPlayFalse()
 	{    
-		ChampionList champions = api.getChampions("tr", false);
+		ChampionList champions = api.getChampions(Region.TR, false);
 		Assert.assertNull(champions);
 	}
 	
 	@Test 
 	public void testGetFreeToPlayChampionsValidSetRegion()
 	{    
-		api.setRegion("na");
+		api.setRegion(Region.NA);
 		ChampionList champions = api.getFreeToPlayChampions();
 		Assert.assertNotNull(champions);
 	}
@@ -125,7 +128,7 @@ public class ChampionRequestTest
 	@Test 
 	public void testGetFreeToPlayChampionsInvalidSetRegion()
 	{    
-		api.setRegion("br");
+		api.setRegion(Region.BR);
 		ChampionList champions = api.getFreeToPlayChampions();
 		Assert.assertNull(champions);
 	}
@@ -133,14 +136,14 @@ public class ChampionRequestTest
 	@Test 
 	public void testGetFreeToPlayChampionsValidRegion()
 	{    
-		ChampionList champions = api.getFreeToPlayChampions("na");
+		ChampionList champions = api.getFreeToPlayChampions(Region.NA);
 		Assert.assertNotNull(champions);
 	}
 	
 	@Test 
 	public void testGetFreeToPlayChampionsInvalidRegion()
 	{    
-		ChampionList champions = api.getFreeToPlayChampions("br");
+		ChampionList champions = api.getFreeToPlayChampions(Region.BR);
 		Assert.assertNull(champions);
 	}
 }
