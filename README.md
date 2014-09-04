@@ -1,6 +1,6 @@
 ﻿# RIOT-API-JAVA
 
-## Please note - Version 0.3.0 is still in the process of being updated. The fully updated library should be available by 09/05/14. - Rithms
+## Please note - Version 3.0 is still in the process of being updated. The fully updated library should be available by 09/05/14. - Rithms
 -----------------------------
 A simple to use, Riot Games API (Beta) wrapper for Java.
 This library makes it easy to gather and use League of Legends data in your Java code. :)
@@ -9,7 +9,7 @@ This library makes it easy to gather and use League of Legends data in your Java
 This product is not endorsed, certified or otherwise approved in any way by Riot Games, Inc. or any of its affiliates.
 
 ## Download
-[Download (Version 0.3.0)]()
+[Download (Version 3.0.0)]()
 
 ## Requirements
 
