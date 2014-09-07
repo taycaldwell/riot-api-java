@@ -1,5 +1,11 @@
 ﻿# RIOT-API-JAVA
 
+<<<<<<< HEAD
+=======
+## Please note - Version 3.0 is still in the process of being updated. The fully updated library should be available by 09/05/14. - Rithms
+-----------------------------
+
+>>>>>>> FETCH_HEAD
 A simple to use, Riot Games API (Beta) wrapper for Java.
 This library makes it easy to gather and use League of Legends data in your Java code. :)
 
