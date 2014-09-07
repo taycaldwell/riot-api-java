@@ -2,13 +2,13 @@
 <html>
 
   <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Riot-api-java : A simple, Riot Games API (Beta) wrapper for Java. " />
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Riot-api-java : A simple, Riot Games API (Beta) wrapper for Java. ">
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
-    <title>Riot Games API for Java</title>
+    <title>Riot-api-java</title>
   </head>
 
   <body>
@@ -16,12 +16,11 @@
     <!-- HEADER -->
     <div id="header_wrap" class="outer">
         <header class="inner">
-          <click><a id="forkme_banner" href="https://github.com/rithms/riot-api-java">View on GitHub</a></click>
+          <a id="forkme_banner" href="https://github.com/rithms/riot-api-java">View on GitHub</a>
 
-          <h1 id="project_title">
-            <a id="title" href="http://rithms.im">Riot Games API for Java</a>
-          </h1>
-          
+          <h1 id="project_title">Riot-api-java</h1>
+          <h2 id="project_tagline">A simple, Riot Games API (Beta) wrapper for Java. </h2>
+
             <section id="downloads">
               <a class="zip_download_link" href="https://github.com/rithms/riot-api-java/zipball/master">Download this project as a .zip file</a>
               <a class="tar_download_link" href="https://github.com/rithms/riot-api-java/tarball/master">Download this project as a tar.gz file</a>
@@ -32,18 +31,34 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h2>
+        <h1>
+<a name="riot-api-java" class="anchor" href="#riot-api-java"><span class="octicon octicon-link"></span></a>RIOT-API-JAVA</h1>
+
+<hr><p>A simple to use, Riot Games API (Beta) wrapper for Java.
+This library makes it easy to gather and use League of Legends data in your Java code. :)</p>
+
+<h2>
+<a name="disclaimer" class="anchor" href="#disclaimer"><span class="octicon octicon-link"></span></a>Disclaimer</h2>
+
+<p>This product is not endorsed, certified or otherwise approved in any way by Riot Games, Inc. or any of its affiliates.</p>
+
+<h2>
 <a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements</h2>
 
 <p><strong>riot-api-java</strong> requires the following libraries:</p>
 
 <ul>
-<li><click><a href="http://commons.apache.org/proper/commons-io/download_io.cgi">Commons IO 2.4</a></click></li>
-<li><click><a href="https://code.google.com/p/google-gson/">Gson</a></click></li>
+<li><a href="http://commons.apache.org/proper/commons-io/download_io.cgi">Apache Commons IO 2.4</a></li>
+<li><a href="https://code.google.com/p/google-gson/">Google Gson</a></li>
 </ul><h2>
+<a name="download" class="anchor" href="#download"><span class="octicon octicon-link"></span></a>Download</h2>
+
+<p><a href="https://www.dropbox.com/s/te7kxqqrhzsp60e/riot-api-java.jar?dl=0">Download (Version 3.0.1)</a> </p>
+
+<h2>
 <a name="setup" class="anchor" href="#setup"><span class="octicon octicon-link"></span></a>Setup</h2>
 
-<p><click><a href="https://dl.dropboxusercontent.com/s/te7kxqqrhzsp60e/riot-api-java.jar?dl=1&amp;token_hash=AAHiCwTK9cGe-G-z5_4fmobXiEP5knAoJmhCTzUN96x7bw">Download</a></click> the .jar file, and add it as an external library to your project.</p>
+<p><a href="https://www.dropbox.com/s/te7kxqqrhzsp60e/riot-api-java.jar?dl=0">Download</a> the .jar file, and add it as an external library to your project.</p>
 
 <p>If you are using Eclipse, this can be done by right clicking your project, and selecting:</p>
 
@@ -54,25 +69,27 @@
 <h2>
 <a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
 
-<p>This library can be used strictly according to the <click><a href="https://developer.riotgames.com/api/methods">Riot API Documentation</a></click> like so:</p>
+<p>This library can be used strictly according to the <a href="https://developer.riotgames.com/api/methods">Riot API Documentation</a> like so:</p>
 
 <div class="highlight highlight-java"><pre><span class="kn">import</span> <span class="nn">java.util.Map</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">constant.Region</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dto.Summoner.Summoner</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">main.java.riotapi.RiotApi</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">com.google.gson*</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">org.apache.commons.io.IOUtils</span><span class="o">;</span>
-
-<span class="kn">import</span> <span class="nn">main.java.riotapi.RiotAPI</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">dto.*</span><span class="o">;</span>   
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Example</span> <span class="o">{</span>
 
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
 
-        <span class="n">RiotAPI</span> <span class="n">riotAPI</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RiotAPI</span><span class="o">(</span><span class="s">"YOUR KEY GOES HERE"</span><span class="o">);</span>
+        <span class="n">RiotApi</span> <span class="n">api</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">RiotApi</span><span class="o">(</span><span class="s">"YOUR-API-KEY-HERE"</span><span class="o">);</span>
 
-        <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Summoner</span><span class="o">&gt;</span> <span class="n">summoners</span> <span class="o">=</span> <span class="n">riotAPI</span><span class="o">.</span><span class="na">getSummonersByName</span><span class="o">(</span><span class="s">"na"</span><span class="o">,</span> <span class="s">"taystee, frenchtoastkitty"</span><span class="o">);</span>
-        <span class="n">Summoner</span> <span class="n">summoner</span> <span class="o">=</span> <span class="n">summoners</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"taystee"</span><span class="o">);</span>
+        <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Summoner</span><span class="o">&gt;</span> <span class="n">summoners</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="na">getSummonersByName</span><span class="o">(</span><span class="n">Region</span><span class="o">.</span><span class="na">NA</span><span class="o">,</span> <span class="s">"rithms, tryndamere"</span><span class="o">);</span>
+        <span class="n">Summoner</span> <span class="n">summoner</span> <span class="o">=</span> <span class="n">summoners</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"rithms"</span><span class="o">);</span>
         <span class="kt">long</span> <span class="n">id</span> <span class="o">=</span> <span class="n">summoner</span><span class="o">.</span><span class="na">getId</span><span class="o">();</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
     <span class="o">}</span>
+
 <span class="o">}</span>
 
 </pre></div>
@@ -81,126 +98,49 @@
 Below is an example of how to set your region. Because the region was set before a method was called, there is no need to pass in the region parameter. This is great for people that know they will only be working in one region when making multiple requests. The same can be done for the season.</p>
 
 <div class="highlight highlight-java"><pre><span class="kn">import</span> <span class="nn">java.util.Map</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">constant.Region</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dto.Summoner.Summoner</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">main.java.riotapi.RiotApi</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">com.google.gson*</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">org.apache.commons.io.IOUtils</span><span class="o">;</span>
-
-<span class="kn">import</span> <span class="nn">dto.*</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">main.java.riotapi.RiotAPI</span><span class="o">;</span>
-
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Example</span> <span class="o">{</span>
 
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
 
-        <span class="n">RiotAPI</span> <span class="n">riotAPI</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RiotAPI</span><span class="o">(</span><span class="s">"YOUR KEY GOES HERE"</span><span class="o">);</span>
-        <span class="n">riotAPI</span><span class="o">.</span><span class="na">setRegion</span><span class="o">(</span><span class="s">"na"</span><span class="o">);</span>
+        <span class="n">RiotApi</span> <span class="n">api</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">RiotApi</span><span class="o">(</span><span class="s">"YOUR-API-KEY-HERE"</span><span class="o">);</span>
 
-        <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Summoner</span><span class="o">&gt;</span> <span class="n">summoners</span> <span class="o">=</span> <span class="n">riotAPI</span><span class="o">.</span><span class="na">getSummonersByName</span><span class="o">(</span><span class="s">"taystee, frenchtoastkitty"</span><span class="o">);</span>
-        <span class="n">Summoner</span> <span class="n">summoner</span> <span class="o">=</span> <span class="n">summoners</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"taystee"</span><span class="o">);</span>
+        <span class="n">api</span><span class="o">.</span><span class="na">setRegion</span><span class="o">(</span><span class="n">Region</span><span class="o">.</span><span class="na">NA</span><span class="o">);</span>
+        <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Summoner</span><span class="o">&gt;</span> <span class="n">summoners</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="na">getSummonersByName</span><span class="o">(</span><span class="s">"rithms, tryndamere"</span><span class="o">);</span>
+        <span class="n">Summoner</span> <span class="n">summoner</span> <span class="o">=</span> <span class="n">summoners</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"rithms"</span><span class="o">);</span>
         <span class="kt">long</span> <span class="n">id</span> <span class="o">=</span> <span class="n">summoner</span><span class="o">.</span><span class="na">getId</span><span class="o">();</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
     <span class="o">}</span>
+
 <span class="o">}</span>
 
 </pre></div>
 
 <p>It is important to be aware of your personal rate limit. Any method call from the RiotAPI is a request that counts towards your rate limit, with exceptions to the accessors and mutators of region, key, and season. The below code makes 2 requests; one request for a summoner, and another for ranked stats of a summoner.</p>
 
-<div class="highlight highlight-java"><pre><span class="kn">import</span> <span class="nn">java.util.Map</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">com.google.gson*</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.apache.commons.io.IOUtils</span><span class="o">;</span>
-
-<span class="kn">import</span> <span class="nn">dto.*</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">main.java.riotapi.RiotAPI</span><span class="o">;</span>
-
+<div class="highlight highlight-java"><pre><span class="kn">import</span> <span class="nn">constant.Region</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">constant.Season</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">dto.Stats.RankedStats</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">main.java.riotapi.RiotApi</span><span class="o">;</span>
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Example</span> <span class="o">{</span>
 
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
 
-        <span class="n">RiotAPI</span> <span class="n">riotAPI</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RiotAPI</span><span class="o">(</span><span class="s">"YOUR KEY GOES HERE"</span><span class="o">,</span> <span class="s">"na"</span><span class="o">);</span>
-        <span class="n">riotAPI</span><span class="o">.</span><span class="na">setSeason</span><span class="o">(</span><span class="s">"SEASON3"</span><span class="o">);</span>
+        <span class="n">RiotApi</span> <span class="n">api</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">RiotApi</span><span class="o">(</span><span class="s">"YOUR-API-KEY-HERE"</span><span class="o">,</span> <span class="n">Region</span><span class="o">.</span><span class="na">NA</span><span class="o">);</span>
+        <span class="n">api</span><span class="o">.</span><span class="na">setSeason</span><span class="o">(</span><span class="n">Season</span><span class="o">.</span><span class="na">FOUR</span><span class="o">);</span>
 
-        <span class="n">RankedStats</span> <span class="n">rankedStats</span> <span class="o">=</span> <span class="n">riotAPI</span><span class="o">.</span><span class="na">getRankedStats</span><span class="o">(</span><span class="n">riotAPI</span><span class="o">.</span><span class="na">getSummonersByName</span><span class="o">(</span><span class="s">"taystee, frenchtoastkitty"</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="s">"taystee"</span><span class="o">).</span><span class="na">getId</span><span class="o">());</span>
+        <span class="n">RankedStats</span> <span class="n">rankedStats</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="na">getRankedStats</span><span class="o">(</span><span class="n">api</span><span class="o">.</span><span class="na">getSummonersByName</span><span class="o">(</span><span class="s">"rithms, tryndamere"</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="s">"rithms"</span><span class="o">).</span><span class="na">getId</span><span class="o">());</span>
     <span class="o">}</span>
+
 <span class="o">}</span>
 
 </pre></div>
-
-<h2>
-<a name="reference" class="anchor" href="#reference"><span class="octicon octicon-link"></span></a>Reference</h2>
-
-<h3>
-<a name="strict-api-methods" class="anchor" href="#strict-api-methods"><span class="octicon octicon-link"></span></a>Strict API Methods</h3>
-
-<table>
-<thead><tr>
-<th>Category</th>
-<th>Method</th>
-<th>Return Type</th>
-</tr></thead>
-<tbody>
-<tr>
-<td>Champion</td>
-<td><code>getChampions(String region, boolean freeToPlay)</code></td>
-<td>ChampionList</td>
-</tr>
-<tr>
-<td>Game</td>
-<td><code>getRecentGames(String region, long summonerId)</code></td>
-<td>RecentGames</td>
-</tr>
-<tr>
-<td>League</td>
-<td><code>getLeagues(String region, long summonerId)</code></td>
-<td>List</td>
-</tr>
-<tr>
-<td>Stats</td>
-<td><code>getPlayerStatsSummary(String region, long summonerId, String season)</code></td>
-<td>PlayerStatsSummaryList</td>
-</tr>
-<tr>
-<td>Stats</td>
-<td><code>getRankedStats(String region, long summonerId, String season)</code></td>
-<td>RankedStats</td>
-</tr>
-<tr>
-<td>Summoner</td>
-<td><code>getMasteryPages(String region, long summonerId)</code></td>
-<td>Map</td>
-</tr>
-<tr>
-<td>Summoner</td>
-<td><code>getRunePages(String region, long summonerId)</code></td>
-<td>Map</td>
-</tr>
-<tr>
-<td>Summoner</td>
-<td><code>getSummonersByName(String region, String names)</code></td>
-<td>Map</td>
-</tr>
-<tr>
-<td>Summoner</td>
-<td><code>getSummonersById(String region, String summonerIds)</code></td>
-<td>Map</td>
-</tr>
-<tr>
-<td>Summoner</td>
-<td><code>getSummonerNames(String region, String summonerIds)</code></td>
-<td>Map</td>
-</tr>
-<tr>
-<td>Team</td>
-<td><code>getTeams(String region, long summonerId)</code></td>
-<td>List</td>
-</tr>
-</tbody>
-</table><p>Full documentation can be found <click><a href="http://rithms.github.io/riot-api-java/doc">HERE</a></click>.</p>
-
-<h2>
-<a name="download" class="anchor" href="#download"><span class="octicon octicon-link"></span></a>Download</h2>
-
-<p><click><a href="https://dl.dropboxusercontent.com/s/te7kxqqrhzsp60e/riot-api-java.jar?dl=1&amp;token_hash=AAHiCwTK9cGe-G-z5_4fmobXiEP5knAoJmhCTzUN96x7bw">Download (Version 2.3)</a></click></p>
 
 <h2>
 <a name="api-versions" class="anchor" href="#api-versions"><span class="octicon octicon-link"></span></a>API Versions</h2>
@@ -208,12 +148,15 @@ Below is an example of how to set your region. Because the region was set before
 <p>The current version of this library supports the following Riot Games API versions:</p>
 
 <ul>
-<li><strong>champion-v1.1 [EUNE, EUW, NA]</strong></li>
-<li><strong>game-v1.3 [EUNE, EUW, NA]</strong></li>
-<li><strong>league-v2.3 [BR, EUNE, EUW, NA, TR]</strong></li>
-<li><strong>stats-v1.2 [EUNE, EUW, NA]</strong></li>
-<li><strong>summoner-v1.3 [EUNE, EUW, NA]</strong></li>
-<li><strong>team-v2.2 [BR, EUNE, EUW, NA, TR]</strong></li>
+<li><strong>champion-v1.2 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]</strong></li>
+<li><strong>game-v1.3 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]</strong></li>
+<li><strong>league-v2.5 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]</strong></li>
+<li><strong>lol-static-data-v1.2 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]</strong></li>
+<li><strong>match-v2.2 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]</strong></li>
+<li><strong>matchhistory-v2.2 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]</strong></li>
+<li><strong>stats-v1.3 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]</strong></li>
+<li><strong>summoner-v1.4 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]</strong></li>
+<li><strong>team-v2.4 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]</strong></li>
 </ul><h2>
 <a name="contributing" class="anchor" href="#contributing"><span class="octicon octicon-link"></span></a>Contributing</h2>
 
@@ -222,19 +165,15 @@ Below is an example of how to set your region. Because the region was set before
 <h2>
 <a name="discussion" class="anchor" href="#discussion"><span class="octicon octicon-link"></span></a>Discussion</h2>
 
-<p>Have a suggestion, complaint, or question? Head over to the <click><a href="http://developer.riotgames.com/discussion/riot-games-api/show/aiuG9pfx">discussion board</a></click>, or send me an email (<click><a href="mailto:tcaldwel@nmsu.edu">tcaldwel@nmsu.edu</a></click>) for a quick response.</p>
-
-<h2>
-<a name="disclaimer" class="anchor" href="#disclaimer"><span class="octicon octicon-link"></span></a>Disclaimer</h2>
-
-<p>This product is not endorsed, certified or otherwise approved in any way by Riot Games, Inc. or any of its affiliates.</p>
+<p>Have a suggestion, complaint, or question? Tweet me (@itsRithms) for a quick reply, or send me an email (<a href="mailto:tcaldwel@nmsu.edu">tcaldwel@nmsu.edu</a>).</p>
       </section>
     </div>
 
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
       <footer class="inner">
-        <p class="copyright">Created by <a href="https://github.com/rithms">Taylor Caldwell (@rithms)</a></p>
+        <p class="copyright">Riot-api-java maintained by <a href="https://github.com/rithms">rithms</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
 
