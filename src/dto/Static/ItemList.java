@@ -1,4 +1,7 @@
-package constant;
+package dto.Static;
+
+import java.util.List;
+import java.util.Map;
 
 /*
  * Copyright 2014 Taylor Caldwell
@@ -15,21 +18,32 @@ package constant;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-	
-public enum Season {
-	
-		Season3("SEASON3"),
-		Season4("SEASON4"),
-		THREE("SEASON3"),
-		FOUR("SEASON4");
 
-	    private String season;
-	    
-	    Season(String season) {
-	        this.season = season;
-	    }
+public class ItemList {
+	
+	private List<Group> groups;
+	private List<ItemTree> tree;
+	private Map<String, Item> data;
+	private BasicData basic;
+	private String type, version;
+	
+	public List<Group> getGroups() {
+		return groups;
+	}
+	public List<ItemTree> getTree() {
+		return tree;
+	}
+	public Map<String, Item> getData() {
+		return data;
+	}
+	public BasicData getBasic() {
+		return basic;
+	}
+	public String getType() {
+		return type;
+	}
+	public String getVersion() {
+		return version;
+	}
 
-	    public String getName() {
-	        return season;
-	    }	    
 }

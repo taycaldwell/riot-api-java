@@ -19,8 +19,11 @@ package method;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.io.IOUtils;
+
+import util.Convert;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
@@ -30,25 +33,60 @@ import dto.Team.Team;
 
 public final class TeamMethod {
 	
-	/**
-	 * Get teams of a given summoner
-	 * @param region The desired region
-	 * @param summonerId The ID of the desired summoner
-	 * @return The teams the given summoner is a member of
-	 * @see Team
-	 */
-	public static List<Team> getTeams(String endpoint, String region, String key, long summonerId){
+	public static Map<String, List<Team>> getTeamsBySummonerIds(String endpoint, String region, String key, long... summonerIds){
 		
-		String url = endpoint + "/api/lol/" + region + "/v2.4/team/by-summoner/" + summonerId + "?api_key=" + key;
-		List<Team> teamList = null;
+		String url = endpoint + "/api/lol/" + region + "/v2.4/team/by-summoner/" + Convert.longToString(summonerIds) + "?api_key=" + key;
+		Map<String, List<Team>> teams = null;
 
 			try {
-				teamList = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<List<Team>>(){}.getType());
+				teams = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<Map<String, List<Team>>>(){}.getType());
 			} catch (JsonSyntaxException | IOException e) {
 				e.printStackTrace();
 			}
 	
-	    return teamList;
+	    return teams;
+	}
+	
+	public static Map<String, List<Team>> getTeamsBySummonerIds(String endpoint, String region, String key, String summonerIds){
+		
+		String url = endpoint + "/api/lol/" + region + "/v2.4/team/by-summoner/" + summonerIds + "?api_key=" + key;
+		Map<String, List<Team>> teams = null;
+
+			try {
+				teams = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<Map<String, List<Team>>>(){}.getType());
+			} catch (JsonSyntaxException | IOException e) {
+				e.printStackTrace();
+			}
+	
+	    return teams;
+	}
+	
+	public static Map<String, List<Team>> getTeamsByTeamIds(String endpoint, String region, String key, long... teamIds){
+		
+		String url = endpoint + "/api/lol/" + region + "/v2.4/team/" + Convert.longToString(teamIds) + "?api_key=" + key;
+		Map<String, List<Team>> teams = null;
+
+			try {
+				teams = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<Map<String, List<Team>>>(){}.getType());
+			} catch (JsonSyntaxException | IOException e) {
+				e.printStackTrace();
+			}
+	
+	    return teams;
+	}
+	
+	public static Map<String, List<Team>> getTeamsByTeamIds(String endpoint, String region, String key, String teamIds){
+		
+		String url = endpoint + "/api/lol/" + region + "/v2.4/team/" + teamIds + "?api_key=" + key;
+		Map<String, List<Team>> teams = null;
+
+			try {
+				teams = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<Map<String, List<Team>>>(){}.getType());
+			} catch (JsonSyntaxException | IOException e) {
+				e.printStackTrace();
+			}
+	
+	    return teams;
 	}
 
 }

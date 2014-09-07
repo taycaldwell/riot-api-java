@@ -25,30 +25,41 @@ http://rithms.im
  * limitations under the License.
  */
 
-import java.io.IOException;
-import java.net.URL;
 import java.util.List;
 import java.util.Map;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
-import com.google.gson.reflect.TypeToken;
 
 import constant.QueueType;
 import constant.Region;
 import constant.Season;
+import constant.staticdata.ChampData;
+import constant.staticdata.ItemData;
+import constant.staticdata.ItemListData;
+import constant.staticdata.MasteryData;
+import constant.staticdata.MasteryListData;
+import constant.staticdata.RuneData;
+import constant.staticdata.RuneListData;
+import constant.staticdata.SpellData;
 import dto.Champion.*;
 import dto.Game.RecentGames;
 import dto.League.League;
+import dto.Match.MatchDetail;
+import dto.MatchHistory.PlayerHistory;
 import dto.Team.Team;
+import dto.Static.ChampionList;
+import dto.Static.Item;
+import dto.Static.ItemList;
+import dto.Static.Mastery;
+import dto.Static.MasteryList;
+import dto.Static.Realm;
+import dto.Static.Rune;
+import dto.Static.RuneList;
+import dto.Static.SummonerSpell;
+import dto.Static.SummonerSpellList;
 import dto.Stats.PlayerStatsSummaryList;
 import dto.Stats.RankedStats;
 import dto.Summoner.MasteryPages;
 import dto.Summoner.RunePages;
 import dto.Summoner.Summoner;
-
-import org.apache.commons.io.IOUtils;
-
 import method.*;
 
 public class RiotApi {
@@ -76,7 +87,7 @@ public class RiotApi {
 	 * @return A list of all the champions for the set region
 	 * @see ChampionList
 	 */
-	public ChampionList getChampions() {
+	public dto.Champion.ChampionList getChampions() {
 		
 		return ChampionMethod.getChampions(getEndpoint(), getRegion(), getKey());
 	}
@@ -87,7 +98,7 @@ public class RiotApi {
 	 * @return A list of all the champions for the set region
 	 * @see ChampionList
 	 */
-	public ChampionList getChampions(Region region) {
+	public dto.Champion.ChampionList getChampions(Region region) {
 	
 		return ChampionMethod.getChampions(getEndpoint(), region.getName(), getKey());
 	}
@@ -101,7 +112,7 @@ public class RiotApi {
 	 * @see ChampionList
 	 * 
 	 */
-	public ChampionList getChampions(boolean freeToPlay) {
+	public dto.Champion.ChampionList getChampions(boolean freeToPlay) {
 
 		return ChampionMethod.getChampions(getEndpoint(), getRegion(), getKey(), freeToPlay);
 	}
@@ -115,7 +126,7 @@ public class RiotApi {
 	 * A list of all the champions for the given region when freeToPlay is false
 	 * @see ChampionList
 	 */
-	public ChampionList getChampions(Region region, boolean freeToPlay) {
+	public dto.Champion.ChampionList getChampions(Region region, boolean freeToPlay) {
 		
 		return ChampionMethod.getChampions(getEndpoint(), region.getName(), getKey(), freeToPlay);
 	}
@@ -126,7 +137,7 @@ public class RiotApi {
 	 * @return A list of all the free to play champions for the given region
 	 * @see ChampionList
 	 */
-	public ChampionList getFreeToPlayChampions(Region region) {
+	public dto.Champion.ChampionList getFreeToPlayChampions(Region region) {
 
 		return ChampionMethod.getChampions(getEndpoint(), region.getName(), getKey(), true);
 	}
@@ -136,7 +147,7 @@ public class RiotApi {
 	 * @return A list of all the free to play champions for the set region
 	 * @see ChampionList
 	 */
-	public ChampionList getFreeToPlayChampions() {
+	public dto.Champion.ChampionList getFreeToPlayChampions() {
 
 		return ChampionMethod.getChampions(getEndpoint(), getRegion(), getKey(), true);
 	}
@@ -357,7 +368,7 @@ public class RiotApi {
 	 * @return A summary of player statistics for the given summoner
 	 * @see PlayerStatsSummaryList
 	 */
-	public PlayerStatsSummaryList getPlayerStatsSummary(Region region, long summonerId, Season season) {
+	public PlayerStatsSummaryList getPlayerStatsSummary(Region region, Season season, long summonerId) {
 		
 		return StatsMethod.getPlayerStatsSummary(getEndpoint(), region.getName(), season.getName(), getKey(), summonerId);
 	}
@@ -369,7 +380,7 @@ public class RiotApi {
 	 * @return A summary of player statistics for the given summoner
 	 * @see PlayerStatsSummaryList
 	 */
-	public PlayerStatsSummaryList getPlayerStatsSummary(long summonerId, Season season) {
+	public PlayerStatsSummaryList getPlayerStatsSummary(Season season, long summonerId) {
 		
 		return StatsMethod.getPlayerStatsSummary(getEndpoint(), getRegion(), season.getName(), getKey(), summonerId);
 	}
@@ -405,7 +416,7 @@ public class RiotApi {
 	 * @return Ranked statistics of the given summoner
 	 * @see RankedStats
 	 */
-	public RankedStats getRankedStats(Region region, long summonerId, Season season) {
+	public RankedStats getRankedStats(Region region, Season season, long summonerId) {
 		
 		return StatsMethod.getRankedStats(getEndpoint(), region.getName(), season.getName(), getKey(), summonerId);
 	}
@@ -417,7 +428,7 @@ public class RiotApi {
 	 * @return Ranked statistics of the given summoner
 	 * @see RankedStats
 	 */
-	public RankedStats getRankedStats(long summonerId, Season season) {
+	public RankedStats getRankedStats(Season season, long summonerId) {
 		
 		return StatsMethod.getRankedStats(getEndpoint(), getRegion(), season.getName(), getKey(), summonerId);
 	}
@@ -456,7 +467,6 @@ public class RiotApi {
 		
 		return SummonerMethod.getMasteryPages(getEndpoint(), region.getName(), getKey(), summonerIds);
 	}
-	
 	
 	/**
 	 * Get the mastery pages of a given summoner
@@ -548,7 +558,7 @@ public class RiotApi {
 	 */
 	public Map<String, Summoner> getSummonersByName(Region region, String summonerNames) {
 		
-		return SummonerMethod.getSummonerByName(getEndpoint(), region.getName(), getKey(), summonerNames);
+		return SummonerMethod.getSummonersByName(getEndpoint(), region.getName(), getKey(), summonerNames);
 	}
 	
 	/**
@@ -559,7 +569,7 @@ public class RiotApi {
 	 */
 	public Map<String, Summoner> getSummonersByName(String summonerNames) {
 		
-		return SummonerMethod.getSummonerByName(getEndpoint(), getRegion(), getKey(), summonerNames);
+		return SummonerMethod.getSummonersByName(getEndpoint(), getRegion(), getKey(), summonerNames);
 	}
 	
 	/**
@@ -571,7 +581,7 @@ public class RiotApi {
 	 */
 	public Map<String, Summoner> getSummonerByName(Region region, String summonerName) {
 		
-		return SummonerMethod.getSummonerByName(getEndpoint(), region.getName(), getKey(), summonerName);
+		return SummonerMethod.getSummonersByName(getEndpoint(), region.getName(), getKey(), summonerName);
 	}
 	
 	/**
@@ -582,7 +592,7 @@ public class RiotApi {
 	 */
 	public Map<String, Summoner> getSummonerByName(String summonerName) {
 		
-		return SummonerMethod.getSummonerByName(getEndpoint(), getRegion(), getKey(), summonerName);
+		return SummonerMethod.getSummonersByName(getEndpoint(), getRegion(), getKey(), summonerName);
 	}
 	
 	/**
@@ -617,7 +627,7 @@ public class RiotApi {
 	 */
 	public Map<String, Summoner> getSummonersById(Region region, String summonerIds) {
 		
-		return SummonerMethod.getSummonerById(getEndpoint(), region.getName(), getKey(), summonerIds);
+		return SummonerMethod.getSummonersById(getEndpoint(), region.getName(), getKey(), summonerIds);
 	}
 	
 	/**
@@ -628,7 +638,7 @@ public class RiotApi {
 	 */
 	public Map<String, Summoner> getSummonersById(String summonerIds) {
 		
-		return SummonerMethod.getSummonerById(getEndpoint(), getRegion(), getKey(), summonerIds);
+		return SummonerMethod.getSummonersById(getEndpoint(), getRegion(), getKey(), summonerIds);
 	}
 	
 	/**
@@ -640,7 +650,7 @@ public class RiotApi {
 	 */
 	public Map<String, Summoner> getSummonerById(Region region, long summonerId) {
 			
-		return SummonerMethod.getSummonerById(getEndpoint(), region.getName(), getKey(), summonerId);
+		return SummonerMethod.getSummonersById(getEndpoint(), region.getName(), getKey(), summonerId);
 	}
 	
 	/**
@@ -651,7 +661,7 @@ public class RiotApi {
 	 */
 	public Map<String, Summoner> getSummonerById(long summonerId) {
 		
-		return SummonerMethod.getSummonerById(getEndpoint(), getRegion(), getKey(), summonerId);
+		return SummonerMethod.getSummonersById(getEndpoint(), getRegion(), getKey(), summonerId);
 	}
 	
 	/**
@@ -663,7 +673,7 @@ public class RiotApi {
 	 */
 	public Map<String, Summoner> getSummonerById(Region region, String summonerId) {
 		
-		return SummonerMethod.getSummonerById(getEndpoint(), region.getName(), getKey(), summonerId);
+		return SummonerMethod.getSummonersById(getEndpoint(), region.getName(), getKey(), summonerId);
 	}
 	
 	/**
@@ -674,7 +684,7 @@ public class RiotApi {
 	 */
 	public Map<String, Summoner> getSummonerById(String summonerId) {
 		
-		return SummonerMethod.getSummonerById(getEndpoint(), getRegion(), getKey(), summonerId);
+		return SummonerMethod.getSummonersById(getEndpoint(), getRegion(), getKey(), summonerId);
 	}
 	
 	/**
@@ -706,7 +716,7 @@ public class RiotApi {
 	 */
 	public Map<String, String> getSummonerNames(Region region, String summonerIds){
 		
-		return SummonerMethod.getSummonerName(getEndpoint(), region.getName(), getKey(), summonerIds);
+		return SummonerMethod.getSummonerNames(getEndpoint(), region.getName(), getKey(), summonerIds);
 	}
 	
 	/**
@@ -716,7 +726,7 @@ public class RiotApi {
 	 */
 	public Map<String, String> getSummonerNames(String summonerIds){
 		
-		return SummonerMethod.getSummonerName(getEndpoint(), getRegion(), getKey(), summonerIds);
+		return SummonerMethod.getSummonerNames(getEndpoint(), getRegion(), getKey(), summonerIds);
 	}
 	
 	/**
@@ -727,7 +737,7 @@ public class RiotApi {
 	 */
 	public Map<String, String> getSummonerName(Region region, long summonerId){
 	
-		return SummonerMethod.getSummonerName(getEndpoint(), region.getName(), getKey(), summonerId);
+		return SummonerMethod.getSummonerNames(getEndpoint(), region.getName(), getKey(), summonerId);
 	}
 	
 	/**
@@ -737,7 +747,7 @@ public class RiotApi {
 	 */
 	public Map<String, String> getSummonerName(long summonerId){
 	
-		return SummonerMethod.getSummonerName(getEndpoint(), getRegion(), getKey(), summonerId);
+		return SummonerMethod.getSummonerNames(getEndpoint(), getRegion(), getKey(), summonerId);
 	}
 	
 	/**
@@ -748,7 +758,7 @@ public class RiotApi {
 	 */
 	public Map<String, String> getSummonerName(Region region, String summonerId){
 		
-		return SummonerMethod.getSummonerName(getEndpoint(), region.getName(), getKey(), summonerId);
+		return SummonerMethod.getSummonerNames(getEndpoint(), region.getName(), getKey(), summonerId);
 	}
 	
 	/**
@@ -758,48 +768,459 @@ public class RiotApi {
 	 */
 	public Map<String, String> getSummonerName(String summonerId){
 		
-		return SummonerMethod.getSummonerName(getEndpoint(), getRegion(), getKey(), summonerId);
+		return SummonerMethod.getSummonerNames(getEndpoint(), getRegion(), getKey(), summonerId);
 	}
 	
 	/**
-	 * Get teams of a given summoner
-	 * @param region The desired region
-	 * @param summonerId The ID of the desired summoner
-	 * @return The teams the given summoner is a member of
-	 * @see Team
+	 * 
 	 */
-	public List<Team> getTeams(Region region, long summonerId){
+	public Map<String, List<Team>> getTeamsBySummonerIds(Region region, long... summonerIds){
 		
-		String url = getEndpoint() + region.getName() + "/v2.2/team/by-summoner/" + summonerId + "?api_key=" + getKey();
-		List<Team> teamList = null;
-
-			try {
-				teamList = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<List<Team>>(){}.getType());
-			} catch (JsonSyntaxException | IOException e) {
-				e.printStackTrace();
-			}
+		return TeamMethod.getTeamsBySummonerIds(getEndpoint(), region.getName(), getKey(), summonerIds);
+	}
 	
-	    return teamList;
+	
+	/**
+	 * 
+	 */
+	public Map<String, List<Team>> getTeamsBySummonerIds(long... summonerIds){
+	
+		return TeamMethod.getTeamsBySummonerIds(getEndpoint(), getRegion(), getKey(), summonerIds);
 	}
 	
 	/**
-	 * Get teams of a given summoner
-	 * @param summonerId The desired summoner
-	 * @return The teams the given summoner is a member of
-	 * @see Team
+	 * 
 	 */
-	public List<Team> getTeams(long summonerId){
+	public Map<String, List<Team>> getTeamsBySummonerIds(Region region, String summonerIds){
 		
-		String url = getEndpoint() + getRegion() + "/v2.2/team/by-summoner/" + summonerId + "?api_key=" + getKey();
-		List<Team> teamList = null;
-
-			try {
-				teamList = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<List<Team>>(){}.getType());
-			} catch (JsonSyntaxException | IOException e) {
-				e.printStackTrace();
-			}
+		return TeamMethod.getTeamsBySummonerIds(getEndpoint(), region.getName(), getKey(), summonerIds);
+	}
 	
-	    return teamList;
+	/**
+	 * 
+	 */
+	public Map<String, List<Team>> getTeamsBySummonerIds(String summonerIds){
+	
+		return TeamMethod.getTeamsBySummonerIds(getEndpoint(), getRegion(), getKey(), summonerIds);
+	}
+	
+	/**
+	 * 
+	 */
+	public MatchDetail getMatch(Region region, long matchId){
+		
+		return MatchMethod.getMatch(getEndpoint(), region.getName(), getKey(), matchId);
+	}
+	
+	/**
+	 * 
+	 */
+	public MatchDetail getMatch(long matchId){
+		
+		return MatchMethod.getMatch(getEndpoint(), getRegion(), getKey(), matchId);
+	}
+	
+	/**
+	 * 
+	 */
+	public MatchDetail getMatch(Region region, long matchId, boolean includeTimeline){
+		
+		return MatchMethod.getMatch(getEndpoint(), region.getName(), getKey(), matchId, includeTimeline);
+	}
+	
+	/**
+	 * 
+	 */
+	public MatchDetail getMatch(long matchId, boolean includeTimeline){
+		
+		return MatchMethod.getMatch(getEndpoint(), getRegion(), getKey(), matchId, includeTimeline);
+	}
+
+	/**
+	 * 
+	 */
+	public PlayerHistory getMatchHistory(Region region, long summonerId, String championIds, String rankedQueues, int beginIndex, int endIndex){
+		
+		return MatchHistoryMethod.getMatchHistory(getEndpoint(), region.getName(), getKey(), summonerId, championIds, rankedQueues, beginIndex, endIndex);
+	}
+	
+	/**
+	 * 
+	 */
+	public PlayerHistory getMatchHistory(long summonerId, String championIds, String rankedQueues, int beginIndex, int endIndex){
+		
+		return MatchHistoryMethod.getMatchHistory(getEndpoint(), getRegion(), getKey(), summonerId, championIds, rankedQueues, beginIndex, endIndex);
+	}
+	
+	/**
+	 * 
+	 */
+	public PlayerHistory getMatchHistory(Region region, long summonerId){
+		
+		return MatchHistoryMethod.getMatchHistory(getEndpoint(), region.getName(), getKey(), summonerId, null, null, -1, -1);
+	}
+	
+	/**
+	 * 
+	 */
+	public PlayerHistory getMatchHistory(long summonerId){
+		
+		return MatchHistoryMethod.getMatchHistory(getEndpoint(), getRegion(), getKey(), summonerId, null, null, -1, -1);
+	}
+
+	//
+	
+	/**
+	 * 
+	 */
+	public ChampionList getDataChampionList(Region region, String locale, String version, boolean dataById, ChampData champData) {
+		
+		return StaticDataMethod.getDataChampionList(region.getName(), getKey(), locale, version, dataById, champData);
+	}
+	
+	/**
+	 * 
+	 */
+	public ChampionList getDataChampionList(String locale, String version, boolean dataById, ChampData champData) {
+		
+		return StaticDataMethod.getDataChampionList(getRegion(), getKey(), locale, version, dataById, champData);
+	}
+	
+	/**
+	 * 
+	 */
+	public ChampionList getDataChampionList(Region region) {
+		
+		return StaticDataMethod.getDataChampionList(region.getName(), getKey(), null, null, false, null);
+	}
+	
+	/**
+	 * 
+	 */
+	public ChampionList getDataChampionList() {
+		
+		return StaticDataMethod.getDataChampionList(getRegion(), getKey(), null, null, false, null);
+	}
+	
+	
+	/**
+	 * 
+	 */
+	public dto.Static.Champion getDataChampion(Region region, int id, String locale, String version, boolean dataById, ChampData champData) {
+		
+		return StaticDataMethod.getDataChampion(region.getName(), getKey(), id, locale, version, dataById, champData);
+	}
+	
+	/**
+	 * 
+	 */
+	public dto.Static.Champion getDataChampion(int id, String locale, String version, boolean dataById, ChampData champData) {
+		
+		return StaticDataMethod.getDataChampion(getRegion(), getKey(), id, locale, version, dataById, champData);
+	}
+	
+	/**
+	 * 
+	 */
+	public dto.Static.Champion getDataChampion(Region region, int id) {
+		
+		return StaticDataMethod.getDataChampion(region.getName(), getKey(), id, null, null, false, null);
+	}
+	
+	/**
+	 * 
+	 */
+	public dto.Static.Champion getDataChampion(int id) {
+		
+		return StaticDataMethod.getDataChampion(getRegion(), getKey(), id, null, null, false, null);
+	}
+	
+	/**
+	 * 
+	 */
+	public ItemList getDataItemList(Region region, String locale, String version, ItemListData itemListData) {
+		
+		return StaticDataMethod.getDataItemList(region.getName(), getKey(), locale, version, itemListData);
+	}
+	
+	/**
+	 * 
+	 */
+	public ItemList getDataItemList(String locale, String version, ItemListData itemListData) {
+		
+		return StaticDataMethod.getDataItemList(getRegion(), getKey(), locale, version, itemListData);
+	}
+	
+	/**
+	 * 
+	 */
+	public ItemList getDataItemList(Region region) {
+		
+		return StaticDataMethod.getDataItemList(region.getName(), getKey(), null, null, null);
+	}
+	
+	/**
+	 * 
+	 */
+	public ItemList getDataItemList() {
+		
+		return StaticDataMethod.getDataItemList(getRegion(), getKey(), null, null, null);
+	}
+	
+	/**
+	 * 
+	 */
+	public Item getDataItem(Region region, int id, String locale, String version, ItemData itemData) {
+		
+		return StaticDataMethod.getDataItem(region.getName(), getKey(), id, locale, version, itemData);
+	}
+	
+	/**
+	 * 
+	 */
+	public Item getDataItem(int id, String locale, String version, ItemData itemData) {
+		
+		return StaticDataMethod.getDataItem(getRegion(), getKey(), id, locale, version, itemData);
+	}
+	
+	/**
+	 * 
+	 */
+	public Item getDataItem(Region region, int id) {
+		
+		return StaticDataMethod.getDataItem(region.getName(), getKey(), id, null, null, null);
+	}
+	
+	/**
+	 * 
+	 */
+	public Item getDataItem(int id) {
+		
+		return StaticDataMethod.getDataItem(getRegion(), getKey(), id, null, null, null);
+	}
+	
+	/**
+	 * 
+	 */
+	public Realm getDataRealm(Region region){
+		
+		return StaticDataMethod.getDataRealm(region.getName(), getKey());
+	}
+	
+	/**
+	 * 
+	 */
+	public Realm getDataRealm(){
+		
+		return StaticDataMethod.getDataRealm(getRegion(), getKey());
+	}
+	
+	/**
+	 * 
+	 */
+	public RuneList getDataRuneList(Region region, String locale, String version, RuneListData runeListData) {
+		
+		return StaticDataMethod.getDataRuneList(region.getName(), getKey(), locale, version, runeListData);
+	}
+	
+	/**
+	 * 
+	 */
+	public RuneList getDataRuneList(String locale, String version, RuneListData runeListData) {
+		
+		return StaticDataMethod.getDataRuneList(getRegion(), getKey(), locale, version, runeListData);
+	}
+	
+	/**
+	 * 
+	 */
+	public RuneList getDataRuneList(Region region) {
+		
+		return StaticDataMethod.getDataRuneList(region.getName(), getKey(), null, null, null);
+	}
+	
+	/**
+	 * 
+	 */
+	public RuneList getDataRuneList() {
+		
+		return StaticDataMethod.getDataRuneList(getRegion(), getKey(), null, null, null);
+	}
+	
+	/**
+	 * 
+	 */
+	public Rune getDataRune(Region region, int id, String locale, String version, RuneData runeData) {
+		
+		return StaticDataMethod.getDataRune(region.getName(), getKey(), id, locale, version, runeData);
+	}
+	
+	/**
+	 * 
+	 */
+	public Rune getDataRune(int id, String locale, String version, RuneData runeData) {
+		
+		return StaticDataMethod.getDataRune(getRegion(), getKey(), id, locale, version, runeData);
+	}
+	
+	/**
+	 * 
+	 */
+	public Rune getDataRune(Region region, int id) {
+		
+		return StaticDataMethod.getDataRune(region.getName(), getKey(), id, null, null, null);
+	}
+	
+	/**
+	 * 
+	 */
+	public Rune getDataRune(int id) {
+		
+		return StaticDataMethod.getDataRune(getRegion(), getKey(), id, null, null, null);
+	}
+	
+	/**
+	 * 
+	 */
+	public MasteryList getDataMasteryList(Region region, String locale, String version, MasteryListData masteryListData) {
+		
+		return StaticDataMethod.getDataMasteryList(region.getName(), getKey(), locale, version, masteryListData);
+	}
+	
+	/**
+	 * 
+	 */
+	public MasteryList getDataMasteryList(String locale, String version, MasteryListData masteryListData) {
+		
+		return StaticDataMethod.getDataMasteryList(getRegion(), getKey(), locale, version, masteryListData);
+	}
+	
+	/**
+	 * 
+	 */
+	public MasteryList getDataMasteryList(Region region) {
+		
+		return StaticDataMethod.getDataMasteryList(region.getName(), getKey(), null, null, null);
+	}
+	
+	/**
+	 * 
+	 */
+	public MasteryList getDataMasteryList() {
+		
+		return StaticDataMethod.getDataMasteryList(getRegion(), getKey(), null, null, null);
+	}
+	
+	/**
+	 * 
+	 */
+	public Mastery getDataMastery(Region region, int id, String locale, String version, MasteryData masteryData) {
+		
+		return StaticDataMethod.getDataMastery(region.getName(), getKey(), id, locale, version, masteryData);
+	}
+	
+	/**
+	 * 
+	 */
+	public Mastery getDataMastery(int id, String locale, String version, MasteryData masteryData) {
+		
+		return StaticDataMethod.getDataMastery(getRegion(), getKey(), id, locale, version, masteryData);
+	}
+	
+	/**
+	 * 
+	 */
+	public Mastery getDataMastery(Region region, int id) {
+		
+		return StaticDataMethod.getDataMastery(region.getName(), getKey(), id, null, null, null);
+	}
+	
+	/**
+	 * 
+	 */
+	public Mastery getDataMastery(int id) {
+		
+		return StaticDataMethod.getDataMastery(getRegion(), getKey(), id, null, null, null);
+	}
+	
+	/**
+	 * 
+	 */
+	public SummonerSpellList getDataSummonerSpellList(Region region, String locale, String version, boolean dataById, SpellData spellData) {
+		
+		return StaticDataMethod.getDataSummonerSpellList(region.getName(), getKey(), locale, version, dataById, spellData);
+	}
+	
+	/**
+	 * 
+	 */
+	public SummonerSpellList getDataSummonerSpellList(String locale, String version, boolean dataById, SpellData spellData) {
+		
+		return StaticDataMethod.getDataSummonerSpellList(getRegion(), getKey(), locale, version, dataById, spellData);
+	}
+	
+	/**
+	 * 
+	 */
+	public SummonerSpellList getDataSummonerSpellList(Region region) {
+		
+		return StaticDataMethod.getDataSummonerSpellList(region.getName(), getKey(), null, null, false, null);
+	}
+	
+	/**
+	 * 
+	 */
+	public SummonerSpellList getDataSummonerSpellList() {
+		
+		return StaticDataMethod.getDataSummonerSpellList(getRegion(), getKey(), null, null, false, null);
+	}
+	
+	/**
+	 * 
+	 */
+	public SummonerSpell getDataSummonerSpellList(Region region, int id, String locale, String version, SpellData spellData) {
+		
+		return StaticDataMethod.getDataSummonerSpellList(region.getName(), getKey(), id, locale, version, spellData);
+	}
+	
+	/**
+	 * 
+	 */
+	public SummonerSpell getDataSummonerSpellList(int id, String locale, String version, SpellData spellData) {
+		
+		return StaticDataMethod.getDataSummonerSpellList(getRegion(), getKey(), id, locale, version, spellData);
+	}
+	
+	/**
+	 * 
+	 */
+	public SummonerSpell getDataSummonerSpellList(Region region, int id) {
+		
+		return StaticDataMethod.getDataSummonerSpellList(region.getName(), getKey(), id, null, null, null);
+	}
+	
+	/**
+	 * 
+	 */
+	public SummonerSpell getDataSummonerSpellList(int id) {
+		
+		return StaticDataMethod.getDataSummonerSpellList(getRegion(), getKey(), id, null, null, null);
+	}
+	
+	/**
+	 * 
+	 */
+	public List<String> getDataVersion(Region region) {
+		
+		return StaticDataMethod.getDataVersion(region.getName(), getKey());
+	}
+	
+	/**
+	 * 
+	 */
+	public List<String> getDataVersion() {
+		
+		return StaticDataMethod.getDataVersion(getRegion(), getKey());
 	}
 	
 	/**

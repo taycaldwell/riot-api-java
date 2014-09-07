@@ -1,4 +1,4 @@
-package constant;
+package constant.staticdata;
 
 /*
  * Copyright 2014 Taylor Caldwell
@@ -15,21 +15,23 @@ package constant;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-	
-public enum Season {
-	
-		Season3("SEASON3"),
-		Season4("SEASON4"),
-		THREE("SEASON3"),
-		FOUR("SEASON4");
 
-	    private String season;
+public enum MasteryListData {
 	    
-	    Season(String season) {
-	        this.season = season;
+		ALL("all"),
+		IMAGE("image"),
+		PREREQ("prereq"),
+		RANKS("ranks"),
+		SANITIZED_DESCRIPTION("sanitizedDescription"),
+		TREE("tree");
+		
+	    private String name;
+	    
+	    MasteryListData(String name) {
+	        this.name = name;
 	    }
 
 	    public String getName() {
-	        return season;
+	        return name;
 	    }	    
 }

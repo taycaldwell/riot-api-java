@@ -1,4 +1,6 @@
-package constant;
+package dto.Static;
+
+import java.util.Map;
 
 /*
  * Copyright 2014 Taylor Caldwell
@@ -15,21 +17,29 @@ package constant;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-	
-public enum Season {
-	
-		Season3("SEASON3"),
-		Season4("SEASON4"),
-		THREE("SEASON3"),
-		FOUR("SEASON4");
 
-	    private String season;
-	    
-	    Season(String season) {
-	        this.season = season;
-	    }
+public class ChampionList {
+	
+	private Map<String, Champion> data;
+	private Map<String, String> keys;
+	private String format, type, version;
+	
+	public Map<String, Champion> getData() {
+		return data;
+	}
+	public Map<String, String> getKeys() {
+		return keys;
+	}
+	public String getFormat() {
+		return format;
+	}
+	public String getType() {
+		return type;
+	}
+	public String getVersion() {
+		return version;
+	}
+	
+	
 
-	    public String getName() {
-	        return season;
-	    }	    
 }

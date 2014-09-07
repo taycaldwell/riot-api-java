@@ -1,4 +1,6 @@
-package constant;
+package dto.Static;
+
+import java.util.Map;
 
 /*
  * Copyright 2014 Taylor Caldwell
@@ -15,21 +17,25 @@ package constant;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-	
-public enum Season {
-	
-		Season3("SEASON3"),
-		Season4("SEASON4"),
-		THREE("SEASON3"),
-		FOUR("SEASON4");
 
-	    private String season;
-	    
-	    Season(String season) {
-	        this.season = season;
-	    }
-
-	    public String getName() {
-	        return season;
-	    }	    
+public class RuneList {
+	
+	private Map<String, Rune> data;
+	private BasicData basic;
+	private String type, version;
+	
+	public Map<String, Rune> getData() {
+		return data;
+	}
+	public BasicData getBasic() {
+		return basic;
+	}
+	public String getType() {
+		return type;
+	}
+	public String getVersion() {
+		return version;
+	}
+	
+	
 }

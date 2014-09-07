@@ -1,4 +1,4 @@
-package constant;
+package dto.Static;
 
 /*
  * Copyright 2014 Taylor Caldwell
@@ -15,21 +15,25 @@ package constant;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-	
-public enum Season {
-	
-		Season3("SEASON3"),
-		Season4("SEASON4"),
-		THREE("SEASON3"),
-		FOUR("SEASON4");
 
-	    private String season;
-	    
-	    Season(String season) {
-	        this.season = season;
-	    }
+public class Info {
+	
+	private int attack, defense, difficulty, magic;
 
-	    public String getName() {
-	        return season;
-	    }	    
+	public int getAttack() {
+		return attack;
+	}
+
+	public int getDefense() {
+		return defense;
+	}
+
+	public int getDifficulty() {
+		return difficulty;
+	}
+
+	public int getMagic() {
+		return magic;
+	}
+
 }

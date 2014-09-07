@@ -1,4 +1,4 @@
-package constant;
+package constant.staticdata;
 
 /*
  * Copyright 2014 Taylor Caldwell
@@ -15,21 +15,32 @@ package constant;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-	
-public enum Season {
-	
-		Season3("SEASON3"),
-		Season4("SEASON4"),
-		THREE("SEASON3"),
-		FOUR("SEASON4");
 
-	    private String season;
+public enum ChampData {
 	    
-	    Season(String season) {
-	        this.season = season;
+		ALL("all"),
+		ALLYTIPS("allytips"),
+		ALTIMAGES("altimages"),
+		BLURB("blurb"),
+		ENEMYTIPS("enemytips"),
+		IMAGE("image"),
+		INFO("info"),
+		LORE("lore"),
+		PARTYPE("partype"),
+		PASSIVE("passive"),
+		RECOMMENDED("recommended"),
+		SKINS("skins"),
+		SPELLS("spells"),
+		STATS("stats"),
+		TAGS("tags");
+		
+	    private String name;
+	    
+	    ChampData(String name) {
+	        this.name = name;
 	    }
 
 	    public String getName() {
-	        return season;
+	        return name;
 	    }	    
 }

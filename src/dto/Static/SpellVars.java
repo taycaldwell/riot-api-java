@@ -1,4 +1,6 @@
-package constant;
+package dto.Static;
+
+import java.util.List;
 
 /*
  * Copyright 2014 Taylor Caldwell
@@ -15,21 +17,26 @@ package constant;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-	
-public enum Season {
-	
-		Season3("SEASON3"),
-		Season4("SEASON4"),
-		THREE("SEASON3"),
-		FOUR("SEASON4");
 
-	    private String season;
-	    
-	    Season(String season) {
-	        this.season = season;
-	    }
+public class SpellVars {
 
-	    public String getName() {
-	        return season;
-	    }	    
+	private List<Double> coeff;
+	private String dyn, key, link, ranksWith;
+	
+	public List<Double> getCoeff() {
+		return coeff;
+	}
+	public String getDyn() {
+		return dyn;
+	}
+	public String getKey() {
+		return key;
+	}
+	public String getLink() {
+		return link;
+	}
+	public String getRanksWith() {
+		return ranksWith;
+	}
+
 }

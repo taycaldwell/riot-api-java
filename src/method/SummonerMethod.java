@@ -90,103 +90,75 @@ public final class SummonerMethod {
 	    return runePages;
 	}
 
-	public static Map<String, Summoner> getSummonerByName(String endpoint, String region, String key, String summonerName) {
+	public static Map<String, Summoner> getSummonersByName(String endpoint, String region, String key, String summonerNames) {
 		
-		summonerName = summonerName.replaceAll("\\s+", "");
-		String url = endpoint + "/api/lol/" + region + "/v1.4/summoner/by-name/" + summonerName + "?api_key=" + key;
-		Map<String, Summoner> summoner = null;
+		summonerNames = summonerNames.replaceAll("\\s+", "");
+		String url = endpoint + "/api/lol/" + region + "/v1.4/summoner/by-name/" + summonerNames + "?api_key=" + key;
+		Map<String, Summoner> summoners = null;
 
 			try {
-				summoner = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<Map<String, Summoner>>(){}.getType());
+				summoners = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<Map<String, Summoner>>(){}.getType());
 			} catch (JsonSyntaxException | IOException e) {
 				e.printStackTrace();
 			}
     
-	    return summoner;
+	    return summoners;
 	}
 	
 	public static Map<String, Summoner> getSummonersById(String endpoint, String region, String key, long... summonerIds) {
 			
 		String url = endpoint + "/api/lol/" + region + "/v1.4/summoner/" + Convert.longToString(summonerIds) + "?api_key=" + key;
-		Map<String, Summoner> summoner = null;
+		Map<String, Summoner> summoners = null;
 
 			try {
-				summoner = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<Map<String, Summoner>>(){}.getType());
+				summoners = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<Map<String, Summoner>>(){}.getType());
 			} catch (JsonSyntaxException | IOException e) {
 				e.printStackTrace();
 			}
     
-	    return summoner;
+	    return summoners;
 	}
 	
-	public static Map<String, Summoner> getSummonerById(String endpoint, String region, String key, long summonerId) {
-			
-		String url = endpoint + "/api/lol/" + region + "/v1.4/summoner/" + Convert.longToString(summonerId) + "?api_key=" + key;
-		Map<String, Summoner> summoner = null;
-
-			try {
-				summoner = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<Map<String, Summoner>>(){}.getType());
-			} catch (JsonSyntaxException | IOException e) {
-				e.printStackTrace();
-			}
-    
-	    return summoner;
-	}
-	
-	public static Map<String, Summoner> getSummonerById(String endpoint, String region, String key, String summonerId) {
+	public static Map<String, Summoner> getSummonersById(String endpoint, String region, String key, String summonerIds) {
 		
-		String url = endpoint + "/api/lol/" + region + "/v1.4/summoner/" + summonerId + "?api_key=" + key;
-		Map<String, Summoner> summoner = null;
+		String url = endpoint + "/api/lol/" + region + "/v1.4/summoner/" + summonerIds + "?api_key=" + key;
+		Map<String, Summoner> summoners = null;
 
 			try {
-				summoner = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<Map<String, Summoner>>(){}.getType());
+				summoners = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<Map<String, Summoner>>(){}.getType());
 			} catch (JsonSyntaxException | IOException e) {
 				e.printStackTrace();
 			}
     
-	    return summoner;
+	    return summoners;
 	}
 	
 	public static Map<String, String> getSummonerNames(String endpoint, String region, String key, long... summonerIds){
 	
 		String url = endpoint + "/api/lol/" + region + "/v1.4/summoner/" + Convert.longToString(summonerIds) + "/name?api_key=" + key;
-		Map<String, String> summonerNameList = null;
+		Map<String, String> summonerNames = null;
 
 			try {
-				summonerNameList = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<Map<String, String>>(){}.getType());
+				summonerNames = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<Map<String, String>>(){}.getType());
 			} catch (JsonSyntaxException | IOException e) {
 				e.printStackTrace();
 			}
     
-	    return summonerNameList;
+	    return summonerNames;
 	}
 
-	public static Map<String, String> getSummonerName(String endpoint, String region, String key, long summonerId){
-	
-		String url = endpoint + "/api/lol/" + region + "/v1.4/summoner/" + Convert.longToString(summonerId) + "/name?api_key=" + key;
-		Map<String, String> summonerNameList = null;
-
-			try {
-				summonerNameList = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<Map<String, String>>(){}.getType());
-			} catch (JsonSyntaxException | IOException e) {
-				e.printStackTrace();
-			}
-    
-	    return summonerNameList;
-	}
-
-	public static Map<String, String> getSummonerName(String endpoint, String region, String key, String summonerId){
+	public static Map<String, String> getSummonerNames(String endpoint, String region, String key, String summonerIds){
 		
-		String url = endpoint + "/api/lol/" + region + "/v1.4/summoner/" + summonerId + "/name?api_key=" + key;
-		Map<String, String> summonerNameList = null;
+		String url = endpoint + "/api/lol/" + region + "/v1.4/summoner/" + summonerIds + "/name?api_key=" + key;
+		Map<String, String> summonerNames = null;
 
 			try {
-				summonerNameList = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<Map<String, String>>(){}.getType());
+				summonerNames = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<Map<String, String>>(){}.getType());
 			} catch (JsonSyntaxException | IOException e) {
 				e.printStackTrace();
 			}
     
-	    return summonerNameList;
+	    return summonerNames;
 	}
 	
 }

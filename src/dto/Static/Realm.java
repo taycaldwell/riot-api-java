@@ -1,4 +1,6 @@
-package constant;
+package dto.Static;
+
+import java.util.Map;
 
 /*
  * Copyright 2014 Taylor Caldwell
@@ -15,21 +17,39 @@ package constant;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-	
-public enum Season {
-	
-		Season3("SEASON3"),
-		Season4("SEASON4"),
-		THREE("SEASON3"),
-		FOUR("SEASON4");
 
-	    private String season;
-	    
-	    Season(String season) {
-	        this.season = season;
-	    }
-
-	    public String getName() {
-	        return season;
-	    }	    
+public class Realm {
+	
+	private Map<String, String> n;
+	private String cdn, css, dd, l, lg, store, v;
+	private int profileiconmax;
+	
+	public Map<String, String> getN() {
+		return n;
+	}
+	public String getCdn() {
+		return cdn;
+	}
+	public String getCss() {
+		return css;
+	}
+	public String getDd() {
+		return dd;
+	}
+	public String getL() {
+		return l;
+	}
+	public String getLg() {
+		return lg;
+	}
+	public String getStore() {
+		return store;
+	}
+	public String getV() {
+		return v;
+	}
+	public int getProfileiconmax() {
+		return profileiconmax;
+	}
+	
 }

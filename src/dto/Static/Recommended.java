@@ -1,4 +1,6 @@
-package constant;
+package dto.Static;
+
+import java.util.List;
 
 /*
  * Copyright 2014 Taylor Caldwell
@@ -15,21 +17,33 @@ package constant;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-	
-public enum Season {
-	
-		Season3("SEASON3"),
-		Season4("SEASON4"),
-		THREE("SEASON3"),
-		FOUR("SEASON4");
 
-	    private String season;
-	    
-	    Season(String season) {
-	        this.season = season;
-	    }
-
-	    public String getName() {
-	        return season;
-	    }	    
+public class Recommended {
+	
+	private List<Block> blocks;
+	private String champion, map, mode, title, type;
+	private boolean priority;
+	
+	public List<Block> getBlocks() {
+		return blocks;
+	}
+	public String getChampion() {
+		return champion;
+	}
+	public String getMap() {
+		return map;
+	}
+	public String getMode() {
+		return mode;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public String getType() {
+		return type;
+	}
+	public boolean isPriority() {
+		return priority;
+	}
+	
 }
