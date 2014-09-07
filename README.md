@@ -13,7 +13,7 @@ This product is not endorsed, certified or otherwise approved in any way by Riot
 - [Google Gson](https://code.google.com/p/google-gson/)
 
 ## Download
-[Download (Version 3.0.1)](https://www.dropbox.com/s/te7kxqqrhzsp60e/riot-api-java.jar?dl=0)
+[Download (Version 3.0.1)](https://www.dropbox.com/s/te7kxqqrhzsp60e/riot-api-java.jar?dl=0) 
 
 ## Setup
 
@@ -24,6 +24,8 @@ If you are using Eclipse, this can be done by right clicking your project, and s
 Build Path -> Configure Build Path -> Libraries -> Add External Jars
 
 and selecting the jar under the Order and Export tab.
+
+Do the same for the other required libraries.
 
 ## API Versions
 The current version of this library supports the following Riot Games API versions:

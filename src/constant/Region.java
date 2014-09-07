@@ -39,7 +39,7 @@ public enum Region {
 	    }
 
 	    public String getEndpoint() {
-	        return endpoint;
+	        return "https://" + endpoint;
 	    }
 	    
 	    public String getName() {
