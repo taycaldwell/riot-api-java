@@ -124,4 +124,4 @@ The current version of this library supports the following Riot Games API versio
 If you would like to contribute to this repo, please send a pull request.
 
 ##Discussion
-Have a suggestion, complaint, or question? Tweet me (@itsRithms) for a quick reply, or send me an email (tcaldwel@nmsu.edu).
+Have a suggestion, complaint, or question? [Tweet me](http://twitter.com/itsRithms) for a quick reply, or send me an email (tcaldwel@nmsu.edu).
