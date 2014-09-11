@@ -33,7 +33,9 @@ public enum PlayerStatSummaryType {
 		SummonersRift6x6("Hexakill"),
 		CAP5x5("Team Builder"),
 		URF("Ultra Rapid Fire"),
-		URFBots("Ultra Rapid Fire Bots");
+		URFBots("Ultra Rapid Fire Bots"),
+		NightmareBot("Summoner's Rift Nightmare Bots"),
+		Ascension("Ascension");
 		
 	    private String name;
 	    

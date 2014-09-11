@@ -35,7 +35,8 @@ public enum SubType {
 		CAP_5x5("Team Builder"),
 		URF("Ultra Rapid Fire"),
 		URF_BOT("Ultra Rapid Fire Bots"),
-		NIGHTMARE_BOT("Summoner's Rift Doom Bots");
+		NIGHTMARE_BOT("Summoner's Rift Doom Bots"),
+		ASCENSION("Ascension");
 		
 		
 	    private String name;

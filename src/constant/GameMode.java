@@ -23,6 +23,7 @@ public enum GameMode {
 		ARAM("ARAM"),
 		TUTORIAL("Tutorial"),
 		ONEFORALL("One for All"),
+		ASCENSION("Ascension"),
 		FIRSTBLOOD("Snowdown Showdown");
 
 	    private String name;

@@ -20,6 +20,11 @@ public class Player {
 	
 	private String matchHistoryUri, summonerName;
 	private int profileIcon;
+	public long getSummonerId() {
+		return summonerId;
+	}
+
+	private long summonerId;
 	
 	public String getMatchHistoryUri() {
 		return matchHistoryUri;

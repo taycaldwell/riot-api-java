@@ -27,7 +27,16 @@ public class MatchSummary {
 	private String matchVersion, queueType, region, season;
 	private List<Participant> participants;
 	private List<ParticipantIdentity> participantIdentities;
+	private String matchType, matchMode;
 	
+	public String getMatchType() {
+		return matchType;
+	}
+
+	public String getMatchMode() {
+		return matchMode;
+	}
+
 	public int getMapId() {
 		return mapId;
 	}

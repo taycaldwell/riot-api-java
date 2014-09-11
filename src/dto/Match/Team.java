@@ -9,7 +9,12 @@ public class Team {
 				vilemawKills;
 	private boolean firstBaron, firstBlood, firstDragon, firstInhibitor, firstTower,
 				winner;
+	private long dominionVictoryScore;
 	
+	public long getDominionVictoryScore() {
+		return dominionVictoryScore;
+	}
+
 	public List<BannedChampion> getBans() {
 		return bans;
 	}

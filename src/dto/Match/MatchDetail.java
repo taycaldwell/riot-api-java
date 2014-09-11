@@ -11,7 +11,16 @@ public class MatchDetail {
 	private List<Participant> participants;
 	private List<Team> teams;
 	private Timeline timeline;
+	private String matchMode, matchType;
 	
+	public String getMatchMode() {
+		return matchMode;
+	}
+
+	public String getMatchType() {
+		return matchType;
+	}
+
 	public int getMapId() {
 		return mapId;
 	}

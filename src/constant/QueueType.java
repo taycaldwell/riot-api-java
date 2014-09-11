@@ -45,7 +45,8 @@ public enum QueueType {
 		BOT_URF_5x5("Ultra Rapid Fire games played against AI"),
 		NIGHTMARE_BOT_5x5_RANK1("Doom Bots Rank 1"),
 		NIGHTMARE_BOT_5x5_RANK2("Doom Bots Rank 2"),
-		NIGHTMARE_BOT_5x5_RANK5("Doom Bots Rank 5");
+		NIGHTMARE_BOT_5x5_RANK5("Doom Bots Rank 5"),
+		ASCENSION_5x5("Ascension");
 
 	    private String name;
 	    

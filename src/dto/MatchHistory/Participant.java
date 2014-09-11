@@ -1,5 +1,7 @@
 package dto.MatchHistory;
 
+import java.util.List;
+
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -21,7 +23,17 @@ public class Participant {
 	private int championId, participantId, spell1Id, spell2Id, teamId;
 	private ParticipantStats stats;
 	private ParticipantTimeline timeline;
+	private List<Mastery> masteries;
+	private List<Rune> runes;
 	
+	public List<Mastery> getMasteries() {
+		return masteries;
+	}
+
+	public List<Rune> getRunes() {
+		return runes;
+	}
+
 	public int getChampionId() {
 		return championId;
 	}
