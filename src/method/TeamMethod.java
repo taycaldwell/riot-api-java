@@ -15,13 +15,9 @@ package method;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-import java.io.IOException;
-import java.net.URL;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.io.IOUtils;
 
 import util.Convert;
 
@@ -30,63 +26,69 @@ import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
 import dto.Team.Team;
+import main.java.riotapi.Request;
+import main.java.riotapi.RiotApiException;
 
 public final class TeamMethod {
-	
-	public static Map<String, List<Team>> getTeamsBySummonerIds(String endpoint, String region, String key, long... summonerIds){
-		
-		String url = endpoint + "/api/lol/" + region + "/v2.4/team/by-summoner/" + Convert.longToString(summonerIds) + "?api_key=" + key;
-		Map<String, List<Team>> teams = null;
 
-			try {
-				teams = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<Map<String, List<Team>>>(){}.getType());
-			} catch (JsonSyntaxException | IOException e) {
-				e.printStackTrace();
-			}
-	
-	    return teams;
-	}
-	
-	public static Map<String, List<Team>> getTeamsBySummonerIds(String endpoint, String region, String key, String summonerIds){
-		
-		String url = endpoint + "/api/lol/" + region + "/v2.4/team/by-summoner/" + summonerIds + "?api_key=" + key;
-		Map<String, List<Team>> teams = null;
+    public static Map<String, List<Team>> getTeamsBySummonerIds(String endpoint, String region, String key, long... summonerIds) throws RiotApiException {
 
-			try {
-				teams = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<Map<String, List<Team>>>(){}.getType());
-			} catch (JsonSyntaxException | IOException e) {
-				e.printStackTrace();
-			}
-	
-	    return teams;
-	}
-	
-	public static Map<String, List<Team>> getTeamsByTeamIds(String endpoint, String region, String key, long... teamIds){
-		
-		String url = endpoint + "/api/lol/" + region + "/v2.4/team/" + Convert.longToString(teamIds) + "?api_key=" + key;
-		Map<String, List<Team>> teams = null;
+        String url = endpoint + "/api/lol/" + region + "/v2.4/team/by-summoner/" + Convert.longToString(summonerIds) + "?api_key=" + key;
+        Map<String, List<Team>> teams = null;
 
-			try {
-				teams = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<Map<String, List<Team>>>(){}.getType());
-			} catch (JsonSyntaxException | IOException e) {
-				e.printStackTrace();
-			}
-	
-	    return teams;
-	}
-	
-	public static Map<String, List<Team>> getTeamsByTeamIds(String endpoint, String region, String key, String teamIds){
-		
-		String url = endpoint + "/api/lol/" + region + "/v2.4/team/" + teamIds + "?api_key=" + key;
-		Map<String, List<Team>> teams = null;
+        try {
+            teams = new Gson().fromJson(Request.execute(url), new TypeToken<Map<String, List<Team>>>() {
+            }.getType());
+        } catch (JsonSyntaxException e) {
+            throw new RiotApiException(RiotApiException.Type.PARSE_FAILURE);
+        }
 
-			try {
-				teams = new Gson().fromJson(IOUtils.toString(new URL(url)), new TypeToken<Map<String, List<Team>>>(){}.getType());
-			} catch (JsonSyntaxException | IOException e) {
-				e.printStackTrace();
-			}
-	
-	    return teams;
-	}
+        return teams;
+    }
+
+    public static Map<String, List<Team>> getTeamsBySummonerIds(String endpoint, String region, String key, String summonerIds) throws RiotApiException {
+
+        String url = endpoint + "/api/lol/" + region + "/v2.4/team/by-summoner/" + summonerIds + "?api_key=" + key;
+        Map<String, List<Team>> teams = null;
+
+        try {
+            teams = new Gson().fromJson(Request.execute(url), new TypeToken<Map<String, List<Team>>>() {
+            }.getType());
+        } catch (JsonSyntaxException e) {
+            throw new RiotApiException(RiotApiException.Type.PARSE_FAILURE);
+        }
+
+        return teams;
+    }
+
+    public static Map<String, List<Team>> getTeamsByTeamIds(String endpoint, String region, String key, long... teamIds) throws RiotApiException {
+
+        String url = endpoint + "/api/lol/" + region + "/v2.4/team/" + Convert.longToString(teamIds) + "?api_key=" + key;
+        Map<String, List<Team>> teams = null;
+
+        try {
+            teams = new Gson().fromJson(Request.execute(url), new TypeToken<Map<String, List<Team>>>() {
+            }.getType());
+        } catch (JsonSyntaxException e) {
+            throw new RiotApiException(RiotApiException.Type.PARSE_FAILURE);
+        }
+
+        return teams;
+    }
+
+    public static Map<String, List<Team>> getTeamsByTeamIds(String endpoint, String region, String key, String teamIds) throws RiotApiException {
+
+        String url = endpoint + "/api/lol/" + region + "/v2.4/team/" + teamIds + "?api_key=" + key;
+        Map<String, List<Team>> teams = null;
+
+        try {
+            teams = new Gson().fromJson(Request.execute(url), new TypeToken<Map<String, List<Team>>>() {
+            }.getType());
+        } catch (JsonSyntaxException e) {
+            throw new RiotApiException(RiotApiException.Type.PARSE_FAILURE);
+        }
+
+        return teams;
+    }
 
 }
