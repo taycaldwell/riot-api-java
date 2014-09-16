@@ -26,22 +26,7 @@ public class Request {
             int responseCode = connection.getResponseCode();
 
             if (responseCode != 200) {
-                switch (responseCode) {
-                    case 400:
-                        throw new RiotApiException(RiotApiException.Type.BAD_REQUEST);
-                    case 401:
-                        throw new RiotApiException(RiotApiException.Type.UNAUTHORIZED);
-                    case 404:
-                        throw new RiotApiException(RiotApiException.Type.DATA_NOT_FOUND);
-                    case 429:
-                        throw new RiotApiException(RiotApiException.Type.RATE_LIMITED);
-                    case 500:
-                        throw new RiotApiException(RiotApiException.Type.SERVER_ERROR);
-                    case 503:
-                        throw new RiotApiException(RiotApiException.Type.UNAVAILABLE);
-                    default:
-                        throw new RiotApiException(RiotApiException.Type.UNKNOWN);
-                }
+                throw new RiotApiException(responseCode);
             }
 
             InputStream is = connection.getInputStream();

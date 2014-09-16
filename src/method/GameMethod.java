@@ -30,7 +30,7 @@ public final class GameMethod {
             RecentGames recentGames = new Gson().fromJson(Request.execute(url), RecentGames.class);
             return recentGames;
         } catch (JsonSyntaxException e) {
-            throw new RiotApiException(RiotApiException.Type.PARSE_FAILURE);
+            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
         }
     }
 }

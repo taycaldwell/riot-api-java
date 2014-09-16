@@ -31,7 +31,7 @@ public final class MatchMethod {
         try {
             matchDetail = new Gson().fromJson(Request.execute(url), MatchDetail.class);
         } catch (JsonSyntaxException e) {
-            throw new RiotApiException(RiotApiException.Type.PARSE_FAILURE);
+            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
         }
 
         return matchDetail;
@@ -45,7 +45,7 @@ public final class MatchMethod {
         try {
             matchDetail = new Gson().fromJson(Request.execute(url), MatchDetail.class);
         } catch (JsonSyntaxException e) {
-            throw new RiotApiException(RiotApiException.Type.PARSE_FAILURE);
+            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
         }
 
         return matchDetail;

@@ -18,7 +18,6 @@ package method;
 import java.util.List;
 import java.util.Map;
 
-
 import util.Convert;
 
 import com.google.gson.Gson;
@@ -40,7 +39,7 @@ public final class TeamMethod {
             teams = new Gson().fromJson(Request.execute(url), new TypeToken<Map<String, List<Team>>>() {
             }.getType());
         } catch (JsonSyntaxException e) {
-            throw new RiotApiException(RiotApiException.Type.PARSE_FAILURE);
+            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
         }
 
         return teams;
@@ -55,7 +54,7 @@ public final class TeamMethod {
             teams = new Gson().fromJson(Request.execute(url), new TypeToken<Map<String, List<Team>>>() {
             }.getType());
         } catch (JsonSyntaxException e) {
-            throw new RiotApiException(RiotApiException.Type.PARSE_FAILURE);
+            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
         }
 
         return teams;
@@ -70,7 +69,7 @@ public final class TeamMethod {
             teams = new Gson().fromJson(Request.execute(url), new TypeToken<Map<String, List<Team>>>() {
             }.getType());
         } catch (JsonSyntaxException e) {
-            throw new RiotApiException(RiotApiException.Type.PARSE_FAILURE);
+            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
         }
 
         return teams;
@@ -85,7 +84,7 @@ public final class TeamMethod {
             teams = new Gson().fromJson(Request.execute(url), new TypeToken<Map<String, List<Team>>>() {
             }.getType());
         } catch (JsonSyntaxException e) {
-            throw new RiotApiException(RiotApiException.Type.PARSE_FAILURE);
+            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
         }
 
         return teams;

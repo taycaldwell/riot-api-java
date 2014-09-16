@@ -64,7 +64,7 @@ public final class StaticDataMethod {
         try {
             championList = new Gson().fromJson(Request.execute(url), ChampionList.class);
         } catch (JsonSyntaxException e) {
-            throw new RiotApiException(RiotApiException.Type.PARSE_FAILURE);
+            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
         }
 
         return championList;
@@ -91,7 +91,7 @@ public final class StaticDataMethod {
         try {
             champion = new Gson().fromJson(Request.execute(url), Champion.class);
         } catch (JsonSyntaxException e) {
-            throw new RiotApiException(RiotApiException.Type.PARSE_FAILURE);
+            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
         }
 
         return champion;
@@ -117,7 +117,7 @@ public final class StaticDataMethod {
         try {
             itemList = new Gson().fromJson(Request.execute(url), ItemList.class);
         } catch (JsonSyntaxException e) {
-            throw new RiotApiException(RiotApiException.Type.PARSE_FAILURE);
+            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
         }
 
         return itemList;
@@ -143,7 +143,7 @@ public final class StaticDataMethod {
         try {
             item = new Gson().fromJson(Request.execute(url), Item.class);
         } catch (JsonSyntaxException e) {
-            throw new RiotApiException(RiotApiException.Type.PARSE_FAILURE);
+            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
         }
 
         return item;
@@ -158,7 +158,7 @@ public final class StaticDataMethod {
         try {
             realm = new Gson().fromJson(Request.execute(url), Realm.class);
         } catch (JsonSyntaxException e) {
-            throw new RiotApiException(RiotApiException.Type.PARSE_FAILURE);
+            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
         }
 
         return realm;
@@ -184,7 +184,7 @@ public final class StaticDataMethod {
         try {
             runeList = new Gson().fromJson(Request.execute(url), RuneList.class);
         } catch (JsonSyntaxException e) {
-            throw new RiotApiException(RiotApiException.Type.PARSE_FAILURE);
+            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
         }
 
         return runeList;
@@ -210,7 +210,7 @@ public final class StaticDataMethod {
         try {
             rune = new Gson().fromJson(Request.execute(url), Rune.class);
         } catch (JsonSyntaxException e) {
-            throw new RiotApiException(RiotApiException.Type.PARSE_FAILURE);
+            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
         }
 
         return rune;
@@ -236,7 +236,7 @@ public final class StaticDataMethod {
         try {
             masteryList = new Gson().fromJson(Request.execute(url), MasteryList.class);
         } catch (JsonSyntaxException e) {
-            throw new RiotApiException(RiotApiException.Type.PARSE_FAILURE);
+            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
         }
 
         return masteryList;
@@ -262,7 +262,7 @@ public final class StaticDataMethod {
         try {
             mastery = new Gson().fromJson(Request.execute(url), Mastery.class);
         } catch (JsonSyntaxException e) {
-            throw new RiotApiException(RiotApiException.Type.PARSE_FAILURE);
+            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
         }
 
         return mastery;
@@ -289,7 +289,7 @@ public final class StaticDataMethod {
         try {
             spellList = new Gson().fromJson(Request.execute(url), SummonerSpellList.class);
         } catch (JsonSyntaxException e) {
-            throw new RiotApiException(RiotApiException.Type.PARSE_FAILURE);
+            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
         }
 
         return spellList;
@@ -315,7 +315,7 @@ public final class StaticDataMethod {
         try {
             spell = new Gson().fromJson(Request.execute(url), SummonerSpell.class);
         } catch (JsonSyntaxException e) {
-            throw new RiotApiException(RiotApiException.Type.PARSE_FAILURE);
+            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
         }
 
         return spell;
@@ -331,7 +331,7 @@ public final class StaticDataMethod {
             version = new Gson().fromJson(Request.execute(url), new TypeToken<List<String>>() {
             }.getType());
         } catch (JsonSyntaxException e) {
-            throw new RiotApiException(RiotApiException.Type.PARSE_FAILURE);
+            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
         }
 
         return version;

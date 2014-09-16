@@ -15,7 +15,6 @@ package method;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
@@ -43,7 +42,7 @@ public final class StatsMethod {
         try {
             summaryList = new Gson().fromJson(Request.execute(url), PlayerStatsSummaryList.class);
         } catch (JsonSyntaxException e) {
-            throw new RiotApiException(RiotApiException.Type.PARSE_FAILURE);
+            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
         }
 
         return summaryList;
@@ -66,7 +65,7 @@ public final class StatsMethod {
         try {
             rankedStats = new Gson().fromJson(Request.execute(url), RankedStats.class);
         } catch (JsonSyntaxException e) {
-            throw new RiotApiException(RiotApiException.Type.PARSE_FAILURE);
+            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
         }
 
         return rankedStats;

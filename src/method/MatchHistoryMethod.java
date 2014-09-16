@@ -46,7 +46,7 @@ public final class MatchHistoryMethod {
         try {
             matchHistory = new Gson().fromJson(Request.execute(url), PlayerHistory.class);
         } catch (JsonSyntaxException e) {
-            throw new RiotApiException(RiotApiException.Type.PARSE_FAILURE);
+            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
         }
 
         return matchHistory;

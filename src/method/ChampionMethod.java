@@ -32,7 +32,7 @@ public final class ChampionMethod {
         try {
             championList = new Gson().fromJson(Request.execute(url), ChampionList.class);
         } catch (JsonSyntaxException e) {
-            throw new RiotApiException(RiotApiException.Type.PARSE_FAILURE);
+            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
         }
 
         return championList;
@@ -46,7 +46,7 @@ public final class ChampionMethod {
         try {
             championList = new Gson().fromJson(Request.execute(url), ChampionList.class);
         } catch (JsonSyntaxException e) {
-            throw new RiotApiException(RiotApiException.Type.PARSE_FAILURE);
+            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
         }
 
         return championList;
@@ -60,7 +60,7 @@ public final class ChampionMethod {
         try {
             champion = new Gson().fromJson(Request.execute(url), Champion.class);
         } catch (JsonSyntaxException e) {
-            throw new RiotApiException(RiotApiException.Type.PARSE_FAILURE);
+            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
         }
 
         return champion;

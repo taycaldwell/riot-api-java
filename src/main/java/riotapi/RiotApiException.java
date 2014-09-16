@@ -6,20 +6,23 @@ package main.java.riotapi;
  */
 public class RiotApiException extends Exception {
 
-    public static enum Type {
+    public static final int BAD_REQUEST = 400;
+    public static final int DATA_NOT_FOUND = 404;
+    public static final int UNAUTHORIZED = 401;
+    public static final int RATE_LIMITED = 429;
+    public static final int SERVER_ERROR = 500;
+    public static final int UNAVAILABLE = 503;
+    public static final int PARSE_FAILURE = 600;
 
-        BAD_REQUEST, DATA_NOT_FOUND, PARSE_FAILURE, RATE_LIMITED, SERVER_ERROR, UNAUTHORIZED, UNAVAILABLE, UNKNOWN;
+    private final int errorCode;
+
+    public RiotApiException(final int errorCode) {
+        super(getMessage(errorCode));
+        this.errorCode = errorCode;
     }
 
-    public final Type type;
-
-    public RiotApiException(final Type type) {
-        super(getMessage(type));
-        this.type = type;
-    }
-
-    private static String getMessage(final Type type) {
-        switch (type) {
+    public static String getMessage(final int errorCode) {
+        switch (errorCode) {
             case BAD_REQUEST:
                 return "Bad request";
             case DATA_NOT_FOUND:
@@ -34,10 +37,12 @@ public class RiotApiException extends Exception {
                 return "Unauthorized";
             case UNAVAILABLE:
                 return "Service unavailable";
-            case UNKNOWN:
-                return "An unknown API error occured";
             default:
                 return "An unknown API error occured";
         }
+    }
+
+    public int getErrorCode() {
+        return this.errorCode;
     }
 }
