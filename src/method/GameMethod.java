@@ -15,28 +15,22 @@ package method;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-import java.io.IOException;
-import java.net.URL;
-import org.apache.commons.io.IOUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import dto.Game.RecentGames;
+import main.java.riotapi.Request;
+import main.java.riotapi.RiotApiException;
 
 public final class GameMethod {
-	
-	public static RecentGames getRecentGames(String endpoint, String region, String key, long summonerId) {
-		
-		String url = endpoint + "/api/lol/" + region + "/v1.3/game/by-summoner/" + summonerId + "/recent?api_key=" + key;
-	    RecentGames recentGames = null;
 
-			try {
-				recentGames = new Gson().fromJson(IOUtils.toString(new URL(url)), RecentGames.class);
-			} catch (JsonSyntaxException | IOException e) {
-				e.printStackTrace();
-			}
+    public static RecentGames getRecentGames(String endpoint, String region, String key, long summonerId) throws RiotApiException {
 
-	    return recentGames;
-	}
-	
+        String url = endpoint + "/api/lol/" + region + "/v1.3/game/by-summoner/" + summonerId + "/recent?api_key=" + key;
+        try {
+            RecentGames recentGames = new Gson().fromJson(Request.execute(url), RecentGames.class);
+            return recentGames;
+        } catch (JsonSyntaxException e) {
+            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
+        }
+    }
 }

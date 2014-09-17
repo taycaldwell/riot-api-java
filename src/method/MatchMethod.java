@@ -15,42 +15,40 @@ package method;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-import java.io.IOException;
-import java.net.URL;
-import org.apache.commons.io.IOUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import dto.Match.MatchDetail;
+import main.java.riotapi.Request;
+import main.java.riotapi.RiotApiException;
 
 public final class MatchMethod {
-	
-	public static MatchDetail getMatch(String endpoint, String region, String key, long matchId, boolean includeTimeline){
-		
-		String url = endpoint + "/api/lol/" + region + "/v2.2/match/" + matchId + "?includeTimeline=" + includeTimeline + "&api_key=" + key;
-		MatchDetail matchDetail = null;
 
-			try {
-				matchDetail = new Gson().fromJson(IOUtils.toString(new URL(url)), MatchDetail.class);
-			} catch (JsonSyntaxException | IOException e) {
-				e.printStackTrace();
-			}
-	
-	    return matchDetail;
-	}
-	
-	public static MatchDetail getMatch(String endpoint, String region, String key, long matchId){
-		
-		String url = endpoint + "/api/lol/" + region + "/v2.2/match/" + matchId + "?api_key=" + key;
-		MatchDetail matchDetail = null;
+    public static MatchDetail getMatch(String endpoint, String region, String key, long matchId, boolean includeTimeline) throws RiotApiException {
 
-			try {
-				matchDetail = new Gson().fromJson(IOUtils.toString(new URL(url)), MatchDetail.class);
-			} catch (JsonSyntaxException | IOException e) {
-				e.printStackTrace();
-			}
-	
-	    return matchDetail;
-	}
+        String url = endpoint + "/api/lol/" + region + "/v2.2/match/" + matchId + "?includeTimeline=" + includeTimeline + "&api_key=" + key;
+        MatchDetail matchDetail = null;
+
+        try {
+            matchDetail = new Gson().fromJson(Request.execute(url), MatchDetail.class);
+        } catch (JsonSyntaxException e) {
+            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
+        }
+
+        return matchDetail;
+    }
+
+    public static MatchDetail getMatch(String endpoint, String region, String key, long matchId) throws RiotApiException {
+
+        String url = endpoint + "/api/lol/" + region + "/v2.2/match/" + matchId + "?api_key=" + key;
+        MatchDetail matchDetail = null;
+
+        try {
+            matchDetail = new Gson().fromJson(Request.execute(url), MatchDetail.class);
+        } catch (JsonSyntaxException e) {
+            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
+        }
+
+        return matchDetail;
+    }
 
 }

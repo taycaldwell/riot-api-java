@@ -15,57 +15,55 @@ package method;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-import java.io.IOException;
-import java.net.URL;
-import org.apache.commons.io.IOUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import dto.Champion.Champion;
 import dto.Champion.ChampionList;
+import main.java.riotapi.Request;
+import main.java.riotapi.RiotApiException;
 
 public final class ChampionMethod {
-	
-	public static ChampionList getChampions(String endpoint, String region, String key) {
-		
-		String url = endpoint + "/api/lol/" + region + "/v1.2/champion?api_key=" + key;
-	    ChampionList championList = null;
-		
-			try {
-				championList = new Gson().fromJson(IOUtils.toString(new URL(url)), ChampionList.class);
-			} catch (JsonSyntaxException | IOException e) {
-				e.printStackTrace();
-			}
-		 
-	    return championList;
-	}
-    
-	public static ChampionList getChampions(String endpoint, String region, String key, boolean freeToPlay) {
 
-		String url = endpoint + "/api/lol/" + region + "/v1.2/champion?freeToPlay=" + freeToPlay + "&api_key=" + key;
-	    ChampionList championList = null;
+    public static ChampionList getChampions(String endpoint, String region, String key) throws RiotApiException {
 
-			try {
-				championList = new Gson().fromJson(IOUtils.toString(new URL(url)), ChampionList.class);
-			} catch (JsonSyntaxException | IOException e) {
-				e.printStackTrace();
-			}
+        String url = endpoint + "/api/lol/" + region + "/v1.2/champion?api_key=" + key;
+        ChampionList championList = null;
 
-	    return championList;
-	}
-	
-	public static Champion getChampionById(String endpoint, String region, String key, int champId) {
-		
-		String url = endpoint + "/api/lol/" + region + "/v1.2/champion/" + champId + "?api_key=" + key;
-	    Champion champion = null;
-		
-			try {
-				champion = new Gson().fromJson(IOUtils.toString(new URL(url)), Champion.class);
-			} catch (JsonSyntaxException | IOException e) {
-				e.printStackTrace();
-			}
-		 
-	    return champion;
-	}
-	
+        try {
+            championList = new Gson().fromJson(Request.execute(url), ChampionList.class);
+        } catch (JsonSyntaxException e) {
+            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
+        }
+
+        return championList;
+    }
+
+    public static ChampionList getChampions(String endpoint, String region, String key, boolean freeToPlay) throws RiotApiException {
+
+        String url = endpoint + "/api/lol/" + region + "/v1.2/champion?freeToPlay=" + freeToPlay + "&api_key=" + key;
+        ChampionList championList = null;
+
+        try {
+            championList = new Gson().fromJson(Request.execute(url), ChampionList.class);
+        } catch (JsonSyntaxException e) {
+            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
+        }
+
+        return championList;
+    }
+
+    public static Champion getChampionById(String endpoint, String region, String key, int champId) throws RiotApiException {
+
+        String url = endpoint + "/api/lol/" + region + "/v1.2/champion/" + champId + "?api_key=" + key;
+        Champion champion = null;
+
+        try {
+            champion = new Gson().fromJson(Request.execute(url), Champion.class);
+        } catch (JsonSyntaxException e) {
+            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
+        }
+
+        return champion;
+    }
+
 }

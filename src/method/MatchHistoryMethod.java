@@ -15,39 +15,41 @@ package method;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-import java.io.IOException;
-import java.net.URL;
-import org.apache.commons.io.IOUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import dto.MatchHistory.PlayerHistory;
+import main.java.riotapi.Request;
+import main.java.riotapi.RiotApiException;
 
 public final class MatchHistoryMethod {
-	
-	public static PlayerHistory getMatchHistory(String endpoint, String region, String key, long summonerId, String championIds, String rankedQueues, int beginIndex, int endIndex){
-		
-		String url = endpoint + "/api/lol/" + region + "/v2.2/matchhistory/" + summonerId + "?";
-		
-		if(championIds != null)
-			url += "championIds=" + championIds + "&";
-		if(rankedQueues != null)
-			url += "rankedQueues=" + rankedQueues + "&";
-		if(beginIndex != -1)
-			url += "beginIndex=" + beginIndex + "&";
-		if(endIndex != -1)
-			url += "endIndex=" + endIndex + "&";
-		url += "api_key=" + key;
-		
-		PlayerHistory matchHistory = null;
 
-			try {
-				matchHistory = new Gson().fromJson(IOUtils.toString(new URL(url)), PlayerHistory.class);
-			} catch (JsonSyntaxException | IOException e) {
-				e.printStackTrace();
-			}
-	
-	    return matchHistory;
-	}
+    public static PlayerHistory getMatchHistory(String endpoint, String region, String key, long summonerId, String championIds, String rankedQueues, int beginIndex, int endIndex) throws RiotApiException {
+
+        String url = endpoint + "/api/lol/" + region + "/v2.2/matchhistory/" + summonerId + "?";
+
+        if (championIds != null) {
+            url += "championIds=" + championIds + "&";
+        }
+        if (rankedQueues != null) {
+            url += "rankedQueues=" + rankedQueues + "&";
+        }
+        if (beginIndex != -1) {
+            url += "beginIndex=" + beginIndex + "&";
+        }
+        if (endIndex != -1) {
+            url += "endIndex=" + endIndex + "&";
+        }
+        url += "api_key=" + key;
+
+        PlayerHistory matchHistory = null;
+
+        try {
+            matchHistory = new Gson().fromJson(Request.execute(url), PlayerHistory.class);
+        } catch (JsonSyntaxException e) {
+            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
+        }
+
+        return matchHistory;
+    }
 
 }
