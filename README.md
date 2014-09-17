@@ -9,11 +9,10 @@ This product is not endorsed, certified or otherwise approved in any way by Riot
 ## Requirements
 
 **riot-api-java** requires the following libraries:
-- [Apache Commons IO 2.4](http://commons.apache.org/proper/commons-io/download_io.cgi)
 - [Google Gson](https://code.google.com/p/google-gson/)
 
 ## Download
-[Download (Version 3.1.0)](https://www.dropbox.com/s/te7kxqqrhzsp60e/riot-api-java.jar?dl=0) 
+[Download (Version 3.1.1)](https://www.dropbox.com/s/te7kxqqrhzsp60e/riot-api-java.jar?dl=0) 
 
 ## Setup
 
@@ -35,7 +34,6 @@ import constant.Region;
 import dto.Summoner.Summoner;
 import main.java.riotapi.RiotApi;
 import com.google.gson*;
-import org.apache.commons.io.IOUtils;
 
 public class Example {
 
@@ -64,7 +62,6 @@ import constant.Region;
 import dto.Summoner.Summoner;
 import main.java.riotapi.RiotApi;
 import com.google.gson*;
-import org.apache.commons.io.IOUtils;
 
 public class Example {
 
@@ -93,6 +90,7 @@ import constant.Region;
 import constant.Season;
 import dto.Stats.RankedStats;
 import main.java.riotapi.RiotApi;
+import com.google.gson*;
 
 public class Example {
 
@@ -121,7 +119,12 @@ The current version of this library supports the following Riot Games API versio
 - **team-v2.4 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
 
 ## Contributing
+All contributions are appreciated.
 If you would like to contribute to this repo, please send a pull request.
 
-##Discussion
+## Credits/Contributors
+- [FriesischScott](https://github.com/FriesischScott) - added complete exception handling.
+
+## Discussion
+The discussion thread for this library can be found [here](https://developer.riotgames.com/discussion/riot-games-api/show/VmGxpdN8).
 Have a suggestion, complaint, or question? [Tweet me](http://twitter.com/itsRithms) for a quick reply, or send me an email (tcaldwel@nmsu.edu).
