@@ -1,10 +1,10 @@
 package main.java.riotapi;
 
 /**
- * *******************************
- * riot-api-java ---------------------------------- Riot Games API Java Library
- * by Taylor Caldwell - @rithms ----------------------------------
- * http://rithms.im ******************************
+ * Riot Games API Java Library
+ * riot-api-java
+ * by Taylor Caldwell - @rithms
+ * http://rithms.im 
  */
 
 /*
