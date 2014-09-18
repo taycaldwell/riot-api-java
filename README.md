@@ -12,7 +12,7 @@ This product is not endorsed, certified or otherwise approved in any way by Riot
 - [Google Gson](https://code.google.com/p/google-gson/)
 
 ## Download
-[Download (Version 3.1.1)](https://www.dropbox.com/s/te7kxqqrhzsp60e/riot-api-java.jar?dl=0) 
+[Download (Version 3.2.0)](https://www.dropbox.com/s/te7kxqqrhzsp60e/riot-api-java.jar?dl=0) 
 
 ## Setup
 
@@ -112,6 +112,7 @@ The current version of this library supports the following Riot Games API versio
 - **game-v1.3 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
 - **league-v2.5 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
 - **lol-static-data-v1.2 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
+- **lol-status-v1.0 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
 - **match-v2.2 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
 - **matchhistory-v2.2 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
 - **stats-v1.3 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**

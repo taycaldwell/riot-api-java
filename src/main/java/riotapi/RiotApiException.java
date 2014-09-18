@@ -1,12 +1,13 @@
 package main.java.riotapi;
 
 /**
- *
+ * 
  * @author Jasper
  */
 public class RiotApiException extends Exception {
 
     public static final int BAD_REQUEST = 400;
+    public static final int FORBIDDEN = 403;
     public static final int DATA_NOT_FOUND = 404;
     public static final int UNAUTHORIZED = 401;
     public static final int RATE_LIMITED = 429;
@@ -25,6 +26,8 @@ public class RiotApiException extends Exception {
         switch (errorCode) {
             case BAD_REQUEST:
                 return "Bad request";
+            case FORBIDDEN:
+                return "Forbidden";
             case DATA_NOT_FOUND:
                 return "Requested data not found";
             case PARSE_FAILURE:

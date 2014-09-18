@@ -54,6 +54,8 @@ import dto.Static.SummonerSpell;
 import dto.Static.SummonerSpellList;
 import dto.Stats.PlayerStatsSummaryList;
 import dto.Stats.RankedStats;
+import dto.Status.Shard;
+import dto.Status.ShardStatus;
 import dto.Summoner.MasteryPages;
 import dto.Summoner.RunePages;
 import dto.Summoner.Summoner;
@@ -1261,7 +1263,31 @@ public class RiotApi {
 
         return StaticDataMethod.getDataVersion(getRegion(), getKey());
     }
+    
+    /**
+    *
+    */
+   public List<Shard> getShards() throws RiotApiException {
 
+       return StatusMethod.getShards();
+   }
+   
+   /**
+   *
+   */
+  public ShardStatus getShardStatus(Region region) throws RiotApiException {
+
+      return StatusMethod.getShardStatus(region.getName());
+  }
+
+  /**
+  *
+  */
+ public ShardStatus getShardStatus() throws RiotApiException {
+
+     return StatusMethod.getShardStatus(getRegion());
+ }
+ 
     /**
      * Get the currently set season
      *
