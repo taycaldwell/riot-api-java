@@ -106,6 +106,9 @@ public class Example {
 
 ```
 
+## Documentation
+The documentation for this library can be found [here.](http://rithms.im/riot-api-java/doc/)
+
 ## API Versions
 The current version of this library supports the following Riot Games API versions:
 - **champion-v1.2 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
