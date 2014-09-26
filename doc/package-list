@@ -1,3 +1,15 @@
-dto
+constant
+constant.staticdata
+dto.Champion
+dto.Game
+dto.League
+dto.Match
+dto.MatchHistory
+dto.Static
+dto.Stats
+dto.Status
+dto.Summoner
+dto.Team
 main.java.riotapi
-test
+method
+util
