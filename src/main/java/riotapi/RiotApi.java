@@ -164,7 +164,7 @@ public class RiotApi {
      * Get a champion by id for a given region
      *
      * @param region The desired region
-     * @param id The ID of the desired champion
+     * @param champId The ID of the desired champion
      * @return The champion of the given ID
      * @see ChampionList
      */
@@ -176,7 +176,7 @@ public class RiotApi {
     /**
      * Get a champion by id for a set region
      *
-     * @param id The ID of the desired champion
+     * @param champId The ID of the desired champion
      * @return The champion of the given ID
      * @see ChampionList
      */
@@ -702,7 +702,7 @@ public class RiotApi {
      * Get summoners by names
      *
      * @param region The desired region
-     * @param summonerIds The IDs of the desired summoners
+     * @param summonerId The IDs of the desired summoners
      * @return A map of desired summoners
      * @see Summoner
      */
@@ -807,7 +807,7 @@ public class RiotApi {
     /**
      * Get summoner names by IDs
      *
-     * @param summonerIds The ID of the desired summoner
+     * @param summonerId The ID of the desired summoner
      * @return A map of desired summoner names
      */
     public Map<String, String> getSummonerName(String summonerId) throws RiotApiException {
@@ -1292,7 +1292,6 @@ public class RiotApi {
      * Get the currently set season
      *
      * @return The currently set season
-     * @throws Exception
      */
     public String getSeason() {
         return season.getName();
@@ -1302,7 +1301,6 @@ public class RiotApi {
      * Get the currently set API key
      *
      * @return The currently set API key
-     * @throws Exception
      */
     public String getKey() {
         return key;
@@ -1312,7 +1310,6 @@ public class RiotApi {
      * Get the currently set region
      *
      * @return The currently set region
-     * @throws Exception
      */
     public String getRegion() {
         return region.getName();
