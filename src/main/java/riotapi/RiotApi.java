@@ -89,6 +89,7 @@ public class RiotApi {
      *
      * @return A list of all the champions for the set region
      * @see ChampionList
+     * @throws RiotApiException
      */
     public dto.Champion.ChampionList getChampions() throws RiotApiException {
 
@@ -101,6 +102,7 @@ public class RiotApi {
      * @param region The desired region
      * @return A list of all the champions for the set region
      * @see ChampionList
+     * @throws RiotApiException
      */
     public dto.Champion.ChampionList getChampions(Region region) throws RiotApiException {
 
@@ -115,7 +117,7 @@ public class RiotApi {
      * freeToPlay is true A list of all the champions for the set region when
      * freeToPlay is false
      * @see ChampionList
-     *
+     * @throws RiotApiException
      */
     public dto.Champion.ChampionList getChampions(boolean freeToPlay) throws RiotApiException {
 
@@ -131,6 +133,7 @@ public class RiotApi {
      * when freeToPlay is true A list of all the champions for the given region
      * when freeToPlay is false
      * @see ChampionList
+     * @throws RiotApiException
      */
     public dto.Champion.ChampionList getChampions(Region region, boolean freeToPlay) throws RiotApiException {
 
@@ -143,6 +146,7 @@ public class RiotApi {
      * @param region The desired region
      * @return A list of all the free to play champions for the given region
      * @see ChampionList
+     * @throws RiotApiException
      */
     public dto.Champion.ChampionList getFreeToPlayChampions(Region region) throws RiotApiException {
 
@@ -154,6 +158,7 @@ public class RiotApi {
      *
      * @return A list of all the free to play champions for the set region
      * @see ChampionList
+     * @throws RiotApiException
      */
     public dto.Champion.ChampionList getFreeToPlayChampions() throws RiotApiException {
 
@@ -167,6 +172,7 @@ public class RiotApi {
      * @param champId The ID of the desired champion
      * @return The champion of the given ID
      * @see ChampionList
+     * @throws RiotApiException
      */
     public Champion getChampionById(Region region, int champId) throws RiotApiException {
 
@@ -179,6 +185,7 @@ public class RiotApi {
      * @param champId The ID of the desired champion
      * @return The champion of the given ID
      * @see ChampionList
+     * @throws RiotApiException
      */
     public Champion getChampionById(int champId) throws RiotApiException {
 
@@ -192,6 +199,7 @@ public class RiotApi {
      * @param summonerId The ID of the desired summoner
      * @return Recent games of the given summoner
      * @see RecentGames
+     * @throws RiotApiException
      */
     public RecentGames getRecentGames(Region region, long summonerId) throws RiotApiException {
 
@@ -204,6 +212,7 @@ public class RiotApi {
      * @param summonerId The ID of the desired summoner
      * @return Recent games of the given summoner
      * @see RecentGames
+     * @throws RiotApiException
      */
     public RecentGames getRecentGames(long summonerId) throws RiotApiException {
 
@@ -211,7 +220,10 @@ public class RiotApi {
     }
 
     /**
-     *
+     * 
+     * @param region
+     * @param summonerIds
+     * @throws RiotApiException
      */
     public Map<String, List<League>> getLeagueBySummoners(Region region, long... summonerIds) throws RiotApiException {
 
@@ -219,7 +231,9 @@ public class RiotApi {
     }
 
     /**
-     *
+     * 
+     * @param summonerIds
+     * @throws RiotApiException
      */
     public Map<String, List<League>> getLeagueBySummoners(long... summonerIds) throws RiotApiException {
 
@@ -227,7 +241,10 @@ public class RiotApi {
     }
 
     /**
-     *
+     * 
+     * @param region
+     * @param summonerIds
+     * @throws RiotApiException
      */
     public Map<String, List<League>> getLeagueEntryBySummoners(Region region, long... summonerIds) throws RiotApiException {
 
@@ -235,7 +252,9 @@ public class RiotApi {
     }
 
     /**
-     *
+     * 
+     * @param summonerIds
+     * @throws RiotApiException
      */
     public Map<String, List<League>> getLeagueEntryBySummoners(long... summonerIds) throws RiotApiException {
 
@@ -243,7 +262,10 @@ public class RiotApi {
     }
 
     /**
-     *
+     * 
+     * @param region
+     * @param summonerIds
+     * @throws RiotApiException
      */
     public Map<String, List<League>> getLeagueBySummoners(Region region, String summonerIds) throws RiotApiException {
 
@@ -251,14 +273,19 @@ public class RiotApi {
     }
 
     /**
-     *
+     * 
+     * @param summonerIds
+     * @throws RiotApiException
      */
     public Map<String, List<League>> getLeagueBySummoners(String summonerIds) throws RiotApiException {
         return LeagueMethod.getLeagueBySummoners(getEndpoint(), getRegion(), getKey(), summonerIds);
     }
 
     /**
-     *
+     * 
+     * @param region
+     * @param summonerIds
+     * @throws RiotApiException
      */
     public Map<String, List<League>> getLeagueEntryBySummoners(Region region, String summonerIds) throws RiotApiException {
 
@@ -266,7 +293,9 @@ public class RiotApi {
     }
 
     /**
-     *
+     * 
+     * @param summonerIds
+     * @throws RiotApiException
      */
     public Map<String, List<League>> getLeagueEntryBySummoners(String summonerIds) throws RiotApiException {
 
@@ -274,7 +303,9 @@ public class RiotApi {
     }
 
     /**
-     *
+     * @param region
+     * @param teamIds
+     * @throws RiotApiException
      */
     public Map<String, List<League>> getLeagueByTeams(Region region, long... teamIds) throws RiotApiException {
 
@@ -282,7 +313,9 @@ public class RiotApi {
     }
 
     /**
-     *
+     * 
+     * @param teamIds
+     * @throws RiotApiException
      */
     public Map<String, List<League>> getLeagueByTeams(long... teamIds) throws RiotApiException {
 
@@ -290,7 +323,10 @@ public class RiotApi {
     }
 
     /**
-     *
+     * 
+     * @param region
+     * @param teamIds
+     * @throws RiotApiException
      */
     public Map<String, List<League>> getLeagueEntryByTeams(Region region, long... teamIds) throws RiotApiException {
 
@@ -298,7 +334,9 @@ public class RiotApi {
     }
 
     /**
-     *
+     * 
+     * @param teamIds
+     * @throws RiotApiException
      */
     public Map<String, List<League>> getLeagueEntryByTeams(long... teamIds) throws RiotApiException {
 
@@ -306,7 +344,10 @@ public class RiotApi {
     }
 
     /**
-     *
+     * 
+     * @param region
+     * @param teamIds
+     * @throws RiotApiException
      */
     public Map<String, List<League>> getLeagueByTeams(Region region, String teamIds) throws RiotApiException {
 
@@ -314,7 +355,9 @@ public class RiotApi {
     }
 
     /**
-     *
+     * 
+     * @param teamIds
+     * @throws RiotApiException
      */
     public Map<String, List<League>> getLeagueByTeams(String teamIds) throws RiotApiException {
 
@@ -322,7 +365,10 @@ public class RiotApi {
     }
 
     /**
-     *
+     * 
+     * @param region
+     * @param teamIds
+     * @throws RiotApiException
      */
     public Map<String, List<League>> getLeagueEntryByTeams(Region region, String teamIds) throws RiotApiException {
 
@@ -330,7 +376,9 @@ public class RiotApi {
     }
 
     /**
-     *
+     * 
+     * @param teamIds
+     * @throws RiotApiException
      */
     public Map<String, List<League>> getLeagueEntryByTeams(String teamIds) throws RiotApiException {
 
@@ -338,7 +386,9 @@ public class RiotApi {
     }
 
     /**
-     *
+     * 
+     * @param region
+     * @throws RiotApiException
      */
     public League getChallengerLeagues(Region region) throws RiotApiException {
 
@@ -346,7 +396,8 @@ public class RiotApi {
     }
 
     /**
-     *
+     * 
+     * @throws RiotApiException
      */
     public League getChallengerLeagues() throws RiotApiException {
 
@@ -354,7 +405,10 @@ public class RiotApi {
     }
 
     /**
-     *
+     * 
+     * @param region
+     * @param queueType
+     * @throws RiotApiException
      */
     public League getChallengerLeagues(Region region, QueueType queueType) throws RiotApiException {
 
@@ -362,7 +416,10 @@ public class RiotApi {
     }
 
     /**
-     *
+     * 
+     * @param queueType
+     * @throws RiotApiException
+     * @return League
      */
     public League getChallengerLeagues(QueueType queueType) throws RiotApiException {
 
@@ -377,6 +434,7 @@ public class RiotApi {
      * @param season The desired season
      * @return A summary of player statistics for the given summoner
      * @see PlayerStatsSummaryList
+     * @throws RiotApiException
      */
     public PlayerStatsSummaryList getPlayerStatsSummary(Region region, Season season, long summonerId) throws RiotApiException {
 
@@ -390,6 +448,7 @@ public class RiotApi {
      * @param season The desired season
      * @return A summary of player statistics for the given summoner
      * @see PlayerStatsSummaryList
+     * @throws RiotApiException
      */
     public PlayerStatsSummaryList getPlayerStatsSummary(Season season, long summonerId) throws RiotApiException {
 
@@ -403,6 +462,7 @@ public class RiotApi {
      * @param summonerId The ID of the desired summoner
      * @return A summary of player statistics for the given summoner
      * @see PlayerStatsSummaryList
+     * @throws RiotApiException
      */
     public PlayerStatsSummaryList getPlayerStatsSummary(Region region, long summonerId) throws RiotApiException {
 
@@ -415,6 +475,7 @@ public class RiotApi {
      * @param summonerId The ID of the desired summoner
      * @return A summary of player statistics for the given summoner
      * @see PlayerStatsSummaryList
+     * @throws RiotApiException
      */
     public PlayerStatsSummaryList getPlayerStatsSummary(long summonerId) throws RiotApiException {
 
@@ -429,6 +490,7 @@ public class RiotApi {
      * @param season The desired season
      * @return Ranked statistics of the given summoner
      * @see RankedStats
+     * @throws RiotApiException
      */
     public RankedStats getRankedStats(Region region, Season season, long summonerId) throws RiotApiException {
 
@@ -442,6 +504,7 @@ public class RiotApi {
      * @param season The desired season
      * @return Ranked statistics of the given summoner
      * @see RankedStats
+     * @throws RiotApiException
      */
     public RankedStats getRankedStats(Season season, long summonerId) throws RiotApiException {
 
@@ -455,6 +518,7 @@ public class RiotApi {
      * @param summonerId The ID of the desired summoner
      * @return Ranked statistics of the given summoner
      * @see RankedStats
+     * @throws RiotApiException
      */
     public RankedStats getRankedStats(Region region, long summonerId) throws RiotApiException {
 
@@ -467,6 +531,7 @@ public class RiotApi {
      * @param summonerId The ID of the desired summoner
      * @return Ranked statistics of the given summoner
      * @see RankedStats
+     * @throws RiotApiException
      */
     public RankedStats getRankedStats(long summonerId) throws RiotApiException {
 
@@ -480,6 +545,7 @@ public class RiotApi {
      * @param summonerIds The IDs of the desired summoners
      * @return A map of mastery pages of the given summoners
      * @see MasteryPages
+     * @throws RiotApiException
      */
     public Map<String, MasteryPages> getMasteryPages(Region region, String summonerIds) throws RiotApiException {
 
@@ -492,6 +558,7 @@ public class RiotApi {
      * @param summonerIds The IDs of the desired summoners
      * @return A map of mastery pages of the given summoners
      * @see MasteryPages
+     * @throws RiotApiException
      */
     public Map<String, MasteryPages> getMasteryPages(String summonerIds) throws RiotApiException {
 
@@ -505,6 +572,7 @@ public class RiotApi {
      * @param summonerIds The IDs of the desired summoners
      * @return A map of mastery pages of the given summoners
      * @see MasteryPages
+     * @throws RiotApiException
      */
     public Map<String, MasteryPages> getMasteryPages(Region region, long... summonerIds) throws RiotApiException {
 
@@ -517,6 +585,7 @@ public class RiotApi {
      * @param summonerIds The IDs of the desired summoners
      * @return A map of mastery pages of the given summoners
      * @see MasteryPages
+     * @throws RiotApiException
      */
     public Map<String, MasteryPages> getMasteryPages(long... summonerIds) throws RiotApiException {
 
@@ -530,6 +599,7 @@ public class RiotApi {
      * @param summonerIds The IDs of the desired summoners
      * @return A map of rune pages of the given summoners
      * @see RunePages
+     * @throws RiotApiException
      */
     public Map<String, RunePages> getRunePages(Region region, String summonerIds) throws RiotApiException {
 
@@ -542,6 +612,7 @@ public class RiotApi {
      * @param summonerIds The IDs of the desired summoners
      * @return A map of rune pages of the given summoners
      * @see RunePages
+     * @throws RiotApiException
      */
     public Map<String, RunePages> getRunePages(String summonerIds) throws RiotApiException {
 
@@ -555,6 +626,7 @@ public class RiotApi {
      * @param summonerIds The IDs of the desired summoners
      * @return A map of rune pages of the given summoners
      * @see RunePages
+     * @throws RiotApiException
      */
     public Map<String, RunePages> getRunePages(Region region, long... summonerIds) throws RiotApiException {
 
@@ -567,6 +639,7 @@ public class RiotApi {
      * @param summonerIds The IDs of the desired summoners
      * @return A map of rune pages of the given summoners
      * @see RunePages
+     * @throws RiotApiException
      */
     public Map<String, RunePages> getRunePages(long... summonerIds) throws RiotApiException {
 
