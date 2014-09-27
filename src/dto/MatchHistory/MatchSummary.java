@@ -17,8 +17,6 @@ package dto.MatchHistory;
  */
 
 import java.util.List;
-import dto.Match.Participant;
-import dto.Match.ParticipantIdentity;
 
 public class MatchSummary {
 

@@ -18,7 +18,7 @@ package constant;
 
 public enum GameMode {
 	    
-		CLASSIC("Classic Summoner's Rift and Twisted Treeline"),
+		CLASSIC("Classic"),
 		ODIN("Dominion/Crystal Scar"),
 		ARAM("ARAM"),
 		TUTORIAL("Tutorial"),
