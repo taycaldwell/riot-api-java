@@ -23,8 +23,6 @@ public class Request {
 
             connection.setRequestMethod("GET");
             connection.setInstanceFollowRedirects(false);
-           // connection.setRequestProperty("accept-charset", "UTF-8");
-            //connection.setRequestProperty("content-type", "application/x-www-form-urlencoded; charset=utf-8");
            
 
             int responseCode = connection.getResponseCode();
