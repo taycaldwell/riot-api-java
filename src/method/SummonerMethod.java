@@ -16,7 +16,8 @@ package method;
  * limitations under the License.
  */
 import java.util.Map;
-
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import util.Convert;
 
 import com.google.gson.Gson;
@@ -71,7 +72,12 @@ public final class SummonerMethod {
     public static Map<String, Summoner> getSummonersByName(String endpoint, String region, String key, String summonerNames) throws RiotApiException {
 
         summonerNames = summonerNames.replaceAll("\\s+", "");
-        String url = endpoint + "/api/lol/" + region + "/v1.4/summoner/by-name/" + summonerNames + "?api_key=" + key;
+        String url = null;
+		try {
+			url = endpoint + "/api/lol/" + region + "/v1.4/summoner/by-name/" + URLEncoder.encode(summonerNames, "UTF-8") + "?api_key=" + key;
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}
         Map<String, Summoner> summoners = null;
 
         try {
