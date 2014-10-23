@@ -1,7 +1,5 @@
-﻿# RIOT-API-JAVA
--------
 A simple to use, Riot Games API (Beta) wrapper for Java.
-This library makes it easy to gather and use League of Legends data in your Java code. :)
+This library makes it easy to gather and use League of Legends data in your Java code.
 
 ## Disclaimer
 This product is not endorsed, certified or otherwise approved in any way by Riot Games, Inc. or any of its affiliates.
@@ -127,7 +125,7 @@ All contributions are appreciated.
 If you would like to contribute to this repo, please send a pull request.
 
 ## Credits/Contributors
-- [FriesischScott](https://github.com/FriesischScott) - added complete exception handling.
+- [FriesischScott](https://github.com/FriesischScott)
 
 ## Discussion
 The discussion thread for this library can be found [here](https://developer.riotgames.com/discussion/riot-games-api/show/VmGxpdN8).
