@@ -91,7 +91,7 @@ public final class SummonerMethod {
     }
 
     public static Map<String, Summoner> getSummonersById(String endpoint, String region, String key, long... summonerIds) throws RiotApiException {
-        return getSummonersByName(endpoint, region, key, Convert.longToString(summonerIds));
+        return getSummonersById(endpoint, region, key, Convert.longToString(summonerIds));
     }
 
     public static Map<String, Summoner> getSummonersById(String endpoint, String region, String key, String summonerIds) throws RiotApiException {

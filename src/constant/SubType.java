@@ -36,7 +36,8 @@ public enum SubType {
 		URF("Ultra Rapid Fire"),
 		URF_BOT("Ultra Rapid Fire Bots"),
 		NIGHTMARE_BOT("Summoner's Rift Doom Bots"),
-		ASCENSION("Ascension");
+		ASCENSION("Ascension"),
+		HEXAKILL("Twisted Treeline 6x6 Hexakill");
 		
 		
 	    private String name;

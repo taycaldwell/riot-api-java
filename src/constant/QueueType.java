@@ -46,7 +46,8 @@ public enum QueueType {
 		NIGHTMARE_BOT_5x5_RANK1("Doom Bots Rank 1"),
 		NIGHTMARE_BOT_5x5_RANK2("Doom Bots Rank 2"),
 		NIGHTMARE_BOT_5x5_RANK5("Doom Bots Rank 5"),
-		ASCENSION_5x5("Ascension");
+		ASCENSION_5x5("Ascension"),
+		HEXAKILL("Twisted Treeline 6x6 Hexakill");
 
 	    private String name;
 	    
