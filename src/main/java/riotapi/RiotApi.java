@@ -1353,10 +1353,10 @@ public class RiotApi {
       return StatusMethod.getShardStatus(region.getName());
   }
 
-  /**
-  *
-  */
- public ShardStatus getShardStatus() throws RiotApiException {
+   /**
+   *
+   */
+  public ShardStatus getShardStatus() throws RiotApiException {
 
      return StatusMethod.getShardStatus(getRegion());
  }
@@ -1427,6 +1427,10 @@ public class RiotApi {
 
     private void setEndpoint() {
         this.endpoint = region.getEndpoint();
+    }
+    
+    public RiotApi clone() {
+    	return new RiotApi(this.key, this.region);
     }
 
 }

@@ -11,7 +11,7 @@ public class MatchDetail {
 	private List<Participant> participants;
 	private List<Team> teams;
 	private Timeline timeline;
-	private String matchMode, matchType;
+	private String matchMode, matchType, platformId;
 	
 	public String getMatchMode() {
 		return matchMode;
@@ -19,6 +19,10 @@ public class MatchDetail {
 
 	public String getMatchType() {
 		return matchType;
+	}
+
+	public String getPlatformId() {
+		return platformId;
 	}
 
 	public int getMapId() {
