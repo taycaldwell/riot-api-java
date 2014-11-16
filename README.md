@@ -126,6 +126,7 @@ If you would like to contribute to this repo, please send a pull request.
 
 ## Credits/Contributors
 - [FriesischScott](https://github.com/FriesischScott)
+- [fKunstner](https://github.com/fKunstner)
 
 ## Discussion
 The discussion thread for this library can be found [here](https://developer.riotgames.com/discussion/riot-games-api/show/VmGxpdN8).
