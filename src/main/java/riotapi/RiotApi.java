@@ -1367,6 +1367,9 @@ public class RiotApi {
      * @return The currently set season
      */
     public String getSeason() {
+    	if(season == null){
+    		return null;
+    	}
         return season.getName();
     }
 
