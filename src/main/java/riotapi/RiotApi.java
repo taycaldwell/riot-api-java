@@ -68,8 +68,8 @@ public class RiotApi {
      */
     private String endpoint = Region.GLOBAL.getEndpoint();
 
-    private Region region;
-    private Season season;
+    private Region region = Region.NA; // North American region default
+    private Season season = null;
     private String key;
 
     public RiotApi() {
@@ -1386,6 +1386,7 @@ public class RiotApi {
      * Get the currently set region
      *
      * @return The currently set region
+     * @throws  
      */
     public String getRegion() {
         return region.getName();
