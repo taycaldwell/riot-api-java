@@ -37,7 +37,7 @@ public final class StatsMethod {
     public static PlayerStatsSummaryList getPlayerStatsSummary(String endpoint, String region, String season, String key, long summonerId) throws RiotApiException {
 
         String url = endpoint + "/api/lol/" + region + "/v1.3/stats/by-summoner/" + summonerId + "/summary?";
-        if(season == null){
+        if(season != null){
         	url += "season=" + season + "&";
         }
         url += "api_key=" + key;
@@ -65,7 +65,7 @@ public final class StatsMethod {
     public static RankedStats getRankedStats(String endpoint, String region, String season, String key, long summonerId) throws RiotApiException {
 
         String url = endpoint + "/api/lol/" + region + "/v1.3/stats/by-summoner/" + summonerId + "/ranked?";
-        if(season == null){
+        if(season != null){
         	url += "season=" + season + "&";
         }
         url += "api_key=" + key;
