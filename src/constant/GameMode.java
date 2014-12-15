@@ -24,7 +24,8 @@ public enum GameMode {
 		TUTORIAL("Tutorial"),
 		ONEFORALL("One for All"),
 		ASCENSION("Ascension"),
-		FIRSTBLOOD("Snowdown Showdown");
+		FIRSTBLOOD("Snowdown Showdown"),
+		KINGPORO("King Poro");
 
 	    private String name;
 	    

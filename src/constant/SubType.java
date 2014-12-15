@@ -37,7 +37,8 @@ public enum SubType {
 		URF_BOT("Ultra Rapid Fire Bots"),
 		NIGHTMARE_BOT("Summoner's Rift Doom Bots"),
 		ASCENSION("Ascension"),
-		HEXAKILL("Twisted Treeline 6x6 Hexakill");
+		HEXAKILL("Twisted Treeline 6x6 Hexakill"),
+		KING_PORO("King Poro");
 		
 		
 	    private String name;

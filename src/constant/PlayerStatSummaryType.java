@@ -36,7 +36,8 @@ public enum PlayerStatSummaryType {
 		URFBots("Ultra Rapid Fire Bots"),
 		NightmareBot("Summoner's Rift Nightmare Bots"),
 		Ascension("Ascension"),
-		Hexakill("Twisted Treeline 6x6 Hexakill");
+		Hexakill("Twisted Treeline 6x6 Hexakill"),
+		KingPoro("King Poro");
 		
 	    private String name;
 	    
