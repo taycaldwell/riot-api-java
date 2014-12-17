@@ -12,7 +12,7 @@ This product is not endorsed, certified or otherwise approved in any way by Riot
 - [Google Gson](https://code.google.com/p/google-gson/)
 
 ## Download
-[Download (Version 3.3.1)](https://www.dropbox.com/s/te7kxqqrhzsp60e/riot-api-java.jar?dl=0) 
+[Download (Version 3.3.2)](https://www.dropbox.com/s/te7kxqqrhzsp60e/riot-api-java.jar?dl=0) 
 
 ## Setup
 
@@ -115,9 +115,9 @@ The current version of this library supports the following Riot Games API versio
 - **game-v1.3 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
 - **league-v2.5 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
 - **lol-static-data-v1.2 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
-- **lol-status-v1.0 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
-- **match-v2.2 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
-- **matchhistory-v2.2 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
+- **lol-status-v1.0 [BR, EUNE, EUW, LAN, LAS, NA, OCE, PBE, RU, TR]**
+- **match-v2.2 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, PBE, RU, TR]**
+- **matchhistory-v2.2 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, PBE, RU, TR]**
 - **stats-v1.3 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
 - **summoner-v1.4 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
 - **team-v2.4 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
