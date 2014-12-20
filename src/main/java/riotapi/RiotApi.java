@@ -971,6 +971,14 @@ public class RiotApi {
     /**
      *
      */
+    public PlayerHistory getMatchHistory(long summonerId, int beginIndex, int endIndex) throws RiotApiException {
+
+        return MatchHistoryMethod.getMatchHistory(getEndpoint(), getRegion(), getKey(), summonerId, null, null, beginIndex, endIndex);
+    }
+
+    /**
+     *
+     */
     public PlayerHistory getMatchHistory(Region region, long summonerId) throws RiotApiException {
 
         return MatchHistoryMethod.getMatchHistory(getEndpoint(), region.getName(), getKey(), summonerId, null, null, -1, -1);

@@ -25,6 +25,11 @@ public class Participant {
 	private ParticipantTimeline timeline;
 	private List<Mastery> masteries;
 	private List<Rune> runes;
+	private String highestAchievedSeasonTier;
+	
+	public String getHighestAchievedSeasonTier(){
+		return highestAchievedSeasonTier;
+	}
 	
 	public List<Mastery> getMasteries() {
 		return masteries;
