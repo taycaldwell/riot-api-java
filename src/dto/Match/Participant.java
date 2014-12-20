@@ -9,6 +9,11 @@ public class Participant {
 	private ParticipantTimeline timeline;
 	private List<Rune> runes;
 	private List<Mastery> masteries;
+	private String highestAchievedSeasonTier;
+	
+	public String getHighestAchievedSeasonTier(){
+		return highestAchievedSeasonTier;
+	}
 	
 	public int getChampionId() {
 		return championId;
