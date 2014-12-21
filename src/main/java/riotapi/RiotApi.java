@@ -653,6 +653,7 @@ public class RiotApi {
      * @param summonerNames The names of the desired summoners
      * @return A map of desired summoners
      * @see Summoner
+     * @throws RiotApiException
      */
     public Map<String, Summoner> getSummonersByName(Region region, String summonerNames) throws RiotApiException {
 
@@ -665,6 +666,7 @@ public class RiotApi {
      * @param summonerNames The names of the desired summoners
      * @return A map of desired summoners
      * @see Summoner
+     * @throws RiotApiException
      */
     public Map<String, Summoner> getSummonersByName(String summonerNames) throws RiotApiException {
 
@@ -678,6 +680,7 @@ public class RiotApi {
      * @param summonerName The name of the desired summoner
      * @return A map of desired summoners
      * @see Summoner
+     * @throws RiotApiException
      */
     public Map<String, Summoner> getSummonerByName(Region region, String summonerName) throws RiotApiException {
 
@@ -690,6 +693,7 @@ public class RiotApi {
      * @param summonerName The name of the desired summoner
      * @return A map of desired summoners
      * @see Summoner
+     * @throws RiotApiException
      */
     public Map<String, Summoner> getSummonerByName(String summonerName) throws RiotApiException {
 
@@ -703,6 +707,7 @@ public class RiotApi {
      * @param summonerIds The IDs of the desired summoners
      * @return A map of desired summoners
      * @see Summoner
+     * @throws RiotApiException
      */
     public Map<String, Summoner> getSummonersById(Region region, long... summonerIds) throws RiotApiException {
 
@@ -715,6 +720,7 @@ public class RiotApi {
      * @param summonerIds The IDs of the desired summoners
      * @return A map of desired summoners
      * @see Summoner
+     * @throws RiotApiException
      */
     public Map<String, Summoner> getSummonersById(long... summonerIds) throws RiotApiException {
 
@@ -728,6 +734,7 @@ public class RiotApi {
      * @param summonerIds The IDs of the desired summoners
      * @return A map of desired summoners
      * @see Summoner
+     * @throws RiotApiException
      */
     public Map<String, Summoner> getSummonersById(Region region, String summonerIds) throws RiotApiException {
 
@@ -740,6 +747,7 @@ public class RiotApi {
      * @param summonerIds The IDs of the desired summoners
      * @return A map of desired summoners
      * @see Summoner
+     * @throws RiotApiException
      */
     public Map<String, Summoner> getSummonersById(String summonerIds) throws RiotApiException {
 
@@ -753,6 +761,7 @@ public class RiotApi {
      * @param summonerId The ID of the desired summoner
      * @return A map of desired summoners
      * @see Summoner
+     * @throws RiotApiException
      */
     public Map<String, Summoner> getSummonerById(Region region, long summonerId) throws RiotApiException {
 
@@ -765,6 +774,7 @@ public class RiotApi {
      * @param summonerId The IDs of the desired summoners
      * @return A map of desired summoners
      * @see Summoner
+     * @throws RiotApiException
      */
     public Map<String, Summoner> getSummonerById(long summonerId) throws RiotApiException {
 
@@ -778,6 +788,7 @@ public class RiotApi {
      * @param summonerId The IDs of the desired summoners
      * @return A map of desired summoners
      * @see Summoner
+     * @throws RiotApiException
      */
     public Map<String, Summoner> getSummonerById(Region region, String summonerId) throws RiotApiException {
 
@@ -790,6 +801,7 @@ public class RiotApi {
      * @param summonerId The IDs of the desired summoners
      * @return A map of desired summoners
      * @see Summoner
+     * @throws RiotApiException
      */
     public Map<String, Summoner> getSummonerById(String summonerId) throws RiotApiException {
 
@@ -802,6 +814,7 @@ public class RiotApi {
      * @param region The desired region
      * @param summonerIds The IDs of the desired summoners
      * @return A map of desired summoner names
+     * @throws RiotApiException
      */
     public Map<String, String> getSummonerNames(Region region, long... summonerIds) throws RiotApiException {
 
@@ -813,6 +826,7 @@ public class RiotApi {
      *
      * @param summonerIds The IDs of the desired summoners
      * @return A map of desired summoner names
+     * @throws RiotApiException
      */
     public Map<String, String> getSummonerNames(long... summonerIds) throws RiotApiException {
 
@@ -825,6 +839,7 @@ public class RiotApi {
      * @param region The desired region
      * @param summonerIds A comma separated list of IDs of the desired summoners
      * @return A map of desired summoner names
+     * @throws RiotApiException
      */
     public Map<String, String> getSummonerNames(Region region, String summonerIds) throws RiotApiException {
 
@@ -836,6 +851,7 @@ public class RiotApi {
      *
      * @param summonerIds A comma separated list of IDs of the desired summoners
      * @return A map of desired summoner names
+     * @throws RiotApiException
      */
     public Map<String, String> getSummonerNames(String summonerIds) throws RiotApiException {
 
@@ -848,6 +864,7 @@ public class RiotApi {
      * @param region The desired region
      * @param summonerId The IDs of the desired summoner
      * @return A map of desired summoner names
+     * @throws RiotApiException
      */
     public Map<String, String> getSummonerName(Region region, long summonerId) throws RiotApiException {
 
@@ -859,6 +876,7 @@ public class RiotApi {
      *
      * @param summonerId The IDs of the desired summoner
      * @return A map of desired summoner names
+     * @throws RiotApiException
      */
     public Map<String, String> getSummonerName(long summonerId) throws RiotApiException {
 
@@ -871,6 +889,7 @@ public class RiotApi {
      * @param region The desired region
      * @param summonerId The ID of the desired summoner
      * @return A map of desired summoner names
+     * @throws RiotApiException
      */
     public Map<String, String> getSummonerName(Region region, String summonerId) throws RiotApiException {
 
@@ -882,6 +901,7 @@ public class RiotApi {
      *
      * @param summonerId The ID of the desired summoner
      * @return A map of desired summoner names
+     * @throws RiotApiException
      */
     public Map<String, String> getSummonerName(String summonerId) throws RiotApiException {
 
@@ -889,7 +909,13 @@ public class RiotApi {
     }
 
     /**
+     * Get teams by summonerIDs
      *
+     * @param region The desired region
+     * @param summonerIds A list of summoner IDs
+     * @return A map of the summoners' teams
+     * @see Team
+     * @throws RiotApiException
      */
     public Map<String, List<Team>> getTeamsBySummonerIds(Region region, long... summonerIds) throws RiotApiException {
 
@@ -897,7 +923,12 @@ public class RiotApi {
     }
 
     /**
+     * Get teams by summonerIDs
      *
+     * @param summonerIds A list of summoner IDs
+     * @return A map of the summoners' teams
+     * @see Team
+     * @throws RiotApiException
      */
     public Map<String, List<Team>> getTeamsBySummonerIds(long... summonerIds) throws RiotApiException {
 
@@ -905,7 +936,13 @@ public class RiotApi {
     }
 
     /**
+     * Get teams by summonerIDs
      *
+     * @param region The desired region
+     * @param summonerIds Comma-separated list of summoner IDs
+     * @return A map of the summoners' teams
+     * @see Team
+     * @throws RiotApiException
      */
     public Map<String, List<Team>> getTeamsBySummonerIds(Region region, String summonerIds) throws RiotApiException {
 
@@ -913,7 +950,12 @@ public class RiotApi {
     }
 
     /**
+     * Get teams by summonerIDs
      *
+     * @param summonerIds Comma-separated list of summoner IDs
+     * @return A map of the summoners' teams
+     * @see Team
+     * @throws RiotApiException
      */
     public Map<String, List<Team>> getTeamsBySummonerIds(String summonerIds) throws RiotApiException {
 
@@ -921,7 +963,13 @@ public class RiotApi {
     }
 
     /**
+     * Get match by ID
      *
+     * @param region The desired region
+     * @param matchId The ID of the match
+     * @return A map with match details
+     * @see MatchDetail
+     * @throws RiotApiException
      */
     public MatchDetail getMatch(Region region, long matchId) throws RiotApiException {
 
@@ -929,7 +977,12 @@ public class RiotApi {
     }
 
     /**
+     * Get match by ID
      *
+     * @param matchId The ID of the match
+     * @return A map with match details
+     * @see MatchDetail
+     * @throws RiotApiException
      */
     public MatchDetail getMatch(long matchId) throws RiotApiException {
 
@@ -937,7 +990,14 @@ public class RiotApi {
     }
 
     /**
+     * Get match by ID
      *
+     * @param region The desired region
+     * @param matchId The ID of the match
+     * @param includeTimeline Flag indicating whether or not to include match timeline data
+     * @return A map with match details
+     * @see MatchDetail
+     * @throws RiotApiException
      */
     public MatchDetail getMatch(Region region, long matchId, boolean includeTimeline) throws RiotApiException {
 
@@ -945,7 +1005,13 @@ public class RiotApi {
     }
 
     /**
+     * Get match by ID
      *
+     * @param matchId The ID of the match
+     * @param includeTimeline Flag indicating whether or not to include match timeline data
+     * @return A map with match details
+     * @see MatchDetail
+     * @throws RiotApiException
      */
     public MatchDetail getMatch(long matchId, boolean includeTimeline) throws RiotApiException {
 
@@ -953,7 +1019,17 @@ public class RiotApi {
     }
 
     /**
+     * Get match history by summonerID
      *
+     * @param region The desired region
+     * @param summonerId The ID of the desired summoner
+     * @param championIds Comma-separated list of champion IDs to use for fetching games.
+     * @param rankedQueues Comma-separated list of ranked queue types to use for fetching games
+     * @param beginIndex The begin index to use for fetching games
+     * @param endIndex The end index to use for fetching games
+     * @return A list with matches
+     * @see PlayerHistory
+     * @throws RiotApiException
      */
     public PlayerHistory getMatchHistory(Region region, long summonerId, String championIds, String rankedQueues, int beginIndex, int endIndex) throws RiotApiException {
 
@@ -961,7 +1037,127 @@ public class RiotApi {
     }
 
     /**
+     * Get match history by summonerID
      *
+     * @param region The desired region
+     * @param summonerId The ID of the desired summoner
+     * @param championIds Comma-separated list of champion IDs to use for fetching games.
+     * @param rankedQueues Comma-separated list of ranked queue types to use for fetching games
+     * @param beginIndex The begin index to use for fetching games
+     * @return A list with matches
+     * @see PlayerHistory
+     * @throws RiotApiException
+     */
+    public PlayerHistory getMatchHistory(Region region, long summonerId, String championIds, String rankedQueues, int beginIndex) throws RiotApiException {
+
+        return MatchHistoryMethod.getMatchHistory(getEndpoint(), region.getName(), getKey(), summonerId, championIds, rankedQueues, beginIndex, -1);
+    }
+
+    /**
+     * Get match history by summonerID
+     *
+     * @param region The desired region
+     * @param summonerId The ID of the desired summoner
+     * @param championIds Comma-separated list of champion IDs to use for fetching games.
+     * @param rankedQueues Comma-separated list of ranked queue types to use for fetching games
+     * @return A list with matches
+     * @see PlayerHistory
+     * @throws RiotApiException
+     */
+    public PlayerHistory getMatchHistory(Region region, long summonerId, String championIds, String rankedQueues) throws RiotApiException {
+
+        return MatchHistoryMethod.getMatchHistory(getEndpoint(), region.getName(), getKey(), summonerId, championIds, rankedQueues, -1, -1);
+    }
+    
+    /**
+     * Get match history by summonerID
+     *
+     * @param region The desired region
+     * @param summonerId The ID of the desired summoner
+     * @param rankedQueues Comma-separated list of ranked queue types to use for fetching games
+     * @param beginIndex The begin index to use for fetching games
+     * @param endIndex The end index to use for fetching games
+     * @return A list with matches
+     * @see PlayerHistory
+     * @throws RiotApiException
+     */
+   public PlayerHistory getMatchHistory(Region region, long summonerId, String rankedQueues, int beginIndex, int endIndex) throws RiotApiException {
+
+       return MatchHistoryMethod.getMatchHistory(getEndpoint(), region.getName(), getKey(), summonerId, null, rankedQueues, beginIndex, endIndex);
+   }
+   
+   /**
+    * Get match history by summonerID
+    *
+    * @param region The desired region
+    * @param summonerId The ID of the desired summoner
+    * @param rankedQueues Comma-separated list of ranked queue types to use for fetching games
+    * @param beginIndex The begin index to use for fetching games
+    * @return A list with matches
+    * @see PlayerHistory
+    * @throws RiotApiException
+    */
+  public PlayerHistory getMatchHistory(Region region, long summonerId, String rankedQueues, int beginIndex) throws RiotApiException {
+
+      return MatchHistoryMethod.getMatchHistory(getEndpoint(), region.getName(), getKey(), summonerId, null, rankedQueues, beginIndex, -1);
+  }
+
+   /**
+    * Get match history by summonerID
+    *
+    * @param region The desired region
+    * @param summonerId The ID of the desired summoner
+    * @param beginIndex The begin index to use for fetching games
+    * @param endIndex The end index to use for fetching games
+    * @return A list with matches
+    * @see PlayerHistory
+    * @throws RiotApiException
+    */
+   public PlayerHistory getMatchHistory(Region region, long summonerId, int beginIndex, int endIndex) throws RiotApiException {
+
+       return MatchHistoryMethod.getMatchHistory(getEndpoint(), region.getName(), getKey(), summonerId, null, null, beginIndex, endIndex);
+   }
+
+   /**
+    * Get match history by summonerID
+    *
+    * @param region The desired region
+    * @param summonerId The ID of the desired summoner
+    * @param beginIndex The begin index to use for fetching games
+    * @return A list with matches
+    * @see PlayerHistory
+    * @throws RiotApiException
+    */
+   public PlayerHistory getMatchHistory(Region region, long summonerId, int beginIndex) throws RiotApiException {
+
+       return MatchHistoryMethod.getMatchHistory(getEndpoint(), region.getName(), getKey(), summonerId, null, null, beginIndex, -1);
+   }
+
+   /**
+    * Get match history by summonerID
+    *
+    * @param region The desired region
+    * @param summonerId The ID of the desired summoner
+    * @return A list with matches
+    * @see PlayerHistory
+    * @throws RiotApiException
+    */
+    public PlayerHistory getMatchHistory(Region region, long summonerId) throws RiotApiException {
+
+        return MatchHistoryMethod.getMatchHistory(getEndpoint(), region.getName(), getKey(), summonerId, null, null, -1, -1);
+    }
+
+    /**
+     * Get match history by summonerID
+     *
+     * @param summonerId The ID of the desired summoner
+     * @param championIds Comma-separated list of champion IDs to use for fetching games.
+     * @param rankedQueues Comma-separated list of ranked queue types to use for fetching games
+     * @param beginIndex The begin index to use for fetching games
+     * @param endIndex The end index to use for fetching games
+     * @return A list with matches
+     * @see PlayerHistory
+     * @throws RiotApiException
      */
     public PlayerHistory getMatchHistory(long summonerId, String championIds, String rankedQueues, int beginIndex, int endIndex) throws RiotApiException {
 
@@ -969,7 +1165,76 @@ public class RiotApi {
     }
 
     /**
+     * Get match history by summonerID
      *
+     * @param summonerId The ID of the desired summoner
+     * @param championIds Comma-separated list of champion IDs to use for fetching games.
+     * @param rankedQueues Comma-separated list of ranked queue types to use for fetching games
+     * @param beginIndex The begin index to use for fetching games
+     * @return A list with matches
+     * @see PlayerHistory
+     * @throws RiotApiException
+     */
+    public PlayerHistory getMatchHistory(long summonerId, String championIds, String rankedQueues, int beginIndex) throws RiotApiException {
+
+        return MatchHistoryMethod.getMatchHistory(getEndpoint(), getRegion(), getKey(), summonerId, championIds, rankedQueues, beginIndex, -1);
+    }
+
+    /**
+     * Get match history by summonerID
+     *
+     * @param summonerId The ID of the desired summoner
+     * @param championIds Comma-separated list of champion IDs to use for fetching games.
+     * @param rankedQueues Comma-separated list of ranked queue types to use for fetching games
+     * @return A list with matches
+     * @see PlayerHistory
+     * @throws RiotApiException
+     */
+    public PlayerHistory getMatchHistory(long summonerId, String championIds, String rankedQueues) throws RiotApiException {
+
+        return MatchHistoryMethod.getMatchHistory(getEndpoint(), getRegion(), getKey(), summonerId, championIds, rankedQueues, -1, -1);
+    }
+
+    /**
+     * Get match history by summonerID
+     *
+     * @param summonerId The ID of the desired summoner
+     * @param rankedQueues Comma-separated list of ranked queue types to use for fetching games
+     * @param beginIndex The begin index to use for fetching games
+     * @param endIndex The end index to use for fetching games
+     * @return A list with matches
+     * @see PlayerHistory
+     * @throws RiotApiException
+     */
+    public PlayerHistory getMatchHistory(long summonerId, String rankedQueues, int beginIndex, int endIndex) throws RiotApiException {
+
+        return MatchHistoryMethod.getMatchHistory(getEndpoint(), getRegion(), getKey(), summonerId, null, rankedQueues, beginIndex, endIndex);
+    }
+
+    /**
+     * Get match history by summonerID
+     *
+     * @param summonerId The ID of the desired summoner
+     * @param rankedQueues Comma-separated list of ranked queue types to use for fetching games
+     * @param beginIndex The begin index to use for fetching games
+     * @return A list with matches
+     * @see PlayerHistory
+     * @throws RiotApiException
+     */
+    public PlayerHistory getMatchHistory(long summonerId, String rankedQueues, int beginIndex) throws RiotApiException {
+
+        return MatchHistoryMethod.getMatchHistory(getEndpoint(), getRegion(), getKey(), summonerId, null, rankedQueues, beginIndex, -1);
+    }
+
+    /**
+     * Get match history by summonerID
+     *
+     * @param summonerId The ID of the desired summoner
+     * @param beginIndex The begin index to use for fetching games
+     * @param endIndex The end index to use for fetching games
+     * @return A list with matches
+     * @see PlayerHistory
+     * @throws RiotApiException
      */
     public PlayerHistory getMatchHistory(long summonerId, int beginIndex, int endIndex) throws RiotApiException {
 
@@ -977,22 +1242,32 @@ public class RiotApi {
     }
 
     /**
+     * Get match history by summonerID
      *
+     * @param summonerId The ID of the desired summoner
+     * @param beginIndex The begin index to use for fetching games
+     * @return A list with matches
+     * @see PlayerHistory
+     * @throws RiotApiException
      */
-    public PlayerHistory getMatchHistory(Region region, long summonerId) throws RiotApiException {
+    public PlayerHistory getMatchHistory(long summonerId, int beginIndex) throws RiotApiException {
 
-        return MatchHistoryMethod.getMatchHistory(getEndpoint(), region.getName(), getKey(), summonerId, null, null, -1, -1);
+        return MatchHistoryMethod.getMatchHistory(getEndpoint(), getRegion(), getKey(), summonerId, null, null, beginIndex, -1);
     }
 
     /**
+     * Get match history by summonerID
      *
+     * @param summonerId The ID of the desired summoner
+     * @return A list with matches
+     * @see PlayerHistory
+     * @throws RiotApiException
      */
     public PlayerHistory getMatchHistory(long summonerId) throws RiotApiException {
 
         return MatchHistoryMethod.getMatchHistory(getEndpoint(), getRegion(), getKey(), summonerId, null, null, -1, -1);
     }
 
-    //
     /**
      *
      */
