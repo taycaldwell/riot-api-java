@@ -1575,33 +1575,33 @@ public class RiotApi {
     /**
      *
      */
-    public SummonerSpell getDataSummonerSpellList(Region region, int id, String locale, String version, SpellData spellData) throws RiotApiException {
+    public SummonerSpell getDataSummonerSpell(Region region, int id, String locale, String version, SpellData spellData) throws RiotApiException {
 
-        return StaticDataMethod.getDataSummonerSpellList(region.getName(), getKey(), id, locale, version, spellData);
+        return StaticDataMethod.getDataSummonerSpell(region.getName(), getKey(), id, locale, version, spellData);
     }
 
     /**
      *
      */
-    public SummonerSpell getDataSummonerSpellList(int id, String locale, String version, SpellData spellData) throws RiotApiException {
+    public SummonerSpell getDataSummonerSpell(int id, String locale, String version, SpellData spellData) throws RiotApiException {
 
-        return StaticDataMethod.getDataSummonerSpellList(getRegion(), getKey(), id, locale, version, spellData);
+        return StaticDataMethod.getDataSummonerSpell(getRegion(), getKey(), id, locale, version, spellData);
     }
 
     /**
      *
      */
-    public SummonerSpell getDataSummonerSpellList(Region region, int id) throws RiotApiException {
+    public SummonerSpell getDataSummonerSpell(Region region, int id) throws RiotApiException {
 
-        return StaticDataMethod.getDataSummonerSpellList(region.getName(), getKey(), id, null, null, null);
+        return StaticDataMethod.getDataSummonerSpell(region.getName(), getKey(), id, null, null, null);
     }
 
     /**
      *
      */
-    public SummonerSpell getDataSummonerSpellList(int id) throws RiotApiException {
+    public SummonerSpell getDataSummonerSpell(int id) throws RiotApiException {
 
-        return StaticDataMethod.getDataSummonerSpellList(getRegion(), getKey(), id, null, null, null);
+        return StaticDataMethod.getDataSummonerSpell(getRegion(), getKey(), id, null, null, null);
     }
 
     /**

@@ -295,7 +295,7 @@ public final class StaticDataMethod {
         return spellList;
     }
 
-    public static SummonerSpell getDataSummonerSpellList(String region, String key, int id, String locale, String version, SpellData spellData) throws RiotApiException {
+    public static SummonerSpell getDataSummonerSpell(String region, String key, int id, String locale, String version, SpellData spellData) throws RiotApiException {
 
         String url = "https://global.api.pvp.net/api/lol/static-data/" + region + "/v1.2/summoner-spell/" + id + "?";
 
