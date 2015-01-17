@@ -1607,17 +1607,17 @@ public class RiotApi {
     /**
      *
      */
-    public List<String> getDataVersion(Region region) throws RiotApiException {
+    public List<String> getDataVersions(Region region) throws RiotApiException {
 
-        return StaticDataMethod.getDataVersion(region.getName(), getKey());
+        return StaticDataMethod.getDataVersions(region.getName(), getKey());
     }
 
     /**
      *
      */
-    public List<String> getDataVersion() throws RiotApiException {
+    public List<String> getDataVersions() throws RiotApiException {
 
-        return StaticDataMethod.getDataVersion(getRegion(), getKey());
+        return StaticDataMethod.getDataVersions(getRegion(), getKey());
     }
     
     /**

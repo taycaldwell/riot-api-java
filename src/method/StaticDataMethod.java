@@ -321,7 +321,7 @@ public final class StaticDataMethod {
         return spell;
     }
 
-    public static List<String> getDataVersion(String region, String key) throws RiotApiException {
+    public static List<String> getDataVersions(String region, String key) throws RiotApiException {
 
         String url = "https://global.api.pvp.net/api/lol/static-data/" + region + "/v1.2/versions?api_key=" + key;
 
@@ -336,5 +336,4 @@ public final class StaticDataMethod {
 
         return version;
     }
-
 }
