@@ -1,5 +1,6 @@
 package dto.Static;
 
+import java.io.Serializable;
 import java.util.List;
 
 /*
@@ -18,8 +19,9 @@ import java.util.List;
  * limitations under the License.
  */
 
-public class Mastery{
-	
+public class Mastery implements Serializable {
+
+	private static final long serialVersionUID = 8480226179945327205L;
 	private List<String> description;
 	private List<String> sanitizedDescription;
 	private Image image;

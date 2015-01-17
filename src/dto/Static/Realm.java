@@ -1,5 +1,6 @@
 package dto.Static;
 
+import java.io.Serializable;
 import java.util.Map;
 
 /*
@@ -18,8 +19,9 @@ import java.util.Map;
  * limitations under the License.
  */
 
-public class Realm {
-	
+public class Realm implements Serializable {
+
+	private static final long serialVersionUID = -3494066446872616575L;
 	private Map<String, String> n;
 	private String cdn, css, dd, l, lg, store, v;
 	private int profileiconmax;

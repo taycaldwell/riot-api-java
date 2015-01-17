@@ -1,5 +1,7 @@
 package dto.MatchHistory;
 
+import java.io.Serializable;
+
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -16,8 +18,9 @@ package dto.MatchHistory;
  * limitations under the License.
  */
 
-public class ParticipantTimelineData {
-	
+public class ParticipantTimelineData implements Serializable {
+
+	private static final long serialVersionUID = 5322737078232540176L;
 	private double tenToTwenty, thirtyToEnd, twentyToThirty, zeroToTen;
 
 	public double getTenToTwenty() {

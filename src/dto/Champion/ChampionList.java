@@ -16,9 +16,13 @@ package dto.Champion;
  * limitations under the License.
  */
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ChampionList {
+public class ChampionList implements Serializable {
+	
+	private static final long serialVersionUID = 987562252588662376L;
+	
 	private List<Champion> champions;
 
 	public List<Champion> getChampions() {

@@ -1,5 +1,6 @@
 package dto.Static;
 
+import java.io.Serializable;
 import java.util.List;
 
 /*
@@ -18,8 +19,9 @@ import java.util.List;
  * limitations under the License.
  */
 
-public class SpellVars {
+public class SpellVars implements Serializable {
 
+	private static final long serialVersionUID = -8316487089517907400L;
 	private List<Double> coeff;
 	private String dyn, key, link, ranksWith;
 	

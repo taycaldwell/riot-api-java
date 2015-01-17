@@ -1,7 +1,10 @@
 package dto.Match;
 
-public class ParticipantFrame {
-	
+import java.io.Serializable;
+
+public class ParticipantFrame implements Serializable {
+
+	private static final long serialVersionUID = -7134736662198942818L;
 	private int currentGold, jungleMinionsKilled, level, minionsKilled,
 				participantId, totalGold, xp;
 	private Position position;

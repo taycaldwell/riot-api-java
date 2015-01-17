@@ -1,5 +1,7 @@
 package dto.Status;
 
+import java.io.Serializable;
+
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -16,8 +18,9 @@ package dto.Status;
  * limitations under the License.
  */
 
-public class Translation {
+public class Translation implements Serializable {
 
+	private static final long serialVersionUID = -8923544184113630844L;
 	private String content, locale, updated_at;
 
 	public String getContent() {

@@ -6,7 +6,7 @@ package main.java.riotapi;
  */
 public class RiotApiException extends Exception {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 2658256159686373725L;
 	public static final int BAD_REQUEST = 400;
     public static final int FORBIDDEN = 403;
     public static final int DATA_NOT_FOUND = 404;

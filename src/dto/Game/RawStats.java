@@ -1,5 +1,7 @@
 package dto.Game;
 
+import java.io.Serializable;
+
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -16,8 +18,9 @@ package dto.Game;
  * limitations under the License.
  */
 
-public class RawStats {
+public class RawStats implements Serializable {
 	
+	private static final long serialVersionUID = -5596702203314851885L;
 	private boolean nexusKilled, win;
 	private int assists, barracksKilled, championsKilled,
 				combatPlayerScore, consumablesPurchased, 

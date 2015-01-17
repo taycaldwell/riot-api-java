@@ -1,5 +1,6 @@
 package dto.Status;
 
+import java.io.Serializable;
 import java.util.List;
 
 /*
@@ -18,8 +19,9 @@ import java.util.List;
  * limitations under the License.
  */
 
-public class Message {
+public class Message implements Serializable {
 
+	private static final long serialVersionUID = 9036838901306467780L;
 	private List<Translation> translations;
 	private String author, content, created_at, severity,
 					updated_at;

@@ -1,5 +1,7 @@
 package dto.Stats;
 
+import java.io.Serializable;
+
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -16,8 +18,9 @@ package dto.Stats;
  * limitations under the License.
  */
 
-public class AggregatedStats {
+public class AggregatedStats implements Serializable {
 
+	private static final long serialVersionUID = 5450927796643171275L;
 	private int averageAssists, averageChampionsKilled, averageCombatPlayerScore, 
 				averageNodeCapture, averageNodeCaptureAssist, totalNodeCapture,
 				averageNodeNeutralizeAssist, averageNumDeaths, totalGoldEarned,	

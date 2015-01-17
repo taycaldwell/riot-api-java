@@ -17,10 +17,12 @@ package dto.Summoner;
  */
 
 
+import java.io.Serializable;
 import java.util.List;
 
-public class MasteryPage {
+public class MasteryPage implements Serializable {
 	
+	private static final long serialVersionUID = -8442771692820615671L;
 	private boolean current;
 	private long id;
 	private String name;

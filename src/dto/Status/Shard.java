@@ -1,5 +1,6 @@
 package dto.Status;
 
+import java.io.Serializable;
 import java.util.List;
 
 /*
@@ -18,8 +19,9 @@ import java.util.List;
  * limitations under the License.
  */
 
-public class Shard {
+public class Shard implements Serializable {
 
+	private static final long serialVersionUID = 6812395780935318090L;
 	private List<String> locales;
 	private String hostname, name, region_tag, slug;
 	

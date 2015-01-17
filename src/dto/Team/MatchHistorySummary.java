@@ -1,5 +1,7 @@
 package dto.Team;
 
+import java.io.Serializable;
+
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -16,8 +18,9 @@ package dto.Team;
  * limitations under the License.
  */
 
-public class MatchHistorySummary {
+public class MatchHistorySummary implements Serializable {
 
+	private static final long serialVersionUID = 3300531318253810880L;
 	private int assists, deaths, kills, mapId, opposingTeamKills;
 	private String gameMode, opposingTeamName;
 	private boolean invalid, win;

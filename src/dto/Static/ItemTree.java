@@ -1,5 +1,6 @@
 package dto.Static;
 
+import java.io.Serializable;
 import java.util.List;
 
 /*
@@ -18,8 +19,9 @@ import java.util.List;
  * limitations under the License.
  */
 
-public class ItemTree {
+public class ItemTree implements Serializable {
 	
+	private static final long serialVersionUID = 7245929613325190245L;
 	private List<String> tags;
 	private String header;
 	

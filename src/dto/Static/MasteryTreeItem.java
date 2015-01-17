@@ -1,5 +1,7 @@
 package dto.Static;
 
+import java.io.Serializable;
+
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -16,8 +18,9 @@ package dto.Static;
  * limitations under the License.
  */
 
-public class MasteryTreeItem {
+public class MasteryTreeItem implements Serializable {
 	
+	private static final long serialVersionUID = -1538829926775279621L;
 	private int masteryId;
 	private String prereq;
 	

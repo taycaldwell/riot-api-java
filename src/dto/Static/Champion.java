@@ -1,5 +1,6 @@
 package dto.Static;
 
+import java.io.Serializable;
 import java.util.List;
 
 /*
@@ -18,8 +19,9 @@ import java.util.List;
  * limitations under the License.
  */
 
-public class Champion {
+public class Champion implements Serializable {
 	
+	private static final long serialVersionUID = 8120597968700936522L;
 	private List<String> allytips;
 	private List<String> enemytips;
 	private List<Recommended> recommended;
