@@ -325,15 +325,31 @@ public final class StaticDataMethod {
 
         String url = "https://global.api.pvp.net/api/lol/static-data/" + region + "/v1.2/versions?api_key=" + key;
 
-        List<String> version = null;
+        List<String> versions = null;
 
         try {
-            version = new Gson().fromJson(Request.execute(url), new TypeToken<List<String>>() {
+            versions = new Gson().fromJson(Request.execute(url), new TypeToken<List<String>>() {
             }.getType());
         } catch (JsonSyntaxException e) {
             throw new RiotApiException(RiotApiException.PARSE_FAILURE);
         }
 
-        return version;
+        return versions;
+    }
+    
+    public static List<String> getDataLanguages(String region, String key) throws RiotApiException {
+
+        String url = "https://global.api.pvp.net/api/lol/static-data/" + region + "/v1.2/languages?api_key=" + key;
+
+        List<String> languages = null;
+
+        try {
+            languages = new Gson().fromJson(Request.execute(url), new TypeToken<List<String>>() {
+            }.getType());
+        } catch (JsonSyntaxException e) {
+            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
+        }
+
+        return languages;
     }
 }

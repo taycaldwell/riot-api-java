@@ -1623,6 +1623,22 @@ public class RiotApi {
     /**
     *
     */
+   public List<String> getDataLanguages(Region region) throws RiotApiException {
+
+       return StaticDataMethod.getDataLanguages(region.getName(), getKey());
+   }
+
+   /**
+    *
+    */
+   public List<String> getDataLanguages() throws RiotApiException {
+
+       return StaticDataMethod.getDataLanguages(getRegion(), getKey());
+   }
+   
+    /**
+    *
+    */
    public List<Shard> getShards() throws RiotApiException {
 
        return StatusMethod.getShards();
