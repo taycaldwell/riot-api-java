@@ -1,7 +1,5 @@
 package dto.Static;
 
-import java.io.Serializable;
-
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -18,9 +16,8 @@ import java.io.Serializable;
  * limitations under the License.
  */
 
-public class BasicDataStats implements Serializable {
+public class BasicDataStats {
 	
-	private static final long serialVersionUID = -6907555892482131577L;
 	private double FlatArmorMod, FlatAttackSpeedMod, FlatBlockMod, FlatCritChanceMod,
 				FlatCritDamageMod, FlatEXPBonus, FlatEnergyPoolMod, FlatEnergyRegenMod,
 				FlatHPPoolMod, FlatHPRegenMod, FlatMPPoolMod, FlatMPRegenMod, FlatMagicDamageMod,

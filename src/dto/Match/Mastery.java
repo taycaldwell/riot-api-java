@@ -1,10 +1,7 @@
 package dto.Match;
 
-import java.io.Serializable;
-
-public class Mastery implements Serializable {
+public class Mastery {
 	
-	private static final long serialVersionUID = 1049623074386811783L;
 	private long rank, masteryId;
 
 	public long getRank() {

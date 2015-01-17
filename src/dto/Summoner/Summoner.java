@@ -1,7 +1,5 @@
 package dto.Summoner;
 
-import java.io.Serializable;
-
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -18,9 +16,8 @@ import java.io.Serializable;
  * limitations under the License.
  */
 
-public class Summoner implements Serializable {
+public class Summoner {
 	
-	private static final long serialVersionUID = -8213488199644701555L;
 	private long id, revisionDate, summonerLevel;
 	private int profileIconId;
 	private String name;

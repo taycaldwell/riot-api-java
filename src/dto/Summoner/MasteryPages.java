@@ -16,12 +16,10 @@ package dto.Summoner;
  * limitations under the License.
  */
 
-import java.io.Serializable;
 import java.util.Set;
 
-public class MasteryPages implements Serializable {
+public class MasteryPages {
 	
-	private static final long serialVersionUID = 2574314573359467443L;
 	private long summonerId;
 	private Set<MasteryPage> pages;
 	

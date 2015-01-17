@@ -16,12 +16,10 @@ package dto.League;
  * limitations under the License.
  */
 
-import java.io.Serializable;
 import java.util.List;
 
-public class League implements Serializable {
+public class League {
 
-	private static final long serialVersionUID = 1878237445691308532L;
 	private List<LeagueEntry> entries;
 	private String name, queue, tier, participantId;
 	

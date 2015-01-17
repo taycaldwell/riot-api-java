@@ -18,12 +18,10 @@ package dto.Team;
  * limitations under the License.
  */
 
-import java.io.Serializable;
 import java.util.Set;
 
-public class TeamStatSummary implements Serializable {
+public class TeamStatSummary {
 			
-	private static final long serialVersionUID = 1944217232079180107L;
 	private String fullId;
 	private Set<TeamStatDetail> teamStatDetails;
 	

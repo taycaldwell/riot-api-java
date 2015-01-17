@@ -16,12 +16,10 @@ package dto.Summoner;
  * limitations under the License.
  */
 
-import java.io.Serializable;
 import java.util.Set;
 
-public class RunePage implements Serializable {
+public class RunePage {
 	
-	private static final long serialVersionUID = 97699628656087959L;
 	private boolean current;
 	private long id;
 	private String name;

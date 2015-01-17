@@ -1,6 +1,5 @@
 package dto.Static;
 
-import java.io.Serializable;
 import java.util.Map;
 
 /*
@@ -19,9 +18,8 @@ import java.util.Map;
  * limitations under the License.
  */
 
-public class SummonerSpellList implements Serializable {
+public class SummonerSpellList {
 	
-	private static final long serialVersionUID = 3109246145319877891L;
 	private Map<String, SummonerSpell> data;
 	private String type, version;
 	

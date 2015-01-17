@@ -1,7 +1,5 @@
 package dto.Static;
 
-import java.io.Serializable;
-
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -18,9 +16,8 @@ import java.io.Serializable;
  * limitations under the License.
  */
 
-public class Gold implements Serializable {
+public class Gold {
 	
-	private static final long serialVersionUID = -2996361282729522012L;
 	private boolean purchasable;
 	private int base, sell, total;
 	

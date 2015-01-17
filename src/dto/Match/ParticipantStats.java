@@ -1,10 +1,7 @@
 package dto.Match;
 
-import java.io.Serializable;
-
-public class ParticipantStats implements Serializable {
-
-	private static final long serialVersionUID = 7907342025148370788L;
+public class ParticipantStats {
+	
 	private boolean winner, firstBloodAssist, firstBloodKill, 
 				firstInhibitorAssist, firstInhibitorKill,firstTowerAssist,
 				firstTowerKill;

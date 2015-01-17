@@ -1,7 +1,5 @@
 package dto.Static;
 
-import java.io.Serializable;
-
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -18,9 +16,8 @@ import java.io.Serializable;
  * limitations under the License.
  */
 
-public class Group implements Serializable {
+public class Group {
 	
-	private static final long serialVersionUID = -4691215871693156751L;
 	private String MaxGroupOwnable, key;
 
 	public String getMaxGroupOwnable() {

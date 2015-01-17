@@ -1,7 +1,5 @@
 package dto.Team;
 
-import java.io.Serializable;
-
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -18,9 +16,8 @@ import java.io.Serializable;
  * limitations under the License.
  */
 
-public class TeamStatDetail implements Serializable {
+public class TeamStatDetail {
 	
-	private static final long serialVersionUID = -3736635288922730192L;
 	private int wins, losses, averageGamesPlayed;
 	private String teamStatType;
 	

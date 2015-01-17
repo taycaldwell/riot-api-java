@@ -1,7 +1,5 @@
 package dto.Summoner;
 
-import java.io.Serializable;
-
 /** DEPRECATED **/
 
 /*
@@ -21,9 +19,8 @@ import java.io.Serializable;
  */
 
 
-public class SummonerName implements Serializable {
+public class SummonerName {
 	
-	private static final long serialVersionUID = -7612197921577206121L;
 	private long id;
 	private String name;
 	

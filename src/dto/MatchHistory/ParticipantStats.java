@@ -1,7 +1,5 @@
 package dto.MatchHistory;
 
-import java.io.Serializable;
-
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -18,9 +16,8 @@ import java.io.Serializable;
  * limitations under the License.
  */
 
-public class ParticipantStats implements Serializable {
+public class ParticipantStats {
 	
-	private static final long serialVersionUID = -1089346022812989692L;
 	private boolean winner, firstBloodAssist, firstBloodKill, 
 				firstInhibitorAssist, firstInhibitorKill,firstTowerAssist,
 				firstTowerKill;

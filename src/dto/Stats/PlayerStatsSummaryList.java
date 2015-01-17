@@ -18,12 +18,10 @@ package dto.Stats;
  * limitations under the License.
  */
 
-import java.io.Serializable;
 import java.util.List;
 
-public class PlayerStatsSummaryList implements Serializable {
+public class PlayerStatsSummaryList {
 	
-	private static final long serialVersionUID = 1005704777989478627L;
 	private List<PlayerStatsSummary> playerStatSummaries;
 	private long summonerId;
 	

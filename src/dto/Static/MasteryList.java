@@ -1,6 +1,5 @@
 package dto.Static;
 
-import java.io.Serializable;
 import java.util.Map;
 
 /*
@@ -19,9 +18,8 @@ import java.util.Map;
  * limitations under the License.
  */
 
-public class MasteryList implements Serializable {
+public class MasteryList {
 	
-	private static final long serialVersionUID = -2255568964283725298L;
 	private Map<String, Mastery> data;
 	private MasteryTree tree;
 	private String type, version;

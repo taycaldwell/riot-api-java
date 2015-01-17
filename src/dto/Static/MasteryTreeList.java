@@ -1,6 +1,5 @@
 package dto.Static;
 
-import java.io.Serializable;
 import java.util.List;
 
 /*
@@ -19,9 +18,8 @@ import java.util.List;
  * limitations under the License.
  */
 
-public class MasteryTreeList implements Serializable {
+public class MasteryTreeList {
 	
-	private static final long serialVersionUID = -2040839715528403925L;
 	private List<MasteryTreeItem> masteryTreeItems;
 
 	public List<MasteryTreeItem> getMasteryTreeItems() {

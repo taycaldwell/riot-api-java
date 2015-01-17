@@ -1,6 +1,5 @@
 package dto.Static;
 
-import java.io.Serializable;
 import java.util.List;
 
 /*
@@ -19,9 +18,8 @@ import java.util.List;
  * limitations under the License.
  */
 
-public class SummonerSpell implements Serializable {
+public class SummonerSpell {
 	
-	private static final long serialVersionUID = -8682930729114683183L;
 	private List<Double> cooldown;
 	private List<Integer> cost;
 	private List<Object> effect;

@@ -18,12 +18,10 @@ package dto.Summoner;
  * limitations under the License.
  */
 
-import java.io.Serializable;
 import java.util.List;
 
-public class SummonerNameList implements Serializable {
+public class SummonerNameList {
 
-	private static final long serialVersionUID = 1467065344377557207L;
 	private List<SummonerName> summoners;
 
 	public List<SummonerName> getSummoners() {

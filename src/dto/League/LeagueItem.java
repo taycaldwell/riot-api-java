@@ -1,7 +1,5 @@
 package dto.League;
 
-import java.io.Serializable;
-
 /** DEPRECATED **/
 
 /*
@@ -20,9 +18,8 @@ import java.io.Serializable;
  * limitations under the License.
  */
 
-public class LeagueItem implements Serializable {
-
-	private static final long serialVersionUID = 1806506962119201213L;
+public class LeagueItem {
+	
 	private String leagueName, playerOrTeamId, playerOrTeamName, queueType, rank, tier;
 	private boolean isFreshBlood, isHotStreak, isInactive, isVeteran;
 	private int leaguePoints, wins;

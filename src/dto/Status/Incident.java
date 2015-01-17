@@ -1,6 +1,5 @@
 package dto.Status;
 
-import java.io.Serializable;
 import java.util.List;
 
 /*
@@ -19,9 +18,8 @@ import java.util.List;
  * limitations under the License.
  */
 
-public class Incident implements Serializable {
+public class Incident {
 
-	private static final long serialVersionUID = -5984477375688730952L;
 	private boolean active;
 	private String created_at;
 	private long id;

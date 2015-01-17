@@ -1,7 +1,5 @@
 package dto.Summoner;
 
-import java.io.Serializable;
-
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -19,9 +17,8 @@ import java.io.Serializable;
  */
 
 
-public class Mastery implements Serializable {
-
-	private static final long serialVersionUID = -1053051501742552701L;
+public class Mastery {
+	
 	private int id, rank;
 
 	public int getId() {

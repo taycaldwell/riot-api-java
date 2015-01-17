@@ -1,11 +1,9 @@
 package dto.Match;
 
-import java.io.Serializable;
 import java.util.List;
 
-public class MatchDetail implements Serializable {
+public class MatchDetail {
 	
-	private static final long serialVersionUID = 2606895296338330266L;
 	private int mapId;
 	private long matchCreation, matchDuration, matchId;
 	private String matchVersion, queueType, region, season;

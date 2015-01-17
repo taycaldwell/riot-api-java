@@ -1,7 +1,5 @@
 package dto.Summoner;
 
-import java.io.Serializable;
-
 /** DEPRECATED **/
 
 /*
@@ -20,9 +18,8 @@ import java.io.Serializable;
  * limitations under the License.
  */
 
-public class Talent implements Serializable {
+public class Talent {
 	
-	private static final long serialVersionUID = 1371078087975428546L;
 	private int id, rank;
 	private String name;
 	

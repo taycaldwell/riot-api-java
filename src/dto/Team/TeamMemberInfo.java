@@ -1,7 +1,5 @@
 package dto.Team;
 
-import java.io.Serializable;
-
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -18,9 +16,8 @@ import java.io.Serializable;
  * limitations under the License.
  */
 
-public class TeamMemberInfo implements Serializable {
+public class TeamMemberInfo {
 	
-	private static final long serialVersionUID = 7987276053364898769L;
 	private long inviteDate, joinDate;
 	private long playerId;
 	private String status;

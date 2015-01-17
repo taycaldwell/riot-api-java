@@ -1,6 +1,5 @@
 package dto.Static;
 
-import java.io.Serializable;
 import java.util.List;
 
 /*
@@ -19,9 +18,8 @@ import java.util.List;
  * limitations under the License.
  */
 
-public class LevelTip implements Serializable {
+public class LevelTip {
 
-	private static final long serialVersionUID = -3061786573868823081L;
 	private List<String> effect;
 	private List<String >label;
 	

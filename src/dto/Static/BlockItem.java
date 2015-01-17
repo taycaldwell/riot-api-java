@@ -1,7 +1,5 @@
 package dto.Static;
 
-import java.io.Serializable;
-
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -18,9 +16,8 @@ import java.io.Serializable;
  * limitations under the License.
  */
 
-public class BlockItem implements Serializable {
+public class BlockItem {
 	
-	private static final long serialVersionUID = 716305113317412182L;
 	private int count, id;
 
 	public int getCount() {

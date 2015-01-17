@@ -16,12 +16,10 @@ package dto.Stats;
  * limitations under the License.
  */
 
-import java.io.Serializable;
 import java.util.List;
 
-public class RankedStats implements Serializable {
+public class RankedStats {
 	
-	private static final long serialVersionUID = 6544447595249079077L;
 	private List<ChampionStats> champions;
 	private long modifyDate, summonerId;
 	

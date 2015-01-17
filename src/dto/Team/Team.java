@@ -16,12 +16,10 @@ package dto.Team;
  * limitations under the License.
  */
 
-import java.io.Serializable;
 import java.util.List;
 
-public class Team implements Serializable {
+public class Team {
 	
-	private static final long serialVersionUID = -3318215531984856913L;
 	private String fullId, name, status, tag;
 	private List<MatchHistorySummary> matchHistory;
 	private List<TeamStatDetail> teamStatDetails;

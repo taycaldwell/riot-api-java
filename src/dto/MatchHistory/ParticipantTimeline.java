@@ -1,7 +1,5 @@
 package dto.MatchHistory;
 
-import java.io.Serializable;
-
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -18,9 +16,8 @@ import java.io.Serializable;
  * limitations under the License.
  */
 
-public class ParticipantTimeline implements Serializable {
+public class ParticipantTimeline {
 
-	private static final long serialVersionUID = -3515660500398573203L;
 	private String lane, role;
 	private ParticipantTimelineData ancientGolemAssistsPerMinCounts, ancientGolemKillsPerMinCounts,
 				assistedLaneDeathsPerMinDeltas, assistedLaneKillsPerMinDeltas, baronAssistsPerMinCounts,

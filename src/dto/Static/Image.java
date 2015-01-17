@@ -1,7 +1,5 @@
 package dto.Static;
 
-import java.io.Serializable;
-
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -18,9 +16,8 @@ import java.io.Serializable;
  * limitations under the License.
  */
 
-public class Image implements Serializable {
+public class Image {
 	
-	private static final long serialVersionUID = 5802273643884377746L;
 	private String full, group, sprite;
 	private int h, w, x, y;
 	

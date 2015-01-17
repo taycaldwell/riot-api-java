@@ -1,6 +1,5 @@
 package dto.Static;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
@@ -20,9 +19,8 @@ import java.util.Map;
  * limitations under the License.
  */
 
-public class BasicData implements Serializable {
+public class BasicData {
 	
-	private static final long serialVersionUID = 4928673824824907056L;
 	private List<String> from;
 	private List<String> into;
 	private Map<String, Boolean> maps;

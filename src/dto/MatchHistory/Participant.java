@@ -1,6 +1,5 @@
 package dto.MatchHistory;
 
-import java.io.Serializable;
 import java.util.List;
 
 /*
@@ -19,9 +18,8 @@ import java.util.List;
  * limitations under the License.
  */
 
-public class Participant implements Serializable {
+public class Participant {
 	
-	private static final long serialVersionUID = -1886229349020943037L;
 	private int championId, participantId, spell1Id, spell2Id, teamId;
 	private ParticipantStats stats;
 	private ParticipantTimeline timeline;

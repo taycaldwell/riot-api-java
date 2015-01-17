@@ -1,6 +1,5 @@
 package dto.Static;
 
-import java.io.Serializable;
 import java.util.Map;
 
 /*
@@ -19,9 +18,8 @@ import java.util.Map;
  * limitations under the License.
  */
 
-public class RuneList implements Serializable {
+public class RuneList {
 	
-	private static final long serialVersionUID = 1696878942733740445L;
 	private Map<String, Rune> data;
 	private BasicData basic;
 	private String type, version;

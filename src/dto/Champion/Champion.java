@@ -1,7 +1,5 @@
 package dto.Champion;
 
-import java.io.Serializable;
-
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -18,9 +16,7 @@ import java.io.Serializable;
  * limitations under the License.
  */
 
-public class Champion implements Serializable {
-
-	private static final long serialVersionUID = 4342849519353550572L;
+public class Champion {
 	
 	private boolean active, botEnabled, botMmEnabled, freeToPlay, rankedPlayEnabled;
 	private long id;

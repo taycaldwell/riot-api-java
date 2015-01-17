@@ -1,7 +1,5 @@
 package dto.Stats;
 
-import java.io.Serializable;
-
 /** DEPRECATED **/
 
 /*
@@ -20,9 +18,8 @@ import java.io.Serializable;
  * limitations under the License.
  */
 
-public class PlayerStatsSummary implements Serializable {
+public class PlayerStatsSummary {
 	
-	private static final long serialVersionUID = -3584187392263947778L;
 	private AggregatedStats aggregatedStats;
 	private int losses, wins;
 	private long modifyDate;

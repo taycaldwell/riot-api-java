@@ -1,7 +1,5 @@
 package dto.Stats;
 
-import java.io.Serializable;
-
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -18,9 +16,8 @@ import java.io.Serializable;
  * limitations under the License.
  */
 
-public class ChampionStats implements Serializable {
+public class ChampionStats {
 	
-	private static final long serialVersionUID = 5305743875267859091L;
 	private int id;
 	private AggregatedStats stats;
 	

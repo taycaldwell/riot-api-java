@@ -16,12 +16,10 @@ package dto.Summoner;
  * limitations under the License.
  */
 
-import java.io.Serializable;
 import java.util.Set;
 
-public class RunePages implements Serializable {
+public class RunePages {
 	
-	private static final long serialVersionUID = 3636621264321429110L;
 	private long summonerId;
 	private Set<RunePage> pages;
 	

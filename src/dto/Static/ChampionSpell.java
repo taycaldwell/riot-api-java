@@ -1,6 +1,5 @@
 package dto.Static;
 
-import java.io.Serializable;
 import java.util.List;
 
 /*
@@ -19,9 +18,8 @@ import java.util.List;
  * limitations under the License.
  */
 
-public class ChampionSpell implements Serializable {
+public class ChampionSpell {
 	
-	private static final long serialVersionUID = 5070619841076416615L;
 	private List<Image> altimages;
 	private List<Double> cooldown;
 	private List<Integer> cost;
