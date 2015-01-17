@@ -1,5 +1,6 @@
 package dto.Static;
 
+import java.io.Serializable;
 import java.util.List;
 
 /*
@@ -18,8 +19,9 @@ import java.util.List;
  * limitations under the License.
  */
 
-public class Recommended {
+public class Recommended implements Serializable {
 	
+	private static final long serialVersionUID = 8722523053273835114L;
 	private List<Block> blocks;
 	private String champion, map, mode, title, type;
 	private boolean priority;

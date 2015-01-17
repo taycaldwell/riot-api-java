@@ -1,5 +1,7 @@
 package dto.Static;
 
+import java.io.Serializable;
+
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -16,8 +18,9 @@ package dto.Static;
  * limitations under the License.
  */
 
-public class MetaData {
-	
+public class MetaData implements Serializable {
+
+	private static final long serialVersionUID = 8983953859724300000L;
 	private boolean isRune;
 	private String tier, type;
 	

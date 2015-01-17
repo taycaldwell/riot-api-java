@@ -1,5 +1,6 @@
 package dto.Static;
 
+import java.io.Serializable;
 import java.util.List;
 
 /*
@@ -18,8 +19,9 @@ import java.util.List;
  * limitations under the License.
  */
 
-public class Block {
-	
+public class Block implements Serializable {
+
+	private static final long serialVersionUID = -4041031408263653499L;
 	private List<BlockItem> items;
 	private boolean recMath;
 	private String type;

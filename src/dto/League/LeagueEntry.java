@@ -1,5 +1,7 @@
 package dto.League;
 
+import java.io.Serializable;
+
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -16,8 +18,9 @@ package dto.League;
  * limitations under the License.
  */
 
-public class LeagueEntry {
-	
+public class LeagueEntry implements Serializable {
+
+	private static final long serialVersionUID = 3987113536371700279L;
 	private String division, playerOrTeamId, playerOrTeamName;
 	private boolean isFreshBlood, isHotStreak, isInactive, isVeteran;
 	private int leaguePoints, wins;

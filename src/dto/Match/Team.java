@@ -1,9 +1,11 @@
 package dto.Match;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Team {
+public class Team implements Serializable {
 
+	private static final long serialVersionUID = -3414402914522684688L;
 	private List<BannedChampion> bans;
 	private int baronKills, dragonKills, inhibitorKills, teamId, towerKills,
 				vilemawKills;

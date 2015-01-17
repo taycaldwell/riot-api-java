@@ -1,5 +1,7 @@
 package dto.Summoner;
 
+import java.io.Serializable;
+
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -16,8 +18,9 @@ package dto.Summoner;
  * limitations under the License.
  */
 
-public class RuneSlot {
+public class RuneSlot implements Serializable {
 
+	private static final long serialVersionUID = -8204125507572318573L;
 	private int runeId, runeSlotId;
 
 	public int getRuneSlotId() {

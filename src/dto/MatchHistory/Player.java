@@ -1,5 +1,7 @@
 package dto.MatchHistory;
 
+import java.io.Serializable;
+
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -16,8 +18,9 @@ package dto.MatchHistory;
  * limitations under the License.
  */
 
-public class Player {
-	
+public class Player implements Serializable {
+
+	private static final long serialVersionUID = -7451446329752097677L;
 	private String matchHistoryUri, summonerName;
 	private int profileIcon;
 	public long getSummonerId() {

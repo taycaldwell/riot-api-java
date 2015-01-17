@@ -1,7 +1,10 @@
 package dto.Match;
 
-public class ParticipantTimeline {
+import java.io.Serializable;
 
+public class ParticipantTimeline implements Serializable {
+
+	private static final long serialVersionUID = -6355300896423737331L;
 	private String lane, role;
 	private ParticipantTimelineData ancientGolemAssistsPerMinCounts, ancientGolemKillsPerMinCounts,
 				assistedLaneDeathsPerMinDeltas, assistedLaneKillsPerMinDeltas, baronAssistsPerMinCounts,

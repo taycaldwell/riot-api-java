@@ -1,7 +1,10 @@
 package dto.Match;
 
-public class ParticipantTimelineData {
+import java.io.Serializable;
+
+public class ParticipantTimelineData implements Serializable {
 	
+	private static final long serialVersionUID = 3515118575430099707L;
 	private double tenToTwenty, thirtyToEnd, twentyToThirty, zeroToTen;
 
 	public double getTenToTwenty() {

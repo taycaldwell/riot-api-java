@@ -1,5 +1,7 @@
 package dto.Summoner;
 
+import java.io.Serializable;
+
 /** DEPRECATED **/
 
 /*
@@ -19,8 +21,9 @@ package dto.Summoner;
  */
 
 
-public class Rune {
+public class Rune implements Serializable {
 	
+	private static final long serialVersionUID = -7246944638208327134L;
 	private int id, tier;
 	private String description, name;
 	

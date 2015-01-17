@@ -16,10 +16,13 @@ package dto.Game;
  * limitations under the License.
  */
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Game {
+public class Game implements Serializable {
 
+	private static final long serialVersionUID = 1228681223919935293L;
+	
 	private int championId, ipEarned, level, mapId, spell1, spell2, teamId;
 	private long createDate, gameId;
 	private List<Player> fellowPlayers;

@@ -1,9 +1,11 @@
 package dto.Match;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Event {
-	
+public class Event implements Serializable {
+
+	private static final long serialVersionUID = -2911353385877952457L;
 	private int creatorId, itemAfter, itemBefore, itemId, killerId,
 				participantId, skillSlot, teamId, victimId;
 	private String buildingType, eventType, laneType, levelUpType,

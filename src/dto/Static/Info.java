@@ -1,5 +1,7 @@
 package dto.Static;
 
+import java.io.Serializable;
+
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -16,8 +18,9 @@ package dto.Static;
  * limitations under the License.
  */
 
-public class Info {
-	
+public class Info implements Serializable {
+
+	private static final long serialVersionUID = -671408952920494867L;
 	private int attack, defense, difficulty, magic;
 
 	public int getAttack() {

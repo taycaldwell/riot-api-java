@@ -1,5 +1,7 @@
 package dto.Static;
 
+import java.io.Serializable;
+
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -16,8 +18,9 @@ package dto.Static;
  * limitations under the License.
  */
 
-public class Skin {
-	
+public class Skin implements Serializable {
+
+	private static final long serialVersionUID = -8984891033284072910L;
 	private int id, num;
 	private String name;
 	

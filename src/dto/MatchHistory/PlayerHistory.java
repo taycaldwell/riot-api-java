@@ -16,10 +16,12 @@ package dto.MatchHistory;
  * limitations under the License.
  */
 
+import java.io.Serializable;
 import java.util.List;
 
-public class PlayerHistory {
+public class PlayerHistory implements Serializable {
 	
+	private static final long serialVersionUID = -613847543163813533L;
 	private List<MatchSummary> matches;
 
 	public List<MatchSummary> getMatches() {

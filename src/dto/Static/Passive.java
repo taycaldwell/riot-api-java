@@ -1,5 +1,7 @@
 package dto.Static;
 
+import java.io.Serializable;
+
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -16,8 +18,9 @@ package dto.Static;
  * limitations under the License.
  */
 
-public class Passive {
+public class Passive implements Serializable {
 	
+	private static final long serialVersionUID = 3894157958044991050L;
 	private String description, name, sanitizedDescription;
 	private Image image;
 	

@@ -16,10 +16,12 @@ package dto.Game;
  * limitations under the License.
  */
 
+import java.io.Serializable;
 import java.util.Set;
 
-public class RecentGames {
+public class RecentGames implements Serializable {
 	
+	private static final long serialVersionUID = -4659064262999503692L;
 	private Set<Game> games;
 	private long summonerId;
 	

@@ -1,5 +1,7 @@
 package dto.League;
 
+import java.io.Serializable;
+
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -16,8 +18,9 @@ package dto.League;
  * limitations under the License.
  */
 
-public class MiniSeries {
+public class MiniSeries implements Serializable {
 	
+	private static final long serialVersionUID = -1698803031525933530L;
 	private int losses, target, wins;
 	private String progress;
 	

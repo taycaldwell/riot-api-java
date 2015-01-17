@@ -1,5 +1,7 @@
 package dto.Static;
 
+import java.io.Serializable;
+
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -16,8 +18,9 @@ package dto.Static;
  * limitations under the License.
  */
 
-public class RuneStat {
+public class RuneStat implements Serializable {
 	
+	private static final long serialVersionUID = -5413858974003841974L;
 	private String type;
 	private double value;
 	

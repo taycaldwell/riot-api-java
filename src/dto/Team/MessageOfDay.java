@@ -1,5 +1,7 @@
 package dto.Team;
 
+import java.io.Serializable;
+
 /** DEPRECATED **/
 
 /*
@@ -18,8 +20,9 @@ package dto.Team;
  * limitations under the License.
  */
 
-public class MessageOfDay {
+public class MessageOfDay implements Serializable {
 
+	private static final long serialVersionUID = 4283242086656143576L;
 	private int version;
 	private String message;
 	private long createDate;
