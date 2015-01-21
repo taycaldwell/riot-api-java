@@ -43,8 +43,10 @@ import dto.Match.MatchDetail;
 import dto.MatchHistory.PlayerHistory;
 import dto.Team.Team;
 import dto.Static.ChampionList;
+import dto.Static.GameMapList;
 import dto.Static.Item;
 import dto.Static.ItemList;
+import dto.Static.LanguageStrings;
 import dto.Static.Mastery;
 import dto.Static.MasteryList;
 import dto.Static.Realm;
@@ -1659,6 +1661,70 @@ public class RiotApi {
 
      return StatusMethod.getShardStatus(getRegion());
  }
+  
+	  /**
+	  *
+	  */
+	 public GameMapList getDataGameMapList(Region region, String locale, String version) throws RiotApiException {
+	
+	     return StaticDataMethod.getDataGameMapList(region.getName(), getKey(), locale, version);
+	 }
+	
+	 /**
+	  *
+	  */
+	 public GameMapList getDataGameMapList(String locale, String version) throws RiotApiException {
+	
+	     return StaticDataMethod.getDataGameMapList(getRegion(), getKey(), locale, version);
+	 }
+	
+	 /**
+	  *
+	  */
+	 public GameMapList getDataGameMapList(Region region) throws RiotApiException {
+	
+	     return StaticDataMethod.getDataGameMapList(region.getName(), getKey(), null, null);
+	 }
+	
+	 /**
+	  *
+	  */
+	 public GameMapList getDataGameMapList() throws RiotApiException {
+	
+	     return StaticDataMethod.getDataGameMapList(getRegion(), getKey(), null, null);
+	 }
+
+	  /**
+	  *
+	  */
+	 public LanguageStrings getDataLanguageStrings(Region region, String locale, String version) throws RiotApiException {
+	
+	     return StaticDataMethod.getDataLanguageStrings(region.getName(), getKey(), locale, version);
+	 }
+	
+	 /**
+	  *
+	  */
+	 public LanguageStrings getDataLanguageStrings(String locale, String version) throws RiotApiException {
+	
+	     return StaticDataMethod.getDataLanguageStrings(getRegion(), getKey(), locale, version);
+	 }
+	
+	 /**
+	  *
+	  */
+	 public LanguageStrings getDataLanguageStrings(Region region) throws RiotApiException {
+	
+	     return StaticDataMethod.getDataLanguageStrings(region.getName(), getKey(), null, null);
+	 }
+	
+	 /**
+	  *
+	  */
+	 public LanguageStrings getDataLanguageStrings() throws RiotApiException {
+	
+	     return StaticDataMethod.getDataLanguageStrings(getRegion(), getKey(), null, null);
+	 }
  
     /**
      * Get the currently set season
