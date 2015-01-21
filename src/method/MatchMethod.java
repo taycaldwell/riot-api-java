@@ -22,10 +22,12 @@ import main.java.riotapi.Request;
 import main.java.riotapi.RiotApiException;
 
 public final class MatchMethod {
+	
+	private static final String VERSION = "/v2.2/";
 
     public static MatchDetail getMatch(String endpoint, String region, String key, long matchId, boolean includeTimeline) throws RiotApiException {
 
-        String url = endpoint + "/api/lol/" + region + "/v2.2/match/" + matchId + "?includeTimeline=" + includeTimeline + "&api_key=" + key;
+        String url = endpoint + region + VERSION + "match/" + matchId + "?includeTimeline=" + includeTimeline + "&api_key=" + key;
         MatchDetail matchDetail = null;
 
         try {
@@ -39,7 +41,7 @@ public final class MatchMethod {
 
     public static MatchDetail getMatch(String endpoint, String region, String key, long matchId) throws RiotApiException {
 
-        String url = endpoint + "/api/lol/" + region + "/v2.2/match/" + matchId + "?api_key=" + key;
+        String url = endpoint + region + VERSION + "match/" + matchId + "?api_key=" + key;
         MatchDetail matchDetail = null;
 
         try {

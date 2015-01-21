@@ -30,6 +30,8 @@ import main.java.riotapi.Request;
 import main.java.riotapi.RiotApiException;
 
 public final class LeagueMethod {
+	
+	private static final String VERSION = "/v2.5/";
 
     public static Map<String, List<League>> getLeagueBySummoners(String endpoint, String region, String key, long... summonerIds) throws RiotApiException {
         return getLeagueBySummoners(endpoint, region, key, Convert.longToString(summonerIds));
@@ -41,7 +43,7 @@ public final class LeagueMethod {
 
     public static Map<String, List<League>> getLeagueBySummoners(String endpoint, String region, String key, String summonerIds) throws RiotApiException {
 
-        String url = endpoint + "/api/lol/" + region + "/v2.5/league/by-summoner/" + summonerIds + "?api_key=" + key;
+        String url = endpoint + region + VERSION + "league/by-summoner/" + summonerIds + "?api_key=" + key;
         Map<String, List<League>> leagues = null;
 
         try {
@@ -56,7 +58,7 @@ public final class LeagueMethod {
 
     public static Map<String, List<League>> getLeagueEntryBySummoners(String endpoint, String region, String key, String summonerIds) throws RiotApiException {
 
-        String url = endpoint + "/api/lol/" + region + "/v2.5/league/by-summoner/" + summonerIds + "/entry?api_key=" + key;
+        String url = endpoint + region + VERSION + "league/by-summoner/" + summonerIds + "/entry?api_key=" + key;
         Map<String, List<League>> leagues = null;
 
         try {
@@ -79,7 +81,7 @@ public final class LeagueMethod {
 
     public static Map<String, List<League>> getLeagueByTeams(String endpoint, String region, String key, String teamIds) throws RiotApiException {
 
-        String url = endpoint + "/api/lol/" + region + "/v2.5/league/by-team/" + teamIds + "?api_key=" + key;
+        String url = endpoint + region + VERSION + "league/by-team/" + teamIds + "?api_key=" + key;
         Map<String, List<League>> leagues = null;
 
         try {
@@ -94,7 +96,7 @@ public final class LeagueMethod {
 
     public static Map<String, List<League>> getLeagueEntryByTeams(String endpoint, String region, String key, String teamIds) throws RiotApiException {
 
-        String url = endpoint + "/api/lol/" + region + "/v2.5/league/by-team/" + teamIds + "/entry?api_key=" + key;
+        String url = endpoint + region + VERSION + "league/by-team/" + teamIds + "/entry?api_key=" + key;
         Map<String, List<League>> leagues = null;
 
         try {
@@ -109,7 +111,7 @@ public final class LeagueMethod {
 
     public static League getChallengerLeagues(String endpoint, String region, String key) throws RiotApiException {
 
-        String url = endpoint + "/api/lol/" + region + "/v2.5/league/challenger/?type=RANKED_SOLO_5x5&api_key=" + key;
+        String url = endpoint + region + VERSION + "league/challenger/?type=RANKED_SOLO_5x5&api_key=" + key;
         League leagues = null;
 
         try {
@@ -123,7 +125,7 @@ public final class LeagueMethod {
 
     public static League getChallengerLeagues(String endpoint, String region, String key, QueueType queueType) throws RiotApiException {
 
-        String url = endpoint + "/api/lol/" + region + "/v2.5/league/challenger/?type=" + queueType.name() + "&api_key=" + key;
+        String url = endpoint + region + VERSION + "league/challenger/?type=" + queueType.name() + "&api_key=" + key;
         League leagues = null;
 
         try {

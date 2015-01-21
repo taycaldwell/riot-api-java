@@ -26,6 +26,8 @@ import dto.Status.ShardStatus;
 
 public final class StatusMethod {
 
+	private static final String VERSION = "/v1.0/";
+	
     public static List<Shard> getShards() throws RiotApiException {
 
         String url = "https://status.leagueoflegends.com/shards";

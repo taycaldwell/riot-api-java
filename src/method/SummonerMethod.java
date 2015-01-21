@@ -32,9 +32,11 @@ import main.java.riotapi.RiotApiException;
 
 public final class SummonerMethod {
 
+	private static final String VERSION = "/v1.4/";
+	
     public static Map<String, MasteryPages> getMasteryPages(String endpoint, String region, String key, String summonerIds) throws RiotApiException {
 
-        String url = endpoint + "/api/lol/" + region + "/v1.4/summoner/" + summonerIds + "/masteries?api_key=" + key;
+        String url = endpoint + region + VERSION + "summoner/" + summonerIds + "/masteries?api_key=" + key;
         Map<String, MasteryPages> masteryPages = null;
 
         try {
@@ -52,7 +54,7 @@ public final class SummonerMethod {
 
     public static Map<String, RunePages> getRunePages(String endpoint, String region, String key, String summonerIds) throws RiotApiException {
 
-        String url = endpoint + "/api/lol/" + region + "/v1.4/summoner/" + summonerIds + "/runes?api_key=" + key;
+        String url = endpoint + region + VERSION + "summoner/" + summonerIds + "/runes?api_key=" + key;
         Map<String, RunePages> runePages = null;
 
         try {
@@ -74,7 +76,7 @@ public final class SummonerMethod {
         summonerNames = summonerNames.replaceAll("\\s+", "");
         String url = null;
 		try {
-			url = endpoint + "/api/lol/" + region + "/v1.4/summoner/by-name/" + URLEncoder.encode(summonerNames, "UTF-8") + "?api_key=" + key;
+			url = endpoint + region + VERSION + "summoner/by-name/" + URLEncoder.encode(summonerNames, "UTF-8") + "?api_key=" + key;
 		} catch (UnsupportedEncodingException e1) {
 			e1.printStackTrace();
 		}
@@ -96,7 +98,7 @@ public final class SummonerMethod {
 
     public static Map<String, Summoner> getSummonersById(String endpoint, String region, String key, String summonerIds) throws RiotApiException {
 
-        String url = endpoint + "/api/lol/" + region + "/v1.4/summoner/" + summonerIds + "?api_key=" + key;
+        String url = endpoint + region + VERSION + "summoner/" + summonerIds + "?api_key=" + key;
         Map<String, Summoner> summoners = null;
 
         try {
@@ -115,7 +117,7 @@ public final class SummonerMethod {
 
     public static Map<String, String> getSummonerNames(String endpoint, String region, String key, String summonerIds) throws RiotApiException {
 
-        String url = endpoint + "/api/lol/" + region + "/v1.4/summoner/" + summonerIds + "/name?api_key=" + key;
+        String url = endpoint + region + VERSION + "summoner/" + summonerIds + "/name?api_key=" + key;
         Map<String, String> summonerNames = null;
 
         try {

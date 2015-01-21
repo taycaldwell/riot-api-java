@@ -24,6 +24,8 @@ import main.java.riotapi.Request;
 import main.java.riotapi.RiotApiException;
 
 public final class StatsMethod {
+	
+	private static final String VERSION = "/v1.3/";
 
     /**
      * Get a summary of player statistics for a given summoner
@@ -36,7 +38,7 @@ public final class StatsMethod {
      */
     public static PlayerStatsSummaryList getPlayerStatsSummary(String endpoint, String region, String season, String key, long summonerId) throws RiotApiException {
 
-        String url = endpoint + "/api/lol/" + region + "/v1.3/stats/by-summoner/" + summonerId + "/summary?";
+        String url = endpoint + region + VERSION + "stats/by-summoner/" + summonerId + "/summary?";
         if(season != null){
         	url += "season=" + season + "&";
         }
@@ -64,7 +66,7 @@ public final class StatsMethod {
      */
     public static RankedStats getRankedStats(String endpoint, String region, String season, String key, long summonerId) throws RiotApiException {
 
-        String url = endpoint + "/api/lol/" + region + "/v1.3/stats/by-summoner/" + summonerId + "/ranked?";
+        String url = endpoint + region + VERSION + "stats/by-summoner/" + summonerId + "/ranked?";
         if(season != null){
         	url += "season=" + season + "&";
         }

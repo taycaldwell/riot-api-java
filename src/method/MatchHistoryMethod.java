@@ -22,10 +22,12 @@ import main.java.riotapi.Request;
 import main.java.riotapi.RiotApiException;
 
 public final class MatchHistoryMethod {
+	
+	private static final String VERSION = "/v2.2/";
 
     public static PlayerHistory getMatchHistory(String endpoint, String region, String key, long summonerId, String championIds, String rankedQueues, int beginIndex, int endIndex) throws RiotApiException {
 
-        String url = endpoint + "/api/lol/" + region + "/v2.2/matchhistory/" + summonerId + "?";
+        String url = endpoint + region + VERSION + "matchhistory/" + summonerId + "?";
 
         if (championIds != null) {
             url += "championIds=" + championIds + "&";

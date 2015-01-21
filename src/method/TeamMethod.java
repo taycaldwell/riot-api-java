@@ -30,9 +30,11 @@ import main.java.riotapi.RiotApiException;
 
 public final class TeamMethod {
 
+	private static final String VERSION = "/v2.4/";
+	
     public static Map<String, List<Team>> getTeamsBySummonerIds(String endpoint, String region, String key, long... summonerIds) throws RiotApiException {
 
-        String url = endpoint + "/api/lol/" + region + "/v2.4/team/by-summoner/" + Convert.longToString(summonerIds) + "?api_key=" + key;
+        String url = endpoint + region + VERSION + "team/by-summoner/" + Convert.longToString(summonerIds) + "?api_key=" + key;
         Map<String, List<Team>> teams = null;
 
         try {
@@ -47,7 +49,7 @@ public final class TeamMethod {
 
     public static Map<String, List<Team>> getTeamsBySummonerIds(String endpoint, String region, String key, String summonerIds) throws RiotApiException {
 
-        String url = endpoint + "/api/lol/" + region + "/v2.4/team/by-summoner/" + summonerIds + "?api_key=" + key;
+        String url = endpoint + region + VERSION + "team/by-summoner/" + summonerIds + "?api_key=" + key;
         Map<String, List<Team>> teams = null;
 
         try {
@@ -62,7 +64,7 @@ public final class TeamMethod {
 
     public static Map<String, List<Team>> getTeamsByTeamIds(String endpoint, String region, String key, long... teamIds) throws RiotApiException {
 
-        String url = endpoint + "/api/lol/" + region + "/v2.4/team/" + Convert.longToString(teamIds) + "?api_key=" + key;
+        String url = endpoint + region + VERSION + "team/" + Convert.longToString(teamIds) + "?api_key=" + key;
         Map<String, List<Team>> teams = null;
 
         try {
@@ -77,7 +79,7 @@ public final class TeamMethod {
 
     public static Map<String, List<Team>> getTeamsByTeamIds(String endpoint, String region, String key, String teamIds) throws RiotApiException {
 
-        String url = endpoint + "/api/lol/" + region + "/v2.4/team/" + teamIds + "?api_key=" + key;
+        String url = endpoint + region + VERSION + "team/" + teamIds + "?api_key=" + key;
         Map<String, List<Team>> teams = null;
 
         try {

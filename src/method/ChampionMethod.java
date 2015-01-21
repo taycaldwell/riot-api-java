@@ -23,10 +23,12 @@ import main.java.riotapi.Request;
 import main.java.riotapi.RiotApiException;
 
 public final class ChampionMethod {
+	
+	private static final String VERSION = "/v1.2/";
 
     public static ChampionList getChampions(String endpoint, String region, String key) throws RiotApiException {
 
-        String url = endpoint + "/api/lol/" + region + "/v1.2/champion?api_key=" + key;
+        String url = endpoint + region + VERSION + "champion?api_key=" + key;
         ChampionList championList = null;
 
         try {
@@ -40,7 +42,7 @@ public final class ChampionMethod {
 
     public static ChampionList getChampions(String endpoint, String region, String key, boolean freeToPlay) throws RiotApiException {
 
-        String url = endpoint + "/api/lol/" + region + "/v1.2/champion?freeToPlay=" + freeToPlay + "&api_key=" + key;
+        String url = endpoint + region + VERSION + "champion?freeToPlay=" + freeToPlay + "&api_key=" + key;
         ChampionList championList = null;
 
         try {
@@ -54,7 +56,7 @@ public final class ChampionMethod {
 
     public static Champion getChampionById(String endpoint, String region, String key, int champId) throws RiotApiException {
 
-        String url = endpoint + "/api/lol/" + region + "/v1.2/champion/" + champId + "?api_key=" + key;
+        String url = endpoint + region + VERSION + "champion/" + champId + "?api_key=" + key;
         Champion champion = null;
 
         try {
