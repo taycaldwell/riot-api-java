@@ -20,8 +20,10 @@ public enum Season {
 	
 		Season3("SEASON3"),
 		Season4("SEASON4"),
+		Season5("SEASON5"),
 		THREE("SEASON3"),
-		FOUR("SEASON4");
+		FOUR("SEASON4"),
+		FIVE("SEASON5");
 
 	    private String season;
 	    
