@@ -95,7 +95,7 @@ public class Example {
 	public static void main(String[] args) {
 		
 		RiotApi api = new RiotApi("YOUR-API-KEY-HERE", Region.NA);
-		api.setSeason(Season.FOUR);
+		api.setSeason(Season.FIVE);
 		
 		RankedStats rankedStats = api.getRankedStats(api.getSummonersByName("rithms, tryndamere").get("rithms").getId());
 	}
