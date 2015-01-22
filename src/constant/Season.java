@@ -19,10 +19,12 @@ package constant;
 public enum Season {
 	
 		Season3("SEASON3"),
-		Season4("SEASON4"),
+		Season4("SEASON2014"),
 		Season5("SEASON2015"),
+		Season2014("SEASON2014"),
+		Season2015("SEASON2015"),
 		THREE("SEASON3"),
-		FOUR("SEASON4"),
+		FOUR("SEASON2014"),
 		FIVE("SEASON2015");
 
 	    private String season;
