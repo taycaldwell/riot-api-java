@@ -30,7 +30,7 @@ public final class StatusMethod {
 	
     public static List<Shard> getShards() throws RiotApiException {
 
-        String url = "https://status.leagueoflegends.com/shards";
+        String url = "http://status.leagueoflegends.com/shards";
         List<Shard> shards = null;
 
         try {
@@ -45,7 +45,7 @@ public final class StatusMethod {
     
     public static ShardStatus getShardStatus(String region) throws RiotApiException {
 
-        String url = "https://status.leagueoflegends.com/shards/" + region;
+        String url = "http://status.leagueoflegends.com/shards/" + region;
         ShardStatus status = null;
 
         try {
