@@ -25,7 +25,7 @@ public class LeagueItem implements Serializable {
 	private static final long serialVersionUID = 1806506962119201213L;
 	private String leagueName, playerOrTeamId, playerOrTeamName, queueType, rank, tier;
 	private boolean isFreshBlood, isHotStreak, isInactive, isVeteran;
-	private int leaguePoints, wins;
+	private int leaguePoints, wins, losses;
 	private long lastPlayed;
 	private MiniSeries miniSeries;
 	
@@ -47,6 +47,10 @@ public class LeagueItem implements Serializable {
 
 	public int getWins() {
 		return wins;
+	}
+	
+	public int getLosses(){
+		return losses;
 	}
 
 	public long getLastPlayed() {

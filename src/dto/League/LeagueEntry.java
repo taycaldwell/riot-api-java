@@ -23,7 +23,7 @@ public class LeagueEntry implements Serializable {
 	private static final long serialVersionUID = 3987113536371700279L;
 	private String division, playerOrTeamId, playerOrTeamName;
 	private boolean isFreshBlood, isHotStreak, isInactive, isVeteran;
-	private int leaguePoints, wins;
+	private int leaguePoints, wins, losses;
 	private MiniSeries miniSeries;
 	
 	public String getPlayerOrTeamId() {
@@ -44,6 +44,10 @@ public class LeagueEntry implements Serializable {
 
 	public int getWins() {
 		return wins;
+	}
+	
+	public int getLosses() {
+		return losses;
 	}
 
 	public MiniSeries getMiniSeries() {
