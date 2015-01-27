@@ -38,6 +38,7 @@ public enum QueueType {
 		GROUP_FINDER_5x5("Team Builder"),
 		ARAM_5x5("ARAM"),
 		ONEFORALL_5x5("One for All"),
+                ONEFORALL_MIRRORMODE_5x5("One for All: Mirror Mode"),
 		FIRSTBLOOD_1x1("Snowdown Showdown 1v1"),
 		FIRSTBLOOD_2x2("Snowdown Showdown 2v2"),
 		SR_6x6("Hexakill"),
