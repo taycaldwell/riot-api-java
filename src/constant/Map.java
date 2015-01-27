@@ -26,6 +26,7 @@ public enum Map {
 		CRYSTAL_SCAR(8),
 		DOMINION(8),
 		TWISTED_TREELINE_CURRENT(10),
+                SUMMONERS_RIFT_2014(11),
 		HOWLING_ABYSS(12),
 		ARAM(12);
 		
