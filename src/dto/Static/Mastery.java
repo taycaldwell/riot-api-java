@@ -26,7 +26,7 @@ public class Mastery implements Serializable {
 	private List<String> sanitizedDescription;
 	private Image image;
 	private int id, ranks;
-	private String name, prereq;
+	private String name, prereq, masteryTree;
 	
 	public List<String> getDescription() {
 		return description;
@@ -48,6 +48,13 @@ public class Mastery implements Serializable {
 	}
 	public String getPrereq() {
 		return prereq;
+	}
+	
+	/**
+	 * Legal values: Defense, Offense, Utility
+	 */
+	public String getMasteryTree() {
+		return masteryTree;
 	}
 	
 }
