@@ -1,5 +1,5 @@
 --------
-[https://img.shields.io/github/tag/rithms/riot-api-java.svg?label=maven](https://jitpack.io/#rithms/riot-api-java/v3.4.2)
+![https://img.shields.io/github/tag/rithms/riot-api-java.svg?label=maven](https://jitpack.io/#rithms/riot-api-java/v3.4.2)
 --------
 
 A simple to use, Riot Games API wrapper for Java.
