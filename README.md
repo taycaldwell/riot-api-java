@@ -1,3 +1,7 @@
+--------
+[https://img.shields.io/github/tag/rithms/riot-api-java.svg?label=maven](https://jitpack.io/#rithms/riot-api-java/v3.4.2)
+--------
+
 A simple to use, Riot Games API wrapper for Java.
 This library makes it easy to gather and use League of Legends data in your web and mobile (Android) apps.
 
@@ -21,6 +25,9 @@ If you are using Eclipse, this can be done by right clicking your project, and s
 Build Path -> Configure Build Path -> Libraries -> Add External Jars
 
 and selecting the jar under the Order and Export tab.
+
+
+You can also use [Jitpack](https://jitpack.io/#rithms/riot-api-java/v3.4.2)
 
 ## Usage
 
