@@ -18,24 +18,30 @@ package constant;
 
 public enum PlatformId {
 	    
-		NA("NA1"),
-		BR("BR1"),
-		LAN("LA1"),
-		LAS("LA2"),
-		OCE("OC1"),
-		EUNE("EUN1"),
-		EUW("EUW1"),
-		KR("KR"),
-		RU("RU"),
-		TR("TR1");
+		NA("NA1", "na"),
+		BR("BR1", "br"),
+		LAN("LA1", "lan"),
+		LAS("LA2", "las"),
+		OCE("OC1", "oce"),
+		EUNE("EUN1", "eune"),
+		EUW("EUW1", "euw"),
+		KR("KR", "kr"),
+		RU("RU", "ru"),
+		TR("TR1", "tr");
 		
 	    private String id;
+	    private String name;
 	    
-	    PlatformId(String id) {
+	    PlatformId(String id, String name) {
 	        this.id = id;
+	        this.name = name;
 	    }
 
 	    public String getId() {
 	        return id;
 	    }	    
+	    
+	    public String getName() {
+	    	return name;
+	    }
 }
