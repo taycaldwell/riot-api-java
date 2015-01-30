@@ -25,6 +25,7 @@ package main.java.riotapi;
 import java.util.List;
 import java.util.Map;
 
+import constant.PlatformId;
 import constant.QueueType;
 import constant.Region;
 import constant.Season;
@@ -37,6 +38,8 @@ import constant.staticdata.RuneData;
 import constant.staticdata.RuneListData;
 import constant.staticdata.SpellData;
 import dto.Champion.*;
+import dto.CurrentGame.CurrentGameInfo;
+import dto.FeaturedGames.FeaturedGames;
 import dto.Game.RecentGames;
 import dto.League.League;
 import dto.Match.MatchDetail;
@@ -1725,7 +1728,31 @@ public class RiotApi {
 	
 	     return StaticDataMethod.getDataLanguageStrings(getRegion(), getKey(), null, null);
 	 }
- 
+	 
+	 /**
+	  *
+	  */
+	 public FeaturedGames getFeaturedGames(Region region) throws RiotApiException {
+	
+	     return FeaturedGamesMethod.getFeaturedGames(region.getName(), getKey());
+	 }
+	 
+	 /**
+	  *
+	  */
+	 public FeaturedGames getFeaturedGames() throws RiotApiException {
+			
+	     return FeaturedGamesMethod.getFeaturedGames(getRegion(), getKey());
+	 }
+	 
+	 /**
+	  *
+	  */
+	 public CurrentGameInfo getCurrentGameInfo(PlatformId platformId, long summonerId) throws RiotApiException {
+	
+	     return CurrentGameMethod.getCurrentGameInfo(platformId, getKey(), summonerId);
+	 }
+	 
     /**
      * Get the currently set season
      *
