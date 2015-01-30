@@ -1,5 +1,5 @@
 ----------
-[![JitPack](https://img.shields.io/github/tag/rithms/riot-api-java.svg?label=maven)](https://jitpack.io/#rithms/riot-api-java/v3.4.2)
+[![JitPack](https://img.shields.io/github/tag/rithms/riot-api-java.svg?label=maven)](https://jitpack.io/#rithms/riot-api-java/v3.5.0)
 ----------
 
 A simple to use, Riot Games API wrapper for Java.
@@ -14,7 +14,7 @@ This product is not endorsed, certified or otherwise approved in any way by Riot
 - [Google Gson](https://code.google.com/p/google-gson/)
 
 ## Download
-[Download (Version 3.4.2)](https://www.dropbox.com/s/te7kxqqrhzsp60e/riot-api-java.jar?dl=0) 
+[Download (Version 3.5.0)](https://www.dropbox.com/s/te7kxqqrhzsp60e/riot-api-java.jar?dl=0) 
 
 ## Setup
 
@@ -27,7 +27,7 @@ Build Path -> Configure Build Path -> Libraries -> Add External Jars
 and selecting the jar under the Order and Export tab.
 
 
-You can also use [Jitpack](https://jitpack.io/#rithms/riot-api-java/v3.4.2)
+This project is also available on [Jitpack](https://jitpack.io/#rithms/riot-api-java/v3.5.0)
 
 ## Usage
 
@@ -198,6 +198,8 @@ The documentation for this library can be found [here.](http://rithms.im/riot-ap
 ## API Versions
 The current version of this library supports the following Riot Games API versions:
 - **champion-v1.2 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
+- **current-game-v1.0 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
+- **featured-games-v1.0 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
 - **game-v1.3 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
 - **league-v2.5 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
 - **lol-static-data-v1.2 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
