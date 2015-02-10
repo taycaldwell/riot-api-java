@@ -1,7 +1,7 @@
 package dto.Static;
 
 /*
- * Copyright 2014 Taylor Caldwell
+ * Copyright 2015 Taylor Caldwell
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,32 +22,32 @@ public class Stats {
 				attackspeedoffset, attackspeedperlevel, crit, critperlevel, hp, hpperlevel,
 				hpregen, hpregenperlevel, movespeed, mp, mpperlevel, mpregen, mpregenperlevel,
 				spellblock, spellblockperlevel;
-
+	
 	public double getArmor() {
 		return armor;
 	}
 
-	public double getArmorperlevel() {
+	public double getArmorPerLevel() {
 		return armorperlevel;
 	}
 
-	public double getAttackdamage() {
+	public double getAttackDamage() {
 		return attackdamage;
 	}
 
-	public double getAttackdamageperlevel() {
+	public double getAttackDamagePerLevel() {
 		return attackdamageperlevel;
 	}
 
-	public double getAttackrange() {
+	public double getAttackRange() {
 		return attackrange;
 	}
 
-	public double getAttackspeedoffset() {
+	public double getAttackSpeedOffset() {
 		return attackspeedoffset;
 	}
 
-	public double getAttackspeedperlevel() {
+	public double getAttackSpeedPerLevel() {
 		return attackspeedperlevel;
 	}
 
@@ -55,7 +55,7 @@ public class Stats {
 		return crit;
 	}
 
-	public double getCritperlevel() {
+	public double getCritPerLevel() {
 		return critperlevel;
 	}
 
@@ -63,19 +63,19 @@ public class Stats {
 		return hp;
 	}
 
-	public double getHpperlevel() {
+	public double getHpPerLevel() {
 		return hpperlevel;
 	}
 
-	public double getHpregen() {
+	public double getHpRegen() {
 		return hpregen;
 	}
 
-	public double getHpregenperlevel() {
+	public double getHpRegenPerLevel() {
 		return hpregenperlevel;
 	}
 
-	public double getMovespeed() {
+	public double getMoveSpeed() {
 		return movespeed;
 	}
 
@@ -83,26 +83,24 @@ public class Stats {
 		return mp;
 	}
 
-	public double getMpperlevel() {
+	public double getMpPerLevel() {
 		return mpperlevel;
 	}
 
-	public double getMpregen() {
+	public double getMpRegen() {
 		return mpregen;
 	}
 
-	public double getMpregenperlevel() {
+	public double getMpRegenPerLevel() {
 		return mpregenperlevel;
 	}
 
-	public double getSpellblock() {
+	public double getSpellBlock() {
 		return spellblock;
 	}
 
-	public double getSpellblockperlevel() {
+	public double getSpellBlockPerLevel() {
 		return spellblockperlevel;
 	}
 	
-	
-
 }
