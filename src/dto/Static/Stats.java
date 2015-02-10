@@ -23,6 +23,10 @@ public class Stats {
 				hpregen, hpregenperlevel, movespeed, mp, mpperlevel, mpregen, mpregenperlevel,
 				spellblock, spellblockperlevel;
 	
+	public double getBaseAttackSpeed() {
+		return (0.625 / ( 1.0 + attackspeedoffset ));
+	}
+	
 	public double getArmor() {
 		return armor;
 	}
