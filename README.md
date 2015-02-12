@@ -142,7 +142,7 @@ public class MainActivity extends Activity{
         protected Summoner doInBackground(String... params) {
  
             try {
-                Summoner summoner = ((GlobalClass)getActivity().getApplication()).getApi()
+                Summoner summoner = ((GlobalClass)getApplication()).getApi()
                         .getSummonerByName(params[0])
                         .get(params[0].replaceAll("\\s+", "").toLowerCase());
                 if(summoner != null) {
