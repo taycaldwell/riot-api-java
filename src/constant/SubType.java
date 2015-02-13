@@ -38,7 +38,8 @@ public enum SubType {
 		NIGHTMARE_BOT("Summoner's Rift Doom Bots"),
 		ASCENSION("Ascension"),
 		HEXAKILL("Twisted Treeline 6x6 Hexakill"),
-		KING_PORO("King Poro");
+		KING_PORO("King Poro"),
+		COUNTER_PICK("Nemesis Draft");
 		
 		
 	    private String name;

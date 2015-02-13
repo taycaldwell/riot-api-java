@@ -51,7 +51,8 @@ public enum QueueType {
 		NIGHTMARE_BOT_5x5_RANK5("Doom Bots Rank 5"),
 		ASCENSION_5x5("Ascension"),
 		HEXAKILL("Twisted Treeline 6x6 Hexakill"),
-		KING_PORO_5x5("King Poro");
+		KING_PORO_5x5("King Poro"),
+		COUNTER_PICK("Nemesis Draft");
 
 		private static final HashMap<Integer, String> queueTypes;
 	    private String name;
@@ -89,6 +90,7 @@ public enum QueueType {
 			hm.put(96, "Ascension");
 			hm.put(98, "Twisted Treeline 6x6 Hexakill");
 			hm.put(300, "King Poro");
+			hm.put(310, "Nemesis Draft");
 	    	queueTypes = hm;
 	    }
 	    
