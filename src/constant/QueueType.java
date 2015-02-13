@@ -1,6 +1,6 @@
 package constant;
 
-import java.util.HashMap;
+import main.java.riotapi.RiotStringNotFound;
 
 /*
  * Copyright 2014 Taylor Caldwell
@@ -20,89 +20,66 @@ import java.util.HashMap;
 	
 public enum QueueType {
 	    
-		CUSTOM("Custom"),
-		NORMAL_5x5_BLIND("Normal 5v5 Blind Pick"),
-		BOT_5x5("Historical Summoner's Rift Coop vs AI"),
-		BOT_5x5_INTRO("Summoner's Rift Coop vs AI Intro Bot"),
-		BOT_5x5_BEGINNER("Summoner's Rift Coop vs AI Beginner Bot"),
-		BOT_5x5_INTERMEDIATE("Historical Summoner's Rift Coop vs AI Intermediate Bot"),
-		NORMAL_3x3("Normal 3v3"),
-		NORMAL_5x5_DRAFT("Normal 5v5 Draft Pick"),
-		ODIN_5x5_BLIND("Dominion 5v5 Blind Pick"),
-		ODIN_5x5_DRAFT("Dominion 5v5 Draft Pick"),
-		BOT_ODIN_5x5("Dominion Coop vs AI"),
-		RANKED_SOLO_5x5("Ranked Solo 5v5"),
-		RANKED_PREMADE_3x3("Ranked Premade 3v3"),
-		RANKED_PREMADE_5x5("Ranked Premade 5v5"),
-		RANKED_TEAM_3x3("Ranked Team 3v3"),
-		RANKED_TEAM_5x5("Ranked Team 5v5"),
-		BOT_TT_3x3("Twisted Treeline Coop vs AI"),
-		GROUP_FINDER_5x5("Team Builder"),
-		ARAM_5x5("ARAM"),
-		ONEFORALL_5x5("One for All"),
-        ONEFORALL_MIRRORMODE_5x5("One for All: Mirror Mode"),
-		FIRSTBLOOD_1x1("Snowdown Showdown 1v1"),
-		FIRSTBLOOD_2x2("Snowdown Showdown 2v2"),
-		SR_6x6("Hexakill"),
-		URF_5x5("Ultra Rapid Fire"),
-		BOT_URF_5x5("Ultra Rapid Fire games played against AI"),
-		NIGHTMARE_BOT_5x5_RANK1("Doom Bots Rank 1"),
-		NIGHTMARE_BOT_5x5_RANK2("Doom Bots Rank 2"),
-		NIGHTMARE_BOT_5x5_RANK5("Doom Bots Rank 5"),
-		ASCENSION_5x5("Ascension"),
-		HEXAKILL("Twisted Treeline 6x6 Hexakill"),
-		KING_PORO_5x5("King Poro"),
-		COUNTER_PICK("Nemesis Draft");
+		CUSTOM("Custom", 0),
+		NORMAL_5x5_BLIND("Normal 5v5 Blind Pick", 2),
+		BOT_5x5("Historical Summoner's Rift Coop vs AI", 7),
+		BOT_5x5_INTRO("Summoner's Rift Coop vs AI Intro Bot", 31),
+		BOT_5x5_BEGINNER("Summoner's Rift Coop vs AI Beginner Bot", 32),
+		BOT_5x5_INTERMEDIATE("Historical Summoner's Rift Coop vs AI Intermediate Bot", 33),
+		NORMAL_3x3("Normal 3v3", 8),
+		NORMAL_5x5_DRAFT("Normal 5v5 Draft Pick", 14),
+		ODIN_5x5_BLIND("Dominion 5v5 Blind Pick", 16),
+		ODIN_5x5_DRAFT("Dominion 5v5 Draft Pick", 17),
+		BOT_ODIN_5x5("Dominion Coop vs AI", 25),
+		RANKED_SOLO_5x5("Ranked Solo 5v5", 4),
+		RANKED_PREMADE_3x3("Ranked Premade 3v3", 9),
+		RANKED_PREMADE_5x5("Ranked Premade 5v5", 6),
+		RANKED_TEAM_3x3("Ranked Team 3v3", 41),
+		RANKED_TEAM_5x5("Ranked Team 5v5", 42),
+		BOT_TT_3x3("Twisted Treeline Coop vs AI", 52),
+		GROUP_FINDER_5x5("Team Builder", 61),
+		ARAM_5x5("ARAM", 65),
+		ONEFORALL_5x5("One for All", 70),
+        ONEFORALL_MIRRORMODE_5x5("One for All: Mirror Mode", 70),
+		FIRSTBLOOD_1x1("Snowdown Showdown 1v1", 72),
+		FIRSTBLOOD_2x2("Snowdown Showdown 2v2", 73),
+		SR_6x6("Hexakill", 75),
+		URF_5x5("Ultra Rapid Fire", 76),
+		BOT_URF_5x5("Ultra Rapid Fire games played against AI", 83),
+		NIGHTMARE_BOT_5x5_RANK1("Doom Bots Rank 1", 91),
+		NIGHTMARE_BOT_5x5_RANK2("Doom Bots Rank 2", 92),
+		NIGHTMARE_BOT_5x5_RANK5("Doom Bots Rank 5", 93),
+		ASCENSION_5x5("Ascension", 96),
+		HEXAKILL("Twisted Treeline 6x6 Hexakill", 98),
+		KING_PORO_5x5("King Poro", 300),
+		COUNTER_PICK("Nemesis Draft", 301);
 
-		private static final HashMap<Integer, String> queueTypes;
 	    private String name;
+	    private int gameQueueConfigId;
 	    
-	    static {
-	    	HashMap<Integer, String> hm = new HashMap<Integer, String>();
-			hm.put(0, "Custom");
-			hm.put(2, "Normal 5v5 Blind Pick");
-			hm.put(7, "Historical Summoner's Rift Coop vs AI");
-			hm.put(31, "Summoner's Rift Coop vs AI Intro Bot");
-			hm.put(32, "Summoner's Rift Coop vs AI Beginner Bot");
-			hm.put(33, "Historical Summoner's Rift Coop vs AI Intermediate Bot");
-			hm.put(8, "Normal 3v3");
-			hm.put(14, "Normal 5v5 Draft Pick");
-			hm.put(16, "Dominion 5v5 Blind Pick");
-			hm.put(17, "Dominion 5v5 Draft Pick");
-			hm.put(25, "Dominion Coop vs AI");
-			hm.put(4, "Ranked Solo 5v5");
-			hm.put(9, "Ranked Premade 3v3");
-			hm.put(6, "Ranked Premade 5v5");
-			hm.put(41, "Ranked Team 3v3");
-			hm.put(42, "Ranked Team 5v5");
-			hm.put(52, "Twisted Treeline Coop vs AI");
-			hm.put(61, "Team Builder");
-			hm.put(65, "ARAM");
-			hm.put(70, "One for All");
-			hm.put(72, "Snowdown Showdown 1v1");
-			hm.put(73, "Snowdown Showdown 2v2");
-			hm.put(75, "Hexakill");
-			hm.put(76, "Ultra Rapid Fire");
-			hm.put(83, "Ultra Rapid Fire games played against AI");
-			hm.put(91, "Doom Bots Rank 1");
-			hm.put(92, "Doom Bots Rank 2");
-			hm.put(93, "Doom Bots Rank 5");
-			hm.put(96, "Ascension");
-			hm.put(98, "Twisted Treeline 6x6 Hexakill");
-			hm.put(300, "King Poro");
-			hm.put(310, "Nemesis Draft");
-	    	queueTypes = hm;
+	    public static String getQueueNameByConfigId(int gameQueueConfigId) throws RiotStringNotFound {
+	    	QueueType[] queueTypes = QueueType.values();
+	    	for(QueueType queueType : queueTypes) {
+	    		if(queueType.getGameQueueConfigId() == gameQueueConfigId) {
+	    			return queueType.getName();
+	    		}
+	    	} throw new RiotStringNotFound("Could not find queue " + gameQueueConfigId);
 	    }
 	    
-	    public static String getQueueNameByConfigId(int gameQueueConfigId) {
-	    	return queueTypes.get(gameQueueConfigId);
-	    }
-	    
-	    QueueType(String name) {
+	    QueueType(String name, int gameQueueConfigId) {
 	        this.name = name;
+	        this.gameQueueConfigId = gameQueueConfigId;
 	    }
 
 	    public String getName() {
 	        return name;
 	    }	    
+	    
+	    public int getGameQueueConfigId() {
+	    	return gameQueueConfigId;
+	    }
+	    
+	    public String toString() {
+	    	return name;
+	    }
 }
