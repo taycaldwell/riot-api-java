@@ -1,7 +1,7 @@
 package constant;
 
 /*
- * Copyright 2015 Taylor Caldwell
+ * Copyright 2014 Taylor Caldwell
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,28 +16,28 @@ package constant;
  * limitations under the License.
  */
 
-import java.util.HashMap;
-
-public class Map {
-
-	private static final HashMap<Integer, String> maps;
-	
-	static {
-		HashMap<Integer, String> hm = new HashMap<Integer, String>();
-		hm.put(1, "Summoner's Rift"); //Original Summer Variant
-		hm.put(2, "Summoner's Rift"); //Original Autumn Variant
-		hm.put(3, "The Proving Grounds"); //Tutorial Map
-		hm.put(4, "Twisted Treeline"); //Original Version
-		hm.put(8, "The Crystal Scar"); //Dominion Map
-		hm.put(10, "Twisted Treeline"); //Current Version
-		hm.put(11, "Summoner's Rift"); //Current Version
-		hm.put(12, "Howling Abyss"); //ARAM Map
+public enum Map {
+	    
+		SUMMONERS_RIFT_SUMMER(1),
+		SUMMONERS_RIFT_AUTUMN(2),
+		PROVING_GROUNDS(3),
+		TUTORIAL(3),
+		TWISTED_TREELINE_ORIGINAL(4),
+		CRYSTAL_SCAR(8),
+		DOMINION(8),
+		TWISTED_TREELINE_CURRENT(10),
+                SUMMONERS_RIFT_2014(11),
+		HOWLING_ABYSS(12),
+		ARAM(12);
 		
-		maps = hm;
-	}
-	
-	public static String getMapNameById(int id) {
-		return maps.get(id);
-	}
-	
+
+	    private int id;
+	    
+	    Map(int id) {
+	        this.id = id;
+	    }
+
+	    public int getId() {
+	        return id;
+	    }	    
 }
