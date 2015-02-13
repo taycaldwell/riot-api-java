@@ -1,5 +1,7 @@
 package constant;
 
+import main.java.riotapi.RiotStringNotFound;
+
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -18,26 +20,45 @@ package constant;
 
 public enum Map {
 	    
-		SUMMONERS_RIFT_SUMMER(1),
-		SUMMONERS_RIFT_AUTUMN(2),
-		PROVING_GROUNDS(3),
-		TUTORIAL(3),
-		TWISTED_TREELINE_ORIGINAL(4),
-		CRYSTAL_SCAR(8),
-		DOMINION(8),
-		TWISTED_TREELINE_CURRENT(10),
-                SUMMONERS_RIFT_2014(11),
-		HOWLING_ABYSS(12),
-		ARAM(12);
-		
+		SUMMONERS_RIFT_SUMMER(1, "Summoner's Rift"),
+		SUMMONERS_RIFT_AUTUMN(2, "Summoner's Rift"),
+		PROVING_GROUNDS(3, "Proving Grounds"),
+		TUTORIAL(3, "Proving Grounds"),
+		TWISTED_TREELINE_ORIGINAL(4, "Twisted Treeline"),
+		CRYSTAL_SCAR(8, "The Crystal Scar"),
+		DOMINION(8, "The Crystal Scar"),
+		TWISTED_TREELINE_CURRENT(10, "Twisted Treeline"),
+        SUMMONERS_RIFT_2014(11, "Summoner's Rift"),
+		HOWLING_ABYSS(12, "Howling Abyss"),
+		ARAM(12, "Howling Abyss");
 
 	    private int id;
+	    private String name;
 	    
-	    Map(int id) {
+	    Map(int id, String name) {
 	        this.id = id;
+	        this.name = name;
 	    }
 
 	    public int getId() {
 	        return id;
-	    }	    
+	    }
+	    
+	    public String getName() {
+	    	return name;
+	    }
+	    
+	    public String toString() {
+	    	return name;
+	    }
+	    
+	    public static String getNameById(int mapId) throws RiotStringNotFound {
+	    	Map[] maps = Map.values();
+	    	for(Map map : maps) {
+	    		if(mapId == map.getId()) {
+	    			return map.getName();
+	    		}
+	    	} throw new RiotStringNotFound("Could not find map " + mapId);
+	    }
+
 }
