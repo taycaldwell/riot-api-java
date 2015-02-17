@@ -1276,7 +1276,7 @@ public class RiotApi {
     /**
      *
      */
-    public ChampionList getDataChampionList(Region region, String locale, String version, boolean dataById, ChampData champData) throws RiotApiException {
+    public ChampionList getDataChampionList(Region region, String locale, String version, boolean dataById, ChampData... champData) throws RiotApiException {
 
         return StaticDataMethod.getDataChampionList(region.getName(), getKey(), locale, version, dataById, champData);
     }
@@ -1284,7 +1284,7 @@ public class RiotApi {
     /**
      *
      */
-    public ChampionList getDataChampionList(String locale, String version, boolean dataById, ChampData champData) throws RiotApiException {
+    public ChampionList getDataChampionList(String locale, String version, boolean dataById, ChampData... champData) throws RiotApiException {
 
         return StaticDataMethod.getDataChampionList(getRegion(), getKey(), locale, version, dataById, champData);
     }
@@ -1294,7 +1294,7 @@ public class RiotApi {
      */
     public ChampionList getDataChampionList(Region region) throws RiotApiException {
 
-        return StaticDataMethod.getDataChampionList(region.getName(), getKey(), null, null, false, null);
+        return StaticDataMethod.getDataChampionList(region.getName(), getKey(), null, null, false, (ChampData) null);
     }
 
     /**
@@ -1302,13 +1302,13 @@ public class RiotApi {
      */
     public ChampionList getDataChampionList() throws RiotApiException {
 
-        return StaticDataMethod.getDataChampionList(getRegion(), getKey(), null, null, false, null);
+        return StaticDataMethod.getDataChampionList(getRegion(), getKey(), null, null, false, (ChampData) null);
     }
 
     /**
      *
      */
-    public dto.Static.Champion getDataChampion(Region region, int id, String locale, String version, boolean dataById, ChampData champData) throws RiotApiException {
+    public dto.Static.Champion getDataChampion(Region region, int id, String locale, String version, boolean dataById, ChampData... champData) throws RiotApiException {
 
         return StaticDataMethod.getDataChampion(region.getName(), getKey(), id, locale, version, dataById, champData);
     }
@@ -1316,7 +1316,7 @@ public class RiotApi {
     /**
      *
      */
-    public dto.Static.Champion getDataChampion(int id, String locale, String version, boolean dataById, ChampData champData) throws RiotApiException {
+    public dto.Static.Champion getDataChampion(int id, String locale, String version, boolean dataById, ChampData... champData) throws RiotApiException {
 
         return StaticDataMethod.getDataChampion(getRegion(), getKey(), id, locale, version, dataById, champData);
     }
@@ -1326,7 +1326,7 @@ public class RiotApi {
      */
     public dto.Static.Champion getDataChampion(Region region, int id) throws RiotApiException {
 
-        return StaticDataMethod.getDataChampion(region.getName(), getKey(), id, null, null, false, null);
+        return StaticDataMethod.getDataChampion(region.getName(), getKey(), id, null, null, false, (ChampData) null);
     }
 
     /**
@@ -1334,13 +1334,13 @@ public class RiotApi {
      */
     public dto.Static.Champion getDataChampion(int id) throws RiotApiException {
 
-        return StaticDataMethod.getDataChampion(getRegion(), getKey(), id, null, null, false, null);
+        return StaticDataMethod.getDataChampion(getRegion(), getKey(), id, null, null, false, (ChampData) null);
     }
 
     /**
      *
      */
-    public ItemList getDataItemList(Region region, String locale, String version, ItemListData itemListData) throws RiotApiException {
+    public ItemList getDataItemList(Region region, String locale, String version, ItemListData... itemListData) throws RiotApiException {
 
         return StaticDataMethod.getDataItemList(region.getName(), getKey(), locale, version, itemListData);
     }
@@ -1348,7 +1348,7 @@ public class RiotApi {
     /**
      *
      */
-    public ItemList getDataItemList(String locale, String version, ItemListData itemListData) throws RiotApiException {
+    public ItemList getDataItemList(String locale, String version, ItemListData... itemListData) throws RiotApiException {
 
         return StaticDataMethod.getDataItemList(getRegion(), getKey(), locale, version, itemListData);
     }
@@ -1358,7 +1358,7 @@ public class RiotApi {
      */
     public ItemList getDataItemList(Region region) throws RiotApiException {
 
-        return StaticDataMethod.getDataItemList(region.getName(), getKey(), null, null, null);
+        return StaticDataMethod.getDataItemList(region.getName(), getKey(), null, null, (ItemListData) null);
     }
 
     /**
@@ -1366,13 +1366,13 @@ public class RiotApi {
      */
     public ItemList getDataItemList() throws RiotApiException {
 
-        return StaticDataMethod.getDataItemList(getRegion(), getKey(), null, null, null);
+        return StaticDataMethod.getDataItemList(getRegion(), getKey(), null, null, (ItemListData) null);
     }
 
     /**
      *
      */
-    public Item getDataItem(Region region, int id, String locale, String version, ItemData itemData) throws RiotApiException {
+    public Item getDataItem(Region region, int id, String locale, String version, ItemData... itemData) throws RiotApiException {
 
         return StaticDataMethod.getDataItem(region.getName(), getKey(), id, locale, version, itemData);
     }
@@ -1380,7 +1380,7 @@ public class RiotApi {
     /**
      *
      */
-    public Item getDataItem(int id, String locale, String version, ItemData itemData) throws RiotApiException {
+    public Item getDataItem(int id, String locale, String version, ItemData... itemData) throws RiotApiException {
 
         return StaticDataMethod.getDataItem(getRegion(), getKey(), id, locale, version, itemData);
     }
@@ -1390,7 +1390,7 @@ public class RiotApi {
      */
     public Item getDataItem(Region region, int id) throws RiotApiException {
 
-        return StaticDataMethod.getDataItem(region.getName(), getKey(), id, null, null, null);
+        return StaticDataMethod.getDataItem(region.getName(), getKey(), id, null, null, (ItemData) null);
     }
 
     /**
@@ -1398,7 +1398,7 @@ public class RiotApi {
      */
     public Item getDataItem(int id) throws RiotApiException {
 
-        return StaticDataMethod.getDataItem(getRegion(), getKey(), id, null, null, null);
+        return StaticDataMethod.getDataItem(getRegion(), getKey(), id, null, null, (ItemData) null);
     }
 
     /**
@@ -1420,7 +1420,7 @@ public class RiotApi {
     /**
      *
      */
-    public RuneList getDataRuneList(Region region, String locale, String version, RuneListData runeListData) throws RiotApiException {
+    public RuneList getDataRuneList(Region region, String locale, String version, RuneListData... runeListData) throws RiotApiException {
 
         return StaticDataMethod.getDataRuneList(region.getName(), getKey(), locale, version, runeListData);
     }
@@ -1428,7 +1428,7 @@ public class RiotApi {
     /**
      *
      */
-    public RuneList getDataRuneList(String locale, String version, RuneListData runeListData) throws RiotApiException {
+    public RuneList getDataRuneList(String locale, String version, RuneListData... runeListData) throws RiotApiException {
 
         return StaticDataMethod.getDataRuneList(getRegion(), getKey(), locale, version, runeListData);
     }
@@ -1438,7 +1438,7 @@ public class RiotApi {
      */
     public RuneList getDataRuneList(Region region) throws RiotApiException {
 
-        return StaticDataMethod.getDataRuneList(region.getName(), getKey(), null, null, null);
+        return StaticDataMethod.getDataRuneList(region.getName(), getKey(), null, null, (RuneListData) null);
     }
 
     /**
@@ -1446,13 +1446,13 @@ public class RiotApi {
      */
     public RuneList getDataRuneList() throws RiotApiException {
 
-        return StaticDataMethod.getDataRuneList(getRegion(), getKey(), null, null, null);
+        return StaticDataMethod.getDataRuneList(getRegion(), getKey(), null, null, (RuneListData) null);
     }
 
     /**
      *
      */
-    public Rune getDataRune(Region region, int id, String locale, String version, RuneData runeData) throws RiotApiException {
+    public Rune getDataRune(Region region, int id, String locale, String version, RuneData... runeData) throws RiotApiException {
 
         return StaticDataMethod.getDataRune(region.getName(), getKey(), id, locale, version, runeData);
     }
@@ -1460,7 +1460,7 @@ public class RiotApi {
     /**
      *
      */
-    public Rune getDataRune(int id, String locale, String version, RuneData runeData) throws RiotApiException {
+    public Rune getDataRune(int id, String locale, String version, RuneData... runeData) throws RiotApiException {
 
         return StaticDataMethod.getDataRune(getRegion(), getKey(), id, locale, version, runeData);
     }
@@ -1470,7 +1470,7 @@ public class RiotApi {
      */
     public Rune getDataRune(Region region, int id) throws RiotApiException {
 
-        return StaticDataMethod.getDataRune(region.getName(), getKey(), id, null, null, null);
+        return StaticDataMethod.getDataRune(region.getName(), getKey(), id, null, null, (RuneData) null);
     }
 
     /**
@@ -1478,13 +1478,13 @@ public class RiotApi {
      */
     public Rune getDataRune(int id) throws RiotApiException {
 
-        return StaticDataMethod.getDataRune(getRegion(), getKey(), id, null, null, null);
+        return StaticDataMethod.getDataRune(getRegion(), getKey(), id, null, null, (RuneData) null);
     }
 
     /**
      *
      */
-    public MasteryList getDataMasteryList(Region region, String locale, String version, MasteryListData masteryListData) throws RiotApiException {
+    public MasteryList getDataMasteryList(Region region, String locale, String version, MasteryListData... masteryListData) throws RiotApiException {
 
         return StaticDataMethod.getDataMasteryList(region.getName(), getKey(), locale, version, masteryListData);
     }
@@ -1492,7 +1492,7 @@ public class RiotApi {
     /**
      *
      */
-    public MasteryList getDataMasteryList(String locale, String version, MasteryListData masteryListData) throws RiotApiException {
+    public MasteryList getDataMasteryList(String locale, String version, MasteryListData... masteryListData) throws RiotApiException {
 
         return StaticDataMethod.getDataMasteryList(getRegion(), getKey(), locale, version, masteryListData);
     }
@@ -1502,7 +1502,7 @@ public class RiotApi {
      */
     public MasteryList getDataMasteryList(Region region) throws RiotApiException {
 
-        return StaticDataMethod.getDataMasteryList(region.getName(), getKey(), null, null, null);
+        return StaticDataMethod.getDataMasteryList(region.getName(), getKey(), null, null, (MasteryListData) null);
     }
 
     /**
@@ -1510,13 +1510,13 @@ public class RiotApi {
      */
     public MasteryList getDataMasteryList() throws RiotApiException {
 
-        return StaticDataMethod.getDataMasteryList(getRegion(), getKey(), null, null, null);
+        return StaticDataMethod.getDataMasteryList(getRegion(), getKey(), null, null, (MasteryListData) null);
     }
 
     /**
      *
      */
-    public Mastery getDataMastery(Region region, int id, String locale, String version, MasteryData masteryData) throws RiotApiException {
+    public Mastery getDataMastery(Region region, int id, String locale, String version, MasteryData... masteryData) throws RiotApiException {
 
         return StaticDataMethod.getDataMastery(region.getName(), getKey(), id, locale, version, masteryData);
     }
@@ -1524,7 +1524,7 @@ public class RiotApi {
     /**
      *
      */
-    public Mastery getDataMastery(int id, String locale, String version, MasteryData masteryData) throws RiotApiException {
+    public Mastery getDataMastery(int id, String locale, String version, MasteryData... masteryData) throws RiotApiException {
 
         return StaticDataMethod.getDataMastery(getRegion(), getKey(), id, locale, version, masteryData);
     }
@@ -1534,7 +1534,7 @@ public class RiotApi {
      */
     public Mastery getDataMastery(Region region, int id) throws RiotApiException {
 
-        return StaticDataMethod.getDataMastery(region.getName(), getKey(), id, null, null, null);
+        return StaticDataMethod.getDataMastery(region.getName(), getKey(), id, null, null, (MasteryData) null);
     }
 
     /**
@@ -1542,13 +1542,13 @@ public class RiotApi {
      */
     public Mastery getDataMastery(int id) throws RiotApiException {
 
-        return StaticDataMethod.getDataMastery(getRegion(), getKey(), id, null, null, null);
+        return StaticDataMethod.getDataMastery(getRegion(), getKey(), id, null, null, (MasteryData) null);
     }
 
     /**
      *
      */
-    public SummonerSpellList getDataSummonerSpellList(Region region, String locale, String version, boolean dataById, SpellData spellData) throws RiotApiException {
+    public SummonerSpellList getDataSummonerSpellList(Region region, String locale, String version, boolean dataById, SpellData... spellData) throws RiotApiException {
 
         return StaticDataMethod.getDataSummonerSpellList(region.getName(), getKey(), locale, version, dataById, spellData);
     }
@@ -1556,7 +1556,7 @@ public class RiotApi {
     /**
      *
      */
-    public SummonerSpellList getDataSummonerSpellList(String locale, String version, boolean dataById, SpellData spellData) throws RiotApiException {
+    public SummonerSpellList getDataSummonerSpellList(String locale, String version, boolean dataById, SpellData... spellData) throws RiotApiException {
 
         return StaticDataMethod.getDataSummonerSpellList(getRegion(), getKey(), locale, version, dataById, spellData);
     }
@@ -1566,7 +1566,7 @@ public class RiotApi {
      */
     public SummonerSpellList getDataSummonerSpellList(Region region) throws RiotApiException {
 
-        return StaticDataMethod.getDataSummonerSpellList(region.getName(), getKey(), null, null, false, null);
+        return StaticDataMethod.getDataSummonerSpellList(region.getName(), getKey(), null, null, false, (SpellData) null);
     }
 
     /**
@@ -1574,13 +1574,13 @@ public class RiotApi {
      */
     public SummonerSpellList getDataSummonerSpellList() throws RiotApiException {
 
-        return StaticDataMethod.getDataSummonerSpellList(getRegion(), getKey(), null, null, false, null);
+        return StaticDataMethod.getDataSummonerSpellList(getRegion(), getKey(), null, null, false, (SpellData) null);
     }
 
     /**
      *
      */
-    public SummonerSpell getDataSummonerSpell(Region region, int id, String locale, String version, SpellData spellData) throws RiotApiException {
+    public SummonerSpell getDataSummonerSpell(Region region, int id, String locale, String version, SpellData... spellData) throws RiotApiException {
 
         return StaticDataMethod.getDataSummonerSpell(region.getName(), getKey(), id, locale, version, spellData);
     }
@@ -1588,7 +1588,7 @@ public class RiotApi {
     /**
      *
      */
-    public SummonerSpell getDataSummonerSpell(int id, String locale, String version, SpellData spellData) throws RiotApiException {
+    public SummonerSpell getDataSummonerSpell(int id, String locale, String version, SpellData... spellData) throws RiotApiException {
 
         return StaticDataMethod.getDataSummonerSpell(getRegion(), getKey(), id, locale, version, spellData);
     }
@@ -1598,7 +1598,7 @@ public class RiotApi {
      */
     public SummonerSpell getDataSummonerSpell(Region region, int id) throws RiotApiException {
 
-        return StaticDataMethod.getDataSummonerSpell(region.getName(), getKey(), id, null, null, null);
+        return StaticDataMethod.getDataSummonerSpell(region.getName(), getKey(), id, null, null, (SpellData) null);
     }
 
     /**
@@ -1606,7 +1606,7 @@ public class RiotApi {
      */
     public SummonerSpell getDataSummonerSpell(int id) throws RiotApiException {
 
-        return StaticDataMethod.getDataSummonerSpell(getRegion(), getKey(), id, null, null, null);
+        return StaticDataMethod.getDataSummonerSpell(getRegion(), getKey(), id, null, null, (SpellData) null);
     }
 
     /**
