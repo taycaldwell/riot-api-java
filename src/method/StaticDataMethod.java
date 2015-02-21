@@ -59,7 +59,7 @@ public final class StaticDataMethod {
             url += "version=" + version + "&";
         }
         url += "dataById=" + dataById + "&";
-        if (champData != null) {
+        if (champData[0] != null) {
             url += "champData=";
             for(ChampData data : champData) {
             	url += data.getName() + ",";
@@ -120,7 +120,7 @@ public final class StaticDataMethod {
         if (version != null) {
             url += "version=" + version + "&";
         }
-        if (itemListData != null) {
+        if (itemListData[0] != null) {
             url += "itemListData=";
             for(ItemListData data : itemListData) {
             	url += data.getName() + ",";
@@ -150,8 +150,8 @@ public final class StaticDataMethod {
         if (version != null) {
             url += "version=" + version + "&";
         }
-        if (itemData != null) {
-            url += "itemListData=";
+        if (itemData[0] != null) {
+            url += "itemData=";
             for(ItemData data : itemData) {
             	url += data.getName() + ",";
             }
@@ -195,7 +195,7 @@ public final class StaticDataMethod {
         if (version != null) {
             url += "version=" + version + "&";
         }
-        if (runeListData != null) {
+        if (runeListData[0] != null) {
             url += "runeListData=";
             for(RuneListData data : runeListData) {
             	url += data.getName() + ",";
@@ -225,7 +225,7 @@ public final class StaticDataMethod {
         if (version != null) {
             url += "version=" + version + "&";
         }
-        if (runeData != null) {
+        if (runeData[0] != null) {
             url += "runeData=";
             for(RuneData data : runeData) {
             	url += data.getName() + ",";
@@ -255,7 +255,7 @@ public final class StaticDataMethod {
         if (version != null) {
             url += "version=" + version + "&";
         }
-        if (masteryListData != null) {
+        if (masteryListData[0] != null) {
             url += "masteryListData=";
             for(MasteryListData data : masteryListData) {
             	url += data.getName() + ",";
@@ -285,7 +285,7 @@ public final class StaticDataMethod {
         if (version != null) {
             url += "version=" + version + "&";
         }
-        if (masteryData != null) {
+        if (masteryData[0] != null) {
             url += "masteryData=";
             for(MasteryData data : masteryData) {
             	url += data.getName() + ",";
@@ -316,7 +316,7 @@ public final class StaticDataMethod {
             url += "version=" + version + "&";
         }
         url += "dataById=" + dataById + "&";
-        if (spellData != null) {
+        if (spellData[0] != null) {
             url += "spellData=";
             for(SpellData data : spellData) {
             	url += data.getName() + ",";
@@ -346,7 +346,7 @@ public final class StaticDataMethod {
         if (version != null) {
             url += "version=" + version + "&";
         }
-        if (spellData != null) {
+        if (spellData[0] != null) {
             url += "spellData=";
             for(SpellData data : spellData) {
             	url += data.getName() + ",";
