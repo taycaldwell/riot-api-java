@@ -90,7 +90,7 @@ public final class StaticDataMethod {
             url += "version=" + version + "&";
         }
         url += "dataById=" + dataById + "&";
-        if (champData != null) {
+        if (champData[0] != null) {
             url += "champData=";
             for(ChampData data : champData) {
             	url += data.getName() + ",";
