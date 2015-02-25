@@ -1,69 +1,108 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Riot-api-java : A simple, Riot Games API (Beta) wrapper for Java. ">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Taylor Caldwell">
+    <link rel="icon" href="favicon.ico">
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <title>riot-api-java</title>
 
-    <title>Riot-api-java</title>
+    <link href="dist/css/rithms.min.css" rel="stylesheet">
+
+    <!-- Custom styles -->
+    <link href="dist/css/jumbotron-narrow.css" rel="stylesheet">
+
+    <!-- Syntax highlighting -->
+     <link href="dist/css/pygment_trac.css" rel="stylesheet">
+	 
+	 <!-- Bootstrap core CSS -->
+    <link href="dist/css/bootstrap.css" rel="stylesheet">
+	
   </head>
 
   <body>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/rithms/riot-api-java">View on GitHub</a>
+    <div class="container">
+      <div class="header">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="#">Home</a></li>
+            <li role="presentation"><a href="#doc">Documentation</a></li>
+            <li role="presentation"><a href="https://github.com/rithms/riot-api-java">Github</a></li>
+          </ul>
+        </nav>
+          <h3 class="text-muted">riot-api-java</h3>
+      </div>
+      <div class="jumbotron">
+        <h1>Riot Games API Java Library</h1>
+        <p class="lead">Make it easy to retrieve and use League of Legends data in your web and mobile (Android) apps!</p>
+        <p><a class="btn btn-lg btn-danger" href="https://www.dropbox.com/s/te7kxqqrhzsp60e/riot-api-java.jar?dl=0" role="button">Download</a></p>
+      </div>
 
-          <h1 id="project_title"><a id="title" href="http://rithms.im">Riot Games API Java Library</a></h1>
-          
+       <div class="row">
+          <div class="col-lg-12">
+            <div class="bs-component">
+              <div class="alert alert-dismissible alert-warning">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Disclaimer: </strong> This product is not endorsed, certified or otherwise approved in any way by Riot Games, Inc. or any of its affiliates.
+              </div>
+            </div>
+          </div>
+        </div>
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/rithms/riot-api-java/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/rithms/riot-api-java/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
+<br>
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
+      <div class="row">
+        <div class="col-lg-12">
+          <h2>Dependencies</h2> 
+          <hr>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+            <div class ="well">
+              <strong>riot-api-java</strong> requires the following libraries:
+              <ul>
+                <li><a href="https://code.google.com/p/google-gson/">Google Gson</a></li>
+              </ul>
+          </div>
+        </div>
+      </div>
 
-<h2>
-<a name="disclaimer" class="anchor" href="#disclaimer"><span class="octicon octicon-link"></span></a>Disclaimer</h2>
+<br>
 
-<p>This product is not endorsed, certified or otherwise approved in any way by Riot Games, Inc. or any of its affiliates.</p>
+      <div class="row">
+        <div class="col-lg-12">
+          <h2>Setup</h2> 
+          <hr>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class ="well">
+            <p><a href="https://www.dropbox.com/s/te7kxqqrhzsp60e/riot-api-java.jar?dl=0">Download</a> the .jar file, and add it as an external library to your project.</p>
+            <p>If you are using Eclipse, this can be done by right clicking your project, and selecting:</p>
+            <p>Build Path -&gt; Configure Build Path -&gt; Libraries -&gt; Add External Jars</p>
+            <p>and selecting the jar under the Order and Export tab.</p>
+          </div>
+        </div>
+      </div>
 
-<h2>
-<a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements</h2>
+<br>
 
-<p><strong>riot-api-java</strong> requires the following libraries:</p>
-
-<ul>
-<li><a href="https://code.google.com/p/google-gson/">Google Gson</a></li>
-</ul><h2>
-<a name="download" class="anchor" href="#download"><span class="octicon octicon-link"></span></a>Download</h2>
-
-<p><a href="https://www.dropbox.com/s/te7kxqqrhzsp60e/riot-api-java.jar?dl=0">Download</a> </p>
-
-<h2>
-<a name="setup" class="anchor" href="#setup"><span class="octicon octicon-link"></span></a>Setup</h2>
-
-<p><a href="https://www.dropbox.com/s/te7kxqqrhzsp60e/riot-api-java.jar?dl=0">Download</a> the .jar file, and add it as an external library to your project.</p>
-
-<p>If you are using Eclipse, this can be done by right clicking your project, and selecting:</p>
-
-<p>Build Path -&gt; Configure Build Path -&gt; Libraries -&gt; Add External Jars</p>
-
-<p>and selecting the jar under the Order and Export tab.</p>
-
-<h2>
-<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
-
-<p>This library can be used strictly according to the <a href="https://developer.riotgames.com/api/methods">Riot API Documentation</a> like so:</p>
+      <div class="row">
+        <div class="col-lg-12">
+          <h2>Usage</h2> 
+          <hr>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+            <div class ="well">
+              <p>This library can be used strictly according to the <a href="https://developer.riotgames.com/api/methods">Riot API Documentation</a> like so:</p>
 
 <div class="highlight highlight-java"><pre><span class="kn">import</span> <span class="nn">java.util.Map</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">constant.Region</span><span class="o">;</span>
@@ -87,6 +126,9 @@
 
 </pre></div>
 
+</div>
+
+<div class="well">
 <p>Available accessors allow you to accomplish similar tasks in a different way.
 Below is an example of how to set your region. Because the region was set before a method was called, there is no need to pass in the region parameter. This is great for people that know they will only be working in one region when making multiple requests. The same can be done for the season.</p>
 
@@ -112,7 +154,9 @@ Below is an example of how to set your region. Because the region was set before
 <span class="o">}</span>
 
 </pre></div>
+</div>
 
+<div class="well">
 <p>It is important to be aware of your personal rate limit. Any method call from the RiotAPI is a request that counts towards your rate limit, with exceptions to the accessors/mutators of region, key, and season, as well as any requests regarding static data. The below code makes 2 requests; one request for a summoner, and another for ranked stats of a summoner.</p>
 
 <div class="highlight highlight-java"><pre><span class="kn">import</span> <span class="nn">constant.Region</span><span class="o">;</span>
@@ -134,48 +178,344 @@ Below is an example of how to set your region. Because the region was set before
 <span class="o">}</span>
 
 </pre></div>
+</div>
 
-<h2>
-<a name="documentation" class="anchor" href="#documentation"><span class="octicon octicon-link"></span></a>Documentation</h2>
+<br>
 
-<p>The documentation for this library can be found <a href="http://rithms.im/riot-api-java/doc/">here</a></p>
+ <div class="row">
+        <div class="col-lg-12">
+          <h2>API Versions</h2> 
+          <hr>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+            <table class="table table-striped table-hover table-condensed">
+                <thead>
+                  <tr>
+                    <th>API</th>
+                    <th>Servers</th>
+                    <th>Support</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>champion-v1.2</td>
+                    <td>[BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]</td>
+                    <td><span class="label label-success">Yes</span></td>
+                  </tr>
+                  <tr>
+                    <td>current-game-v1.0</td>
+                    <td>[BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]</td>
+                    <td><span class="label label-success">Yes</span></td>
+                  </tr>
+                  <tr>
+                    <td>featured-games-v1.0</td>
+                    <td>[BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]</td>
+                    <td><span class="label label-success">Yes</span></td>
+                  </tr>
+                  <tr>
+                    <td>game-v1.3</td>
+                    <td>[BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]</td>
+                    <td><span class="label label-success">Yes</span></td>
+                  </tr>
+                  <tr>
+                    <td>league-v2.5</td>
+                    <td>[BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]</td>
+                    <td><span class="label label-success">Yes</span></td>
+                  </tr>
+                  <tr>
+                    <td>lol-static-data-v1.2</td>
+                    <td>[BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]</td>
+                    <td><span class="label label-success">Yes</span></td>
+                  </tr>
+                  <tr>
+                    <td>lol-status-v1.0</td>
+                    <td>[BR, EUNE, EUW, LAN, LAS, NA, OCE, PBE, RU, TR]</td>
+                    <td><span class="label label-success">Yes</span></td>
+                  </tr>
+                  <tr>
+                    <td>match-v2.2</td>
+                    <td>[BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]</td>
+                    <td><span class="label label-success">Yes</span></td>
+                  </tr>
+                  <tr>
+                    <td>matchhistory-v2.2</td>
+                    <td>[BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]</td>
+                    <td><span class="label label-success">Yes</span></td>
+                  </tr>
+                  <tr>
+                    <td>stats-v1.3</td>
+                    <td>[BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]</td>
+                    <td><span class="label label-success">Yes</span></td>
+                  </tr>
+                  <tr>
+                    <td>summoner-v1.4</td>
+                    <td>[BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]</td>
+                    <td><span class="label label-success">Yes</span></td>
+                  </tr>
+                  <tr>
+                    <td>team-v2.4</td>
+                    <td>[BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]</td>
+                    <td><span class="label label-success">Yes</span></td>
+                  </tr>
+                </tbody>
+              </table> 
+        </div>
+      </div>
 
-<h2>
-<a name="api-versions" class="anchor" href="#api-versions"><span class="octicon octicon-link"></span></a>API Versions</h2>
+      <br>
 
-<p>The current version of this library supports the following Riot Games API versions:</p>
+       <div class="row">
+        <div class="col-lg-12">
+          <h2 id="doc">Documentation</h2> 
+          <hr>
+        </div>
+      </div>
 
-<ul>
-<li><strong>champion-v1.2 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]</strong></li>
-<li><strong>game-v1.3 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]</strong></li>
-<li><strong>league-v2.5 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]</strong></li>
-<li><strong>lol-static-data-v1.2 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]</strong></li>
-<li><strong>lol-status-v1.0 [BR, EUNE, EUW, LAN, LAS, NA, OCE, PBE, RU, TR]</strong></li>
-<li><strong>match-v2.2 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, PBE, RU, TR]</strong></li>
-<li><strong>matchhistory-v2.2 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, PBE, RU, TR]</strong></li>
-<li><strong>stats-v1.3 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]</strong></li>
-<li><strong>summoner-v1.4 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]</strong></li>
-<li><strong>team-v2.4 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]</strong></li>
-</ul><h2>
-<a name="contributing" class="anchor" href="#contributing"><span class="octicon octicon-link"></span></a>Contributing</h2>
+      <div class="row">
+        <div class="col-lg-12">
+            <table class="table table-striped table-hover table-condensed">
+                <thead>
+                  <tr>
+                    <th>Return Type</th>
+                    <th>Method</th>
+                    <th>API</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>ChampionList</td>
+                    <td>getChampions(Region region, boolean freeToPlay)</td>
+                    <td><span class="label label-danger">champion-v1.2</span></td>
+                  </tr>
+                  <tr>
+                    <td>Champion</td>
+                    <td>getChampionById(Region region, int champId)</td>
+                    <td><span class="label label-danger">champion-v1.2</span></td>
+                  </tr>
+                  <tr>
+                    <td>CurrentGameInfo</td>
+                    <td>getCurrentGameInfo(PlatformId platformId, long summonerId)</td>
+                    <td><span class="label label-danger">current-game-v1.0</span></td>
+                  </tr>
+                  <tr>
+                    <td>FeaturedGames</td>
+                    <td>getFeaturedGames(Region region)</td>
+                    <td><span class="label label-danger">featured-games-v1.0</span></td>
+                  </tr>
+                  <tr>
+                    <td>RecentGames</td>
+                    <td>getRecentGames(Region region, long summonerId)</td>
+                    <td><span class="label label-danger">game-v1.3</span></td>
+                  </tr>
+                  <tr>
+                    <td>Map&ltString, List&ltLeague&gt&gt</td>
+                    <td>getLeagueBySummoners(Region region, long... summonerIds)</td>
+                    <td><span class="label label-danger">league-v2.5</span></td>
+                  </tr>
+                  <tr>
+                    <td>Map&ltString, List&ltLeague&gt&gt</td>
+                    <td>getLeagueEntryBySummoners(Region region, long... summonerIds)</td>
+                    <td><span class="label label-danger">league-v2.5</span></td>
+                  </tr>
+                  <tr>
+                    <td>Map&ltString, List&ltLeague&gt&gt</td>
+                    <td>getLeagueByTeams(Region region, long... teamIds)</td>
+                    <td><span class="label label-danger">league-v2.5</span></td>
+                  </tr>
+                  <tr>
+                    <td>Map&ltString, List&ltLeague&gt&gt</td>
+                    <td>getLeagueEntryByTeams(Region region, long... teamIds)</td>
+                    <td><span class="label label-danger">league-v2.5</span></td>
+                  </tr>
+                  <tr>
+                    <td>League</td>
+                    <td>getChallengerLeagues(Region region, QueueType queueType)</td>
+                    <td><span class="label label-danger">league-v2.5</span></td>
+                  </tr>
+                  <tr>
+                    <td>ChampionList</td>
+                    <td>getDataChampionList(Region region, String locale, String version, boolean dataById, ChampData... champData)</td>
+                    <td><span class="label label-danger">lol-static-data-v1.2</span></td>
+                  </tr>
+                  <tr>
+                    <td>Champion</td>
+                    <td>getDataChampion(Region region, int id, String locale, String version, boolean dataById, ChampData... champData)</td>
+                    <td><span class="label label-danger">lol-static-data-v1.2</span></td>
+                  </tr>
+                  <tr>
+                    <td>ItemList</td>
+                    <td>getDataItemList(Region region, String locale, String version, ItemListData... itemListData)</td>
+                    <td><span class="label label-danger">lol-static-data-v1.2</span></td>
+                  </tr>
+                  <tr>
+                    <td>Item</td>
+                    <td>getDataItem(Region region, int id, String locale, String version, ItemData... itemData)</td>
+                    <td><span class="label label-danger">lol-static-data-v1.2</span></td>
+                  </tr>
+                  <tr>
+                    <td>Realm</td>
+                    <td>getDataRealm(Region region)</td>
+                    <td><span class="label label-danger">lol-static-data-v1.2</span></td>
+                  </tr>
+                  <tr>
+                    <td>RuneList</td>
+                    <td>getDataRuneList(Region region, String locale, String version, RuneListData... runeListData)</td>
+                    <td><span class="label label-danger">lol-static-data-v1.2</span></td>
+                  </tr>
+                  <tr>
+                    <td>Rune</td>
+                    <td>getDataRune(Region region, int id, String locale, String version, RuneData... runeData)</td>
+                    <td><span class="label label-danger">lol-static-data-v1.2</span></td>
+                  </tr>
+                  <tr>
+                    <td>MasteryList</td>
+                    <td>getDataMasteryList(Region region, String locale, String version, MasteryListData... masteryListData)</td>
+                    <td><span class="label label-danger">lol-static-data-v1.2</span></td>
+                  </tr>
+                  <tr>
+                    <td>Mastery</td>
+                    <td>getDataMastery(Region region, int id, String locale, String version, MasteryData... masteryData)</td>
+                    <td><span class="label label-danger">lol-static-data-v1.2</span></td>
+                  </tr>
+                  <tr>
+                    <td>SummonerSpellList</td>
+                    <td>getDataSummonerSpellList(Region region, String locale, String version, boolean dataById, SpellData... spellData)</td>
+                    <td><span class="label label-danger">lol-static-data-v1.2</span></td>
+                  </tr>
+                  <tr>
+                    <td>SummonerSpell</td>
+                    <td>getDataSummonerSpell(Region region, int id, String locale, String version, SpellData... spellData)</td>
+                    <td><span class="label label-danger">lol-static-data-v1.2</span></td>
+                  </tr>
+                  <tr>
+                    <td>List&ltString&gt</td>
+                    <td>getDataVersions(Region region)</td>
+                    <td><span class="label label-danger">lol-static-data-v1.2</span></td>
+                  </tr>
+                  <tr>
+                    <td>List&ltString&gt</td>
+                    <td>getDataLanguages(Region region)</td>
+                    <td><span class="label label-danger">lol-static-data-v1.2</span></td>
+                  </tr>
+                  <tr>
+                    <td>GameMapList</td>
+                    <td>getDataGameMapList(Region region, String locale, String version)</td>
+                    <td><span class="label label-danger">lol-static-data-v1.2</span></td>
+                  </tr>
+                  <tr>
+                    <td>LanguageStrings</td>
+                    <td>getDataLanguageStrings(Region region, String locale, String version)</td>
+                    <td><span class="label label-danger">lol-static-data-v1.2</span></td>
+                  </tr>
+                  <tr>
+                    <td>List&ltShard&gt</td>
+                    <td>getShards()</td>
+                    <td><span class="label label-danger">lol-status-v1.0</span></td>
+                  </tr>
+                  <tr>
+                    <td>ShardStatus</td>
+                    <td>getShardStatus(Region region)</td>
+                    <td><span class="label label-danger">lol-status-v1.0</span></td>
+                  </tr>
+                  <tr>
+                    <td>MatchDetail</td>
+                    <td>getMatch(Region region, long matchId)</td>
+                    <td><span class="label label-danger">match-v2.2</span></td>
+                  </tr>
+                  <tr>
+                    <td>PlayerHistory</td>
+                    <td>getMatchHistory(Region region, long summonerId, String championIds, String rankedQueues, int beginIndex, int endIndex)</td>
+                    <td><span class="label label-danger">matchhistory-v2.2</span></td>
+                  </tr>
+                   <tr>
+                    <td>RankedStats</td>
+                    <td>getRankedStats(Region region, Season season, long summonerId)</td>
+                    <td><span class="label label-danger">stats-v1.3</span></td>
+                  </tr>
+                  <tr>
+                    <td>PlayerStatsSummaryList</td>
+                    <td>getPlayerStatsSummary(Region region, Season season, long summonerId)</td>
+                    <td><span class="label label-danger">stats-v1.3</span></td>
+                  </tr>
+                  <tr>
+                    <td>Map&ltString, Summoner&gt</td>
+                    <td>getSummonersByName(Region region, String summonerNames)</td>
+                    <td><span class="label label-danger">summoner-v1.4</span></td>
+                  </tr>
+                  <tr>
+                    <td>Map&ltString, Summoner&gt</td>
+                    <td>getSummonersById(Region region, long... summonerIds)</td>
+                    <td><span class="label label-danger">summoner-v1.4</span></td>
+                  </tr>
+                  <tr>
+                    <td>Map&ltString, String&gt</td>
+                    <td>getSummonerNames(Region region, long... summonerIds)</td>
+                    <td><span class="label label-danger">summoner-v1.4</span></td>
+                  </tr>
+                  <tr>
+                    <td>Map&ltString, MasteryPages&gt</td>
+                    <td>getMasteryPages(Region region, String summonerIds)</td>
+                    <td><span class="label label-danger">summoner-v1.4</span></td>
+                  </tr>
+                  <tr>
+                    <td>Map&ltString, RunePages></td>
+                    <td>getRunePages(Region region, String summonerIds)</td>
+                    <td><span class="label label-danger">summoner-v1.4</span></td>
+                  </tr>
+                  <tr>
+                    <td>Map&ltString, List&ltTeam&gt&gt</td>
+                    <td>getTeamsBySummonerIds(Region region, long... summonerIds)</td>
+                    <td><span class="label label-danger">team-v2.4</span></td>
+                  </tr>
+                  <tr>
+                    <td>Map&ltString, Team&gt</td>
+                    <td>getTeamsByTeamIds(Region region, long... teamIds)</td>
+                    <td><span class="label label-danger">team-v2.4</span></td>
+                  </tr>
+                </tbody>
+              </table> 
+        </div>
+      </div>
 
-<p>If you would like to contribute to this repo, please send a pull request.</p>
+      <br>
 
-<h2>
-<a name="discussion" class="anchor" href="#discussion"><span class="octicon octicon-link"></span></a>Discussion</h2>
+      <div class="row">
+        <div class="col-lg-12">
+          <h2>Discussion</h2> 
+          <hr>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class ="well">
+            <p>Have a suggestion, complaint, or question? <a href="http://twitter.com/itsRithms">Tweet me</a> for a quick reply, or send me an <a href="mailto:tcaldwel@nmsu.edu">email</a>.</p>
+          </div>
+        </div>
+      </div>
 
-<p>Have a suggestion, complaint, or question? <a href="http://twitter.com/itsRithms">Tweet me</a> for a quick reply, or send me an email (<a href="mailto:tcaldwel@nmsu.edu">tcaldwel@nmsu.edu</a>).</p>
-      </section>
-    </div>
+      <div>
+        <footer class="footer">
+          <div class="pull-left">
+            &copy; Taylor Caldwell 2015
+          </div>
+         <div class="pull-right">
+            Created by <a href="https://github.com/rithms" style="text-decoration: none;">Rithms</a>
+          </div>
+        </footer>
+        <div>
+            <a href="https://twitter.com/itsRithms"><img src="images/icon.png" class="center-block"/></a>
+        </div>
+      </div>
+    </div> <!-- /container -->
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Riot-api-java maintained by <a href="https://github.com/rithms">rithms</a></p>
-      </footer>
-    </div>
 
-    
-
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="/assets/js/rithms.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
   </body>
 </html>
