@@ -12,18 +12,17 @@
 
     <link href="dist/css/rithms.min.css" rel="stylesheet">
 
+    <link href="dist/css/prettify.css" type="text/css" rel="stylesheet" />
+
     <!-- Custom styles -->
     <link href="dist/css/jumbotron-narrow.css" rel="stylesheet">
-
-    <!-- Syntax highlighting -->
-     <link href="dist/css/pygment_trac.css" rel="stylesheet">
 	 
 	 <!-- Bootstrap core CSS -->
     <link href="dist/css/bootstrap.css" rel="stylesheet">
 	
   </head>
 
-  <body>
+  <body onload="prettyPrint()">
 
     <div class="container">
       <div class="header">
@@ -103,26 +102,26 @@
             <div class ="well">
               <p>This library can be used strictly according to the <a href="https://developer.riotgames.com/api/methods">Riot API Documentation</a> like so:</p>
 
-<div class="highlight highlight-java"><pre><span class="kn">import</span> <span class="nn">java.util.Map</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">constant.Region</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">dto.Summoner.Summoner</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">main.java.riotapi.RiotApi</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">com.google.gson*</span><span class="o">;</span>
+<div><pre class="prettyprint linenums">
+import java.util.Map;
+import constant.Region;
+import dto.Summoner.Summoner;
+import main.java.riotapi.RiotApi;
+import com.google.gson*;
 
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Example</span> <span class="o">{</span>
+public class Example {
 
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+    public static void main(String[] args) {
 
-        <span class="n">RiotApi</span> <span class="n">api</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">RiotApi</span><span class="o">(</span><span class="s">"YOUR-API-KEY-HERE"</span><span class="o">);</span>
+        RiotApi api = new RiotApi("YOUR-API-KEY-HERE");
 
-        <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Summoner</span><span class="o">&gt;</span> <span class="n">summoners</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="na">getSummonersByName</span><span class="o">(</span><span class="n">Region</span><span class="o">.</span><span class="na">NA</span><span class="o">,</span> <span class="s">"rithms, tryndamere"</span><span class="o">);</span>
-        <span class="n">Summoner</span> <span class="n">summoner</span> <span class="o">=</span> <span class="n">summoners</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"rithms"</span><span class="o">);</span>
-        <span class="kt">long</span> <span class="n">id</span> <span class="o">=</span> <span class="n">summoner</span><span class="o">.</span><span class="na">getId</span><span class="o">();</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
-    <span class="o">}</span>
+        Map<String, Summoner> summoners = api.getSummonersByName(Region.NA, "rithms, tryndamere");
+        Summoner summoner = summoners.get("rithms");
+        long id = summoner.getId();
+        System.out.println(id);
+    }
 
-<span class="o">}</span>
-
+}
 </pre></div>
 
 </div>
@@ -131,51 +130,51 @@
 <p>Available accessors allow you to accomplish similar tasks in a different way.
 Below is an example of how to set your region. Because the region was set before a method was called, there is no need to pass in the region parameter. This is great for people that know they will only be working in one region when making multiple requests. The same can be done for the season.</p>
 
-<div class="highlight highlight-java"><pre><span class="kn">import</span> <span class="nn">java.util.Map</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">constant.Region</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">dto.Summoner.Summoner</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">main.java.riotapi.RiotApi</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">com.google.gson*</span><span class="o">;</span>
+<div><pre class="prettyprint linenums">
+import java.util.Map;
+import constant.Region;
+import dto.Summoner.Summoner;
+import main.java.riotapi.RiotApi;
+import com.google.gson*;
 
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Example</span> <span class="o">{</span>
+public class Example {
 
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+    public static void main(String[] args) {
 
-        <span class="n">RiotApi</span> <span class="n">api</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">RiotApi</span><span class="o">(</span><span class="s">"YOUR-API-KEY-HERE"</span><span class="o">);</span>
+        RiotApi api = new RiotApi("YOUR-API-KEY-HERE");
 
-        <span class="n">api</span><span class="o">.</span><span class="na">setRegion</span><span class="o">(</span><span class="n">Region</span><span class="o">.</span><span class="na">NA</span><span class="o">);</span>
-        <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Summoner</span><span class="o">&gt;</span> <span class="n">summoners</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="na">getSummonersByName</span><span class="o">(</span><span class="s">"rithms, tryndamere"</span><span class="o">);</span>
-        <span class="n">Summoner</span> <span class="n">summoner</span> <span class="o">=</span> <span class="n">summoners</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"rithms"</span><span class="o">);</span>
-        <span class="kt">long</span> <span class="n">id</span> <span class="o">=</span> <span class="n">summoner</span><span class="o">.</span><span class="na">getId</span><span class="o">();</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
-    <span class="o">}</span>
+        api.setRegion(Region.NA);
+        Map<String, Summoner> summoners = api.getSummonersByName("rithms, tryndamere");
+        Summoner summoner = summoners.get("rithms");
+        long id = summoner.getId();
+        System.out.println(id);
+    }
 
-<span class="o">}</span>
-
+}
 </pre></div>
 </div>
 
 <div class="well">
 <p>It is important to be aware of your personal rate limit. Any method call from the RiotAPI is a request that counts towards your rate limit, with exceptions to the accessors/mutators of region, key, and season, as well as any requests regarding static data. The below code makes 2 requests; one request for a summoner, and another for ranked stats of a summoner.</p>
 
-<div class="highlight highlight-java"><pre><span class="kn">import</span> <span class="nn">constant.Region</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">constant.Season</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">dto.Stats.RankedStats</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">main.java.riotapi.RiotApi</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">com.google.gson*</span><span class="o">;</span>
+<div><pre class="prettyprint linenums">
+import constant.Region;
+import constant.Season;
+import dto.Stats.RankedStats;
+import main.java.riotapi.RiotApi;
+import com.google.gson*;
 
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Example</span> <span class="o">{</span>
+public class Example {
 
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+    public static void main(String[] args) {
 
-        <span class="n">RiotApi</span> <span class="n">api</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">RiotApi</span><span class="o">(</span><span class="s">"YOUR-API-KEY-HERE"</span><span class="o">,</span> <span class="n">Region</span><span class="o">.</span><span class="na">NA</span><span class="o">);</span>
-        <span class="n">api</span><span class="o">.</span><span class="na">setSeason</span><span class="o">(</span><span class="n">Season</span><span class="o">.</span><span class="na">FOUR</span><span class="o">);</span>
+        RiotApi api = new RiotApi("YOUR-API-KEY-HERE", Region.NA);
+        api.setSeason(Season.FIVE);
 
-        <span class="n">RankedStats</span> <span class="n">rankedStats</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="na">getRankedStats</span><span class="o">(</span><span class="n">api</span><span class="o">.</span><span class="na">getSummonersByName</span><span class="o">(</span><span class="s">"rithms, tryndamere"</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="s">"rithms"</span><span class="o">).</span><span class="na">getId</span><span class="o">());</span>
-    <span class="o">}</span>
+        RankedStats rankedStats = api.getRankedStats(api.getSummonersByName("rithms, tryndamere").get("rithms").getId());
+    }
 
-<span class="o">}</span>
-
+}
 </pre></div>
 </div>
 
@@ -512,9 +511,10 @@ Below is an example of how to set your region. Because the region was set before
 
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script type="text/javascript" src="assets/js/prettify.js"></script>
     <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="/assets/js/rithms.js"></script>
-    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/rithms.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
   </body>
 </html>
