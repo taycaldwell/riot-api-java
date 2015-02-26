@@ -13,12 +13,14 @@ public class Request {
 
     public static String execute(String URL) throws RiotApiException {
 
+		HttpURLConnection connection = null;
+	
         try {
             String requestURL = URL;
 
             URL url = new URL(requestURL);
 
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection = (HttpURLConnection) url.openConnection();
             
 
             connection.setRequestMethod("GET");
@@ -46,7 +48,11 @@ public class Request {
 
         } catch (IOException ex) {
             Logger.getLogger(Request.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } finally {
+			if(connection != null){
+				connection.disconnect();
+			}
+		}
 
         return null;
 
