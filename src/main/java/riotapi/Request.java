@@ -13,29 +13,26 @@ public class Request {
 
     public static String execute(String URL) throws RiotApiException {
 
+        HttpURLConnection connection = null;
+
         try {
             String requestURL = URL;
-
             URL url = new URL(requestURL);
 
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            
-
+            connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
             connection.setInstanceFollowRedirects(false);
-           
 
             int responseCode = connection.getResponseCode();
-
             if (responseCode != 200) {
                 throw new RiotApiException(responseCode);
             }
 
             InputStream is = connection.getInputStream();
             BufferedReader rd = new BufferedReader(new InputStreamReader(is, "utf-8"));
-            String line;
             StringBuilder response = new StringBuilder();
 
+            String line;
             while ((line = rd.readLine()) != null) {
                 response.append(line);
                 response.append('\r');
@@ -43,13 +40,14 @@ public class Request {
 
             connection.disconnect();
             return response.toString();
-
         } catch (IOException ex) {
             Logger.getLogger(Request.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if(connection != null){
+                connection.disconnect();
+            }
         }
 
         return null;
-
     }
-
 }
