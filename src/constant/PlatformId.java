@@ -27,7 +27,8 @@ public enum PlatformId {
 		EUW("EUW1", "euw"),
 		KR("KR", "kr"),
 		RU("RU", "ru"),
-		TR("TR1", "tr");
+		TR("TR1", "tr"),
+		PBE("PBE1", "pbe");
 		
 	    private String id;
 	    private String name;
