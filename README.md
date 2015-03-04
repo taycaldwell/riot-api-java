@@ -1,3 +1,4 @@
+#[RIOT-API-JAVA](http://rithms.im/riot-api-java/)
 ----------
 [![JitPack](https://img.shields.io/github/tag/rithms/riot-api-java.svg?label=maven)](https://jitpack.io/#rithms/riot-api-java/v3.5.3)
 ----------
@@ -111,95 +112,14 @@ public class Example {
 
 ```
 
-## Android Example
-
-When using this library for Android development, you must be aware that all API calls are done over the network. Thus,
-every api call must be done off the main/UI thread. To do so, you can make use of [AsyncTask](http://developer.android.com/reference/android/os/AsyncTask.html).
-
-Here is a simple example making an API call using AsyncTask:
-
-```java
-public class MainActivity extends Activity{
- 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
- 
-        final Button button = (Button) findViewById(R.id.button1);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                FetchSummonerTask summonerTask = new FetchSummonerTask();
-                summonerTask.execute("summoner name");
-            }
-        });
- 
-    }
- 
-    public class FetchSummonerTask extends AsyncTask<String, Void, Summoner> {
- 
-        @Override
-        protected Summoner doInBackground(String... params) {
- 
-            try {
-                Summoner summoner = ((GlobalClass)getApplication()).getApi()
-                        .getSummonerByName(params[0])
-                        .get(params[0].replaceAll("\\s+", "").toLowerCase());
-                if(summoner != null) {
-                    return summoner;
-                }
-            } catch (RiotApiException e) {
-                e.printStackTrace();
-            }
- 
-            return null;
-        }
- 
-        @Override
-        protected void onPostExecute(Summoner result) {
-            super.onPostExecute(result);
-            if(result != null) {
-                TextView dis = (TextView) findViewById(R.id.textView1);
-                dis.setText(String.valueOf((result.getSummonerLevel())));
-            }
-        }
-    }
-}
-
-```
-
-Note this example makes use of a global class containing the RiotApi instance:
-
-```java
-import android.app.Application;
-import main.java.riotapi.RiotApi;
- 
-public class GlobalClass extends Application {
- 
-    private RiotApi api;
- 
-    public GlobalClass() {
-        this.api = new RiotApi("API-KEY");
-    }
- 
-    public RiotApi getApi() {
-        return api;
-    }
- 
-}
-```
-
-To read more about performing network operations in Android read [here.](http://developer.android.com/training/basics/network-ops/index.html)
-
-
 ## Documentation
 The documentation for this library can be found [here.](http://rithms.im/riot-api-java/doc/)
 
 ## API Versions
 The current version of this library supports the following Riot Games API versions:
 - **champion-v1.2 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
-- **current-game-v1.0 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
-- **featured-games-v1.0 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
+- **current-game-v1.0 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, PBE, RU, TR]**
+- **featured-games-v1.0 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, PBE, RU, TR]**
 - **game-v1.3 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
 - **league-v2.5 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
 - **lol-static-data-v1.2 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
@@ -213,14 +133,6 @@ The current version of this library supports the following Riot Games API versio
 ## Contributing
 All contributions are appreciated.
 If you would like to contribute to this repo, please send a pull request.
-
-## Credits/Contributors
-- [FriesischScott](https://github.com/FriesischScott)
-- [fKunstner](https://github.com/fKunstner)
-- [Linnun](https://github.com/Linnun)
-- [Haakjvork](https://github.com/Haakjvork)
-- [JitPack](https://github.com/jitpack)
-- [manuvaldes](https://github.com/manuvaldes)
 
 ## Discussion
 The discussion thread for this library can be found [here](https://developer.riotgames.com/discussion/riot-games-api/show/VmGxpdN8).
