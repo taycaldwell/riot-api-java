@@ -1,5 +1,7 @@
 package dto.Static;
 
+import java.io.Serializable;
+
 /*
  * Copyright 2015 Taylor Caldwell
  *
@@ -16,8 +18,9 @@ package dto.Static;
  * limitations under the License.
  */
 
-public class Stats {
+public class Stats implements Serializable {
 	
+	private static final long serialVersionUID = 7631639894093703038L;
 	private double armor, armorperlevel, attackdamage, attackdamageperlevel, attackrange,
 				attackspeedoffset, attackspeedperlevel, crit, critperlevel, hp, hpperlevel,
 				hpregen, hpregenperlevel, movespeed, mp, mpperlevel, mpregen, mpregenperlevel,
