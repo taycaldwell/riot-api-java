@@ -136,5 +136,33 @@ public final class LeagueMethod {
 
         return leagues;
     }
+    
+    public static League getMasterLeagues(String endpoint, String region, String key) throws RiotApiException {
+
+        String url = endpoint + region + VERSION + "league/naster/?type=RANKED_SOLO_5x5&api_key=" + key;
+        League leagues = null;
+
+        try {
+            leagues = new Gson().fromJson(Request.execute(url), League.class);
+        } catch (JsonSyntaxException e) {
+            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
+        }
+
+        return leagues;
+    }
+
+    public static League getMasterLeagues(String endpoint, String region, String key, QueueType queueType) throws RiotApiException {
+
+        String url = endpoint + region + VERSION + "league/master/?type=" + queueType.name() + "&api_key=" + key;
+        League leagues = null;
+
+        try {
+            leagues = new Gson().fromJson(Request.execute(url), League.class);
+        } catch (JsonSyntaxException e) {
+            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
+        }
+
+        return leagues;
+    }
 
 }

@@ -430,6 +430,47 @@ public class RiotApi {
 
         return LeagueMethod.getChallengerLeagues(getEndpoint(), getRegion(), getKey(), queueType);
     }
+    
+    /**
+     * 
+     * @param region
+     * @throws RiotApiException
+     */
+    public League getMasterLeagues(Region region) throws RiotApiException {
+
+        return LeagueMethod.getMasterLeagues(region.getEndpoint(), region.getName(), getKey());
+    }
+
+    /**
+     * 
+     * @throws RiotApiException
+     */
+    public League getMasterLeagues() throws RiotApiException {
+
+        return LeagueMethod.getMasterLeagues(getEndpoint(), getRegion(), getKey());
+    }
+
+    /**
+     * 
+     * @param region
+     * @param queueType
+     * @throws RiotApiException
+     */
+    public League getMasterLeagues(Region region, QueueType queueType) throws RiotApiException {
+
+        return LeagueMethod.getMasterLeagues(region.getEndpoint(), region.getName(), getKey(), queueType);
+    }
+
+    /**
+     * 
+     * @param queueType
+     * @throws RiotApiException
+     * @return League
+     */
+    public League getMasterLeagues(QueueType queueType) throws RiotApiException {
+
+        return LeagueMethod.getMasterLeagues(getEndpoint(), getRegion(), getKey(), queueType);
+    }
 
     /**
      * Get a summary of player statistics for a given summoner
