@@ -274,6 +274,10 @@ public class Example {
 
       <div class="row">
         <div class="col-lg-12">
+            <div>
+              <p>Rate Limit =  <span class="label label-success">api-version</span></p>
+              <p>No Limit =  <span class="label label-danger">api-version</span></p>
+            </div>
             <table class="table table-striped table-hover table-condensed">
                 <thead>
                   <tr>
@@ -286,52 +290,57 @@ public class Example {
                   <tr>
                     <td>ChampionList</td>
                     <td>getChampions(Region region, boolean freeToPlay)</td>
-                    <td><span class="label label-danger">champion-v1.2</span></td>
+                    <td><span class="label label-success">champion-v1.2</span></td>
                   </tr>
                   <tr>
                     <td>Champion</td>
                     <td>getChampionById(Region region, int champId)</td>
-                    <td><span class="label label-danger">champion-v1.2</span></td>
+                    <td><span class="label label-success">champion-v1.2</span></td>
                   </tr>
                   <tr>
                     <td>CurrentGameInfo</td>
                     <td>getCurrentGameInfo(PlatformId platformId, long summonerId)</td>
-                    <td><span class="label label-danger">current-game-v1.0</span></td>
+                    <td><span class="label label-success">current-game-v1.0</span></td>
                   </tr>
                   <tr>
                     <td>FeaturedGames</td>
                     <td>getFeaturedGames(Region region)</td>
-                    <td><span class="label label-danger">featured-games-v1.0</span></td>
+                    <td><span class="label label-success">featured-games-v1.0</span></td>
                   </tr>
                   <tr>
                     <td>RecentGames</td>
                     <td>getRecentGames(Region region, long summonerId)</td>
-                    <td><span class="label label-danger">game-v1.3</span></td>
+                    <td><span class="label label-success">game-v1.3</span></td>
                   </tr>
                   <tr>
                     <td>Map&ltString, List&ltLeague&gt&gt</td>
                     <td>getLeagueBySummoners(Region region, long... summonerIds)</td>
-                    <td><span class="label label-danger">league-v2.5</span></td>
+                    <td><span class="label label-success">league-v2.5</span></td>
                   </tr>
                   <tr>
                     <td>Map&ltString, List&ltLeague&gt&gt</td>
                     <td>getLeagueEntryBySummoners(Region region, long... summonerIds)</td>
-                    <td><span class="label label-danger">league-v2.5</span></td>
+                    <td><span class="label label-success">league-v2.5</span></td>
                   </tr>
                   <tr>
                     <td>Map&ltString, List&ltLeague&gt&gt</td>
                     <td>getLeagueByTeams(Region region, long... teamIds)</td>
-                    <td><span class="label label-danger">league-v2.5</span></td>
+                    <td><span class="label label-success">league-v2.5</span></td>
                   </tr>
                   <tr>
                     <td>Map&ltString, List&ltLeague&gt&gt</td>
                     <td>getLeagueEntryByTeams(Region region, long... teamIds)</td>
-                    <td><span class="label label-danger">league-v2.5</span></td>
+                    <td><span class="label label-success">league-v2.5</span></td>
                   </tr>
                   <tr>
                     <td>League</td>
                     <td>getChallengerLeagues(Region region, QueueType queueType)</td>
-                    <td><span class="label label-danger">league-v2.5</span></td>
+                    <td><span class="label label-success">league-v2.5</span></td>
+                  </tr>
+                  <tr>
+                    <td>League</td>
+                    <td>getMasterLeagues(Region region, QueueType queueType)</td>
+                    <td><span class="label label-success">league-v2.5</span></td>
                   </tr>
                   <tr>
                     <td>ChampionList</td>
@@ -421,57 +430,57 @@ public class Example {
                   <tr>
                     <td>MatchDetail</td>
                     <td>getMatch(Region region, long matchId)</td>
-                    <td><span class="label label-danger">match-v2.2</span></td>
+                    <td><span class="label label-success">match-v2.2</span></td>
                   </tr>
                   <tr>
                     <td>PlayerHistory</td>
                     <td>getMatchHistory(Region region, long summonerId, String championIds, String rankedQueues, int beginIndex, int endIndex)</td>
-                    <td><span class="label label-danger">matchhistory-v2.2</span></td>
+                    <td><span class="label label-success">matchhistory-v2.2</span></td>
                   </tr>
                    <tr>
                     <td>RankedStats</td>
                     <td>getRankedStats(Region region, Season season, long summonerId)</td>
-                    <td><span class="label label-danger">stats-v1.3</span></td>
+                    <td><span class="label label-success">stats-v1.3</span></td>
                   </tr>
                   <tr>
                     <td>PlayerStatsSummaryList</td>
                     <td>getPlayerStatsSummary(Region region, Season season, long summonerId)</td>
-                    <td><span class="label label-danger">stats-v1.3</span></td>
+                    <td><span class="label label-success">stats-v1.3</span></td>
                   </tr>
                   <tr>
                     <td>Map&ltString, Summoner&gt</td>
                     <td>getSummonersByName(Region region, String summonerNames)</td>
-                    <td><span class="label label-danger">summoner-v1.4</span></td>
+                    <td><span class="label label-success">summoner-v1.4</span></td>
                   </tr>
                   <tr>
                     <td>Map&ltString, Summoner&gt</td>
                     <td>getSummonersById(Region region, long... summonerIds)</td>
-                    <td><span class="label label-danger">summoner-v1.4</span></td>
+                    <td><span class="label label-success">summoner-v1.4</span></td>
                   </tr>
                   <tr>
                     <td>Map&ltString, String&gt</td>
                     <td>getSummonerNames(Region region, long... summonerIds)</td>
-                    <td><span class="label label-danger">summoner-v1.4</span></td>
+                    <td><span class="label label-success">summoner-v1.4</span></td>
                   </tr>
                   <tr>
                     <td>Map&ltString, MasteryPages&gt</td>
                     <td>getMasteryPages(Region region, String summonerIds)</td>
-                    <td><span class="label label-danger">summoner-v1.4</span></td>
+                    <td><span class="label label-success">summoner-v1.4</span></td>
                   </tr>
                   <tr>
                     <td>Map&ltString, RunePages></td>
                     <td>getRunePages(Region region, String summonerIds)</td>
-                    <td><span class="label label-danger">summoner-v1.4</span></td>
+                    <td><span class="label label-success">summoner-v1.4</span></td>
                   </tr>
                   <tr>
                     <td>Map&ltString, List&ltTeam&gt&gt</td>
                     <td>getTeamsBySummonerIds(Region region, long... summonerIds)</td>
-                    <td><span class="label label-danger">team-v2.4</span></td>
+                    <td><span class="label label-success">team-v2.4</span></td>
                   </tr>
                   <tr>
                     <td>Map&ltString, Team&gt</td>
                     <td>getTeamsByTeamIds(Region region, long... teamIds)</td>
-                    <td><span class="label label-danger">team-v2.4</span></td>
+                    <td><span class="label label-success">team-v2.4</span></td>
                   </tr>
                 </tbody>
               </table> 
