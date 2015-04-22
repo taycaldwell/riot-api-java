@@ -115,7 +115,9 @@ public class Example {
 
         RiotApi api = new RiotApi("YOUR-API-KEY-HERE");
 
-        Map<String, Summoner> summoners = api.getSummonersByName(Region.NA, "rithms, tryndamere");
+        Map&ltString, Summoner&gt summoners = 
+			api.getSummonersByName(Region.NA, "rithms, tryndamere");
+			
         Summoner summoner = summoners.get("rithms");
         long id = summoner.getId();
         System.out.println(id);
@@ -142,9 +144,11 @@ public class Example {
     public static void main(String[] args) {
 
         RiotApi api = new RiotApi("YOUR-API-KEY-HERE");
-
         api.setRegion(Region.NA);
-        Map<String, Summoner> summoners = api.getSummonersByName("rithms, tryndamere");
+		
+        Map&ltString, Summoner&gt summoners = 
+			api.getSummonersByName("rithms, tryndamere");
+			
         Summoner summoner = summoners.get("rithms");
         long id = summoner.getId();
         System.out.println(id);
@@ -171,7 +175,9 @@ public class Example {
         RiotApi api = new RiotApi("YOUR-API-KEY-HERE", Region.NA);
         api.setSeason(Season.FIVE);
 
-        RankedStats rankedStats = api.getRankedStats(api.getSummonersByName("rithms, tryndamere").get("rithms").getId());
+        RankedStats rankedStats = api.getRankedStats(
+				  api.getSummonersByName("rithms, tryndamere")
+				  .get("rithms").getId());
     }
 
 }
