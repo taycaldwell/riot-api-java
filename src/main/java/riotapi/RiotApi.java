@@ -724,26 +724,31 @@ public class RiotApi {
      *
      * @param region The desired region
      * @param summonerName The name of the desired summoner
-     * @return A map of desired summoners
+     * @return The desired summoner
      * @see Summoner
      * @throws RiotApiException
      */
-    public Map<String, Summoner> getSummonerByName(Region region, String summonerName) throws RiotApiException {
+    public Summoner getSummonerByName(Region region, String summonerName) throws RiotApiException {
 
-        return SummonerMethod.getSummonersByName(region.getEndpoint(), region.getName(), getKey(), summonerName);
+        Map<String, Summoner> summoners = SummonerMethod.getSummonersByName(region.getEndpoint(), region.getName(), getKey(), summonerName);
+        Summoner summoner = summoners.entrySet().iterator().next().getValue();
+        return summoner;
+        
     }
 
     /**
      * Get summoner by name
      *
      * @param summonerName The name of the desired summoner
-     * @return A map of desired summoners
+     * @return The desired summoner
      * @see Summoner
      * @throws RiotApiException
      */
-    public Map<String, Summoner> getSummonerByName(String summonerName) throws RiotApiException {
+    public Summoner getSummonerByName(String summonerName) throws RiotApiException {
 
-        return SummonerMethod.getSummonersByName(getEndpoint(), getRegion(), getKey(), summonerName);
+    	Map<String, Summoner> summoners = SummonerMethod.getSummonersByName(getEndpoint(), getRegion(), getKey(), summonerName);
+        Summoner summoner = summoners.entrySet().iterator().next().getValue();
+        return summoner;
     }
 
     /**
@@ -805,26 +810,30 @@ public class RiotApi {
      *
      * @param region The desired region
      * @param summonerId The ID of the desired summoner
-     * @return A map of desired summoners
+     * @return The desired summoner
      * @see Summoner
      * @throws RiotApiException
      */
-    public Map<String, Summoner> getSummonerById(Region region, long summonerId) throws RiotApiException {
+    public Summoner getSummonerById(Region region, long summonerId) throws RiotApiException {
 
-        return SummonerMethod.getSummonersById(region.getEndpoint(), region.getName(), getKey(), summonerId);
+    	Map<String, Summoner> summoners = SummonerMethod.getSummonersById(region.getEndpoint(), region.getName(), getKey(), summonerId);
+    	Summoner summoner = summoners.entrySet().iterator().next().getValue();
+        return summoner;
     }
 
     /**
      * Get summoners by names
      *
      * @param summonerId The IDs of the desired summoners
-     * @return A map of desired summoners
+     * @return The desired summoner
      * @see Summoner
      * @throws RiotApiException
      */
-    public Map<String, Summoner> getSummonerById(long summonerId) throws RiotApiException {
+    public Summoner getSummonerById(long summonerId) throws RiotApiException {
 
-        return SummonerMethod.getSummonersById(getEndpoint(), getRegion(), getKey(), summonerId);
+        Map<String, Summoner> summoners = SummonerMethod.getSummonersById(getEndpoint(), getRegion(), getKey(), summonerId);
+        Summoner summoner = summoners.entrySet().iterator().next().getValue();
+        return summoner;
     }
 
     /**
@@ -832,26 +841,31 @@ public class RiotApi {
      *
      * @param region The desired region
      * @param summonerId The IDs of the desired summoners
-     * @return A map of desired summoners
+     * @return The desired summoner
      * @see Summoner
      * @throws RiotApiException
      */
-    public Map<String, Summoner> getSummonerById(Region region, String summonerId) throws RiotApiException {
+    public Summoner getSummonerById(Region region, String summonerId) throws RiotApiException {
 
-        return SummonerMethod.getSummonersById(region.getEndpoint(), region.getName(), getKey(), summonerId);
+        Map<String, Summoner> summoners = SummonerMethod.getSummonersById(region.getEndpoint(), region.getName(), getKey(), summonerId);
+        Summoner summoner = summoners.entrySet().iterator().next().getValue();
+        return summoner;
     }
 
     /**
      * Get summoners by names
      *
+     * @param region The desired region
      * @param summonerId The IDs of the desired summoners
-     * @return A map of desired summoners
+     * @return The desired summoner
      * @see Summoner
      * @throws RiotApiException
      */
-    public Map<String, Summoner> getSummonerById(String summonerId) throws RiotApiException {
+    public Summoner getSummonerById(String summonerId) throws RiotApiException {
 
-        return SummonerMethod.getSummonersById(getEndpoint(), getRegion(), getKey(), summonerId);
+    	Map<String, Summoner> summoners = SummonerMethod.getSummonersById(getEndpoint(), getRegion(), getKey(), summonerId);
+    	Summoner summoner = summoners.entrySet().iterator().next().getValue();
+        return summoner;
     }
 
     /**
@@ -909,37 +923,44 @@ public class RiotApi {
      *
      * @param region The desired region
      * @param summonerId The IDs of the desired summoner
-     * @return A map of desired summoner names
+     * @return The desired summoner name
      * @throws RiotApiException
      */
-    public Map<String, String> getSummonerName(Region region, long summonerId) throws RiotApiException {
+    public String getSummonerName(Region region, long summonerId) throws RiotApiException {
 
-        return SummonerMethod.getSummonerNames(region.getEndpoint(), region.getName(), getKey(), summonerId);
-    }
-
-    /**
-     * Get summoner names by IDs
-     *
-     * @param summonerId The IDs of the desired summoner
-     * @return A map of desired summoner names
-     * @throws RiotApiException
-     */
-    public Map<String, String> getSummonerName(long summonerId) throws RiotApiException {
-
-        return SummonerMethod.getSummonerNames(getEndpoint(), getRegion(), getKey(), summonerId);
+    	Map<String, String> summoners = SummonerMethod.getSummonerNames(region.getEndpoint(), region.getName(), getKey(), summonerId);
+    	String name = summoners.entrySet().iterator().next().getValue();
+        return name;
     }
 
     /**
      * Get summoner names by IDs
      *
      * @param region The desired region
-     * @param summonerId The ID of the desired summoner
-     * @return A map of desired summoner names
+     * @param summonerId The IDs of the desired summoner
+     * @return The desired summoner name
      * @throws RiotApiException
      */
-    public Map<String, String> getSummonerName(Region region, String summonerId) throws RiotApiException {
+    public String getSummonerName(long summonerId) throws RiotApiException {
 
-        return SummonerMethod.getSummonerNames(region.getEndpoint(), region.getName(), getKey(), summonerId);
+    	Map<String, String> summoners = SummonerMethod.getSummonerNames(getEndpoint(), getRegion(), getKey(), summonerId);
+        String name = summoners.entrySet().iterator().next().getValue();
+        return name;
+    }
+
+    /**
+     * Get summoner names by IDs
+     *
+     * @param region The desired region
+     * @param summonerId The IDs of the desired summoner
+     * @return The desired summoner name
+     * @throws RiotApiException
+     */
+    public String getSummonerName(Region region, String summonerId) throws RiotApiException {
+
+        Map<String, String> summoners = SummonerMethod.getSummonerNames(region.getEndpoint(), region.getName(), getKey(), summonerId);
+        String name = summoners.entrySet().iterator().next().getValue();
+        return name;
     }
 
     /**
@@ -949,9 +970,11 @@ public class RiotApi {
      * @return A map of desired summoner names
      * @throws RiotApiException
      */
-    public Map<String, String> getSummonerName(String summonerId) throws RiotApiException {
+    public String getSummonerName(String summonerId) throws RiotApiException {
 
-        return SummonerMethod.getSummonerNames(getEndpoint(), getRegion(), getKey(), summonerId);
+    	Map<String, String> summoners = SummonerMethod.getSummonerNames(getEndpoint(), getRegion(), getKey(), summonerId);
+    	String name = summoners.entrySet().iterator().next().getValue();
+        return name;
     }
 
     /**
