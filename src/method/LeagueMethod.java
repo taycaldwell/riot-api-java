@@ -139,7 +139,7 @@ public final class LeagueMethod {
     
     public static League getMasterLeagues(String endpoint, String region, String key) throws RiotApiException {
 
-        String url = endpoint + region + VERSION + "league/naster/?type=RANKED_SOLO_5x5&api_key=" + key;
+        String url = endpoint + region + VERSION + "league/master/?type=RANKED_SOLO_5x5&api_key=" + key;
         League leagues = null;
 
         try {
