@@ -105,7 +105,7 @@ public class Example {
 ```
 
 ## Documentation
-The documentation for this library can be found [here.](http://rithms.im/riot-api-java/doc/)
+The documentation for this library can be found [here.](http://rithms.net/riot-api-java/doc/)
 
 ## Contributing
 All contributions are appreciated.
