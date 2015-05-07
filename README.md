@@ -1,4 +1,4 @@
-#[RIOT-API-JAVA](http://rithms.im/riot-api-java/)
+#[RIOT-API-JAVA](http://rithms.net/riot-api-java/)
 ----------
 [![JitPack](https://img.shields.io/github/tag/rithms/riot-api-java.svg?label=maven)](https://jitpack.io/#rithms/riot-api-java/v3.5.6)
 ----------
@@ -113,7 +113,7 @@ public class Example {
 ```
 
 ## Documentation
-The documentation for this library can be found [here.](http://rithms.im/riot-api-java/doc/)
+The documentation for this library can be found [here.](http://rithms.net/riot-api-java/doc/)
 
 ## API Versions
 The current version of this library supports the following Riot Games API versions:
