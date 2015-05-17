@@ -1,4 +1,4 @@
-package method;
+package main.java.riotapi;
 
 /*
  * Copyright 2014 Taylor Caldwell
@@ -17,11 +17,10 @@ package method;
  */
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
-import dto.Match.MatchDetail;
-import main.java.riotapi.Request;
-import main.java.riotapi.RiotApiException;
 
-public final class MatchMethod {
+import dto.Match.MatchDetail;
+
+final class MatchApi {
 	
 	private static final String VERSION = "/v2.2/";
 

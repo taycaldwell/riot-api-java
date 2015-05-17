@@ -1,4 +1,4 @@
-package method;
+package main.java.riotapi;
 
 /*
  * Copyright 2014 Taylor Caldwell
@@ -26,10 +26,8 @@ import com.google.gson.reflect.TypeToken;
 
 import constant.QueueType;
 import dto.League.League;
-import main.java.riotapi.Request;
-import main.java.riotapi.RiotApiException;
 
-public final class LeagueMethod {
+final class LeagueApi {
 	
 	private static final String VERSION = "/v2.5/";
 

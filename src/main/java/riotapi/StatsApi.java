@@ -1,4 +1,4 @@
-package method;
+package main.java.riotapi;
 
 /*
  * Copyright 2014 Taylor Caldwell
@@ -20,10 +20,8 @@ import com.google.gson.JsonSyntaxException;
 
 import dto.Stats.PlayerStatsSummaryList;
 import dto.Stats.RankedStats;
-import main.java.riotapi.Request;
-import main.java.riotapi.RiotApiException;
 
-public final class StatsMethod {
+final class StatsApi {
 	
 	private static final String VERSION = "/v1.3/";
 

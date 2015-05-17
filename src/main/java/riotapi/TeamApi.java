@@ -1,4 +1,4 @@
-package method;
+package main.java.riotapi;
 
 /*
  * Copyright 2014 Taylor Caldwell
@@ -25,10 +25,8 @@ import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
 import dto.Team.Team;
-import main.java.riotapi.Request;
-import main.java.riotapi.RiotApiException;
 
-public final class TeamMethod {
+final class TeamApi {
 
 	private static final String VERSION = "/v2.4/";
 	

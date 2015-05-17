@@ -1,4 +1,4 @@
-package method;
+package main.java.riotapi;
 
 /*
  * Copyright 2014 Taylor Caldwell
@@ -16,15 +16,15 @@ package method;
  * limitations under the License.
  */
 import java.util.List;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
-import main.java.riotapi.Request;
-import main.java.riotapi.RiotApiException;
+
 import dto.Status.Shard;
 import dto.Status.ShardStatus;
 
-public final class StatusMethod {
+final class StatusApi {
 
 	private static final String VERSION = "/v1.0/";
 	

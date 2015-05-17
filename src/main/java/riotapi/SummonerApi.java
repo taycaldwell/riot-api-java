@@ -1,4 +1,4 @@
-package method;
+package main.java.riotapi;
 
 /*
  * Copyright 2014 Taylor Caldwell
@@ -18,6 +18,7 @@ package method;
 import java.util.Map;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+
 import util.Convert;
 
 import com.google.gson.Gson;
@@ -27,10 +28,8 @@ import com.google.gson.reflect.TypeToken;
 import dto.Summoner.MasteryPages;
 import dto.Summoner.RunePages;
 import dto.Summoner.Summoner;
-import main.java.riotapi.Request;
-import main.java.riotapi.RiotApiException;
 
-public final class SummonerMethod {
+final class SummonerApi {
 
 	private static final String VERSION = "/v1.4/";
 	

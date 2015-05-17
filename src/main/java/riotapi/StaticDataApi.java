@@ -1,4 +1,4 @@
-package method;
+package main.java.riotapi;
 
 /*
  * Copyright 2014 Taylor Caldwell
@@ -16,9 +16,11 @@ package method;
  * limitations under the License.
  */
 import java.util.List;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
+
 import constant.staticdata.ChampData;
 import constant.staticdata.ItemData;
 import constant.staticdata.ItemListData;
@@ -40,10 +42,8 @@ import dto.Static.Rune;
 import dto.Static.RuneList;
 import dto.Static.SummonerSpell;
 import dto.Static.SummonerSpellList;
-import main.java.riotapi.Request;
-import main.java.riotapi.RiotApiException;
 
-public final class StaticDataMethod {
+final class StaticDataApi {
 	
 	private static final String VERSION = "/v1.2/";
 	private static final String STATIC_DATA_ENDPOINT = "https://global.api.pvp.net/api/lol/static-data/";

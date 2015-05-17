@@ -1,4 +1,4 @@
-package method;
+package main.java.riotapi;
 
 /*
  * Copyright 2015 Taylor Caldwell
@@ -15,15 +15,13 @@ package method;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import main.java.riotapi.Request;
-import main.java.riotapi.RiotApiException;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
+
 import constant.PlatformId;
 import dto.CurrentGame.CurrentGameInfo;
 
-
-public final class CurrentGameMethod {
+final class CurrentGameApi {
 
 	private static final String VERSION = "/v1.0/";
 	
