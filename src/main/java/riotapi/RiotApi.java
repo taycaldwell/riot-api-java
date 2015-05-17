@@ -745,7 +745,6 @@ public class RiotApi {
      */
     public Summoner getSummonerByName(String summonerName) throws RiotApiException {
     	
-    	System.out.println("Hello");
     	Map<String, Summoner> summoners = SummonerApi.getSummonersByName(getEndpoint(), getRegion(), getKey(), summonerName);
         Summoner summoner = summoners.entrySet().iterator().next().getValue();
         return summoner;
