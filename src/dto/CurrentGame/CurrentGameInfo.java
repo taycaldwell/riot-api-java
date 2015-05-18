@@ -28,6 +28,7 @@ public class CurrentGameInfo implements Serializable {
 	private Observer observers;
 	private long gameId, gameLength, gameQueueConfigId, gameStartTime,
 				gameTypeConfigId, mapId;
+	private TeamInfo teamInfoOne, teamInfoTwo;
 	
 	public List<BannedChampion> getBannedChampions() {
 		return bannedChampions;
@@ -75,6 +76,14 @@ public class CurrentGameInfo implements Serializable {
 	
 	public long getMapId() {
 		return mapId;
+	}
+	
+	public TeamInfo getTeamInfoOne(){
+		return teamInfoOne;
+	}
+	
+	public TeamInfo getTeamInfoTwo(){
+		return teamInfoTwo;
 	}
 	
 }
