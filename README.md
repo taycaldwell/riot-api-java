@@ -43,7 +43,7 @@ import com.google.gson*;
 
 public class Example {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws RiotApiException {
 		
 		RiotApi api = new RiotApi("YOUR-API-KEY-HERE");
 
@@ -71,7 +71,7 @@ import com.google.gson*;
 
 public class Example {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws RiotApiException {
 		
 		RiotApi api = new RiotApi("YOUR-API-KEY-HERE");
 		
@@ -100,7 +100,7 @@ import com.google.gson*;
 
 public class Example {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws RiotApiException {
 		
 		RiotApi api = new RiotApi("YOUR-API-KEY-HERE", Region.NA);
 		api.setSeason(Season.FIVE);
