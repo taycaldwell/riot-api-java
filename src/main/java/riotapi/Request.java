@@ -42,12 +42,11 @@ public class Request {
             return response.toString();
         } catch (IOException ex) {
             Logger.getLogger(Request.class.getName()).log(Level.SEVERE, null, ex);
+            throw new RiotApiException(RiotApiException.NO_INTERNET);
         } finally {
             if(connection != null){
                 connection.disconnect();
             }
         }
-
-        return null;
     }
 }
