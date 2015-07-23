@@ -37,7 +37,9 @@ public enum PlayerStatSummaryType {
 		NightmareBot("Summoner's Rift Nightmare Bots"),
 		Ascension("Ascension"),
 		Hexakill("Twisted Treeline 6x6 Hexakill"),
-		KingPoro("King Poro");
+		KingPoro("King Poro"),
+		CounterPick("Nemesis"),
+		Bilgewater("Black Market Brawlers");
 		
 	    private String name;
 	    
