@@ -51,8 +51,10 @@ public enum QueueType {
 		NIGHTMARE_BOT_5x5_RANK5("Doom Bots Rank 5", 93),
 		ASCENSION_5x5("Ascension", 96),
 		HEXAKILL("Twisted Treeline 6x6 Hexakill", 98),
+		BILGEWATER_ARAM_5x5("Butcher's Bridge", 100),
 		KING_PORO_5x5("King Poro", 300),
-		COUNTER_PICK("Nemesis Draft", 301);
+		COUNTER_PICK("Nemesis Draft", 310),
+		BILGEWATER_5x5("Black Market Brawlers", 313);
 
 	    private String name;
 	    private int gameQueueConfigId;
