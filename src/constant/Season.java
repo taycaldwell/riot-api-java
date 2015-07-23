@@ -17,11 +17,14 @@ package constant;
  */
 	
 public enum Season {
-	
-		Season3("SEASON3"),
+			
+		PRESEASON3("PRESEASON3"),
+                Season3("SEASON3"),
 		Season4("SEASON2014"),
 		Season5("SEASON2015"),
+		PRESEASON2014("PRESEASON2014"),
 		Season2014("SEASON2014"),
+		PRESEASON2015("PRESEASON2015"),
 		Season2015("SEASON2015"),
 		THREE("SEASON3"),
 		FOUR("SEASON2014"),
