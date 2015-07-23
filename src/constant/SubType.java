@@ -39,7 +39,8 @@ public enum SubType {
 		ASCENSION("Ascension"),
 		HEXAKILL("Twisted Treeline 6x6 Hexakill"),
 		KING_PORO("King Poro"),
-		COUNTER_PICK("Nemesis Draft");
+		COUNTER_PICK("Nemesis Draft"),
+		BILGEWATER("Black Market Brawlers");
 		
 		
 	    private String name;
