@@ -111,13 +111,11 @@ import com.google.gson*;
 
 public class Example {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws RiotApiException {
 
         RiotApi api = new RiotApi("YOUR-API-KEY-HERE");
 
-        Map&ltString, Summoner&gt summoners = 
-			api.getSummonersByName(Region.NA, "rithms, tryndamere");
-			
+        Map<String, Summoner> summoners = api.getSummonersByName(Region.NA, "rithms, tryndamere");
         Summoner summoner = summoners.get("rithms");
         long id = summoner.getId();
         System.out.println(id);
@@ -141,14 +139,12 @@ import com.google.gson*;
 
 public class Example {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws RiotApiException {
 
         RiotApi api = new RiotApi("YOUR-API-KEY-HERE");
+
         api.setRegion(Region.NA);
-		
-        Map&ltString, Summoner&gt summoners = 
-			api.getSummonersByName("rithms, tryndamere");
-			
+        Map<String, Summoner> summoners = api.getSummonersByName("rithms, tryndamere");
         Summoner summoner = summoners.get("rithms");
         long id = summoner.getId();
         System.out.println(id);
@@ -170,14 +166,12 @@ import com.google.gson*;
 
 public class Example {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws RiotApiException {
 
         RiotApi api = new RiotApi("YOUR-API-KEY-HERE", Region.NA);
         api.setSeason(Season.FIVE);
 
-        RankedStats rankedStats = api.getRankedStats(
-				  api.getSummonersByName("rithms, tryndamere")
-				  .get("rithms").getId());
+        RankedStats rankedStats = api.getRankedStats(api.getSummonersByName("rithms, tryndamere").get("rithms").getId());
     }
 
 }
@@ -241,6 +235,11 @@ public class Example {
                   </tr>
                   <tr>
                     <td>match-v2.2</td>
+                    <td>[BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]</td>
+                    <td><span class="label label-success">Yes</span></td>
+                  </tr>
+				  <tr>
+                    <td>matchlist-v2.2</td>
                     <td>[BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]</td>
                     <td><span class="label label-success">Yes</span></td>
                   </tr>
@@ -439,9 +438,9 @@ public class Example {
                     <td><span class="label label-success">match-v2.2</span></td>
                   </tr>
                   <tr>
-                    <td>PlayerHistory</td>
-                    <td>getMatchHistory(Region region, long summonerId, String championIds, String rankedQueues, int beginIndex, int endIndex)</td>
-                    <td><span class="label label-success">matchhistory-v2.2</span></td>
+                    <td>MatchList</td>
+                    <td>getMatchList(Region region, long summonerId, String championIds, String rankedQueues, String seasons, long beginTime, long endTime, int beginIndex, int endIndex)</td>
+                    <td><span class="label label-success">matchlist-v2.2</span></td>
                   </tr>
                    <tr>
                     <td>RankedStats</td>
