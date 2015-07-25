@@ -44,6 +44,7 @@ import dto.Game.RecentGames;
 import dto.League.League;
 import dto.Match.MatchDetail;
 import dto.MatchHistory.PlayerHistory;
+import dto.MatchList.MatchList;
 import dto.Team.Team;
 import dto.Static.ChampionList;
 import dto.Static.GameMapList;
@@ -1098,6 +1099,7 @@ public class RiotApi {
      * @return A list with matches
      * @see PlayerHistory
      * @throws RiotApiException
+     * @deprecated As of release 3.6.0, replaced by {@link #getMatchList(Region, long, String, String, String, long, long, int, int)}
      */
     public PlayerHistory getMatchHistory(Region region, long summonerId, String championIds, String rankedQueues, int beginIndex, int endIndex) throws RiotApiException {
 
@@ -1115,6 +1117,7 @@ public class RiotApi {
      * @return A list with matches
      * @see PlayerHistory
      * @throws RiotApiException
+     * @deprecated As of release 3.6.0, replaced by {@link #getMatchList(Region, long, String, String, String, long, long, int, int)}
      */
     public PlayerHistory getMatchHistory(Region region, long summonerId, String championIds, String rankedQueues, int beginIndex) throws RiotApiException {
 
@@ -1131,6 +1134,7 @@ public class RiotApi {
      * @return A list with matches
      * @see PlayerHistory
      * @throws RiotApiException
+     * @deprecated As of release 3.6.0, replaced by {@link #getMatchList(Region, long, String, String, String, long, long, int, int)}
      */
     public PlayerHistory getMatchHistory(Region region, long summonerId, String championIds, String rankedQueues) throws RiotApiException {
 
@@ -1148,6 +1152,7 @@ public class RiotApi {
      * @return A list with matches
      * @see PlayerHistory
      * @throws RiotApiException
+     * @deprecated As of release 3.6.0, replaced by {@link #getMatchList(Region, long, String, String, String, long, long, int, int)}
      */
    public PlayerHistory getMatchHistory(Region region, long summonerId, String rankedQueues, int beginIndex, int endIndex) throws RiotApiException {
 
@@ -1164,6 +1169,7 @@ public class RiotApi {
     * @return A list with matches
     * @see PlayerHistory
     * @throws RiotApiException
+    * @deprecated As of release 3.6.0, replaced by {@link #getMatchList(Region, long, String, String, String, long, long, int, int)}
     */
   public PlayerHistory getMatchHistory(Region region, long summonerId, String rankedQueues, int beginIndex) throws RiotApiException {
 
@@ -1180,6 +1186,7 @@ public class RiotApi {
     * @return A list with matches
     * @see PlayerHistory
     * @throws RiotApiException
+    * @deprecated As of release 3.6.0, replaced by {@link #getMatchList(Region, long, String, String, String, long, long, int, int)}
     */
    public PlayerHistory getMatchHistory(Region region, long summonerId, int beginIndex, int endIndex) throws RiotApiException {
 
@@ -1195,6 +1202,7 @@ public class RiotApi {
     * @return A list with matches
     * @see PlayerHistory
     * @throws RiotApiException
+    * @deprecated As of release 3.6.0, replaced by {@link #getMatchList(Region, long, String, String, String, long, long, int, int)}
     */
    public PlayerHistory getMatchHistory(Region region, long summonerId, int beginIndex) throws RiotApiException {
 
@@ -1209,6 +1217,7 @@ public class RiotApi {
     * @return A list with matches
     * @see PlayerHistory
     * @throws RiotApiException
+    * @deprecated As of release 3.6.0, replaced by {@link #getMatchList(Region, long)}
     */
     public PlayerHistory getMatchHistory(Region region, long summonerId) throws RiotApiException {
 
@@ -1226,6 +1235,7 @@ public class RiotApi {
      * @return A list with matches
      * @see PlayerHistory
      * @throws RiotApiException
+     * @deprecated As of release 3.6.0, replaced by {@link #getMatchList(long, String, String, String, long, long, int, int)}
      */
     public PlayerHistory getMatchHistory(long summonerId, String championIds, String rankedQueues, int beginIndex, int endIndex) throws RiotApiException {
 
@@ -1242,6 +1252,7 @@ public class RiotApi {
      * @return A list with matches
      * @see PlayerHistory
      * @throws RiotApiException
+     * @deprecated As of release 3.6.0, replaced by {@link #getMatchList(long, String, String, String, long, long, int, int)}
      */
     public PlayerHistory getMatchHistory(long summonerId, String championIds, String rankedQueues, int beginIndex) throws RiotApiException {
 
@@ -1257,6 +1268,7 @@ public class RiotApi {
      * @return A list with matches
      * @see PlayerHistory
      * @throws RiotApiException
+     * @deprecated As of release 3.6.0, replaced by {@link #getMatchList(long, String, String, String, long, long, int, int)}
      */
     public PlayerHistory getMatchHistory(long summonerId, String championIds, String rankedQueues) throws RiotApiException {
 
@@ -1273,6 +1285,7 @@ public class RiotApi {
      * @return A list with matches
      * @see PlayerHistory
      * @throws RiotApiException
+     * @deprecated As of release 3.6.0, replaced by {@link #getMatchList(long, String, String, String, long, long, int, int)}
      */
     public PlayerHistory getMatchHistory(long summonerId, String rankedQueues, int beginIndex, int endIndex) throws RiotApiException {
 
@@ -1288,6 +1301,7 @@ public class RiotApi {
      * @return A list with matches
      * @see PlayerHistory
      * @throws RiotApiException
+     * @deprecated As of release 3.6.0, replaced by {@link #getMatchList(long, String, String, String, long, long, int, int)}
      */
     public PlayerHistory getMatchHistory(long summonerId, String rankedQueues, int beginIndex) throws RiotApiException {
 
@@ -1303,6 +1317,7 @@ public class RiotApi {
      * @return A list with matches
      * @see PlayerHistory
      * @throws RiotApiException
+     * @deprecated As of release 3.6.0, replaced by {@link #getMatchList(long, String, String, String, long, long, int, int)}
      */
     public PlayerHistory getMatchHistory(long summonerId, int beginIndex, int endIndex) throws RiotApiException {
 
@@ -1317,6 +1332,7 @@ public class RiotApi {
      * @return A list with matches
      * @see PlayerHistory
      * @throws RiotApiException
+     * @deprecated As of release 3.6.0, replaced by {@link #getMatchList(long, String, String, String, long, long, int, int)}
      */
     public PlayerHistory getMatchHistory(long summonerId, int beginIndex) throws RiotApiException {
 
@@ -1330,10 +1346,81 @@ public class RiotApi {
      * @return A list with matches
      * @see PlayerHistory
      * @throws RiotApiException
+     * @deprecated As of release 3.6.0, replaced by {@link #getMatchList(long)}
      */
     public PlayerHistory getMatchHistory(long summonerId) throws RiotApiException {
 
         return MatchHistoryApi.getMatchHistory(getEndpoint(), getRegion(), getKey(), summonerId, null, null, -1, -1);
+    }
+    
+    //
+    
+    /**
+     * Get match list by summonerID
+     *
+     * @param region The desired region
+     * @param summonerId The ID of the desired summoner
+     * @param championIds Comma-separated list of champion IDs to use for fetching games.
+     * @param rankedQueues Comma-separated list of ranked queue types to use for fetching games
+     * @param seasons Comma-separated list of seasons to use for fetching games.
+     * @param beginTime The begin time to use for fetching games specified as epoch milliseconds.
+     * @param endTime The end time to use for fetching games specified as epoch milliseconds.
+     * @param beginIndex The begin index to use for fetching games
+     * @param endIndex The end index to use for fetching games
+     * @return A list with matches
+     * @see MatchList
+     * @throws RiotApiException
+     */
+    public MatchList getMatchList(Region region, long summonerId, String championIds, String rankedQueues, String seasons, long beginTime, long endTime, int beginIndex, int endIndex) throws RiotApiException {
+
+        return MatchListApi.getMatchList(region.getEndpoint(), region.getName(), getKey(), summonerId, championIds, rankedQueues, seasons, beginTime, endTime, beginIndex, endIndex);
+    }
+    
+    /**
+     * Get match list by summonerID
+     *
+     * @param region The desired region
+     * @param summonerId The ID of the desired summoner
+     * @return A list with matches
+     * @see MatchList
+     * @throws RiotApiException
+     */
+    public MatchList getMatchList(Region region, long summonerId) throws RiotApiException {
+
+        return MatchListApi.getMatchList(region.getEndpoint(), region.getName(), getKey(), summonerId, null, null, null, -1, -1, -1, -1);
+    }
+    
+    /**
+     * Get match list by summonerID
+     *
+     * @param summonerId The ID of the desired summoner
+     * @param championIds Comma-separated list of champion IDs to use for fetching games.
+     * @param rankedQueues Comma-separated list of ranked queue types to use for fetching games
+     * @param seasons Comma-separated list of seasons to use for fetching games.
+     * @param beginTime The begin time to use for fetching games specified as epoch milliseconds.
+     * @param endTime The end time to use for fetching games specified as epoch milliseconds.
+     * @param beginIndex The begin index to use for fetching games
+     * @param endIndex The end index to use for fetching games
+     * @return A list with matches
+     * @see MatchList
+     * @throws RiotApiException
+     */
+    public MatchList getMatchList(long summonerId, String championIds, String rankedQueues, String seasons, long beginTime, long endTime, int beginIndex, int endIndex) throws RiotApiException {
+
+        return MatchListApi.getMatchList(getEndpoint(), getRegion(), getKey(), summonerId, championIds, rankedQueues, seasons, beginTime, endTime, beginIndex, endIndex);
+    }
+    
+    /**
+     * Get match list by summonerID
+     *
+     * @param summonerId The ID of the desired summoner
+     * @return A list with matches
+     * @see MatchList
+     * @throws RiotApiException
+     */
+    public MatchList getMatchList(long summonerId) throws RiotApiException {
+
+        return MatchListApi.getMatchList(getEndpoint(), getRegion(), getKey(), summonerId, null, null, null, -1, -1, -1, -1);
     }
 
     /**
