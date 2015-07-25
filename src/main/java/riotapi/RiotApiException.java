@@ -11,6 +11,7 @@ public class RiotApiException extends Exception {
     public static final int FORBIDDEN = 403;
     public static final int DATA_NOT_FOUND = 404;
     public static final int UNAUTHORIZED = 401;
+    public static final int UNPROCESSABLE_ENTITY = 422;
     public static final int RATE_LIMITED = 429;
     public static final int SERVER_ERROR = 500;
     public static final int UNAVAILABLE = 503;
@@ -33,6 +34,8 @@ public class RiotApiException extends Exception {
                 return "Requested data not found";
             case PARSE_FAILURE:
                 return "Failed to parse Riot's JSON response";
+            case UNPROCESSABLE_ENTITY:
+                return "Summoner has an entry, but hasn't played since the start of 2013";
             case RATE_LIMITED:
                 return "Rate limit exceeded";
             case SERVER_ERROR:
