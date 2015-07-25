@@ -42,7 +42,6 @@ public enum SubType {
 		COUNTER_PICK("Nemesis Draft"),
 		BILGEWATER("Black Market Brawlers");
 		
-		
 	    private String name;
 	    
 	    SubType(String name) {

@@ -31,7 +31,7 @@ public enum Map {
         SUMMONERS_RIFT_2014(11, "Summoner's Rift"),
 		HOWLING_ABYSS(12, "Howling Abyss"),
 		ARAM(12, "Howling Abyss"),
-                BUTCHERS_BRIDGE(14,"Butcher's Bridge");
+		BUTCHERS_BRIDGE(14,"Butcher's Bridge");
 
 	    private int id;
 	    private String name;
