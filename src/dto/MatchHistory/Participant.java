@@ -19,6 +19,9 @@ import java.util.List;
  * limitations under the License.
  */
 
+/**
+ * @deprecated  As of release 3.6.0
+ */
 public class Participant implements Serializable {
 	
 	private static final long serialVersionUID = -1886229349020943037L;

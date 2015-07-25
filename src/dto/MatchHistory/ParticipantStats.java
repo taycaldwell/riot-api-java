@@ -18,6 +18,9 @@ import java.io.Serializable;
  * limitations under the License.
  */
 
+/**
+ * @deprecated  As of release 3.6.0
+ */
 public class ParticipantStats implements Serializable {
 	
 	private static final long serialVersionUID = -1089346022812989692L;

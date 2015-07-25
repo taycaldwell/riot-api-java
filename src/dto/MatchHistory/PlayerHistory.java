@@ -19,6 +19,9 @@ package dto.MatchHistory;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * @deprecated  As of release 3.6.0
+ */
 public class PlayerHistory implements Serializable {
 	
 	private static final long serialVersionUID = -613847543163813533L;

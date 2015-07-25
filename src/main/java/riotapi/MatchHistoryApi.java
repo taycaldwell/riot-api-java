@@ -20,6 +20,10 @@ import com.google.gson.JsonSyntaxException;
 
 import dto.MatchHistory.PlayerHistory;
 
+/**
+ * @deprecated  As of release 3.6.0
+ * @see MatchListApi
+ */
 final class MatchHistoryApi {
 	
 	private static final String VERSION = "/v2.2/";

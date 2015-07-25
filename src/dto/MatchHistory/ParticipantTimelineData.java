@@ -18,6 +18,9 @@ import java.io.Serializable;
  * limitations under the License.
  */
 
+/**
+ * @deprecated  As of release 3.6.0
+ */
 public class ParticipantTimelineData implements Serializable {
 
 	private static final long serialVersionUID = 5322737078232540176L;
