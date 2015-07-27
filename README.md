@@ -39,6 +39,7 @@ import java.util.Map;
 import constant.Region;
 import dto.Summoner.Summoner;
 import main.java.riotapi.RiotApi;
+import main.java.riotapi.RiotApiException;
 import com.google.gson*;
 
 public class Example {
@@ -67,6 +68,7 @@ import java.util.Map;
 import constant.Region;
 import dto.Summoner.Summoner;
 import main.java.riotapi.RiotApi;
+import main.java.riotapi.RiotApiException;
 import com.google.gson*;
 
 public class Example {
@@ -96,6 +98,7 @@ import constant.Region;
 import constant.Season;
 import dto.Stats.RankedStats;
 import main.java.riotapi.RiotApi;
+import main.java.riotapi.RiotApiException;
 import com.google.gson*;
 
 public class Example {
