@@ -15,35 +15,41 @@ package constant;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 public enum Region {
-	     
-		BR("br.api.pvp.net", "br"),
-		EUNE("eune.api.pvp.net", "eune"),
-		EUW("euw.api.pvp.net", "euw"),
-		KR("kr.api.pvp.net", "kr"),
-		LAS("las.api.pvp.net", "las"),
-		LAN("lan.api.pvp.net", "lan"),
-		NA("na.api.pvp.net", "na"),
-		OCE("oce.api.pvp.net", "oce"),
-		TR("tr.api.pvp.net", "tr"),
-		RU("ru.api.pvp.net", "ru"),
-		PBE("global.api.pvp.net", "pbe"),
-		GLOBAL("global.api.pvp.net", "global");
 
-	    private String endpoint;
-	    private String region;
-	    
-	    Region(String endpoint, String region) {
-	        this.endpoint = endpoint;
-	        this.region = region;
-	    }
+    BR("br.api.pvp.net", "br", "BR1"),
+    EUNE("eune.api.pvp.net", "eune", "EUN1"),
+    EUW("euw.api.pvp.net", "euw", "EUW1"),
+    KR("kr.api.pvp.net", "kr", "KR"),
+    LAS("las.api.pvp.net", "las", "LA2"),
+    LAN("lan.api.pvp.net", "lan", "LA1"),
+    NA("na.api.pvp.net", "na", "NA1"),
+    OCE("oce.api.pvp.net", "oce", "OC1"),
+    TR("tr.api.pvp.net", "tr", "TR1"),
+    RU("ru.api.pvp.net", "ru", "RU"),
+    PBE("global.api.pvp.net", "pbe", "PBE1"),
+    GLOBAL("global.api.pvp.net", "global", "");
 
-	    public String getEndpoint() {
-	        return "https://" + endpoint + "/api/lol/";
-	    }
-	    
-	    public String getName() {
-	        return region;
-	    }
+    private String endpoint;
+    private String region;
+    private String platformId;
+
+    Region(String endpoint, String region, String platformId) {
+        this.endpoint = endpoint;
+        this.region = region;
+        this.platformId = platformId;
+    }
+
+    public String getEndpoint() {
+        return "https://" + endpoint + "/api/lol/";
+    }
+
+    public String getName() {
+        return region;
+    }
+
+    public String getPlatformId() {
+        return platformId;
+    }
+    
 }
