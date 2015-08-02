@@ -223,7 +223,18 @@ public class RiotApi {
 
         return GameApi.getRecentGames(getEndpoint(), getRegion(), getKey(), summonerId);
     }
+    
+    /**
+     * 
+     * @param region
+     * @param summonerId
+     * @throws RiotApiException
+     */
+    public List<League> getLeagueBySummoner(Region region, long summonerId) throws RiotApiException {
 
+        return LeagueApi.getLeagueBySummoners(region.getEndpoint(), region.getName(), getKey(), summonerId).get(Long.toString(summonerId));
+    }
+    
     /**
      * 
      * @param region
@@ -234,7 +245,17 @@ public class RiotApi {
 
         return LeagueApi.getLeagueBySummoners(region.getEndpoint(), region.getName(), getKey(), summonerIds);
     }
+    
+    /**
+     * 
+     * @param summonerId
+     * @throws RiotApiException
+     */
+    public List<League> getLeagueBySummoner(long summonerId) throws RiotApiException {
 
+        return LeagueApi.getLeagueBySummoners(getEndpoint(), getRegion(), getKey(), summonerId).get(Long.toString(summonerId));
+    }
+    
     /**
      * 
      * @param summonerIds
@@ -244,7 +265,18 @@ public class RiotApi {
 
         return LeagueApi.getLeagueBySummoners(getEndpoint(), getRegion(), getKey(), summonerIds);
     }
+    
+    /**
+     * 
+     * @param region
+     * @param summonerId
+     * @throws RiotApiException
+     */
+    public List<League> getLeagueEntryBySummoner(Region region, long summonerId) throws RiotApiException {
 
+        return LeagueApi.getLeagueEntryBySummoners(region.getEndpoint(), region.getName(), getKey(), summonerId).get(Long.toString(summonerId));
+    }
+    
     /**
      * 
      * @param region
@@ -255,7 +287,17 @@ public class RiotApi {
 
         return LeagueApi.getLeagueEntryBySummoners(region.getEndpoint(), region.getName(), getKey(), summonerIds);
     }
+    
+    /**
+     * 
+     * @param summonerId
+     * @throws RiotApiException
+     */
+    public List<League> getLeagueEntryBySummoner(long summonerId) throws RiotApiException {
 
+        return LeagueApi.getLeagueEntryBySummoners(getEndpoint(), getRegion(), getKey(), summonerId).get(Long.toString(summonerId));
+    }
+    
     /**
      * 
      * @param summonerIds
@@ -265,7 +307,18 @@ public class RiotApi {
 
         return LeagueApi.getLeagueEntryBySummoners(getEndpoint(), getRegion(), getKey(), summonerIds);
     }
+    
+    /**
+     * 
+     * @param region
+     * @param summonerId
+     * @throws RiotApiException
+     */
+    public List<League> getLeagueBySummoner(Region region, String summonerId) throws RiotApiException {
 
+        return LeagueApi.getLeagueBySummoners(region.getEndpoint(), region.getName(), getKey(), summonerId).get(summonerId);
+    }
+    
     /**
      * 
      * @param region
@@ -276,7 +329,16 @@ public class RiotApi {
 
         return LeagueApi.getLeagueBySummoners(region.getEndpoint(), region.getName(), getKey(), summonerIds);
     }
-
+    
+    /**
+     * 
+     * @param summonerId
+     * @throws RiotApiException
+     */
+    public List<League> getLeagueBySummoner(String summonerId) throws RiotApiException {
+        return LeagueApi.getLeagueBySummoners(getEndpoint(), getRegion(), getKey(), summonerId).get(summonerId);
+    }
+    
     /**
      * 
      * @param summonerIds
@@ -285,7 +347,18 @@ public class RiotApi {
     public Map<String, List<League>> getLeagueBySummoners(String summonerIds) throws RiotApiException {
         return LeagueApi.getLeagueBySummoners(getEndpoint(), getRegion(), getKey(), summonerIds);
     }
+    
+    /**
+     * 
+     * @param region
+     * @param summonerId
+     * @throws RiotApiException
+     */
+    public List<League> getLeagueEntryBySummoner(Region region, String summonerId) throws RiotApiException {
 
+        return LeagueApi.getLeagueEntryBySummoners(region.getEndpoint(), region.getName(), getKey(), summonerId).get(summonerId);
+    }
+    
     /**
      * 
      * @param region
@@ -296,7 +369,17 @@ public class RiotApi {
 
         return LeagueApi.getLeagueEntryBySummoners(region.getEndpoint(), region.getName(), getKey(), summonerIds);
     }
+    
+    /**
+     * 
+     * @param summonerId
+     * @throws RiotApiException
+     */
+    public List<League> getLeagueEntryBySummoner(String summonerId) throws RiotApiException {
 
+        return LeagueApi.getLeagueEntryBySummoners(getEndpoint(), getRegion(), getKey(), summonerId).get(summonerId);
+    }
+    
     /**
      * 
      * @param summonerIds
@@ -306,48 +389,18 @@ public class RiotApi {
 
         return LeagueApi.getLeagueEntryBySummoners(getEndpoint(), getRegion(), getKey(), summonerIds);
     }
-
-    /**
-     * @param region
-     * @param teamIds
-     * @throws RiotApiException
-     */
-    public Map<String, List<League>> getLeagueByTeams(Region region, long... teamIds) throws RiotApiException {
-
-        return LeagueApi.getLeagueByTeams(region.getEndpoint(), region.getName(), getKey(), teamIds);
-    }
-
-    /**
-     * 
-     * @param teamIds
-     * @throws RiotApiException
-     */
-    public Map<String, List<League>> getLeagueByTeams(long... teamIds) throws RiotApiException {
-
-        return LeagueApi.getLeagueByTeams(getEndpoint(), getRegion(), getKey(), teamIds);
-    }
-
+    
     /**
      * 
      * @param region
-     * @param teamIds
+     * @param teamId
      * @throws RiotApiException
      */
-    public Map<String, List<League>> getLeagueEntryByTeams(Region region, long... teamIds) throws RiotApiException {
+    public List<League> getLeagueByTeam(Region region, String teamId) throws RiotApiException {
 
-        return LeagueApi.getLeagueEntryByTeams(region.getEndpoint(), region.getName(), getKey(), teamIds);
+        return LeagueApi.getLeagueByTeams(region.getEndpoint(), region.getName(), getKey(), teamId).get(teamId);
     }
-
-    /**
-     * 
-     * @param teamIds
-     * @throws RiotApiException
-     */
-    public Map<String, List<League>> getLeagueEntryByTeams(long... teamIds) throws RiotApiException {
-
-        return LeagueApi.getLeagueEntryByTeams(getEndpoint(), getRegion(), getKey(), teamIds);
-    }
-
+    
     /**
      * 
      * @param region
@@ -358,7 +411,17 @@ public class RiotApi {
 
         return LeagueApi.getLeagueByTeams(region.getEndpoint(), region.getName(), getKey(), teamIds);
     }
+    
+    /**
+     * 
+     * @param teamId
+     * @throws RiotApiException
+     */
+    public List<League> getLeagueByTeam(String teamId) throws RiotApiException {
 
+        return LeagueApi.getLeagueByTeams(getEndpoint(), getRegion(), getKey(), teamId).get(teamId);
+    }
+    
     /**
      * 
      * @param teamIds
@@ -372,6 +435,17 @@ public class RiotApi {
     /**
      * 
      * @param region
+     * @param teamId
+     * @throws RiotApiException
+     */
+    public List<League> getLeagueEntryByTeam(Region region, String teamId) throws RiotApiException {
+
+        return LeagueApi.getLeagueEntryByTeams(region.getEndpoint(), region.getName(), getKey(), teamId).get(teamId);
+    }
+    
+    /**
+     * 
+     * @param region
      * @param teamIds
      * @throws RiotApiException
      */
@@ -379,7 +453,17 @@ public class RiotApi {
 
         return LeagueApi.getLeagueEntryByTeams(region.getEndpoint(), region.getName(), getKey(), teamIds);
     }
+    
+    /**
+     * 
+     * @param teamIds
+     * @throws RiotApiException
+     */
+    public List<League> getLeagueEntryByTeam(String teamId) throws RiotApiException {
 
+        return LeagueApi.getLeagueEntryByTeams(getEndpoint(), getRegion(), getKey(), teamId).get(teamId);
+    }
+    
     /**
      * 
      * @param teamIds
@@ -612,7 +696,7 @@ public class RiotApi {
     }
 
     /**
-     * Get the mastery pages of a given summoner
+     * Get the mastery pages of given summoners
      *
      * @param region The desired region
      * @param summonerIds The IDs of the desired summoners
@@ -623,6 +707,20 @@ public class RiotApi {
     public Map<String, MasteryPages> getMasteryPages(Region region, long... summonerIds) throws RiotApiException {
 
         return SummonerApi.getMasteryPages(region.getEndpoint(), region.getName(), getKey(), summonerIds);
+    }
+    
+    /**
+     * Get the mastery pages of a given summoner
+     *
+     * @param region The desired region
+     * @param summonerId The ID of the desired summoner
+     * @return A map of mastery pages of the given summoner
+     * @see MasteryPages
+     * @throws RiotApiException
+     */
+    public MasteryPages getMasteryPages(Region region, long summonerId) throws RiotApiException {
+
+        return SummonerApi.getMasteryPages(region.getEndpoint(), region.getName(), getKey(), summonerId).get(Long.toString(summonerId));
     }
 
     /**
@@ -636,6 +734,19 @@ public class RiotApi {
     public Map<String, MasteryPages> getMasteryPages(long... summonerIds) throws RiotApiException {
 
         return SummonerApi.getMasteryPages(getEndpoint(), getRegion(), getKey(), summonerIds);
+    }
+    
+    /**
+     * Get the mastery pages of a given summoner
+     *
+     * @param summonerId The IDs of the desired summoner
+     * @return A map of mastery pages of the given summoner
+     * @see MasteryPages
+     * @throws RiotApiException
+     */
+    public MasteryPages getMasteryPages(long summonerId) throws RiotApiException {
+
+        return SummonerApi.getMasteryPages(getEndpoint(), getRegion(), getKey(), summonerId).get(Long.toString(summonerId));
     }
 
     /**
@@ -666,7 +777,7 @@ public class RiotApi {
     }
 
     /**
-     * Get the rune pages of a given summoner
+     * Get the rune pages of a given summoners
      *
      * @param region The desired region
      * @param summonerIds The IDs of the desired summoners
@@ -678,9 +789,23 @@ public class RiotApi {
 
         return SummonerApi.getRunePages(region.getEndpoint(), region.getName(), getKey(), summonerIds);
     }
-
+    
     /**
      * Get the rune pages of a given summoner
+     *
+     * @param region The desired region
+     * @param summonerId The IDs of the desired summoner
+     * @return A map of rune pages of the given summoner
+     * @see RunePages
+     * @throws RiotApiException
+     */
+    public RunePages getRunePages(Region region, long summonerId) throws RiotApiException {
+
+        return SummonerApi.getRunePages(region.getEndpoint(), region.getName(), getKey(), summonerId).get(Long.toString(summonerId));
+    }
+
+    /**
+     * Get the rune pages of a given summoners
      *
      * @param summonerIds The IDs of the desired summoners
      * @return A map of rune pages of the given summoners
@@ -690,6 +815,19 @@ public class RiotApi {
     public Map<String, RunePages> getRunePages(long... summonerIds) throws RiotApiException {
 
         return SummonerApi.getRunePages(getEndpoint(), getRegion(), getKey(), summonerIds);
+    }
+    
+    /**
+     * Get the rune pages of a given summoner
+     *
+     * @param summonerId The IDs of the desired summoner
+     * @return A map of rune pages of the given summoner
+     * @see RunePages
+     * @throws RiotApiException
+     */
+    public RunePages getRunePages(long summonerId) throws RiotApiException {
+
+        return SummonerApi.getRunePages(getEndpoint(), getRegion(), getKey(), summonerId).get(Long.toString(summonerId));
     }
 
     /**
@@ -990,6 +1128,20 @@ public class RiotApi {
 
         return TeamApi.getTeamsBySummonerIds(region.getEndpoint(), region.getName(), getKey(), summonerIds);
     }
+    
+    /**
+     * Get teams by summonerID
+     *
+     * @param region The desired region
+     * @param summonerId A summoner ID
+     * @return A list of the summoners' teams
+     * @see Team
+     * @throws RiotApiException
+     */
+    public List<Team> getTeamsBySummonerId(Region region, long summonerId) throws RiotApiException {
+
+        return TeamApi.getTeamsBySummonerIds(region.getEndpoint(), region.getName(), getKey(), summonerId).get(Long.toString(summonerId));
+    }
 
     /**
      * Get teams by summonerIDs
@@ -1002,6 +1154,19 @@ public class RiotApi {
     public Map<String, List<Team>> getTeamsBySummonerIds(long... summonerIds) throws RiotApiException {
 
         return TeamApi.getTeamsBySummonerIds(getEndpoint(), getRegion(), getKey(), summonerIds);
+    }
+    
+    /**
+     * Get teams by summonerID
+     *
+     * @param summonerId A summoner ID
+     * @return A list of the summoners' teams
+     * @see Team
+     * @throws RiotApiException
+     */
+    public List<Team> getTeamsBySummonerId(long summonerId) throws RiotApiException {
+
+        return TeamApi.getTeamsBySummonerIds(getEndpoint(), getRegion(), getKey(), summonerId).get(Long.toString(summonerId));
     }
 
     /**
