@@ -137,5 +137,5 @@ The current version of this library supports the following Riot Games API versio
 All contributions are appreciated.
 If you would like to contribute to this repo, please send a pull request.
 
-## Discussion
-Have a suggestion, complaint, or question? Open an issue, [tweet me](http://twitter.com/itsRithms) for a quick reply, or send me an email (tcaldwel@nmsu.edu).
+## Contact
+Have a suggestion, complaint, or question? Open an [issue](https://github.com/rithms/riot-api-java/issues), or [tweet me](http://twitter.com/itsRithms) for a quick reply.
