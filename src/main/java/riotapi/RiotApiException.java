@@ -16,6 +16,7 @@ public class RiotApiException extends Exception {
     public static final int SERVER_ERROR = 500;
     public static final int UNAVAILABLE = 503;
     public static final int PARSE_FAILURE = 600;
+    public static final int NO_INTERNET = 601;
 
     private final int errorCode;
 
@@ -44,6 +45,8 @@ public class RiotApiException extends Exception {
                 return "Unauthorized";
             case UNAVAILABLE:
                 return "Service unavailable";
+            case NO_INTERNET:
+            	return "No Internet connection";
             default:
                 return "An unknown API error occured";
         }
