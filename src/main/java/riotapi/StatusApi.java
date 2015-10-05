@@ -21,6 +21,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
+import constant.Region;
+
 import dto.Status.Shard;
 import dto.Status.ShardStatus;
 
@@ -47,9 +49,12 @@ final class StatusApi {
 	}
 
 	public static ShardStatus getShardStatus(String region) throws RiotApiException {
-
+		
 		String url = "http://status.leagueoflegends.com/shards/" + region;
-
+		if(region.equals(Region.PBE.getName())) {
+			url = "http://status.pbe.leagueoflegends.com/shards/pbe";
+		}
+		
 		ShardStatus status = null;
 		try {
 			status = new Gson().fromJson(Request.execute(url), ShardStatus.class);
