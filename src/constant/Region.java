@@ -28,7 +28,7 @@ public enum Region {
 		OCE("oce.api.pvp.net", "oce"),
 		TR("tr.api.pvp.net", "tr"),
 		RU("ru.api.pvp.net", "ru"),
-		PBE("global.api.pvp.net", "pbe"),
+		PBE("pbe.api.pvp.net", "pbe"),
 		GLOBAL("global.api.pvp.net", "global");
 
 	    private String endpoint;
