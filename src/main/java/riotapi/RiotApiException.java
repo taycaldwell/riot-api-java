@@ -16,6 +16,7 @@ public class RiotApiException extends Exception {
     public static final int SERVER_ERROR = 500;
     public static final int UNAVAILABLE = 503;
     public static final int PARSE_FAILURE = 600;
+    public static final int IOEXCEPTION = 601;
 
     private final int errorCode;
 
@@ -32,6 +33,8 @@ public class RiotApiException extends Exception {
                 return "Forbidden";
             case DATA_NOT_FOUND:
                 return "Requested data not found";
+            case IOEXCEPTION:
+            	return "I/O Exception thrown";
             case PARSE_FAILURE:
                 return "Failed to parse Riot's JSON response";
             case UNPROCESSABLE_ENTITY:
