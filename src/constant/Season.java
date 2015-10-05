@@ -17,18 +17,30 @@ package constant;
  */
 	
 public enum Season {
-			
+
+		// Seasons with Number
+		SEASON3("SEASON3"),
+		SEASON4("SEASON2014"),
+		SEASON5("SEASON2015"),
+
+		// Seasons with Year
+		SEASON2013("SEASON3"),
+		SEASON2014("SEASON2014"),
+		SEASON2015("SEASON2015"),
+
+		// Preseasons
 		PRESEASON3("PRESEASON3"),
-		Season3("SEASON3"),
-		Season4("SEASON2014"),
-		Season5("SEASON2015"),
 		PRESEASON2014("PRESEASON2014"),
-		Season2014("SEASON2014"),
 		PRESEASON2015("PRESEASON2015"),
-		Season2015("SEASON2015"),
+
+		// Number
 		THREE("SEASON3"),
 		FOUR("SEASON2014"),
-		FIVE("SEASON2015");
+		FIVE("SEASON2015"),
+
+		// Current Season
+		CURRENT("SEASON2015");
+
 
 	    private String season;
 	    
