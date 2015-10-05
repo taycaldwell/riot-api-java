@@ -27,33 +27,39 @@ import dto.Status.ShardStatus;
 final class StatusApi {
 
 	private static final String VERSION = "/v1.0/";
-	
-    public static List<Shard> getShards() throws RiotApiException {
 
-        String url = "http://status.leagueoflegends.com/shards";
-        List<Shard> shards = null;
+	public static List<Shard> getShards() throws RiotApiException {
 
-        try {
-        	shards = new Gson().fromJson(Request.execute(url), new TypeToken<List<Shard>>() {
-            }.getType());
-        } catch (JsonSyntaxException e) {
-            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-        }
+		String url = "http://status.leagueoflegends.com/shards";
 
-        return shards;
-    }
-    
-    public static ShardStatus getShardStatus(String region) throws RiotApiException {
+		List<Shard> shards = null;
+		try {
+			shards = new Gson().fromJson(Request.execute(url), new TypeToken<List<Shard>>() {
+			}.getType());
+		} catch (JsonSyntaxException e) {
+			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
+		}
+		if (shards == null) {
+			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
+		}
 
-        String url = "http://status.leagueoflegends.com/shards/" + region;
-        ShardStatus status = null;
+		return shards;
+	}
 
-        try {
-            status = new Gson().fromJson(Request.execute(url), ShardStatus.class);
-        } catch (JsonSyntaxException e) {
-            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-        }
+	public static ShardStatus getShardStatus(String region) throws RiotApiException {
 
-        return status;
-    }
+		String url = "http://status.leagueoflegends.com/shards/" + region;
+
+		ShardStatus status = null;
+		try {
+			status = new Gson().fromJson(Request.execute(url), ShardStatus.class);
+		} catch (JsonSyntaxException e) {
+			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
+		}
+		if (status == null) {
+			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
+		}
+
+		return status;
+	}
 }

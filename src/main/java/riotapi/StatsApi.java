@@ -22,62 +22,71 @@ import dto.Stats.PlayerStatsSummaryList;
 import dto.Stats.RankedStats;
 
 final class StatsApi {
-	
+
 	private static final String VERSION = "/v1.3/";
 
-    /**
-     * Get a summary of player statistics for a given summoner
-     *
-     * @param region The desired region
-     * @param summonerId The ID of the desired summoner
-     * @param season The desired season
-     * @return A summary of player statistics for the given summoner
-     * @see PlayerStatsSummaryList
-     */
-    public static PlayerStatsSummaryList getPlayerStatsSummary(String endpoint, String region, String season, String key, long summonerId) throws RiotApiException {
+	/**
+	 * Get a summary of player statistics for a given summoner
+	 *
+	 * @param region
+	 *            The desired region
+	 * @param summonerId
+	 *            The ID of the desired summoner
+	 * @param season
+	 *            The desired season
+	 * @return A summary of player statistics for the given summoner
+	 * @see PlayerStatsSummaryList
+	 */
+	public static PlayerStatsSummaryList getPlayerStatsSummary(String endpoint, String region, String season, String key, long summonerId)
+			throws RiotApiException {
+		String url = endpoint + region + VERSION + "stats/by-summoner/" + summonerId + "/summary?";
+		if (season != null) {
+			url += "season=" + season + "&";
+		}
+		url += "api_key=" + key;
 
-        String url = endpoint + region + VERSION + "stats/by-summoner/" + summonerId + "/summary?";
-        if(season != null){
-        	url += "season=" + season + "&";
-        }
-        url += "api_key=" + key;
+		PlayerStatsSummaryList summaryList = null;
+		try {
+			summaryList = new Gson().fromJson(Request.execute(url), PlayerStatsSummaryList.class);
+		} catch (JsonSyntaxException e) {
+			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
+		}
+		if (summaryList == null) {
+			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
+		}
 
-        PlayerStatsSummaryList summaryList = null;
+		return summaryList;
+	}
 
-        try {
-            summaryList = new Gson().fromJson(Request.execute(url), PlayerStatsSummaryList.class);
-        } catch (JsonSyntaxException e) {
-            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-        }
+	/**
+	 * Get the ranked statistics of a given summoner
+	 *
+	 * @param region
+	 *            The desired region
+	 * @param summonerId
+	 *            The ID of the desired summoner
+	 * @param season
+	 *            The desired season
+	 * @return Ranked statistics of the given summoner
+	 * @see RankedStats
+	 */
+	public static RankedStats getRankedStats(String endpoint, String region, String season, String key, long summonerId) throws RiotApiException {
+		String url = endpoint + region + VERSION + "stats/by-summoner/" + summonerId + "/ranked?";
+		if (season != null) {
+			url += "season=" + season + "&";
+		}
+		url += "api_key=" + key;
 
-        return summaryList;
-    }
+		RankedStats rankedStats = null;
+		try {
+			rankedStats = new Gson().fromJson(Request.execute(url), RankedStats.class);
+		} catch (JsonSyntaxException e) {
+			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
+		}
+		if (rankedStats == null) {
+			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
+		}
 
-    /**
-     * Get the ranked statistics of a given summoner
-     *
-     * @param region The desired region
-     * @param summonerId The ID of the desired summoner
-     * @param season The desired season
-     * @return Ranked statistics of the given summoner
-     * @see RankedStats
-     */
-    public static RankedStats getRankedStats(String endpoint, String region, String season, String key, long summonerId) throws RiotApiException {
-
-        String url = endpoint + region + VERSION + "stats/by-summoner/" + summonerId + "/ranked?";
-        if(season != null){
-        	url += "season=" + season + "&";
-        }
-        url += "api_key=" + key;
-        RankedStats rankedStats = null;
-
-        try {
-            rankedStats = new Gson().fromJson(Request.execute(url), RankedStats.class);
-        } catch (JsonSyntaxException e) {
-            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-        }
-
-        return rankedStats;
-    }
-
+		return rankedStats;
+	}
 }

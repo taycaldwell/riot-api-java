@@ -24,18 +24,22 @@ import dto.CurrentGame.CurrentGameInfo;
 final class CurrentGameApi {
 
 	private static final String VERSION = "/v1.0/";
-	
+
 	private static final String endpoint = ".api.pvp.net/observer-mode/rest/consumer/getSpectatorGameInfo/";
 
-    public static CurrentGameInfo getCurrentGameInfo(PlatformId platformId, String key, long summonerId) throws RiotApiException {
+	public static CurrentGameInfo getCurrentGameInfo(PlatformId platformId, String key, long summonerId) throws RiotApiException {
+		String url = "https://" + platformId.getName() + endpoint + platformId.getId() + "/" + summonerId + "?api_key=" + key;
 
-        String url = "https://" + platformId.getName() + endpoint + platformId.getId() + "/"+ summonerId + "?api_key=" + key;
-        CurrentGameInfo currentGameInfo = null;
-        try {
-        	currentGameInfo = new Gson().fromJson(Request.execute(url), CurrentGameInfo.class);
-        } catch (JsonSyntaxException e) {
-            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-        }
-        return currentGameInfo;
-    }
+		CurrentGameInfo currentGameInfo = null;
+		try {
+			currentGameInfo = new Gson().fromJson(Request.execute(url), CurrentGameInfo.class);
+		} catch (JsonSyntaxException e) {
+			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
+		}
+		if (currentGameInfo == null) {
+			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
+		}
+
+		return currentGameInfo;
+	}
 }

@@ -20,22 +20,25 @@ import com.google.gson.JsonSyntaxException;
 
 import dto.FeaturedGames.FeaturedGames;
 
-
 final class FeaturedGamesApi {
 
 	private static final String VERSION = "/v1.0/";
-	
+
 	private static final String endpoint = ".api.pvp.net/observer-mode/rest/featured";
 
-    public static FeaturedGames getFeaturedGames(String region, String key) throws RiotApiException {
+	public static FeaturedGames getFeaturedGames(String region, String key) throws RiotApiException {
+		String url = "https://" + region + endpoint + "?api_key=" + key;
 
-        String url = "https://" + region + endpoint + "?api_key=" + key;
-        FeaturedGames featuredGames = null;
-        try {
-        	featuredGames = new Gson().fromJson(Request.execute(url), FeaturedGames.class);
-        } catch (JsonSyntaxException e) {
-            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-        }
-        return featuredGames;
-    }
+		FeaturedGames featuredGames = null;
+		try {
+			featuredGames = new Gson().fromJson(Request.execute(url), FeaturedGames.class);
+		} catch (JsonSyntaxException e) {
+			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
+		}
+		if (featuredGames == null) {
+			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
+		}
+
+		return featuredGames;
+	}
 }

@@ -24,14 +24,19 @@ final class GameApi {
 
 	private static final String VERSION = "/v1.3/";
 
-    public static RecentGames getRecentGames(String endpoint, String region, String key, long summonerId) throws RiotApiException {
+	public static RecentGames getRecentGames(String endpoint, String region, String key, long summonerId) throws RiotApiException {
+		String url = endpoint + region + VERSION + "game/by-summoner/" + summonerId + "/recent?api_key=" + key;
 
-        String url = endpoint + region + VERSION + "game/by-summoner/" + summonerId + "/recent?api_key=" + key;
-        try {
-            RecentGames recentGames = new Gson().fromJson(Request.execute(url), RecentGames.class);
-            return recentGames;
-        } catch (JsonSyntaxException e) {
-            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-        }
-    }
+		RecentGames recentGames = null;
+		try {
+			recentGames = new Gson().fromJson(Request.execute(url), RecentGames.class);
+		} catch (JsonSyntaxException e) {
+			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
+		}
+		if (recentGames == null) {
+			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
+		}
+
+		return recentGames;
+	}
 }
