@@ -92,562 +92,617 @@ public class RiotApi {
         this.setRegion(region);
     }
 
-    /**
-     * Get all the champions for a set region
-     *
-     * @return A list of all the champions for the set region
-     * @see dto.Champion.ChampionList
-     * @throws RiotApiException
-     */
-    public dto.Champion.ChampionList getChampions() throws RiotApiException {
+	/**
+	 * Get all the champions for a set region
+	 *
+	 * @return A list of all the champions for the set region
+	 * @see dto.Champion.ChampionList
+	 * @throws RiotApiException
+	 */
+	public dto.Champion.ChampionList getChampions() throws RiotApiException {
 
-        return ChampionApi.getChampions(getEndpoint(), getRegion(), getKey());
-    }
+		return ChampionApi.getChampions(getEndpoint(), getRegion(), getKey());
+	}
 
-    /**
-     * Get all the champions for a given region
-     *
-     * @param region Region where to retrieve the data.
-     * @return A list of champions for the given region
-     * @see dto.Champion.ChampionList
-     * @throws RiotApiException
-     */
-    public dto.Champion.ChampionList getChampions(Region region) throws RiotApiException {
+	/**
+	 * Get all the champions for a given region
+	 *
+	 * @param region
+	 *            Region where to retrieve the data.
+	 * @return A list of champions for the given region
+	 * @see dto.Champion.ChampionList
+	 * @throws RiotApiException
+	 */
+	public dto.Champion.ChampionList getChampions(Region region) throws RiotApiException {
 
-        return ChampionApi.getChampions(region.getEndpoint(), region.getName(), getKey());
-    }
+		return ChampionApi.getChampions(region.getEndpoint(), region.getName(), getKey());
+	}
 
-    /**
-     * Get all the champions for a set region
-     *
-     * @param freeToPlay Optional filter param to retrieve only free to play champions.
-     * @return A list of champions for the set region
-     * @see dto.Champion.ChampionList
-     * @throws RiotApiException
-     */
-    public dto.Champion.ChampionList getChampions(boolean freeToPlay) throws RiotApiException {
+	/**
+	 * Get all the champions for a set region
+	 *
+	 * @param freeToPlay
+	 *            Optional filter param to retrieve only free to play champions.
+	 * @return A list of champions for the set region
+	 * @see dto.Champion.ChampionList
+	 * @throws RiotApiException
+	 */
+	public dto.Champion.ChampionList getChampions(boolean freeToPlay) throws RiotApiException {
 
-        return ChampionApi.getChampions(getEndpoint(), getRegion(), getKey(), freeToPlay);
-    }
+		return ChampionApi.getChampions(getEndpoint(), getRegion(), getKey(), freeToPlay);
+	}
 
-    /**
-     * Get all champions for a given region
-     *
-     * @param region Region where to retrieve the data.
-     * @param freeToPlay Optional filter param to retrieve only free to play champions.
-     * @return A list of champions for the given region
-     * @see dto.Champion.ChampionList
-     * @throws RiotApiException
-     */
-    public dto.Champion.ChampionList getChampions(Region region, boolean freeToPlay) throws RiotApiException {
+	/**
+	 * Get all champions for a given region
+	 *
+	 * @param region
+	 *            Region where to retrieve the data.
+	 * @param freeToPlay
+	 *            Optional filter param to retrieve only free to play champions.
+	 * @return A list of champions for the given region
+	 * @see dto.Champion.ChampionList
+	 * @throws RiotApiException
+	 */
+	public dto.Champion.ChampionList getChampions(Region region, boolean freeToPlay) throws RiotApiException {
 
-        return ChampionApi.getChampions(region.getEndpoint(), region.getName(), getKey(), freeToPlay);
-    }
+		return ChampionApi.getChampions(region.getEndpoint(), region.getName(), getKey(), freeToPlay);
+	}
 
-    /**
-     * Get all free to play champions for a given region
-     *
-     * @param region Region where to retrieve the data.
-     * @return A list of all the free to play champions for the given region
-     * @see dto.Champion.ChampionList
-     * @throws RiotApiException
-     */
-    public dto.Champion.ChampionList getFreeToPlayChampions(Region region) throws RiotApiException {
+	/**
+	 * Get all free to play champions for a given region
+	 *
+	 * @param region
+	 *            Region where to retrieve the data.
+	 * @return A list of all the free to play champions for the given region
+	 * @see dto.Champion.ChampionList
+	 * @throws RiotApiException
+	 */
+	public dto.Champion.ChampionList getFreeToPlayChampions(Region region) throws RiotApiException {
 
-        return ChampionApi.getChampions(region.getEndpoint(), region.getName(), getKey(), true);
-    }
+		return ChampionApi.getChampions(region.getEndpoint(), region.getName(), getKey(), true);
+	}
 
-    /**
-     * Get all free to play champions for a set region
-     *
-     * @return A list of all the free to play champions for the set region
-     * @see dto.Champion.ChampionList
-     * @throws RiotApiException
-     */
-    public dto.Champion.ChampionList getFreeToPlayChampions() throws RiotApiException {
+	/**
+	 * Get all free to play champions for a set region
+	 *
+	 * @return A list of all the free to play champions for the set region
+	 * @see dto.Champion.ChampionList
+	 * @throws RiotApiException
+	 */
+	public dto.Champion.ChampionList getFreeToPlayChampions() throws RiotApiException {
 
-        return ChampionApi.getChampions(getEndpoint(), getRegion(), getKey(), true);
-    }
+		return ChampionApi.getChampions(getEndpoint(), getRegion(), getKey(), true);
+	}
 
-    /**
-     * Get a champion by id for a given region
-     *
-     * @param region Region where to retrieve the data.
-     * @param champId The ID of the desired champion
-     * @return The champion of the given ID
-     * @see Champion
-     * @throws RiotApiException
-     */
-    public Champion getChampionById(Region region, int champId) throws RiotApiException {
+	/**
+	 * Get a champion by id for a given region
+	 *
+	 * @param region
+	 *            Region where to retrieve the data.
+	 * @param champId
+	 *            The ID of the desired champion
+	 * @return The champion of the given ID
+	 * @see Champion
+	 * @throws RiotApiException
+	 */
+	public Champion getChampionById(Region region, int champId) throws RiotApiException {
 
-        return ChampionApi.getChampionById(region.getEndpoint(), region.getName(), getKey(), champId);
-    }
+		return ChampionApi.getChampionById(region.getEndpoint(), region.getName(), getKey(), champId);
+	}
 
-    /**
-     * Get a champion by id for a set region
-     *
-     * @param champId The ID of the desired champion
-     * @return The champion of the given ID
-     * @see Champion
-     * @throws RiotApiException
-     */
-    public Champion getChampionById(int champId) throws RiotApiException {
+	/**
+	 * Get a champion by id for a set region
+	 *
+	 * @param champId
+	 *            The ID of the desired champion
+	 * @return The champion of the given ID
+	 * @see Champion
+	 * @throws RiotApiException
+	 */
+	public Champion getChampionById(int champId) throws RiotApiException {
 
-        return ChampionApi.getChampionById(getEndpoint(), getRegion(), getKey(), champId);
-    }
+		return ChampionApi.getChampionById(getEndpoint(), getRegion(), getKey(), champId);
+	}
 
-    /**
-     * Get recent games for a given summoner
-     *
-     * @param region Region where to retrieve the data.
-     * @param summonerId ID of the summoner for which to retrieve recent games.
-     * @return Recent games of the given summoner
-     * @see RecentGames
-     * @throws RiotApiException
-     */
-    public RecentGames getRecentGames(Region region, long summonerId) throws RiotApiException {
+	/**
+	 * Get recent games for a given summoner
+	 *
+	 * @param region
+	 *            Region where to retrieve the data.
+	 * @param summonerId
+	 *            ID of the summoner for which to retrieve recent games.
+	 * @return Recent games of the given summoner
+	 * @see RecentGames
+	 * @throws RiotApiException
+	 */
+	public RecentGames getRecentGames(Region region, long summonerId) throws RiotApiException {
 
-        return GameApi.getRecentGames(region.getEndpoint(), region.getName(), getKey(), summonerId);
-    }
+		return GameApi.getRecentGames(region.getEndpoint(), region.getName(), getKey(), summonerId);
+	}
 
-    /**
-     * Get recent games for a given summoner
-     *
-     * @param summonerId ID of the summoner for which to retrieve recent games.
-     * @return Recent games of the given summoner
-     * @see RecentGames
-     * @throws RiotApiException
-     */
-    public RecentGames getRecentGames(long summonerId) throws RiotApiException {
+	/**
+	 * Get recent games for a given summoner
+	 *
+	 * @param summonerId
+	 *            ID of the summoner for which to retrieve recent games.
+	 * @return Recent games of the given summoner
+	 * @see RecentGames
+	 * @throws RiotApiException
+	 */
+	public RecentGames getRecentGames(long summonerId) throws RiotApiException {
 
-        return GameApi.getRecentGames(getEndpoint(), getRegion(), getKey(), summonerId);
-    }
-    
-    /**
-     * Get a list of leagues for a summoner
-     * 
-     * @param region The region of the leagues.
-     * @param summonerId Summoner ID
-     * @return A list of leagues
-     * @see League
-     * @throws RiotApiException
-     */
-    public List<League> getLeagueBySummoner(Region region, long summonerId) throws RiotApiException {
+		return GameApi.getRecentGames(getEndpoint(), getRegion(), getKey(), summonerId);
+	}
 
-        return LeagueApi.getLeagueBySummoners(region.getEndpoint(), region.getName(), getKey(), summonerId).get(Long.toString(summonerId));
-    }
-    
-    /**
-     * Get a list of leagues for multiple summoners
-     * 
-     * @param region The region of the leagues.
-     * @param summonerIds List of summoner IDs. Maximum allowed at once is 10.
-     * @return A map, mapping each summoner ID to a list of leagues
-     * @see League
-     * @throws RiotApiException
-     */
-    public Map<String, List<League>> getLeagueBySummoners(Region region, long... summonerIds) throws RiotApiException {
+	/**
+	 * Get a list of leagues for a summoner
+	 * 
+	 * @param region
+	 *            The region of the leagues.
+	 * @param summonerId
+	 *            Summoner ID
+	 * @return A list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public List<League> getLeagueBySummoner(Region region, long summonerId) throws RiotApiException {
 
-        return LeagueApi.getLeagueBySummoners(region.getEndpoint(), region.getName(), getKey(), summonerIds);
-    }
-    
-    /**
-     * Get a list of leagues for a summoner
-     * 
-     * @param summonerId Summoner ID
-     * @return A list of leagues
-     * @see League
-     * @throws RiotApiException
-     */
-    public List<League> getLeagueBySummoner(long summonerId) throws RiotApiException {
+		return LeagueApi.getLeagueBySummoners(region.getEndpoint(), region.getName(), getKey(), summonerId).get(Long.toString(summonerId));
+	}
 
-        return LeagueApi.getLeagueBySummoners(getEndpoint(), getRegion(), getKey(), summonerId).get(Long.toString(summonerId));
-    }
-    
-    /**
-     * Get a list of leagues for multiple summoners
-     * 
-     * @param summonerIds List of summoner IDs. Maximum allowed at once is 10.
-     * @return A map, mapping each summoner ID to a list of leagues
-     * @see League
-     * @throws RiotApiException
-     */
-    public Map<String, List<League>> getLeagueBySummoners(long... summonerIds) throws RiotApiException {
+	/**
+	 * Get a list of leagues for multiple summoners
+	 * 
+	 * @param region
+	 *            The region of the leagues.
+	 * @param summonerIds
+	 *            List of summoner IDs. Maximum allowed at once is 10.
+	 * @return A map, mapping each summoner ID to a list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public Map<String, List<League>> getLeagueBySummoners(Region region, long... summonerIds) throws RiotApiException {
 
-        return LeagueApi.getLeagueBySummoners(getEndpoint(), getRegion(), getKey(), summonerIds);
-    }
-    
-    /**
-     * Get a list of leagues for a summoner
-     * 
-     * @param region The region of the leagues.
-     * @param summonerId Summoner ID
-     * @return A list of leagues
-     * @see League
-     * @throws RiotApiException
-     */
-    public List<League> getLeagueEntryBySummoner(Region region, long summonerId) throws RiotApiException {
+		return LeagueApi.getLeagueBySummoners(region.getEndpoint(), region.getName(), getKey(), summonerIds);
+	}
 
-        return LeagueApi.getLeagueEntryBySummoners(region.getEndpoint(), region.getName(), getKey(), summonerId).get(Long.toString(summonerId));
-    }
-    
-    /**
-     * Get a list of leagues for multiple summoners
-     * 
-     * @param region The region of the leagues.
-     * @param summonerIds List of summoner IDs. Maximum allowed at once is 10.
-     * @return A map, mapping each summoner ID to a list of leagues
-     * @see League
-     * @throws RiotApiException
-     */
-    public Map<String, List<League>> getLeagueEntryBySummoners(Region region, long... summonerIds) throws RiotApiException {
+	/**
+	 * Get a list of leagues for a summoner
+	 * 
+	 * @param summonerId
+	 *            Summoner ID
+	 * @return A list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public List<League> getLeagueBySummoner(long summonerId) throws RiotApiException {
 
-        return LeagueApi.getLeagueEntryBySummoners(region.getEndpoint(), region.getName(), getKey(), summonerIds);
-    }
-    
-    /**
-     * Get a list of leagues for a summoner
-     * 
-     * @param summonerId Summoner ID
-     * @return A list of leagues
-     * @see League
-     * @throws RiotApiException
-     */
-    public List<League> getLeagueEntryBySummoner(long summonerId) throws RiotApiException {
+		return LeagueApi.getLeagueBySummoners(getEndpoint(), getRegion(), getKey(), summonerId).get(Long.toString(summonerId));
+	}
 
-        return LeagueApi.getLeagueEntryBySummoners(getEndpoint(), getRegion(), getKey(), summonerId).get(Long.toString(summonerId));
-    }
-    
-    /**
-     * Get a list of leagues for multiple summoners
-     * 
-     * @param summonerIds List of summoner IDs. Maximum allowed at once is 10.
-     * @return A map, mapping each summoner ID to a list of leagues
-     * @see League
-     * @throws RiotApiException
-     */
-    public Map<String, List<League>> getLeagueEntryBySummoners(long... summonerIds) throws RiotApiException {
+	/**
+	 * Get a list of leagues for multiple summoners
+	 * 
+	 * @param summonerIds
+	 *            List of summoner IDs. Maximum allowed at once is 10.
+	 * @return A map, mapping each summoner ID to a list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public Map<String, List<League>> getLeagueBySummoners(long... summonerIds) throws RiotApiException {
 
-        return LeagueApi.getLeagueEntryBySummoners(getEndpoint(), getRegion(), getKey(), summonerIds);
-    }
-    
-    /**
-     * Get a list of leagues for a summoner
-     * 
-     * @param region The region of the leagues.
-     * @param summonerId Summoner ID
-     * @return A list of leagues
-     * @see League
-     * @throws RiotApiException
-     */
-    public List<League> getLeagueBySummoner(Region region, String summonerId) throws RiotApiException {
+		return LeagueApi.getLeagueBySummoners(getEndpoint(), getRegion(), getKey(), summonerIds);
+	}
 
-        return LeagueApi.getLeagueBySummoners(region.getEndpoint(), region.getName(), getKey(), summonerId).get(summonerId);
-    }
-    
-    /**
-     * Get a list of leagues for multiple summoners
-     * 
-     * @param region The region of the leagues.
-     * @param summonerIds List of summoner IDs. Maximum allowed at once is 10.
-     * @return A map, mapping each summoner ID to a list of leagues
-     * @see League
-     * @throws RiotApiException
-     */
-    public Map<String, List<League>> getLeagueBySummoners(Region region, String summonerIds) throws RiotApiException {
+	/**
+	 * Get a list of leagues for a summoner
+	 * 
+	 * @param region
+	 *            The region of the leagues.
+	 * @param summonerId
+	 *            Summoner ID
+	 * @return A list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public List<League> getLeagueEntryBySummoner(Region region, long summonerId) throws RiotApiException {
 
-        return LeagueApi.getLeagueBySummoners(region.getEndpoint(), region.getName(), getKey(), summonerIds);
-    }
-    
-    /**
-     * Get a list of leagues for a summoner
-     * 
-     * @param summonerId Summoner ID
-     * @return A list of leagues
-     * @see League
-     * @throws RiotApiException
-     */
-    public List<League> getLeagueBySummoner(String summonerId) throws RiotApiException {
-        return LeagueApi.getLeagueBySummoners(getEndpoint(), getRegion(), getKey(), summonerId).get(summonerId);
-    }
-    
-    /**
-     * Get a list of leagues for multiple summoners
-     * 
-     * @param summonerIds List of summoner IDs. Maximum allowed at once is 10.
-     * @return A map, mapping each summoner ID to a list of leagues
-     * @see League
-     * @throws RiotApiException
-     */
-    public Map<String, List<League>> getLeagueBySummoners(String summonerIds) throws RiotApiException {
-        return LeagueApi.getLeagueBySummoners(getEndpoint(), getRegion(), getKey(), summonerIds);
-    }
-    
-    /**
-     * Get a list of league entries for a summoner
-     * 
-     * @param region The region of the leagues.
-     * @param summonerId Summoner ID
-     * @return A list of leagues
-     * @see League
-     * @throws RiotApiException
-     */
-    public List<League> getLeagueEntryBySummoner(Region region, String summonerId) throws RiotApiException {
+		return LeagueApi.getLeagueEntryBySummoners(region.getEndpoint(), region.getName(), getKey(), summonerId).get(Long.toString(summonerId));
+	}
 
-        return LeagueApi.getLeagueEntryBySummoners(region.getEndpoint(), region.getName(), getKey(), summonerId).get(summonerId);
-    }
-    
-    /**
-     * Get a list of league entries for multiple summoners
-     * 
-     * @param region The region of the leagues.
-     * @param summonerIds List of summoner IDs. Maximum allowed at once is 10.
-     * @return A map, mapping each summoner ID to a list of leagues
-     * @see League
-     * @throws RiotApiException
-     */
-    public Map<String, List<League>> getLeagueEntryBySummoners(Region region, String summonerIds) throws RiotApiException {
+	/**
+	 * Get a list of leagues for multiple summoners
+	 * 
+	 * @param region
+	 *            The region of the leagues.
+	 * @param summonerIds
+	 *            List of summoner IDs. Maximum allowed at once is 10.
+	 * @return A map, mapping each summoner ID to a list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public Map<String, List<League>> getLeagueEntryBySummoners(Region region, long... summonerIds) throws RiotApiException {
 
-        return LeagueApi.getLeagueEntryBySummoners(region.getEndpoint(), region.getName(), getKey(), summonerIds);
-    }
-    
-    /**
-     * Get a list of league entries for a summoner
-     * 
-     * @param summonerId Summoner ID
-     * @return A list of leagues
-     * @see League
-     * @throws RiotApiException
-     */
-    public List<League> getLeagueEntryBySummoner(String summonerId) throws RiotApiException {
+		return LeagueApi.getLeagueEntryBySummoners(region.getEndpoint(), region.getName(), getKey(), summonerIds);
+	}
 
-        return LeagueApi.getLeagueEntryBySummoners(getEndpoint(), getRegion(), getKey(), summonerId).get(summonerId);
-    }
-    
-    /**
-     * Get a list of league entries for multiple summoners
-     * 
-     * @param summonerIds List of summoner IDs. Maximum allowed at once is 10.
-     * @return A map, mapping each summoner ID to a list of leagues
-     * @see League
-     * @throws RiotApiException
-     */
-    public Map<String, List<League>> getLeagueEntryBySummoners(String summonerIds) throws RiotApiException {
+	/**
+	 * Get a list of leagues for a summoner
+	 * 
+	 * @param summonerId
+	 *            Summoner ID
+	 * @return A list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public List<League> getLeagueEntryBySummoner(long summonerId) throws RiotApiException {
 
-        return LeagueApi.getLeagueEntryBySummoners(getEndpoint(), getRegion(), getKey(), summonerIds);
-    }
-    
-    /**
-     * Get a list of leagues for a team
-     * 
-     * @param region The region of the leagues.
-     * @param teamId Team ID
-     * @return A list of leagues
-     * @see League
-     * @throws RiotApiException
-     */
-    public List<League> getLeagueByTeam(Region region, String teamId) throws RiotApiException {
+		return LeagueApi.getLeagueEntryBySummoners(getEndpoint(), getRegion(), getKey(), summonerId).get(Long.toString(summonerId));
+	}
 
-        return LeagueApi.getLeagueByTeams(region.getEndpoint(), region.getName(), getKey(), teamId).get(teamId);
-    }
-    
-    /**
-     * Get a list of leagues for multiple teams
-     * 
-     * @param region The region of the leagues.
-     * @param teamIds List of team IDs. Maximum allowed at once is 10.
-     * @return A map, mapping each team ID to a list of leagues
-     * @see League
-     * @throws RiotApiException
-     */
-    public Map<String, List<League>> getLeagueByTeams(Region region, String teamIds) throws RiotApiException {
+	/**
+	 * Get a list of leagues for multiple summoners
+	 * 
+	 * @param summonerIds
+	 *            List of summoner IDs. Maximum allowed at once is 10.
+	 * @return A map, mapping each summoner ID to a list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public Map<String, List<League>> getLeagueEntryBySummoners(long... summonerIds) throws RiotApiException {
 
-        return LeagueApi.getLeagueByTeams(region.getEndpoint(), region.getName(), getKey(), teamIds);
-    }
-    
-    /**
-     * Get a list of leagues for a team
-     * 
-     * @param teamId Team ID
-     * @return A list of leagues
-     * @see League
-     * @throws RiotApiException
-     */
-    public List<League> getLeagueByTeam(String teamId) throws RiotApiException {
+		return LeagueApi.getLeagueEntryBySummoners(getEndpoint(), getRegion(), getKey(), summonerIds);
+	}
 
-        return LeagueApi.getLeagueByTeams(getEndpoint(), getRegion(), getKey(), teamId).get(teamId);
-    }
-    
-    /**
-     * Get a list of leagues for multiple teams
-     * 
-     * @param teamIds List of team IDs. Maximum allowed at once is 10.
-     * @return A map, mapping each team ID to a list of leagues
-     * @see League
-     * @throws RiotApiException
-     */
-    public Map<String, List<League>> getLeagueByTeams(String teamIds) throws RiotApiException {
+	/**
+	 * Get a list of leagues for a summoner
+	 * 
+	 * @param region
+	 *            The region of the leagues.
+	 * @param summonerId
+	 *            Summoner ID
+	 * @return A list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public List<League> getLeagueBySummoner(Region region, String summonerId) throws RiotApiException {
 
-        return LeagueApi.getLeagueByTeams(getEndpoint(), getRegion(), getKey(), teamIds);
-    }
+		return LeagueApi.getLeagueBySummoners(region.getEndpoint(), region.getName(), getKey(), summonerId).get(summonerId);
+	}
 
-    /**
-     * Get a list of league entries for a team
-     * 
-     * @param region The region of the leagues.
-     * @param teamId Team ID
-     * @return A list of leagues
-     * @see League
-     * @throws RiotApiException
-     */
-    public List<League> getLeagueEntryByTeam(Region region, String teamId) throws RiotApiException {
+	/**
+	 * Get a list of leagues for multiple summoners
+	 * 
+	 * @param region
+	 *            The region of the leagues.
+	 * @param summonerIds
+	 *            List of summoner IDs. Maximum allowed at once is 10.
+	 * @return A map, mapping each summoner ID to a list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public Map<String, List<League>> getLeagueBySummoners(Region region, String summonerIds) throws RiotApiException {
 
-        return LeagueApi.getLeagueEntryByTeams(region.getEndpoint(), region.getName(), getKey(), teamId).get(teamId);
-    }
-    
-    /**
-     * Get a list of league entries for multiple teams
-     * 
-     * @param region The region of the leagues.
-     * @param teamIds List of team IDs. Maximum allowed at once is 10.
-     * @return A map, mapping each team ID to a list of leagues
-     * @see League
-     * @throws RiotApiException
-     */
-    public Map<String, List<League>> getLeagueEntryByTeams(Region region, String teamIds) throws RiotApiException {
+		return LeagueApi.getLeagueBySummoners(region.getEndpoint(), region.getName(), getKey(), summonerIds);
+	}
 
-        return LeagueApi.getLeagueEntryByTeams(region.getEndpoint(), region.getName(), getKey(), teamIds);
-    }
-    
-    /**
-     * Get a list of league entries for a team
-     * 
-     * @param teamIds List of team IDs. Maximum allowed at once is 10.
-     * @return A list of leagues
-     * @see League
-     * @throws RiotApiException
-     */
-    public List<League> getLeagueEntryByTeam(String teamId) throws RiotApiException {
+	/**
+	 * Get a list of leagues for a summoner
+	 * 
+	 * @param summonerId
+	 *            Summoner ID
+	 * @return A list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public List<League> getLeagueBySummoner(String summonerId) throws RiotApiException {
+		return LeagueApi.getLeagueBySummoners(getEndpoint(), getRegion(), getKey(), summonerId).get(summonerId);
+	}
 
-        return LeagueApi.getLeagueEntryByTeams(getEndpoint(), getRegion(), getKey(), teamId).get(teamId);
-    }
-    
-    /**
-     * Get a list of league entries for multiple teams
-     * 
-     * @param teamIds List of team IDs. Maximum allowed at once is 10.
-     * @return A map, mapping each team ID to a list of leagues
-     * @see League
-     * @throws RiotApiException
-     */
-    public Map<String, List<League>> getLeagueEntryByTeams(String teamIds) throws RiotApiException {
+	/**
+	 * Get a list of leagues for multiple summoners
+	 * 
+	 * @param summonerIds
+	 *            List of summoner IDs. Maximum allowed at once is 10.
+	 * @return A map, mapping each summoner ID to a list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public Map<String, List<League>> getLeagueBySummoners(String summonerIds) throws RiotApiException {
+		return LeagueApi.getLeagueBySummoners(getEndpoint(), getRegion(), getKey(), summonerIds);
+	}
 
-        return LeagueApi.getLeagueEntryByTeams(getEndpoint(), getRegion(), getKey(), teamIds);
-    }
+	/**
+	 * Get a list of league entries for a summoner
+	 * 
+	 * @param region
+	 *            The region of the leagues.
+	 * @param summonerId
+	 *            Summoner ID
+	 * @return A list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public List<League> getLeagueEntryBySummoner(Region region, String summonerId) throws RiotApiException {
 
-    /**
-     * Get challenger league
-     * 
-     * @param region The region of the leagues.
-     * @return A single league
-     * @see League
-     * @throws RiotApiException
-     */
-    public League getChallengerLeague(Region region) throws RiotApiException {
+		return LeagueApi.getLeagueEntryBySummoners(region.getEndpoint(), region.getName(), getKey(), summonerId).get(summonerId);
+	}
 
-        return LeagueApi.getChallengerLeague(region.getEndpoint(), region.getName(), getKey());
-    }
+	/**
+	 * Get a list of league entries for multiple summoners
+	 * 
+	 * @param region
+	 *            The region of the leagues.
+	 * @param summonerIds
+	 *            List of summoner IDs. Maximum allowed at once is 10.
+	 * @return A map, mapping each summoner ID to a list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public Map<String, List<League>> getLeagueEntryBySummoners(Region region, String summonerIds) throws RiotApiException {
 
-    /**
-     * Get challenger league
-     * 
-     * @return A single league
-     * @see League
-     * @throws RiotApiException
-     */
-    public League getChallengerLeague() throws RiotApiException {
+		return LeagueApi.getLeagueEntryBySummoners(region.getEndpoint(), region.getName(), getKey(), summonerIds);
+	}
 
-        return LeagueApi.getChallengerLeague(getEndpoint(), getRegion(), getKey());
-    }
+	/**
+	 * Get a list of league entries for a summoner
+	 * 
+	 * @param summonerId
+	 *            Summoner ID
+	 * @return A list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public List<League> getLeagueEntryBySummoner(String summonerId) throws RiotApiException {
 
-    /**
-     * Get challenger league
-     * 
-     * @param region The region of the leagues.
-     * @param queueType Game queue type.
-     * @return A single league
-     * @see League
-     * @throws RiotApiException
-     */
-    public League getChallengerLeague(Region region, QueueType queueType) throws RiotApiException {
+		return LeagueApi.getLeagueEntryBySummoners(getEndpoint(), getRegion(), getKey(), summonerId).get(summonerId);
+	}
 
-        return LeagueApi.getChallengerLeague(region.getEndpoint(), region.getName(), getKey(), queueType);
-    }
+	/**
+	 * Get a list of league entries for multiple summoners
+	 * 
+	 * @param summonerIds
+	 *            List of summoner IDs. Maximum allowed at once is 10.
+	 * @return A map, mapping each summoner ID to a list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public Map<String, List<League>> getLeagueEntryBySummoners(String summonerIds) throws RiotApiException {
 
-    /**
-     * Get challenger league
-     * 
-     * @param queueType Game queue type.
-     * @return A single league
-     * @see League
-     * @throws RiotApiException
-     */
-    public League getChallengerLeague(QueueType queueType) throws RiotApiException {
+		return LeagueApi.getLeagueEntryBySummoners(getEndpoint(), getRegion(), getKey(), summonerIds);
+	}
 
-        return LeagueApi.getChallengerLeague(getEndpoint(), getRegion(), getKey(), queueType);
-    }
-    
-    /**
-     * Get master league
-     * 
-     * @param region The region of the leagues.
-     * @return A single league
-     * @see League
-     * @throws RiotApiException
-     */
-    public League getMasterLeague(Region region) throws RiotApiException {
+	/**
+	 * Get a list of leagues for a team
+	 * 
+	 * @param region
+	 *            The region of the leagues.
+	 * @param teamId
+	 *            Team ID
+	 * @return A list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public List<League> getLeagueByTeam(Region region, String teamId) throws RiotApiException {
 
-        return LeagueApi.getMasterLeague(region.getEndpoint(), region.getName(), getKey());
-    }
+		return LeagueApi.getLeagueByTeams(region.getEndpoint(), region.getName(), getKey(), teamId).get(teamId);
+	}
 
-    /**
-     * Get master league
-     * 
-     * @return A single league
-     * @see League
-     * @throws RiotApiException
-     */
-    public League getMasterLeague() throws RiotApiException {
+	/**
+	 * Get a list of leagues for multiple teams
+	 * 
+	 * @param region
+	 *            The region of the leagues.
+	 * @param teamIds
+	 *            List of team IDs. Maximum allowed at once is 10.
+	 * @return A map, mapping each team ID to a list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public Map<String, List<League>> getLeagueByTeams(Region region, String teamIds) throws RiotApiException {
 
-        return LeagueApi.getMasterLeague(getEndpoint(), getRegion(), getKey());
-    }
+		return LeagueApi.getLeagueByTeams(region.getEndpoint(), region.getName(), getKey(), teamIds);
+	}
 
-    /**
-     * Get master league
-     * 
-     * @param region The region of the leagues.
-     * @param queueType Game queue type.
-     * @return A single league
-     * @see League
-     * @throws RiotApiException
-     */
-    public League getMasterLeague(Region region, QueueType queueType) throws RiotApiException {
+	/**
+	 * Get a list of leagues for a team
+	 * 
+	 * @param teamId
+	 *            Team ID
+	 * @return A list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public List<League> getLeagueByTeam(String teamId) throws RiotApiException {
 
-        return LeagueApi.getMasterLeague(region.getEndpoint(), region.getName(), getKey(), queueType);
-    }
+		return LeagueApi.getLeagueByTeams(getEndpoint(), getRegion(), getKey(), teamId).get(teamId);
+	}
 
-    /**
-     * Get master league
-     * 
-     * @param queueType Game queue type.
-     * @return A single league
-     * @see League
-     * @throws RiotApiException
-     */
-    public League getMasterLeague(QueueType queueType) throws RiotApiException {
+	/**
+	 * Get a list of leagues for multiple teams
+	 * 
+	 * @param teamIds
+	 *            List of team IDs. Maximum allowed at once is 10.
+	 * @return A map, mapping each team ID to a list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public Map<String, List<League>> getLeagueByTeams(String teamIds) throws RiotApiException {
 
-        return LeagueApi.getMasterLeague(getEndpoint(), getRegion(), getKey(), queueType);
-    }
+		return LeagueApi.getLeagueByTeams(getEndpoint(), getRegion(), getKey(), teamIds);
+	}
+
+	/**
+	 * Get a list of league entries for a team
+	 * 
+	 * @param region
+	 *            The region of the leagues.
+	 * @param teamId
+	 *            Team ID
+	 * @return A list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public List<League> getLeagueEntryByTeam(Region region, String teamId) throws RiotApiException {
+
+		return LeagueApi.getLeagueEntryByTeams(region.getEndpoint(), region.getName(), getKey(), teamId).get(teamId);
+	}
+
+	/**
+	 * Get a list of league entries for multiple teams
+	 * 
+	 * @param region
+	 *            The region of the leagues.
+	 * @param teamIds
+	 *            List of team IDs. Maximum allowed at once is 10.
+	 * @return A map, mapping each team ID to a list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public Map<String, List<League>> getLeagueEntryByTeams(Region region, String teamIds) throws RiotApiException {
+
+		return LeagueApi.getLeagueEntryByTeams(region.getEndpoint(), region.getName(), getKey(), teamIds);
+	}
+
+	/**
+	 * Get a list of league entries for a team
+	 * 
+	 * @param teamIds
+	 *            List of team IDs. Maximum allowed at once is 10.
+	 * @return A list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public List<League> getLeagueEntryByTeam(String teamId) throws RiotApiException {
+
+		return LeagueApi.getLeagueEntryByTeams(getEndpoint(), getRegion(), getKey(), teamId).get(teamId);
+	}
+
+	/**
+	 * Get a list of league entries for multiple teams
+	 * 
+	 * @param teamIds
+	 *            List of team IDs. Maximum allowed at once is 10.
+	 * @return A map, mapping each team ID to a list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public Map<String, List<League>> getLeagueEntryByTeams(String teamIds) throws RiotApiException {
+
+		return LeagueApi.getLeagueEntryByTeams(getEndpoint(), getRegion(), getKey(), teamIds);
+	}
+
+	/**
+	 * Get challenger league
+	 * 
+	 * @param region
+	 *            The region of the leagues.
+	 * @return A single league
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public League getChallengerLeague(Region region) throws RiotApiException {
+
+		return LeagueApi.getChallengerLeague(region.getEndpoint(), region.getName(), getKey());
+	}
+
+	/**
+	 * Get challenger league
+	 * 
+	 * @return A single league
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public League getChallengerLeague() throws RiotApiException {
+
+		return LeagueApi.getChallengerLeague(getEndpoint(), getRegion(), getKey());
+	}
+
+	/**
+	 * Get challenger league
+	 * 
+	 * @param region
+	 *            The region of the leagues.
+	 * @param queueType
+	 *            Game queue type.
+	 * @return A single league
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public League getChallengerLeague(Region region, QueueType queueType) throws RiotApiException {
+
+		return LeagueApi.getChallengerLeague(region.getEndpoint(), region.getName(), getKey(), queueType);
+	}
+
+	/**
+	 * Get challenger league
+	 * 
+	 * @param queueType
+	 *            Game queue type.
+	 * @return A single league
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public League getChallengerLeague(QueueType queueType) throws RiotApiException {
+
+		return LeagueApi.getChallengerLeague(getEndpoint(), getRegion(), getKey(), queueType);
+	}
+
+	/**
+	 * Get master league
+	 * 
+	 * @param region
+	 *            The region of the leagues.
+	 * @return A single league
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public League getMasterLeague(Region region) throws RiotApiException {
+
+		return LeagueApi.getMasterLeague(region.getEndpoint(), region.getName(), getKey());
+	}
+
+	/**
+	 * Get master league
+	 * 
+	 * @return A single league
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public League getMasterLeague() throws RiotApiException {
+
+		return LeagueApi.getMasterLeague(getEndpoint(), getRegion(), getKey());
+	}
+
+	/**
+	 * Get master league
+	 * 
+	 * @param region
+	 *            The region of the leagues.
+	 * @param queueType
+	 *            Game queue type.
+	 * @return A single league
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public League getMasterLeague(Region region, QueueType queueType) throws RiotApiException {
+
+		return LeagueApi.getMasterLeague(region.getEndpoint(), region.getName(), getKey(), queueType);
+	}
+
+	/**
+	 * Get master league
+	 * 
+	 * @param queueType
+	 *            Game queue type.
+	 * @return A single league
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public League getMasterLeague(QueueType queueType) throws RiotApiException {
+
+		return LeagueApi.getMasterLeague(getEndpoint(), getRegion(), getKey(), queueType);
+	}
 
     /**
      * Get a summary of player statistics for a given summoner
