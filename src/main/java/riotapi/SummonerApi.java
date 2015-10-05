@@ -15,9 +15,9 @@ package main.java.riotapi;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import java.util.Map;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.Map;
 
 import util.Convert;
 
@@ -32,101 +32,112 @@ import dto.Summoner.Summoner;
 final class SummonerApi {
 
 	private static final String VERSION = "/v1.4/";
-	
-    public static Map<String, MasteryPages> getMasteryPages(String endpoint, String region, String key, String summonerIds) throws RiotApiException {
 
-        String url = endpoint + region + VERSION + "summoner/" + summonerIds + "/masteries?api_key=" + key;
-        Map<String, MasteryPages> masteryPages = null;
+	public static Map<String, MasteryPages> getMasteryPages(String endpoint, String region, String key, String summonerIds) throws RiotApiException {
+		String url = endpoint + region + VERSION + "summoner/" + summonerIds + "/masteries?api_key=" + key;
 
-        try {
-            masteryPages = new Gson().fromJson(Request.execute(url), new TypeToken<Map<String, MasteryPages>>() {
-            }.getType());
-        } catch (JsonSyntaxException e) {
-            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-        }
-        return masteryPages;
-    }
+		Map<String, MasteryPages> masteryPages = null;
+		try {
+			masteryPages = new Gson().fromJson(Request.execute(url), new TypeToken<Map<String, MasteryPages>>() {
+			}.getType());
+		} catch (JsonSyntaxException e) {
+			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
+		}
+		if (masteryPages == null) {
+			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
+		}
 
-    public static Map<String, MasteryPages> getMasteryPages(String endpoint, String region, String key, long... summonerIds) throws RiotApiException {
-        return getMasteryPages(endpoint, region, key, Convert.longToString(summonerIds));
-    }
+		return masteryPages;
+	}
 
-    public static Map<String, RunePages> getRunePages(String endpoint, String region, String key, String summonerIds) throws RiotApiException {
+	public static Map<String, MasteryPages> getMasteryPages(String endpoint, String region, String key, long... summonerIds) throws RiotApiException {
+		return getMasteryPages(endpoint, region, key, Convert.longToString(summonerIds));
+	}
 
-        String url = endpoint + region + VERSION + "summoner/" + summonerIds + "/runes?api_key=" + key;
-        Map<String, RunePages> runePages = null;
+	public static Map<String, RunePages> getRunePages(String endpoint, String region, String key, String summonerIds) throws RiotApiException {
+		String url = endpoint + region + VERSION + "summoner/" + summonerIds + "/runes?api_key=" + key;
 
-        try {
-            runePages = new Gson().fromJson(Request.execute(url), new TypeToken<Map<String, RunePages>>() {
-            }.getType());
-        } catch (JsonSyntaxException e) {
-            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-        }
+		Map<String, RunePages> runePages = null;
+		try {
+			runePages = new Gson().fromJson(Request.execute(url), new TypeToken<Map<String, RunePages>>() {
+			}.getType());
+		} catch (JsonSyntaxException e) {
+			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
+		}
+		if (runePages == null) {
+			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
+		}
 
-        return runePages;
-    }
+		return runePages;
+	}
 
-    public static Map<String, RunePages> getRunePages(String endpoint, String region, String key, long... summonerIds) throws RiotApiException {
-        return getRunePages(endpoint, region, key, Convert.longToString(summonerIds));
-    }
+	public static Map<String, RunePages> getRunePages(String endpoint, String region, String key, long... summonerIds) throws RiotApiException {
+		return getRunePages(endpoint, region, key, Convert.longToString(summonerIds));
+	}
 
-    public static Map<String, Summoner> getSummonersByName(String endpoint, String region, String key, String summonerNames) throws RiotApiException {
+	public static Map<String, Summoner> getSummonersByName(String endpoint, String region, String key, String summonerNames) throws RiotApiException {
+		summonerNames = summonerNames.replaceAll("\\s+", "");
 
-        summonerNames = summonerNames.replaceAll("\\s+", "");
-        String url = null;
+		String url = null;
 		try {
 			url = endpoint + region + VERSION + "summoner/by-name/" + URLEncoder.encode(summonerNames, "UTF-8") + "?api_key=" + key;
 		} catch (UnsupportedEncodingException e1) {
 			e1.printStackTrace();
 		}
-        Map<String, Summoner> summoners = null;
 
-        try {
-            summoners = new Gson().fromJson(Request.execute(url), new TypeToken<Map<String, Summoner>>() {
-            }.getType());
-        } catch (JsonSyntaxException e) {
-            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-        }
+		Map<String, Summoner> summoners = null;
+		try {
+			summoners = new Gson().fromJson(Request.execute(url), new TypeToken<Map<String, Summoner>>() {
+			}.getType());
+		} catch (JsonSyntaxException e) {
+			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
+		}
+		if (summoners == null) {
+			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
+		}
 
-        return summoners;
-    }
+		return summoners;
+	}
 
-    public static Map<String, Summoner> getSummonersById(String endpoint, String region, String key, long... summonerIds) throws RiotApiException {
-        return getSummonersById(endpoint, region, key, Convert.longToString(summonerIds));
-    }
+	public static Map<String, Summoner> getSummonersById(String endpoint, String region, String key, long... summonerIds) throws RiotApiException {
+		return getSummonersById(endpoint, region, key, Convert.longToString(summonerIds));
+	}
 
-    public static Map<String, Summoner> getSummonersById(String endpoint, String region, String key, String summonerIds) throws RiotApiException {
+	public static Map<String, Summoner> getSummonersById(String endpoint, String region, String key, String summonerIds) throws RiotApiException {
+		String url = endpoint + region + VERSION + "summoner/" + summonerIds + "?api_key=" + key;
 
-        String url = endpoint + region + VERSION + "summoner/" + summonerIds + "?api_key=" + key;
-        Map<String, Summoner> summoners = null;
+		Map<String, Summoner> summoners = null;
+		try {
+			summoners = new Gson().fromJson(Request.execute(url), new TypeToken<Map<String, Summoner>>() {
+			}.getType());
+		} catch (JsonSyntaxException e) {
+			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
+		}
+		if (summoners == null) {
+			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
+		}
 
-        try {
-            summoners = new Gson().fromJson(Request.execute(url), new TypeToken<Map<String, Summoner>>() {
-            }.getType());
-        } catch (JsonSyntaxException e) {
-            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-        }
+		return summoners;
+	}
 
-        return summoners;
-    }
+	public static Map<String, String> getSummonerNames(String endpoint, String region, String key, long... summonerIds) throws RiotApiException {
+		return getSummonerNames(endpoint, region, key, Convert.longToString(summonerIds));
+	}
 
-    public static Map<String, String> getSummonerNames(String endpoint, String region, String key, long... summonerIds) throws RiotApiException {
-        return getSummonerNames(endpoint, region, key, Convert.longToString(summonerIds));
-    }
+	public static Map<String, String> getSummonerNames(String endpoint, String region, String key, String summonerIds) throws RiotApiException {
+		String url = endpoint + region + VERSION + "summoner/" + summonerIds + "/name?api_key=" + key;
 
-    public static Map<String, String> getSummonerNames(String endpoint, String region, String key, String summonerIds) throws RiotApiException {
+		Map<String, String> summonerNames = null;
+		try {
+			summonerNames = new Gson().fromJson(Request.execute(url), new TypeToken<Map<String, String>>() {
+			}.getType());
+		} catch (JsonSyntaxException e) {
+			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
+		}
+		if (summonerNames == null) {
+			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
+		}
 
-        String url = endpoint + region + VERSION + "summoner/" + summonerIds + "/name?api_key=" + key;
-        Map<String, String> summonerNames = null;
-
-        try {
-            summonerNames = new Gson().fromJson(Request.execute(url), new TypeToken<Map<String, String>>() {
-            }.getType());
-        } catch (JsonSyntaxException e) {
-            throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-        }
-
-        return summonerNames;
-    }
-
+		return summonerNames;
+	}
 }
