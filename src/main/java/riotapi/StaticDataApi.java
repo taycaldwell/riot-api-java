@@ -80,7 +80,7 @@ final class StaticDataApi {
 		return championList;
 	}
 
-	public static Champion getDataChampion(String region, String key, int id, String locale, String version, boolean dataById, ChampData... champData)
+	public static Champion getDataChampion(String region, String key, int id, String locale, String version, ChampData... champData)
 			throws RiotApiException {
 		String url = STATIC_DATA_ENDPOINT + region + VERSION + "champion/" + id + "?";
 		if (locale != null) {
@@ -89,7 +89,6 @@ final class StaticDataApi {
 		if (version != null) {
 			url += "version=" + version + "&";
 		}
-		url += "dataById=" + dataById + "&";
 		if (champData[0] != null) {
 			url += "champData=";
 			for (ChampData data : champData) {
