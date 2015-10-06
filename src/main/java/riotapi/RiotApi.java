@@ -704,279 +704,313 @@ public class RiotApi {
 		return LeagueApi.getMasterLeague(getEndpoint(), getRegion(), getKey(), queueType);
 	}
 
-    /**
-     * Get a summary of player statistics for a given summoner
-     *
-     * @param region The desired region
-     * @param summonerId The ID of the desired summoner
-     * @param season The desired season
-     * @return A summary of player statistics for the given summoner
-     * @see PlayerStatsSummaryList
-     * @throws RiotApiException
-     */
-    public PlayerStatsSummaryList getPlayerStatsSummary(Region region, Season season, long summonerId) throws RiotApiException {
+	/**
+	 * Get a summary of player statistics for a given summoner
+	 *
+	 * @param region
+	 *            Region where to retrieve the data.
+	 * @param summonerId
+	 *            ID of the summoner for which to retrieve player stats.
+	 * @param season
+	 *            If specified, stats for the given season are returned. Otherwise, stats for the current season are returned.
+	 * @return A summary of player statistics for the given summoner
+	 * @see PlayerStatsSummaryList
+	 * @throws RiotApiException
+	 */
+	public PlayerStatsSummaryList getPlayerStatsSummary(Region region, Season season, long summonerId) throws RiotApiException {
 
-        return StatsApi.getPlayerStatsSummary(region.getEndpoint(), region.getName(), season.getName(), getKey(), summonerId);
-    }
+		return StatsApi.getPlayerStatsSummary(region.getEndpoint(), region.getName(), season.getName(), getKey(), summonerId);
+	}
 
-    /**
-     * Get a summary of player statistics for a given summoner
-     *
-     * @param summonerId The ID of the desired summoner
-     * @param season The desired season
-     * @return A summary of player statistics for the given summoner
-     * @see PlayerStatsSummaryList
-     * @throws RiotApiException
-     */
-    public PlayerStatsSummaryList getPlayerStatsSummary(Season season, long summonerId) throws RiotApiException {
+	/**
+	 * Get a summary of player statistics for a given summoner
+	 *
+	 * @param summonerId
+	 *            ID of the summoner for which to retrieve player stats.
+	 * @param season
+	 *            If specified, stats for the given season are returned. Otherwise, stats for the current season are returned.
+	 * @return A summary of player statistics for the given summoner
+	 * @see PlayerStatsSummaryList
+	 * @throws RiotApiException
+	 */
+	public PlayerStatsSummaryList getPlayerStatsSummary(Season season, long summonerId) throws RiotApiException {
 
-        return StatsApi.getPlayerStatsSummary(getEndpoint(), getRegion(), season.getName(), getKey(), summonerId);
-    }
+		return StatsApi.getPlayerStatsSummary(getEndpoint(), getRegion(), season.getName(), getKey(), summonerId);
+	}
 
-    /**
-     * Get a summary of player statistics for a given summoner
-     *
-     * @param region The desired region
-     * @param summonerId The ID of the desired summoner
-     * @return A summary of player statistics for the given summoner
-     * @see PlayerStatsSummaryList
-     * @throws RiotApiException
-     */
-    public PlayerStatsSummaryList getPlayerStatsSummary(Region region, long summonerId) throws RiotApiException {
+	/**
+	 * Get a summary of player statistics for a given summoner
+	 *
+	 * @param region
+	 *            Region where to retrieve the data.
+	 * @param summonerId
+	 *            ID of the summoner for which to retrieve player stats.
+	 * @return A summary of player statistics for the given summoner
+	 * @see PlayerStatsSummaryList
+	 * @throws RiotApiException
+	 */
+	public PlayerStatsSummaryList getPlayerStatsSummary(Region region, long summonerId) throws RiotApiException {
 
-        return StatsApi.getPlayerStatsSummary(region.getEndpoint(), region.getName(), getSeason(), getKey(), summonerId);
-    }
+		return StatsApi.getPlayerStatsSummary(region.getEndpoint(), region.getName(), getSeason(), getKey(), summonerId);
+	}
 
-    /**
-     * Get a summary of player statistics for a given summoner
-     *
-     * @param summonerId The ID of the desired summoner
-     * @return A summary of player statistics for the given summoner
-     * @see PlayerStatsSummaryList
-     * @throws RiotApiException
-     */
-    public PlayerStatsSummaryList getPlayerStatsSummary(long summonerId) throws RiotApiException {
+	/**
+	 * Get a summary of player statistics for a given summoner
+	 *
+	 * @param summonerId
+	 *            ID of the summoner for which to retrieve player stats.
+	 * @return A summary of player statistics for the given summoner
+	 * @see PlayerStatsSummaryList
+	 * @throws RiotApiException
+	 */
+	public PlayerStatsSummaryList getPlayerStatsSummary(long summonerId) throws RiotApiException {
 
-        return StatsApi.getPlayerStatsSummary(getEndpoint(), getRegion(), getSeason(), getKey(), summonerId);
-    }
+		return StatsApi.getPlayerStatsSummary(getEndpoint(), getRegion(), getSeason(), getKey(), summonerId);
+	}
 
-    /**
-     * Get the ranked statistics of a given summoner
-     *
-     * @param region The desired region
-     * @param summonerId The ID of the desired summoner
-     * @param season The desired season
-     * @return Ranked statistics of the given summoner
-     * @see RankedStats
-     * @throws RiotApiException
-     */
-    public RankedStats getRankedStats(Region region, Season season, long summonerId) throws RiotApiException {
+	/**
+	 * Get the ranked statistics of a given summoner
+	 *
+	 * @param region
+	 *            Region where to retrieve the data.
+	 * @param summonerId
+	 *            ID of the summoner for which to retrieve ranked stats.
+	 * @param season
+	 *            If specified, stats for the given season are returned. Otherwise, stats for the current season are returned.
+	 * @return Ranked statistics of the given summoner
+	 * @see RankedStats
+	 * @throws RiotApiException
+	 */
+	public RankedStats getRankedStats(Region region, Season season, long summonerId) throws RiotApiException {
 
-        return StatsApi.getRankedStats(region.getEndpoint(), region.getName(), season.getName(), getKey(), summonerId);
-    }
+		return StatsApi.getRankedStats(region.getEndpoint(), region.getName(), season.getName(), getKey(), summonerId);
+	}
 
-    /**
-     * Get the ranked statistics of a given summoner
-     *
-     * @param summonerId The ID of the desired summoner
-     * @param season The desired season
-     * @return Ranked statistics of the given summoner
-     * @see RankedStats
-     * @throws RiotApiException
-     */
-    public RankedStats getRankedStats(Season season, long summonerId) throws RiotApiException {
+	/**
+	 * Get the ranked statistics of a given summoner
+	 *
+	 * @param summonerId
+	 *            ID of the summoner for which to retrieve ranked stats.
+	 * @param season
+	 *            If specified, stats for the given season are returned. Otherwise, stats for the current season are returned.
+	 * @return Ranked statistics of the given summoner
+	 * @see RankedStats
+	 * @throws RiotApiException
+	 */
+	public RankedStats getRankedStats(Season season, long summonerId) throws RiotApiException {
 
-        return StatsApi.getRankedStats(getEndpoint(), getRegion(), season.getName(), getKey(), summonerId);
-    }
+		return StatsApi.getRankedStats(getEndpoint(), getRegion(), season.getName(), getKey(), summonerId);
+	}
 
-    /**
-     * Get the ranked statistics of a given summoner
-     *
-     * @param region The desired region
-     * @param summonerId The ID of the desired summoner
-     * @return Ranked statistics of the given summoner
-     * @see RankedStats
-     * @throws RiotApiException
-     */
-    public RankedStats getRankedStats(Region region, long summonerId) throws RiotApiException {
+	/**
+	 * Get the ranked statistics of a given summoner
+	 *
+	 * @param region
+	 *            Region where to retrieve the data.
+	 * @param summonerId
+	 *            ID of the summoner for which to retrieve ranked stats.
+	 * @return Ranked statistics of the given summoner
+	 * @see RankedStats
+	 * @throws RiotApiException
+	 */
+	public RankedStats getRankedStats(Region region, long summonerId) throws RiotApiException {
 
-        return StatsApi.getRankedStats(region.getEndpoint(), region.getName(), getSeason(), getKey(), summonerId);
-    }
+		return StatsApi.getRankedStats(region.getEndpoint(), region.getName(), getSeason(), getKey(), summonerId);
+	}
 
-    /**
-     * Get the ranked statistics of a given summoner
-     *
-     * @param summonerId The ID of the desired summoner
-     * @return Ranked statistics of the given summoner
-     * @see RankedStats
-     * @throws RiotApiException
-     */
-    public RankedStats getRankedStats(long summonerId) throws RiotApiException {
+	/**
+	 * Get the ranked statistics of a given summoner
+	 *
+	 * @param summonerId
+	 *            ID of the summoner for which to retrieve ranked stats.
+	 * @return Ranked statistics of the given summoner
+	 * @see RankedStats
+	 * @throws RiotApiException
+	 */
+	public RankedStats getRankedStats(long summonerId) throws RiotApiException {
 
-        return StatsApi.getRankedStats(getEndpoint(), getRegion(), getSeason(), getKey(), summonerId);
-    }
+		return StatsApi.getRankedStats(getEndpoint(), getRegion(), getSeason(), getKey(), summonerId);
+	}
 
-    /**
-     * Get the mastery pages of a given summoner
-     *
-     * @param region The desired region
-     * @param summonerIds The IDs of the desired summoners
-     * @return A map of mastery pages of the given summoners
-     * @see MasteryPages
-     * @throws RiotApiException
-     */
-    public Map<String, MasteryPages> getMasteryPages(Region region, String summonerIds) throws RiotApiException {
+	/**
+	 * Get the mastery pages of multiple given summoners
+	 *
+	 * @param region
+	 *            Region where to retrieve the data.
+	 * @param summonerIds
+	 *            Comma-separated list of summoner IDs associated with masteries to retrieve. Maximum allowed at once is 40.
+	 * @return A map of mastery pages of the given summoners
+	 * @see MasteryPages
+	 * @throws RiotApiException
+	 */
+	public Map<String, MasteryPages> getMasteryPages(Region region, String summonerIds) throws RiotApiException {
 
-        return SummonerApi.getMasteryPages(region.getEndpoint(), region.getName(), getKey(), summonerIds);
-    }
+		return SummonerApi.getMasteryPages(region.getEndpoint(), region.getName(), getKey(), summonerIds);
+	}
 
-    /**
-     * Get the mastery pages of a given summoner
-     *
-     * @param summonerIds The IDs of the desired summoners
-     * @return A map of mastery pages of the given summoners
-     * @see MasteryPages
-     * @throws RiotApiException
-     */
-    public Map<String, MasteryPages> getMasteryPages(String summonerIds) throws RiotApiException {
+	/**
+	 * Get the mastery pages of multiple given summoners
+	 *
+	 * @param summonerIds
+	 *            Comma-separated list of summoner IDs associated with masteries to retrieve. Maximum allowed at once is 40.
+	 * @return A map of mastery pages of the given summoners
+	 * @see MasteryPages
+	 * @throws RiotApiException
+	 */
+	public Map<String, MasteryPages> getMasteryPages(String summonerIds) throws RiotApiException {
 
-        return SummonerApi.getMasteryPages(getEndpoint(), getRegion(), getKey(), summonerIds);
-    }
+		return SummonerApi.getMasteryPages(getEndpoint(), getRegion(), getKey(), summonerIds);
+	}
 
-    /**
-     * Get the mastery pages of given summoners
-     *
-     * @param region The desired region
-     * @param summonerIds The IDs of the desired summoners
-     * @return A map of mastery pages of the given summoners
-     * @see MasteryPages
-     * @throws RiotApiException
-     */
-    public Map<String, MasteryPages> getMasteryPages(Region region, long... summonerIds) throws RiotApiException {
+	/**
+	 * Get the mastery pages of multiple given summoners
+	 *
+	 * @param region
+	 *            Region where to retrieve the data.
+	 * @param summonerIds
+	 *            List of summoner IDs associated with masteries to retrieve. Maximum allowed at once is 40.
+	 * @return A map of mastery pages of the given summoners
+	 * @see MasteryPages
+	 * @throws RiotApiException
+	 */
+	public Map<String, MasteryPages> getMasteryPages(Region region, long... summonerIds) throws RiotApiException {
 
-        return SummonerApi.getMasteryPages(region.getEndpoint(), region.getName(), getKey(), summonerIds);
-    }
-    
-    /**
-     * Get the mastery pages of a given summoner
-     *
-     * @param region The desired region
-     * @param summonerId The ID of the desired summoner
-     * @return A map of mastery pages of the given summoner
-     * @see MasteryPages
-     * @throws RiotApiException
-     */
-    public MasteryPages getMasteryPages(Region region, long summonerId) throws RiotApiException {
+		return SummonerApi.getMasteryPages(region.getEndpoint(), region.getName(), getKey(), summonerIds);
+	}
 
-        return SummonerApi.getMasteryPages(region.getEndpoint(), region.getName(), getKey(), summonerId).get(Long.toString(summonerId));
-    }
+	/**
+	 * Get the mastery pages of a given summoner
+	 *
+	 * @param region
+	 *            Region where to retrieve the data.
+	 * @param summonerId
+	 *            Summoner ID associated with masteries to retrieve.
+	 * @return A map of mastery pages of the given summoner
+	 * @see MasteryPages
+	 * @throws RiotApiException
+	 */
+	public MasteryPages getMasteryPages(Region region, long summonerId) throws RiotApiException {
 
-    /**
-     * Get the mastery pages of a given summoner
-     *
-     * @param summonerIds The IDs of the desired summoners
-     * @return A map of mastery pages of the given summoners
-     * @see MasteryPages
-     * @throws RiotApiException
-     */
-    public Map<String, MasteryPages> getMasteryPages(long... summonerIds) throws RiotApiException {
+		return SummonerApi.getMasteryPages(region.getEndpoint(), region.getName(), getKey(), summonerId).get(Long.toString(summonerId));
+	}
 
-        return SummonerApi.getMasteryPages(getEndpoint(), getRegion(), getKey(), summonerIds);
-    }
-    
-    /**
-     * Get the mastery pages of a given summoner
-     *
-     * @param summonerId The IDs of the desired summoner
-     * @return A map of mastery pages of the given summoner
-     * @see MasteryPages
-     * @throws RiotApiException
-     */
-    public MasteryPages getMasteryPages(long summonerId) throws RiotApiException {
+	/**
+	 * Get the mastery pages of multiple given summoners
+	 *
+	 * @param summonerIds
+	 *            List of summoner IDs associated with masteries to retrieve. Maximum allowed at once is 40.
+	 * @return A map of mastery pages of the given summoners
+	 * @see MasteryPages
+	 * @throws RiotApiException
+	 */
+	public Map<String, MasteryPages> getMasteryPages(long... summonerIds) throws RiotApiException {
 
-        return SummonerApi.getMasteryPages(getEndpoint(), getRegion(), getKey(), summonerId).get(Long.toString(summonerId));
-    }
+		return SummonerApi.getMasteryPages(getEndpoint(), getRegion(), getKey(), summonerIds);
+	}
 
-    /**
-     * Get the rune pages of a given summoner
-     *
-     * @param region The desired region
-     * @param summonerIds The IDs of the desired summoners
-     * @return A map of rune pages of the given summoners
-     * @see RunePages
-     * @throws RiotApiException
-     */
-    public Map<String, RunePages> getRunePages(Region region, String summonerIds) throws RiotApiException {
+	/**
+	 * Get the mastery pages of a given summoner
+	 *
+	 * @param summonerId
+	 *            Summoner ID associated with masteries to retrieve.
+	 * @return A map of mastery pages of the given summoner
+	 * @see MasteryPages
+	 * @throws RiotApiException
+	 */
+	public MasteryPages getMasteryPages(long summonerId) throws RiotApiException {
 
-        return SummonerApi.getRunePages(region.getEndpoint(), region.getName(), getKey(), summonerIds);
-    }
+		return SummonerApi.getMasteryPages(getEndpoint(), getRegion(), getKey(), summonerId).get(Long.toString(summonerId));
+	}
 
-    /**
-     * Get the rune pages of a given summoner
-     *
-     * @param summonerIds The IDs of the desired summoners
-     * @return A map of rune pages of the given summoners
-     * @see RunePages
-     * @throws RiotApiException
-     */
-    public Map<String, RunePages> getRunePages(String summonerIds) throws RiotApiException {
+	/**
+	 * Get the rune pages of multiple given summoners
+	 *
+	 * @param region
+	 *            Region where to retrieve the data.
+	 * @param summonerIds
+	 *            Comma-separated list of summoner IDs associated with runes to retrieve. Maximum allowed at once is 40.
+	 * @return A map of rune pages of the given summoners
+	 * @see RunePages
+	 * @throws RiotApiException
+	 */
+	public Map<String, RunePages> getRunePages(Region region, String summonerIds) throws RiotApiException {
 
-        return SummonerApi.getRunePages(getEndpoint(), getRegion(), getKey(), summonerIds);
-    }
+		return SummonerApi.getRunePages(region.getEndpoint(), region.getName(), getKey(), summonerIds);
+	}
 
-    /**
-     * Get the rune pages of a given summoners
-     *
-     * @param region The desired region
-     * @param summonerIds The IDs of the desired summoners
-     * @return A map of rune pages of the given summoners
-     * @see RunePages
-     * @throws RiotApiException
-     */
-    public Map<String, RunePages> getRunePages(Region region, long... summonerIds) throws RiotApiException {
+	/**
+	 * Get the rune pages of multiple given summoners
+	 *
+	 * @param summonerIds
+	 *            Comma-separated list of summoner IDs associated with runes to retrieve. Maximum allowed at once is 40.
+	 * @return A map of rune pages of the given summoners
+	 * @see RunePages
+	 * @throws RiotApiException
+	 */
+	public Map<String, RunePages> getRunePages(String summonerIds) throws RiotApiException {
 
-        return SummonerApi.getRunePages(region.getEndpoint(), region.getName(), getKey(), summonerIds);
-    }
-    
-    /**
-     * Get the rune pages of a given summoner
-     *
-     * @param region The desired region
-     * @param summonerId The IDs of the desired summoner
-     * @return A map of rune pages of the given summoner
-     * @see RunePages
-     * @throws RiotApiException
-     */
-    public RunePages getRunePages(Region region, long summonerId) throws RiotApiException {
+		return SummonerApi.getRunePages(getEndpoint(), getRegion(), getKey(), summonerIds);
+	}
 
-        return SummonerApi.getRunePages(region.getEndpoint(), region.getName(), getKey(), summonerId).get(Long.toString(summonerId));
-    }
+	/**
+	 * Get the rune pages of multiple given summoners
+	 *
+	 * @param region
+	 *            Region where to retrieve the data.
+	 * @param summonerIds
+	 *            List of summoner IDs associated with runes to retrieve. Maximum allowed at once is 40.
+	 * @return A map of rune pages of the given summoners
+	 * @see RunePages
+	 * @throws RiotApiException
+	 */
+	public Map<String, RunePages> getRunePages(Region region, long... summonerIds) throws RiotApiException {
 
-    /**
-     * Get the rune pages of a given summoners
-     *
-     * @param summonerIds The IDs of the desired summoners
-     * @return A map of rune pages of the given summoners
-     * @see RunePages
-     * @throws RiotApiException
-     */
-    public Map<String, RunePages> getRunePages(long... summonerIds) throws RiotApiException {
+		return SummonerApi.getRunePages(region.getEndpoint(), region.getName(), getKey(), summonerIds);
+	}
 
-        return SummonerApi.getRunePages(getEndpoint(), getRegion(), getKey(), summonerIds);
-    }
-    
-    /**
-     * Get the rune pages of a given summoner
-     *
-     * @param summonerId The IDs of the desired summoner
-     * @return A map of rune pages of the given summoner
-     * @see RunePages
-     * @throws RiotApiException
-     */
-    public RunePages getRunePages(long summonerId) throws RiotApiException {
+	/**
+	 * Get the rune pages of a given summoner
+	 *
+	 * @param region
+	 *            Region where to retrieve the data.
+	 * @param summonerId
+	 *            Summoner ID associated with runes to retrieve.
+	 * @return A map of rune pages of the given summoner
+	 * @see RunePages
+	 * @throws RiotApiException
+	 */
+	public RunePages getRunePages(Region region, long summonerId) throws RiotApiException {
 
-        return SummonerApi.getRunePages(getEndpoint(), getRegion(), getKey(), summonerId).get(Long.toString(summonerId));
-    }
+		return SummonerApi.getRunePages(region.getEndpoint(), region.getName(), getKey(), summonerId).get(Long.toString(summonerId));
+	}
+
+	/**
+	 * Get the rune pages of multiple given summoners
+	 *
+	 * @param summonerIds
+	 *            List of summoner IDs associated with runes to retrieve. Maximum allowed at once is 40.
+	 * @return A map of rune pages of the given summoners
+	 * @see RunePages
+	 * @throws RiotApiException
+	 */
+	public Map<String, RunePages> getRunePages(long... summonerIds) throws RiotApiException {
+
+		return SummonerApi.getRunePages(getEndpoint(), getRegion(), getKey(), summonerIds);
+	}
+
+	/**
+	 * Get the rune pages of a given summoner
+	 *
+	 * @param summonerId
+	 *            Summoner ID associated with runes to retrieve.
+	 * @return A map of rune pages of the given summoner
+	 * @see RunePages
+	 * @throws RiotApiException
+	 */
+	public RunePages getRunePages(long summonerId) throws RiotApiException {
+
+		return SummonerApi.getRunePages(getEndpoint(), getRegion(), getKey(), summonerId).get(Long.toString(summonerId));
+	}
 
     /**
      * Get summoners by names
