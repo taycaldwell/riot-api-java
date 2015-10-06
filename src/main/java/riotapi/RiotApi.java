@@ -83,477 +83,626 @@ public class RiotApi {
         this.setKey(key);
     }
 
+    public RiotApi(Region region) {
+        this.setRegion(region);
+    }
+
     public RiotApi(String key, Region region) {
         this.setKey(key);
         this.setRegion(region);
     }
 
-    /**
-     * Get all the champions for a set region
-     *
-     * @return A list of all the champions for the set region
-     * @see ChampionList
-     * @throws RiotApiException
-     */
-    public dto.Champion.ChampionList getChampions() throws RiotApiException {
+	/**
+	 * Get all the champions for a set region
+	 *
+	 * @return A list of all the champions for the set region
+	 * @see dto.Champion.ChampionList
+	 * @throws RiotApiException
+	 */
+	public dto.Champion.ChampionList getChampions() throws RiotApiException {
 
-        return ChampionApi.getChampions(getEndpoint(), getRegion(), getKey());
-    }
+		return ChampionApi.getChampions(getEndpoint(), getRegion(), getKey());
+	}
 
-    /**
-     * Get all the champions for a given region
-     *
-     * @param region The desired region
-     * @return A list of all the champions for the set region
-     * @see ChampionList
-     * @throws RiotApiException
-     */
-    public dto.Champion.ChampionList getChampions(Region region) throws RiotApiException {
+	/**
+	 * Get all the champions for a given region
+	 *
+	 * @param region
+	 *            Region where to retrieve the data.
+	 * @return A list of champions for the given region
+	 * @see dto.Champion.ChampionList
+	 * @throws RiotApiException
+	 */
+	public dto.Champion.ChampionList getChampions(Region region) throws RiotApiException {
 
-        return ChampionApi.getChampions(region.getEndpoint(), region.getName(), getKey());
-    }
+		return ChampionApi.getChampions(region.getEndpoint(), region.getName(), getKey());
+	}
 
-    /**
-     * Get all the champions for a set region
-     *
-     * @param freeToPlay Only free to play
-     * @return A list of all the free to play champions for the set region when
-     * freeToPlay is true A list of all the champions for the set region when
-     * freeToPlay is false
-     * @see ChampionList
-     * @throws RiotApiException
-     */
-    public dto.Champion.ChampionList getChampions(boolean freeToPlay) throws RiotApiException {
+	/**
+	 * Get all the champions for a set region
+	 *
+	 * @param freeToPlay
+	 *            Optional filter param to retrieve only free to play champions.
+	 * @return A list of champions for the set region
+	 * @see dto.Champion.ChampionList
+	 * @throws RiotApiException
+	 */
+	public dto.Champion.ChampionList getChampions(boolean freeToPlay) throws RiotApiException {
 
-        return ChampionApi.getChampions(getEndpoint(), getRegion(), getKey(), freeToPlay);
-    }
+		return ChampionApi.getChampions(getEndpoint(), getRegion(), getKey(), freeToPlay);
+	}
 
-    /**
-     * Get all champions for a given region
-     *
-     * @param region The desired region
-     * @param freeToPlay Only free to play
-     * @return A list of all the free to play champions for the given region
-     * when freeToPlay is true A list of all the champions for the given region
-     * when freeToPlay is false
-     * @see ChampionList
-     * @throws RiotApiException
-     */
-    public dto.Champion.ChampionList getChampions(Region region, boolean freeToPlay) throws RiotApiException {
+	/**
+	 * Get all champions for a given region
+	 *
+	 * @param region
+	 *            Region where to retrieve the data.
+	 * @param freeToPlay
+	 *            Optional filter param to retrieve only free to play champions.
+	 * @return A list of champions for the given region
+	 * @see dto.Champion.ChampionList
+	 * @throws RiotApiException
+	 */
+	public dto.Champion.ChampionList getChampions(Region region, boolean freeToPlay) throws RiotApiException {
 
-        return ChampionApi.getChampions(region.getEndpoint(), region.getName(), getKey(), freeToPlay);
-    }
+		return ChampionApi.getChampions(region.getEndpoint(), region.getName(), getKey(), freeToPlay);
+	}
 
-    /**
-     * Get all free to play champions for a given region
-     *
-     * @param region The desired region
-     * @return A list of all the free to play champions for the given region
-     * @see ChampionList
-     * @throws RiotApiException
-     */
-    public dto.Champion.ChampionList getFreeToPlayChampions(Region region) throws RiotApiException {
+	/**
+	 * Get all free to play champions for a given region
+	 *
+	 * @param region
+	 *            Region where to retrieve the data.
+	 * @return A list of all the free to play champions for the given region
+	 * @see dto.Champion.ChampionList
+	 * @throws RiotApiException
+	 */
+	public dto.Champion.ChampionList getFreeToPlayChampions(Region region) throws RiotApiException {
 
-        return ChampionApi.getChampions(region.getEndpoint(), region.getName(), getKey(), true);
-    }
+		return ChampionApi.getChampions(region.getEndpoint(), region.getName(), getKey(), true);
+	}
 
-    /**
-     * Get all free to play champions for a set region
-     *
-     * @return A list of all the free to play champions for the set region
-     * @see ChampionList
-     * @throws RiotApiException
-     */
-    public dto.Champion.ChampionList getFreeToPlayChampions() throws RiotApiException {
+	/**
+	 * Get all free to play champions for a set region
+	 *
+	 * @return A list of all the free to play champions for the set region
+	 * @see dto.Champion.ChampionList
+	 * @throws RiotApiException
+	 */
+	public dto.Champion.ChampionList getFreeToPlayChampions() throws RiotApiException {
 
-        return ChampionApi.getChampions(getEndpoint(), getRegion(), getKey(), true);
-    }
+		return ChampionApi.getChampions(getEndpoint(), getRegion(), getKey(), true);
+	}
 
-    /**
-     * Get a champion by id for a given region
-     *
-     * @param region The desired region
-     * @param champId The ID of the desired champion
-     * @return The champion of the given ID
-     * @see ChampionList
-     * @throws RiotApiException
-     */
-    public Champion getChampionById(Region region, int champId) throws RiotApiException {
+	/**
+	 * Get a champion by id for a given region
+	 *
+	 * @param region
+	 *            Region where to retrieve the data.
+	 * @param champId
+	 *            The ID of the desired champion
+	 * @return The champion of the given ID
+	 * @see Champion
+	 * @throws RiotApiException
+	 */
+	public Champion getChampionById(Region region, int champId) throws RiotApiException {
 
-        return ChampionApi.getChampionById(region.getEndpoint(), region.getName(), getKey(), champId);
-    }
+		return ChampionApi.getChampionById(region.getEndpoint(), region.getName(), getKey(), champId);
+	}
 
-    /**
-     * Get a champion by id for a set region
-     *
-     * @param champId The ID of the desired champion
-     * @return The champion of the given ID
-     * @see ChampionList
-     * @throws RiotApiException
-     */
-    public Champion getChampionById(int champId) throws RiotApiException {
+	/**
+	 * Get a champion by id for a set region
+	 *
+	 * @param champId
+	 *            The ID of the desired champion
+	 * @return The champion of the given ID
+	 * @see Champion
+	 * @throws RiotApiException
+	 */
+	public Champion getChampionById(int champId) throws RiotApiException {
 
-        return ChampionApi.getChampionById(getEndpoint(), getRegion(), getKey(), champId);
-    }
+		return ChampionApi.getChampionById(getEndpoint(), getRegion(), getKey(), champId);
+	}
 
-    /**
-     * Get recent games for a given summoner
-     *
-     * @param region The desired region
-     * @param summonerId The ID of the desired summoner
-     * @return Recent games of the given summoner
-     * @see RecentGames
-     * @throws RiotApiException
-     */
-    public RecentGames getRecentGames(Region region, long summonerId) throws RiotApiException {
+	/**
+	 * Get recent games for a given summoner
+	 *
+	 * @param region
+	 *            Region where to retrieve the data.
+	 * @param summonerId
+	 *            ID of the summoner for which to retrieve recent games.
+	 * @return Recent games of the given summoner
+	 * @see RecentGames
+	 * @throws RiotApiException
+	 */
+	public RecentGames getRecentGames(Region region, long summonerId) throws RiotApiException {
 
-        return GameApi.getRecentGames(region.getEndpoint(), region.getName(), getKey(), summonerId);
-    }
+		return GameApi.getRecentGames(region.getEndpoint(), region.getName(), getKey(), summonerId);
+	}
 
-    /**
-     * Get recent games for a given summoner
-     *
-     * @param summonerId The ID of the desired summoner
-     * @return Recent games of the given summoner
-     * @see RecentGames
-     * @throws RiotApiException
-     */
-    public RecentGames getRecentGames(long summonerId) throws RiotApiException {
+	/**
+	 * Get recent games for a given summoner
+	 *
+	 * @param summonerId
+	 *            ID of the summoner for which to retrieve recent games.
+	 * @return Recent games of the given summoner
+	 * @see RecentGames
+	 * @throws RiotApiException
+	 */
+	public RecentGames getRecentGames(long summonerId) throws RiotApiException {
 
-        return GameApi.getRecentGames(getEndpoint(), getRegion(), getKey(), summonerId);
-    }
-    
-    /**
-     * 
-     * @param region
-     * @param summonerId
-     * @throws RiotApiException
-     */
-    public List<League> getLeagueBySummoner(Region region, long summonerId) throws RiotApiException {
+		return GameApi.getRecentGames(getEndpoint(), getRegion(), getKey(), summonerId);
+	}
 
-        return LeagueApi.getLeagueBySummoners(region.getEndpoint(), region.getName(), getKey(), summonerId).get(Long.toString(summonerId));
-    }
-    
-    /**
-     * 
-     * @param region
-     * @param summonerIds
-     * @throws RiotApiException
-     */
-    public Map<String, List<League>> getLeagueBySummoners(Region region, long... summonerIds) throws RiotApiException {
+	/**
+	 * Get a list of leagues for a summoner
+	 * 
+	 * @param region
+	 *            The region of the leagues.
+	 * @param summonerId
+	 *            Summoner ID
+	 * @return A list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public List<League> getLeagueBySummoner(Region region, long summonerId) throws RiotApiException {
 
-        return LeagueApi.getLeagueBySummoners(region.getEndpoint(), region.getName(), getKey(), summonerIds);
-    }
-    
-    /**
-     * 
-     * @param summonerId
-     * @throws RiotApiException
-     */
-    public List<League> getLeagueBySummoner(long summonerId) throws RiotApiException {
+		return LeagueApi.getLeagueBySummoners(region.getEndpoint(), region.getName(), getKey(), summonerId).get(Long.toString(summonerId));
+	}
 
-        return LeagueApi.getLeagueBySummoners(getEndpoint(), getRegion(), getKey(), summonerId).get(Long.toString(summonerId));
-    }
-    
-    /**
-     * 
-     * @param summonerIds
-     * @throws RiotApiException
-     */
-    public Map<String, List<League>> getLeagueBySummoners(long... summonerIds) throws RiotApiException {
+	/**
+	 * Get a list of leagues for multiple summoners
+	 * 
+	 * @param region
+	 *            The region of the leagues.
+	 * @param summonerIds
+	 *            List of summoner IDs. Maximum allowed at once is 10.
+	 * @return A map, mapping each summoner ID to a list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public Map<String, List<League>> getLeagueBySummoners(Region region, long... summonerIds) throws RiotApiException {
 
-        return LeagueApi.getLeagueBySummoners(getEndpoint(), getRegion(), getKey(), summonerIds);
-    }
-    
-    /**
-     * 
-     * @param region
-     * @param summonerId
-     * @throws RiotApiException
-     */
-    public List<League> getLeagueEntryBySummoner(Region region, long summonerId) throws RiotApiException {
+		return LeagueApi.getLeagueBySummoners(region.getEndpoint(), region.getName(), getKey(), summonerIds);
+	}
 
-        return LeagueApi.getLeagueEntryBySummoners(region.getEndpoint(), region.getName(), getKey(), summonerId).get(Long.toString(summonerId));
-    }
-    
-    /**
-     * 
-     * @param region
-     * @param summonerIds
-     * @throws RiotApiException
-     */
-    public Map<String, List<League>> getLeagueEntryBySummoners(Region region, long... summonerIds) throws RiotApiException {
+	/**
+	 * Get a list of leagues for a summoner
+	 * 
+	 * @param summonerId
+	 *            Summoner ID
+	 * @return A list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public List<League> getLeagueBySummoner(long summonerId) throws RiotApiException {
 
-        return LeagueApi.getLeagueEntryBySummoners(region.getEndpoint(), region.getName(), getKey(), summonerIds);
-    }
-    
-    /**
-     * 
-     * @param summonerId
-     * @throws RiotApiException
-     */
-    public List<League> getLeagueEntryBySummoner(long summonerId) throws RiotApiException {
+		return LeagueApi.getLeagueBySummoners(getEndpoint(), getRegion(), getKey(), summonerId).get(Long.toString(summonerId));
+	}
 
-        return LeagueApi.getLeagueEntryBySummoners(getEndpoint(), getRegion(), getKey(), summonerId).get(Long.toString(summonerId));
-    }
-    
-    /**
-     * 
-     * @param summonerIds
-     * @throws RiotApiException
-     */
-    public Map<String, List<League>> getLeagueEntryBySummoners(long... summonerIds) throws RiotApiException {
+	/**
+	 * Get a list of leagues for multiple summoners
+	 * 
+	 * @param summonerIds
+	 *            List of summoner IDs. Maximum allowed at once is 10.
+	 * @return A map, mapping each summoner ID to a list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public Map<String, List<League>> getLeagueBySummoners(long... summonerIds) throws RiotApiException {
 
-        return LeagueApi.getLeagueEntryBySummoners(getEndpoint(), getRegion(), getKey(), summonerIds);
-    }
-    
-    /**
-     * 
-     * @param region
-     * @param summonerId
-     * @throws RiotApiException
-     */
-    public List<League> getLeagueBySummoner(Region region, String summonerId) throws RiotApiException {
+		return LeagueApi.getLeagueBySummoners(getEndpoint(), getRegion(), getKey(), summonerIds);
+	}
 
-        return LeagueApi.getLeagueBySummoners(region.getEndpoint(), region.getName(), getKey(), summonerId).get(summonerId);
-    }
-    
-    /**
-     * 
-     * @param region
-     * @param summonerIds
-     * @throws RiotApiException
-     */
-    public Map<String, List<League>> getLeagueBySummoners(Region region, String summonerIds) throws RiotApiException {
+	/**
+	 * Get a list of leagues for a summoner
+	 * 
+	 * @param region
+	 *            The region of the leagues.
+	 * @param summonerId
+	 *            Summoner ID
+	 * @return A list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public List<League> getLeagueEntryBySummoner(Region region, long summonerId) throws RiotApiException {
 
-        return LeagueApi.getLeagueBySummoners(region.getEndpoint(), region.getName(), getKey(), summonerIds);
-    }
-    
-    /**
-     * 
-     * @param summonerId
-     * @throws RiotApiException
-     */
-    public List<League> getLeagueBySummoner(String summonerId) throws RiotApiException {
-        return LeagueApi.getLeagueBySummoners(getEndpoint(), getRegion(), getKey(), summonerId).get(summonerId);
-    }
-    
-    /**
-     * 
-     * @param summonerIds
-     * @throws RiotApiException
-     */
-    public Map<String, List<League>> getLeagueBySummoners(String summonerIds) throws RiotApiException {
-        return LeagueApi.getLeagueBySummoners(getEndpoint(), getRegion(), getKey(), summonerIds);
-    }
-    
-    /**
-     * 
-     * @param region
-     * @param summonerId
-     * @throws RiotApiException
-     */
-    public List<League> getLeagueEntryBySummoner(Region region, String summonerId) throws RiotApiException {
+		return LeagueApi.getLeagueEntryBySummoners(region.getEndpoint(), region.getName(), getKey(), summonerId).get(Long.toString(summonerId));
+	}
 
-        return LeagueApi.getLeagueEntryBySummoners(region.getEndpoint(), region.getName(), getKey(), summonerId).get(summonerId);
-    }
-    
-    /**
-     * 
-     * @param region
-     * @param summonerIds
-     * @throws RiotApiException
-     */
-    public Map<String, List<League>> getLeagueEntryBySummoners(Region region, String summonerIds) throws RiotApiException {
+	/**
+	 * Get a list of leagues for multiple summoners
+	 * 
+	 * @param region
+	 *            The region of the leagues.
+	 * @param summonerIds
+	 *            List of summoner IDs. Maximum allowed at once is 10.
+	 * @return A map, mapping each summoner ID to a list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public Map<String, List<League>> getLeagueEntryBySummoners(Region region, long... summonerIds) throws RiotApiException {
 
-        return LeagueApi.getLeagueEntryBySummoners(region.getEndpoint(), region.getName(), getKey(), summonerIds);
-    }
-    
-    /**
-     * 
-     * @param summonerId
-     * @throws RiotApiException
-     */
-    public List<League> getLeagueEntryBySummoner(String summonerId) throws RiotApiException {
+		return LeagueApi.getLeagueEntryBySummoners(region.getEndpoint(), region.getName(), getKey(), summonerIds);
+	}
 
-        return LeagueApi.getLeagueEntryBySummoners(getEndpoint(), getRegion(), getKey(), summonerId).get(summonerId);
-    }
-    
-    /**
-     * 
-     * @param summonerIds
-     * @throws RiotApiException
-     */
-    public Map<String, List<League>> getLeagueEntryBySummoners(String summonerIds) throws RiotApiException {
+	/**
+	 * Get a list of leagues for a summoner
+	 * 
+	 * @param summonerId
+	 *            Summoner ID
+	 * @return A list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public List<League> getLeagueEntryBySummoner(long summonerId) throws RiotApiException {
 
-        return LeagueApi.getLeagueEntryBySummoners(getEndpoint(), getRegion(), getKey(), summonerIds);
-    }
-    
-    /**
-     * 
-     * @param region
-     * @param teamId
-     * @throws RiotApiException
-     */
-    public List<League> getLeagueByTeam(Region region, String teamId) throws RiotApiException {
+		return LeagueApi.getLeagueEntryBySummoners(getEndpoint(), getRegion(), getKey(), summonerId).get(Long.toString(summonerId));
+	}
 
-        return LeagueApi.getLeagueByTeams(region.getEndpoint(), region.getName(), getKey(), teamId).get(teamId);
-    }
-    
-    /**
-     * 
-     * @param region
-     * @param teamIds
-     * @throws RiotApiException
-     */
-    public Map<String, List<League>> getLeagueByTeams(Region region, String teamIds) throws RiotApiException {
+	/**
+	 * Get a list of leagues for multiple summoners
+	 * 
+	 * @param summonerIds
+	 *            List of summoner IDs. Maximum allowed at once is 10.
+	 * @return A map, mapping each summoner ID to a list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public Map<String, List<League>> getLeagueEntryBySummoners(long... summonerIds) throws RiotApiException {
 
-        return LeagueApi.getLeagueByTeams(region.getEndpoint(), region.getName(), getKey(), teamIds);
-    }
-    
-    /**
-     * 
-     * @param teamId
-     * @throws RiotApiException
-     */
-    public List<League> getLeagueByTeam(String teamId) throws RiotApiException {
+		return LeagueApi.getLeagueEntryBySummoners(getEndpoint(), getRegion(), getKey(), summonerIds);
+	}
 
-        return LeagueApi.getLeagueByTeams(getEndpoint(), getRegion(), getKey(), teamId).get(teamId);
-    }
-    
-    /**
-     * 
-     * @param teamIds
-     * @throws RiotApiException
-     */
-    public Map<String, List<League>> getLeagueByTeams(String teamIds) throws RiotApiException {
+	/**
+	 * Get a list of leagues for a summoner
+	 * 
+	 * @param region
+	 *            The region of the leagues.
+	 * @param summonerId
+	 *            Summoner ID
+	 * @return A list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public List<League> getLeagueBySummoner(Region region, String summonerId) throws RiotApiException {
 
-        return LeagueApi.getLeagueByTeams(getEndpoint(), getRegion(), getKey(), teamIds);
-    }
+		return LeagueApi.getLeagueBySummoners(region.getEndpoint(), region.getName(), getKey(), summonerId).get(summonerId);
+	}
 
-    /**
-     * 
-     * @param region
-     * @param teamId
-     * @throws RiotApiException
-     */
-    public List<League> getLeagueEntryByTeam(Region region, String teamId) throws RiotApiException {
+	/**
+	 * Get a list of leagues for multiple summoners
+	 * 
+	 * @param region
+	 *            The region of the leagues.
+	 * @param summonerIds
+	 *            List of summoner IDs. Maximum allowed at once is 10.
+	 * @return A map, mapping each summoner ID to a list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public Map<String, List<League>> getLeagueBySummoners(Region region, String summonerIds) throws RiotApiException {
 
-        return LeagueApi.getLeagueEntryByTeams(region.getEndpoint(), region.getName(), getKey(), teamId).get(teamId);
-    }
-    
-    /**
-     * 
-     * @param region
-     * @param teamIds
-     * @throws RiotApiException
-     */
-    public Map<String, List<League>> getLeagueEntryByTeams(Region region, String teamIds) throws RiotApiException {
+		return LeagueApi.getLeagueBySummoners(region.getEndpoint(), region.getName(), getKey(), summonerIds);
+	}
 
-        return LeagueApi.getLeagueEntryByTeams(region.getEndpoint(), region.getName(), getKey(), teamIds);
-    }
-    
-    /**
-     * 
-     * @param teamIds
-     * @throws RiotApiException
-     */
-    public List<League> getLeagueEntryByTeam(String teamId) throws RiotApiException {
+	/**
+	 * Get a list of leagues for a summoner
+	 * 
+	 * @param summonerId
+	 *            Summoner ID
+	 * @return A list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public List<League> getLeagueBySummoner(String summonerId) throws RiotApiException {
+		return LeagueApi.getLeagueBySummoners(getEndpoint(), getRegion(), getKey(), summonerId).get(summonerId);
+	}
 
-        return LeagueApi.getLeagueEntryByTeams(getEndpoint(), getRegion(), getKey(), teamId).get(teamId);
-    }
-    
-    /**
-     * 
-     * @param teamIds
-     * @throws RiotApiException
-     */
-    public Map<String, List<League>> getLeagueEntryByTeams(String teamIds) throws RiotApiException {
+	/**
+	 * Get a list of leagues for multiple summoners
+	 * 
+	 * @param summonerIds
+	 *            List of summoner IDs. Maximum allowed at once is 10.
+	 * @return A map, mapping each summoner ID to a list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public Map<String, List<League>> getLeagueBySummoners(String summonerIds) throws RiotApiException {
+		return LeagueApi.getLeagueBySummoners(getEndpoint(), getRegion(), getKey(), summonerIds);
+	}
 
-        return LeagueApi.getLeagueEntryByTeams(getEndpoint(), getRegion(), getKey(), teamIds);
-    }
+	/**
+	 * Get a list of league entries for a summoner
+	 * 
+	 * @param region
+	 *            The region of the leagues.
+	 * @param summonerId
+	 *            Summoner ID
+	 * @return A list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public List<League> getLeagueEntryBySummoner(Region region, String summonerId) throws RiotApiException {
 
-    /**
-     * 
-     * @param region
-     * @throws RiotApiException
-     */
-    public League getChallengerLeagues(Region region) throws RiotApiException {
+		return LeagueApi.getLeagueEntryBySummoners(region.getEndpoint(), region.getName(), getKey(), summonerId).get(summonerId);
+	}
 
-        return LeagueApi.getChallengerLeagues(region.getEndpoint(), region.getName(), getKey());
-    }
+	/**
+	 * Get a list of league entries for multiple summoners
+	 * 
+	 * @param region
+	 *            The region of the leagues.
+	 * @param summonerIds
+	 *            List of summoner IDs. Maximum allowed at once is 10.
+	 * @return A map, mapping each summoner ID to a list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public Map<String, List<League>> getLeagueEntryBySummoners(Region region, String summonerIds) throws RiotApiException {
 
-    /**
-     * 
-     * @throws RiotApiException
-     */
-    public League getChallengerLeagues() throws RiotApiException {
+		return LeagueApi.getLeagueEntryBySummoners(region.getEndpoint(), region.getName(), getKey(), summonerIds);
+	}
 
-        return LeagueApi.getChallengerLeagues(getEndpoint(), getRegion(), getKey());
-    }
+	/**
+	 * Get a list of league entries for a summoner
+	 * 
+	 * @param summonerId
+	 *            Summoner ID
+	 * @return A list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public List<League> getLeagueEntryBySummoner(String summonerId) throws RiotApiException {
 
-    /**
-     * 
-     * @param region
-     * @param queueType
-     * @throws RiotApiException
-     */
-    public League getChallengerLeagues(Region region, QueueType queueType) throws RiotApiException {
+		return LeagueApi.getLeagueEntryBySummoners(getEndpoint(), getRegion(), getKey(), summonerId).get(summonerId);
+	}
 
-        return LeagueApi.getChallengerLeagues(region.getEndpoint(), region.getName(), getKey(), queueType);
-    }
+	/**
+	 * Get a list of league entries for multiple summoners
+	 * 
+	 * @param summonerIds
+	 *            List of summoner IDs. Maximum allowed at once is 10.
+	 * @return A map, mapping each summoner ID to a list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public Map<String, List<League>> getLeagueEntryBySummoners(String summonerIds) throws RiotApiException {
 
-    /**
-     * 
-     * @param queueType
-     * @throws RiotApiException
-     * @return League
-     */
-    public League getChallengerLeagues(QueueType queueType) throws RiotApiException {
+		return LeagueApi.getLeagueEntryBySummoners(getEndpoint(), getRegion(), getKey(), summonerIds);
+	}
 
-        return LeagueApi.getChallengerLeagues(getEndpoint(), getRegion(), getKey(), queueType);
-    }
-    
-    /**
-     * 
-     * @param region
-     * @throws RiotApiException
-     */
-    public League getMasterLeagues(Region region) throws RiotApiException {
+	/**
+	 * Get a list of leagues for a team
+	 * 
+	 * @param region
+	 *            The region of the leagues.
+	 * @param teamId
+	 *            Team ID
+	 * @return A list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public List<League> getLeagueByTeam(Region region, String teamId) throws RiotApiException {
 
-        return LeagueApi.getMasterLeagues(region.getEndpoint(), region.getName(), getKey());
-    }
+		return LeagueApi.getLeagueByTeams(region.getEndpoint(), region.getName(), getKey(), teamId).get(teamId);
+	}
 
-    /**
-     * 
-     * @throws RiotApiException
-     */
-    public League getMasterLeagues() throws RiotApiException {
+	/**
+	 * Get a list of leagues for multiple teams
+	 * 
+	 * @param region
+	 *            The region of the leagues.
+	 * @param teamIds
+	 *            List of team IDs. Maximum allowed at once is 10.
+	 * @return A map, mapping each team ID to a list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public Map<String, List<League>> getLeagueByTeams(Region region, String teamIds) throws RiotApiException {
 
-        return LeagueApi.getMasterLeagues(getEndpoint(), getRegion(), getKey());
-    }
+		return LeagueApi.getLeagueByTeams(region.getEndpoint(), region.getName(), getKey(), teamIds);
+	}
 
-    /**
-     * 
-     * @param region
-     * @param queueType
-     * @throws RiotApiException
-     */
-    public League getMasterLeagues(Region region, QueueType queueType) throws RiotApiException {
+	/**
+	 * Get a list of leagues for a team
+	 * 
+	 * @param teamId
+	 *            Team ID
+	 * @return A list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public List<League> getLeagueByTeam(String teamId) throws RiotApiException {
 
-        return LeagueApi.getMasterLeagues(region.getEndpoint(), region.getName(), getKey(), queueType);
-    }
+		return LeagueApi.getLeagueByTeams(getEndpoint(), getRegion(), getKey(), teamId).get(teamId);
+	}
 
-    /**
-     * 
-     * @param queueType
-     * @throws RiotApiException
-     * @return League
-     */
-    public League getMasterLeagues(QueueType queueType) throws RiotApiException {
+	/**
+	 * Get a list of leagues for multiple teams
+	 * 
+	 * @param teamIds
+	 *            List of team IDs. Maximum allowed at once is 10.
+	 * @return A map, mapping each team ID to a list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public Map<String, List<League>> getLeagueByTeams(String teamIds) throws RiotApiException {
 
-        return LeagueApi.getMasterLeagues(getEndpoint(), getRegion(), getKey(), queueType);
-    }
+		return LeagueApi.getLeagueByTeams(getEndpoint(), getRegion(), getKey(), teamIds);
+	}
+
+	/**
+	 * Get a list of league entries for a team
+	 * 
+	 * @param region
+	 *            The region of the leagues.
+	 * @param teamId
+	 *            Team ID
+	 * @return A list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public List<League> getLeagueEntryByTeam(Region region, String teamId) throws RiotApiException {
+
+		return LeagueApi.getLeagueEntryByTeams(region.getEndpoint(), region.getName(), getKey(), teamId).get(teamId);
+	}
+
+	/**
+	 * Get a list of league entries for multiple teams
+	 * 
+	 * @param region
+	 *            The region of the leagues.
+	 * @param teamIds
+	 *            List of team IDs. Maximum allowed at once is 10.
+	 * @return A map, mapping each team ID to a list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public Map<String, List<League>> getLeagueEntryByTeams(Region region, String teamIds) throws RiotApiException {
+
+		return LeagueApi.getLeagueEntryByTeams(region.getEndpoint(), region.getName(), getKey(), teamIds);
+	}
+
+	/**
+	 * Get a list of league entries for a team
+	 * 
+	 * @param teamIds
+	 *            List of team IDs. Maximum allowed at once is 10.
+	 * @return A list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public List<League> getLeagueEntryByTeam(String teamId) throws RiotApiException {
+
+		return LeagueApi.getLeagueEntryByTeams(getEndpoint(), getRegion(), getKey(), teamId).get(teamId);
+	}
+
+	/**
+	 * Get a list of league entries for multiple teams
+	 * 
+	 * @param teamIds
+	 *            List of team IDs. Maximum allowed at once is 10.
+	 * @return A map, mapping each team ID to a list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public Map<String, List<League>> getLeagueEntryByTeams(String teamIds) throws RiotApiException {
+
+		return LeagueApi.getLeagueEntryByTeams(getEndpoint(), getRegion(), getKey(), teamIds);
+	}
+
+	/**
+	 * Get challenger league
+	 * 
+	 * @param region
+	 *            The region of the leagues.
+	 * @return A single league
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public League getChallengerLeague(Region region) throws RiotApiException {
+
+		return LeagueApi.getChallengerLeague(region.getEndpoint(), region.getName(), getKey());
+	}
+
+	/**
+	 * Get challenger league
+	 * 
+	 * @return A single league
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public League getChallengerLeague() throws RiotApiException {
+
+		return LeagueApi.getChallengerLeague(getEndpoint(), getRegion(), getKey());
+	}
+
+	/**
+	 * Get challenger league
+	 * 
+	 * @param region
+	 *            The region of the leagues.
+	 * @param queueType
+	 *            Game queue type.
+	 * @return A single league
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public League getChallengerLeague(Region region, QueueType queueType) throws RiotApiException {
+
+		return LeagueApi.getChallengerLeague(region.getEndpoint(), region.getName(), getKey(), queueType);
+	}
+
+	/**
+	 * Get challenger league
+	 * 
+	 * @param queueType
+	 *            Game queue type.
+	 * @return A single league
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public League getChallengerLeague(QueueType queueType) throws RiotApiException {
+
+		return LeagueApi.getChallengerLeague(getEndpoint(), getRegion(), getKey(), queueType);
+	}
+
+	/**
+	 * Get master league
+	 * 
+	 * @param region
+	 *            The region of the leagues.
+	 * @return A single league
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public League getMasterLeague(Region region) throws RiotApiException {
+
+		return LeagueApi.getMasterLeague(region.getEndpoint(), region.getName(), getKey());
+	}
+
+	/**
+	 * Get master league
+	 * 
+	 * @return A single league
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public League getMasterLeague() throws RiotApiException {
+
+		return LeagueApi.getMasterLeague(getEndpoint(), getRegion(), getKey());
+	}
+
+	/**
+	 * Get master league
+	 * 
+	 * @param region
+	 *            The region of the leagues.
+	 * @param queueType
+	 *            Game queue type.
+	 * @return A single league
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public League getMasterLeague(Region region, QueueType queueType) throws RiotApiException {
+
+		return LeagueApi.getMasterLeague(region.getEndpoint(), region.getName(), getKey(), queueType);
+	}
+
+	/**
+	 * Get master league
+	 * 
+	 * @param queueType
+	 *            Game queue type.
+	 * @return A single league
+	 * @see League
+	 * @throws RiotApiException
+	 */
+	public League getMasterLeague(QueueType queueType) throws RiotApiException {
+
+		return LeagueApi.getMasterLeague(getEndpoint(), getRegion(), getKey(), queueType);
+	}
 
     /**
      * Get a summary of player statistics for a given summoner
@@ -1318,486 +1467,1017 @@ public class RiotApi {
 
         return MatchListApi.getMatchList(getEndpoint(), getRegion(), getKey(), summonerId, null, null, null, -1, -1, -1, -1);
     }
-
-    /**
-     *
-     */
-    public ChampionList getDataChampionList(Region region, String locale, String version, boolean dataById, ChampData... champData) throws RiotApiException {
-
-        return StaticDataApi.getDataChampionList(region.getName(), getKey(), locale, version, dataById, champData);
-    }
-
-    /**
-     *
-     */
-    public ChampionList getDataChampionList(String locale, String version, boolean dataById, ChampData... champData) throws RiotApiException {
-
-        return StaticDataApi.getDataChampionList(getRegion(), getKey(), locale, version, dataById, champData);
-    }
-
-    /**
-     *
-     */
-    public ChampionList getDataChampionList(Region region) throws RiotApiException {
-
-        return StaticDataApi.getDataChampionList(region.getName(), getKey(), null, null, false, (ChampData) null);
-    }
-
-    /**
-     *
-     */
-    public ChampionList getDataChampionList() throws RiotApiException {
-
-        return StaticDataApi.getDataChampionList(getRegion(), getKey(), null, null, false, (ChampData) null);
-    }
-
-    /**
-     *
-     */
-    public dto.Static.Champion getDataChampion(Region region, int id, String locale, String version, boolean dataById, ChampData... champData) throws RiotApiException {
-
-        return StaticDataApi.getDataChampion(region.getName(), getKey(), id, locale, version, dataById, champData);
-    }
-
-    /**
-     *
-     */
-    public dto.Static.Champion getDataChampion(int id, String locale, String version, boolean dataById, ChampData... champData) throws RiotApiException {
-
-        return StaticDataApi.getDataChampion(getRegion(), getKey(), id, locale, version, dataById, champData);
-    }
-
-    /**
-     *
-     */
-    public dto.Static.Champion getDataChampion(Region region, int id) throws RiotApiException {
-
-        return StaticDataApi.getDataChampion(region.getName(), getKey(), id, null, null, false, (ChampData) null);
-    }
-
-    /**
-     *
-     */
-    public dto.Static.Champion getDataChampion(int id) throws RiotApiException {
-
-        return StaticDataApi.getDataChampion(getRegion(), getKey(), id, null, null, false, (ChampData) null);
-    }
-
-    /**
-     *
-     */
-    public ItemList getDataItemList(Region region, String locale, String version, ItemListData... itemListData) throws RiotApiException {
-
-        return StaticDataApi.getDataItemList(region.getName(), getKey(), locale, version, itemListData);
-    }
-
-    /**
-     *
-     */
-    public ItemList getDataItemList(String locale, String version, ItemListData... itemListData) throws RiotApiException {
-
-        return StaticDataApi.getDataItemList(getRegion(), getKey(), locale, version, itemListData);
-    }
-
-    /**
-     *
-     */
-    public ItemList getDataItemList(Region region) throws RiotApiException {
-
-        return StaticDataApi.getDataItemList(region.getName(), getKey(), null, null, (ItemListData) null);
-    }
-
-    /**
-     *
-     */
-    public ItemList getDataItemList() throws RiotApiException {
-
-        return StaticDataApi.getDataItemList(getRegion(), getKey(), null, null, (ItemListData) null);
-    }
-
-    /**
-     *
-     */
-    public Item getDataItem(Region region, int id, String locale, String version, ItemData... itemData) throws RiotApiException {
-
-        return StaticDataApi.getDataItem(region.getName(), getKey(), id, locale, version, itemData);
-    }
-
-    /**
-     *
-     */
-    public Item getDataItem(int id, String locale, String version, ItemData... itemData) throws RiotApiException {
-
-        return StaticDataApi.getDataItem(getRegion(), getKey(), id, locale, version, itemData);
-    }
-
-    /**
-     *
-     */
-    public Item getDataItem(Region region, int id) throws RiotApiException {
-
-        return StaticDataApi.getDataItem(region.getName(), getKey(), id, null, null, (ItemData) null);
-    }
-
-    /**
-     *
-     */
-    public Item getDataItem(int id) throws RiotApiException {
-
-        return StaticDataApi.getDataItem(getRegion(), getKey(), id, null, null, (ItemData) null);
-    }
-
-    /**
-     *
-     */
-    public Realm getDataRealm(Region region) throws RiotApiException {
-
-        return StaticDataApi.getDataRealm(region.getName(), getKey());
-    }
-
-    /**
-     *
-     */
-    public Realm getDataRealm() throws RiotApiException {
-
-        return StaticDataApi.getDataRealm(getRegion(), getKey());
-    }
-
-    /**
-     *
-     */
-    public RuneList getDataRuneList(Region region, String locale, String version, RuneListData... runeListData) throws RiotApiException {
-
-        return StaticDataApi.getDataRuneList(region.getName(), getKey(), locale, version, runeListData);
-    }
-
-    /**
-     *
-     */
-    public RuneList getDataRuneList(String locale, String version, RuneListData... runeListData) throws RiotApiException {
-
-        return StaticDataApi.getDataRuneList(getRegion(), getKey(), locale, version, runeListData);
-    }
-
-    /**
-     *
-     */
-    public RuneList getDataRuneList(Region region) throws RiotApiException {
-
-        return StaticDataApi.getDataRuneList(region.getName(), getKey(), null, null, (RuneListData) null);
-    }
-
-    /**
-     *
-     */
-    public RuneList getDataRuneList() throws RiotApiException {
-
-        return StaticDataApi.getDataRuneList(getRegion(), getKey(), null, null, (RuneListData) null);
-    }
-
-    /**
-     *
-     */
-    public Rune getDataRune(Region region, int id, String locale, String version, RuneData... runeData) throws RiotApiException {
-
-        return StaticDataApi.getDataRune(region.getName(), getKey(), id, locale, version, runeData);
-    }
-
-    /**
-     *
-     */
-    public Rune getDataRune(int id, String locale, String version, RuneData... runeData) throws RiotApiException {
-
-        return StaticDataApi.getDataRune(getRegion(), getKey(), id, locale, version, runeData);
-    }
-
-    /**
-     *
-     */
-    public Rune getDataRune(Region region, int id) throws RiotApiException {
-
-        return StaticDataApi.getDataRune(region.getName(), getKey(), id, null, null, (RuneData) null);
-    }
-
-    /**
-     *
-     */
-    public Rune getDataRune(int id) throws RiotApiException {
-
-        return StaticDataApi.getDataRune(getRegion(), getKey(), id, null, null, (RuneData) null);
-    }
-
-    /**
-     *
-     */
-    public MasteryList getDataMasteryList(Region region, String locale, String version, MasteryListData... masteryListData) throws RiotApiException {
-
-        return StaticDataApi.getDataMasteryList(region.getName(), getKey(), locale, version, masteryListData);
-    }
-
-    /**
-     *
-     */
-    public MasteryList getDataMasteryList(String locale, String version, MasteryListData... masteryListData) throws RiotApiException {
-
-        return StaticDataApi.getDataMasteryList(getRegion(), getKey(), locale, version, masteryListData);
-    }
-
-    /**
-     *
-     */
-    public MasteryList getDataMasteryList(Region region) throws RiotApiException {
-
-        return StaticDataApi.getDataMasteryList(region.getName(), getKey(), null, null, (MasteryListData) null);
-    }
-
-    /**
-     *
-     */
-    public MasteryList getDataMasteryList() throws RiotApiException {
-
-        return StaticDataApi.getDataMasteryList(getRegion(), getKey(), null, null, (MasteryListData) null);
-    }
-
-    /**
-     *
-     */
-    public Mastery getDataMastery(Region region, int id, String locale, String version, MasteryData... masteryData) throws RiotApiException {
-
-        return StaticDataApi.getDataMastery(region.getName(), getKey(), id, locale, version, masteryData);
-    }
-
-    /**
-     *
-     */
-    public Mastery getDataMastery(int id, String locale, String version, MasteryData... masteryData) throws RiotApiException {
-
-        return StaticDataApi.getDataMastery(getRegion(), getKey(), id, locale, version, masteryData);
-    }
-
-    /**
-     *
-     */
-    public Mastery getDataMastery(Region region, int id) throws RiotApiException {
-
-        return StaticDataApi.getDataMastery(region.getName(), getKey(), id, null, null, (MasteryData) null);
-    }
-
-    /**
-     *
-     */
-    public Mastery getDataMastery(int id) throws RiotApiException {
-
-        return StaticDataApi.getDataMastery(getRegion(), getKey(), id, null, null, (MasteryData) null);
-    }
-
-    /**
-     *
-     */
-    public SummonerSpellList getDataSummonerSpellList(Region region, String locale, String version, boolean dataById, SpellData... spellData) throws RiotApiException {
-
-        return StaticDataApi.getDataSummonerSpellList(region.getName(), getKey(), locale, version, dataById, spellData);
-    }
-
-    /**
-     *
-     */
-    public SummonerSpellList getDataSummonerSpellList(String locale, String version, boolean dataById, SpellData... spellData) throws RiotApiException {
-
-        return StaticDataApi.getDataSummonerSpellList(getRegion(), getKey(), locale, version, dataById, spellData);
-    }
-
-    /**
-     *
-     */
-    public SummonerSpellList getDataSummonerSpellList(Region region) throws RiotApiException {
-
-        return StaticDataApi.getDataSummonerSpellList(region.getName(), getKey(), null, null, false, (SpellData) null);
-    }
-
-    /**
-     *
-     */
-    public SummonerSpellList getDataSummonerSpellList() throws RiotApiException {
-
-        return StaticDataApi.getDataSummonerSpellList(getRegion(), getKey(), null, null, false, (SpellData) null);
-    }
-
-    /**
-     *
-     */
-    public SummonerSpell getDataSummonerSpell(Region region, int id, String locale, String version, SpellData... spellData) throws RiotApiException {
-
-        return StaticDataApi.getDataSummonerSpell(region.getName(), getKey(), id, locale, version, spellData);
-    }
-
-    /**
-     *
-     */
-    public SummonerSpell getDataSummonerSpell(int id, String locale, String version, SpellData... spellData) throws RiotApiException {
-
-        return StaticDataApi.getDataSummonerSpell(getRegion(), getKey(), id, locale, version, spellData);
-    }
-
-    /**
-     *
-     */
-    public SummonerSpell getDataSummonerSpell(Region region, int id) throws RiotApiException {
-
-        return StaticDataApi.getDataSummonerSpell(region.getName(), getKey(), id, null, null, (SpellData) null);
-    }
-
-    /**
-     *
-     */
-    public SummonerSpell getDataSummonerSpell(int id) throws RiotApiException {
-
-        return StaticDataApi.getDataSummonerSpell(getRegion(), getKey(), id, null, null, (SpellData) null);
-    }
-
-    /**
-     *
-     */
-    public List<String> getDataVersions(Region region) throws RiotApiException {
-
-        return StaticDataApi.getDataVersions(region.getName(), getKey());
-    }
-
-    /**
-     *
-     */
-    public List<String> getDataVersions() throws RiotApiException {
-
-        return StaticDataApi.getDataVersions(getRegion(), getKey());
-    }
     
-    /**
-    *
-    */
-   public List<String> getDataLanguages(Region region) throws RiotApiException {
+	/**
+	 * Get current game info
+	 * 
+	 * @param platformId
+	 *            The platform ID for which to fetch data.
+	 * @param summonerId
+	 *            The ID of the summoner.
+	 * @return Current game info
+	 * @see CurrentGameInfo
+	 * @throws RiotApiException
+	 */
+	public CurrentGameInfo getCurrentGameInfo(PlatformId platformId, long summonerId) throws RiotApiException {
 
-       return StaticDataApi.getDataLanguages(region.getName(), getKey());
-   }
+		return CurrentGameApi.getCurrentGameInfo(platformId, getKey(), summonerId);
+	}
 
-   /**
-    *
-    */
-   public List<String> getDataLanguages() throws RiotApiException {
+	/**
+	 * Get featured games
+	 * 
+	 * @param region
+	 *            Region from which to retrieve data.
+	 * @return Featured games
+	 * @see FeaturedGames
+	 * @throws RiotApiException
+	 */
+	public FeaturedGames getFeaturedGames(Region region) throws RiotApiException {
 
-       return StaticDataApi.getDataLanguages(getRegion(), getKey());
-   }
-   
-    /**
-    *
-    */
-   public List<Shard> getShards() throws RiotApiException {
+		return FeaturedGamesApi.getFeaturedGames(region.getName(), getKey());
+	}
 
-       return StatusApi.getShards();
-   }
-   
-   /**
-   *
-   */
-  public ShardStatus getShardStatus(Region region) throws RiotApiException {
+	/**
+	 * Get featured games
+	 * 
+	 * @return Featured games
+	 * @see FeaturedGames
+	 * @throws RiotApiException
+	 */
+	public FeaturedGames getFeaturedGames() throws RiotApiException {
 
-      return StatusApi.getShardStatus(region.getName());
-  }
+		return FeaturedGamesApi.getFeaturedGames(getRegion(), getKey());
+	}
 
-   /**
-   *
-   */
-  public ShardStatus getShardStatus() throws RiotApiException {
+	/**
+	 * Get static data: champion list
+	 * 
+	 * @param region
+	 *            Region from which to retrieve data.
+	 * @param locale
+	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 * @param version
+	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
+	 *            can be obtained from the getDataVersions() method.
+	 * @param dataById
+	 *            If specified as true, the returned data map will use the champions' IDs as the keys. If specified as false, the returned
+	 *            data map will use the champions' keys instead.
+	 * @param champData
+	 *            Tags to return additional data. Only id, key, name, and title are returned by default if this parameter isn't specified.
+	 *            To return all additional data, use ChampData.ALL.
+	 * @return A list with champions
+	 * @see ChampionList
+	 * @throws RiotApiException
+	 */
+	public ChampionList getDataChampionList(Region region, String locale, String version, boolean dataById, ChampData... champData) throws RiotApiException {
 
-     return StatusApi.getShardStatus(getRegion());
- }
-  
-	  /**
-	  *
-	  */
-	 public GameMapList getDataGameMapList(Region region, String locale, String version) throws RiotApiException {
-	
-	     return StaticDataApi.getDataGameMapList(region.getName(), getKey(), locale, version);
-	 }
-	
-	 /**
-	  *
-	  */
-	 public GameMapList getDataGameMapList(String locale, String version) throws RiotApiException {
-	
-	     return StaticDataApi.getDataGameMapList(getRegion(), getKey(), locale, version);
-	 }
-	
-	 /**
-	  *
-	  */
-	 public GameMapList getDataGameMapList(Region region) throws RiotApiException {
-	
-	     return StaticDataApi.getDataGameMapList(region.getName(), getKey(), null, null);
-	 }
-	
-	 /**
-	  *
-	  */
-	 public GameMapList getDataGameMapList() throws RiotApiException {
-	
-	     return StaticDataApi.getDataGameMapList(getRegion(), getKey(), null, null);
-	 }
+		return StaticDataApi.getDataChampionList(region.getName(), getKey(), locale, version, dataById, champData);
+	}
 
-	  /**
-	  *
-	  */
-	 public LanguageStrings getDataLanguageStrings(Region region, String locale, String version) throws RiotApiException {
-	
-	     return StaticDataApi.getDataLanguageStrings(region.getName(), getKey(), locale, version);
-	 }
-	
-	 /**
-	  *
-	  */
-	 public LanguageStrings getDataLanguageStrings(String locale, String version) throws RiotApiException {
-	
-	     return StaticDataApi.getDataLanguageStrings(getRegion(), getKey(), locale, version);
-	 }
-	
-	 /**
-	  *
-	  */
-	 public LanguageStrings getDataLanguageStrings(Region region) throws RiotApiException {
-	
-	     return StaticDataApi.getDataLanguageStrings(region.getName(), getKey(), null, null);
-	 }
-	
-	 /**
-	  *
-	  */
-	 public LanguageStrings getDataLanguageStrings() throws RiotApiException {
-	
-	     return StaticDataApi.getDataLanguageStrings(getRegion(), getKey(), null, null);
-	 }
-	 
-	 /**
-	  *
-	  */
-	 public FeaturedGames getFeaturedGames(Region region) throws RiotApiException {
-	
-	     return FeaturedGamesApi.getFeaturedGames(region.getName(), getKey());
-	 }
-	 
-	 /**
-	  *
-	  */
-	 public FeaturedGames getFeaturedGames() throws RiotApiException {
-			
-	     return FeaturedGamesApi.getFeaturedGames(getRegion(), getKey());
-	 }
-	 
-	 /**
-	  *
-	  */
-	 public CurrentGameInfo getCurrentGameInfo(PlatformId platformId, long summonerId) throws RiotApiException {
-	
-	     return CurrentGameApi.getCurrentGameInfo(platformId, getKey(), summonerId);
-	 }
+	/**
+	 * Get static data: champion list
+	 * 
+	 * @param locale
+	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 * @param version
+	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
+	 *            can be obtained from the getDataVersions() method.
+	 * @param dataById
+	 *            If specified as true, the returned data map will use the champions' IDs as the keys. If specified as false, the returned
+	 *            data map will use the champions' keys instead.
+	 * @param champData
+	 *            Tags to return additional data. Only id, key, name, and title are returned by default if this parameter isn't specified.
+	 *            To return all additional data, use ChampData.ALL.
+	 * @return A list with champions
+	 * @see ChampionList
+	 * @throws RiotApiException
+	 */
+	public ChampionList getDataChampionList(String locale, String version, boolean dataById, ChampData... champData) throws RiotApiException {
+
+		return StaticDataApi.getDataChampionList(getRegion(), getKey(), locale, version, dataById, champData);
+	}
+
+	/**
+	 * Get static data: champion list
+	 * 
+	 * @param region
+	 *            Region from which to retrieve data.
+	 * @return A list with champions
+	 * @see ChampionList
+	 * @throws RiotApiException
+	 */
+	public ChampionList getDataChampionList(Region region) throws RiotApiException {
+
+		return StaticDataApi.getDataChampionList(region.getName(), getKey(), null, null, false, (ChampData) null);
+	}
+
+	/**
+	 * Get static data: champion list
+	 * 
+	 * @return A list with champions
+	 * @see ChampionList
+	 * @throws RiotApiException
+	 */
+	public ChampionList getDataChampionList() throws RiotApiException {
+
+		return StaticDataApi.getDataChampionList(getRegion(), getKey(), null, null, false, (ChampData) null);
+	}
+
+	/**
+	 * Get static data: champion
+	 * 
+	 * @param region
+	 *            Region from which to retrieve data.
+	 * @param id
+	 *            Champion ID
+	 * @param locale
+	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 * @param version
+	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
+	 *            can be obtained from the getDataVersions() method.
+	 * @param champData
+	 *            Tags to return additional data. Only id, key, name, and title are returned by default if this parameter isn't specified.
+	 *            To return all additional data, use ChampData.ALL.
+	 * @return A single champion
+	 * @see Champion
+	 * @throws RiotApiException
+	 */
+	public dto.Static.Champion getDataChampion(Region region, int id, String locale, String version, ChampData... champData) throws RiotApiException {
+
+		return StaticDataApi.getDataChampion(region.getName(), getKey(), id, locale, version, champData);
+	}
+
+	/**
+	 * Get static data: champion
+	 * 
+	 * @param id
+	 *            Champion ID
+	 * @param locale
+	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 * @param version
+	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
+	 *            can be obtained from the getDataVersions() method.
+	 * @param champData
+	 *            Tags to return additional data. Only id, key, name, and title are returned by default if this parameter isn't specified.
+	 *            To return all additional data, use ChampData.ALL.
+	 * @return A single champion
+	 * @see Champion
+	 * @throws RiotApiException
+	 */
+	public dto.Static.Champion getDataChampion(int id, String locale, String version, ChampData... champData) throws RiotApiException {
+
+		return StaticDataApi.getDataChampion(getRegion(), getKey(), id, locale, version, champData);
+	}
+
+	/**
+	 * Get static data: champion
+	 * 
+	 * @param region
+	 *            Region from which to retrieve data.
+	 * @param id
+	 *            Champion ID
+	 * @return A single champion
+	 * @see Champion
+	 * @throws RiotApiException
+	 */
+	public dto.Static.Champion getDataChampion(Region region, int id) throws RiotApiException {
+
+		return StaticDataApi.getDataChampion(region.getName(), getKey(), id, null, null, (ChampData) null);
+	}
+
+	/**
+	 * Get static data: champion
+	 * 
+	 * @param id
+	 *            Champion ID
+	 * @return A single champion
+	 * @see Champion
+	 * @throws RiotApiException
+	 */
+	public dto.Static.Champion getDataChampion(int id) throws RiotApiException {
+
+		return StaticDataApi.getDataChampion(getRegion(), getKey(), id, null, null, (ChampData) null);
+	}
+
+	/**
+	 * Get static data: game map list
+	 * 
+	 * @param region
+	 *            Region from which to retrieve data.
+	 * @param locale
+	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 * @param version
+	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
+	 *            can be obtained from the getDataVersions() method.
+	 * @return A list of game maps
+	 * @see GameMapList
+	 * @throws RiotApiException
+	 */
+	public GameMapList getDataGameMapList(Region region, String locale, String version) throws RiotApiException {
+
+		return StaticDataApi.getDataGameMapList(region.getName(), getKey(), locale, version);
+	}
+
+	/**
+	 * Get static data: game map list
+	 * 
+	 * @param locale
+	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 * @param version
+	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
+	 *            can be obtained from the getDataVersions() method.
+	 * @return A list of game maps
+	 * @see GameMapList
+	 * @throws RiotApiException
+	 */
+	public GameMapList getDataGameMapList(String locale, String version) throws RiotApiException {
+
+		return StaticDataApi.getDataGameMapList(getRegion(), getKey(), locale, version);
+	}
+
+	/**
+	 * Get static data: game map list
+	 * 
+	 * @param region
+	 *            Region from which to retrieve data.
+	 * @return A list of game maps
+	 * @see GameMapList
+	 * @throws RiotApiException
+	 */
+	public GameMapList getDataGameMapList(Region region) throws RiotApiException {
+
+		return StaticDataApi.getDataGameMapList(region.getName(), getKey(), null, null);
+	}
+
+	/**
+	 * Get static data: game map list
+	 * 
+	 * @return A list of game maps
+	 * @see GameMapList
+	 * @throws RiotApiException
+	 */
+	public GameMapList getDataGameMapList() throws RiotApiException {
+
+		return StaticDataApi.getDataGameMapList(getRegion(), getKey(), null, null);
+	}
+
+	/**
+	 * Get static data: item list
+	 * 
+	 * @param region
+	 *            Region from which to retrieve data.
+	 * @param locale
+	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 * @param version
+	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
+	 *            can be obtained from the getDataVersions() method.
+	 * @param itemListData
+	 *            Tags to return additional data. Only type, version, basic, data, id, name, plaintext, group, and description are returned
+	 *            by default if this parameter isn't specified. To return all additional data, use ItemListData.ALL.
+	 * @return A list of items
+	 * @see ItemList
+	 * @throws RiotApiException
+	 */
+	public ItemList getDataItemList(Region region, String locale, String version, ItemListData... itemListData) throws RiotApiException {
+
+		return StaticDataApi.getDataItemList(region.getName(), getKey(), locale, version, itemListData);
+	}
+
+	/**
+	 * Get static data: item list
+	 * 
+	 * @param locale
+	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 * @param version
+	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
+	 *            can be obtained from the getDataVersions() method.
+	 * @param itemListData
+	 *            Tags to return additional data. Only type, version, basic, data, id, name, plaintext, group, and description are returned
+	 *            by default if this parameter isn't specified. To return all additional data, use ItemListData.ALL.
+	 * @return A list of items
+	 * @see ItemList
+	 * @throws RiotApiException
+	 */
+	public ItemList getDataItemList(String locale, String version, ItemListData... itemListData) throws RiotApiException {
+
+		return StaticDataApi.getDataItemList(getRegion(), getKey(), locale, version, itemListData);
+	}
+
+	/**
+	 * Get static data: item list
+	 * 
+	 * @param region
+	 *            Region from which to retrieve data.
+	 * @return A list of items
+	 * @see ItemList
+	 * @throws RiotApiException
+	 */
+	public ItemList getDataItemList(Region region) throws RiotApiException {
+
+		return StaticDataApi.getDataItemList(region.getName(), getKey(), null, null, (ItemListData) null);
+	}
+
+	/**
+	 * Get static data: item list
+	 * 
+	 * @return A list of items
+	 * @see ItemList
+	 * @throws RiotApiException
+	 */
+	public ItemList getDataItemList() throws RiotApiException {
+
+		return StaticDataApi.getDataItemList(getRegion(), getKey(), null, null, (ItemListData) null);
+	}
+
+	/**
+	 * Get static data: item
+	 * 
+	 * @param region
+	 *            Region from which to retrieve data.
+	 * @param id
+	 *            Item ID
+	 * @param locale
+	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 * @param version
+	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
+	 *            can be obtained from the getDataVersions() method.
+	 * @param itemData
+	 *            Tags to return additional data. Only type, version, basic, data, id, name, plaintext, group, and description are returned
+	 *            by default if this parameter isn't specified. To return all additional data, use ItemData.ALL.
+	 * @return A single item
+	 * @see Item
+	 * @throws RiotApiException
+	 */
+	public Item getDataItem(Region region, int id, String locale, String version, ItemData... itemData) throws RiotApiException {
+
+		return StaticDataApi.getDataItem(region.getName(), getKey(), id, locale, version, itemData);
+	}
+
+	/**
+	 * Get static data: item
+	 * 
+	 * @param id
+	 *            Item ID
+	 * @param locale
+	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 * @param version
+	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
+	 *            can be obtained from the getDataVersions() method.
+	 * @param itemData
+	 *            Tags to return additional data. Only type, version, basic, data, id, name, plaintext, group, and description are returned
+	 *            by default if this parameter isn't specified. To return all additional data, use ItemData.ALL.
+	 * @return A single item
+	 * @see Item
+	 * @throws RiotApiException
+	 */
+	public Item getDataItem(int id, String locale, String version, ItemData... itemData) throws RiotApiException {
+
+		return StaticDataApi.getDataItem(getRegion(), getKey(), id, locale, version, itemData);
+	}
+
+	/**
+	 * Get static data: item
+	 * 
+	 * @param region
+	 *            Region from which to retrieve data.
+	 * @param id
+	 *            Item ID
+	 * @return A single item
+	 * @see Item
+	 * @throws RiotApiException
+	 */
+	public Item getDataItem(Region region, int id) throws RiotApiException {
+
+		return StaticDataApi.getDataItem(region.getName(), getKey(), id, null, null, (ItemData) null);
+	}
+
+	/**
+	 * Get static data: item
+	 * 
+	 * @param id
+	 *            Item ID
+	 * @return A single item
+	 * @see Item
+	 * @throws RiotApiException
+	 */
+	public Item getDataItem(int id) throws RiotApiException {
+
+		return StaticDataApi.getDataItem(getRegion(), getKey(), id, null, null, (ItemData) null);
+	}
+
+	/**
+	 * Get static data: languages
+	 * 
+	 * @param region
+	 *            Region from which to retrieve data.
+	 * @return A list with languages
+	 * @throws RiotApiException
+	 */
+	public List<String> getDataLanguages(Region region) throws RiotApiException {
+
+		return StaticDataApi.getDataLanguages(region.getName(), getKey());
+	}
+
+	/**
+	 * Get static data: languages
+	 * 
+	 * @return A list with languages
+	 * @throws RiotApiException
+	 */
+	public List<String> getDataLanguages() throws RiotApiException {
+
+		return StaticDataApi.getDataLanguages(getRegion(), getKey());
+	}
+
+	/**
+	 * Get static data: language strings
+	 * 
+	 * @param region
+	 *            Region from which to retrieve data.
+	 * @param locale
+	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 * @param version
+	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
+	 *            can be obtained from the getDataVersions() method.
+	 * @return Language strings
+	 * @see LanguageStrings
+	 * @throws RiotApiException
+	 */
+	public LanguageStrings getDataLanguageStrings(Region region, String locale, String version) throws RiotApiException {
+
+		return StaticDataApi.getDataLanguageStrings(region.getName(), getKey(), locale, version);
+	}
+
+	/**
+	 * Get static data: language strings
+	 * 
+	 * @param locale
+	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 * @param version
+	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
+	 *            can be obtained from the getDataVersions() method.
+	 * @return Language strings
+	 * @see LanguageStrings
+	 * @throws RiotApiException
+	 */
+	public LanguageStrings getDataLanguageStrings(String locale, String version) throws RiotApiException {
+
+		return StaticDataApi.getDataLanguageStrings(getRegion(), getKey(), locale, version);
+	}
+
+	/**
+	 * Get static data: language strings
+	 * 
+	 * @param region
+	 *            Region from which to retrieve data.
+	 * @return Language strings
+	 * @see LanguageStrings
+	 * @throws RiotApiException
+	 */
+	public LanguageStrings getDataLanguageStrings(Region region) throws RiotApiException {
+
+		return StaticDataApi.getDataLanguageStrings(region.getName(), getKey(), null, null);
+	}
+
+	/**
+	 * Get static data: language strings
+	 * 
+	 * @return Language strings
+	 * @see LanguageStrings
+	 * @throws RiotApiException
+	 */
+	public LanguageStrings getDataLanguageStrings() throws RiotApiException {
+
+		return StaticDataApi.getDataLanguageStrings(getRegion(), getKey(), null, null);
+	}
+
+	/**
+	 * Get static data: mastery list
+	 * 
+	 * @param region
+	 *            Region from which to retrieve data.
+	 * @param locale
+	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 * @param version
+	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
+	 *            can be obtained from the getDataVersions() method.
+	 * @param masteryListData
+	 *            Tags to return additional data. Only type, version, data, id, name, and description are returned by default if this
+	 *            parameter isn't specified. To return all additional data, use MasteryListData.ALL.
+	 * @return A list with masteries
+	 * @see MasteryList
+	 * @throws RiotApiException
+	 */
+	public MasteryList getDataMasteryList(Region region, String locale, String version, MasteryListData... masteryListData) throws RiotApiException {
+
+		return StaticDataApi.getDataMasteryList(region.getName(), getKey(), locale, version, masteryListData);
+	}
+
+	/**
+	 * Get static data: mastery list
+	 * 
+	 * @param locale
+	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 * @param version
+	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
+	 *            can be obtained from the getDataVersions() method.
+	 * @param masteryListData
+	 *            Tags to return additional data. Only type, version, data, id, name, and description are returned by default if this
+	 *            parameter isn't specified. To return all additional data, use MasteryListData.ALL.
+	 * @return A list with masteries
+	 * @see MasteryList
+	 * @throws RiotApiException
+	 */
+	public MasteryList getDataMasteryList(String locale, String version, MasteryListData... masteryListData) throws RiotApiException {
+
+		return StaticDataApi.getDataMasteryList(getRegion(), getKey(), locale, version, masteryListData);
+	}
+
+	/**
+	 * Get static data: mastery list
+	 * 
+	 * @param region
+	 *            Region from which to retrieve data.
+	 * @return A list with masteries
+	 * @see MasteryList
+	 * @throws RiotApiException
+	 */
+	public MasteryList getDataMasteryList(Region region) throws RiotApiException {
+
+		return StaticDataApi.getDataMasteryList(region.getName(), getKey(), null, null, (MasteryListData) null);
+	}
+
+	/**
+	 * Get static data: mastery list
+	 * 
+	 * @return A list with masteries
+	 * @see MasteryList
+	 * @throws RiotApiException
+	 */
+	public MasteryList getDataMasteryList() throws RiotApiException {
+
+		return StaticDataApi.getDataMasteryList(getRegion(), getKey(), null, null, (MasteryListData) null);
+	}
+
+	/**
+	 * Get static data: mastery
+	 * 
+	 * @param region
+	 *            Region from which to retrieve data.
+	 * @param id
+	 *            Mastery ID
+	 * @param locale
+	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 * @param version
+	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
+	 *            can be obtained from the getDataVersions() method.
+	 * @param masteryData
+	 *            Tags to return additional data. Only id, name, and description are returned by default if this parameter isn't specified.
+	 *            To return all additional data, use MasteryData.ALL.
+	 * @return A single mastery
+	 * @see Mastery
+	 * @throws RiotApiException
+	 */
+	public Mastery getDataMastery(Region region, int id, String locale, String version, MasteryData... masteryData) throws RiotApiException {
+
+		return StaticDataApi.getDataMastery(region.getName(), getKey(), id, locale, version, masteryData);
+	}
+
+	/**
+	 * Get static data: mastery
+	 * 
+	 * @param id
+	 *            Mastery ID
+	 * @param locale
+	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 * @param version
+	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
+	 *            can be obtained from the getDataVersions() method.
+	 * @param masteryData
+	 *            Tags to return additional data. Only id, name, and description are returned by default if this parameter isn't specified.
+	 *            To return all additional data, use MasteryData.ALL.
+	 * @return A single mastery
+	 * @see Mastery
+	 * @throws RiotApiException
+	 */
+	public Mastery getDataMastery(int id, String locale, String version, MasteryData... masteryData) throws RiotApiException {
+
+		return StaticDataApi.getDataMastery(getRegion(), getKey(), id, locale, version, masteryData);
+	}
+
+	/**
+	 * Get static data: mastery
+	 * 
+	 * @param region
+	 *            Region from which to retrieve data.
+	 * @param id
+	 *            Mastery ID
+	 * @return A single mastery
+	 * @see Mastery
+	 * @throws RiotApiException
+	 */
+	public Mastery getDataMastery(Region region, int id) throws RiotApiException {
+
+		return StaticDataApi.getDataMastery(region.getName(), getKey(), id, null, null, (MasteryData) null);
+	}
+
+	/**
+	 * Get static data: mastery
+	 * 
+	 * @param id
+	 *            Mastery ID
+	 * @return A single mastery
+	 * @see Mastery
+	 * @throws RiotApiException
+	 */
+	public Mastery getDataMastery(int id) throws RiotApiException {
+
+		return StaticDataApi.getDataMastery(getRegion(), getKey(), id, null, null, (MasteryData) null);
+	}
+
+	/**
+	 * Get static data: realm
+	 * 
+	 * @param region
+	 *            Region corresponding to data to retrieve.
+	 * @return A single realm
+	 * @see Realm
+	 * @throws RiotApiException
+	 */
+	public Realm getDataRealm(Region region) throws RiotApiException {
+
+		return StaticDataApi.getDataRealm(region.getName(), getKey());
+	}
+
+	/**
+	 * Get static data: realm
+	 * 
+	 * @return A single realm
+	 * @see Realm
+	 * @throws RiotApiException
+	 */
+	public Realm getDataRealm() throws RiotApiException {
+
+		return StaticDataApi.getDataRealm(getRegion(), getKey());
+	}
+
+	/**
+	 * Get static data: rune list
+	 * 
+	 * @param region
+	 *            Region from which to retrieve data.
+	 * @param locale
+	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 * @param version
+	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
+	 *            can be obtained from the getDataVersions() method.
+	 * @param runeListData
+	 *            Tags to return additional data. Only type, version, data, id, name, rune, and description are returned by default if this
+	 *            parameter isn't specified. To return all additional data, use RuneListData.ALL.
+	 * @return A list with runes
+	 * @see RuneList
+	 * @throws RiotApiException
+	 */
+	public RuneList getDataRuneList(Region region, String locale, String version, RuneListData... runeListData) throws RiotApiException {
+
+		return StaticDataApi.getDataRuneList(region.getName(), getKey(), locale, version, runeListData);
+	}
+
+	/**
+	 * Get static data: rune list
+	 * 
+	 * @param locale
+	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 * @param version
+	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
+	 *            can be obtained from the getDataVersions() method.
+	 * @param runeListData
+	 *            Tags to return additional data. Only type, version, data, id, name, rune, and description are returned by default if this
+	 *            parameter isn't specified. To return all additional data, use RuneListData.ALL.
+	 * @return A list with runes
+	 * @see RuneList
+	 * @throws RiotApiException
+	 */
+	public RuneList getDataRuneList(String locale, String version, RuneListData... runeListData) throws RiotApiException {
+
+		return StaticDataApi.getDataRuneList(getRegion(), getKey(), locale, version, runeListData);
+	}
+
+	/**
+	 * Get static data: rune list
+	 * 
+	 * @param region
+	 *            Region from which to retrieve data.
+	 * @return A list with runes
+	 * @see RuneList
+	 * @throws RiotApiException
+	 */
+	public RuneList getDataRuneList(Region region) throws RiotApiException {
+
+		return StaticDataApi.getDataRuneList(region.getName(), getKey(), null, null, (RuneListData) null);
+	}
+
+	/**
+	 * Get static data: rune list
+	 * 
+	 * @return A list with runes
+	 * @see RuneList
+	 * @throws RiotApiException
+	 */
+	public RuneList getDataRuneList() throws RiotApiException {
+
+		return StaticDataApi.getDataRuneList(getRegion(), getKey(), null, null, (RuneListData) null);
+	}
+
+	/**
+	 * Get static data: rune
+	 * 
+	 * @param region
+	 *            Region from which to retrieve data.
+	 * @param id
+	 *            Rune ID
+	 * @param locale
+	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 * @param version
+	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
+	 *            can be obtained from the getDataVersions() method.
+	 * @param runeData
+	 *            Tags to return additional data. Only id, name, rune, and description are returned by default if this parameter isn't
+	 *            specified. To return all additional data, use RuneData.ALL.
+	 * @return A single rune
+	 * @see Rune
+	 * @throws RiotApiException
+	 */
+	public Rune getDataRune(Region region, int id, String locale, String version, RuneData... runeData) throws RiotApiException {
+
+		return StaticDataApi.getDataRune(region.getName(), getKey(), id, locale, version, runeData);
+	}
+
+	/**
+	 * Get static data: rune
+	 * 
+	 * @param id
+	 *            Rune ID
+	 * @param locale
+	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 * @param version
+	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
+	 *            can be obtained from the getDataVersions() method.
+	 * @param runeData
+	 *            Tags to return additional data. Only id, name, rune, and description are returned by default if this parameter isn't
+	 *            specified. To return all additional data, use RuneData.ALL.
+	 * @return A single rune
+	 * @see Rune
+	 * @throws RiotApiException
+	 */
+	public Rune getDataRune(int id, String locale, String version, RuneData... runeData) throws RiotApiException {
+
+		return StaticDataApi.getDataRune(getRegion(), getKey(), id, locale, version, runeData);
+	}
+
+	/**
+	 * Get static data: rune
+	 * 
+	 * @param region
+	 *            Region from which to retrieve data.
+	 * @param id
+	 *            Rune ID
+	 * @return A single rune
+	 * @see Rune
+	 * @throws RiotApiException
+	 */
+	public Rune getDataRune(Region region, int id) throws RiotApiException {
+
+		return StaticDataApi.getDataRune(region.getName(), getKey(), id, null, null, (RuneData) null);
+	}
+
+	/**
+	 * Get static data: rune
+	 * 
+	 * @param id
+	 *            Rune ID
+	 * @return A single rune
+	 * @see Rune
+	 * @throws RiotApiException
+	 */
+	public Rune getDataRune(int id) throws RiotApiException {
+
+		return StaticDataApi.getDataRune(getRegion(), getKey(), id, null, null, (RuneData) null);
+	}
+
+	/**
+	 * Get static data: summoner spell list
+	 * 
+	 * @param region
+	 *            Region from which to retrieve data.
+	 * @param locale
+	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 * @param version
+	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
+	 *            can be obtained from the getDataVersions() method.
+	 * @param dataById
+	 *            If specified as true, the returned data map will use the spells' IDs as the keys. If specified as false, the returned data
+	 *            map will use the spells' keys instead
+	 * @param spellData
+	 *            Tags to return additional data. Only type, version, data, id, key, name, description, and summonerLevel are returned by
+	 *            default if this parameter isn't specified. To return all additional data, use SpellData.ALL.
+	 * @return A list with summoner spells
+	 * @see SummonerSpellList
+	 * @throws RiotApiException
+	 */
+	public SummonerSpellList getDataSummonerSpellList(Region region, String locale, String version, boolean dataById, SpellData... spellData)
+			throws RiotApiException {
+
+		return StaticDataApi.getDataSummonerSpellList(region.getName(), getKey(), locale, version, dataById, spellData);
+	}
+
+	/**
+	 * Get static data: summoner spell list
+	 * 
+	 * @param locale
+	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 * @param version
+	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
+	 *            can be obtained from the getDataVersions() method.
+	 * @param dataById
+	 *            If specified as true, the returned data map will use the spells' IDs as the keys. If specified as false, the returned data
+	 *            map will use the spells' keys instead
+	 * @param spellData
+	 *            Tags to return additional data. Only type, version, data, id, key, name, description, and summonerLevel are returned by
+	 *            default if this parameter isn't specified. To return all additional data, use SpellData.ALL.
+	 * @return A list with summoner spells
+	 * @see SummonerSpellList
+	 * @throws RiotApiException
+	 */
+	public SummonerSpellList getDataSummonerSpellList(String locale, String version, boolean dataById, SpellData... spellData) throws RiotApiException {
+
+		return StaticDataApi.getDataSummonerSpellList(getRegion(), getKey(), locale, version, dataById, spellData);
+	}
+
+	/**
+	 * Get static data: summoner spell list
+	 * 
+	 * @param region
+	 *            Region from which to retrieve data.
+	 * @return A list with summoner spells
+	 * @see SummonerSpellList
+	 * @throws RiotApiException
+	 */
+	public SummonerSpellList getDataSummonerSpellList(Region region) throws RiotApiException {
+
+		return StaticDataApi.getDataSummonerSpellList(region.getName(), getKey(), null, null, false, (SpellData) null);
+	}
+
+	/**
+	 * Get static data: summoner spell list
+	 * 
+	 * @return A list with summoner spells
+	 * @see SummonerSpellList
+	 * @throws RiotApiException
+	 */
+	public SummonerSpellList getDataSummonerSpellList() throws RiotApiException {
+
+		return StaticDataApi.getDataSummonerSpellList(getRegion(), getKey(), null, null, false, (SpellData) null);
+	}
+
+	/**
+	 * Get static data: summoner spell
+	 * 
+	 * @param region
+	 *            Region from which to retrieve data.
+	 * @param id
+	 *            Summoner spell ID
+	 * @param locale
+	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 * @param version
+	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
+	 *            can be obtained from the getDataVersions() method.
+	 * @param spellData
+	 *            Tags to return additional data. Only id, key, name, description, and summonerLevel are returned by default if this
+	 *            parameter isn't specified. To return all additional data, use SpellData.ALL.
+	 * @return A single summoner spell
+	 * @see SummonerSpell
+	 * @throws RiotApiException
+	 */
+	public SummonerSpell getDataSummonerSpell(Region region, int id, String locale, String version, SpellData... spellData) throws RiotApiException {
+
+		return StaticDataApi.getDataSummonerSpell(region.getName(), getKey(), id, locale, version, spellData);
+	}
+
+	/**
+	 * Get static data: summoner spell
+	 * 
+	 * @param id
+	 *            Summoner spell ID
+	 * @param locale
+	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 * @param version
+	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
+	 *            can be obtained from the getDataVersions() method.
+	 * @param spellData
+	 *            Tags to return additional data. Only id, key, name, description, and summonerLevel are returned by default if this
+	 *            parameter isn't specified. To return all additional data, use SpellData.ALL.
+	 * @return A single summoner spell
+	 * @see SummonerSpell
+	 * @throws RiotApiException
+	 */
+	public SummonerSpell getDataSummonerSpell(int id, String locale, String version, SpellData... spellData) throws RiotApiException {
+
+		return StaticDataApi.getDataSummonerSpell(getRegion(), getKey(), id, locale, version, spellData);
+	}
+
+	/**
+	 * Get static data: summoner spell
+	 * 
+	 * @param region
+	 *            Region from which to retrieve data.
+	 * @param id
+	 *            Summoner spell ID
+	 * @return A single summoner spell
+	 * @see SummonerSpell
+	 * @throws RiotApiException
+	 */
+	public SummonerSpell getDataSummonerSpell(Region region, int id) throws RiotApiException {
+
+		return StaticDataApi.getDataSummonerSpell(region.getName(), getKey(), id, null, null, (SpellData) null);
+	}
+
+	/**
+	 * Get static data: summoner spell
+	 * 
+	 * @param id
+	 *            Summoner spell ID
+	 * @return A single summoner spell
+	 * @see SummonerSpell
+	 * @throws RiotApiException
+	 */
+	public SummonerSpell getDataSummonerSpell(int id) throws RiotApiException {
+
+		return StaticDataApi.getDataSummonerSpell(getRegion(), getKey(), id, null, null, (SpellData) null);
+	}
+
+	/**
+	 * Get static data: versions
+	 * 
+	 * @param region
+	 *            Region from which to retrieve data.
+	 * @return A list with versions
+	 * @throws RiotApiException
+	 */
+	public List<String> getDataVersions(Region region) throws RiotApiException {
+
+		return StaticDataApi.getDataVersions(region.getName(), getKey());
+	}
+
+	/**
+	 * Get static data: versions
+	 * 
+	 * @return A list with versions
+	 * @throws RiotApiException
+	 */
+	public List<String> getDataVersions() throws RiotApiException {
+
+		return StaticDataApi.getDataVersions(getRegion(), getKey());
+	}
+
+	/**
+	 * Get status data: shard list
+	 * 
+	 * @return Status for a list of shards
+	 * @see Shard
+	 * @throws RiotApiException
+	 */
+	public List<Shard> getShards() throws RiotApiException {
+
+		return StatusApi.getShards();
+	}
+
+	/**
+	 * Get status data: shard
+	 * 
+	 * @param region
+	 *            The region for which to fetch data.
+	 * @return Status for a single shard
+	 * @see ShardStatus
+	 * @throws RiotApiException
+	 */
+	public ShardStatus getShardStatus(Region region) throws RiotApiException {
+
+		return StatusApi.getShardStatus(region.getName());
+	}
+
+	/**
+	 * Get status data: shard
+	 * 
+	 * @return Status for a single shard
+	 * @see ShardStatus
+	 * @throws RiotApiException
+	 */
+	public ShardStatus getShardStatus() throws RiotApiException {
+
+		return StatusApi.getShardStatus(getRegion());
+	}
 	 
     /**
      * Get the currently set season
@@ -1871,6 +2551,7 @@ public class RiotApi {
         this.endpoint = region.getEndpoint();
     }
     
+    @Override
     public RiotApi clone() {
     	return new RiotApi(this.key, this.region);
     }

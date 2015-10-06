@@ -115,7 +115,7 @@ final class LeagueApi {
 		return leagues;
 	}
 
-	public static League getChallengerLeagues(String endpoint, String region, String key) throws RiotApiException {
+	public static League getChallengerLeague(String endpoint, String region, String key) throws RiotApiException {
 		String url = endpoint + region + VERSION + "league/challenger/?type=RANKED_SOLO_5x5&api_key=" + key;
 
 		League leagues = null;
@@ -131,7 +131,7 @@ final class LeagueApi {
 		return leagues;
 	}
 
-	public static League getChallengerLeagues(String endpoint, String region, String key, QueueType queueType) throws RiotApiException {
+	public static League getChallengerLeague(String endpoint, String region, String key, QueueType queueType) throws RiotApiException {
 		String url = endpoint + region + VERSION + "league/challenger/?type=" + queueType.name() + "&api_key=" + key;
 
 		League leagues = null;
@@ -147,7 +147,7 @@ final class LeagueApi {
 		return leagues;
 	}
 
-	public static League getMasterLeagues(String endpoint, String region, String key) throws RiotApiException {
+	public static League getMasterLeague(String endpoint, String region, String key) throws RiotApiException {
 		String url = endpoint + region + VERSION + "league/master/?type=RANKED_SOLO_5x5&api_key=" + key;
 
 		League leagues = null;
@@ -163,7 +163,7 @@ final class LeagueApi {
 		return leagues;
 	}
 
-	public static League getMasterLeagues(String endpoint, String region, String key, QueueType queueType) throws RiotApiException {
+	public static League getMasterLeague(String endpoint, String region, String key, QueueType queueType) throws RiotApiException {
 		String url = endpoint + region + VERSION + "league/master/?type=" + queueType.name() + "&api_key=" + key;
 
 		League leagues = null;
