@@ -1,12 +1,5 @@
 package main.java.riotapi;
 
-/**
- * Riot Games API Java Library
- * riot-api-java
- * by Taylor Caldwell - @rithms
- * http://rithms.im 
- */
-
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -65,15 +58,18 @@ import dto.Summoner.MasteryPages;
 import dto.Summoner.RunePages;
 import dto.Summoner.Summoner;
 
+/**
+ * Riot Games API Java Library - riot-api-java
+ * 
+ * @author Taylor Caldwell - rithms - http://rithms.im
+ */
 public class RiotApi {
 
-    /**
-     * The base URL for all API requests
-     */
+    // The base URL for all API requests
     private String endpoint = Region.GLOBAL.getEndpoint();
 
     private Region region = Region.NA; // North American region default
-    private Season season = null;
+    private Season season = Season.CURRENT; // Current season default
     private String key;
 
     public RiotApi() {
