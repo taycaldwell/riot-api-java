@@ -20,7 +20,8 @@ public enum Region {
 	     
 		BR("br.api.pvp.net", "br"),
 		EUNE("eune.api.pvp.net", "eune"),
-		EUW("euw.api.pvp.net", "euw"),
+		//EUW("euw.api.pvp.net", "euw"),
+		EUW("rapi-zuul-509440031.eu-west-1.elb.amazonaws.com", "euw"),
 		KR("kr.api.pvp.net", "kr"),
 		LAS("las.api.pvp.net", "las"),
 		LAN("lan.api.pvp.net", "lan"),
@@ -29,7 +30,8 @@ public enum Region {
 		TR("tr.api.pvp.net", "tr"),
 		RU("ru.api.pvp.net", "ru"),
 		PBE("pbe.api.pvp.net", "pbe"),
-		GLOBAL("global.api.pvp.net", "global");
+		//GLOBAL("global.api.pvp.net", "global");
+		GLOBAL("zuul-riot-stats-service-elb-1293383223.us-west-1.elb.amazonaws.com", "global");
 
 	    private String endpoint;
 	    private String region;

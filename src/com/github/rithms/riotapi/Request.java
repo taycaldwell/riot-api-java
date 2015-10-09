@@ -14,12 +14,15 @@ import com.github.rithms.util.PropertiesLoader;
 
 public class Request {
 
+	private static final Logger logger = Logger.getLogger(Request.class.getName());
+
 	public static String execute(String URL) throws RiotApiException {
 
 		HttpURLConnection connection = null;
 
 		try {
 			String requestURL = URL;
+			logger.log(Level.INFO, "Executing request: GET: " + requestURL);
 			URL url = new URL(requestURL);
 			Proxy proxy = PropertiesLoader.getProxy();
 			if (proxy == null) {
