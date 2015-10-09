@@ -66,11 +66,8 @@ import dto.Team.Team;
  */
 public class RiotApi {
 
-	// The base URL for all API requests
-	private String endpoint = Region.GLOBAL.getEndpoint();
-
 	private Region region = Region.NA; // North American region default
-	private Season season = Season.CURRENT; // Current season default
+	private Season season = null;
 	private String key;
 
 	public RiotApi() {
