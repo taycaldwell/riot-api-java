@@ -24,7 +24,7 @@ final class GameApi {
 
 	private static final String VERSION = "/v1.3/";
 
-	public static RecentGames getRecentGames(String endpoint, String region, String key, long summonerId) throws RiotApiException {
+	public static RecentGames getRecentGames(String endpoint, String region, String key, String summonerId) throws RiotApiException {
 		String url = endpoint + region + VERSION + "game/by-summoner/" + summonerId + "/recent?api_key=" + key;
 
 		RecentGames recentGames = null;
@@ -38,5 +38,9 @@ final class GameApi {
 		}
 
 		return recentGames;
+	}
+
+	public static RecentGames getRecentGames(String endpoint, String region, String key, long summonerId) throws RiotApiException {
+		return getRecentGames(endpoint, region, key, String.valueOf(summonerId));
 	}
 }

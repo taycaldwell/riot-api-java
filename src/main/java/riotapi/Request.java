@@ -11,42 +11,42 @@ import java.util.logging.Logger;
 
 public class Request {
 
-    public static String execute(String URL) throws RiotApiException {
+	public static String execute(String URL) throws RiotApiException {
 
-        HttpURLConnection connection = null;
+		HttpURLConnection connection = null;
 
-        try {
-            String requestURL = URL;
-            URL url = new URL(requestURL);
+		try {
+			String requestURL = URL;
+			URL url = new URL(requestURL);
 
-            connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
-            connection.setInstanceFollowRedirects(false);
+			connection = (HttpURLConnection) url.openConnection();
+			connection.setRequestMethod("GET");
+			connection.setInstanceFollowRedirects(false);
 
-            int responseCode = connection.getResponseCode();
-            if (responseCode != 200) {
-                throw new RiotApiException(responseCode);
-            }
+			int responseCode = connection.getResponseCode();
+			if (responseCode != 200) {
+				throw new RiotApiException(responseCode);
+			}
 
-            InputStream is = connection.getInputStream();
-            BufferedReader rd = new BufferedReader(new InputStreamReader(is, "utf-8"));
-            StringBuilder response = new StringBuilder();
+			InputStream is = connection.getInputStream();
+			BufferedReader rd = new BufferedReader(new InputStreamReader(is, "utf-8"));
+			StringBuilder response = new StringBuilder();
 
-            String line;
-            while ((line = rd.readLine()) != null) {
-                response.append(line);
-                response.append('\r');
-            }
+			String line;
+			while ((line = rd.readLine()) != null) {
+				response.append(line);
+				response.append('\r');
+			}
 
-            connection.disconnect();
-            return response.toString();
-        } catch (IOException ex) {
-            Logger.getLogger(Request.class.getName()).log(Level.SEVERE, null, ex);
-            throw new RiotApiException(RiotApiException.IOEXCEPTION);
-        } finally {
-            if(connection != null){
-                connection.disconnect();
-            }
-        }
-    }
+			connection.disconnect();
+			return response.toString();
+		} catch (IOException ex) {
+			Logger.getLogger(Request.class.getName()).log(Level.SEVERE, null, ex);
+			throw new RiotApiException(RiotApiException.IOEXCEPTION);
+		} finally {
+			if (connection != null) {
+				connection.disconnect();
+			}
+		}
+	}
 }

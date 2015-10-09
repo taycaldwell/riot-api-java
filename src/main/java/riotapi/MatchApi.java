@@ -25,7 +25,11 @@ final class MatchApi {
 	private static final String VERSION = "/v2.2/";
 
 	public static MatchDetail getMatch(String endpoint, String region, String key, long matchId, boolean includeTimeline) throws RiotApiException {
-		String url = endpoint + region + VERSION + "match/" + matchId + "?includeTimeline=" + includeTimeline + "&api_key=" + key;
+		String url = endpoint + region + VERSION + "match/" + matchId + "?";
+		if (!includeTimeline) {
+			url += "includeTimeline=" + includeTimeline + "&";
+		}
+		url += "api_key=" + key;
 
 		MatchDetail matchDetail = null;
 		try {
@@ -41,18 +45,6 @@ final class MatchApi {
 	}
 
 	public static MatchDetail getMatch(String endpoint, String region, String key, long matchId) throws RiotApiException {
-		String url = endpoint + region + VERSION + "match/" + matchId + "?api_key=" + key;
-
-		MatchDetail matchDetail = null;
-		try {
-			matchDetail = new Gson().fromJson(Request.execute(url), MatchDetail.class);
-		} catch (JsonSyntaxException e) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-		if (matchDetail == null) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-
-		return matchDetail;
+		return getMatch(endpoint, region, key, matchId, false);
 	}
 }

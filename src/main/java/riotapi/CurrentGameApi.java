@@ -27,7 +27,7 @@ final class CurrentGameApi {
 
 	private static final String endpoint = ".api.pvp.net/observer-mode/rest/consumer/getSpectatorGameInfo/";
 
-	public static CurrentGameInfo getCurrentGameInfo(PlatformId platformId, String key, long summonerId) throws RiotApiException {
+	public static CurrentGameInfo getCurrentGameInfo(PlatformId platformId, String key, String summonerId) throws RiotApiException {
 		String url = "https://" + platformId.getName() + endpoint + platformId.getId() + "/" + summonerId + "?api_key=" + key;
 
 		CurrentGameInfo currentGameInfo = null;
@@ -41,5 +41,9 @@ final class CurrentGameApi {
 		}
 
 		return currentGameInfo;
+	}
+
+	public static CurrentGameInfo getCurrentGameInfo(PlatformId platformId, String key, long summonerId) throws RiotApiException {
+		return getCurrentGameInfo(platformId, key, String.valueOf(summonerId));
 	}
 }

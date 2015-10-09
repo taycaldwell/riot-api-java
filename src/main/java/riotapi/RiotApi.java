@@ -242,6 +242,38 @@ public class RiotApi {
 	}
 
 	/**
+	 * Get leagues for a given summoner ID.
+	 *
+	 * @param region
+	 *            Region where to retrieve the data.
+	 * @param summonerId
+	 *            ID of the summoner for which to retrieve recent games.
+	 * @return Recent games of the given summoner
+	 * @see RecentGames
+	 * @throws RiotApiException
+	 *             if the API returns an error or unparsable result
+	 */
+	public RecentGames getRecentGames(Region region, String summonerId) throws RiotApiException {
+
+		return GameApi.getRecentGames(region.getEndpoint(), region.getName(), getKey(), summonerId);
+	}
+
+	/**
+	 * Get leagues for a given summoner ID.
+	 *
+	 * @param summonerId
+	 *            ID of the summoner for which to retrieve recent games.
+	 * @return Recent games of the given summoner
+	 * @see RecentGames
+	 * @throws RiotApiException
+	 *             if the API returns an error or unparsable result
+	 */
+	public RecentGames getRecentGames(String summonerId) throws RiotApiException {
+
+		return GameApi.getRecentGames(getEndpoint(), getRegion(), getKey(), summonerId);
+	}
+
+	/**
 	 * Get a list of leagues for a summoner
 	 * 
 	 * @param region

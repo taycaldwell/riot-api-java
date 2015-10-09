@@ -29,7 +29,6 @@ final class StatusApi {
 	private static final String VERSION = "/v1.0/";
 
 	public static List<Shard> getShards() throws RiotApiException {
-
 		String url = "http://status.leagueoflegends.com/shards";
 
 		List<Shard> shards = null;
@@ -47,7 +46,6 @@ final class StatusApi {
 	}
 
 	public static ShardStatus getShardStatus(String region) throws RiotApiException {
-
 		String url = "http://status.leagueoflegends.com/shards/" + region;
 
 		ShardStatus status = null;

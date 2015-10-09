@@ -99,10 +99,6 @@ final class SummonerApi {
 		return summoners;
 	}
 
-	public static Map<String, Summoner> getSummonersById(String endpoint, String region, String key, long... summonerIds) throws RiotApiException {
-		return getSummonersById(endpoint, region, key, Convert.longToString(summonerIds));
-	}
-
 	public static Map<String, Summoner> getSummonersById(String endpoint, String region, String key, String summonerIds) throws RiotApiException {
 		String url = endpoint + region + VERSION + "summoner/" + summonerIds + "?api_key=" + key;
 
@@ -120,8 +116,8 @@ final class SummonerApi {
 		return summoners;
 	}
 
-	public static Map<String, String> getSummonerNames(String endpoint, String region, String key, long... summonerIds) throws RiotApiException {
-		return getSummonerNames(endpoint, region, key, Convert.longToString(summonerIds));
+	public static Map<String, Summoner> getSummonersById(String endpoint, String region, String key, long... summonerIds) throws RiotApiException {
+		return getSummonersById(endpoint, region, key, Convert.longToString(summonerIds));
 	}
 
 	public static Map<String, String> getSummonerNames(String endpoint, String region, String key, String summonerIds) throws RiotApiException {
@@ -139,5 +135,9 @@ final class SummonerApi {
 		}
 
 		return summonerNames;
+	}
+
+	public static Map<String, String> getSummonerNames(String endpoint, String region, String key, long... summonerIds) throws RiotApiException {
+		return getSummonerNames(endpoint, region, key, Convert.longToString(summonerIds));
 	}
 }
