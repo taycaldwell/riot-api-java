@@ -24,7 +24,8 @@ public class PropertiesLoader {
 			try {
 				properties.load(stream);
 				stream.close();
-			} catch (IOException e) {}
+			} catch (IOException e) {
+			}
 		}
 		return properties;
 	}
@@ -32,7 +33,7 @@ public class PropertiesLoader {
 	public static Proxy getProxy() {
 		final Properties properties = PropertiesLoader.getRiotApiProperties();
 		String proxyAddr = properties.getProperty(HTTP_PROXY_URL);
-		Integer proxyPort = Integer.valueOf(properties.getProperty(HTTP_PROXY_PORT));
+		Integer proxyPort = properties.getProperty(HTTP_PROXY_PORT) != null ? Integer.valueOf(properties.getProperty(HTTP_PROXY_PORT)) : null;
 
 		if (properties.getProperty(HTTP_PROXY_USERNAME) != null && properties.getProperty(HTTP_PROXY_PASSWORD) != null) {
 			Authenticator authenticator = new Authenticator() {
