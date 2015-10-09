@@ -17,33 +17,38 @@ package constant;
  */
 
 public enum Region {
-	     
-		BR("br.api.pvp.net", "br"),
-		EUNE("eune.api.pvp.net", "eune"),
-		EUW("euw.api.pvp.net", "euw"),
-		KR("kr.api.pvp.net", "kr"),
-		LAS("las.api.pvp.net", "las"),
-		LAN("lan.api.pvp.net", "lan"),
-		NA("na.api.pvp.net", "na"),
-		OCE("oce.api.pvp.net", "oce"),
-		TR("tr.api.pvp.net", "tr"),
-		RU("ru.api.pvp.net", "ru"),
-		PBE("pbe.api.pvp.net", "pbe"),
-		GLOBAL("global.api.pvp.net", "global");
 
-	    private String endpoint;
-	    private String region;
-	    
-	    Region(String endpoint, String region) {
-	        this.endpoint = endpoint;
-	        this.region = region;
-	    }
+	BR("br.api.pvp.net", "br"),
+	EUNE("eune.api.pvp.net", "eune"),
+	EUW("euw.api.pvp.net", "euw"),
+	KR("kr.api.pvp.net", "kr"),
+	LAS("las.api.pvp.net", "las"),
+	LAN("lan.api.pvp.net", "lan"),
+	NA("na.api.pvp.net", "na"),
+	OCE("oce.api.pvp.net", "oce"),
+	PBE("pbe.api.pvp.net", "pbe"),
+	RU("ru.api.pvp.net", "ru"),
+	TR("tr.api.pvp.net", "tr"),
+	GLOBAL("global.api.pvp.net", "global");
 
-	    public String getEndpoint() {
-	        return "https://" + endpoint + "/api/lol/";
-	    }
-	    
-	    public String getName() {
-	        return region;
-	    }
+	private String endpoint;
+	private String region;
+
+	Region(String endpoint, String region) {
+		this.endpoint = endpoint;
+		this.region = region;
+	}
+
+	public String getEndpoint() {
+		return "https://" + endpoint + "/api/lol/";
+	}
+
+	public String getName() {
+		return region;
+	}
+
+	@Override
+	public String toString() {
+		return getName();
+	}
 }

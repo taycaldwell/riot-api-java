@@ -17,23 +17,28 @@ package constant;
  */
 
 public enum GameMode {
-	    
-		CLASSIC("Classic"),
-		ODIN("Dominion/Crystal Scar"),
-		ARAM("ARAM"),
-		TUTORIAL("Tutorial"),
-		ONEFORALL("One for All"),
-		ASCENSION("Ascension"),
-		FIRSTBLOOD("Snowdown Showdown"),
-		KINGPORO("King Poro");
 
-	    private String name;
-	    
-	    GameMode(String name) {
-	        this.name = name;
-	    }
+	ARAM("ARAM"),
+	ASCENSION("Ascension"),
+	CLASSIC("Classic"),
+	FIRSTBLOOD("Snowdown Showdown"),
+	KINGPORO("King Poro"),
+	ODIN("Dominion/Crystal Scar"),
+	ONEFORALL("One for All"),
+	TUTORIAL("Tutorial");
 
-	    public String getName() {
-	        return name;
-	    }	    
+	private String name;
+
+	GameMode(String name) {
+		this.name = name;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	@Override
+	public String toString() {
+		return getName();
+	}
 }

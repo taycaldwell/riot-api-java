@@ -26,7 +26,7 @@ public final class Convert {
 				sb.append(',');
 			}
 		}
-		sb.append(String.valueOf(summonerIds[summonerIds.length - 1]).trim());
+		sb.append(summonerIds[summonerIds.length - 1]);
 		return sb.toString();
 	}
 }

@@ -15,40 +15,44 @@ package constant;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-	
+
 public enum Season {
 
-		// Seasons with Number
-		SEASON3("SEASON3"),
-		SEASON4("SEASON2014"),
-		SEASON5("SEASON2015"),
+	// Seasons with Number
+	SEASON3("SEASON3"),
+	SEASON4("SEASON2014"),
+	SEASON5("SEASON2015"),
 
-		// Seasons with Year
-		SEASON2013("SEASON3"),
-		SEASON2014("SEASON2014"),
-		SEASON2015("SEASON2015"),
+	// Seasons with Year
+	SEASON2013("SEASON3"),
+	SEASON2014("SEASON2014"),
+	SEASON2015("SEASON2015"),
 
-		// Preseasons
-		PRESEASON3("PRESEASON3"),
-		PRESEASON2014("PRESEASON2014"),
-		PRESEASON2015("PRESEASON2015"),
+	// Preseasons
+	PRESEASON3("PRESEASON3"),
+	PRESEASON2014("PRESEASON2014"),
+	PRESEASON2015("PRESEASON2015"),
 
-		// Number
-		THREE("SEASON3"),
-		FOUR("SEASON2014"),
-		FIVE("SEASON2015"),
+	// Number
+	THREE("SEASON3"),
+	FOUR("SEASON2014"),
+	FIVE("SEASON2015"),
 
-		// Current Season
-		CURRENT("SEASON2015");
+	// Current Season
+	CURRENT("SEASON2015");
 
+	private String season;
 
-	    private String season;
-	    
-	    Season(String season) {
-	        this.season = season;
-	    }
+	Season(String season) {
+		this.season = season;
+	}
 
-	    public String getName() {
-	        return season;
-	    }	    
+	public String getName() {
+		return season;
+	}
+
+	@Override
+	public String toString() {
+		return getName();
+	}
 }
