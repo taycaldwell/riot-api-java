@@ -18,6 +18,7 @@ package main.java.riotapi;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
+import constant.Region;
 import dto.Champion.Champion;
 import dto.Champion.ChampionList;
 
@@ -25,8 +26,8 @@ final class ChampionApi {
 
 	private static final String VERSION = "/v1.2/";
 
-	public static ChampionList getChampions(String endpoint, String region, String key, boolean freeToPlay) throws RiotApiException {
-		String url = endpoint + region + VERSION + "champion?";
+	public static ChampionList getChampions(Region region, String key, boolean freeToPlay) throws RiotApiException {
+		String url = region.getEndpoint() + VERSION + "champion?";
 		if (!freeToPlay) {
 			url += "freeToPlay=" + freeToPlay + "&";
 		}
@@ -45,12 +46,12 @@ final class ChampionApi {
 		return championList;
 	}
 
-	public static ChampionList getChampions(String endpoint, String region, String key) throws RiotApiException {
-		return getChampions(endpoint, region, key, false);
+	public static ChampionList getChampions(Region region, String key) throws RiotApiException {
+		return getChampions(region, key, false);
 	}
 
-	public static Champion getChampionById(String endpoint, String region, String key, int champId) throws RiotApiException {
-		String url = endpoint + region + VERSION + "champion/" + champId + "?api_key=" + key;
+	public static Champion getChampionById(Region region, String key, int champId) throws RiotApiException {
+		String url = region.getEndpoint() + VERSION + "champion/" + champId + "?api_key=" + key;
 
 		Champion champion = null;
 		try {

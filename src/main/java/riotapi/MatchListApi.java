@@ -18,15 +18,16 @@ package main.java.riotapi;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
+import constant.Region;
 import dto.MatchList.MatchList;
 
 final class MatchListApi {
 
 	private static final String VERSION = "/v2.2/";
 
-	public static MatchList getMatchList(String endpoint, String region, String key, long summonerId, String championIds, String rankedQueues, String seasons,
-			long beginTime, long endTime, int beginIndex, int endIndex) throws RiotApiException {
-		String url = endpoint + region + VERSION + "matchlist/by-summoner/" + summonerId + "?";
+	public static MatchList getMatchList(Region region, String key, long summonerId, String championIds, String rankedQueues, String seasons, long beginTime,
+			long endTime, int beginIndex, int endIndex) throws RiotApiException {
+		String url = region.getEndpoint() + VERSION + "matchlist/by-summoner/" + summonerId + "?";
 		if (championIds != null) {
 			url += "championIds=" + championIds + "&";
 		}

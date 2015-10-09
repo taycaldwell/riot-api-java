@@ -39,8 +39,16 @@ public enum Region {
 		this.region = region;
 	}
 
+	public String getEndpoint(boolean withRegion) {
+		String url = "https://" + endpoint + "/api/lol/";
+		if (withRegion) {
+			url += getName();
+		}
+		return url;
+	}
+
 	public String getEndpoint() {
-		return "https://" + endpoint + "/api/lol/";
+		return getEndpoint(true);
 	}
 
 	public String getName() {

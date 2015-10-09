@@ -25,14 +25,15 @@ import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
 import constant.QueueType;
+import constant.Region;
 import dto.League.League;
 
 final class LeagueApi {
 
 	private static final String VERSION = "/v2.5/";
 
-	public static Map<String, List<League>> getLeagueBySummoners(String endpoint, String region, String key, String summonerIds) throws RiotApiException {
-		String url = endpoint + region + VERSION + "league/by-summoner/" + summonerIds + "?api_key=" + key;
+	public static Map<String, List<League>> getLeagueBySummoners(Region region, String key, String summonerIds) throws RiotApiException {
+		String url = region.getEndpoint() + VERSION + "league/by-summoner/" + summonerIds + "?api_key=" + key;
 
 		Map<String, List<League>> leagues = null;
 		try {
@@ -48,12 +49,12 @@ final class LeagueApi {
 		return leagues;
 	}
 
-	public static Map<String, List<League>> getLeagueBySummoners(String endpoint, String region, String key, long... summonerIds) throws RiotApiException {
-		return getLeagueBySummoners(endpoint, region, key, Convert.longToString(summonerIds));
+	public static Map<String, List<League>> getLeagueBySummoners(Region region, String key, long... summonerIds) throws RiotApiException {
+		return getLeagueBySummoners(region, key, Convert.longToString(summonerIds));
 	}
 
-	public static Map<String, List<League>> getLeagueEntryBySummoners(String endpoint, String region, String key, String summonerIds) throws RiotApiException {
-		String url = endpoint + region + VERSION + "league/by-summoner/" + summonerIds + "/entry?api_key=" + key;
+	public static Map<String, List<League>> getLeagueEntryBySummoners(Region region, String key, String summonerIds) throws RiotApiException {
+		String url = region.getEndpoint() + VERSION + "league/by-summoner/" + summonerIds + "/entry?api_key=" + key;
 
 		Map<String, List<League>> leagues = null;
 		try {
@@ -69,12 +70,12 @@ final class LeagueApi {
 		return leagues;
 	}
 
-	public static Map<String, List<League>> getLeagueEntryBySummoners(String endpoint, String region, String key, long... summonerIds) throws RiotApiException {
-		return getLeagueEntryBySummoners(endpoint, region, key, Convert.longToString(summonerIds));
+	public static Map<String, List<League>> getLeagueEntryBySummoners(Region region, String key, long... summonerIds) throws RiotApiException {
+		return getLeagueEntryBySummoners(region, key, Convert.longToString(summonerIds));
 	}
 
-	public static Map<String, List<League>> getLeagueByTeams(String endpoint, String region, String key, String teamIds) throws RiotApiException {
-		String url = endpoint + region + VERSION + "league/by-team/" + teamIds + "?api_key=" + key;
+	public static Map<String, List<League>> getLeagueByTeams(Region region, String key, String teamIds) throws RiotApiException {
+		String url = region.getEndpoint() + VERSION + "league/by-team/" + teamIds + "?api_key=" + key;
 
 		Map<String, List<League>> leagues = null;
 		try {
@@ -90,12 +91,12 @@ final class LeagueApi {
 		return leagues;
 	}
 
-	public static Map<String, List<League>> getLeagueByTeams(String endpoint, String region, String key, long... teamIds) throws RiotApiException {
-		return getLeagueByTeams(endpoint, region, key, Convert.longToString(teamIds));
+	public static Map<String, List<League>> getLeagueByTeams(Region region, String key, long... teamIds) throws RiotApiException {
+		return getLeagueByTeams(region, key, Convert.longToString(teamIds));
 	}
 
-	public static Map<String, List<League>> getLeagueEntryByTeams(String endpoint, String region, String key, String teamIds) throws RiotApiException {
-		String url = endpoint + region + VERSION + "league/by-team/" + teamIds + "/entry?api_key=" + key;
+	public static Map<String, List<League>> getLeagueEntryByTeams(Region region, String key, String teamIds) throws RiotApiException {
+		String url = region.getEndpoint() + VERSION + "league/by-team/" + teamIds + "/entry?api_key=" + key;
 
 		Map<String, List<League>> leagues = null;
 		try {
@@ -111,12 +112,12 @@ final class LeagueApi {
 		return leagues;
 	}
 
-	public static Map<String, List<League>> getLeagueEntryByTeams(String endpoint, String region, String key, long... teamIds) throws RiotApiException {
-		return getLeagueEntryByTeams(endpoint, region, key, Convert.longToString(teamIds));
+	public static Map<String, List<League>> getLeagueEntryByTeams(Region region, String key, long... teamIds) throws RiotApiException {
+		return getLeagueEntryByTeams(region, key, Convert.longToString(teamIds));
 	}
 
-	public static League getChallengerLeague(String endpoint, String region, String key, QueueType queueType) throws RiotApiException {
-		String url = endpoint + region + VERSION + "league/challenger/?";
+	public static League getChallengerLeague(Region region, String key, QueueType queueType) throws RiotApiException {
+		String url = region.getEndpoint() + VERSION + "league/challenger/?";
 		if (queueType != null) {
 			url += "type=" + queueType.name() + "&";
 		}
@@ -135,12 +136,12 @@ final class LeagueApi {
 		return leagues;
 	}
 
-	public static League getChallengerLeague(String endpoint, String region, String key) throws RiotApiException {
-		return getChallengerLeague(endpoint, region, key, null);
+	public static League getChallengerLeague(Region region, String key) throws RiotApiException {
+		return getChallengerLeague(region, key, null);
 	}
 
-	public static League getMasterLeague(String endpoint, String region, String key, QueueType queueType) throws RiotApiException {
-		String url = endpoint + region + VERSION + "league/master/?";
+	public static League getMasterLeague(Region region, String key, QueueType queueType) throws RiotApiException {
+		String url = region.getEndpoint() + VERSION + "league/master/?";
 		if (queueType != null) {
 			url += "type=" + queueType.name() + "&";
 		}
@@ -159,7 +160,7 @@ final class LeagueApi {
 		return leagues;
 	}
 
-	public static League getMasterLeague(String endpoint, String region, String key) throws RiotApiException {
-		return getMasterLeague(endpoint, region, key, null);
+	public static League getMasterLeague(Region region, String key) throws RiotApiException {
+		return getMasterLeague(region, key, null);
 	}
 }

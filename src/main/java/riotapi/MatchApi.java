@@ -18,14 +18,15 @@ package main.java.riotapi;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
+import constant.Region;
 import dto.Match.MatchDetail;
 
 final class MatchApi {
 
 	private static final String VERSION = "/v2.2/";
 
-	public static MatchDetail getMatch(String endpoint, String region, String key, long matchId, boolean includeTimeline) throws RiotApiException {
-		String url = endpoint + region + VERSION + "match/" + matchId + "?";
+	public static MatchDetail getMatch(Region region, String key, long matchId, boolean includeTimeline) throws RiotApiException {
+		String url = region.getEndpoint() + VERSION + "match/" + matchId + "?";
 		if (!includeTimeline) {
 			url += "includeTimeline=" + includeTimeline + "&";
 		}
@@ -44,7 +45,7 @@ final class MatchApi {
 		return matchDetail;
 	}
 
-	public static MatchDetail getMatch(String endpoint, String region, String key, long matchId) throws RiotApiException {
-		return getMatch(endpoint, region, key, matchId, false);
+	public static MatchDetail getMatch(Region region, String key, long matchId) throws RiotApiException {
+		return getMatch(region, key, matchId, false);
 	}
 }

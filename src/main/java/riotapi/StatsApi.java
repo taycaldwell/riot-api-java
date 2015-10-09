@@ -18,6 +18,8 @@ package main.java.riotapi;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
+import constant.Region;
+import constant.Season;
 import dto.Stats.PlayerStatsSummaryList;
 import dto.Stats.RankedStats;
 
@@ -25,21 +27,8 @@ final class StatsApi {
 
 	private static final String VERSION = "/v1.3/";
 
-	/**
-	 * Get a summary of player statistics for a given summoner
-	 *
-	 * @param region
-	 *            The desired region
-	 * @param summonerId
-	 *            The ID of the desired summoner
-	 * @param season
-	 *            The desired season
-	 * @return A summary of player statistics for the given summoner
-	 * @see PlayerStatsSummaryList
-	 */
-	public static PlayerStatsSummaryList getPlayerStatsSummary(String endpoint, String region, String season, String key, long summonerId)
-			throws RiotApiException {
-		String url = endpoint + region + VERSION + "stats/by-summoner/" + summonerId + "/summary?";
+	public static PlayerStatsSummaryList getPlayerStatsSummary(Region region, Season season, String key, long summonerId) throws RiotApiException {
+		String url = region.getEndpoint() + VERSION + "stats/by-summoner/" + summonerId + "/summary?";
 		if (season != null) {
 			url += "season=" + season + "&";
 		}
@@ -58,20 +47,8 @@ final class StatsApi {
 		return summaryList;
 	}
 
-	/**
-	 * Get the ranked statistics of a given summoner
-	 *
-	 * @param region
-	 *            The desired region
-	 * @param summonerId
-	 *            The ID of the desired summoner
-	 * @param season
-	 *            The desired season
-	 * @return Ranked statistics of the given summoner
-	 * @see RankedStats
-	 */
-	public static RankedStats getRankedStats(String endpoint, String region, String season, String key, long summonerId) throws RiotApiException {
-		String url = endpoint + region + VERSION + "stats/by-summoner/" + summonerId + "/ranked?";
+	public static RankedStats getRankedStats(Region region, Season season, String key, long summonerId) throws RiotApiException {
+		String url = region.getEndpoint() + VERSION + "stats/by-summoner/" + summonerId + "/ranked?";
 		if (season != null) {
 			url += "season=" + season + "&";
 		}

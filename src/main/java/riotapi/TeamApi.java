@@ -24,14 +24,15 @@ import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
+import constant.Region;
 import dto.Team.Team;
 
 final class TeamApi {
 
 	private static final String VERSION = "/v2.4/";
 
-	public static Map<String, List<Team>> getTeamsBySummonerIds(String endpoint, String region, String key, String summonerIds) throws RiotApiException {
-		String url = endpoint + region + VERSION + "team/by-summoner/" + summonerIds + "?api_key=" + key;
+	public static Map<String, List<Team>> getTeamsBySummonerIds(Region region, String key, String summonerIds) throws RiotApiException {
+		String url = region.getEndpoint() + VERSION + "team/by-summoner/" + summonerIds + "?api_key=" + key;
 
 		Map<String, List<Team>> teams = null;
 		try {
@@ -47,12 +48,12 @@ final class TeamApi {
 		return teams;
 	}
 
-	public static Map<String, List<Team>> getTeamsBySummonerIds(String endpoint, String region, String key, long... summonerIds) throws RiotApiException {
-		return getTeamsBySummonerIds(endpoint, region, key, Convert.longToString(summonerIds));
+	public static Map<String, List<Team>> getTeamsBySummonerIds(Region region, String key, long... summonerIds) throws RiotApiException {
+		return getTeamsBySummonerIds(region, key, Convert.longToString(summonerIds));
 	}
 
-	public static Map<String, List<Team>> getTeamsByTeamIds(String endpoint, String region, String key, String teamIds) throws RiotApiException {
-		String url = endpoint + region + VERSION + "team/" + teamIds + "?api_key=" + key;
+	public static Map<String, List<Team>> getTeamsByTeamIds(Region region, String key, String teamIds) throws RiotApiException {
+		String url = region.getEndpoint() + VERSION + "team/" + teamIds + "?api_key=" + key;
 
 		Map<String, List<Team>> teams = null;
 		try {
@@ -68,7 +69,7 @@ final class TeamApi {
 		return teams;
 	}
 
-	public static Map<String, List<Team>> getTeamsByTeamIds(String endpoint, String region, String key, long... teamIds) throws RiotApiException {
-		return getTeamsByTeamIds(endpoint, region, key, Convert.longToString(teamIds));
+	public static Map<String, List<Team>> getTeamsByTeamIds(Region region, String key, long... teamIds) throws RiotApiException {
+		return getTeamsByTeamIds(region, key, Convert.longToString(teamIds));
 	}
 }
