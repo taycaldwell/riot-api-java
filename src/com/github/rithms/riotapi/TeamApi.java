@@ -2,13 +2,10 @@ package com.github.rithms.riotapi;
 
 /*
  * Copyright 2014 Taylor Caldwell
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * http://www.apache.org/licenses/LICENSE-2.0
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -79,12 +76,12 @@ final class TeamApi {
 		return teams;
 	}
 
-	public static Map<String, List<Team>> getTeamsByTeamIds(String endpoint, String region, String key, String teamIds) throws RiotApiException {
+	public static Map<String, Team> getTeamsByTeamIds(String endpoint, String region, String key, String teamIds) throws RiotApiException {
 		String url = endpoint + region + VERSION + "team/" + teamIds + "?api_key=" + key;
 
-		Map<String, List<Team>> teams = null;
+		Map<String, Team> teams = null;
 		try {
-			teams = new Gson().fromJson(Request.execute(url), new TypeToken<Map<String, List<Team>>>() {
+			teams = new Gson().fromJson(Request.execute(url), new TypeToken<Map<String, Team>>() {
 			}.getType());
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);

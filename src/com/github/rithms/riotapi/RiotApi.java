@@ -1425,8 +1425,21 @@ public class RiotApi {
 	 * @see Team
 	 * @throws RiotApiException
 	 */
-	public Map<String, List<Team>> getTeamsByTeamIds(String teamIds) throws RiotApiException {
+	public Map<String, Team> getTeamsByTeamIds(String teamIds) throws RiotApiException {
 		return TeamApi.getTeamsByTeamIds(getEndpoint(), getRegion(), getKey(), teamIds);
+	}
+
+	/**
+	 * Get teams by summonerIDs
+	 *
+	 * @param teamIds
+	 *            Comma-separated list of teamIds IDs
+	 * @return A map of the teams
+	 * @see Team
+	 * @throws RiotApiException
+	 */
+	public Map<String, Team> getTeamsByTeamIds(Region region, String teamIds) throws RiotApiException {
+		return TeamApi.getTeamsByTeamIds(region.getEndpoint(), region.getName(), getKey(), teamIds);
 	}
 
 	/**
