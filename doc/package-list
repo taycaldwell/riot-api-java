@@ -6,7 +6,6 @@ dto.FeaturedGames
 dto.Game
 dto.League
 dto.Match
-dto.MatchHistory
 dto.MatchList
 dto.Static
 dto.Stats
