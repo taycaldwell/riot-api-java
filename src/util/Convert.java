@@ -1,5 +1,8 @@
 package util;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -19,14 +22,6 @@ package util;
 public final class Convert {
 
 	public static String longToString(long... summonerIds) {
-		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < summonerIds.length - 1; i++) {
-			if (!String.valueOf(summonerIds[i]).matches(" *")) {
-				sb.append(summonerIds[i]);
-				sb.append(',');
-			}
-		}
-		sb.append(summonerIds[summonerIds.length - 1]);
-		return sb.toString();
+		return Arrays.stream(summonerIds).mapToObj(l -> ((Long) l).toString()).collect(Collectors.joining(","));
 	}
 }
