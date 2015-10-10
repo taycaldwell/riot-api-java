@@ -20,9 +20,7 @@ import java.util.List;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
-
 import constant.Region;
-
 import dto.Status.Shard;
 import dto.Status.ShardStatus;
 
@@ -31,7 +29,6 @@ final class StatusApi {
 	private static final String VERSION = "/v1.0/";
 
 	public static List<Shard> getShards() throws RiotApiException {
-
 		String url = "http://status.leagueoflegends.com/shards";
 
 		List<Shard> shards = null;
@@ -48,8 +45,7 @@ final class StatusApi {
 		return shards;
 	}
 
-	public static ShardStatus getShardStatus(String region) throws RiotApiException {
-		
+	public static ShardStatus getShardStatus(Region region) throws RiotApiException {
 		String url = "http://status.leagueoflegends.com/shards/" + region;
 		if(region.equals(Region.PBE.getName())) {
 			url = "http://status.pbe.leagueoflegends.com/shards/pbe";

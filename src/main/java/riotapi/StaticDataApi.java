@@ -21,6 +21,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
+import constant.Region;
 import constant.staticdata.ChampData;
 import constant.staticdata.ItemData;
 import constant.staticdata.ItemListData;
@@ -48,7 +49,7 @@ final class StaticDataApi {
 	private static final String VERSION = "/v1.2/";
 	private static final String STATIC_DATA_ENDPOINT = "https://global.api.pvp.net/api/lol/static-data/";
 
-	public static ChampionList getDataChampionList(String region, String key, String locale, String version, boolean dataById, ChampData... champData)
+	public static ChampionList getDataChampionList(Region region, String key, String locale, String version, boolean dataById, ChampData... champData)
 			throws RiotApiException {
 		String url = STATIC_DATA_ENDPOINT + region + VERSION + "champion?";
 		if (locale != null) {
@@ -80,8 +81,7 @@ final class StaticDataApi {
 		return championList;
 	}
 
-	public static Champion getDataChampion(String region, String key, int id, String locale, String version, ChampData... champData)
-			throws RiotApiException {
+	public static Champion getDataChampion(Region region, String key, int id, String locale, String version, ChampData... champData) throws RiotApiException {
 		String url = STATIC_DATA_ENDPOINT + region + VERSION + "champion/" + id + "?";
 		if (locale != null) {
 			url += "locale=" + locale + "&";
@@ -111,7 +111,7 @@ final class StaticDataApi {
 		return champion;
 	}
 
-	public static ItemList getDataItemList(String region, String key, String locale, String version, ItemListData... itemListData) throws RiotApiException {
+	public static ItemList getDataItemList(Region region, String key, String locale, String version, ItemListData... itemListData) throws RiotApiException {
 		String url = STATIC_DATA_ENDPOINT + region + VERSION + "item?";
 		if (locale != null) {
 			url += "locale=" + locale + "&";
@@ -141,7 +141,7 @@ final class StaticDataApi {
 		return itemList;
 	}
 
-	public static Item getDataItem(String region, String key, int id, String locale, String version, ItemData... itemData) throws RiotApiException {
+	public static Item getDataItem(Region region, String key, int id, String locale, String version, ItemData... itemData) throws RiotApiException {
 		String url = STATIC_DATA_ENDPOINT + region + VERSION + "item/" + id + "?";
 		if (locale != null) {
 			url += "locale=" + locale + "&";
@@ -171,7 +171,7 @@ final class StaticDataApi {
 		return item;
 	}
 
-	public static Realm getDataRealm(String region, String key) throws RiotApiException {
+	public static Realm getDataRealm(Region region, String key) throws RiotApiException {
 		String url = STATIC_DATA_ENDPOINT + region + VERSION + "realm?api_key=" + key;
 
 		Realm realm = null;
@@ -187,7 +187,7 @@ final class StaticDataApi {
 		return realm;
 	}
 
-	public static RuneList getDataRuneList(String region, String key, String locale, String version, RuneListData... runeListData) throws RiotApiException {
+	public static RuneList getDataRuneList(Region region, String key, String locale, String version, RuneListData... runeListData) throws RiotApiException {
 		String url = STATIC_DATA_ENDPOINT + region + VERSION + "rune?";
 		if (locale != null) {
 			url += "locale=" + locale + "&";
@@ -217,7 +217,7 @@ final class StaticDataApi {
 		return runeList;
 	}
 
-	public static Rune getDataRune(String region, String key, int id, String locale, String version, RuneData... runeData) throws RiotApiException {
+	public static Rune getDataRune(Region region, String key, int id, String locale, String version, RuneData... runeData) throws RiotApiException {
 		String url = STATIC_DATA_ENDPOINT + region + VERSION + "rune/" + id + "?";
 		if (locale != null) {
 			url += "locale=" + locale + "&";
@@ -247,7 +247,7 @@ final class StaticDataApi {
 		return rune;
 	}
 
-	public static MasteryList getDataMasteryList(String region, String key, String locale, String version, MasteryListData... masteryListData)
+	public static MasteryList getDataMasteryList(Region region, String key, String locale, String version, MasteryListData... masteryListData)
 			throws RiotApiException {
 		String url = STATIC_DATA_ENDPOINT + region + VERSION + "mastery?";
 		if (locale != null) {
@@ -278,7 +278,7 @@ final class StaticDataApi {
 		return masteryList;
 	}
 
-	public static Mastery getDataMastery(String region, String key, int id, String locale, String version, MasteryData... masteryData) throws RiotApiException {
+	public static Mastery getDataMastery(Region region, String key, int id, String locale, String version, MasteryData... masteryData) throws RiotApiException {
 		String url = STATIC_DATA_ENDPOINT + region + VERSION + "mastery/" + id + "?";
 		if (locale != null) {
 			url += "locale=" + locale + "&";
@@ -308,7 +308,7 @@ final class StaticDataApi {
 		return mastery;
 	}
 
-	public static SummonerSpellList getDataSummonerSpellList(String region, String key, String locale, String version, boolean dataById, SpellData... spellData)
+	public static SummonerSpellList getDataSummonerSpellList(Region region, String key, String locale, String version, boolean dataById, SpellData... spellData)
 			throws RiotApiException {
 		String url = STATIC_DATA_ENDPOINT + region + VERSION + "summoner-spell?";
 		if (locale != null) {
@@ -340,7 +340,7 @@ final class StaticDataApi {
 		return spellList;
 	}
 
-	public static SummonerSpell getDataSummonerSpell(String region, String key, int id, String locale, String version, SpellData... spellData)
+	public static SummonerSpell getDataSummonerSpell(Region region, String key, int id, String locale, String version, SpellData... spellData)
 			throws RiotApiException {
 		String url = STATIC_DATA_ENDPOINT + region + VERSION + "summoner-spell/" + id + "?";
 		if (locale != null) {
@@ -371,7 +371,7 @@ final class StaticDataApi {
 		return spell;
 	}
 
-	public static List<String> getDataVersions(String region, String key) throws RiotApiException {
+	public static List<String> getDataVersions(Region region, String key) throws RiotApiException {
 		String url = STATIC_DATA_ENDPOINT + region + VERSION + "versions?api_key=" + key;
 
 		List<String> versions = null;
@@ -388,7 +388,7 @@ final class StaticDataApi {
 		return versions;
 	}
 
-	public static List<String> getDataLanguages(String region, String key) throws RiotApiException {
+	public static List<String> getDataLanguages(Region region, String key) throws RiotApiException {
 		String url = STATIC_DATA_ENDPOINT + region + VERSION + "languages?api_key=" + key;
 
 		List<String> languages = null;
@@ -405,7 +405,7 @@ final class StaticDataApi {
 		return languages;
 	}
 
-	public static GameMapList getDataGameMapList(String region, String key, String locale, String version) throws RiotApiException {
+	public static GameMapList getDataGameMapList(Region region, String key, String locale, String version) throws RiotApiException {
 		String url = STATIC_DATA_ENDPOINT + region + VERSION + "map?";
 		if (locale != null) {
 			url += "locale=" + locale + "&";
@@ -428,7 +428,7 @@ final class StaticDataApi {
 		return gameMapList;
 	}
 
-	public static LanguageStrings getDataLanguageStrings(String region, String key, String locale, String version) throws RiotApiException {
+	public static LanguageStrings getDataLanguageStrings(Region region, String key, String locale, String version) throws RiotApiException {
 		String url = STATIC_DATA_ENDPOINT + region + VERSION + "language-strings?";
 		if (locale != null) {
 			url += "locale=" + locale + "&";

@@ -18,14 +18,15 @@ package main.java.riotapi;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
+import constant.Region;
 import dto.Game.RecentGames;
 
 final class GameApi {
 
 	private static final String VERSION = "/v1.3/";
 
-	public static RecentGames getRecentGames(String endpoint, String region, String key, long summonerId) throws RiotApiException {
-		String url = endpoint + region + VERSION + "game/by-summoner/" + summonerId + "/recent?api_key=" + key;
+	public static RecentGames getRecentGames(Region region, String key, String summonerId) throws RiotApiException {
+		String url = region.getEndpoint() + VERSION + "game/by-summoner/" + summonerId + "/recent?api_key=" + key;
 
 		RecentGames recentGames = null;
 		try {
@@ -38,5 +39,9 @@ final class GameApi {
 		}
 
 		return recentGames;
+	}
+
+	public static RecentGames getRecentGames(Region region, String key, long summonerId) throws RiotApiException {
+		return getRecentGames(region, key, String.valueOf(summonerId));
 	}
 }

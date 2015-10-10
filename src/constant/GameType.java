@@ -15,20 +15,25 @@ package constant;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-	
-public enum GameType {
-	    
-		CUSTOM_GAME("Custom"),
-		TUTORIAL_GAME("Tutorial"),
-		MATCHED_GAME("All");
-		
-	    private String name;
-	    
-	    GameType(String name) {
-	        this.name = name;
-	    }
 
-	    public String getName() {
-	        return name;
-	    }	    
+public enum GameType {
+
+	CUSTOM_GAME("Custom"),
+	TUTORIAL_GAME("Tutorial"),
+	MATCHED_GAME("All");
+
+	private String name;
+
+	GameType(String name) {
+		this.name = name;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	@Override
+	public String toString() {
+		return getName();
+	}
 }

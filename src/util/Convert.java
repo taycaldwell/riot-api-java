@@ -17,13 +17,16 @@ package util;
  */
 
 public final class Convert {
-	
-	public static String longToString(long... summonerIds){
-		String ids = "";
-		for(int i = 0; i < summonerIds.length; i++){
-			if(i != (summonerIds.length - 1)){ ids = ids + summonerIds[i] + ","; }
-			else { ids = ids + summonerIds[i]; }
+
+	public static String longToString(long... summonerIds) {
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < summonerIds.length - 1; i++) {
+			if (!String.valueOf(summonerIds[i]).matches(" *")) {
+				sb.append(summonerIds[i]);
+				sb.append(',');
+			}
 		}
-		return ids;
+		sb.append(summonerIds[summonerIds.length - 1]);
+		return sb.toString();
 	}
 }

@@ -18,6 +18,7 @@ package main.java.riotapi;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
+import constant.Region;
 import dto.FeaturedGames.FeaturedGames;
 
 final class FeaturedGamesApi {
@@ -26,7 +27,7 @@ final class FeaturedGamesApi {
 
 	private static final String endpoint = ".api.pvp.net/observer-mode/rest/featured";
 
-	public static FeaturedGames getFeaturedGames(String region, String key) throws RiotApiException {
+	public static FeaturedGames getFeaturedGames(Region region, String key) throws RiotApiException {
 		String url = "https://" + region + endpoint + "?api_key=" + key;
 
 		FeaturedGames featuredGames = null;

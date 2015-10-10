@@ -17,20 +17,25 @@ package constant.staticdata;
  */
 
 public enum MasteryData {
-	    
-		ALL("all"),
-		IMAGE("image"),
-		PREREQ("prereq"),
-		RANKS("ranks"),
-		SANITIZED_DESCRIPTION("sanitizedDescription");
-		
-	    private String name;
-	    
-	    MasteryData(String name) {
-	        this.name = name;
-	    }
 
-	    public String getName() {
-	        return name;
-	    }	    
+	ALL("all"),
+	IMAGE("image"),
+	PREREQ("prereq"),
+	RANKS("ranks"),
+	SANITIZED_DESCRIPTION("sanitizedDescription");
+
+	private String name;
+
+	MasteryData(String name) {
+		this.name = name;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	@Override
+	public String toString() {
+		return getName();
+	}
 }
