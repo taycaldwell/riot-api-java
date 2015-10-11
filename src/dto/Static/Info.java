@@ -38,5 +38,4 @@ public class Info implements Serializable {
 	public int getMagic() {
 		return magic;
 	}
-
 }

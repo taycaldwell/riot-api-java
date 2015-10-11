@@ -19,21 +19,20 @@ package dto.CurrentGame;
 import java.io.Serializable;
 
 public class BannedChampion implements Serializable {
-	
+
 	private static final long serialVersionUID = -2518840271357794856L;
 	private long championId, teamId;
 	private int pickTurn;
-	
+
 	public long getChampionId() {
 		return championId;
 	}
-	
+
 	public long getTeamId() {
 		return teamId;
 	}
-	
+
 	public int getPickTurn() {
 		return pickTurn;
 	}
-	
 }

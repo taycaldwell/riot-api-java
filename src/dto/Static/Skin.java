@@ -23,17 +23,16 @@ public class Skin implements Serializable {
 	private static final long serialVersionUID = -8984891033284072910L;
 	private int id, num;
 	private String name;
-	
+
 	public int getId() {
 		return id;
 	}
-	
+
 	public int getNum() {
 		return num;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
-
 }

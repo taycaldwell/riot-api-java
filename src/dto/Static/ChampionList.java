@@ -20,28 +20,29 @@ import java.util.Map;
  */
 
 public class ChampionList implements Serializable {
-	
+
 	private static final long serialVersionUID = -1332170960767191762L;
 	private Map<String, Champion> data;
 	private Map<String, String> keys;
 	private String format, type, version;
-	
+
 	public Map<String, Champion> getData() {
 		return data;
 	}
+
 	public Map<String, String> getKeys() {
 		return keys;
 	}
+
 	public String getFormat() {
 		return format;
 	}
+
 	public String getType() {
 		return type;
 	}
+
 	public String getVersion() {
 		return version;
 	}
-	
-	
-
 }

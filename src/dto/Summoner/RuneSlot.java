@@ -30,5 +30,4 @@ public class RuneSlot implements Serializable {
 	public int getRuneId() {
 		return runeId;
 	}
-
 }

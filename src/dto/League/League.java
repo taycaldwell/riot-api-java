@@ -24,7 +24,7 @@ public class League implements Serializable {
 	private static final long serialVersionUID = 1878237445691308532L;
 	private List<LeagueEntry> entries;
 	private String name, queue, tier, participantId;
-	
+
 	public List<LeagueEntry> getEntries() {
 		return entries;
 	}
@@ -32,7 +32,7 @@ public class League implements Serializable {
 	public String getName() {
 		return name;
 	}
-	
+
 	public String getQueue() {
 		return queue;
 	}
@@ -44,5 +44,4 @@ public class League implements Serializable {
 	public String getParticipantId() {
 		return participantId;
 	}
-	
 }

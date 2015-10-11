@@ -20,19 +20,20 @@ import java.util.Map;
  */
 
 public class SummonerSpellList implements Serializable {
-	
+
 	private static final long serialVersionUID = 3109246145319877891L;
 	private Map<String, SummonerSpell> data;
 	private String type, version;
-	
+
 	public Map<String, SummonerSpell> getData() {
 		return data;
 	}
+
 	public String getType() {
 		return type;
 	}
+
 	public String getVersion() {
 		return version;
 	}
-
 }

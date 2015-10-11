@@ -14,6 +14,4 @@ public class Rune implements Serializable {
 	public long getRuneId() {
 		return runeId;
 	}
-	
-	
 }

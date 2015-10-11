@@ -23,30 +23,34 @@ public class Message implements Serializable {
 
 	private static final long serialVersionUID = 9036838901306467780L;
 	private List<Translation> translations;
-	private String author, content, created_at, severity,
-					updated_at;
+	private String author, content, created_at, severity, updated_at;
 	private long id;
-	
+
 	public List<Translation> getTranslations() {
 		return translations;
 	}
+
 	public String getAuthor() {
 		return author;
 	}
+
 	public String getContent() {
 		return content;
 	}
+
 	public String getCreated_at() {
 		return created_at;
 	}
+
 	public String getSeverity() {
 		return severity;
 	}
+
 	public String getUpdated_at() {
 		return updated_at;
 	}
+
 	public long getId() {
 		return id;
 	}
-	
 }

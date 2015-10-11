@@ -19,11 +19,11 @@ import java.io.Serializable;
  */
 
 public class RawStat implements Serializable {
-	
+
 	private static final long serialVersionUID = -5650534089794129668L;
 	private int id, value;
 	private String name;
-	
+
 	public int getId() {
 		return id;
 	}
@@ -35,5 +35,4 @@ public class RawStat implements Serializable {
 	public String getName() {
 		return name;
 	}
-	
 }

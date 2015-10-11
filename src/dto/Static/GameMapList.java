@@ -24,17 +24,16 @@ public class GameMapList implements Serializable {
 	private static final long serialVersionUID = -1624000877653131904L;
 	private Map<String, GameMap> data;
 	private String type, version;
-	
+
 	public Map<String, GameMap> getData() {
 		return data;
 	}
-	
+
 	public String getType() {
 		return type;
 	}
-	
+
 	public String getVersion() {
 		return version;
 	}
-	
 }

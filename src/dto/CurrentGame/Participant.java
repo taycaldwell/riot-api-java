@@ -27,45 +27,44 @@ public class Participant implements Serializable {
 	private List<Mastery> masteries;
 	private List<Rune> runes;
 	private String summonerName;
-	
+
 	public boolean isBot() {
 		return bot;
 	}
-	
+
 	public long getChampionId() {
 		return championId;
 	}
-	
+
 	public long getProfileIconId() {
 		return profileIconId;
 	}
-	
+
 	public long getSpell1Id() {
 		return spell1Id;
 	}
-	
+
 	public long getSpell2Id() {
 		return spell2Id;
 	}
-	
+
 	public long getSummonerId() {
 		return summonerId;
 	}
-	
+
 	public long getTeamId() {
 		return teamId;
 	}
-	
+
 	public List<Mastery> getMasteries() {
 		return masteries;
 	}
-	
+
 	public List<Rune> getRunes() {
 		return runes;
 	}
-	
+
 	public String getSummonerName() {
 		return summonerName;
 	}
-	
 }

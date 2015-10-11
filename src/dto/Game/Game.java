@@ -22,15 +22,14 @@ import java.util.List;
 public class Game implements Serializable {
 
 	private static final long serialVersionUID = 1228681223919935293L;
-	
+
 	private int championId, ipEarned, level, mapId, spell1, spell2, teamId;
 	private long createDate, gameId;
 	private List<Player> fellowPlayers;
 	private String gameMode, gameType, subType;
 	private boolean invalid;
 	private RawStats stats;
-	
-	
+
 	public long getCreateDate() {
 		return createDate;
 	}
@@ -90,5 +89,4 @@ public class Game implements Serializable {
 	public RawStats getStats() {
 		return stats;
 	}
-
 }

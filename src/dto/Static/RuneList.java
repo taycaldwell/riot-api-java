@@ -20,24 +20,25 @@ import java.util.Map;
  */
 
 public class RuneList implements Serializable {
-	
+
 	private static final long serialVersionUID = 1696878942733740445L;
 	private Map<String, Rune> data;
 	private BasicData basic;
 	private String type, version;
-	
+
 	public Map<String, Rune> getData() {
 		return data;
 	}
+
 	public BasicData getBasic() {
 		return basic;
 	}
+
 	public String getType() {
 		return type;
 	}
+
 	public String getVersion() {
 		return version;
 	}
-	
-	
 }

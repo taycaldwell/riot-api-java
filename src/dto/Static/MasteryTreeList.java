@@ -20,12 +20,11 @@ import java.util.List;
  */
 
 public class MasteryTreeList implements Serializable {
-	
+
 	private static final long serialVersionUID = -2040839715528403925L;
 	private List<MasteryTreeItem> masteryTreeItems;
 
 	public List<MasteryTreeItem> getMasteryTreeItems() {
 		return masteryTreeItems;
 	}
-	
 }

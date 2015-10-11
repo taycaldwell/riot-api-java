@@ -20,16 +20,16 @@ import java.util.List;
  */
 
 public class ItemTree implements Serializable {
-	
+
 	private static final long serialVersionUID = 7245929613325190245L;
 	private List<String> tags;
 	private String header;
-	
+
 	public List<String> getTags() {
 		return tags;
 	}
+
 	public String getHeader() {
 		return header;
 	}
-	
 }

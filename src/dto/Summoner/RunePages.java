@@ -20,17 +20,16 @@ import java.io.Serializable;
 import java.util.Set;
 
 public class RunePages implements Serializable {
-	
+
 	private static final long serialVersionUID = 3636621264321429110L;
 	private long summonerId;
 	private Set<RunePage> pages;
-	
+
 	public long getSummonerId() {
 		return summonerId;
 	}
-	
+
 	public Set<RunePage> getPages() {
 		return pages;
 	}
-	
 }

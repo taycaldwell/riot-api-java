@@ -23,17 +23,16 @@ public class MetaData implements Serializable {
 	private static final long serialVersionUID = 8983953859724300000L;
 	private boolean isRune;
 	private String tier, type;
-	
+
 	public boolean isRune() {
 		return isRune;
 	}
+
 	public String getTier() {
 		return tier;
 	}
+
 	public String getType() {
 		return type;
 	}
-	
-	
-
 }

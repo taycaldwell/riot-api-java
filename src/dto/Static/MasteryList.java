@@ -20,23 +20,25 @@ import java.util.Map;
  */
 
 public class MasteryList implements Serializable {
-	
+
 	private static final long serialVersionUID = -2255568964283725298L;
 	private Map<String, Mastery> data;
 	private MasteryTree tree;
 	private String type, version;
-	
+
 	public Map<String, Mastery> getData() {
 		return data;
 	}
+
 	public MasteryTree getTree() {
 		return tree;
 	}
+
 	public String getType() {
 		return type;
 	}
+
 	public String getVersion() {
 		return version;
 	}
-	
 }

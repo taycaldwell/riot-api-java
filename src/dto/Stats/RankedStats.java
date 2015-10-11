@@ -20,20 +20,20 @@ import java.io.Serializable;
 import java.util.List;
 
 public class RankedStats implements Serializable {
-	
+
 	private static final long serialVersionUID = 6544447595249079077L;
 	private List<ChampionStats> champions;
 	private long modifyDate, summonerId;
-	
+
 	public List<ChampionStats> getChampions() {
 		return champions;
 	}
+
 	public long getModifyDate() {
 		return modifyDate;
 	}
+
 	public long getSummonerId() {
 		return summonerId;
 	}
-	
-	
 }

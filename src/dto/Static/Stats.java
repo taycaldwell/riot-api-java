@@ -19,17 +19,15 @@ import java.io.Serializable;
  */
 
 public class Stats implements Serializable {
-	
+
 	private static final long serialVersionUID = 7631639894093703038L;
-	private double armor, armorperlevel, attackdamage, attackdamageperlevel, attackrange,
-				attackspeedoffset, attackspeedperlevel, crit, critperlevel, hp, hpperlevel,
-				hpregen, hpregenperlevel, movespeed, mp, mpperlevel, mpregen, mpregenperlevel,
-				spellblock, spellblockperlevel;
-	
+	private double armor, armorperlevel, attackdamage, attackdamageperlevel, attackrange, attackspeedoffset, attackspeedperlevel, crit, critperlevel, hp,
+			hpperlevel, hpregen, hpregenperlevel, movespeed, mp, mpperlevel, mpregen, mpregenperlevel, spellblock, spellblockperlevel;
+
 	public double getBaseAttackSpeed() {
-		return (0.625 / ( 1.0 + attackspeedoffset ));
+		return (0.625 / (1.0 + attackspeedoffset));
 	}
-	
+
 	public double getArmor() {
 		return armor;
 	}
@@ -109,5 +107,4 @@ public class Stats implements Serializable {
 	public double getSpellBlockPerLevel() {
 		return spellblockperlevel;
 	}
-	
 }

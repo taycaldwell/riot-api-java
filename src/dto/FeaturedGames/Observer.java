@@ -26,5 +26,4 @@ public class Observer implements Serializable {
 	public String getEncryptionKey() {
 		return encryptionKey;
 	}
-
 }

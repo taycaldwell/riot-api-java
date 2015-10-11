@@ -20,7 +20,7 @@ import java.util.List;
  */
 
 public class Champion implements Serializable {
-	
+
 	private static final long serialVersionUID = 8120597968700936522L;
 	private List<String> allytips;
 	private List<String> enemytips;
@@ -34,57 +34,72 @@ public class Champion implements Serializable {
 	private Stats stats;
 	private int id;
 	private String blurb, key, lore, name, partype, title;
-	
+
 	public List<String> getAllytips() {
 		return allytips;
 	}
+
 	public List<String> getEnemytips() {
 		return enemytips;
 	}
+
 	public List<Recommended> getRecommended() {
 		return recommended;
 	}
+
 	public List<Skin> getSkins() {
 		return skins;
 	}
+
 	public List<ChampionSpell> getSpells() {
 		return spells;
 	}
+
 	public List<String> getTags() {
 		return tags;
 	}
+
 	public Image getImage() {
 		return image;
 	}
+
 	public Info getInfo() {
 		return info;
 	}
+
 	public Passive getPassive() {
 		return passive;
 	}
+
 	public Stats getStats() {
 		return stats;
 	}
+
 	public int getId() {
 		return id;
 	}
+
 	public String getBlurb() {
 		return blurb;
 	}
+
 	public String getKey() {
 		return key;
 	}
+
 	public String getLore() {
 		return lore;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public String getPartype() {
 		return partype;
 	}
+
 	public String getTitle() {
 		return title;
 	}
-	
 }

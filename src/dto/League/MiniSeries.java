@@ -19,11 +19,11 @@ import java.io.Serializable;
  */
 
 public class MiniSeries implements Serializable {
-	
+
 	private static final long serialVersionUID = -1698803031525933530L;
 	private int losses, target, wins;
 	private String progress;
-	
+
 	public String getProgress() {
 		return progress;
 	}
@@ -39,5 +39,4 @@ public class MiniSeries implements Serializable {
 	public int getTarget() {
 		return target;
 	}
-
 }

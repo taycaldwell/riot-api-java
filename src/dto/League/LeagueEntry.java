@@ -25,7 +25,7 @@ public class LeagueEntry implements Serializable {
 	private boolean isFreshBlood, isHotStreak, isInactive, isVeteran;
 	private int leaguePoints, wins, losses;
 	private MiniSeries miniSeries;
-	
+
 	public String getPlayerOrTeamId() {
 		return playerOrTeamId;
 	}
@@ -45,7 +45,7 @@ public class LeagueEntry implements Serializable {
 	public int getWins() {
 		return wins;
 	}
-	
+
 	public int getLosses() {
 		return losses;
 	}
@@ -69,5 +69,4 @@ public class LeagueEntry implements Serializable {
 	public String getDivision() {
 		return division;
 	}
-	
 }

@@ -23,15 +23,16 @@ public class LanguageStrings implements Serializable {
 	private static final long serialVersionUID = -5097401216029512928L;
 	private LanguageStringsData data;
 	private String type, version;
-	
+
 	public LanguageStringsData getData() {
 		return data;
 	}
+
 	public String getType() {
 		return type;
 	}
+
 	public String getVersion() {
 		return version;
 	}
-
 }

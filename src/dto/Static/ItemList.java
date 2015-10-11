@@ -21,31 +21,35 @@ import java.util.Map;
  */
 
 public class ItemList implements Serializable {
-	
+
 	private static final long serialVersionUID = -1708490617004185357L;
 	private List<Group> groups;
 	private List<ItemTree> tree;
 	private Map<String, Item> data;
 	private BasicData basic;
 	private String type, version;
-	
+
 	public List<Group> getGroups() {
 		return groups;
 	}
+
 	public List<ItemTree> getTree() {
 		return tree;
 	}
+
 	public Map<String, Item> getData() {
 		return data;
 	}
+
 	public BasicData getBasic() {
 		return basic;
 	}
+
 	public String getType() {
 		return type;
 	}
+
 	public String getVersion() {
 		return version;
 	}
-
 }

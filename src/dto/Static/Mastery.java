@@ -27,34 +27,39 @@ public class Mastery implements Serializable {
 	private Image image;
 	private int id, ranks;
 	private String name, prereq, masteryTree;
-	
+
 	public List<String> getDescription() {
 		return description;
 	}
+
 	public List<String> getSanitizedDescription() {
 		return sanitizedDescription;
 	}
+
 	public Image getImage() {
 		return image;
 	}
+
 	public int getId() {
 		return id;
 	}
+
 	public int getRanks() {
 		return ranks;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public String getPrereq() {
 		return prereq;
 	}
-	
+
 	/**
 	 * Legal values: Defense, Offense, Utility
 	 */
 	public String getMasteryTree() {
 		return masteryTree;
 	}
-	
 }

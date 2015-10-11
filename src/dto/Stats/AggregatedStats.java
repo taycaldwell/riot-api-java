@@ -21,24 +21,15 @@ import java.io.Serializable;
 public class AggregatedStats implements Serializable {
 
 	private static final long serialVersionUID = 5450927796643171275L;
-	private int averageAssists, averageChampionsKilled, averageCombatPlayerScore, 
-				averageNodeCapture, averageNodeCaptureAssist, totalNodeCapture,
-				averageNodeNeutralizeAssist, averageNumDeaths, totalGoldEarned,	
-				averageTeamObjective, averageTotalPlayerScore, botGamesPlayed,
-				maxAssists, maxChampionsKilled, maxCombatPlayerScore, totalHeal,
-				maxLargestKillingSpree, maxNodeCapture, maxNodeCaptureAssist,
-				maxNodeNeutralizeAssist, maxObjectivePlayerScore, maxTeamObjective, 
-				maxTimePlayed, maxTimeSpentLiving, maxTotalPlayerScore, totalAssists,
-				mostChampionKillsPerSession, mostSpellsCast, normalGamesPlayed, 
-				rankedPremadeGamesPlayed, rankedSoloGamesPlayed, totalChampionKills,
-				totalDamageDealt, totalDamageTaken, totalDoubleKills, totalFirstBlood,
-				maxNodeNeutralize, maxLargestCriticalStrike, averageObjectivePlayerScore,
-				killingSpree, totalMagicDamageDealt, totalMinionKills, totalSessionsWon,
-				totalNodeNeutralize, totalPentaKills, totalPhysicalDamageDealt,	
-				totalQuadraKills, totalSessionsLost, totalSessionsPlayed,
-			    totalTurretsKilled, totalUnrealKills, averageNodeNeutralize,
-				totalNeutralMinionsKilled, totalTripleKills, maxNumDeaths,
-				totalDeathsPerSession;
+	private int averageAssists, averageChampionsKilled, averageCombatPlayerScore, averageNodeCapture, averageNodeCaptureAssist, totalNodeCapture,
+			averageNodeNeutralizeAssist, averageNumDeaths, totalGoldEarned, averageTeamObjective, averageTotalPlayerScore, botGamesPlayed, maxAssists,
+			maxChampionsKilled, maxCombatPlayerScore, totalHeal, maxLargestKillingSpree, maxNodeCapture, maxNodeCaptureAssist, maxNodeNeutralizeAssist,
+			maxObjectivePlayerScore, maxTeamObjective, maxTimePlayed, maxTimeSpentLiving, maxTotalPlayerScore, totalAssists, mostChampionKillsPerSession,
+			mostSpellsCast, normalGamesPlayed, rankedPremadeGamesPlayed, rankedSoloGamesPlayed, totalChampionKills, totalDamageDealt, totalDamageTaken,
+			totalDoubleKills, totalFirstBlood, maxNodeNeutralize, maxLargestCriticalStrike, averageObjectivePlayerScore, killingSpree, totalMagicDamageDealt,
+			totalMinionKills, totalSessionsWon, totalNodeNeutralize, totalPentaKills, totalPhysicalDamageDealt, totalQuadraKills, totalSessionsLost,
+			totalSessionsPlayed, totalTurretsKilled, totalUnrealKills, averageNodeNeutralize, totalNeutralMinionsKilled, totalTripleKills, maxNumDeaths,
+			totalDeathsPerSession;
 
 	public int getTotalMinionKills() {
 		return totalMinionKills;
@@ -263,6 +254,4 @@ public class AggregatedStats implements Serializable {
 	public int getTotalTripleKills() {
 		return totalTripleKills;
 	}
-	
-	
 }

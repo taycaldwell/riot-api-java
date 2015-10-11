@@ -11,33 +11,32 @@ public class MatchReference implements Serializable {
 	public long getChampion() {
 		return champion;
 	}
-	
+
 	public long getMatchId() {
 		return matchId;
 	}
-	
+
 	public long getTimestamp() {
 		return timestamp;
 	}
-	
+
 	public String getLane() {
 		return lane;
 	}
-	
+
 	public String getPlatformId() {
 		return platformId;
 	}
-	
+
 	public String getQueue() {
 		return queue;
 	}
-	
+
 	public String getRole() {
 		return role;
 	}
-	
+
 	public String getSeason() {
 		return season;
 	}
-
 }

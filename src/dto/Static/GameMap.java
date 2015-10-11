@@ -26,21 +26,20 @@ public class GameMap implements Serializable {
 	private List<Integer> unpurchasableItemList;
 	private Image image;
 	private String mapName;
-	
+
 	public int getMapId() {
 		return mapId;
 	}
-	
+
 	public List<Integer> getUnpurchasableItemList() {
 		return unpurchasableItemList;
 	}
-	
+
 	public Image getImage() {
 		return image;
 	}
-	
+
 	public String getMapName() {
 		return mapName;
 	}
-	
 }

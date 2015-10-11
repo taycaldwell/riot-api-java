@@ -16,26 +16,25 @@ package dto.Summoner;
  * limitations under the License.
  */
 
-
 import java.io.Serializable;
 import java.util.List;
 
 public class MasteryPage implements Serializable {
-	
+
 	private static final long serialVersionUID = -8442771692820615671L;
 	private boolean current;
 	private long id;
 	private String name;
 	private List<Mastery> masteries;
-	
+
 	public boolean isCurrent() {
 		return current;
 	}
-	
+
 	public long getId() {
 		return id;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -43,5 +42,4 @@ public class MasteryPage implements Serializable {
 	public List<Mastery> getMasteries() {
 		return masteries;
 	}
-	
 }

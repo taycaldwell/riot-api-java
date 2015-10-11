@@ -19,7 +19,7 @@ import java.io.Serializable;
  */
 
 public class Group implements Serializable {
-	
+
 	private static final long serialVersionUID = -4691215871693156751L;
 	private String MaxGroupOwnable, key;
 
@@ -30,5 +30,4 @@ public class Group implements Serializable {
 	public String getKey() {
 		return key;
 	}
-	
 }

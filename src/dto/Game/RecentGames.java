@@ -20,17 +20,16 @@ import java.io.Serializable;
 import java.util.Set;
 
 public class RecentGames implements Serializable {
-	
+
 	private static final long serialVersionUID = -4659064262999503692L;
 	private Set<Game> games;
 	private long summonerId;
-	
+
 	public Set<Game> getGames() {
 		return games;
 	}
-	
+
 	public long getSummonerId() {
 		return summonerId;
 	}
-	
 }

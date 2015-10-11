@@ -24,21 +24,24 @@ public class SpellVars implements Serializable {
 	private static final long serialVersionUID = -8316487089517907400L;
 	private List<Double> coeff;
 	private String dyn, key, link, ranksWith;
-	
+
 	public List<Double> getCoeff() {
 		return coeff;
 	}
+
 	public String getDyn() {
 		return dyn;
 	}
+
 	public String getKey() {
 		return key;
 	}
+
 	public String getLink() {
 		return link;
 	}
+
 	public String getRanksWith() {
 		return ranksWith;
 	}
-
 }

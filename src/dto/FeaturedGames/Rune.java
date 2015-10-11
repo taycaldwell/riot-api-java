@@ -19,16 +19,16 @@ package dto.FeaturedGames;
 import java.io.Serializable;
 
 public class Rune implements Serializable {
-	
+
 	private static final long serialVersionUID = 4847580791285473535L;
 	private int count;
 	private long runeId;
-	
+
 	public int getCount() {
 		return count;
 	}
+
 	public long getRuneId() {
 		return runeId;
 	}
-
 }

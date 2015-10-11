@@ -21,24 +21,26 @@ import java.io.Serializable;
 public class Champion implements Serializable {
 
 	private static final long serialVersionUID = 4342849519353550572L;
-	
+
 	private boolean active, botEnabled, botMmEnabled, freeToPlay, rankedPlayEnabled;
 	private long id;
-	
+
 	public boolean isBotEnabled() {
 		return botEnabled;
 	}
+
 	public void setBotEnabled(boolean botEnabled) {
 		this.botEnabled = botEnabled;
 	}
+
 	public boolean isActive() {
 		return active;
 	}
-	
+
 	public boolean isFreeToPlay() {
 		return freeToPlay;
 	}
-	
+
 	public boolean isRankedPlayEnabled() {
 		return rankedPlayEnabled;
 	}
@@ -46,10 +48,8 @@ public class Champion implements Serializable {
 	public boolean isBotMmEnabled() {
 		return botMmEnabled;
 	}
-	
+
 	public long getId() {
 		return id;
 	}
-
-
 }

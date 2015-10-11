@@ -8,11 +8,11 @@ public class Player implements Serializable {
 	private String matchHistoryUri, summonerName;
 	private int profileIcon;
 	private long summonerId;
-	
+
 	public String getMatchHistoryUri() {
 		return matchHistoryUri;
 	}
-	
+
 	public long getSummonerId() {
 		return summonerId;
 	}
@@ -20,9 +20,8 @@ public class Player implements Serializable {
 	public String getSummonerName() {
 		return summonerName;
 	}
-	
+
 	public int getProfileIcon() {
 		return profileIcon;
 	}
-	
 }

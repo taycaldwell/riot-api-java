@@ -14,5 +14,4 @@ public class Position implements Serializable {
 	public int getX() {
 		return x;
 	}
-
 }

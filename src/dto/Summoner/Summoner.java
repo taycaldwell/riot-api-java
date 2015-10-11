@@ -19,30 +19,29 @@ import java.io.Serializable;
  */
 
 public class Summoner implements Serializable {
-	
+
 	private static final long serialVersionUID = -8213488199644701555L;
 	private long id, revisionDate, summonerLevel;
 	private int profileIconId;
 	private String name;
-	
+
 	public long getId() {
 		return id;
 	}
-	
+
 	public long getRevisionDate() {
 		return revisionDate;
 	}
-	
+
 	public long getSummonerLevel() {
 		return summonerLevel;
 	}
-	
+
 	public int getProfileIconId() {
 		return profileIconId;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
-	
 }

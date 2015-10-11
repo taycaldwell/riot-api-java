@@ -23,7 +23,7 @@ public class Player implements Serializable {
 	private static final long serialVersionUID = -2222223068241891011L;
 	private int championId, teamId;
 	private long summonerId;
-	
+
 	public int getTeamId() {
 		return teamId;
 	}

@@ -25,43 +25,43 @@ public class MatchHistorySummary implements Serializable {
 	private String gameMode, opposingTeamName;
 	private boolean invalid, win;
 	private long gameId, date;
-	
+
 	public int getAssists() {
 		return assists;
 	}
-	
+
 	public int getDeaths() {
 		return deaths;
 	}
-	
+
 	public int getKills() {
 		return kills;
 	}
-	
+
 	public int getMapId() {
 		return mapId;
 	}
-	
+
 	public int getOpposingTeamKills() {
 		return opposingTeamKills;
 	}
-	
+
 	public String getGameMode() {
 		return gameMode;
 	}
-	
+
 	public String getOpposingTeamName() {
 		return opposingTeamName;
 	}
-	
+
 	public boolean isInvalid() {
 		return invalid;
 	}
-	
+
 	public boolean isWin() {
 		return win;
 	}
-	
+
 	public long getGameId() {
 		return gameId;
 	}
@@ -69,5 +69,4 @@ public class MatchHistorySummary implements Serializable {
 	public long getDate() {
 		return date;
 	}
-	
 }

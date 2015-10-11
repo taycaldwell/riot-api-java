@@ -24,21 +24,24 @@ public class Shard implements Serializable {
 	private static final long serialVersionUID = 6812395780935318090L;
 	private List<String> locales;
 	private String hostname, name, region_tag, slug;
-	
+
 	public List<String> getLocales() {
 		return locales;
 	}
+
 	public String getHostname() {
 		return hostname;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public String getRegion_tag() {
 		return region_tag;
 	}
+
 	public String getSlug() {
 		return slug;
 	}
-	
 }

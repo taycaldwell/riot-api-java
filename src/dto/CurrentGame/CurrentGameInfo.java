@@ -26,64 +26,62 @@ public class CurrentGameInfo implements Serializable {
 	private List<Participant> participants;
 	private String gameMode, gameType, platformId;
 	private Observer observers;
-	private long gameId, gameLength, gameQueueConfigId, gameStartTime,
-				gameTypeConfigId, mapId;
+	private long gameId, gameLength, gameQueueConfigId, gameStartTime, gameTypeConfigId, mapId;
 	private TeamInfo teamInfoOne, teamInfoTwo;
-	
+
 	public List<BannedChampion> getBannedChampions() {
 		return bannedChampions;
 	}
-	
+
 	public List<Participant> getParticipants() {
 		return participants;
 	}
-	
+
 	public String getGameMode() {
 		return gameMode;
 	}
-	
+
 	public String getGameType() {
 		return gameType;
 	}
-	
+
 	public String getPlatformId() {
 		return platformId;
 	}
-	
+
 	public Observer getObservers() {
 		return observers;
 	}
-	
+
 	public long getGameId() {
 		return gameId;
 	}
-	
+
 	public long getGameLength() {
 		return gameLength;
 	}
-	
+
 	public long getGameQueueConfigId() {
 		return gameQueueConfigId;
 	}
-	
+
 	public long getGameStartTime() {
 		return gameStartTime;
 	}
-	
+
 	public long getGameTypeConfigId() {
 		return gameTypeConfigId;
 	}
-	
+
 	public long getMapId() {
 		return mapId;
 	}
-	
-	public TeamInfo getTeamInfoOne(){
+
+	public TeamInfo getTeamInfoOne() {
 		return teamInfoOne;
 	}
-	
-	public TeamInfo getTeamInfoTwo(){
+
+	public TeamInfo getTeamInfoTwo() {
 		return teamInfoTwo;
 	}
-	
 }

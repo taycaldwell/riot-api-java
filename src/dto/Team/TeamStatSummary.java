@@ -22,7 +22,7 @@ import java.io.Serializable;
 import java.util.Set;
 
 public class TeamStatSummary implements Serializable {
-			
+
 	private static final long serialVersionUID = 1944217232079180107L;
 	private String fullId;
 	private Set<TeamStatDetail> teamStatDetails;
@@ -30,10 +30,8 @@ public class TeamStatSummary implements Serializable {
 	public String getFullId() {
 		return fullId;
 	}
-	
+
 	public Set<TeamStatDetail> getTeamStatDetails() {
 		return teamStatDetails;
 	}
-	
-	
 }

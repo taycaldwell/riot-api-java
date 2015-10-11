@@ -19,25 +19,24 @@ import java.io.Serializable;
  */
 
 public class RuneStat implements Serializable {
-	
+
 	private static final long serialVersionUID = -5413858974003841974L;
 	private String type;
 	private double value;
-	
+
 	public String getType() {
 		return type;
 	}
-	
+
 	public double getValue() {
 		return value;
 	}
-	
+
 	protected void setType(String type) {
 		this.type = type;
 	}
-	
+
 	protected void setValue(double value) {
 		this.value = value;
 	}
-	
 }

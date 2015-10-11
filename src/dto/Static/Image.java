@@ -19,31 +19,36 @@ import java.io.Serializable;
  */
 
 public class Image implements Serializable {
-	
+
 	private static final long serialVersionUID = 5802273643884377746L;
 	private String full, group, sprite;
 	private int h, w, x, y;
-	
+
 	public String getFull() {
 		return full;
 	}
+
 	public String getGroup() {
 		return group;
 	}
+
 	public String getSprite() {
 		return sprite;
 	}
+
 	public int getH() {
 		return h;
 	}
+
 	public int getW() {
 		return w;
 	}
+
 	public int getX() {
 		return x;
 	}
+
 	public int getY() {
 		return y;
 	}
-	
 }

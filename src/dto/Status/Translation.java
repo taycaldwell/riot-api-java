@@ -34,6 +34,4 @@ public class Translation implements Serializable {
 	public String getUpdated_at() {
 		return updated_at;
 	}
-	
-	
 }

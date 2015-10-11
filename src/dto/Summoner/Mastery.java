@@ -18,7 +18,6 @@ import java.io.Serializable;
  * limitations under the License.
  */
 
-
 public class Mastery implements Serializable {
 
 	private static final long serialVersionUID = -1053051501742552701L;
@@ -31,5 +30,4 @@ public class Mastery implements Serializable {
 	public int getRank() {
 		return rank;
 	}
-
 }
