@@ -32,6 +32,11 @@ public class ChampionSpell implements Serializable {
 	private String cooldownBurn, costBurn, costType, description, key, name, rangeBurn, resource, sanitizedDescription, sanitizedTooltip, tooltip;
 	private Image image;
 	private int maxrank;
+	private LevelTip leveltip;
+	
+	public LevelTip getLeveltip() {
+		return leveltip;
+	}
 
 	public List<Image> getAltimages() {
 		return altimages;
