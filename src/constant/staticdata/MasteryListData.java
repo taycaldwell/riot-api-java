@@ -20,10 +20,10 @@ public enum MasteryListData {
 
 	ALL("all"),
 	IMAGE("image"),
+	MASTERY_TREE("masteryTree"),
 	PREREQ("prereq"),
 	RANKS("ranks"),
-	SANITIZED_DESCRIPTION("sanitizedDescription"),
-	TREE("tree");
+	SANITIZED_DESCRIPTION("sanitizedDescription");
 
 	private String name;
 

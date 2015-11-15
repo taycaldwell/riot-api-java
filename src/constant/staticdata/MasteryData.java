@@ -20,6 +20,7 @@ public enum MasteryData {
 
 	ALL("all"),
 	IMAGE("image"),
+	MASTERY_TREE("masteryTree"),
 	PREREQ("prereq"),
 	RANKS("ranks"),
 	SANITIZED_DESCRIPTION("sanitizedDescription");
