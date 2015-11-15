@@ -2103,6 +2103,7 @@ public class RiotApi {
 	 * @throws RiotApiException
 	 *             if the API returns an error or unparsable result
 	 */
+	@Deprecated
 	public Item getDataItem(Region region, int id, String locale, String version, ItemData... itemData) throws RiotApiException {
 
 		return StaticDataApi.getDataItem(region, getKey(), id, locale, version, itemData);
@@ -2126,6 +2127,7 @@ public class RiotApi {
 	 * @throws RiotApiException
 	 *             if the API returns an error or unparsable result
 	 */
+	@Deprecated
 	public Item getDataItem(int id, String locale, String version, ItemData... itemData) throws RiotApiException {
 
 		return StaticDataApi.getDataItem(getRegion(), getKey(), id, locale, version, itemData);
@@ -2143,6 +2145,7 @@ public class RiotApi {
 	 * @throws RiotApiException
 	 *             if the API returns an error or unparsable result
 	 */
+	@Deprecated
 	public Item getDataItem(Region region, int id) throws RiotApiException {
 
 		return StaticDataApi.getDataItem(region, getKey(), id, null, null, (ItemData) null);
@@ -2158,6 +2161,7 @@ public class RiotApi {
 	 * @throws RiotApiException
 	 *             if the API returns an error or unparsable result
 	 */
+	@Deprecated
 	public Item getDataItem(int id) throws RiotApiException {
 
 		return StaticDataApi.getDataItem(getRegion(), getKey(), id, null, null, (ItemData) null);
@@ -2834,8 +2838,7 @@ public class RiotApi {
 	/**
 	 * Get the currently set region
 	 *
-	 * @return The currently set region
-	 * @throws
+	 * @return The currently set region @throws
 	 */
 	public Region getRegion() {
 		return region;

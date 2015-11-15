@@ -141,6 +141,7 @@ final class StaticDataApi {
 		return itemList;
 	}
 
+	@Deprecated
 	public static Item getDataItem(Region region, String key, int id, String locale, String version, ItemData... itemData) throws RiotApiException {
 		String url = STATIC_DATA_ENDPOINT + region + VERSION + "item/" + id + "?";
 		if (locale != null) {
