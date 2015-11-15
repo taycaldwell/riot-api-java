@@ -24,7 +24,9 @@ import constant.Region;
 import constant.Season;
 import constant.staticdata.ChampData;
 import constant.staticdata.ItemData;
+import constant.staticdata.ItemListData;
 import constant.staticdata.MasteryData;
+import constant.staticdata.MasteryListData;
 import constant.staticdata.RuneData;
 import constant.staticdata.RuneListData;
 import constant.staticdata.SpellData;
@@ -2118,7 +2120,7 @@ public class RiotApi {
 	 * @throws RiotApiException
 	 *             if the API returns an error or unparsable result
 	 */
-	public ItemList getDataItemList(Region region, String locale, String version, ItemData... itemListData) throws RiotApiException {
+	public ItemList getDataItemList(Region region, String locale, String version, ItemListData... itemListData) throws RiotApiException {
 
 		return StaticDataApi.getDataItemList(region, getKey(), locale, version, itemListData);
 	}
@@ -2139,7 +2141,7 @@ public class RiotApi {
 	 * @throws RiotApiException
 	 *             if the API returns an error or unparsable result
 	 */
-	public ItemList getDataItemList(String locale, String version, ItemData... itemListData) throws RiotApiException {
+	public ItemList getDataItemList(String locale, String version, ItemListData... itemListData) throws RiotApiException {
 
 		return StaticDataApi.getDataItemList(getRegion(), getKey(), locale, version, itemListData);
 	}
@@ -2156,7 +2158,7 @@ public class RiotApi {
 	 */
 	public ItemList getDataItemList(Region region) throws RiotApiException {
 
-		return StaticDataApi.getDataItemList(region, getKey(), null, null, (ItemData) null);
+		return StaticDataApi.getDataItemList(region, getKey(), null, null, (ItemListData) null);
 	}
 
 	/**
@@ -2169,7 +2171,7 @@ public class RiotApi {
 	 */
 	public ItemList getDataItemList() throws RiotApiException {
 
-		return StaticDataApi.getDataItemList(getRegion(), getKey(), null, null, (ItemData) null);
+		return StaticDataApi.getDataItemList(getRegion(), getKey(), null, null, (ItemListData) null);
 	}
 
 	/**
@@ -2366,7 +2368,7 @@ public class RiotApi {
 	 * @throws RiotApiException
 	 *             if the API returns an error or unparsable result
 	 */
-	public MasteryList getDataMasteryList(Region region, String locale, String version, MasteryData... masteryListData) throws RiotApiException {
+	public MasteryList getDataMasteryList(Region region, String locale, String version, MasteryListData... masteryListData) throws RiotApiException {
 
 		return StaticDataApi.getDataMasteryList(region, getKey(), locale, version, masteryListData);
 	}
@@ -2387,7 +2389,7 @@ public class RiotApi {
 	 * @throws RiotApiException
 	 *             if the API returns an error or unparsable result
 	 */
-	public MasteryList getDataMasteryList(String locale, String version, MasteryData... masteryListData) throws RiotApiException {
+	public MasteryList getDataMasteryList(String locale, String version, MasteryListData... masteryListData) throws RiotApiException {
 
 		return StaticDataApi.getDataMasteryList(getRegion(), getKey(), locale, version, masteryListData);
 	}
@@ -2404,7 +2406,7 @@ public class RiotApi {
 	 */
 	public MasteryList getDataMasteryList(Region region) throws RiotApiException {
 
-		return StaticDataApi.getDataMasteryList(region, getKey(), null, null, (MasteryData) null);
+		return StaticDataApi.getDataMasteryList(region, getKey(), null, null, (MasteryListData) null);
 	}
 
 	/**
@@ -2417,7 +2419,7 @@ public class RiotApi {
 	 */
 	public MasteryList getDataMasteryList() throws RiotApiException {
 
-		return StaticDataApi.getDataMasteryList(getRegion(), getKey(), null, null, (MasteryData) null);
+		return StaticDataApi.getDataMasteryList(getRegion(), getKey(), null, null, (MasteryListData) null);
 	}
 
 	/**
