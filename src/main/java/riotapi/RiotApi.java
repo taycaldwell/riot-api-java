@@ -1596,15 +1596,11 @@ public class RiotApi {
 	 */
 	public Team getTeamByTeamId(Region region, String teamId) throws RiotApiException {
 
-		Map<String, List<Team>> teams = TeamApi.getTeamsByTeamIds(region, getKey(), teamId);
+		Map<String, Team> teams = TeamApi.getTeamsByTeamIds(region, getKey(), teamId);
 		if (!teams.containsKey(teamId)) {
 			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
 		}
-		List<Team> list = teams.get(teamId);
-		if (list.isEmpty()) {
-			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
-		}
-		return list.get(0);
+		return teams.get(teamId);
 	}
 
 	/**
@@ -1619,15 +1615,11 @@ public class RiotApi {
 	 */
 	public Team getTeamByTeamId(String teamId) throws RiotApiException {
 
-		Map<String, List<Team>> teams = TeamApi.getTeamsByTeamIds(getRegion(), getKey(), teamId);
+		Map<String, Team> teams = TeamApi.getTeamsByTeamIds(getRegion(), getKey(), teamId);
 		if (!teams.containsKey(teamId)) {
 			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
 		}
-		List<Team> list = teams.get(teamId);
-		if (list.isEmpty()) {
-			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
-		}
-		return list.get(0);
+		return teams.get(teamId);
 	}
 
 	/**
@@ -1642,7 +1634,7 @@ public class RiotApi {
 	 * @throws RiotApiException
 	 *             if the API returns an error or unparsable result
 	 */
-	public Map<String, List<Team>> getTeamsByTeamIds(Region region, String teamIds) throws RiotApiException {
+	public Map<String, Team> getTeamsByTeamIds(Region region, String teamIds) throws RiotApiException {
 
 		return TeamApi.getTeamsByTeamIds(region, getKey(), teamIds);
 	}
@@ -1657,7 +1649,7 @@ public class RiotApi {
 	 * @throws RiotApiException
 	 *             if the API returns an error or unparsable result
 	 */
-	public Map<String, List<Team>> getTeamsByTeamIds(String teamIds) throws RiotApiException {
+	public Map<String, Team> getTeamsByTeamIds(String teamIds) throws RiotApiException {
 
 		return TeamApi.getTeamsByTeamIds(getRegion(), getKey(), teamIds);
 	}

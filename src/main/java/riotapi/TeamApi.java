@@ -51,12 +51,12 @@ final class TeamApi {
 		return getTeamsBySummonerIds(region, key, Convert.longToString(summonerIds));
 	}
 
-	public static Map<String, List<Team>> getTeamsByTeamIds(Region region, String key, String teamIds) throws RiotApiException {
+	public static Map<String, Team> getTeamsByTeamIds(Region region, String key, String teamIds) throws RiotApiException {
 		String url = region.getEndpoint() + VERSION + "team/" + teamIds + "?api_key=" + key;
 
-		Map<String, List<Team>> teams = null;
+		Map<String, Team> teams = null;
 		try {
-			teams = new Gson().fromJson(Request.execute(url), new TypeToken<Map<String, List<Team>>>() {
+			teams = new Gson().fromJson(Request.execute(url), new TypeToken<Map<String, Team>>() {
 			}.getType());
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
