@@ -18,14 +18,13 @@ package main.java.riotapi;
 import java.util.List;
 import java.util.Map;
 
-import util.Convert;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
 import constant.Region;
 import dto.Team.Team;
+import util.Convert;
 
 final class TeamApi {
 
@@ -67,9 +66,5 @@ final class TeamApi {
 		}
 
 		return teams;
-	}
-
-	public static Map<String, List<Team>> getTeamsByTeamIds(Region region, String key, long... teamIds) throws RiotApiException {
-		return getTeamsByTeamIds(region, key, Convert.longToString(teamIds));
 	}
 }

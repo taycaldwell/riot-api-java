@@ -18,8 +18,6 @@ package main.java.riotapi;
 import java.util.List;
 import java.util.Map;
 
-import util.Convert;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
@@ -27,6 +25,7 @@ import com.google.gson.reflect.TypeToken;
 import constant.QueueType;
 import constant.Region;
 import dto.League.League;
+import util.Convert;
 
 final class LeagueApi {
 
@@ -91,10 +90,6 @@ final class LeagueApi {
 		return leagues;
 	}
 
-	public static Map<String, List<League>> getLeagueByTeams(Region region, String key, long... teamIds) throws RiotApiException {
-		return getLeagueByTeams(region, key, Convert.longToString(teamIds));
-	}
-
 	public static Map<String, List<League>> getLeagueEntryByTeams(Region region, String key, String teamIds) throws RiotApiException {
 		String url = region.getEndpoint() + VERSION + "league/by-team/" + teamIds + "/entry?api_key=" + key;
 
@@ -110,10 +105,6 @@ final class LeagueApi {
 		}
 
 		return leagues;
-	}
-
-	public static Map<String, List<League>> getLeagueEntryByTeams(Region region, String key, long... teamIds) throws RiotApiException {
-		return getLeagueEntryByTeams(region, key, Convert.longToString(teamIds));
 	}
 
 	public static League getChallengerLeague(Region region, String key, QueueType queueType) throws RiotApiException {
