@@ -1564,6 +1564,86 @@ public class RiotApi {
 	}
 
 	/**
+	 * Get team for a given team ID.
+	 *
+	 * @param region
+	 *            The region of the summoner.
+	 * @param teamId
+	 *            Team ID
+	 * @return A team
+	 * @see Team
+	 * @throws RiotApiException
+	 *             if the API returns an error or unparsable result
+	 */
+	public Team getTeamByTeamId(Region region, String teamId) throws RiotApiException {
+
+		Map<String, List<Team>> teams = TeamApi.getTeamsByTeamIds(region, getKey(), teamId);
+		if (!teams.containsKey(teamId)) {
+			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
+		}
+		List<Team> list = teams.get(teamId);
+		if (list.isEmpty()) {
+			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
+		}
+		return list.get(0);
+	}
+
+	/**
+	 * Get team for a given team ID.
+	 *
+	 * @param teamId
+	 *            Comma-separated list of team IDs. Maximum allowed at once is 10.
+	 * @return A team
+	 * @see Team
+	 * @throws RiotApiException
+	 *             if the API returns an error or unparsable result
+	 */
+	public Team getTeamByTeamId(String teamId) throws RiotApiException {
+
+		Map<String, List<Team>> teams = TeamApi.getTeamsByTeamIds(getRegion(), getKey(), teamId);
+		if (!teams.containsKey(teamId)) {
+			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
+		}
+		List<Team> list = teams.get(teamId);
+		if (list.isEmpty()) {
+			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
+		}
+		return list.get(0);
+	}
+
+	/**
+	 * Get teams mapped by team ID for a given list of team IDs.
+	 *
+	 * @param region
+	 *            The region of the summoner.
+	 * @param teamIds
+	 *            Comma-separated list of team IDs. Maximum allowed at once is 10.
+	 * @return A map of teams
+	 * @see Team
+	 * @throws RiotApiException
+	 *             if the API returns an error or unparsable result
+	 */
+	public Map<String, List<Team>> getTeamsByTeamIds(Region region, String teamIds) throws RiotApiException {
+
+		return TeamApi.getTeamsByTeamIds(region, getKey(), teamIds);
+	}
+
+	/**
+	 * Get teams mapped by team ID for a given list of team IDs.
+	 *
+	 * @param teamIds
+	 *            Comma-separated list of team IDs. Maximum allowed at once is 10.
+	 * @return A map of teams
+	 * @see Team
+	 * @throws RiotApiException
+	 *             if the API returns an error or unparsable result
+	 */
+	public Map<String, List<Team>> getTeamsByTeamIds(String teamIds) throws RiotApiException {
+
+		return TeamApi.getTeamsByTeamIds(getRegion(), getKey(), teamIds);
+	}
+
+	/**
 	 * Retrieve match by match ID.
 	 *
 	 * @param region
