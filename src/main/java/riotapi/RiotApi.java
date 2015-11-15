@@ -2838,7 +2838,7 @@ public class RiotApi {
 	/**
 	 * Get the currently set region
 	 *
-	 * @return The currently set region @throws
+	 * @return The currently set region
 	 */
 	public Region getRegion() {
 		return region;
