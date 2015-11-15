@@ -25,6 +25,7 @@ public enum ItemData {
 	DEPTH("depth"),
 	FROM("from"),
 	GOLD("gold"),
+	GROUPS("groups"),
 	HIDE_FROM_ALL("hideFromAll"),
 	IMAGE("image"),
 	IN_STORE("inStore"),
