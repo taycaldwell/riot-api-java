@@ -24,9 +24,7 @@ import com.google.gson.reflect.TypeToken;
 import constant.Region;
 import constant.staticdata.ChampData;
 import constant.staticdata.ItemData;
-import constant.staticdata.ItemListData;
 import constant.staticdata.MasteryData;
-import constant.staticdata.MasteryListData;
 import constant.staticdata.RuneData;
 import constant.staticdata.RuneListData;
 import constant.staticdata.SpellData;
@@ -111,7 +109,7 @@ final class StaticDataApi {
 		return champion;
 	}
 
-	public static ItemList getDataItemList(Region region, String key, String locale, String version, ItemListData... itemListData) throws RiotApiException {
+	public static ItemList getDataItemList(Region region, String key, String locale, String version, ItemData... itemListData) throws RiotApiException {
 		String url = STATIC_DATA_ENDPOINT + region + VERSION + "item?";
 		if (locale != null) {
 			url += "locale=" + locale + "&";
@@ -121,7 +119,7 @@ final class StaticDataApi {
 		}
 		if (itemListData[0] != null) {
 			url += "itemListData=";
-			for (ItemListData data : itemListData) {
+			for (ItemData data : itemListData) {
 				url += data.getName() + ",";
 			}
 			url += "&";
@@ -248,7 +246,7 @@ final class StaticDataApi {
 		return rune;
 	}
 
-	public static MasteryList getDataMasteryList(Region region, String key, String locale, String version, MasteryListData... masteryListData)
+	public static MasteryList getDataMasteryList(Region region, String key, String locale, String version, MasteryData... masteryListData)
 			throws RiotApiException {
 		String url = STATIC_DATA_ENDPOINT + region + VERSION + "mastery?";
 		if (locale != null) {
@@ -259,7 +257,7 @@ final class StaticDataApi {
 		}
 		if (masteryListData[0] != null) {
 			url += "masteryListData=";
-			for (MasteryListData data : masteryListData) {
+			for (MasteryData data : masteryListData) {
 				url += data.getName() + ",";
 			}
 			url += "&";
