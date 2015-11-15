@@ -25,7 +25,6 @@ public enum ItemData {
 	DEPTH("depth"),
 	FROM("from"),
 	GOLD("gold"),
-	GROUPS("groups"),
 	HIDE_FROM_ALL("hideFromAll"),
 	IMAGE("image"),
 	IN_STORE("inStore"),
@@ -36,8 +35,7 @@ public enum ItemData {
 	SPECIAL_RECIPE("specialRecipe"),
 	STACKS("stacks"),
 	STATS("stats"),
-	TAGS("tags"),
-	TREE("tree");
+	TAGS("tags");
 
 	private String name;
 

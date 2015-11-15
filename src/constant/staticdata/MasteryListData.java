@@ -23,7 +23,8 @@ public enum MasteryListData {
 	MASTERY_TREE("masteryTree"),
 	PREREQ("prereq"),
 	RANKS("ranks"),
-	SANITIZED_DESCRIPTION("sanitizedDescription");
+	SANITIZED_DESCRIPTION("sanitizedDescription"),
+	TREE("tree");
 
 	private String name;
 
