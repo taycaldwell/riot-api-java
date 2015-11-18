@@ -24,7 +24,19 @@ public class Request {
 			connection.setInstanceFollowRedirects(false);
 
 			int responseCode = connection.getResponseCode();
-			if (responseCode != 200) {
+			
+			if (responseCode == 429) {
+				String retryAfterString = connection.getHeaderField("Retry-After");
+				String rateLimitType = connection.getHeaderField("X-Rate-Limit-Type");
+				if(retryAfterString != null) {
+					int retryAfter = Integer.parseInt(retryAfterString);
+					throw new RiotApiException(responseCode, retryAfter, rateLimitType);
+				} else {
+					throw new RiotApiException(responseCode, 0, rateLimitType);
+				}	
+			}
+			
+			else if (responseCode != 200) {
 				throw new RiotApiException(responseCode);
 			}
 
