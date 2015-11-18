@@ -1115,10 +1115,11 @@ public class RiotApi {
 	public Summoner getSummonerByName(Region region, String summonerName) throws RiotApiException {
 
 		Map<String, Summoner> summoners = SummonerApi.getSummonersByName(region, getKey(), summonerName);
-		if (!summoners.containsKey(summonerName)) {
+		String key = summonerName.toLowerCase().replaceAll("\\s+", "");
+		if (!summoners.containsKey(key)) {
 			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
 		}
-		return summoners.get(summonerName);
+		return summoners.get(key);
 	}
 
 	/**
@@ -1134,10 +1135,11 @@ public class RiotApi {
 	public Summoner getSummonerByName(String summonerName) throws RiotApiException {
 
 		Map<String, Summoner> summoners = SummonerApi.getSummonersByName(getRegion(), getKey(), summonerName);
-		if (!summoners.containsKey(summonerName)) {
+		String key = summonerName.toLowerCase().replaceAll("\\s+", "");
+		if (!summoners.containsKey(key)) {
 			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
 		}
-		return summoners.get(summonerName);
+		return summoners.get(key);
 	}
 
 	/**
