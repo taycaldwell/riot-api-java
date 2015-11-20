@@ -62,7 +62,8 @@ import dto.Team.Team;
  * Riot Games API Java Library - riot-api-java
  * 
  * @author Taylor 'rithms' Caldwell - http://rithms.net
- * @version 3.7.0
+ * @author Daniel 'Linnun' Figge
+ * @version 3.7.1
  */
 public class RiotApi {
 
