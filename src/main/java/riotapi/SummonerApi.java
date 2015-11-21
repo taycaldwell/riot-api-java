@@ -76,7 +76,7 @@ final class SummonerApi {
 	}
 
 	public static Map<String, Summoner> getSummonersByName(Region region, String key, String summonerNames) throws RiotApiException {
-		summonerNames = summonerNames.replaceAll("\\s+", "");
+		summonerNames = Convert.normalizeSummonerName(summonerNames);
 
 		String url = null;
 		try {

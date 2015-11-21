@@ -24,4 +24,14 @@ public final class Convert {
 	public static String longToString(long... input) {
 		return Arrays.stream(input).mapToObj(l -> ((Long) l).toString()).collect(Collectors.joining(","));
 	}
+
+	public static String normalizeSummonerName(String summonerName) {
+		// Note for contributors: If you change this, don't strip commas! It could break comma-separated lists of summonerNames
+		return summonerName.toLowerCase().replaceAll("\\s+", "");
+	}
+
+	public static String[] normalizeSummonerNames(String... summonerNames) {
+		// Note for contributors: If you change this, don't strip commas! It could break comma-separated lists of summonerNames
+		return Arrays.stream(summonerNames).map(s -> normalizeSummonerName(s)).toArray(size -> new String[size]);
+	}
 }
