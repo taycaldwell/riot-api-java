@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 
 public final class Convert {
 
-	public static String longToString(long... summonerIds) {
-		return Arrays.stream(summonerIds).mapToObj(l -> ((Long) l).toString()).collect(Collectors.joining(","));
+	public static String longToString(long... input) {
+		return Arrays.stream(input).mapToObj(l -> ((Long) l).toString()).collect(Collectors.joining(","));
 	}
 }
