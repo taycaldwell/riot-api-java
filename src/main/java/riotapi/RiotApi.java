@@ -18,6 +18,7 @@ package main.java.riotapi;
 import java.util.List;
 import java.util.Map;
 
+import util.Convert;
 import constant.PlatformId;
 import constant.QueueType;
 import constant.Region;
@@ -1116,7 +1117,7 @@ public class RiotApi {
 	public Summoner getSummonerByName(Region region, String summonerName) throws RiotApiException {
 
 		Map<String, Summoner> summoners = SummonerApi.getSummonersByName(region, getKey(), summonerName);
-		String key = summonerName.toLowerCase().replaceAll("\\s+", "");
+		String key = Convert.normalizeSummonerName(summonerName);
 		if (!summoners.containsKey(key)) {
 			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
 		}
@@ -1136,7 +1137,7 @@ public class RiotApi {
 	public Summoner getSummonerByName(String summonerName) throws RiotApiException {
 
 		Map<String, Summoner> summoners = SummonerApi.getSummonersByName(getRegion(), getKey(), summonerName);
-		String key = summonerName.toLowerCase().replaceAll("\\s+", "");
+		String key = Convert.normalizeSummonerName(summonerName);
 		if (!summoners.containsKey(key)) {
 			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
 		}
