@@ -28,7 +28,7 @@ final class ChampionApi {
 
 	public static ChampionList getChampions(Region region, String key, boolean freeToPlay) throws RiotApiException {
 		String url = region.getEndpoint() + VERSION + "champion?";
-		if (!freeToPlay) {
+		if (freeToPlay) {
 			url += "freeToPlay=" + freeToPlay + "&";
 		}
 		url += "api_key=" + key;
