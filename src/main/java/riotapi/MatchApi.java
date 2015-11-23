@@ -44,8 +44,4 @@ final class MatchApi {
 
 		return matchDetail;
 	}
-
-	public static MatchDetail getMatch(Region region, String key, long matchId) throws RiotApiException {
-		return getMatch(region, key, matchId, false);
-	}
 }

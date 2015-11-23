@@ -50,10 +50,6 @@ final class SummonerApi {
 		return masteryPages;
 	}
 
-	public static Map<String, MasteryPages> getMasteryPages(Region region, String key, long... summonerIds) throws RiotApiException {
-		return getMasteryPages(region, key, Convert.longToString(summonerIds));
-	}
-
 	public static Map<String, RunePages> getRunePages(Region region, String key, String summonerIds) throws RiotApiException {
 		String url = region.getEndpoint() + VERSION + "summoner/" + summonerIds + "/runes?api_key=" + key;
 
@@ -69,10 +65,6 @@ final class SummonerApi {
 		}
 
 		return runePages;
-	}
-
-	public static Map<String, RunePages> getRunePages(Region region, String key, long... summonerIds) throws RiotApiException {
-		return getRunePages(region, key, Convert.longToString(summonerIds));
 	}
 
 	public static Map<String, Summoner> getSummonersByName(Region region, String key, String summonerNames) throws RiotApiException {
@@ -116,10 +108,6 @@ final class SummonerApi {
 		return summoners;
 	}
 
-	public static Map<String, Summoner> getSummonersById(Region region, String key, long... summonerIds) throws RiotApiException {
-		return getSummonersById(region, key, Convert.longToString(summonerIds));
-	}
-
 	public static Map<String, String> getSummonerNames(Region region, String key, String summonerIds) throws RiotApiException {
 		String url = region.getEndpoint() + VERSION + "summoner/" + summonerIds + "/name?api_key=" + key;
 
@@ -135,9 +123,5 @@ final class SummonerApi {
 		}
 
 		return summonerNames;
-	}
-
-	public static Map<String, String> getSummonerNames(Region region, String key, long... summonerIds) throws RiotApiException {
-		return getSummonerNames(region, key, Convert.longToString(summonerIds));
 	}
 }

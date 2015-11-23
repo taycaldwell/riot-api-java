@@ -42,8 +42,4 @@ final class CurrentGameApi {
 
 		return currentGameInfo;
 	}
-
-	public static CurrentGameInfo getCurrentGameInfo(PlatformId platformId, String key, long summonerId) throws RiotApiException {
-		return getCurrentGameInfo(platformId, key, String.valueOf(summonerId));
-	}
 }

@@ -24,7 +24,6 @@ import com.google.gson.reflect.TypeToken;
 
 import constant.Region;
 import dto.Team.Team;
-import util.Convert;
 
 final class TeamApi {
 
@@ -45,10 +44,6 @@ final class TeamApi {
 		}
 
 		return teams;
-	}
-
-	public static Map<String, List<Team>> getTeamsBySummonerIds(Region region, String key, long... summonerIds) throws RiotApiException {
-		return getTeamsBySummonerIds(region, key, Convert.longToString(summonerIds));
 	}
 
 	public static Map<String, Team> getTeamsByTeamIds(Region region, String key, String teamIds) throws RiotApiException {

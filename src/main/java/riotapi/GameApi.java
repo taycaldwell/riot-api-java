@@ -40,8 +40,4 @@ final class GameApi {
 
 		return recentGames;
 	}
-
-	public static RecentGames getRecentGames(Region region, String key, long summonerId) throws RiotApiException {
-		return getRecentGames(region, key, String.valueOf(summonerId));
-	}
 }

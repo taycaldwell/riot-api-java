@@ -18,7 +18,6 @@ package main.java.riotapi;
 import java.util.List;
 import java.util.Map;
 
-import util.Convert;
 import constant.PlatformId;
 import constant.QueueType;
 import constant.Region;
@@ -58,6 +57,7 @@ import dto.Summoner.MasteryPages;
 import dto.Summoner.RunePages;
 import dto.Summoner.Summoner;
 import dto.Team.Team;
+import util.Convert;
 
 /**
  * Riot Games API Java Library - riot-api-java
@@ -98,7 +98,7 @@ public class RiotApi {
 	 */
 	public dto.Champion.ChampionList getChampions() throws RiotApiException {
 
-		return ChampionApi.getChampions(getRegion(), getKey());
+		return ChampionApi.getChampions(getRegion(), getKey(), false);
 	}
 
 	/**
@@ -113,7 +113,7 @@ public class RiotApi {
 	 */
 	public dto.Champion.ChampionList getChampions(Region region) throws RiotApiException {
 
-		return ChampionApi.getChampions(region, getKey());
+		return ChampionApi.getChampions(region, getKey(), false);
 	}
 
 	/**
@@ -222,7 +222,7 @@ public class RiotApi {
 	 */
 	public RecentGames getRecentGames(Region region, long summonerId) throws RiotApiException {
 
-		return GameApi.getRecentGames(region, getKey(), summonerId);
+		return GameApi.getRecentGames(region, getKey(), Convert.longToString(summonerId));
 	}
 
 	/**
@@ -237,7 +237,7 @@ public class RiotApi {
 	 */
 	public RecentGames getRecentGames(long summonerId) throws RiotApiException {
 
-		return GameApi.getRecentGames(getRegion(), getKey(), summonerId);
+		return GameApi.getRecentGames(getRegion(), getKey(), Convert.longToString(summonerId));
 	}
 
 	/**
@@ -286,7 +286,7 @@ public class RiotApi {
 	 */
 	public List<League> getLeagueBySummoner(Region region, long summonerId) throws RiotApiException {
 
-		return LeagueApi.getLeagueBySummoners(region, getKey(), summonerId).get(Long.toString(summonerId));
+		return LeagueApi.getLeagueBySummoners(region, getKey(), Convert.longToString(summonerId)).get(Long.toString(summonerId));
 	}
 
 	/**
@@ -301,7 +301,7 @@ public class RiotApi {
 	 */
 	public List<League> getLeagueBySummoner(long summonerId) throws RiotApiException {
 
-		return LeagueApi.getLeagueBySummoners(getRegion(), getKey(), summonerId).get(Long.toString(summonerId));
+		return LeagueApi.getLeagueBySummoners(getRegion(), getKey(), Convert.longToString(summonerId)).get(Long.toString(summonerId));
 	}
 
 	/**
@@ -349,7 +349,7 @@ public class RiotApi {
 	 */
 	public Map<String, List<League>> getLeagueBySummoners(Region region, long... summonerIds) throws RiotApiException {
 
-		return LeagueApi.getLeagueBySummoners(region, getKey(), summonerIds);
+		return LeagueApi.getLeagueBySummoners(region, getKey(), Convert.longToString(summonerIds));
 	}
 
 	/**
@@ -364,7 +364,7 @@ public class RiotApi {
 	 */
 	public Map<String, List<League>> getLeagueBySummoners(long... summonerIds) throws RiotApiException {
 
-		return LeagueApi.getLeagueBySummoners(getRegion(), getKey(), summonerIds);
+		return LeagueApi.getLeagueBySummoners(getRegion(), getKey(), Convert.longToString(summonerIds));
 	}
 
 	/**
@@ -412,7 +412,7 @@ public class RiotApi {
 	 */
 	public List<League> getLeagueEntryBySummoner(Region region, long summonerId) throws RiotApiException {
 
-		return LeagueApi.getLeagueEntryBySummoners(region, getKey(), summonerId).get(Long.toString(summonerId));
+		return LeagueApi.getLeagueEntryBySummoners(region, getKey(), Convert.longToString(summonerId)).get(Long.toString(summonerId));
 	}
 
 	/**
@@ -427,7 +427,7 @@ public class RiotApi {
 	 */
 	public List<League> getLeagueEntryBySummoner(long summonerId) throws RiotApiException {
 
-		return LeagueApi.getLeagueEntryBySummoners(getRegion(), getKey(), summonerId).get(Long.toString(summonerId));
+		return LeagueApi.getLeagueEntryBySummoners(getRegion(), getKey(), Convert.longToString(summonerId)).get(Long.toString(summonerId));
 	}
 
 	/**
@@ -476,7 +476,7 @@ public class RiotApi {
 	 */
 	public Map<String, List<League>> getLeagueEntryBySummoners(Region region, long... summonerIds) throws RiotApiException {
 
-		return LeagueApi.getLeagueEntryBySummoners(region, getKey(), summonerIds);
+		return LeagueApi.getLeagueEntryBySummoners(region, getKey(), Convert.longToString(summonerIds));
 	}
 
 	/**
@@ -491,7 +491,7 @@ public class RiotApi {
 	 */
 	public Map<String, List<League>> getLeagueEntryBySummoners(long... summonerIds) throws RiotApiException {
 
-		return LeagueApi.getLeagueEntryBySummoners(getRegion(), getKey(), summonerIds);
+		return LeagueApi.getLeagueEntryBySummoners(getRegion(), getKey(), Convert.longToString(summonerIds));
 	}
 
 	/**
@@ -666,7 +666,7 @@ public class RiotApi {
 	 */
 	public League getChallengerLeague(Region region) throws RiotApiException {
 
-		return LeagueApi.getChallengerLeague(region, getKey());
+		return LeagueApi.getChallengerLeague(region, getKey(), null);
 	}
 
 	/**
@@ -679,7 +679,7 @@ public class RiotApi {
 	 */
 	public League getChallengerLeague() throws RiotApiException {
 
-		return LeagueApi.getChallengerLeague(getRegion(), getKey());
+		return LeagueApi.getChallengerLeague(getRegion(), getKey(), null);
 	}
 
 	/**
@@ -726,7 +726,7 @@ public class RiotApi {
 	 */
 	public League getMasterLeague(Region region) throws RiotApiException {
 
-		return LeagueApi.getMasterLeague(region, getKey());
+		return LeagueApi.getMasterLeague(region, getKey(), null);
 	}
 
 	/**
@@ -739,7 +739,7 @@ public class RiotApi {
 	 */
 	public League getMasterLeague() throws RiotApiException {
 
-		return LeagueApi.getMasterLeague(getRegion(), getKey());
+		return LeagueApi.getMasterLeague(getRegion(), getKey(), null);
 	}
 
 	/**
@@ -924,7 +924,7 @@ public class RiotApi {
 	 */
 	public MasteryPages getMasteryPages(Region region, long summonerId) throws RiotApiException {
 
-		return SummonerApi.getMasteryPages(region, getKey(), summonerId).get(Long.toString(summonerId));
+		return SummonerApi.getMasteryPages(region, getKey(), Convert.longToString(summonerId)).get(Long.toString(summonerId));
 	}
 
 	/**
@@ -939,7 +939,7 @@ public class RiotApi {
 	 */
 	public MasteryPages getMasteryPages(long summonerId) throws RiotApiException {
 
-		return SummonerApi.getMasteryPages(getRegion(), getKey(), summonerId).get(Long.toString(summonerId));
+		return SummonerApi.getMasteryPages(getRegion(), getKey(), Convert.longToString(summonerId)).get(Long.toString(summonerId));
 	}
 
 	/**
@@ -988,7 +988,7 @@ public class RiotApi {
 	 */
 	public Map<String, MasteryPages> getMasteryPages(Region region, long... summonerIds) throws RiotApiException {
 
-		return SummonerApi.getMasteryPages(region, getKey(), summonerIds);
+		return SummonerApi.getMasteryPages(region, getKey(), Convert.longToString(summonerIds));
 	}
 
 	/**
@@ -1003,7 +1003,7 @@ public class RiotApi {
 	 */
 	public Map<String, MasteryPages> getMasteryPages(long... summonerIds) throws RiotApiException {
 
-		return SummonerApi.getMasteryPages(getRegion(), getKey(), summonerIds);
+		return SummonerApi.getMasteryPages(getRegion(), getKey(), Convert.longToString(summonerIds));
 	}
 
 	/**
@@ -1020,7 +1020,7 @@ public class RiotApi {
 	 */
 	public RunePages getRunePages(Region region, long summonerId) throws RiotApiException {
 
-		return SummonerApi.getRunePages(region, getKey(), summonerId).get(Long.toString(summonerId));
+		return SummonerApi.getRunePages(region, getKey(), Convert.longToString(summonerId)).get(Long.toString(summonerId));
 	}
 
 	/**
@@ -1035,7 +1035,7 @@ public class RiotApi {
 	 */
 	public RunePages getRunePages(long summonerId) throws RiotApiException {
 
-		return SummonerApi.getRunePages(getRegion(), getKey(), summonerId).get(Long.toString(summonerId));
+		return SummonerApi.getRunePages(getRegion(), getKey(), Convert.longToString(summonerId)).get(Long.toString(summonerId));
 	}
 
 	/**
@@ -1084,7 +1084,7 @@ public class RiotApi {
 	 */
 	public Map<String, RunePages> getRunePages(Region region, long... summonerIds) throws RiotApiException {
 
-		return SummonerApi.getRunePages(region, getKey(), summonerIds);
+		return SummonerApi.getRunePages(region, getKey(), Convert.longToString(summonerIds));
 	}
 
 	/**
@@ -1099,7 +1099,7 @@ public class RiotApi {
 	 */
 	public Map<String, RunePages> getRunePages(long... summonerIds) throws RiotApiException {
 
-		return SummonerApi.getRunePages(getRegion(), getKey(), summonerIds);
+		return SummonerApi.getRunePages(getRegion(), getKey(), Convert.longToString(summonerIds));
 	}
 
 	/**
@@ -1192,7 +1192,7 @@ public class RiotApi {
 	 */
 	public Summoner getSummonerById(Region region, long summonerId) throws RiotApiException {
 
-		Map<String, Summoner> summoners = SummonerApi.getSummonersById(region, getKey(), summonerId);
+		Map<String, Summoner> summoners = SummonerApi.getSummonersById(region, getKey(), Convert.longToString(summonerId));
 		if (!summoners.containsKey(String.valueOf(summonerId))) {
 			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
 		}
@@ -1211,7 +1211,7 @@ public class RiotApi {
 	 */
 	public Summoner getSummonerById(long summonerId) throws RiotApiException {
 
-		Map<String, Summoner> summoners = SummonerApi.getSummonersById(getRegion(), getKey(), summonerId);
+		Map<String, Summoner> summoners = SummonerApi.getSummonersById(getRegion(), getKey(), Convert.longToString(summonerId));
 		if (!summoners.containsKey(String.valueOf(summonerId))) {
 			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
 		}
@@ -1272,7 +1272,7 @@ public class RiotApi {
 	 */
 	public Map<String, Summoner> getSummonersById(Region region, long... summonerIds) throws RiotApiException {
 
-		return SummonerApi.getSummonersById(region, getKey(), summonerIds);
+		return SummonerApi.getSummonersById(region, getKey(), Convert.longToString(summonerIds));
 	}
 
 	/**
@@ -1287,7 +1287,7 @@ public class RiotApi {
 	 */
 	public Map<String, Summoner> getSummonersById(long... summonerIds) throws RiotApiException {
 
-		return SummonerApi.getSummonersById(getRegion(), getKey(), summonerIds);
+		return SummonerApi.getSummonersById(getRegion(), getKey(), Convert.longToString(summonerIds));
 	}
 
 	/**
@@ -1335,7 +1335,7 @@ public class RiotApi {
 	 */
 	public String getSummonerName(Region region, long summonerId) throws RiotApiException {
 
-		Map<String, String> summoners = SummonerApi.getSummonerNames(region, getKey(), summonerId);
+		Map<String, String> summoners = SummonerApi.getSummonerNames(region, getKey(), Convert.longToString(summonerId));
 		if (!summoners.containsKey(String.valueOf(summonerId))) {
 			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
 		}
@@ -1353,7 +1353,7 @@ public class RiotApi {
 	 */
 	public String getSummonerName(long summonerId) throws RiotApiException {
 
-		Map<String, String> summoners = SummonerApi.getSummonerNames(getRegion(), getKey(), summonerId);
+		Map<String, String> summoners = SummonerApi.getSummonerNames(getRegion(), getKey(), Convert.longToString(summonerId));
 		if (!summoners.containsKey(String.valueOf(summonerId))) {
 			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
 		}
@@ -1411,7 +1411,7 @@ public class RiotApi {
 	 */
 	public Map<String, String> getSummonerNames(Region region, long... summonerIds) throws RiotApiException {
 
-		return SummonerApi.getSummonerNames(region, getKey(), summonerIds);
+		return SummonerApi.getSummonerNames(region, getKey(), Convert.longToString(summonerIds));
 	}
 
 	/**
@@ -1425,7 +1425,7 @@ public class RiotApi {
 	 */
 	public Map<String, String> getSummonerNames(long... summonerIds) throws RiotApiException {
 
-		return SummonerApi.getSummonerNames(getRegion(), getKey(), summonerIds);
+		return SummonerApi.getSummonerNames(getRegion(), getKey(), Convert.longToString(summonerIds));
 	}
 
 	/**
@@ -1472,7 +1472,7 @@ public class RiotApi {
 	 */
 	public List<Team> getTeamsBySummonerId(Region region, long summonerId) throws RiotApiException {
 
-		return TeamApi.getTeamsBySummonerIds(region, getKey(), summonerId).get(Long.toString(summonerId));
+		return TeamApi.getTeamsBySummonerIds(region, getKey(), Convert.longToString(summonerId)).get(Long.toString(summonerId));
 	}
 
 	/**
@@ -1487,7 +1487,7 @@ public class RiotApi {
 	 */
 	public List<Team> getTeamsBySummonerId(long summonerId) throws RiotApiException {
 
-		return TeamApi.getTeamsBySummonerIds(getRegion(), getKey(), summonerId).get(Long.toString(summonerId));
+		return TeamApi.getTeamsBySummonerIds(getRegion(), getKey(), Convert.longToString(summonerId)).get(Long.toString(summonerId));
 	}
 
 	/**
@@ -1536,7 +1536,7 @@ public class RiotApi {
 	 */
 	public Map<String, List<Team>> getTeamsBySummonerIds(Region region, long... summonerIds) throws RiotApiException {
 
-		return TeamApi.getTeamsBySummonerIds(region, getKey(), summonerIds);
+		return TeamApi.getTeamsBySummonerIds(region, getKey(), Convert.longToString(summonerIds));
 	}
 
 	/**
@@ -1551,7 +1551,7 @@ public class RiotApi {
 	 */
 	public Map<String, List<Team>> getTeamsBySummonerIds(long... summonerIds) throws RiotApiException {
 
-		return TeamApi.getTeamsBySummonerIds(getRegion(), getKey(), summonerIds);
+		return TeamApi.getTeamsBySummonerIds(getRegion(), getKey(), Convert.longToString(summonerIds));
 	}
 
 	/**
@@ -1672,7 +1672,7 @@ public class RiotApi {
 	 */
 	public MatchDetail getMatch(Region region, long matchId) throws RiotApiException {
 
-		return MatchApi.getMatch(region, getKey(), matchId);
+		return MatchApi.getMatch(region, getKey(), matchId, false);
 	}
 
 	/**
@@ -1687,7 +1687,7 @@ public class RiotApi {
 	 */
 	public MatchDetail getMatch(long matchId) throws RiotApiException {
 
-		return MatchApi.getMatch(getRegion(), getKey(), matchId);
+		return MatchApi.getMatch(getRegion(), getKey(), matchId, false);
 	}
 
 	/**
@@ -1834,7 +1834,7 @@ public class RiotApi {
 	 */
 	public CurrentGameInfo getCurrentGameInfo(PlatformId platformId, long summonerId) throws RiotApiException {
 
-		return CurrentGameApi.getCurrentGameInfo(platformId, getKey(), summonerId);
+		return CurrentGameApi.getCurrentGameInfo(platformId, getKey(), Convert.longToString(summonerId));
 	}
 
 	/**

@@ -46,10 +46,6 @@ final class ChampionApi {
 		return championList;
 	}
 
-	public static ChampionList getChampions(Region region, String key) throws RiotApiException {
-		return getChampions(region, key, false);
-	}
-
 	public static Champion getChampionById(Region region, String key, int champId) throws RiotApiException {
 		String url = region.getEndpoint() + VERSION + "champion/" + champId + "?api_key=" + key;
 
