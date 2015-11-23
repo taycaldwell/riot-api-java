@@ -27,29 +27,28 @@ final class MatchListApi {
 
 	public static MatchList getMatchList(Region region, String key, long summonerId, String championIds, String rankedQueues, String seasons, long beginTime,
 			long endTime, int beginIndex, int endIndex) throws RiotApiException {
-		String url = region.getEndpoint() + VERSION + "matchlist/by-summoner/" + summonerId + "?";
+		String url = region.getEndpoint() + VERSION + "matchlist/by-summoner/" + summonerId + "?api_key=" + key;
 		if (championIds != null) {
-			url += "championIds=" + championIds + "&";
+			url += "&championIds=" + championIds;
 		}
 		if (rankedQueues != null) {
-			url += "rankedQueues=" + rankedQueues + "&";
+			url += "&rankedQueues=" + rankedQueues;
 		}
 		if (seasons != null) {
-			url += "seasons=" + seasons + "&";
+			url += "&seasons=" + seasons;
 		}
 		if (beginTime != -1) {
-			url += "beginTime=" + beginTime + "&";
+			url += "&beginTime=" + beginTime;
 		}
 		if (endTime != -1) {
-			url += "endTime=" + endTime + "&";
+			url += "&endTime=" + endTime;
 		}
 		if (beginIndex != -1) {
-			url += "beginIndex=" + beginIndex + "&";
+			url += "&beginIndex=" + beginIndex;
 		}
 		if (endIndex != -1) {
-			url += "endIndex=" + endIndex + "&";
+			url += "&endIndex=" + endIndex;
 		}
-		url += "api_key=" + key;
 
 		MatchList matchList = null;
 		try {

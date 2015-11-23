@@ -28,11 +28,10 @@ final class StatsApi {
 	private static final String VERSION = "/v1.3/";
 
 	public static PlayerStatsSummaryList getPlayerStatsSummary(Region region, Season season, String key, long summonerId) throws RiotApiException {
-		String url = region.getEndpoint() + VERSION + "stats/by-summoner/" + summonerId + "/summary?";
+		String url = region.getEndpoint() + VERSION + "stats/by-summoner/" + summonerId + "/summary?api_key=" + key;
 		if (season != null) {
-			url += "season=" + season + "&";
+			url += "&season=" + season;
 		}
-		url += "api_key=" + key;
 
 		PlayerStatsSummaryList summaryList = null;
 		try {
@@ -48,11 +47,10 @@ final class StatsApi {
 	}
 
 	public static RankedStats getRankedStats(Region region, Season season, String key, long summonerId) throws RiotApiException {
-		String url = region.getEndpoint() + VERSION + "stats/by-summoner/" + summonerId + "/ranked?";
+		String url = region.getEndpoint() + VERSION + "stats/by-summoner/" + summonerId + "/ranked?api_key=" + key;
 		if (season != null) {
-			url += "season=" + season + "&";
+			url += "&season=" + season;
 		}
-		url += "api_key=" + key;
 
 		RankedStats rankedStats = null;
 		try {

@@ -26,11 +26,10 @@ final class MatchApi {
 	private static final String VERSION = "/v2.2/";
 
 	public static MatchDetail getMatch(Region region, String key, long matchId, boolean includeTimeline) throws RiotApiException {
-		String url = region.getEndpoint() + VERSION + "match/" + matchId + "?";
+		String url = region.getEndpoint() + VERSION + "match/" + matchId + "?api_key=" + key;
 		if (includeTimeline) {
-			url += "includeTimeline=" + includeTimeline + "&";
+			url += "&includeTimeline=" + includeTimeline;
 		}
-		url += "api_key=" + key;
 
 		MatchDetail matchDetail = null;
 		try {
