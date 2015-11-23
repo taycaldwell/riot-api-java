@@ -76,59 +76,23 @@ public class RiotApi {
 	}
 
 	public RiotApi(String key) {
-		this.setKey(key);
+		setKey(key);
 	}
 
 	public RiotApi(Region region) {
-		this.setRegion(region);
+		setRegion(region);
 	}
 
 	public RiotApi(String key, Region region) {
-		this.setKey(key);
-		this.setRegion(region);
+		setKey(key);
+		setRegion(region);
 	}
 
-	/**
-	 * Retrieve all champions.
-	 *
-	 * @return A list of all the champions for the set region
-	 * @see dto.Champion.ChampionList
-	 * @throws RiotApiException
-	 *             if the API returns an error or unparsable result
-	 */
-	public dto.Champion.ChampionList getChampions() throws RiotApiException {
-
-		return ChampionApi.getChampions(getRegion(), getKey(), false);
-	}
-
-	/**
-	 * Retrieve all champions.
-	 *
-	 * @param region
-	 *            Region where to retrieve the data.
-	 * @return A list of champions for the given region
-	 * @see dto.Champion.ChampionList
-	 * @throws RiotApiException
-	 *             if the API returns an error or unparsable result
-	 */
-	public dto.Champion.ChampionList getChampions(Region region) throws RiotApiException {
-
-		return ChampionApi.getChampions(region, getKey(), false);
-	}
-
-	/**
-	 * Retrieve all champions.
-	 *
-	 * @param freeToPlay
-	 *            Optional filter param to retrieve only free to play champions.
-	 * @return A list of champions for the set region
-	 * @see dto.Champion.ChampionList
-	 * @throws RiotApiException
-	 *             if the API returns an error or unparsable result
-	 */
-	public dto.Champion.ChampionList getChampions(boolean freeToPlay) throws RiotApiException {
-
-		return ChampionApi.getChampions(getRegion(), getKey(), freeToPlay);
+	@Override
+	public RiotApi clone() {
+		RiotApi api = new RiotApi(getKey(), getRegion());
+		api.setSeason(getSeason());
+		return api;
 	}
 
 	/**
@@ -144,8 +108,47 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public dto.Champion.ChampionList getChampions(Region region, boolean freeToPlay) throws RiotApiException {
-
 		return ChampionApi.getChampions(region, getKey(), freeToPlay);
+	}
+
+	/**
+	 * Retrieve all champions.
+	 *
+	 * @param freeToPlay
+	 *            Optional filter param to retrieve only free to play champions.
+	 * @return A list of champions for the set region
+	 * @see dto.Champion.ChampionList
+	 * @throws RiotApiException
+	 *             if the API returns an error or unparsable result
+	 */
+	public dto.Champion.ChampionList getChampions(boolean freeToPlay) throws RiotApiException {
+		return getChampions(getRegion(), freeToPlay);
+	}
+
+	/**
+	 * Retrieve all champions.
+	 *
+	 * @param region
+	 *            Region where to retrieve the data.
+	 * @return A list of champions for the given region
+	 * @see dto.Champion.ChampionList
+	 * @throws RiotApiException
+	 *             if the API returns an error or unparsable result
+	 */
+	public dto.Champion.ChampionList getChampions(Region region) throws RiotApiException {
+		return getChampions(region, false);
+	}
+
+	/**
+	 * Retrieve all champions.
+	 *
+	 * @return A list of all the champions for the set region
+	 * @see dto.Champion.ChampionList
+	 * @throws RiotApiException
+	 *             if the API returns an error or unparsable result
+	 */
+	public dto.Champion.ChampionList getChampions() throws RiotApiException {
+		return getChampions(getRegion());
 	}
 
 	/**
@@ -159,8 +162,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public dto.Champion.ChampionList getFreeToPlayChampions(Region region) throws RiotApiException {
-
-		return ChampionApi.getChampions(region, getKey(), true);
+		return getChampions(region, true);
 	}
 
 	/**
@@ -172,8 +174,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public dto.Champion.ChampionList getFreeToPlayChampions() throws RiotApiException {
-
-		return ChampionApi.getChampions(getRegion(), getKey(), true);
+		return getFreeToPlayChampions(getRegion());
 	}
 
 	/**
@@ -189,7 +190,6 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Champion getChampionById(Region region, int champId) throws RiotApiException {
-
 		return ChampionApi.getChampionById(region, getKey(), champId);
 	}
 
@@ -204,40 +204,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Champion getChampionById(int champId) throws RiotApiException {
-
-		return ChampionApi.getChampionById(getRegion(), getKey(), champId);
-	}
-
-	/**
-	 * Get leagues for a given summoner ID.
-	 *
-	 * @param region
-	 *            Region where to retrieve the data.
-	 * @param summonerId
-	 *            ID of the summoner for which to retrieve recent games.
-	 * @return Recent games of the given summoner
-	 * @see RecentGames
-	 * @throws RiotApiException
-	 *             if the API returns an error or unparsable result
-	 */
-	public RecentGames getRecentGames(Region region, long summonerId) throws RiotApiException {
-
-		return GameApi.getRecentGames(region, getKey(), Convert.longToString(summonerId));
-	}
-
-	/**
-	 * Get leagues for a given summoner ID.
-	 *
-	 * @param summonerId
-	 *            ID of the summoner for which to retrieve recent games.
-	 * @return Recent games of the given summoner
-	 * @see RecentGames
-	 * @throws RiotApiException
-	 *             if the API returns an error or unparsable result
-	 */
-	public RecentGames getRecentGames(long summonerId) throws RiotApiException {
-
-		return GameApi.getRecentGames(getRegion(), getKey(), Convert.longToString(summonerId));
+		return getChampionById(getRegion(), champId);
 	}
 
 	/**
@@ -253,7 +220,6 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public RecentGames getRecentGames(Region region, String summonerId) throws RiotApiException {
-
 		return GameApi.getRecentGames(region, getKey(), summonerId);
 	}
 
@@ -268,103 +234,37 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public RecentGames getRecentGames(String summonerId) throws RiotApiException {
-
-		return GameApi.getRecentGames(getRegion(), getKey(), summonerId);
-	}
-
-	/**
-	 * Get a list of leagues for a summoner
-	 * 
-	 * @param region
-	 *            The region of the leagues.
-	 * @param summonerId
-	 *            Summoner ID
-	 * @return A list of leagues
-	 * @see League
-	 * @throws RiotApiException
-	 *             if the API returns an error or unparsable result
-	 */
-	public List<League> getLeagueBySummoner(Region region, long summonerId) throws RiotApiException {
-
-		return LeagueApi.getLeagueBySummoners(region, getKey(), Convert.longToString(summonerId)).get(Long.toString(summonerId));
+		return getRecentGames(getRegion(), summonerId);
 	}
 
 	/**
 	 * Get leagues for a given summoner ID.
-	 * 
-	 * @param summonerId
-	 *            Summoner ID
-	 * @return A list of leagues
-	 * @see League
-	 * @throws RiotApiException
-	 *             if the API returns an error or unparsable result
-	 */
-	public List<League> getLeagueBySummoner(long summonerId) throws RiotApiException {
-
-		return LeagueApi.getLeagueBySummoners(getRegion(), getKey(), Convert.longToString(summonerId)).get(Long.toString(summonerId));
-	}
-
-	/**
-	 * Get a list of leagues for a summoner
-	 * 
+	 *
 	 * @param region
-	 *            The region of the leagues.
+	 *            Region where to retrieve the data.
 	 * @param summonerId
-	 *            Summoner ID
-	 * @return A list of leagues
-	 * @see League
+	 *            ID of the summoner for which to retrieve recent games.
+	 * @return Recent games of the given summoner
+	 * @see RecentGames
 	 * @throws RiotApiException
 	 *             if the API returns an error or unparsable result
 	 */
-	public List<League> getLeagueBySummoner(Region region, String summonerId) throws RiotApiException {
-
-		return LeagueApi.getLeagueBySummoners(region, getKey(), summonerId).get(summonerId);
+	public RecentGames getRecentGames(Region region, long summonerId) throws RiotApiException {
+		return getRecentGames(region, String.valueOf(summonerId));
 	}
 
 	/**
-	 * Get a list of leagues for a summoner
-	 * 
+	 * Get leagues for a given summoner ID.
+	 *
 	 * @param summonerId
-	 *            Summoner ID
-	 * @return A list of leagues
-	 * @see League
+	 *            ID of the summoner for which to retrieve recent games.
+	 * @return Recent games of the given summoner
+	 * @see RecentGames
 	 * @throws RiotApiException
 	 *             if the API returns an error or unparsable result
 	 */
-	public List<League> getLeagueBySummoner(String summonerId) throws RiotApiException {
-		return LeagueApi.getLeagueBySummoners(getRegion(), getKey(), summonerId).get(summonerId);
-	}
-
-	/**
-	 * Get leagues mapped by summoner ID for a given list of summoner IDs.
-	 * 
-	 * @param region
-	 *            The region of the leagues.
-	 * @param summonerIds
-	 *            List of summoner IDs. Maximum allowed at once is 10.
-	 * @return A map, mapping each summoner ID to a list of leagues
-	 * @see League
-	 * @throws RiotApiException
-	 *             if the API returns an error or unparsable result
-	 */
-	public Map<String, List<League>> getLeagueBySummoners(Region region, long... summonerIds) throws RiotApiException {
-
-		return LeagueApi.getLeagueBySummoners(region, getKey(), Convert.longToString(summonerIds));
-	}
-
-	/**
-	 * Get leagues mapped by summoner ID for a given list of summoner IDs.
-	 * 
-	 * @param summonerIds
-	 *            List of summoner IDs. Maximum allowed at once is 10.
-	 * @return A map, mapping each summoner ID to a list of leagues
-	 * @see League
-	 * @throws RiotApiException
-	 *             if the API returns an error or unparsable result
-	 */
-	public Map<String, List<League>> getLeagueBySummoners(long... summonerIds) throws RiotApiException {
-
-		return LeagueApi.getLeagueBySummoners(getRegion(), getKey(), Convert.longToString(summonerIds));
+	public RecentGames getRecentGames(long summonerId) throws RiotApiException {
+		return getRecentGames(getRegion(), summonerId);
 	}
 
 	/**
@@ -380,7 +280,6 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Map<String, List<League>> getLeagueBySummoners(Region region, String... summonerIds) throws RiotApiException {
-
 		return LeagueApi.getLeagueBySummoners(region, getKey(), String.join(",", summonerIds));
 	}
 
@@ -395,75 +294,11 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Map<String, List<League>> getLeagueBySummoners(String... summonerIds) throws RiotApiException {
-		return LeagueApi.getLeagueBySummoners(getRegion(), getKey(), String.join(",", summonerIds));
+		return getLeagueBySummoners(getRegion(), summonerIds);
 	}
 
 	/**
-	 * Get league entries for a given summoner ID.
-	 * 
-	 * @param region
-	 *            The region of the leagues.
-	 * @param summonerId
-	 *            Summoner ID
-	 * @return A list of leagues
-	 * @see League
-	 * @throws RiotApiException
-	 *             if the API returns an error or unparsable result
-	 */
-	public List<League> getLeagueEntryBySummoner(Region region, long summonerId) throws RiotApiException {
-
-		return LeagueApi.getLeagueEntryBySummoners(region, getKey(), Convert.longToString(summonerId)).get(Long.toString(summonerId));
-	}
-
-	/**
-	 * Get league entries for a given summoner ID.
-	 * 
-	 * @param summonerId
-	 *            Summoner ID
-	 * @return A list of leagues
-	 * @see League
-	 * @throws RiotApiException
-	 *             if the API returns an error or unparsable result
-	 */
-	public List<League> getLeagueEntryBySummoner(long summonerId) throws RiotApiException {
-
-		return LeagueApi.getLeagueEntryBySummoners(getRegion(), getKey(), Convert.longToString(summonerId)).get(Long.toString(summonerId));
-	}
-
-	/**
-	 * Get league entries for a given summoner ID.
-	 * 
-	 * @param region
-	 *            The region of the leagues.
-	 * @param summonerId
-	 *            Summoner ID
-	 * @return A list of leagues
-	 * @see League
-	 * @throws RiotApiException
-	 *             if the API returns an error or unparsable result
-	 */
-	public List<League> getLeagueEntryBySummoner(Region region, String summonerId) throws RiotApiException {
-
-		return LeagueApi.getLeagueEntryBySummoners(region, getKey(), summonerId).get(summonerId);
-	}
-
-	/**
-	 * Get league entries for a given summoner ID.
-	 * 
-	 * @param summonerId
-	 *            Summoner ID
-	 * @return A list of leagues
-	 * @see League
-	 * @throws RiotApiException
-	 *             if the API returns an error or unparsable result
-	 */
-	public List<League> getLeagueEntryBySummoner(String summonerId) throws RiotApiException {
-
-		return LeagueApi.getLeagueEntryBySummoners(getRegion(), getKey(), summonerId).get(summonerId);
-	}
-
-	/**
-	 * Get league entries mapped by summoner ID for a given list of summoner IDs.
+	 * Get leagues mapped by summoner ID for a given list of summoner IDs.
 	 * 
 	 * @param region
 	 *            The region of the leagues.
@@ -474,13 +309,12 @@ public class RiotApi {
 	 * @throws RiotApiException
 	 *             if the API returns an error or unparsable result
 	 */
-	public Map<String, List<League>> getLeagueEntryBySummoners(Region region, long... summonerIds) throws RiotApiException {
-
-		return LeagueApi.getLeagueEntryBySummoners(region, getKey(), Convert.longToString(summonerIds));
+	public Map<String, List<League>> getLeagueBySummoners(Region region, long... summonerIds) throws RiotApiException {
+		return getLeagueBySummoners(region, Convert.longToString(summonerIds));
 	}
 
 	/**
-	 * Get league entries mapped by summoner ID for a given list of summoner IDs.
+	 * Get leagues mapped by summoner ID for a given list of summoner IDs.
 	 * 
 	 * @param summonerIds
 	 *            List of summoner IDs. Maximum allowed at once is 10.
@@ -489,9 +323,72 @@ public class RiotApi {
 	 * @throws RiotApiException
 	 *             if the API returns an error or unparsable result
 	 */
-	public Map<String, List<League>> getLeagueEntryBySummoners(long... summonerIds) throws RiotApiException {
+	public Map<String, List<League>> getLeagueBySummoners(long... summonerIds) throws RiotApiException {
+		return getLeagueBySummoners(getRegion(), summonerIds);
+	}
 
-		return LeagueApi.getLeagueEntryBySummoners(getRegion(), getKey(), Convert.longToString(summonerIds));
+	/**
+	 * Get a list of leagues for a summoner
+	 * 
+	 * @param region
+	 *            The region of the leagues.
+	 * @param summonerId
+	 *            Summoner ID
+	 * @return A list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 *             if the API returns an error or unparsable result
+	 */
+	public List<League> getLeagueBySummoner(Region region, String summonerId) throws RiotApiException {
+		Map<String, List<League>> leagues = getLeagueBySummoners(region, summonerId);
+		if (!leagues.containsKey(String.valueOf(summonerId))) {
+			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
+		}
+		return leagues.get(summonerId);
+	}
+
+	/**
+	 * Get a list of leagues for a summoner
+	 * 
+	 * @param summonerId
+	 *            Summoner ID
+	 * @return A list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 *             if the API returns an error or unparsable result
+	 */
+	public List<League> getLeagueBySummoner(String summonerId) throws RiotApiException {
+		return getLeagueBySummoner(getRegion(), summonerId);
+	}
+
+	/**
+	 * Get a list of leagues for a summoner
+	 * 
+	 * @param region
+	 *            The region of the leagues.
+	 * @param summonerId
+	 *            Summoner ID
+	 * @return A list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 *             if the API returns an error or unparsable result
+	 */
+	public List<League> getLeagueBySummoner(Region region, long summonerId) throws RiotApiException {
+		return getLeagueBySummoner(region, String.valueOf(summonerId));
+	}
+
+	/**
+	 * Get leagues for a given summoner ID.
+	 * 
+	 * @param summonerId
+	 *            Summoner ID
+	 * @return A list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 *             if the API returns an error or unparsable result
+	 */
+	public List<League> getLeagueBySummoner(long summonerId) throws RiotApiException {
+		return getLeagueBySummoner(getRegion(), summonerId);
 	}
 
 	/**
@@ -507,7 +404,6 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Map<String, List<League>> getLeagueEntryBySummoners(Region region, String... summonerIds) throws RiotApiException {
-
 		return LeagueApi.getLeagueEntryBySummoners(region, getKey(), String.join(",", summonerIds));
 	}
 
@@ -522,40 +418,101 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Map<String, List<League>> getLeagueEntryBySummoners(String... summonerIds) throws RiotApiException {
-
-		return LeagueApi.getLeagueEntryBySummoners(getRegion(), getKey(), String.join(",", summonerIds));
+		return getLeagueEntryBySummoners(getRegion(), summonerIds);
 	}
 
 	/**
-	 * Get leagues for a given team ID.
+	 * Get league entries mapped by summoner ID for a given list of summoner IDs.
 	 * 
 	 * @param region
 	 *            The region of the leagues.
-	 * @param teamId
-	 *            Team ID
-	 * @return A list of leagues
+	 * @param summonerIds
+	 *            List of summoner IDs. Maximum allowed at once is 10.
+	 * @return A map, mapping each summoner ID to a list of leagues
 	 * @see League
 	 * @throws RiotApiException
 	 *             if the API returns an error or unparsable result
 	 */
-	public List<League> getLeagueByTeam(Region region, String teamId) throws RiotApiException {
-
-		return LeagueApi.getLeagueByTeams(region, getKey(), teamId).get(teamId);
+	public Map<String, List<League>> getLeagueEntryBySummoners(Region region, long... summonerIds) throws RiotApiException {
+		return getLeagueEntryBySummoners(region, Convert.longToString(summonerIds));
 	}
 
 	/**
-	 * Get leagues for a given team ID.
+	 * Get league entries mapped by summoner ID for a given list of summoner IDs.
 	 * 
-	 * @param teamId
-	 *            Team ID
+	 * @param summonerIds
+	 *            List of summoner IDs. Maximum allowed at once is 10.
+	 * @return A map, mapping each summoner ID to a list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 *             if the API returns an error or unparsable result
+	 */
+	public Map<String, List<League>> getLeagueEntryBySummoners(long... summonerIds) throws RiotApiException {
+		return getLeagueEntryBySummoners(getRegion(), summonerIds);
+	}
+
+	/**
+	 * Get league entries for a given summoner ID.
+	 * 
+	 * @param region
+	 *            The region of the leagues.
+	 * @param summonerId
+	 *            Summoner ID
 	 * @return A list of leagues
 	 * @see League
 	 * @throws RiotApiException
 	 *             if the API returns an error or unparsable result
 	 */
-	public List<League> getLeagueByTeam(String teamId) throws RiotApiException {
+	public List<League> getLeagueEntryBySummoner(Region region, String summonerId) throws RiotApiException {
+		Map<String, List<League>> leagues = getLeagueEntryBySummoners(region, summonerId);
+		if (!leagues.containsKey(String.valueOf(summonerId))) {
+			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
+		}
+		return leagues.get(summonerId);
+	}
 
-		return LeagueApi.getLeagueByTeams(getRegion(), getKey(), teamId).get(teamId);
+	/**
+	 * Get league entries for a given summoner ID.
+	 * 
+	 * @param summonerId
+	 *            Summoner ID
+	 * @return A list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 *             if the API returns an error or unparsable result
+	 */
+	public List<League> getLeagueEntryBySummoner(String summonerId) throws RiotApiException {
+		return getLeagueEntryBySummoner(getRegion(), summonerId);
+	}
+
+	/**
+	 * Get league entries for a given summoner ID.
+	 * 
+	 * @param region
+	 *            The region of the leagues.
+	 * @param summonerId
+	 *            Summoner ID
+	 * @return A list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 *             if the API returns an error or unparsable result
+	 */
+	public List<League> getLeagueEntryBySummoner(Region region, long summonerId) throws RiotApiException {
+		return getLeagueEntryBySummoner(region, String.valueOf(summonerId));
+	}
+
+	/**
+	 * Get league entries for a given summoner ID.
+	 * 
+	 * @param summonerId
+	 *            Summoner ID
+	 * @return A list of leagues
+	 * @see League
+	 * @throws RiotApiException
+	 *             if the API returns an error or unparsable result
+	 */
+	public List<League> getLeagueEntryBySummoner(long summonerId) throws RiotApiException {
+		return getLeagueEntryBySummoner(getRegion(), summonerId);
 	}
 
 	/**
@@ -571,7 +528,6 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Map<String, List<League>> getLeagueByTeams(Region region, String... teamIds) throws RiotApiException {
-
 		return LeagueApi.getLeagueByTeams(region, getKey(), String.join(",", teamIds));
 	}
 
@@ -586,12 +542,11 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Map<String, List<League>> getLeagueByTeams(String... teamIds) throws RiotApiException {
-
-		return LeagueApi.getLeagueByTeams(getRegion(), getKey(), String.join(",", teamIds));
+		return getLeagueByTeams(getRegion(), teamIds);
 	}
 
 	/**
-	 * Get league entries for a given team ID.
+	 * Get leagues for a given team ID.
 	 * 
 	 * @param region
 	 *            The region of the leagues.
@@ -602,13 +557,16 @@ public class RiotApi {
 	 * @throws RiotApiException
 	 *             if the API returns an error or unparsable result
 	 */
-	public List<League> getLeagueEntryByTeam(Region region, String teamId) throws RiotApiException {
-
-		return LeagueApi.getLeagueEntryByTeams(region, getKey(), teamId).get(teamId);
+	public List<League> getLeagueByTeam(Region region, String teamId) throws RiotApiException {
+		Map<String, List<League>> leagues = getLeagueByTeams(region, getKey(), teamId);
+		if (!leagues.containsKey(String.valueOf(teamId))) {
+			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
+		}
+		return leagues.get(teamId);
 	}
 
 	/**
-	 * Get league entries for a given team ID.
+	 * Get leagues for a given team ID.
 	 * 
 	 * @param teamId
 	 *            Team ID
@@ -617,9 +575,8 @@ public class RiotApi {
 	 * @throws RiotApiException
 	 *             if the API returns an error or unparsable result
 	 */
-	public List<League> getLeagueEntryByTeam(String teamId) throws RiotApiException {
-
-		return LeagueApi.getLeagueEntryByTeams(getRegion(), getKey(), teamId).get(teamId);
+	public List<League> getLeagueByTeam(String teamId) throws RiotApiException {
+		return getLeagueByTeam(getRegion(), teamId);
 	}
 
 	/**
@@ -635,7 +592,6 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Map<String, List<League>> getLeagueEntryByTeams(Region region, String... teamIds) throws RiotApiException {
-
 		return LeagueApi.getLeagueEntryByTeams(region, getKey(), String.join(",", teamIds));
 	}
 
@@ -650,36 +606,41 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Map<String, List<League>> getLeagueEntryByTeams(String... teamIds) throws RiotApiException {
-
-		return LeagueApi.getLeagueEntryByTeams(getRegion(), getKey(), String.join(",", teamIds));
+		return getLeagueEntryByTeams(getRegion(), teamIds);
 	}
 
 	/**
-	 * Get challenger tier leagues.
+	 * Get league entries for a given team ID.
 	 * 
 	 * @param region
 	 *            The region of the leagues.
-	 * @return A single league
+	 * @param teamId
+	 *            Team ID
+	 * @return A list of leagues
 	 * @see League
 	 * @throws RiotApiException
 	 *             if the API returns an error or unparsable result
 	 */
-	public League getChallengerLeague(Region region) throws RiotApiException {
-
-		return LeagueApi.getChallengerLeague(region, getKey(), null);
+	public List<League> getLeagueEntryByTeam(Region region, String teamId) throws RiotApiException {
+		Map<String, List<League>> leagues = getLeagueEntryByTeams(region, teamId);
+		if (!leagues.containsKey(String.valueOf(teamId))) {
+			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
+		}
+		return leagues.get(teamId);
 	}
 
 	/**
-	 * Get challenger tier leagues.
+	 * Get league entries for a given team ID.
 	 * 
-	 * @return A single league
+	 * @param teamId
+	 *            Team ID
+	 * @return A list of leagues
 	 * @see League
 	 * @throws RiotApiException
 	 *             if the API returns an error or unparsable result
 	 */
-	public League getChallengerLeague() throws RiotApiException {
-
-		return LeagueApi.getChallengerLeague(getRegion(), getKey(), null);
+	public List<League> getLeagueEntryByTeam(String teamId) throws RiotApiException {
+		return getLeagueEntryByTeam(getRegion(), teamId);
 	}
 
 	/**
@@ -695,7 +656,6 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public League getChallengerLeague(Region region, QueueType queueType) throws RiotApiException {
-
 		return LeagueApi.getChallengerLeague(region, getKey(), queueType);
 	}
 
@@ -710,12 +670,11 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public League getChallengerLeague(QueueType queueType) throws RiotApiException {
-
-		return LeagueApi.getChallengerLeague(getRegion(), getKey(), queueType);
+		return getChallengerLeague(getRegion(), queueType);
 	}
 
 	/**
-	 * Get master tier leagues.
+	 * Get challenger tier leagues.
 	 * 
 	 * @param region
 	 *            The region of the leagues.
@@ -724,22 +683,20 @@ public class RiotApi {
 	 * @throws RiotApiException
 	 *             if the API returns an error or unparsable result
 	 */
-	public League getMasterLeague(Region region) throws RiotApiException {
-
-		return LeagueApi.getMasterLeague(region, getKey(), null);
+	public League getChallengerLeague(Region region) throws RiotApiException {
+		return getChallengerLeague(region, null);
 	}
 
 	/**
-	 * Get master tier leagues.
+	 * Get challenger tier leagues.
 	 * 
 	 * @return A single league
 	 * @see League
 	 * @throws RiotApiException
 	 *             if the API returns an error or unparsable result
 	 */
-	public League getMasterLeague() throws RiotApiException {
-
-		return LeagueApi.getMasterLeague(getRegion(), getKey(), null);
+	public League getChallengerLeague() throws RiotApiException {
+		return getChallengerLeague(getRegion());
 	}
 
 	/**
@@ -755,7 +712,6 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public League getMasterLeague(Region region, QueueType queueType) throws RiotApiException {
-
 		return LeagueApi.getMasterLeague(region, getKey(), queueType);
 	}
 
@@ -770,8 +726,33 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public League getMasterLeague(QueueType queueType) throws RiotApiException {
+		return getMasterLeague(getRegion(), queueType);
+	}
 
-		return LeagueApi.getMasterLeague(getRegion(), getKey(), queueType);
+	/**
+	 * Get master tier leagues.
+	 * 
+	 * @param region
+	 *            The region of the leagues.
+	 * @return A single league
+	 * @see League
+	 * @throws RiotApiException
+	 *             if the API returns an error or unparsable result
+	 */
+	public League getMasterLeague(Region region) throws RiotApiException {
+		return getMasterLeague(region, null);
+	}
+
+	/**
+	 * Get master tier leagues.
+	 * 
+	 * @return A single league
+	 * @see League
+	 * @throws RiotApiException
+	 *             if the API returns an error or unparsable result
+	 */
+	public League getMasterLeague() throws RiotApiException {
+		return getMasterLeague(getRegion());
 	}
 
 	/**
@@ -789,7 +770,6 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public PlayerStatsSummaryList getPlayerStatsSummary(Region region, Season season, long summonerId) throws RiotApiException {
-
 		return StatsApi.getPlayerStatsSummary(region, season, getKey(), summonerId);
 	}
 
@@ -806,8 +786,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public PlayerStatsSummaryList getPlayerStatsSummary(Season season, long summonerId) throws RiotApiException {
-
-		return StatsApi.getPlayerStatsSummary(getRegion(), season, getKey(), summonerId);
+		return getPlayerStatsSummary(getRegion(), season, summonerId);
 	}
 
 	/**
@@ -823,8 +802,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public PlayerStatsSummaryList getPlayerStatsSummary(Region region, long summonerId) throws RiotApiException {
-
-		return StatsApi.getPlayerStatsSummary(region, getSeason(), getKey(), summonerId);
+		return getPlayerStatsSummary(region, getSeason(), summonerId);
 	}
 
 	/**
@@ -838,8 +816,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public PlayerStatsSummaryList getPlayerStatsSummary(long summonerId) throws RiotApiException {
-
-		return StatsApi.getPlayerStatsSummary(getRegion(), getSeason(), getKey(), summonerId);
+		return getPlayerStatsSummary(getRegion(), summonerId);
 	}
 
 	/**
@@ -857,7 +834,6 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public RankedStats getRankedStats(Region region, Season season, long summonerId) throws RiotApiException {
-
 		return StatsApi.getRankedStats(region, season, getKey(), summonerId);
 	}
 
@@ -874,8 +850,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public RankedStats getRankedStats(Season season, long summonerId) throws RiotApiException {
-
-		return StatsApi.getRankedStats(getRegion(), season, getKey(), summonerId);
+		return getRankedStats(getRegion(), season, summonerId);
 	}
 
 	/**
@@ -891,8 +866,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public RankedStats getRankedStats(Region region, long summonerId) throws RiotApiException {
-
-		return StatsApi.getRankedStats(region, getSeason(), getKey(), summonerId);
+		return getRankedStats(region, getSeason(), summonerId);
 	}
 
 	/**
@@ -906,40 +880,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public RankedStats getRankedStats(long summonerId) throws RiotApiException {
-
-		return StatsApi.getRankedStats(getRegion(), getSeason(), getKey(), summonerId);
-	}
-
-	/**
-	 * Get mastery pages for a given summoner ID.
-	 *
-	 * @param region
-	 *            Region where to retrieve the data.
-	 * @param summonerId
-	 *            Summoner ID associated with masteries to retrieve.
-	 * @return A map of mastery pages of the given summoner
-	 * @see MasteryPages
-	 * @throws RiotApiException
-	 *             if the API returns an error or unparsable result
-	 */
-	public MasteryPages getMasteryPages(Region region, long summonerId) throws RiotApiException {
-
-		return SummonerApi.getMasteryPages(region, getKey(), Convert.longToString(summonerId)).get(Long.toString(summonerId));
-	}
-
-	/**
-	 * Get mastery pages for a given summoner ID.
-	 *
-	 * @param summonerId
-	 *            Summoner ID associated with masteries to retrieve.
-	 * @return A map of mastery pages of the given summoner
-	 * @see MasteryPages
-	 * @throws RiotApiException
-	 *             if the API returns an error or unparsable result
-	 */
-	public MasteryPages getMasteryPages(long summonerId) throws RiotApiException {
-
-		return SummonerApi.getMasteryPages(getRegion(), getKey(), Convert.longToString(summonerId)).get(Long.toString(summonerId));
+		return getRankedStats(getRegion(), summonerId);
 	}
 
 	/**
@@ -955,7 +896,6 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Map<String, MasteryPages> getMasteryPages(Region region, String... summonerIds) throws RiotApiException {
-
 		return SummonerApi.getMasteryPages(region, getKey(), String.join(",", summonerIds));
 	}
 
@@ -970,8 +910,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Map<String, MasteryPages> getMasteryPages(String... summonerIds) throws RiotApiException {
-
-		return SummonerApi.getMasteryPages(getRegion(), getKey(), String.join(",", summonerIds));
+		return getMasteryPages(getRegion(), summonerIds);
 	}
 
 	/**
@@ -987,8 +926,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Map<String, MasteryPages> getMasteryPages(Region region, long... summonerIds) throws RiotApiException {
-
-		return SummonerApi.getMasteryPages(region, getKey(), Convert.longToString(summonerIds));
+		return getMasteryPages(region, Convert.longToString(summonerIds));
 	}
 
 	/**
@@ -1002,40 +940,42 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Map<String, MasteryPages> getMasteryPages(long... summonerIds) throws RiotApiException {
-
-		return SummonerApi.getMasteryPages(getRegion(), getKey(), Convert.longToString(summonerIds));
+		return getMasteryPages(getRegion(), summonerIds);
 	}
 
 	/**
-	 * Get rune pages for a given summoner ID.
+	 * Get mastery pages for a given summoner ID.
 	 *
 	 * @param region
 	 *            Region where to retrieve the data.
 	 * @param summonerId
-	 *            Summoner ID associated with runes to retrieve.
-	 * @return A map of rune pages of the given summoner
-	 * @see RunePages
+	 *            Summoner ID associated with masteries to retrieve.
+	 * @return A map of mastery pages of the given summoner
+	 * @see MasteryPages
 	 * @throws RiotApiException
 	 *             if the API returns an error or unparsable result
 	 */
-	public RunePages getRunePages(Region region, long summonerId) throws RiotApiException {
-
-		return SummonerApi.getRunePages(region, getKey(), Convert.longToString(summonerId)).get(Long.toString(summonerId));
+	public MasteryPages getMasteryPages(Region region, long summonerId) throws RiotApiException {
+		String summonerIdString = String.valueOf(summonerId);
+		Map<String, MasteryPages> masteryPages = getMasteryPages(region, summonerIdString);
+		if (!masteryPages.containsKey(summonerIdString)) {
+			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
+		}
+		return masteryPages.get(summonerIdString);
 	}
 
 	/**
-	 * Get rune pages for a given summoner ID.
+	 * Get mastery pages for a given summoner ID.
 	 *
 	 * @param summonerId
-	 *            Summoner ID associated with runes to retrieve.
-	 * @return A map of rune pages of the given summoner
-	 * @see RunePages
+	 *            Summoner ID associated with masteries to retrieve.
+	 * @return A map of mastery pages of the given summoner
+	 * @see MasteryPages
 	 * @throws RiotApiException
 	 *             if the API returns an error or unparsable result
 	 */
-	public RunePages getRunePages(long summonerId) throws RiotApiException {
-
-		return SummonerApi.getRunePages(getRegion(), getKey(), Convert.longToString(summonerId)).get(Long.toString(summonerId));
+	public MasteryPages getMasteryPages(long summonerId) throws RiotApiException {
+		return getMasteryPages(getRegion(), summonerId);
 	}
 
 	/**
@@ -1051,7 +991,6 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Map<String, RunePages> getRunePages(Region region, String... summonerIds) throws RiotApiException {
-
 		return SummonerApi.getRunePages(region, getKey(), String.join(",", summonerIds));
 	}
 
@@ -1066,8 +1005,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Map<String, RunePages> getRunePages(String... summonerIds) throws RiotApiException {
-
-		return SummonerApi.getRunePages(getRegion(), getKey(), String.join(",", summonerIds));
+		return getRunePages(getRegion(), summonerIds);
 	}
 
 	/**
@@ -1083,8 +1021,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Map<String, RunePages> getRunePages(Region region, long... summonerIds) throws RiotApiException {
-
-		return SummonerApi.getRunePages(region, getKey(), Convert.longToString(summonerIds));
+		return getRunePages(region, Convert.longToString(summonerIds));
 	}
 
 	/**
@@ -1098,8 +1035,74 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Map<String, RunePages> getRunePages(long... summonerIds) throws RiotApiException {
+		return getRunePages(getRegion(), summonerIds);
+	}
 
-		return SummonerApi.getRunePages(getRegion(), getKey(), Convert.longToString(summonerIds));
+	/**
+	 * Get rune pages for a given summoner ID.
+	 *
+	 * @param region
+	 *            Region where to retrieve the data.
+	 * @param summonerId
+	 *            Summoner ID associated with runes to retrieve.
+	 * @return A map of rune pages of the given summoner
+	 * @see RunePages
+	 * @throws RiotApiException
+	 *             if the API returns an error or unparsable result
+	 */
+	public RunePages getRunePages(Region region, long summonerId) throws RiotApiException {
+		String summonerIdString = String.valueOf(summonerId);
+		Map<String, RunePages> runePages = getRunePages(region, summonerIdString);
+		if (!runePages.containsKey(summonerIdString)) {
+			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
+		}
+		return runePages.get(summonerIdString);
+	}
+
+	/**
+	 * Get rune pages for a given summoner ID.
+	 *
+	 * @param summonerId
+	 *            Summoner ID associated with runes to retrieve.
+	 * @return A map of rune pages of the given summoner
+	 * @see RunePages
+	 * @throws RiotApiException
+	 *             if the API returns an error or unparsable result
+	 */
+	public RunePages getRunePages(long summonerId) throws RiotApiException {
+		return getRunePages(getRegion(), summonerId);
+	}
+
+	/**
+	 * Get summoner objects mapped by standardized summoner name for a given list of summoner names.
+	 *
+	 * @param region
+	 *            Region where to retrieve the data.
+	 * @param summonerNames
+	 *            Comma-separated list of summoner names or standardized summoner names associated with summoners to retrieve. Maximum
+	 *            allowed at once is 40.
+	 * @return A map of desired summoners
+	 * @see Summoner
+	 * @throws RiotApiException
+	 *             if the API returns an error or unparsable result
+	 */
+	public Map<String, Summoner> getSummonersByName(Region region, String... summonerNames) throws RiotApiException {
+		return SummonerApi.getSummonersByName(region, getKey(), String.join(",", summonerNames));
+	}
+
+	/**
+	 * Get summoner objects mapped by standardized summoner name for a given list of summoner names.
+	 *
+	 * @param summonerNames
+	 *            Comma-separated list of summoner names or standardized summoner names associated with summoners to retrieve. Maximum
+	 *            allowed at once is 40.
+	 * @return A map of desired summoners
+	 * @see Summoner
+	 * @throws RiotApiException
+	 *             if the API returns an error or unparsable result
+	 */
+	public Map<String, Summoner> getSummonersByName(String... summonerNames) throws RiotApiException {
+		return getSummonersByName(getRegion(), summonerNames);
 	}
 
 	/**
@@ -1115,8 +1118,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Summoner getSummonerByName(Region region, String summonerName) throws RiotApiException {
-
-		Map<String, Summoner> summoners = SummonerApi.getSummonersByName(region, getKey(), summonerName);
+		Map<String, Summoner> summoners = getSummonersByName(region, summonerName);
 		String key = Convert.normalizeSummonerName(summonerName);
 		if (!summoners.containsKey(key)) {
 			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
@@ -1135,87 +1137,67 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Summoner getSummonerByName(String summonerName) throws RiotApiException {
-
-		Map<String, Summoner> summoners = SummonerApi.getSummonersByName(getRegion(), getKey(), summonerName);
-		String key = Convert.normalizeSummonerName(summonerName);
-		if (!summoners.containsKey(key)) {
-			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
-		}
-		return summoners.get(key);
+		return getSummonerByName(getRegion(), summonerName);
 	}
 
 	/**
-	 * Get summoner objects mapped by standardized summoner name for a given list of summoner names.
+	 * Get summoner objects mapped by summoner ID for a given list of summoner IDs.
 	 *
 	 * @param region
 	 *            Region where to retrieve the data.
-	 * @param summonerNames
-	 *            Comma-separated list of summoner names or standardized summoner names associated with summoners to retrieve. Maximum
-	 *            allowed at once is 40.
+	 * @param summonerIds
+	 *            Comma-separated list of summoner IDs associated with summoners to retrieve. Maximum allowed at once is 40.
 	 * @return A map of desired summoners
 	 * @see Summoner
 	 * @throws RiotApiException
 	 *             if the API returns an error or unparsable result
 	 */
-	public Map<String, Summoner> getSummonersByName(Region region, String... summonerNames) throws RiotApiException {
-
-		return SummonerApi.getSummonersByName(region, getKey(), String.join(",", summonerNames));
+	public Map<String, Summoner> getSummonersById(Region region, String... summonerIds) throws RiotApiException {
+		return SummonerApi.getSummonersById(region, getKey(), String.join(",", summonerIds));
 	}
 
 	/**
-	 * Get summoner objects mapped by standardized summoner name for a given list of summoner names.
+	 * Get summoner objects mapped by summoner ID for a given list of summoner IDs.
 	 *
-	 * @param summonerNames
-	 *            Comma-separated list of summoner names or standardized summoner names associated with summoners to retrieve. Maximum
-	 *            allowed at once is 40.
+	 * @param summonerIds
+	 *            Comma-separated list of summoner IDs associated with summoners to retrieve. Maximum allowed at once is 40.
 	 * @return A map of desired summoners
 	 * @see Summoner
 	 * @throws RiotApiException
 	 *             if the API returns an error or unparsable result
 	 */
-	public Map<String, Summoner> getSummonersByName(String... summonerNames) throws RiotApiException {
-
-		return SummonerApi.getSummonersByName(getRegion(), getKey(), String.join(",", summonerNames));
+	public Map<String, Summoner> getSummonersById(String... summonerIds) throws RiotApiException {
+		return getSummonersById(getRegion(), String.join(",", summonerIds));
 	}
 
 	/**
-	 * Get a summoner objects for a given summoner ID.
+	 * Get summoner objects mapped by summoner ID for a given list of summoner IDs.
 	 *
 	 * @param region
 	 *            Region where to retrieve the data.
-	 * @param summonerId
-	 *            Summoner IDs associated with summoner to retrieve.
-	 * @return The desired summoner
+	 * @param summonerIds
+	 *            List of summoner IDs associated with summoners to retrieve. Maximum allowed at once is 40.
+	 * @return A map of desired summoners
 	 * @see Summoner
 	 * @throws RiotApiException
 	 *             if the API returns an error or unparsable result
 	 */
-	public Summoner getSummonerById(Region region, long summonerId) throws RiotApiException {
-
-		Map<String, Summoner> summoners = SummonerApi.getSummonersById(region, getKey(), Convert.longToString(summonerId));
-		if (!summoners.containsKey(String.valueOf(summonerId))) {
-			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
-		}
-		return summoners.get(String.valueOf(summonerId));
+	public Map<String, Summoner> getSummonersById(Region region, long... summonerIds) throws RiotApiException {
+		return getSummonersById(region, Convert.longToString(summonerIds));
 	}
 
 	/**
-	 * Get a summoner objects for a given summoner ID.
+	 * Get summoner objects mapped by summoner ID for a given list of summoner IDs.
 	 *
-	 * @param summonerId
-	 *            Summoner IDs associated with summoner to retrieve.
-	 * @return The desired summoner
+	 * @param summonerIds
+	 *            List of summoner IDs associated with summoners to retrieve. Maximum allowed at once is 40.
+	 * @return A map of desired summoners
 	 * @see Summoner
 	 * @throws RiotApiException
 	 *             if the API returns an error or unparsable result
 	 */
-	public Summoner getSummonerById(long summonerId) throws RiotApiException {
-
-		Map<String, Summoner> summoners = SummonerApi.getSummonersById(getRegion(), getKey(), Convert.longToString(summonerId));
-		if (!summoners.containsKey(String.valueOf(summonerId))) {
-			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
-		}
-		return summoners.get(String.valueOf(summonerId));
+	public Map<String, Summoner> getSummonersById(long... summonerIds) throws RiotApiException {
+		return getSummonersById(getRegion(), summonerIds);
 	}
 
 	/**
@@ -1231,8 +1213,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Summoner getSummonerById(Region region, String summonerId) throws RiotApiException {
-
-		Map<String, Summoner> summoners = SummonerApi.getSummonersById(region, getKey(), summonerId);
+		Map<String, Summoner> summoners = getSummonersById(region, summonerId);
 		if (!summoners.containsKey(summonerId)) {
 			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
 		}
@@ -1250,114 +1231,93 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Summoner getSummonerById(String summonerId) throws RiotApiException {
-
-		Map<String, Summoner> summoners = SummonerApi.getSummonersById(getRegion(), getKey(), summonerId);
-		if (!summoners.containsKey(summonerId)) {
-			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
-		}
-		return summoners.get(summonerId);
+		return getSummonerById(getRegion(), summonerId);
 	}
 
 	/**
-	 * Get summoner objects mapped by summoner ID for a given list of summoner IDs.
-	 *
-	 * @param region
-	 *            Region where to retrieve the data.
-	 * @param summonerIds
-	 *            List of summoner IDs associated with summoners to retrieve. Maximum allowed at once is 40.
-	 * @return A map of desired summoners
-	 * @see Summoner
-	 * @throws RiotApiException
-	 *             if the API returns an error or unparsable result
-	 */
-	public Map<String, Summoner> getSummonersById(Region region, long... summonerIds) throws RiotApiException {
-
-		return SummonerApi.getSummonersById(region, getKey(), Convert.longToString(summonerIds));
-	}
-
-	/**
-	 * Get summoner objects mapped by summoner ID for a given list of summoner IDs.
-	 *
-	 * @param summonerIds
-	 *            List of summoner IDs associated with summoners to retrieve. Maximum allowed at once is 40.
-	 * @return A map of desired summoners
-	 * @see Summoner
-	 * @throws RiotApiException
-	 *             if the API returns an error or unparsable result
-	 */
-	public Map<String, Summoner> getSummonersById(long... summonerIds) throws RiotApiException {
-
-		return SummonerApi.getSummonersById(getRegion(), getKey(), Convert.longToString(summonerIds));
-	}
-
-	/**
-	 * Get summoner objects mapped by summoner ID for a given list of summoner IDs.
-	 *
-	 * @param region
-	 *            Region where to retrieve the data.
-	 * @param summonerIds
-	 *            Comma-separated list of summoner IDs associated with summoners to retrieve. Maximum allowed at once is 40.
-	 * @return A map of desired summoners
-	 * @see Summoner
-	 * @throws RiotApiException
-	 *             if the API returns an error or unparsable result
-	 */
-	public Map<String, Summoner> getSummonersById(Region region, String... summonerIds) throws RiotApiException {
-
-		return SummonerApi.getSummonersById(region, getKey(), String.join(",", summonerIds));
-	}
-
-	/**
-	 * Get summoner objects mapped by summoner ID for a given list of summoner IDs.
-	 *
-	 * @param summonerIds
-	 *            Comma-separated list of summoner IDs associated with summoners to retrieve. Maximum allowed at once is 40.
-	 * @return A map of desired summoners
-	 * @see Summoner
-	 * @throws RiotApiException
-	 *             if the API returns an error or unparsable result
-	 */
-	public Map<String, Summoner> getSummonersById(String... summonerIds) throws RiotApiException {
-
-		return SummonerApi.getSummonersById(getRegion(), getKey(), String.join(",", summonerIds));
-	}
-
-	/**
-	 * Get summoner name for a given summoner ID.
+	 * Get a summoner objects for a given summoner ID.
 	 *
 	 * @param region
 	 *            Region where to retrieve the data.
 	 * @param summonerId
-	 *            Summoner ID associated with summoner name to retrieve.
-	 * @return The desired summoner name
+	 *            Summoner IDs associated with summoner to retrieve.
+	 * @return The desired summoner
+	 * @see Summoner
 	 * @throws RiotApiException
 	 *             if the API returns an error or unparsable result
 	 */
-	public String getSummonerName(Region region, long summonerId) throws RiotApiException {
-
-		Map<String, String> summoners = SummonerApi.getSummonerNames(region, getKey(), Convert.longToString(summonerId));
-		if (!summoners.containsKey(String.valueOf(summonerId))) {
-			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
-		}
-		return summoners.get(String.valueOf(summonerId));
+	public Summoner getSummonerById(Region region, long summonerId) throws RiotApiException {
+		return getSummonerById(region, String.valueOf(summonerId));
 	}
 
 	/**
-	 * Get summoner name for a given summoner ID.
+	 * Get a summoner objects for a given summoner ID.
 	 *
 	 * @param summonerId
-	 *            Summoner ID associated with summoner name to retrieve.
-	 * @return The desired summoner name
+	 *            Summoner IDs associated with summoner to retrieve.
+	 * @return The desired summoner
+	 * @see Summoner
 	 * @throws RiotApiException
 	 *             if the API returns an error or unparsable result
 	 */
-	public String getSummonerName(long summonerId) throws RiotApiException {
+	public Summoner getSummonerById(long summonerId) throws RiotApiException {
+		return getSummonerById(getRegion(), summonerId);
+	}
 
-		Map<String, String> summoners = SummonerApi.getSummonerNames(getRegion(), getKey(), Convert.longToString(summonerId));
-		if (!summoners.containsKey(String.valueOf(summonerId))) {
-			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
-		}
-		return summoners.get(String.valueOf(summonerId));
+	/**
+	 * Get summoner names mapped by summoner ID for a given list of summoner IDs.
+	 *
+	 * @param region
+	 *            Region where to retrieve the data.
+	 * @param summonerIds
+	 *            Comma-separated list of summoner IDs associated with summoner names to retrieve. Maximum allowed at once is 40.
+	 * @return A map of desired summoner names
+	 * @throws RiotApiException
+	 *             if the API returns an error or unparsable result
+	 */
+	public Map<String, String> getSummonerNames(Region region, String... summonerIds) throws RiotApiException {
+		return SummonerApi.getSummonerNames(region, getKey(), String.join(",", summonerIds));
+	}
+
+	/**
+	 * Get summoner names mapped by summoner ID for a given list of summoner IDs.
+	 *
+	 * @param summonerIds
+	 *            Comma-separated list of summoner IDs associated with summoner names to retrieve. Maximum allowed at once is 40.
+	 * @return A map of desired summoner names
+	 * @throws RiotApiException
+	 *             if the API returns an error or unparsable result
+	 */
+	public Map<String, String> getSummonerNames(String... summonerIds) throws RiotApiException {
+		return getSummonerNames(getRegion(), summonerIds);
+	}
+
+	/**
+	 * Get summoner names mapped by summoner ID for a given list of summoner IDs.
+	 *
+	 * @param region
+	 *            Region where to retrieve the data.
+	 * @param summonerIds
+	 *            List of summoner IDs associated with summoner names to retrieve. Maximum allowed at once is 40.
+	 * @return A map of desired summoner names
+	 * @throws RiotApiException
+	 *             if the API returns an error or unparsable result
+	 */
+	public Map<String, String> getSummonerNames(Region region, long... summonerIds) throws RiotApiException {
+		return getSummonerNames(region, Convert.longToString(summonerIds));
+	}
+
+	/**
+	 * Get summoner names mapped by summoner ID for a given list of summoner IDs.
+	 *
+	 * @param summonerIds
+	 *            List of summoner IDs associated with summoner names to retrieve. Maximum allowed at once is 40.
+	 * @return A map of desired summoner names
+	 * @throws RiotApiException
+	 *             if the API returns an error or unparsable result
+	 */
+	public Map<String, String> getSummonerNames(long... summonerIds) throws RiotApiException {
+		return getSummonerNames(getRegion(), summonerIds);
 	}
 
 	/**
@@ -1372,8 +1332,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public String getSummonerName(Region region, String summonerId) throws RiotApiException {
-
-		Map<String, String> summoners = SummonerApi.getSummonerNames(region, getKey(), summonerId);
+		Map<String, String> summoners = getSummonerNames(region, summonerId);
 		if (!summoners.containsKey(summonerId)) {
 			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
 		}
@@ -1390,168 +1349,35 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public String getSummonerName(String summonerId) throws RiotApiException {
-
-		Map<String, String> summoners = SummonerApi.getSummonerNames(getRegion(), getKey(), summonerId);
-		if (!summoners.containsKey(summonerId)) {
-			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
-		}
-		return summoners.get(summonerId);
+		return getSummonerName(getRegion(), summonerId);
 	}
 
 	/**
-	 * Get summoner names mapped by summoner ID for a given list of summoner IDs.
+	 * Get summoner name for a given summoner ID.
 	 *
 	 * @param region
 	 *            Region where to retrieve the data.
-	 * @param summonerIds
-	 *            List of summoner IDs associated with summoner names to retrieve. Maximum allowed at once is 40.
-	 * @return A map of desired summoner names
-	 * @throws RiotApiException
-	 *             if the API returns an error or unparsable result
-	 */
-	public Map<String, String> getSummonerNames(Region region, long... summonerIds) throws RiotApiException {
-
-		return SummonerApi.getSummonerNames(region, getKey(), Convert.longToString(summonerIds));
-	}
-
-	/**
-	 * Get summoner names mapped by summoner ID for a given list of summoner IDs.
-	 *
-	 * @param summonerIds
-	 *            List of summoner IDs associated with summoner names to retrieve. Maximum allowed at once is 40.
-	 * @return A map of desired summoner names
-	 * @throws RiotApiException
-	 *             if the API returns an error or unparsable result
-	 */
-	public Map<String, String> getSummonerNames(long... summonerIds) throws RiotApiException {
-
-		return SummonerApi.getSummonerNames(getRegion(), getKey(), Convert.longToString(summonerIds));
-	}
-
-	/**
-	 * Get summoner names mapped by summoner ID for a given list of summoner IDs.
-	 *
-	 * @param region
-	 *            Region where to retrieve the data.
-	 * @param summonerIds
-	 *            Comma-separated list of summoner IDs associated with summoner names to retrieve. Maximum allowed at once is 40.
-	 * @return A map of desired summoner names
-	 * @throws RiotApiException
-	 *             if the API returns an error or unparsable result
-	 */
-	public Map<String, String> getSummonerNames(Region region, String... summonerIds) throws RiotApiException {
-
-		return SummonerApi.getSummonerNames(region, getKey(), String.join(",", summonerIds));
-	}
-
-	/**
-	 * Get summoner names mapped by summoner ID for a given list of summoner IDs.
-	 *
-	 * @param summonerIds
-	 *            Comma-separated list of summoner IDs associated with summoner names to retrieve. Maximum allowed at once is 40.
-	 * @return A map of desired summoner names
-	 * @throws RiotApiException
-	 *             if the API returns an error or unparsable result
-	 */
-	public Map<String, String> getSummonerNames(String... summonerIds) throws RiotApiException {
-
-		return SummonerApi.getSummonerNames(getRegion(), getKey(), String.join(",", summonerIds));
-	}
-
-	/**
-	 * Get teams for a given summoner ID.
-	 *
-	 * @param region
-	 *            The region of the summoner.
 	 * @param summonerId
-	 *            Summoner ID
-	 * @return A list of the summoner's teams
-	 * @see Team
+	 *            Summoner ID associated with summoner name to retrieve.
+	 * @return The desired summoner name
 	 * @throws RiotApiException
 	 *             if the API returns an error or unparsable result
 	 */
-	public List<Team> getTeamsBySummonerId(Region region, long summonerId) throws RiotApiException {
-
-		return TeamApi.getTeamsBySummonerIds(region, getKey(), Convert.longToString(summonerId)).get(Long.toString(summonerId));
+	public String getSummonerName(Region region, long summonerId) throws RiotApiException {
+		return getSummonerName(region, String.valueOf(summonerId));
 	}
 
 	/**
-	 * Get teams for a given summoner ID.
+	 * Get summoner name for a given summoner ID.
 	 *
 	 * @param summonerId
-	 *            A summoner ID
-	 * @return A list of the summoner's teams
-	 * @see Team
+	 *            Summoner ID associated with summoner name to retrieve.
+	 * @return The desired summoner name
 	 * @throws RiotApiException
 	 *             if the API returns an error or unparsable result
 	 */
-	public List<Team> getTeamsBySummonerId(long summonerId) throws RiotApiException {
-
-		return TeamApi.getTeamsBySummonerIds(getRegion(), getKey(), Convert.longToString(summonerId)).get(Long.toString(summonerId));
-	}
-
-	/**
-	 * Get teams for a given summoner ID.
-	 *
-	 * @param region
-	 *            The region of the summoner.
-	 * @param summonerId
-	 *            Summoner ID
-	 * @return A list of the summoner's teams
-	 * @see Team
-	 * @throws RiotApiException
-	 *             if the API returns an error or unparsable result
-	 */
-	public List<Team> getTeamsBySummonerId(Region region, String summonerId) throws RiotApiException {
-
-		return TeamApi.getTeamsBySummonerIds(region, getKey(), summonerId).get(summonerId);
-	}
-
-	/**
-	 * Get teams for a given summoner ID.
-	 *
-	 * @param summonerId
-	 *            A summoner ID
-	 * @return A list of the summoner's teams
-	 * @see Team
-	 * @throws RiotApiException
-	 *             if the API returns an error or unparsable result
-	 */
-	public List<Team> getTeamsBySummonerId(String summonerId) throws RiotApiException {
-
-		return TeamApi.getTeamsBySummonerIds(getRegion(), getKey(), summonerId).get(summonerId);
-	}
-
-	/**
-	 * Get teams mapped by summoner ID for a given list of summoner IDs.
-	 *
-	 * @param region
-	 *            The region of the summoner.
-	 * @param summonerIds
-	 *            A list of summoner IDs. Maximum allowed at once is 10.
-	 * @return A map of the summoners' teams
-	 * @see Team
-	 * @throws RiotApiException
-	 *             if the API returns an error or unparsable result
-	 */
-	public Map<String, List<Team>> getTeamsBySummonerIds(Region region, long... summonerIds) throws RiotApiException {
-
-		return TeamApi.getTeamsBySummonerIds(region, getKey(), Convert.longToString(summonerIds));
-	}
-
-	/**
-	 * Get teams mapped by summoner ID for a given list of summoner IDs.
-	 *
-	 * @param summonerIds
-	 *            A list of summoner IDs. Maximum allowed at once is 10.
-	 * @return A map of the summoners' teams
-	 * @see Team
-	 * @throws RiotApiException
-	 *             if the API returns an error or unparsable result
-	 */
-	public Map<String, List<Team>> getTeamsBySummonerIds(long... summonerIds) throws RiotApiException {
-
-		return TeamApi.getTeamsBySummonerIds(getRegion(), getKey(), Convert.longToString(summonerIds));
+	public String getSummonerName(long summonerId) throws RiotApiException {
+		return getSummonerName(getRegion(), summonerId);
 	}
 
 	/**
@@ -1567,7 +1393,6 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Map<String, List<Team>> getTeamsBySummonerIds(Region region, String... summonerIds) throws RiotApiException {
-
 		return TeamApi.getTeamsBySummonerIds(region, getKey(), String.join(",", summonerIds));
 	}
 
@@ -1582,8 +1407,131 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Map<String, List<Team>> getTeamsBySummonerIds(String... summonerIds) throws RiotApiException {
+		return getTeamsBySummonerIds(getRegion(), summonerIds);
+	}
 
-		return TeamApi.getTeamsBySummonerIds(getRegion(), getKey(), String.join(",", summonerIds));
+	/**
+	 * Get teams mapped by summoner ID for a given list of summoner IDs.
+	 *
+	 * @param region
+	 *            The region of the summoner.
+	 * @param summonerIds
+	 *            A list of summoner IDs. Maximum allowed at once is 10.
+	 * @return A map of the summoners' teams
+	 * @see Team
+	 * @throws RiotApiException
+	 *             if the API returns an error or unparsable result
+	 */
+	public Map<String, List<Team>> getTeamsBySummonerIds(Region region, long... summonerIds) throws RiotApiException {
+		return getTeamsBySummonerIds(region, Convert.longToString(summonerIds));
+	}
+
+	/**
+	 * Get teams mapped by summoner ID for a given list of summoner IDs.
+	 *
+	 * @param summonerIds
+	 *            A list of summoner IDs. Maximum allowed at once is 10.
+	 * @return A map of the summoners' teams
+	 * @see Team
+	 * @throws RiotApiException
+	 *             if the API returns an error or unparsable result
+	 */
+	public Map<String, List<Team>> getTeamsBySummonerIds(long... summonerIds) throws RiotApiException {
+		return getTeamsBySummonerIds(getRegion(), summonerIds);
+	}
+
+	/**
+	 * Get teams for a given summoner ID.
+	 *
+	 * @param region
+	 *            The region of the summoner.
+	 * @param summonerId
+	 *            Summoner ID
+	 * @return A list of the summoner's teams
+	 * @see Team
+	 * @throws RiotApiException
+	 *             if the API returns an error or unparsable result
+	 */
+	public List<Team> getTeamsBySummonerId(Region region, String summonerId) throws RiotApiException {
+		Map<String, List<Team>> teams = getTeamsBySummonerIds(region, summonerId);
+		if (!teams.containsKey(summonerId)) {
+			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
+		}
+		return teams.get(summonerId);
+	}
+
+	/**
+	 * Get teams for a given summoner ID.
+	 *
+	 * @param summonerId
+	 *            A summoner ID
+	 * @return A list of the summoner's teams
+	 * @see Team
+	 * @throws RiotApiException
+	 *             if the API returns an error or unparsable result
+	 */
+	public List<Team> getTeamsBySummonerId(String summonerId) throws RiotApiException {
+		return getTeamsBySummonerId(getRegion(), summonerId);
+	}
+
+	/**
+	 * Get teams for a given summoner ID.
+	 *
+	 * @param region
+	 *            The region of the summoner.
+	 * @param summonerId
+	 *            Summoner ID
+	 * @return A list of the summoner's teams
+	 * @see Team
+	 * @throws RiotApiException
+	 *             if the API returns an error or unparsable result
+	 */
+	public List<Team> getTeamsBySummonerId(Region region, long summonerId) throws RiotApiException {
+		return getTeamsBySummonerId(region, Convert.longToString(summonerId));
+	}
+
+	/**
+	 * Get teams for a given summoner ID.
+	 *
+	 * @param summonerId
+	 *            A summoner ID
+	 * @return A list of the summoner's teams
+	 * @see Team
+	 * @throws RiotApiException
+	 *             if the API returns an error or unparsable result
+	 */
+	public List<Team> getTeamsBySummonerId(long summonerId) throws RiotApiException {
+		return getTeamsBySummonerId(getRegion(), summonerId);
+	}
+
+	/**
+	 * Get teams mapped by team ID for a given list of team IDs.
+	 *
+	 * @param region
+	 *            The region of the summoner.
+	 * @param teamIds
+	 *            Comma-separated list of team IDs. Maximum allowed at once is 10.
+	 * @return A map of teams
+	 * @see Team
+	 * @throws RiotApiException
+	 *             if the API returns an error or unparsable result
+	 */
+	public Map<String, Team> getTeamsByTeamIds(Region region, String... teamIds) throws RiotApiException {
+		return TeamApi.getTeamsByTeamIds(region, getKey(), String.join(",", teamIds));
+	}
+
+	/**
+	 * Get teams mapped by team ID for a given list of team IDs.
+	 *
+	 * @param teamIds
+	 *            Comma-separated list of team IDs. Maximum allowed at once is 10.
+	 * @return A map of teams
+	 * @see Team
+	 * @throws RiotApiException
+	 *             if the API returns an error or unparsable result
+	 */
+	public Map<String, Team> getTeamsByTeamIds(String... teamIds) throws RiotApiException {
+		return getTeamsByTeamIds(getRegion(), teamIds);
 	}
 
 	/**
@@ -1599,8 +1547,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Team getTeamByTeamId(Region region, String teamId) throws RiotApiException {
-
-		Map<String, Team> teams = TeamApi.getTeamsByTeamIds(region, getKey(), teamId);
+		Map<String, Team> teams = getTeamsByTeamIds(region, teamId);
 		if (!teams.containsKey(teamId)) {
 			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
 		}
@@ -1618,76 +1565,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Team getTeamByTeamId(String teamId) throws RiotApiException {
-
-		Map<String, Team> teams = TeamApi.getTeamsByTeamIds(getRegion(), getKey(), teamId);
-		if (!teams.containsKey(teamId)) {
-			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
-		}
-		return teams.get(teamId);
-	}
-
-	/**
-	 * Get teams mapped by team ID for a given list of team IDs.
-	 *
-	 * @param region
-	 *            The region of the summoner.
-	 * @param teamIds
-	 *            Comma-separated list of team IDs. Maximum allowed at once is 10.
-	 * @return A map of teams
-	 * @see Team
-	 * @throws RiotApiException
-	 *             if the API returns an error or unparsable result
-	 */
-	public Map<String, Team> getTeamsByTeamIds(Region region, String... teamIds) throws RiotApiException {
-
-		return TeamApi.getTeamsByTeamIds(region, getKey(), String.join(",", teamIds));
-	}
-
-	/**
-	 * Get teams mapped by team ID for a given list of team IDs.
-	 *
-	 * @param teamIds
-	 *            Comma-separated list of team IDs. Maximum allowed at once is 10.
-	 * @return A map of teams
-	 * @see Team
-	 * @throws RiotApiException
-	 *             if the API returns an error or unparsable result
-	 */
-	public Map<String, Team> getTeamsByTeamIds(String... teamIds) throws RiotApiException {
-
-		return TeamApi.getTeamsByTeamIds(getRegion(), getKey(), String.join(",", teamIds));
-	}
-
-	/**
-	 * Retrieve match by match ID.
-	 *
-	 * @param region
-	 *            The region of the summoner.
-	 * @param matchId
-	 *            The ID of the match.
-	 * @return A map with match details
-	 * @see MatchDetail
-	 * @throws RiotApiException
-	 *             if the API returns an error or unparsable result
-	 */
-	public MatchDetail getMatch(Region region, long matchId) throws RiotApiException {
-
-		return MatchApi.getMatch(region, getKey(), matchId, false);
-	}
-
-	/**
-	 * Retrieve match by match ID.
-	 *
-	 * @param matchId
-	 *            The ID of the match
-	 * @return A map with match details
-	 * @see MatchDetail
-	 * @throws RiotApiException
-	 *             if the API returns an error or unparsable result
-	 */
-	public MatchDetail getMatch(long matchId) throws RiotApiException {
-
-		return MatchApi.getMatch(getRegion(), getKey(), matchId, false);
+		return getTeamByTeamId(getRegion(), teamId);
 	}
 
 	/**
@@ -1705,7 +1583,6 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public MatchDetail getMatch(Region region, long matchId, boolean includeTimeline) throws RiotApiException {
-
 		return MatchApi.getMatch(region, getKey(), matchId, includeTimeline);
 	}
 
@@ -1722,8 +1599,37 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public MatchDetail getMatch(long matchId, boolean includeTimeline) throws RiotApiException {
+		return getMatch(getRegion(), matchId, includeTimeline);
+	}
 
-		return MatchApi.getMatch(getRegion(), getKey(), matchId, includeTimeline);
+	/**
+	 * Retrieve match by match ID.
+	 *
+	 * @param region
+	 *            The region of the summoner.
+	 * @param matchId
+	 *            The ID of the match.
+	 * @return A map with match details
+	 * @see MatchDetail
+	 * @throws RiotApiException
+	 *             if the API returns an error or unparsable result
+	 */
+	public MatchDetail getMatch(Region region, long matchId) throws RiotApiException {
+		return getMatch(region, matchId, false);
+	}
+
+	/**
+	 * Retrieve match by match ID.
+	 *
+	 * @param matchId
+	 *            The ID of the match
+	 * @return A map with match details
+	 * @see MatchDetail
+	 * @throws RiotApiException
+	 *             if the API returns an error or unparsable result
+	 */
+	public MatchDetail getMatch(long matchId) throws RiotApiException {
+		return getMatch(getRegion(), matchId);
 	}
 
 	/**
@@ -1754,25 +1660,7 @@ public class RiotApi {
 	 */
 	public MatchList getMatchList(Region region, long summonerId, String championIds, String rankedQueues, String seasons, long beginTime, long endTime,
 			int beginIndex, int endIndex) throws RiotApiException {
-
 		return MatchListApi.getMatchList(region, getKey(), summonerId, championIds, rankedQueues, seasons, beginTime, endTime, beginIndex, endIndex);
-	}
-
-	/**
-	 * Retrieve match list by summoner ID.
-	 *
-	 * @param The
-	 *            region of the summoner.
-	 * @param summonerId
-	 *            The ID of the summoner.
-	 * @return A list with matches
-	 * @see MatchList
-	 * @throws RiotApiException
-	 *             if the API returns an error or unparsable result
-	 */
-	public MatchList getMatchList(Region region, long summonerId) throws RiotApiException {
-
-		return MatchListApi.getMatchList(region, getKey(), summonerId, null, null, null, -1, -1, -1, -1);
 	}
 
 	/**
@@ -1801,8 +1689,23 @@ public class RiotApi {
 	 */
 	public MatchList getMatchList(long summonerId, String championIds, String rankedQueues, String seasons, long beginTime, long endTime, int beginIndex,
 			int endIndex) throws RiotApiException {
+		return getMatchList(getRegion(), summonerId, championIds, rankedQueues, seasons, beginTime, endTime, beginIndex, endIndex);
+	}
 
-		return MatchListApi.getMatchList(getRegion(), getKey(), summonerId, championIds, rankedQueues, seasons, beginTime, endTime, beginIndex, endIndex);
+	/**
+	 * Retrieve match list by summoner ID.
+	 *
+	 * @param The
+	 *            region of the summoner.
+	 * @param summonerId
+	 *            The ID of the summoner.
+	 * @return A list with matches
+	 * @see MatchList
+	 * @throws RiotApiException
+	 *             if the API returns an error or unparsable result
+	 */
+	public MatchList getMatchList(Region region, long summonerId) throws RiotApiException {
+		return getMatchList(region, summonerId, null, null, null, -1, -1, -1, -1);
 	}
 
 	/**
@@ -1816,25 +1719,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public MatchList getMatchList(long summonerId) throws RiotApiException {
-
-		return MatchListApi.getMatchList(getRegion(), getKey(), summonerId, null, null, null, -1, -1, -1, -1);
-	}
-
-	/**
-	 * Get current game information for the given summoner ID.
-	 * 
-	 * @param platformId
-	 *            The platform ID for which to fetch data.
-	 * @param summonerId
-	 *            The ID of the summoner.
-	 * @return Current game info
-	 * @see CurrentGameInfo
-	 * @throws RiotApiException
-	 *             if the API returns an error or unparsable result
-	 */
-	public CurrentGameInfo getCurrentGameInfo(PlatformId platformId, long summonerId) throws RiotApiException {
-
-		return CurrentGameApi.getCurrentGameInfo(platformId, getKey(), Convert.longToString(summonerId));
+		return getMatchList(getRegion(), summonerId);
 	}
 
 	/**
@@ -1850,8 +1735,23 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public CurrentGameInfo getCurrentGameInfo(PlatformId platformId, String summonerId) throws RiotApiException {
-
 		return CurrentGameApi.getCurrentGameInfo(platformId, getKey(), summonerId);
+	}
+
+	/**
+	 * Get current game information for the given summoner ID.
+	 * 
+	 * @param platformId
+	 *            The platform ID for which to fetch data.
+	 * @param summonerId
+	 *            The ID of the summoner.
+	 * @return Current game info
+	 * @see CurrentGameInfo
+	 * @throws RiotApiException
+	 *             if the API returns an error or unparsable result
+	 */
+	public CurrentGameInfo getCurrentGameInfo(PlatformId platformId, long summonerId) throws RiotApiException {
+		return getCurrentGameInfo(platformId, String.valueOf(summonerId));
 	}
 
 	/**
@@ -1865,7 +1765,6 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public FeaturedGames getFeaturedGames(Region region) throws RiotApiException {
-
 		return FeaturedGamesApi.getFeaturedGames(region, getKey());
 	}
 
@@ -1878,8 +1777,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public FeaturedGames getFeaturedGames() throws RiotApiException {
-
-		return FeaturedGamesApi.getFeaturedGames(getRegion(), getKey());
+		return getFeaturedGames(getRegion());
 	}
 
 	/**
@@ -1904,7 +1802,6 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public ChampionList getDataChampionList(Region region, String locale, String version, boolean dataById, ChampData... champData) throws RiotApiException {
-
 		return StaticDataApi.getDataChampionList(region, getKey(), locale, version, dataById, champData);
 	}
 
@@ -1928,8 +1825,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public ChampionList getDataChampionList(String locale, String version, boolean dataById, ChampData... champData) throws RiotApiException {
-
-		return StaticDataApi.getDataChampionList(getRegion(), getKey(), locale, version, dataById, champData);
+		return getDataChampionList(getRegion(), locale, version, dataById, champData);
 	}
 
 	/**
@@ -1943,8 +1839,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public ChampionList getDataChampionList(Region region) throws RiotApiException {
-
-		return StaticDataApi.getDataChampionList(region, getKey(), null, null, false, (ChampData) null);
+		return getDataChampionList(region, null, null, false, (ChampData) null);
 	}
 
 	/**
@@ -1956,8 +1851,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public ChampionList getDataChampionList() throws RiotApiException {
-
-		return StaticDataApi.getDataChampionList(getRegion(), getKey(), null, null, false, (ChampData) null);
+		return getDataChampionList(getRegion());
 	}
 
 	/**
@@ -1981,7 +1875,6 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public dto.Static.Champion getDataChampion(Region region, int id, String locale, String version, ChampData... champData) throws RiotApiException {
-
 		return StaticDataApi.getDataChampion(region, getKey(), id, locale, version, champData);
 	}
 
@@ -2004,8 +1897,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public dto.Static.Champion getDataChampion(int id, String locale, String version, ChampData... champData) throws RiotApiException {
-
-		return StaticDataApi.getDataChampion(getRegion(), getKey(), id, locale, version, champData);
+		return getDataChampion(getRegion(), id, locale, version, champData);
 	}
 
 	/**
@@ -2021,8 +1913,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public dto.Static.Champion getDataChampion(Region region, int id) throws RiotApiException {
-
-		return StaticDataApi.getDataChampion(region, getKey(), id, null, null, (ChampData) null);
+		return getDataChampion(region, id, null, null, (ChampData) null);
 	}
 
 	/**
@@ -2036,8 +1927,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public dto.Static.Champion getDataChampion(int id) throws RiotApiException {
-
-		return StaticDataApi.getDataChampion(getRegion(), getKey(), id, null, null, (ChampData) null);
+		return getDataChampion(getRegion(), id);
 	}
 
 	/**
@@ -2056,7 +1946,6 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public GameMapList getDataGameMapList(Region region, String locale, String version) throws RiotApiException {
-
 		return StaticDataApi.getDataGameMapList(region, getKey(), locale, version);
 	}
 
@@ -2074,8 +1963,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public GameMapList getDataGameMapList(String locale, String version) throws RiotApiException {
-
-		return StaticDataApi.getDataGameMapList(getRegion(), getKey(), locale, version);
+		return getDataGameMapList(getRegion(), locale, version);
 	}
 
 	/**
@@ -2089,8 +1977,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public GameMapList getDataGameMapList(Region region) throws RiotApiException {
-
-		return StaticDataApi.getDataGameMapList(region, getKey(), null, null);
+		return getDataGameMapList(region, null, null);
 	}
 
 	/**
@@ -2102,8 +1989,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public GameMapList getDataGameMapList() throws RiotApiException {
-
-		return StaticDataApi.getDataGameMapList(getRegion(), getKey(), null, null);
+		return getDataGameMapList(getRegion());
 	}
 
 	/**
@@ -2125,7 +2011,6 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public ItemList getDataItemList(Region region, String locale, String version, ItemListData... itemListData) throws RiotApiException {
-
 		return StaticDataApi.getDataItemList(region, getKey(), locale, version, itemListData);
 	}
 
@@ -2146,8 +2031,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public ItemList getDataItemList(String locale, String version, ItemListData... itemListData) throws RiotApiException {
-
-		return StaticDataApi.getDataItemList(getRegion(), getKey(), locale, version, itemListData);
+		return getDataItemList(getRegion(), locale, version, itemListData);
 	}
 
 	/**
@@ -2161,8 +2045,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public ItemList getDataItemList(Region region) throws RiotApiException {
-
-		return StaticDataApi.getDataItemList(region, getKey(), null, null, (ItemListData) null);
+		return getDataItemList(region, null, null, (ItemListData) null);
 	}
 
 	/**
@@ -2174,8 +2057,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public ItemList getDataItemList() throws RiotApiException {
-
-		return StaticDataApi.getDataItemList(getRegion(), getKey(), null, null, (ItemListData) null);
+		return getDataItemList(getRegion());
 	}
 
 	/**
@@ -2199,7 +2081,6 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Item getDataItem(Region region, int id, String locale, String version, ItemData... itemData) throws RiotApiException {
-
 		return StaticDataApi.getDataItem(region, getKey(), id, locale, version, itemData);
 	}
 
@@ -2222,8 +2103,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Item getDataItem(int id, String locale, String version, ItemData... itemData) throws RiotApiException {
-
-		return StaticDataApi.getDataItem(getRegion(), getKey(), id, locale, version, itemData);
+		return getDataItem(getRegion(), id, locale, version, itemData);
 	}
 
 	/**
@@ -2239,8 +2119,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Item getDataItem(Region region, int id) throws RiotApiException {
-
-		return StaticDataApi.getDataItem(region, getKey(), id, null, null, (ItemData) null);
+		return getDataItem(region, id, null, null, (ItemData) null);
 	}
 
 	/**
@@ -2254,8 +2133,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Item getDataItem(int id) throws RiotApiException {
-
-		return StaticDataApi.getDataItem(getRegion(), getKey(), id, null, null, (ItemData) null);
+		return getDataItem(getRegion(), id);
 	}
 
 	/**
@@ -2268,7 +2146,6 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public List<String> getDataLanguages(Region region) throws RiotApiException {
-
 		return StaticDataApi.getDataLanguages(region, getKey());
 	}
 
@@ -2280,8 +2157,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public List<String> getDataLanguages() throws RiotApiException {
-
-		return StaticDataApi.getDataLanguages(getRegion(), getKey());
+		return getDataLanguages(getRegion());
 	}
 
 	/**
@@ -2300,7 +2176,6 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public LanguageStrings getDataLanguageStrings(Region region, String locale, String version) throws RiotApiException {
-
 		return StaticDataApi.getDataLanguageStrings(region, getKey(), locale, version);
 	}
 
@@ -2318,8 +2193,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public LanguageStrings getDataLanguageStrings(String locale, String version) throws RiotApiException {
-
-		return StaticDataApi.getDataLanguageStrings(getRegion(), getKey(), locale, version);
+		return getDataLanguageStrings(getRegion(), locale, version);
 	}
 
 	/**
@@ -2333,8 +2207,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public LanguageStrings getDataLanguageStrings(Region region) throws RiotApiException {
-
-		return StaticDataApi.getDataLanguageStrings(region, getKey(), null, null);
+		return getDataLanguageStrings(region, null, null);
 	}
 
 	/**
@@ -2346,8 +2219,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public LanguageStrings getDataLanguageStrings() throws RiotApiException {
-
-		return StaticDataApi.getDataLanguageStrings(getRegion(), getKey(), null, null);
+		return getDataLanguageStrings(getRegion());
 	}
 
 	/**
@@ -2369,7 +2241,6 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public MasteryList getDataMasteryList(Region region, String locale, String version, MasteryListData... masteryListData) throws RiotApiException {
-
 		return StaticDataApi.getDataMasteryList(region, getKey(), locale, version, masteryListData);
 	}
 
@@ -2390,8 +2261,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public MasteryList getDataMasteryList(String locale, String version, MasteryListData... masteryListData) throws RiotApiException {
-
-		return StaticDataApi.getDataMasteryList(getRegion(), getKey(), locale, version, masteryListData);
+		return getDataMasteryList(getRegion(), locale, version, masteryListData);
 	}
 
 	/**
@@ -2405,8 +2275,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public MasteryList getDataMasteryList(Region region) throws RiotApiException {
-
-		return StaticDataApi.getDataMasteryList(region, getKey(), null, null, (MasteryListData) null);
+		return getDataMasteryList(region, null, null, (MasteryListData) null);
 	}
 
 	/**
@@ -2418,8 +2287,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public MasteryList getDataMasteryList() throws RiotApiException {
-
-		return StaticDataApi.getDataMasteryList(getRegion(), getKey(), null, null, (MasteryListData) null);
+		return getDataMasteryList(getRegion());
 	}
 
 	/**
@@ -2443,7 +2311,6 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Mastery getDataMastery(Region region, int id, String locale, String version, MasteryData... masteryData) throws RiotApiException {
-
 		return StaticDataApi.getDataMastery(region, getKey(), id, locale, version, masteryData);
 	}
 
@@ -2466,8 +2333,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Mastery getDataMastery(int id, String locale, String version, MasteryData... masteryData) throws RiotApiException {
-
-		return StaticDataApi.getDataMastery(getRegion(), getKey(), id, locale, version, masteryData);
+		return getDataMastery(getRegion(), id, locale, version, masteryData);
 	}
 
 	/**
@@ -2483,8 +2349,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Mastery getDataMastery(Region region, int id) throws RiotApiException {
-
-		return StaticDataApi.getDataMastery(region, getKey(), id, null, null, (MasteryData) null);
+		return getDataMastery(region, id, null, null, (MasteryData) null);
 	}
 
 	/**
@@ -2498,8 +2363,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Mastery getDataMastery(int id) throws RiotApiException {
-
-		return StaticDataApi.getDataMastery(getRegion(), getKey(), id, null, null, (MasteryData) null);
+		return getDataMastery(getRegion(), id);
 	}
 
 	/**
@@ -2513,7 +2377,6 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Realm getDataRealm(Region region) throws RiotApiException {
-
 		return StaticDataApi.getDataRealm(region, getKey());
 	}
 
@@ -2526,8 +2389,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Realm getDataRealm() throws RiotApiException {
-
-		return StaticDataApi.getDataRealm(getRegion(), getKey());
+		return getDataRealm(getRegion());
 	}
 
 	/**
@@ -2549,7 +2411,6 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public RuneList getDataRuneList(Region region, String locale, String version, RuneListData... runeListData) throws RiotApiException {
-
 		return StaticDataApi.getDataRuneList(region, getKey(), locale, version, runeListData);
 	}
 
@@ -2570,8 +2431,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public RuneList getDataRuneList(String locale, String version, RuneListData... runeListData) throws RiotApiException {
-
-		return StaticDataApi.getDataRuneList(getRegion(), getKey(), locale, version, runeListData);
+		return getDataRuneList(getRegion(), locale, version, runeListData);
 	}
 
 	/**
@@ -2585,8 +2445,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public RuneList getDataRuneList(Region region) throws RiotApiException {
-
-		return StaticDataApi.getDataRuneList(region, getKey(), null, null, (RuneListData) null);
+		return getDataRuneList(region, null, null, (RuneListData) null);
 	}
 
 	/**
@@ -2598,8 +2457,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public RuneList getDataRuneList() throws RiotApiException {
-
-		return StaticDataApi.getDataRuneList(getRegion(), getKey(), null, null, (RuneListData) null);
+		return getDataRuneList(getRegion());
 	}
 
 	/**
@@ -2623,7 +2481,6 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Rune getDataRune(Region region, int id, String locale, String version, RuneData... runeData) throws RiotApiException {
-
 		return StaticDataApi.getDataRune(region, getKey(), id, locale, version, runeData);
 	}
 
@@ -2646,8 +2503,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Rune getDataRune(int id, String locale, String version, RuneData... runeData) throws RiotApiException {
-
-		return StaticDataApi.getDataRune(getRegion(), getKey(), id, locale, version, runeData);
+		return getDataRune(getRegion(), id, locale, version, runeData);
 	}
 
 	/**
@@ -2663,8 +2519,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Rune getDataRune(Region region, int id) throws RiotApiException {
-
-		return StaticDataApi.getDataRune(region, getKey(), id, null, null, (RuneData) null);
+		return getDataRune(region, id, null, null, (RuneData) null);
 	}
 
 	/**
@@ -2678,8 +2533,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Rune getDataRune(int id) throws RiotApiException {
-
-		return StaticDataApi.getDataRune(getRegion(), getKey(), id, null, null, (RuneData) null);
+		return getDataRune(getRegion(), id);
 	}
 
 	/**
@@ -2705,7 +2559,6 @@ public class RiotApi {
 	 */
 	public SummonerSpellList getDataSummonerSpellList(Region region, String locale, String version, boolean dataById, SpellData... spellData)
 			throws RiotApiException {
-
 		return StaticDataApi.getDataSummonerSpellList(region, getKey(), locale, version, dataById, spellData);
 	}
 
@@ -2729,8 +2582,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public SummonerSpellList getDataSummonerSpellList(String locale, String version, boolean dataById, SpellData... spellData) throws RiotApiException {
-
-		return StaticDataApi.getDataSummonerSpellList(getRegion(), getKey(), locale, version, dataById, spellData);
+		return getDataSummonerSpellList(getRegion(), locale, version, dataById, spellData);
 	}
 
 	/**
@@ -2744,8 +2596,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public SummonerSpellList getDataSummonerSpellList(Region region) throws RiotApiException {
-
-		return StaticDataApi.getDataSummonerSpellList(region, getKey(), null, null, false, (SpellData) null);
+		return getDataSummonerSpellList(region, null, null, false, (SpellData) null);
 	}
 
 	/**
@@ -2757,8 +2608,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public SummonerSpellList getDataSummonerSpellList() throws RiotApiException {
-
-		return StaticDataApi.getDataSummonerSpellList(getRegion(), getKey(), null, null, false, (SpellData) null);
+		return getDataSummonerSpellList(getRegion());
 	}
 
 	/**
@@ -2782,7 +2632,6 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public SummonerSpell getDataSummonerSpell(Region region, int id, String locale, String version, SpellData... spellData) throws RiotApiException {
-
 		return StaticDataApi.getDataSummonerSpell(region, getKey(), id, locale, version, spellData);
 	}
 
@@ -2805,8 +2654,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public SummonerSpell getDataSummonerSpell(int id, String locale, String version, SpellData... spellData) throws RiotApiException {
-
-		return StaticDataApi.getDataSummonerSpell(getRegion(), getKey(), id, locale, version, spellData);
+		return getDataSummonerSpell(getRegion(), id, locale, version, spellData);
 	}
 
 	/**
@@ -2822,8 +2670,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public SummonerSpell getDataSummonerSpell(Region region, int id) throws RiotApiException {
-
-		return StaticDataApi.getDataSummonerSpell(region, getKey(), id, null, null, (SpellData) null);
+		return getDataSummonerSpell(region, id, null, null, (SpellData) null);
 	}
 
 	/**
@@ -2837,8 +2684,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public SummonerSpell getDataSummonerSpell(int id) throws RiotApiException {
-
-		return StaticDataApi.getDataSummonerSpell(getRegion(), getKey(), id, null, null, (SpellData) null);
+		return getDataSummonerSpell(getRegion(), id);
 	}
 
 	/**
@@ -2851,7 +2697,6 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public List<String> getDataVersions(Region region) throws RiotApiException {
-
 		return StaticDataApi.getDataVersions(region, getKey());
 	}
 
@@ -2863,8 +2708,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public List<String> getDataVersions() throws RiotApiException {
-
-		return StaticDataApi.getDataVersions(getRegion(), getKey());
+		return getDataVersions(getRegion());
 	}
 
 	/**
@@ -2876,7 +2720,6 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public List<Shard> getShards() throws RiotApiException {
-
 		return StatusApi.getShards();
 	}
 
@@ -2891,7 +2734,6 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public ShardStatus getShardStatus(Region region) throws RiotApiException {
-
 		return StatusApi.getShardStatus(region);
 	}
 
@@ -2904,17 +2746,16 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public ShardStatus getShardStatus() throws RiotApiException {
-
-		return StatusApi.getShardStatus(getRegion());
+		return getShardStatus(getRegion());
 	}
 
 	/**
-	 * Get the currently set season
+	 * Get the base URL for API requests
 	 *
-	 * @return The currently set season
+	 * @return The base URL for API requests
 	 */
-	public Season getSeason() {
-		return season;
+	public String getEndpoint() {
+		return region.getEndpoint();
 	}
 
 	/**
@@ -2936,13 +2777,12 @@ public class RiotApi {
 	}
 
 	/**
-	 * Set the season
+	 * Get the currently set season
 	 *
-	 * @param season
-	 *            The season to set
+	 * @return The currently set season
 	 */
-	public void setSeason(Season season) {
-		this.season = season;
+	public Season getSeason() {
+		return season;
 	}
 
 	/**
@@ -2966,16 +2806,12 @@ public class RiotApi {
 	}
 
 	/**
-	 * Get the base URL for API requests
+	 * Set the season
 	 *
-	 * @return The base URL for API requests
+	 * @param season
+	 *            The season to set
 	 */
-	public String getEndpoint() {
-		return region.getEndpoint();
-	}
-
-	@Override
-	public RiotApi clone() {
-		return new RiotApi(this.key, this.region);
+	public void setSeason(Season season) {
+		this.season = season;
 	}
 }
