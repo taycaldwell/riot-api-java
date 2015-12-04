@@ -7,8 +7,8 @@ public class Team implements Serializable {
 
 	private static final long serialVersionUID = -3414402914522684688L;
 	private List<BannedChampion> bans;
-	private int baronKills, dragonKills, inhibitorKills, teamId, towerKills, vilemawKills;
-	private boolean firstBaron, firstBlood, firstDragon, firstInhibitor, firstTower, winner;
+	private int baronKills, dragonKills, riftHeraldKills, inhibitorKills, teamId, towerKills, vilemawKills;
+	private boolean firstBaron, firstBlood, firstDragon, firstRiftHerald, firstInhibitor, firstTower, winner;
 	private long dominionVictoryScore;
 
 	public long getDominionVictoryScore() {
@@ -66,4 +66,13 @@ public class Team implements Serializable {
 	public boolean isWinner() {
 		return winner;
 	}
+
+	public boolean isFirstRiftHerald() {
+		return firstRiftHerald;
+	}
+
+	public int getRiftHeraldKills() {
+		return riftHeraldKills;
+	}
+
 }
