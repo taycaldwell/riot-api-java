@@ -12,5 +12,6 @@ dto.Stats
 dto.Status
 dto.Summoner
 dto.Team
+dto.Tournament
 main.java.riotapi
 util
