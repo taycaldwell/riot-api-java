@@ -18,8 +18,6 @@ package main.java.riotapi;
 
 import java.util.List;
 
-import util.Convert;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
@@ -30,15 +28,16 @@ import constant.SpectatorType;
 import constant.TournamentMap;
 import dto.Tournament.LobbyEventList;
 import dto.Tournament.TournamentCode;
+import util.Convert;
 
 final class TournamentApi {
 
 	private static final String VERSION = "/v1/";
-	private static final String TOURNAMENT_ENDPOINT = "https://global.api.pvp.net/tournament/public/v1/";
+	private static final String TOURNAMENT_ENDPOINT = "https://global.api.pvp.net/tournament/public" + VERSION;
 
 	public static TournamentCode getTournamentCode(String key, String tournamentCode) throws RiotApiException {
 		String url = TOURNAMENT_ENDPOINT + "code/" + tournamentCode;
-		
+
 		TournamentCode tournamentCodeData = null;
 		try {
 			tournamentCodeData = new Gson().fromJson(Request.sendGet(url, key), TournamentCode.class);
@@ -51,10 +50,10 @@ final class TournamentApi {
 
 		return tournamentCodeData;
 	}
-	
+
 	public static LobbyEventList getLobbyEventsByTournament(String key, String tournamentCode) throws RiotApiException {
 		String url = TOURNAMENT_ENDPOINT + "lobby/events/by-code/" + tournamentCode;
-		
+
 		LobbyEventList lobbyEvents = null;
 		try {
 			lobbyEvents = new Gson().fromJson(Request.sendGet(url, key), LobbyEventList.class);
@@ -67,10 +66,10 @@ final class TournamentApi {
 
 		return lobbyEvents;
 	}
-	
+
 	public static int createProvider(String key, Region region, String callbackUrl) throws RiotApiException {
 		String url = TOURNAMENT_ENDPOINT + "provider";
-		
+
 		String body = "{\"region\":\"" + region.getName().toUpperCase() + "\",\"url\":\"" + callbackUrl + "\"}";
 		Integer providerId = null;
 		try {
@@ -85,16 +84,16 @@ final class TournamentApi {
 
 		return providerId;
 	}
-	
+
 	public static int createTournament(String key, String tournamentName, int providerId) throws RiotApiException {
 		String url = TOURNAMENT_ENDPOINT + "tournament";
-		
+
 		String body = "{\"name\":\"";
-		if(tournamentName != null) {
+		if (tournamentName != null) {
 			body += tournamentName;
 		}
 		body += "\",\"providerId\":" + providerId + "}";
-		
+
 		Integer tournamentId = null;
 		try {
 			tournamentId = new Gson().fromJson(Request.sendPost(url, key, body), new TypeToken<Integer>() {
@@ -108,21 +107,22 @@ final class TournamentApi {
 
 		return tournamentId;
 	}
-	
-	public static List<String> createTournamentCodes(String key, int tournamentId, int count, int teamSize, TournamentMap mapType, PickType pickType, SpectatorType spectatorType, String metaData, long... allowedSummonerIds) throws RiotApiException {
+
+	public static List<String> createTournamentCodes(String key, int tournamentId, int count, int teamSize, TournamentMap mapType, PickType pickType,
+			SpectatorType spectatorType, String metaData, long... allowedSummonerIds) throws RiotApiException {
 		String url = TOURNAMENT_ENDPOINT + "code?tournamentId=" + tournamentId + "&count=" + count;
-		
-		String body = "{\"teamSize\" : " + teamSize + ",\"spectatorType\" : \"" + spectatorType + 
-				"\",\"pickType\" : \"" + pickType + "\",\"mapType\" : \"" + mapType + "\"";
-		
-		if(metaData != null) {
+
+		String body = "{\"teamSize\" : " + teamSize + ",\"spectatorType\" : \"" + spectatorType + "\",\"pickType\" : \"" + pickType + "\",\"mapType\" : \""
+				+ mapType + "\"";
+
+		if (metaData != null) {
 			body += ",\"metaData\" : \"" + metaData + "\"";
 		}
-		if(allowedSummonerIds.length > 0) {
+		if (allowedSummonerIds.length > 0) {
 			body += ",\"allowedSummonerIds\" : {\"participants\" : [" + Convert.longToString(allowedSummonerIds) + "]}";
 		}
 		body += "}";
-		
+
 		List<String> tournamentCodes = null;
 		try {
 			tournamentCodes = new Gson().fromJson(Request.sendPost(url, key, body), new TypeToken<List<String>>() {
@@ -136,18 +136,19 @@ final class TournamentApi {
 
 		return tournamentCodes;
 	}
-	
-	public static void updateTournamentCode(String key, String tournamentCode, TournamentMap mapType, PickType pickType, SpectatorType spectatorType, long... allowedSummonerIds) throws RiotApiException {
+
+	public static void updateTournamentCode(String key, String tournamentCode, TournamentMap mapType, PickType pickType, SpectatorType spectatorType,
+			long... allowedSummonerIds) throws RiotApiException {
 		String url = TOURNAMENT_ENDPOINT + "code/" + tournamentCode;
-		
+
 		String body = "{\"allowedParticipants\" : \"" + Convert.longToString(allowedSummonerIds) + "\"";
-		if(spectatorType != null) {
+		if (spectatorType != null) {
 			body += ",\"spectatorType\" : \"" + spectatorType + "\"";
 		}
-		if(pickType != null) {
+		if (pickType != null) {
 			body += ",\"pickType\" : \"" + pickType + "\"";
 		}
-		if(mapType != null) {
+		if (mapType != null) {
 			body += ",\"mapType\" : \"" + mapType + "\"";
 		}
 		body += "}";
