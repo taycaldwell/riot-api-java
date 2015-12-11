@@ -132,6 +132,7 @@ The current version of this library supports the following Riot Games API versio
 - **stats-v1.3 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
 - **summoner-v1.4 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
 - **team-v2.4 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
+- **tournament-provider-v1 [ALL]**
 
 ## Contributing
 All contributions are appreciated.
