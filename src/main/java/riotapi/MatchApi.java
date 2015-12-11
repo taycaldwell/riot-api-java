@@ -15,8 +15,11 @@ package main.java.riotapi;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import java.util.List;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
+import com.google.gson.reflect.TypeToken;
 
 import constant.Region;
 import dto.Match.MatchDetail;
@@ -33,7 +36,7 @@ final class MatchApi {
 
 		MatchDetail matchDetail = null;
 		try {
-			matchDetail = new Gson().fromJson(Request.execute(url), MatchDetail.class);
+			matchDetail = new Gson().fromJson(Request.sendGet(url, null), MatchDetail.class);
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
 		}
@@ -42,5 +45,38 @@ final class MatchApi {
 		}
 
 		return matchDetail;
+	}
+	
+	public static MatchDetail getMatchForTournament(Region region, String key, long matchId, String tournamentCode) throws RiotApiException {
+		String url = region.getEndpoint() + VERSION + "match/for-tournament/" + matchId + "?tournamentCode=" + tournamentCode + "&api_key=" + key;
+
+		MatchDetail matchDetail = null;
+		try {
+			matchDetail = new Gson().fromJson(Request.sendGet(url, null), MatchDetail.class);
+		} catch (JsonSyntaxException e) {
+			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
+		}
+		if (matchDetail == null) {
+			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
+		}
+
+		return matchDetail;
+	}
+	
+	public static List<Long> getMatchesByTournament(Region region, String key, String tournamentCode) throws RiotApiException {
+		String url = region.getEndpoint() + VERSION + "match/by-tournament/" + tournamentCode + "/ids?api_key=" + key;
+
+		List<Long> matchIds = null;
+		try {
+			matchIds = new Gson().fromJson(Request.sendGet(url, null), new TypeToken<List<Long>>() {
+			}.getType());
+		} catch (JsonSyntaxException e) {
+			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
+		}
+		if (matchIds == null) {
+			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
+		}
+
+		return matchIds;
 	}
 }
