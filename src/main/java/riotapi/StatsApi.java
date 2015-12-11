@@ -35,7 +35,7 @@ final class StatsApi {
 
 		PlayerStatsSummaryList summaryList = null;
 		try {
-			summaryList = new Gson().fromJson(Request.execute(url), PlayerStatsSummaryList.class);
+			summaryList = new Gson().fromJson(Request.sendGet(url, null), PlayerStatsSummaryList.class);
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
 		}
@@ -54,7 +54,7 @@ final class StatsApi {
 
 		RankedStats rankedStats = null;
 		try {
-			rankedStats = new Gson().fromJson(Request.execute(url), RankedStats.class);
+			rankedStats = new Gson().fromJson(Request.sendGet(url, null), RankedStats.class);
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
 		}

@@ -52,7 +52,7 @@ final class MatchListApi {
 
 		MatchList matchList = null;
 		try {
-			matchList = new Gson().fromJson(Request.execute(url), MatchList.class);
+			matchList = new Gson().fromJson(Request.sendGet(url, null), MatchList.class);
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
 		}

@@ -32,7 +32,7 @@ final class CurrentGameApi {
 
 		CurrentGameInfo currentGameInfo = null;
 		try {
-			currentGameInfo = new Gson().fromJson(Request.execute(url), CurrentGameInfo.class);
+			currentGameInfo = new Gson().fromJson(Request.sendGet(url, null), CurrentGameInfo.class);
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
 		}

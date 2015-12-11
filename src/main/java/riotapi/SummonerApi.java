@@ -38,7 +38,7 @@ final class SummonerApi {
 
 		Map<String, MasteryPages> masteryPages = null;
 		try {
-			masteryPages = new Gson().fromJson(Request.execute(url), new TypeToken<Map<String, MasteryPages>>() {
+			masteryPages = new Gson().fromJson(Request.sendGet(url, null), new TypeToken<Map<String, MasteryPages>>() {
 			}.getType());
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
@@ -55,7 +55,7 @@ final class SummonerApi {
 
 		Map<String, RunePages> runePages = null;
 		try {
-			runePages = new Gson().fromJson(Request.execute(url), new TypeToken<Map<String, RunePages>>() {
+			runePages = new Gson().fromJson(Request.sendGet(url, null), new TypeToken<Map<String, RunePages>>() {
 			}.getType());
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
@@ -79,7 +79,7 @@ final class SummonerApi {
 
 		Map<String, Summoner> summoners = null;
 		try {
-			summoners = new Gson().fromJson(Request.execute(url), new TypeToken<Map<String, Summoner>>() {
+			summoners = new Gson().fromJson(Request.sendGet(url, null), new TypeToken<Map<String, Summoner>>() {
 			}.getType());
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
@@ -96,7 +96,7 @@ final class SummonerApi {
 
 		Map<String, Summoner> summoners = null;
 		try {
-			summoners = new Gson().fromJson(Request.execute(url), new TypeToken<Map<String, Summoner>>() {
+			summoners = new Gson().fromJson(Request.sendGet(url, null), new TypeToken<Map<String, Summoner>>() {
 			}.getType());
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
@@ -113,7 +113,7 @@ final class SummonerApi {
 
 		Map<String, String> summonerNames = null;
 		try {
-			summonerNames = new Gson().fromJson(Request.execute(url), new TypeToken<Map<String, String>>() {
+			summonerNames = new Gson().fromJson(Request.sendGet(url, null), new TypeToken<Map<String, String>>() {
 			}.getType());
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);

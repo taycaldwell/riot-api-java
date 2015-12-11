@@ -35,7 +35,7 @@ final class LeagueApi {
 
 		Map<String, List<League>> leagues = null;
 		try {
-			leagues = new Gson().fromJson(Request.execute(url), new TypeToken<Map<String, List<League>>>() {
+			leagues = new Gson().fromJson(Request.sendGet(url, null), new TypeToken<Map<String, List<League>>>() {
 			}.getType());
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
@@ -52,7 +52,7 @@ final class LeagueApi {
 
 		Map<String, List<League>> leagues = null;
 		try {
-			leagues = new Gson().fromJson(Request.execute(url), new TypeToken<Map<String, List<League>>>() {
+			leagues = new Gson().fromJson(Request.sendGet(url, null), new TypeToken<Map<String, List<League>>>() {
 			}.getType());
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
@@ -69,7 +69,7 @@ final class LeagueApi {
 
 		Map<String, List<League>> leagues = null;
 		try {
-			leagues = new Gson().fromJson(Request.execute(url), new TypeToken<Map<String, List<League>>>() {
+			leagues = new Gson().fromJson(Request.sendGet(url, null), new TypeToken<Map<String, List<League>>>() {
 			}.getType());
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
@@ -86,7 +86,7 @@ final class LeagueApi {
 
 		Map<String, List<League>> leagues = null;
 		try {
-			leagues = new Gson().fromJson(Request.execute(url), new TypeToken<Map<String, List<League>>>() {
+			leagues = new Gson().fromJson(Request.sendGet(url, null), new TypeToken<Map<String, List<League>>>() {
 			}.getType());
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
@@ -106,7 +106,7 @@ final class LeagueApi {
 
 		League leagues = null;
 		try {
-			leagues = new Gson().fromJson(Request.execute(url), League.class);
+			leagues = new Gson().fromJson(Request.sendGet(url, null), League.class);
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
 		}
@@ -125,7 +125,7 @@ final class LeagueApi {
 
 		League leagues = null;
 		try {
-			leagues = new Gson().fromJson(Request.execute(url), League.class);
+			leagues = new Gson().fromJson(Request.sendGet(url, null), League.class);
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
 		}

@@ -34,7 +34,7 @@ final class TeamApi {
 
 		Map<String, List<Team>> teams = null;
 		try {
-			teams = new Gson().fromJson(Request.execute(url), new TypeToken<Map<String, List<Team>>>() {
+			teams = new Gson().fromJson(Request.sendGet(url, null), new TypeToken<Map<String, List<Team>>>() {
 			}.getType());
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
@@ -51,7 +51,7 @@ final class TeamApi {
 
 		Map<String, Team> teams = null;
 		try {
-			teams = new Gson().fromJson(Request.execute(url), new TypeToken<Map<String, Team>>() {
+			teams = new Gson().fromJson(Request.sendGet(url, null), new TypeToken<Map<String, Team>>() {
 			}.getType());
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
