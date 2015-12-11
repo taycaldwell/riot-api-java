@@ -1,6 +1,7 @@
 package main.java.riotapi;
 
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -11,7 +12,7 @@ import java.util.logging.Logger;
 
 public class Request {
 
-	public static String execute(String URL) throws RiotApiException {
+	private static String execute(String method, String URL, String key, String body) throws RiotApiException {
 
 		HttpURLConnection connection = null;
 
@@ -20,8 +21,18 @@ public class Request {
 			URL url = new URL(requestURL);
 
 			connection = (HttpURLConnection) url.openConnection();
-			connection.setRequestMethod("GET");
+			connection.setRequestMethod(method);
 			connection.setInstanceFollowRedirects(false);
+			connection.setRequestProperty("X-Riot-Token", key);
+			
+			if(method.equals("PUT") || method.equals("POST")) {
+				connection.setRequestProperty("Content-Type", "application/json");
+				connection.setDoOutput(true);
+				DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
+				wr.writeBytes(body);
+				wr.flush();
+				wr.close();
+			}
 
 			int responseCode = connection.getResponseCode();
 			
@@ -36,10 +47,10 @@ public class Request {
 				}	
 			}
 			
-			else if (responseCode != 200) {
+			else if (responseCode != 200 && responseCode != 204) {
 				throw new RiotApiException(responseCode);
 			}
-
+			
 			InputStream is = connection.getInputStream();
 			BufferedReader rd = new BufferedReader(new InputStreamReader(is, "utf-8"));
 			StringBuilder response = new StringBuilder();
@@ -49,6 +60,7 @@ public class Request {
 				response.append(line);
 				response.append('\r');
 			}
+			rd.close();
 
 			connection.disconnect();
 			return response.toString();
@@ -60,5 +72,20 @@ public class Request {
 				connection.disconnect();
 			}
 		}
+	}
+	
+	// HTTP GET request
+	protected static String sendGet(String URL, String key) throws RiotApiException {
+		return execute("GET", URL, key, null);
+	}
+	
+	// HTTP POST request
+	protected static String sendPost(String URL, String key, String body) throws RiotApiException {
+		return execute("POST", URL, key, body);
+	}
+	
+	// HTTP PUT request
+	protected static String sendPut(String URL, String key, String body) throws RiotApiException {
+		return execute("PUT", URL, key, body);
 	}
 }
