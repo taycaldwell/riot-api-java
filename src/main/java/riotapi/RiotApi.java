@@ -1712,8 +1712,8 @@ public class RiotApi {
 	/**
 	 * Retrieve match list by summoner ID.
 	 *
-	 * @param The
-	 *            region of the summoner.
+	 * @param region
+	 *            The region of the summoner.
 	 * @param summonerId
 	 *            The ID of the summoner.
 	 * @return A list with matches
@@ -2813,8 +2813,6 @@ public class RiotApi {
 	/**
 	 * Retrieve match by match ID and tournament code.
 	 *
-	 * @param region
-	 *            The region of the match.
 	 * @param matchId
 	 *            The ID of the match.
 	 * @param tournamentCode
@@ -2846,8 +2844,6 @@ public class RiotApi {
 	/**
 	 * Retrieve match ids by tournament code.
 	 *
-	 * @param region
-	 *            The region of the matches/tournament.
 	 * @param tournamentCode
 	 *            The code of the tournament.
 	 * @return A list of match ids
