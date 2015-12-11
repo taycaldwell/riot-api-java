@@ -59,7 +59,7 @@ public class RiotApiException extends Exception {
 		case UNAVAILABLE:
 			return "Service unavailable";
 		default:
-			return "An unknown API error occured";
+			return "An unknown API error occured: " + errorCode;
 		}
 	}
 
