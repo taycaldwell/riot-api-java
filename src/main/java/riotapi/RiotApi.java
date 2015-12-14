@@ -2951,6 +2951,59 @@ public class RiotApi {
 	}
 	
 	/**
+	 * Generate one tournament code for a tournament
+	 *
+	 * @param tournamentId
+	 *            	The tournament ID.
+	 * @param teamSize
+	 *            	The team size of the game. Valid values are 1-5.
+	 * @param mapType
+	 *            	The map type of the game.
+	 * @param pickType
+	 *            	The pick type of the game.
+	 * @param spectatorType
+	 *            	The spectator type of the game.
+	 * @param metaData
+	 *            	Optional string that may contain any data in any format, if specified at all.
+	 *            	Used to denote any custom information about the game.
+	 * @param allowedSummonerIds
+	 *            	Optional list of participants in order to validate the players eligible to join the lobby. 
+	 * @return A tournament code
+	 * @throws RiotApiException
+	 *             if the API returns an error or unparsable result
+	 */
+	public String createTournamentCode(int tournamentId, int teamSize, TournamentMap mapType, PickType pickType, SpectatorType spectatorType, String metaData, long... allowedSummonerIds) throws RiotApiException {
+		List<String> tournamentCodeList =  TournamentApi.createTournamentCodes(getTournamentKey(), tournamentId, 1, teamSize, mapType, pickType, spectatorType, metaData, allowedSummonerIds);
+		if(tournamentCodeList.size() < 1) {
+			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
+		}
+		return tournamentCodeList.get(0);
+	}
+	
+	/**
+	 * Generate a tournament code for a tournament
+	 *
+	 * @param tournamentId
+	 *            	The tournament ID.
+	 * @param teamSize
+	 *            	The team size of the game. Valid values are 1-5.
+	 * @param mapType
+	 *            	The map type of the game.
+	 * @param pickType
+	 *            	The pick type of the game.
+	 * @param spectatorType
+	 *            	The spectator type of the game.
+	 * @param allowedSummonerIds
+	 *            	Optional list of participants in order to validate the players eligible to join the lobby. 
+	 * @return A tournament code
+	 * @throws RiotApiException
+	 *             if the API returns an error or unparsable result
+	 */
+	public String createTournamentCode(int tournamentId, int teamSize, TournamentMap mapType, PickType pickType, SpectatorType spectatorType, long... allowedSummonerIds) throws RiotApiException {
+		return createTournamentCode(tournamentId, teamSize, mapType, pickType, spectatorType, null, allowedSummonerIds);
+	}
+	
+	/**
 	 * Update settings for a tournament code
 	 *
 	 * @param tournamentCode
