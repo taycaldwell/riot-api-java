@@ -1,7 +1,5 @@
 package main.java.riotapi;
 
-import java.util.HashMap;
-
 /*
  * Copyright 2015 Taylor Caldwell
  *
@@ -17,7 +15,7 @@ import java.util.HashMap;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+import java.util.HashMap;
 import java.util.List;
 
 import com.google.gson.Gson;
