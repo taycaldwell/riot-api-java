@@ -73,8 +73,8 @@ final class SummonerApi {
 		String url = null;
 		try {
 			url = region.getEndpoint() + VERSION + "summoner/by-name/" + URLEncoder.encode(summonerNames, "UTF-8") + "?api_key=" + key;
-		} catch (UnsupportedEncodingException e1) {
-			e1.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
 		}
 
 		Map<String, Summoner> summoners = null;
