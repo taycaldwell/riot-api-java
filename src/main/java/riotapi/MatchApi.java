@@ -47,9 +47,12 @@ final class MatchApi {
 		return matchDetail;
 	}
 	
-	public static MatchDetail getMatchForTournament(Region region, String key, long matchId, String tournamentCode) throws RiotApiException {
+	public static MatchDetail getMatchForTournament(Region region, String key, long matchId, String tournamentCode, boolean includeTimeline) throws RiotApiException {
 		String url = region.getEndpoint() + VERSION + "match/for-tournament/" + matchId + "?tournamentCode=" + tournamentCode + "&api_key=" + key;
-
+		if (includeTimeline) {
+			url += "&includeTimeline=" + includeTimeline;
+		}
+		
 		MatchDetail matchDetail = null;
 		try {
 			matchDetail = new Gson().fromJson(Request.sendGet(url, null), MatchDetail.class);

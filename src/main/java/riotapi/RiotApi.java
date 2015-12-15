@@ -2801,13 +2801,15 @@ public class RiotApi {
 	 *            The ID of the match.
 	 * @param tournamentCode
 	 *            The code of the tournament.
+	 * @param includeTimeline
+	 *            Flag indicating whether or not to include match timeline data
 	 * @return A map with match details
 	 * @see MatchDetail
 	 * @throws RiotApiException
 	 *             if the API returns an error or unparsable result
 	 */
-	public MatchDetail getMatchForTournament(Region region, long matchId, String tournamentCode) throws RiotApiException {
-		return MatchApi.getMatchForTournament(region, getTournamentKey(), matchId, tournamentCode);
+	public MatchDetail getMatchForTournament(Region region, long matchId, String tournamentCode, boolean includeTimeline) throws RiotApiException {
+		return MatchApi.getMatchForTournament(region, getTournamentKey(), matchId, tournamentCode, includeTimeline);
 	}
 
 	/**
@@ -2817,13 +2819,53 @@ public class RiotApi {
 	 *            The ID of the match.
 	 * @param tournamentCode
 	 *            The code of the tournament.
+	 * @param includeTimeline
+	 *            Flag indicating whether or not to include match timeline data
+	 * @return A map with match details
+	 * @see MatchDetail
+	 * @throws RiotApiException
+	 *             if the API returns an error or unparsable result
+	 */
+	public MatchDetail getMatchForTournament(long matchId, String tournamentCode, boolean includeTimeline) throws RiotApiException {
+		return getMatchForTournament(getRegion(), matchId, tournamentCode, includeTimeline);
+	}
+	
+	/**
+	 * Retrieve match by match ID and tournament code.
+	 *
+	 * @param region
+	 *            The region of the match.
+	 * @param matchId
+	 *            The ID of the match.
+	 * @param tournamentCode
+	 *            The code of the tournament.
+	 * @param includeTimeline
+	 *            Flag indicating whether or not to include match timeline data
+	 * @return A map with match details
+	 * @see MatchDetail
+	 * @throws RiotApiException
+	 *             if the API returns an error or unparsable result
+	 */
+	public MatchDetail getMatchForTournament(Region region, long matchId, String tournamentCode) throws RiotApiException {
+		return getMatchForTournament(region, matchId, tournamentCode, false);
+	}
+
+	/**
+	 * Retrieve match by match ID and tournament code.
+	 *
+	 * @param matchId
+	 *            The ID of the match.
+	 * @param tournamentCode
+	 *            The code of the tournament.
+	 * @param includeTimeline
+	 *            Flag indicating whether or not to include match timeline data
 	 * @return A map with match details
 	 * @see MatchDetail
 	 * @throws RiotApiException
 	 *             if the API returns an error or unparsable result
 	 */
 	public MatchDetail getMatchForTournament(long matchId, String tournamentCode) throws RiotApiException {
-		return getMatchForTournament(getRegion(), matchId, tournamentCode);
+		return getMatchForTournament(getRegion(), matchId, tournamentCode, false);
 	}
 
 	/**
