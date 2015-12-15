@@ -17,7 +17,6 @@ package constant;
  */
 
 public enum Season {
-
 	// Seasons with Number
 	SEASON3("SEASON3"),
 	SEASON4("SEASON2014"),

@@ -17,10 +17,9 @@ package constant;
  */
 
 public enum GameType {
-
 	CUSTOM_GAME("Custom"),
-	TUTORIAL_GAME("Tutorial"),
-	MATCHED_GAME("All");
+	MATCHED_GAME("All"),
+	TUTORIAL_GAME("Tutorial");
 
 	private String name;
 

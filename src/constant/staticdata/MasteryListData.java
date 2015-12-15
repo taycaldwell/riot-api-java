@@ -17,7 +17,6 @@ package constant.staticdata;
  */
 
 public enum MasteryListData {
-
 	ALL("all"),
 	IMAGE("image"),
 	MASTERY_TREE("masteryTree"),

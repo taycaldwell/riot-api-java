@@ -17,7 +17,6 @@ package constant;
  */
 
 public enum GameMode {
-
 	ARAM("ARAM"),
 	ASCENSION("Ascension"),
 	CLASSIC("Classic"),

@@ -17,29 +17,28 @@ package constant;
  */
 
 public enum PlayerStatSummaryType {
-
-	Unranked("Summoner's Rift Unranked"),
-	Unranked3x3("Twisted Treeline Unranked"),
-	OdinUnranked("Dominion/Crystal Scar"),
 	AramUnranked5x5("ARAM / Howling Abyss"),
+	Ascension("Ascension"),
+	Bilgewater("Black Market Brawlers"),
+	CAP5x5("Team Builder"),
 	CoopVsAI("Summoner's Rift/Crystal Scar Bots"),
 	CoopVsAI3x3("Twisted Treeline Bots"),
+	CounterPick("Nemesis"),
+	FirstBlood1x1("Snowdown Showdown 1x1"),
+	FirstBlood2x2("Snowdown Showdown 2x2"),
+	Hexakill("Twisted Treeline 6x6 Hexakill"),
+	KingPoro("King Poro"),
+	NightmareBot("Summoner's Rift Nightmare Bots"),
+	OdinUnranked("Dominion/Crystal Scar"),
+	OneForAll5x5("One for All"),
 	RankedSolo5x5("Summoner's Rift Ranked Solo"),
 	RankedTeam3x3("Twisted Treeline Ranked Team"),
 	RankedTeam5x5("Summoner's Rift Ranked Team"),
-	OneForAll5x5("One for All"),
-	FirstBlood1x1("Snowdown Showdown 1x1"),
-	FirstBlood2x2("Snowdown Showdown 2x2"),
 	SummonersRift6x6("Hexakill"),
-	CAP5x5("Team Builder"),
+	Unranked("Summoner's Rift Unranked"),
+	Unranked3x3("Twisted Treeline Unranked"),
 	URF("Ultra Rapid Fire"),
-	URFBots("Ultra Rapid Fire Bots"),
-	NightmareBot("Summoner's Rift Nightmare Bots"),
-	Ascension("Ascension"),
-	Hexakill("Twisted Treeline 6x6 Hexakill"),
-	KingPoro("King Poro"),
-	CounterPick("Nemesis"),
-	Bilgewater("Black Market Brawlers");
+	URFBots("Ultra Rapid Fire Bots");
 
 	private String name;
 

@@ -17,7 +17,6 @@ package constant;
  */
 
 public enum PlatformId {
-
 	BR("BR1", "br"),
 	EUNE("EUN1", "eune"),
 	EUW("EUW1", "euw"),

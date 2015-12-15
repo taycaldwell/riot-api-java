@@ -17,7 +17,6 @@ package constant.staticdata;
  */
 
 public enum ItemListData {
-
 	ALL("all"),
 	COLLOQ("colloq"),
 	CONSUME_ON_FULL("consumeOnFull"),

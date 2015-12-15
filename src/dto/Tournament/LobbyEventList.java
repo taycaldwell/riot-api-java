@@ -27,5 +27,4 @@ public class LobbyEventList implements Serializable {
 	public List<LobbyEvent> getEventList() {
 		return eventList;
 	}
-	
 }

@@ -29,53 +29,57 @@ public class TournamentCode implements Serializable {
 	public String getCode() {
 		return code;
 	}
-	
+
 	public String getLobbyName() {
 		return lobbyName;
 	}
-	
+
 	public String getMap() {
 		return map;
 	}
-	
+
 	public String getMetaData() {
 		return metaData;
 	}
-	
+
 	public String getPassword() {
 		return password;
 	}
-	
+
 	public String getPickType() {
 		return pickType;
 	}
-	
+
 	public String getRegion() {
 		return region;
 	}
-	
+
 	public String getSpectators() {
 		return spectators;
 	}
-	
+
 	public int getId() {
 		return id;
 	}
-	
+
 	public int getProviderId() {
 		return providerId;
 	}
-	
+
 	public int getTeamSize() {
 		return teamSize;
 	}
-	
+
 	public int getTournamentId() {
 		return tournamentId;
 	}
-	
+
 	public Set<Long> getParticipants() {
 		return participants;
 	}
-	
+
+	@Override
+	public String toString() {
+		return getCode();
+	}
 }

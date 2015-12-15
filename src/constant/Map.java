@@ -19,7 +19,6 @@ import main.java.riotapi.RiotStringNotFound;
  */
 
 public enum Map {
-
 	ARAM(12, "Howling Abyss"),
 	BUTCHERS_BRIDGE(14,"Butcher's Bridge"),
 	CRYSTAL_SCAR(8, "The Crystal Scar"),

@@ -34,5 +34,4 @@ public class LobbyEvent implements Serializable {
 	public String getTimestamp() {
 		return timestamp;
 	}
-	
 }

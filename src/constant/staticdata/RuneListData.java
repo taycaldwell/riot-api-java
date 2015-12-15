@@ -17,7 +17,6 @@ package constant.staticdata;
  */
 
 public enum RuneListData {
-
 	ALL("all"),
 	BASIC("basic"),
 	COLLOQ("colloq"),

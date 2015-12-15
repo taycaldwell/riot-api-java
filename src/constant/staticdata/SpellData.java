@@ -17,7 +17,6 @@ package constant.staticdata;
  */
 
 public enum SpellData {
-
 	ALL("all"),
 	COOLDOWN("cooldown"),
 	COOLDOWN_BURN("cooldownBurn"),

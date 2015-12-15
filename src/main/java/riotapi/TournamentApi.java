@@ -1,5 +1,7 @@
 package main.java.riotapi;
 
+import java.util.HashMap;
+
 /*
  * Copyright 2015 Taylor Caldwell
  *
@@ -28,7 +30,6 @@ import constant.SpectatorType;
 import constant.TournamentMap;
 import dto.Tournament.LobbyEventList;
 import dto.Tournament.TournamentCode;
-import util.Convert;
 
 final class TournamentApi {
 
@@ -69,12 +70,13 @@ final class TournamentApi {
 
 	public static int createProvider(String key, Region region, String callbackUrl) throws RiotApiException {
 		String url = TOURNAMENT_ENDPOINT + "provider";
+		HashMap<String, Object> bodyMap = new HashMap<String, Object>();
+		bodyMap.put("region", region.getName().toUpperCase());
+		bodyMap.put("url", callbackUrl);
 
-		String body = "{\"region\":\"" + region.getName().toUpperCase() + "\",\"url\":\"" + callbackUrl + "\"}";
 		Integer providerId = null;
 		try {
-			providerId = new Gson().fromJson(Request.sendPost(url, key, body), new TypeToken<Integer>() {
-			}.getType());
+			providerId = new Gson().fromJson(Request.sendPost(url, key, new Gson().toJson(bodyMap)), Integer.class);
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
 		}
@@ -82,22 +84,18 @@ final class TournamentApi {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
 		}
 
-		return providerId;
+		return providerId.intValue();
 	}
 
 	public static int createTournament(String key, String tournamentName, int providerId) throws RiotApiException {
 		String url = TOURNAMENT_ENDPOINT + "tournament";
-
-		String body = "{\"name\":\"";
-		if (tournamentName != null) {
-			body += tournamentName;
-		}
-		body += "\",\"providerId\":" + providerId + "}";
+		HashMap<String, Object> bodyMap = new HashMap<String, Object>();
+		bodyMap.put("name", (tournamentName == null) ? "" : tournamentName);
+		bodyMap.put("providerId", providerId);
 
 		Integer tournamentId = null;
 		try {
-			tournamentId = new Gson().fromJson(Request.sendPost(url, key, body), new TypeToken<Integer>() {
-			}.getType());
+			tournamentId = new Gson().fromJson(Request.sendPost(url, key, new Gson().toJson(bodyMap)), Integer.class);
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
 		}
@@ -105,27 +103,29 @@ final class TournamentApi {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
 		}
 
-		return tournamentId;
+		return tournamentId.intValue();
 	}
 
 	public static List<String> createTournamentCodes(String key, int tournamentId, int count, int teamSize, TournamentMap mapType, PickType pickType,
 			SpectatorType spectatorType, String metaData, long... allowedSummonerIds) throws RiotApiException {
 		String url = TOURNAMENT_ENDPOINT + "code?tournamentId=" + tournamentId + "&count=" + count;
-
-		String body = "{\"teamSize\" : " + teamSize + ",\"spectatorType\" : \"" + spectatorType + "\",\"pickType\" : \"" + pickType + "\",\"mapType\" : \""
-				+ mapType + "\"";
-
+		HashMap<String, Object> bodyMap = new HashMap<String, Object>();
+		bodyMap.put("teamSize", teamSize);
+		bodyMap.put("spectatorType", spectatorType);
+		bodyMap.put("pickType", pickType);
+		bodyMap.put("mapType", mapType);
 		if (metaData != null) {
-			body += ",\"metaData\" : \"" + metaData + "\"";
+			bodyMap.put("metaData", metaData);
 		}
 		if (allowedSummonerIds.length > 0) {
-			body += ",\"allowedSummonerIds\" : {\"participants\" : [" + Convert.longToString(allowedSummonerIds) + "]}";
+			HashMap<String, Object> allowedSummonerIdsMap = new HashMap<String, Object>();
+			allowedSummonerIdsMap.put("participants", allowedSummonerIds);
+			bodyMap.put("allowedSummonerIds", allowedSummonerIdsMap);
 		}
-		body += "}";
 
 		List<String> tournamentCodes = null;
 		try {
-			tournamentCodes = new Gson().fromJson(Request.sendPost(url, key, body), new TypeToken<List<String>>() {
+			tournamentCodes = new Gson().fromJson(Request.sendPost(url, key, new Gson().toJson(bodyMap)), new TypeToken<List<String>>() {
 			}.getType());
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
@@ -140,19 +140,18 @@ final class TournamentApi {
 	public static void updateTournamentCode(String key, String tournamentCode, TournamentMap mapType, PickType pickType, SpectatorType spectatorType,
 			long... allowedSummonerIds) throws RiotApiException {
 		String url = TOURNAMENT_ENDPOINT + "code/" + tournamentCode;
-
-		String body = "{\"allowedParticipants\" : \"" + Convert.longToString(allowedSummonerIds) + "\"";
+		HashMap<String, Object> bodyMap = new HashMap<String, Object>();
+		bodyMap.put("allowedParticipants", allowedSummonerIds);
 		if (spectatorType != null) {
-			body += ",\"spectatorType\" : \"" + spectatorType + "\"";
+			bodyMap.put("spectatorType", spectatorType);
 		}
 		if (pickType != null) {
-			body += ",\"pickType\" : \"" + pickType + "\"";
+			bodyMap.put("pickType", pickType);
 		}
 		if (mapType != null) {
-			body += ",\"mapType\" : \"" + mapType + "\"";
+			bodyMap.put("mapType", mapType);
 		}
-		body += "}";
-		Request.sendPut(url, key, body);
 
+		Request.sendPut(url, key, new Gson().toJson(bodyMap));
 	}
 }

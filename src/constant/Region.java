@@ -17,7 +17,6 @@ package constant;
  */
 
 public enum Region {
-
 	BR("br.api.pvp.net", "br"),
 	EUNE("eune.api.pvp.net", "eune"),
 	EUW("euw.api.pvp.net", "euw"),

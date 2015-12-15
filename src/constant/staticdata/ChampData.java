@@ -17,7 +17,6 @@ package constant.staticdata;
  */
 
 public enum ChampData {
-
 	ALL("all"),
 	ALLYTIPS("allytips"),
 	ALTIMAGES("altimages"),
