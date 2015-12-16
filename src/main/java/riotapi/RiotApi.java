@@ -2829,7 +2829,7 @@ public class RiotApi {
 	public MatchDetail getMatchForTournament(long matchId, String tournamentCode, boolean includeTimeline) throws RiotApiException {
 		return getMatchForTournament(getRegion(), matchId, tournamentCode, includeTimeline);
 	}
-	
+
 	/**
 	 * Retrieve match by match ID and tournament code.
 	 *
@@ -2865,7 +2865,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public MatchDetail getMatchForTournament(long matchId, String tournamentCode) throws RiotApiException {
-		return getMatchForTournament(getRegion(), matchId, tournamentCode, false);
+		return getMatchForTournament(getRegion(), matchId, tournamentCode);
 	}
 
 	/**
