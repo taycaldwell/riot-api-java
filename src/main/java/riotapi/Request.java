@@ -23,7 +23,9 @@ public class Request {
 			connection = (HttpURLConnection) url.openConnection();
 			connection.setRequestMethod(method);
 			connection.setInstanceFollowRedirects(false);
-			connection.setRequestProperty("X-Riot-Token", key);
+			if(key != null) {
+				connection.setRequestProperty("X-Riot-Token", key);
+			}
 			
 			if(method.equals("PUT") || method.equals("POST")) {
 				connection.setRequestProperty("Content-Type", "application/json");

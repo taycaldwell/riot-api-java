@@ -76,7 +76,7 @@ final class SummonerApi {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-
+		
 		Map<String, Summoner> summoners = null;
 		try {
 			summoners = new Gson().fromJson(Request.sendGet(url, null), new TypeToken<Map<String, Summoner>>() {
