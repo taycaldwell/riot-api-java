@@ -3,7 +3,6 @@ package main.java.riotapi;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -12,22 +11,24 @@ import java.util.logging.Logger;
 
 public class Request {
 
-	private static String execute(String method, String URL, String key, String body) throws RiotApiException {
+	protected enum RequestMethod {
+		DELETE, GET, POST, PUT
+	};
 
+	protected static String execute(RequestMethod method, String requestURL, String key, String body) throws RiotApiException {
 		HttpURLConnection connection = null;
-
 		try {
-			String requestURL = URL;
 			URL url = new URL(requestURL);
-
 			connection = (HttpURLConnection) url.openConnection();
-			connection.setRequestMethod(method);
+			connection.setRequestMethod(method.name());
 			connection.setInstanceFollowRedirects(false);
-			if(key != null) {
+
+			if (key != null) {
 				connection.setRequestProperty("X-Riot-Token", key);
 			}
-			
-			if(method.equals("PUT") || method.equals("POST")) {
+
+			if (method == RequestMethod.POST || method == RequestMethod.PUT) {
+
 				connection.setRequestProperty("Content-Type", "application/json");
 				connection.setDoOutput(true);
 				DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
@@ -37,33 +38,28 @@ public class Request {
 			}
 
 			int responseCode = connection.getResponseCode();
-			
 			if (responseCode == 429) {
 				String retryAfterString = connection.getHeaderField("Retry-After");
 				String rateLimitType = connection.getHeaderField("X-Rate-Limit-Type");
-				if(retryAfterString != null) {
+				if (retryAfterString != null) {
 					int retryAfter = Integer.parseInt(retryAfterString);
 					throw new RiotApiException(responseCode, retryAfter, rateLimitType);
 				} else {
 					throw new RiotApiException(responseCode, 0, rateLimitType);
-				}	
-			}
-			
-			else if (responseCode != 200 && responseCode != 204) {
+				}
+			} else if (responseCode != 200 && responseCode != 204) {
+				System.out.println(requestURL);
 				throw new RiotApiException(responseCode);
 			}
-			
-			InputStream is = connection.getInputStream();
-			BufferedReader rd = new BufferedReader(new InputStreamReader(is, "utf-8"));
+
+			BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"));
 			StringBuilder response = new StringBuilder();
-
 			String line;
-			while ((line = rd.readLine()) != null) {
+			while ((line = br.readLine()) != null) {
 				response.append(line);
-				response.append('\r');
+				response.append(System.lineSeparator());
 			}
-			rd.close();
-
+			br.close();
 			connection.disconnect();
 			return response.toString();
 		} catch (IOException ex) {
@@ -75,19 +71,19 @@ public class Request {
 			}
 		}
 	}
-	
+
 	// HTTP GET request
 	protected static String sendGet(String URL, String key) throws RiotApiException {
-		return execute("GET", URL, key, null);
+		return execute(RequestMethod.GET, URL, key, null);
 	}
-	
+
 	// HTTP POST request
 	protected static String sendPost(String URL, String key, String body) throws RiotApiException {
-		return execute("POST", URL, key, body);
+		return execute(RequestMethod.POST, URL, key, body);
 	}
-	
+
 	// HTTP PUT request
 	protected static String sendPut(String URL, String key, String body) throws RiotApiException {
-		return execute("PUT", URL, key, body);
+		return execute(RequestMethod.PUT, URL, key, body);
 	}
 }
