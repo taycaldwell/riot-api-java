@@ -69,7 +69,7 @@ import util.Convert;
  * 
  * @author Taylor 'rithms' Caldwell
  * @author Daniel 'Linnun' Figge
- * @version 3.8.0
+ * @version 3.8.1
  */
 public class RiotApi {
 
