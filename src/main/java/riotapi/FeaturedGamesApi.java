@@ -32,7 +32,7 @@ final class FeaturedGamesApi {
 
 		FeaturedGames featuredGames = null;
 		try {
-			featuredGames = new Gson().fromJson(Request.sendGet(url, null), FeaturedGames.class);
+			featuredGames = new Gson().fromJson(Request.sendGet(url), FeaturedGames.class);
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
 		}

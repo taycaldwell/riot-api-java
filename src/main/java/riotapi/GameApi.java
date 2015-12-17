@@ -30,7 +30,7 @@ final class GameApi {
 
 		RecentGames recentGames = null;
 		try {
-			recentGames = new Gson().fromJson(Request.sendGet(url, null), RecentGames.class);
+			recentGames = new Gson().fromJson(Request.sendGet(url), RecentGames.class);
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
 		}

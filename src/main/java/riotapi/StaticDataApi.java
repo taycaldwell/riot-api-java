@@ -68,7 +68,7 @@ final class StaticDataApi {
 
 		ChampionList championList = null;
 		try {
-			championList = new Gson().fromJson(Request.sendGet(url, null), ChampionList.class);
+			championList = new Gson().fromJson(Request.sendGet(url), ChampionList.class);
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
 		}
@@ -96,7 +96,7 @@ final class StaticDataApi {
 
 		Champion champion = null;
 		try {
-			champion = new Gson().fromJson(Request.sendGet(url, null), Champion.class);
+			champion = new Gson().fromJson(Request.sendGet(url), Champion.class);
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
 		}
@@ -124,7 +124,7 @@ final class StaticDataApi {
 
 		ItemList itemList = null;
 		try {
-			itemList = new Gson().fromJson(Request.sendGet(url, null), ItemList.class);
+			itemList = new Gson().fromJson(Request.sendGet(url), ItemList.class);
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
 		}
@@ -152,7 +152,7 @@ final class StaticDataApi {
 
 		Item item = null;
 		try {
-			item = new Gson().fromJson(Request.sendGet(url, null), Item.class);
+			item = new Gson().fromJson(Request.sendGet(url), Item.class);
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
 		}
@@ -168,7 +168,7 @@ final class StaticDataApi {
 
 		Realm realm = null;
 		try {
-			realm = new Gson().fromJson(Request.sendGet(url, null), Realm.class);
+			realm = new Gson().fromJson(Request.sendGet(url), Realm.class);
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
 		}
@@ -196,7 +196,7 @@ final class StaticDataApi {
 
 		RuneList runeList = null;
 		try {
-			runeList = new Gson().fromJson(Request.sendGet(url, null), RuneList.class);
+			runeList = new Gson().fromJson(Request.sendGet(url), RuneList.class);
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
 		}
@@ -224,7 +224,7 @@ final class StaticDataApi {
 
 		Rune rune = null;
 		try {
-			rune = new Gson().fromJson(Request.sendGet(url, null), Rune.class);
+			rune = new Gson().fromJson(Request.sendGet(url), Rune.class);
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
 		}
@@ -253,7 +253,7 @@ final class StaticDataApi {
 
 		MasteryList masteryList = null;
 		try {
-			masteryList = new Gson().fromJson(Request.sendGet(url, null), MasteryList.class);
+			masteryList = new Gson().fromJson(Request.sendGet(url), MasteryList.class);
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
 		}
@@ -281,7 +281,7 @@ final class StaticDataApi {
 
 		Mastery mastery = null;
 		try {
-			mastery = new Gson().fromJson(Request.sendGet(url, null), Mastery.class);
+			mastery = new Gson().fromJson(Request.sendGet(url), Mastery.class);
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
 		}
@@ -311,7 +311,7 @@ final class StaticDataApi {
 
 		SummonerSpellList spellList = null;
 		try {
-			spellList = new Gson().fromJson(Request.sendGet(url, null), SummonerSpellList.class);
+			spellList = new Gson().fromJson(Request.sendGet(url), SummonerSpellList.class);
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
 		}
@@ -340,7 +340,7 @@ final class StaticDataApi {
 
 		SummonerSpell spell = null;
 		try {
-			spell = new Gson().fromJson(Request.sendGet(url, null), SummonerSpell.class);
+			spell = new Gson().fromJson(Request.sendGet(url), SummonerSpell.class);
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
 		}
@@ -356,7 +356,7 @@ final class StaticDataApi {
 
 		List<String> versions = null;
 		try {
-			versions = new Gson().fromJson(Request.sendGet(url, null), new TypeToken<List<String>>() {
+			versions = new Gson().fromJson(Request.sendGet(url), new TypeToken<List<String>>() {
 			}.getType());
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
@@ -373,7 +373,7 @@ final class StaticDataApi {
 
 		List<String> languages = null;
 		try {
-			languages = new Gson().fromJson(Request.sendGet(url, null), new TypeToken<List<String>>() {
+			languages = new Gson().fromJson(Request.sendGet(url), new TypeToken<List<String>>() {
 			}.getType());
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
@@ -396,7 +396,7 @@ final class StaticDataApi {
 
 		GameMapList gameMapList = null;
 		try {
-			gameMapList = new Gson().fromJson(Request.sendGet(url, null), GameMapList.class);
+			gameMapList = new Gson().fromJson(Request.sendGet(url), GameMapList.class);
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
 		}
@@ -418,7 +418,7 @@ final class StaticDataApi {
 
 		LanguageStrings languageStrings = null;
 		try {
-			languageStrings = new Gson().fromJson(Request.sendGet(url, null), LanguageStrings.class);
+			languageStrings = new Gson().fromJson(Request.sendGet(url), LanguageStrings.class);
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
 		}

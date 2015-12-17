@@ -34,7 +34,7 @@ final class StatusApi {
 
 		List<Shard> shards = null;
 		try {
-			shards = new Gson().fromJson(Request.sendGet(url, null), new TypeToken<List<Shard>>() {
+			shards = new Gson().fromJson(Request.sendGet(url), new TypeToken<List<Shard>>() {
 			}.getType());
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
@@ -54,7 +54,7 @@ final class StatusApi {
 
 		ShardStatus status = null;
 		try {
-			status = new Gson().fromJson(Request.sendGet(url, null), ShardStatus.class);
+			status = new Gson().fromJson(Request.sendGet(url), ShardStatus.class);
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
 		}

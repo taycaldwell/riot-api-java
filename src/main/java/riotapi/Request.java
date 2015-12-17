@@ -78,6 +78,10 @@ public class Request {
 		return sendDelete(url, key, null);
 	}
 
+	protected static String sendDelete(String url) throws RiotApiException {
+		return sendDelete(url, null);
+	}
+
 	// HTTP GET request
 	protected static String sendGet(String url, String key, String body) throws RiotApiException {
 		return execute(RequestMethod.GET, url, key, body);
@@ -85,6 +89,10 @@ public class Request {
 
 	protected static String sendGet(String url, String key) throws RiotApiException {
 		return sendGet(url, key, null);
+	}
+
+	protected static String sendGet(String url) throws RiotApiException {
+		return sendGet(url, null);
 	}
 
 	// HTTP POST request
@@ -96,6 +104,10 @@ public class Request {
 		return sendPost(url, key, null);
 	}
 
+	protected static String sendPost(String url) throws RiotApiException {
+		return sendPost(url, null);
+	}
+
 	// HTTP PUT request
 	protected static String sendPut(String url, String key, String body) throws RiotApiException {
 		return execute(RequestMethod.PUT, url, key, body);
@@ -103,5 +115,9 @@ public class Request {
 
 	protected static String sendPut(String url, String key) throws RiotApiException {
 		return sendPut(url, key, null);
+	}
+
+	protected static String sendPut(String url) throws RiotApiException {
+		return sendPut(url, null);
 	}
 }

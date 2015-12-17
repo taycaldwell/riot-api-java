@@ -1,16 +1,28 @@
 package main.java.riotapi;
 
-/**
- * 
- * @author Jasper
+/*
+ * Copyright 2014 Taylor Caldwell
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
+
 public class RiotApiException extends Exception {
 
 	private static final long serialVersionUID = 2658256159686373725L;
 	public static final int BAD_REQUEST = 400;
+	public static final int UNAUTHORIZED = 401;
 	public static final int FORBIDDEN = 403;
 	public static final int DATA_NOT_FOUND = 404;
-	public static final int UNAUTHORIZED = 401;
 	public static final int UNPROCESSABLE_ENTITY = 422;
 	public static final int RATE_LIMITED = 429;
 	public static final int SERVER_ERROR = 500;
@@ -22,18 +34,15 @@ public class RiotApiException extends Exception {
 	private final int retryAfter;
 	private final String rateLimitType;
 
-	public RiotApiException(final int errorCode) {
-		super(getMessage(errorCode));
-		this.errorCode = errorCode;
-		this.retryAfter = 0;
-		this.rateLimitType = null;
-	}
-	
 	public RiotApiException(final int errorCode, final int retryAfter, final String rateLimitType) {
 		super(getMessage(errorCode));
 		this.errorCode = errorCode;
 		this.retryAfter = retryAfter;
 		this.rateLimitType = rateLimitType;
+	}
+
+	public RiotApiException(final int errorCode) {
+		this(errorCode, 0, null);
 	}
 
 	public static String getMessage(final int errorCode) {
@@ -64,14 +73,19 @@ public class RiotApiException extends Exception {
 	}
 
 	public int getErrorCode() {
-		return this.errorCode;
+		return errorCode;
 	}
-	
+
 	public int getRetryAfter() {
-		return this.retryAfter;
+		return retryAfter;
 	}
-	
+
 	public String getRateLimitType() {
-		return this.rateLimitType;
+		return rateLimitType;
+	}
+
+	@Override
+	public String toString() {
+		return getClass().getName() + ": " + getMessage(errorCode);
 	}
 }

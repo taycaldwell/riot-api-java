@@ -36,7 +36,7 @@ final class MatchApi {
 
 		MatchDetail matchDetail = null;
 		try {
-			matchDetail = new Gson().fromJson(Request.sendGet(url, null), MatchDetail.class);
+			matchDetail = new Gson().fromJson(Request.sendGet(url), MatchDetail.class);
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
 		}
@@ -56,7 +56,7 @@ final class MatchApi {
 
 		MatchDetail matchDetail = null;
 		try {
-			matchDetail = new Gson().fromJson(Request.sendGet(url, null), MatchDetail.class);
+			matchDetail = new Gson().fromJson(Request.sendGet(url), MatchDetail.class);
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
 		}
@@ -72,7 +72,7 @@ final class MatchApi {
 
 		List<Long> matchIds = null;
 		try {
-			matchIds = new Gson().fromJson(Request.sendGet(url, null), new TypeToken<List<Long>>() {
+			matchIds = new Gson().fromJson(Request.sendGet(url), new TypeToken<List<Long>>() {
 			}.getType());
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);

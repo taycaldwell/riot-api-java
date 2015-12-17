@@ -34,7 +34,7 @@ final class ChampionApi {
 
 		ChampionList championList = null;
 		try {
-			championList = new Gson().fromJson(Request.sendGet(url, null), ChampionList.class);
+			championList = new Gson().fromJson(Request.sendGet(url), ChampionList.class);
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
 		}
@@ -50,7 +50,7 @@ final class ChampionApi {
 
 		Champion champion = null;
 		try {
-			champion = new Gson().fromJson(Request.sendGet(url, null), Champion.class);
+			champion = new Gson().fromJson(Request.sendGet(url), Champion.class);
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
 		}
