@@ -46,7 +46,7 @@ import net.rithms.riot.dto.Static.*;
  * 
  * @author Taylor 'rithms' Caldwell
  * @author Daniel 'Linnun' Figge
- * @version 3.8.1
+ * @version 3.8.2
  */
 public class RiotApi {
 

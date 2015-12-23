@@ -1,6 +1,6 @@
 #[RIOT-API-JAVA](http://rithms.net/riot-api-java/)
 ----------
-[![JitPack](https://img.shields.io/github/tag/rithms/riot-api-java.svg?label=maven)](https://jitpack.io/#rithms/riot-api-java/v3.8.1)
+[![JitPack](https://img.shields.io/github/tag/rithms/riot-api-java.svg?label=maven)](https://jitpack.io/#rithms/riot-api-java/v3.8.2)
 ----------
 
 A simple to use, Riot Games API wrapper for Java.
@@ -15,7 +15,7 @@ This product is not endorsed, certified or otherwise approved in any way by Riot
 - [Google Gson](https://code.google.com/p/google-gson/)
 
 ## Download
-[Download (Version 3.8.1)](https://www.dropbox.com/s/te7kxqqrhzsp60e/riot-api-java.jar?dl=0) 
+[Download (Version 3.8.2)](https://www.dropbox.com/s/te7kxqqrhzsp60e/riot-api-java.jar?dl=0) 
 
 ## Setup
 
@@ -28,7 +28,7 @@ Build Path -> Configure Build Path -> Libraries -> Add External Jars
 and selecting the jar under the Order and Export tab.
 
 
-This project is also available on [Jitpack](https://jitpack.io/#rithms/riot-api-java/v3.8.1)
+This project is also available on [Jitpack](https://jitpack.io/#rithms/riot-api-java/v3.8.2)
 
 ## Usage
 

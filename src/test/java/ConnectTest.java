@@ -2,12 +2,9 @@ import com.google.gson.Gson;
 import net.rithms.riot.api.RiotApi;
 import net.rithms.riot.api.RiotApiException;
 import net.rithms.riot.constant.Region;
-import net.rithms.riot.dto.League.League;
 import net.rithms.riot.dto.Summoner.Summoner;
 import org.junit.Ignore;
 import org.junit.Test;
-
-import java.util.List;
 import java.util.Map;
 
 /**
