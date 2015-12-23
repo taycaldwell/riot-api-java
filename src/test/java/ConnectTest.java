@@ -1,9 +1,9 @@
 import com.google.gson.Gson;
-import com.rithms.riot.api.RiotApi;
-import com.rithms.riot.api.RiotApiException;
-import com.rithms.riot.constant.Region;
-import com.rithms.riot.dto.League.League;
-import com.rithms.riot.dto.Summoner.Summoner;
+import net.rithms.riot.api.RiotApi;
+import net.rithms.riot.api.RiotApiException;
+import net.rithms.riot.constant.Region;
+import net.rithms.riot.dto.League.League;
+import net.rithms.riot.dto.Summoner.Summoner;
 import org.junit.Ignore;
 import org.junit.Test;
 
