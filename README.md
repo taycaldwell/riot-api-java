@@ -36,10 +36,10 @@ This library can be used strictly according to the [Riot API Documentation](http
 
 ```java
 import java.util.Map;
-import constant.Region;
-import dto.Summoner.Summoner;
-import main.java.riotapi.RiotApi;
-import main.java.riotapi.RiotApiException;
+import com.rithms.riot.constant.Region;
+import com.rithms.riot.dto.Summoner.Summoner;
+import com.rithms.riot.api.RiotApi;
+import com.rithms.riot.api.RiotApiException;
 import com.google.gson*;
 
 public class Example {
@@ -65,10 +65,10 @@ Below is an example of how to set your region. Because the region was set before
 
 ```java
 import java.util.Map;
-import constant.Region;
-import dto.Summoner.Summoner;
-import main.java.riotapi.RiotApi;
-import main.java.riotapi.RiotApiException;
+import com.rithms.riot.constant.Region;
+import com.rithms.riot.dto.Summoner.Summoner;
+import com.rithms.riot.api.RiotApi;
+import com.rithms.riot.api.RiotApiException;
 import com.google.gson*;
 
 public class Example {
@@ -94,11 +94,11 @@ It is important to be aware of your personal rate limit. Any method call from th
 
 
 ```java
-import constant.Region;
-import constant.Season;
-import dto.Stats.RankedStats;
-import main.java.riotapi.RiotApi;
-import main.java.riotapi.RiotApiException;
+import com.rithms.riot.constant.Region;
+import com.rithms.riot.constant.Season;
+import com.rithms.riot.dto.Stats.RankedStats;
+import com.rithms.riot.api.RiotApi;
+import com.rithms.riot.api.RiotApiException;
 import com.google.gson*;
 
 public class Example {

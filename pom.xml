@@ -4,10 +4,14 @@
 
   <groupId>com.github.rithms</groupId>
   <artifactId>riot-api-java</artifactId>
-  <version>3.8.1</version>
+  <version>3.8.2</version>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
 
   <build>
-    <sourceDirectory>src</sourceDirectory>
+    <!--<sourceDirectory>src</sourceDirectory>-->
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -18,6 +22,20 @@
           <target>1.8</target>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>2.2.1</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <phase>package</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 
@@ -26,6 +44,13 @@
 	<groupId>com.google.code.gson</groupId>
     	<artifactId>gson</artifactId>
     	<version>2.5</version>
+    </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 
