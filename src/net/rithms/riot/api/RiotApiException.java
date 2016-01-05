@@ -30,19 +30,11 @@ public class RiotApiException extends Exception {
 	public static final int PARSE_FAILURE = 600;
 	public static final int IOEXCEPTION = 601;
 
-	private final int errorCode;
-	private final int retryAfter;
-	private final String rateLimitType;
-
-	public RiotApiException(final int errorCode, final int retryAfter, final String rateLimitType) {
-		super(getMessage(errorCode));
-		this.errorCode = errorCode;
-		this.retryAfter = retryAfter;
-		this.rateLimitType = rateLimitType;
-	}
+	protected final int errorCode;
 
 	public RiotApiException(final int errorCode) {
-		this(errorCode, 0, null);
+		super(getMessage(errorCode));
+		this.errorCode = errorCode;
 	}
 
 	public static String getMessage(final int errorCode) {
@@ -74,14 +66,6 @@ public class RiotApiException extends Exception {
 
 	public int getErrorCode() {
 		return errorCode;
-	}
-
-	public int getRetryAfter() {
-		return retryAfter;
-	}
-
-	public String getRateLimitType() {
-		return rateLimitType;
 	}
 
 	@Override

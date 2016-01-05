@@ -42,9 +42,9 @@ public class Request {
 				String rateLimitType = connection.getHeaderField("X-Rate-Limit-Type");
 				if (retryAfterString != null) {
 					int retryAfter = Integer.parseInt(retryAfterString);
-					throw new RiotApiException(responseCode, retryAfter, rateLimitType);
+					throw new RateLimitException(responseCode, retryAfter, rateLimitType);
 				} else {
-					throw new RiotApiException(responseCode, 0, rateLimitType);
+					throw new RateLimitException(responseCode, 0, rateLimitType);
 				}
 			} else if (responseCode < 200 || responseCode > 299) {
 				throw new RiotApiException(responseCode);
