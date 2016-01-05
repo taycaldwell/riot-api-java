@@ -23,14 +23,14 @@ public class RateLimitException extends RiotApiException {
 	protected final int retryAfter;
 	protected final String rateLimitType;
 
-	public RateLimitException(final int errorCode, final int retryAfter, final String rateLimitType) {
-		super(errorCode);
+	public RateLimitException(final int retryAfter, final String rateLimitType) {
+		super(RATE_LIMITED);
 		this.retryAfter = retryAfter;
 		this.rateLimitType = rateLimitType;
 	}
 
-	public RateLimitException(final int errorCode) {
-		this(errorCode, 0, null);
+	public RateLimitException() {
+		this(0, null);
 	}
 
 	public int getRetryAfter() {
