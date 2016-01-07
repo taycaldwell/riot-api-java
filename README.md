@@ -15,7 +15,8 @@ This product is not endorsed, certified or otherwise approved in any way by Riot
 - [Google Gson](https://code.google.com/p/google-gson/)
 
 ## Download
-[Download (Version 3.8.2)](https://www.dropbox.com/s/te7kxqqrhzsp60e/riot-api-java.jar?dl=0) 
+[Download (Version 3.8.2)](https://www.dropbox.com/s/te7kxqqrhzsp60e/riot-api-java.jar?dl=0)
+[Download for Android (Version 3.8.2)](https://github.com/rithms/riot-api-java/releases/tag/v3.8.2-android) 
 
 ## Setup
 
