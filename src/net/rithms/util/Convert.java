@@ -25,7 +25,7 @@ public final class Convert {
 		// Java 7
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < input.length - 1; i++) {
-			sb.append(input[i]).append(",");
+			sb.append(input[i]).append(',');
 		}
 		sb.append(input[input.length - 1]);
 		return sb.toString();
