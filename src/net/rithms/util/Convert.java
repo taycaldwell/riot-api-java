@@ -1,8 +1,5 @@
 package net.rithms.util;
 
-import java.util.Arrays;
-import java.util.stream.Collectors;
-
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -22,7 +19,16 @@ import java.util.stream.Collectors;
 public final class Convert {
 
 	public static String longToString(long... input) {
-		return Arrays.stream(input).mapToObj(l -> ((Long) l).toString()).collect(Collectors.joining(","));
+		// Java 8
+		// return Arrays.stream(input).mapToObj(l -> ((Long) l).toString()).collect(Collectors.joining(","));
+
+		// Java 7
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < input.length - 1; i++) {
+			sb.append(input[i]).append(",");
+		}
+		sb.append(input[input.length - 1]);
+		return sb.toString();
 	}
 
 	public static String normalizeSummonerName(String summonerName) {
@@ -31,6 +37,22 @@ public final class Convert {
 	}
 
 	public static String[] normalizeSummonerNames(String... summonerNames) {
-		return Arrays.stream(summonerNames).map(s -> normalizeSummonerName(s)).toArray(size -> new String[size]);
+		// Java 8
+		// return Arrays.stream(summonerNames).map(s -> normalizeSummonerName(s)).toArray(size -> new String[size]);
+
+		// Java 7
+		for (int i = 0; i < summonerNames.length; i++) {
+			summonerNames[i] = normalizeSummonerName(summonerNames[i]);
+		}
+		return summonerNames;
+	}
+
+	public static String joinString(String separator, String... strings) {
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < strings.length - 1; i++) {
+			sb.append(strings[i]).append(separator);
+		}
+		sb.append(strings[strings.length - 1]);
+		return sb.toString();
 	}
 }

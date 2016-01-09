@@ -7,7 +7,7 @@ import org.junit.runners.Suite.SuiteClasses;
 import net.rithms.riot.api.RiotApi;
 
 @RunWith(Suite.class)
-@SuiteClasses({ SummonerTest.class })
+@SuiteClasses({ UtilTest.class, SummonerTest.class })
 public class RiotApiTest {
 
 	private static final String apiKey = "YOUR-API-KEY-HERE";

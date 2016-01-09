@@ -11,7 +11,7 @@ This product is not endorsed, certified or otherwise approved in any way by Riot
 
 ## Requirements
 
-**riot-api-java** requires Java 8 and the following libraries:
+**riot-api-java** requires Java 7 and the following libraries:
 - [Google Gson](https://code.google.com/p/google-gson/)
 
 ## Download

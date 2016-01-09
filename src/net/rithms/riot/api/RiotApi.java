@@ -18,13 +18,40 @@ package net.rithms.riot.api;
 import java.util.List;
 import java.util.Map;
 
+import net.rithms.riot.constant.PickType;
+import net.rithms.riot.constant.PlatformId;
+import net.rithms.riot.constant.QueueType;
+import net.rithms.riot.constant.Region;
+import net.rithms.riot.constant.Season;
+import net.rithms.riot.constant.SpectatorType;
+import net.rithms.riot.constant.TournamentMap;
+import net.rithms.riot.constant.staticdata.ChampData;
+import net.rithms.riot.constant.staticdata.ItemData;
+import net.rithms.riot.constant.staticdata.ItemListData;
+import net.rithms.riot.constant.staticdata.MasteryData;
+import net.rithms.riot.constant.staticdata.MasteryListData;
+import net.rithms.riot.constant.staticdata.RuneData;
+import net.rithms.riot.constant.staticdata.RuneListData;
+import net.rithms.riot.constant.staticdata.SpellData;
 import net.rithms.riot.dto.Champion.Champion;
+import net.rithms.riot.dto.Champion.ChampionList;
 import net.rithms.riot.dto.CurrentGame.CurrentGameInfo;
 import net.rithms.riot.dto.FeaturedGames.FeaturedGames;
 import net.rithms.riot.dto.Game.RecentGames;
 import net.rithms.riot.dto.League.League;
 import net.rithms.riot.dto.Match.MatchDetail;
 import net.rithms.riot.dto.MatchList.MatchList;
+import net.rithms.riot.dto.Static.GameMapList;
+import net.rithms.riot.dto.Static.Item;
+import net.rithms.riot.dto.Static.ItemList;
+import net.rithms.riot.dto.Static.LanguageStrings;
+import net.rithms.riot.dto.Static.Mastery;
+import net.rithms.riot.dto.Static.MasteryList;
+import net.rithms.riot.dto.Static.Realm;
+import net.rithms.riot.dto.Static.Rune;
+import net.rithms.riot.dto.Static.RuneList;
+import net.rithms.riot.dto.Static.SummonerSpell;
+import net.rithms.riot.dto.Static.SummonerSpellList;
 import net.rithms.riot.dto.Stats.PlayerStatsSummaryList;
 import net.rithms.riot.dto.Stats.RankedStats;
 import net.rithms.riot.dto.Status.Shard;
@@ -36,10 +63,6 @@ import net.rithms.riot.dto.Team.Team;
 import net.rithms.riot.dto.Tournament.LobbyEventList;
 import net.rithms.riot.dto.Tournament.TournamentCode;
 import net.rithms.util.Convert;
-import net.rithms.riot.constant.*;
-import net.rithms.riot.constant.staticdata.*;
-import net.rithms.riot.dto.Champion.ChampionList;
-import net.rithms.riot.dto.Static.*;
 
 /**
  * Riot Games API Java Library - riot-api-java
@@ -274,7 +297,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Map<String, List<League>> getLeagueBySummoners(Region region, String... summonerIds) throws RiotApiException {
-		return LeagueApi.getLeagueBySummoners(region, getKey(), String.join(",", summonerIds));
+		return LeagueApi.getLeagueBySummoners(region, getKey(), Convert.joinString(",", summonerIds));
 	}
 
 	/**
@@ -398,7 +421,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Map<String, List<League>> getLeagueEntryBySummoners(Region region, String... summonerIds) throws RiotApiException {
-		return LeagueApi.getLeagueEntryBySummoners(region, getKey(), String.join(",", summonerIds));
+		return LeagueApi.getLeagueEntryBySummoners(region, getKey(), Convert.joinString(",", summonerIds));
 	}
 
 	/**
@@ -522,7 +545,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Map<String, List<League>> getLeagueByTeams(Region region, String... teamIds) throws RiotApiException {
-		return LeagueApi.getLeagueByTeams(region, getKey(), String.join(",", teamIds));
+		return LeagueApi.getLeagueByTeams(region, getKey(), Convert.joinString(",", teamIds));
 	}
 
 	/**
@@ -586,7 +609,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Map<String, List<League>> getLeagueEntryByTeams(Region region, String... teamIds) throws RiotApiException {
-		return LeagueApi.getLeagueEntryByTeams(region, getKey(), String.join(",", teamIds));
+		return LeagueApi.getLeagueEntryByTeams(region, getKey(), Convert.joinString(",", teamIds));
 	}
 
 	/**
@@ -890,7 +913,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Map<String, MasteryPages> getMasteryPages(Region region, String... summonerIds) throws RiotApiException {
-		return SummonerApi.getMasteryPages(region, getKey(), String.join(",", summonerIds));
+		return SummonerApi.getMasteryPages(region, getKey(), Convert.joinString(",", summonerIds));
 	}
 
 	/**
@@ -985,7 +1008,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Map<String, RunePages> getRunePages(Region region, String... summonerIds) throws RiotApiException {
-		return SummonerApi.getRunePages(region, getKey(), String.join(",", summonerIds));
+		return SummonerApi.getRunePages(region, getKey(), Convert.joinString(",", summonerIds));
 	}
 
 	/**
@@ -1081,7 +1104,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Map<String, Summoner> getSummonersByName(Region region, String... summonerNames) throws RiotApiException {
-		return SummonerApi.getSummonersByName(region, getKey(), String.join(",", summonerNames));
+		return SummonerApi.getSummonersByName(region, getKey(), Convert.joinString(",", summonerNames));
 	}
 
 	/**
@@ -1147,7 +1170,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Map<String, Summoner> getSummonersById(Region region, String... summonerIds) throws RiotApiException {
-		return SummonerApi.getSummonersById(region, getKey(), String.join(",", summonerIds));
+		return SummonerApi.getSummonersById(region, getKey(), Convert.joinString(",", summonerIds));
 	}
 
 	/**
@@ -1161,7 +1184,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Map<String, Summoner> getSummonersById(String... summonerIds) throws RiotApiException {
-		return getSummonersById(getRegion(), String.join(",", summonerIds));
+		return getSummonersById(getRegion(), summonerIds);
 	}
 
 	/**
@@ -1270,7 +1293,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Map<String, String> getSummonerNames(Region region, String... summonerIds) throws RiotApiException {
-		return SummonerApi.getSummonerNames(region, getKey(), String.join(",", summonerIds));
+		return SummonerApi.getSummonerNames(region, getKey(), Convert.joinString(",", summonerIds));
 	}
 
 	/**
@@ -1387,7 +1410,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Map<String, List<Team>> getTeamsBySummonerIds(Region region, String... summonerIds) throws RiotApiException {
-		return TeamApi.getTeamsBySummonerIds(region, getKey(), String.join(",", summonerIds));
+		return TeamApi.getTeamsBySummonerIds(region, getKey(), Convert.joinString(",", summonerIds));
 	}
 
 	/**
@@ -1511,7 +1534,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public Map<String, Team> getTeamsByTeamIds(Region region, String... teamIds) throws RiotApiException {
-		return TeamApi.getTeamsByTeamIds(region, getKey(), String.join(",", teamIds));
+		return TeamApi.getTeamsByTeamIds(region, getKey(), Convert.joinString(",", teamIds));
 	}
 
 	/**
@@ -1795,7 +1818,8 @@ public class RiotApi {
 	 * @throws RiotApiException
 	 *             if the API returns an error or unparsable result
 	 */
-	public net.rithms.riot.dto.Static.ChampionList getDataChampionList(Region region, String locale, String version, boolean dataById, ChampData... champData) throws RiotApiException {
+	public net.rithms.riot.dto.Static.ChampionList getDataChampionList(Region region, String locale, String version, boolean dataById, ChampData... champData)
+			throws RiotApiException {
 		return StaticDataApi.getDataChampionList(region, getKey(), locale, version, dataById, champData);
 	}
 
@@ -1818,7 +1842,8 @@ public class RiotApi {
 	 * @throws RiotApiException
 	 *             if the API returns an error or unparsable result
 	 */
-	public net.rithms.riot.dto.Static.ChampionList getDataChampionList(String locale, String version, boolean dataById, ChampData... champData) throws RiotApiException {
+	public net.rithms.riot.dto.Static.ChampionList getDataChampionList(String locale, String version, boolean dataById, ChampData... champData)
+			throws RiotApiException {
 		return getDataChampionList(getRegion(), locale, version, dataById, champData);
 	}
 
@@ -1868,7 +1893,8 @@ public class RiotApi {
 	 * @throws RiotApiException
 	 *             if the API returns an error or unparsable result
 	 */
-	public net.rithms.riot.dto.Static.Champion getDataChampion(Region region, int id, String locale, String version, ChampData... champData) throws RiotApiException {
+	public net.rithms.riot.dto.Static.Champion getDataChampion(Region region, int id, String locale, String version, ChampData... champData)
+			throws RiotApiException {
 		return StaticDataApi.getDataChampion(region, getKey(), id, locale, version, champData);
 	}
 
@@ -2952,7 +2978,7 @@ public class RiotApi {
 	 *             if the API returns an error or unparsable result
 	 */
 	public List<String> createTournamentCodes(int tournamentId, int count, int teamSize, TournamentMap mapType, PickType pickType, SpectatorType spectatorType,
-											  String metaData, long... allowedSummonerIds) throws RiotApiException {
+			String metaData, long... allowedSummonerIds) throws RiotApiException {
 		return TournamentApi.createTournamentCodes(getTournamentKey(), tournamentId, count, teamSize, mapType, pickType, spectatorType, metaData,
 				allowedSummonerIds);
 	}
