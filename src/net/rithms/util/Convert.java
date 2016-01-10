@@ -1,5 +1,7 @@
 package net.rithms.util;
 
+import java.util.Objects;
+
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -18,25 +20,56 @@ package net.rithms.util;
 
 public final class Convert {
 
-	public static String longToString(long... input) {
+	/**
+	 * Returns a new String composed of copies of the {@code long elements} joined together with a comma as separator.
+	 * 
+	 * @param elements
+	 *            the elements to join together
+	 * @return Comma-separated String of numbers
+	 * @throws NullPointerException
+	 *             If {@code elements} is {@code null}
+	 */
+	public static String longToString(long... elements) {
+		Objects.requireNonNull(elements);
 		// Java 8
-		// return Arrays.stream(input).mapToObj(l -> ((Long) l).toString()).collect(Collectors.joining(","));
+		// return Arrays.stream(elements).mapToObj(l -> ((Long) l).toString()).collect(Collectors.joining(","));
 
 		// Java 7
 		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < input.length - 1; i++) {
-			sb.append(input[i]).append(',');
+		for (int i = 0; i < elements.length - 1; i++) {
+			sb.append(elements[i]).append(',');
 		}
-		sb.append(input[input.length - 1]);
+		sb.append(elements[elements.length - 1]);
 		return sb.toString();
 	}
 
+	/**
+	 * Normalizes and returns a summoner name. This casts {@code String summonerName} to lower case and strips any whitespaces.
+	 * 
+	 * @param summonerName
+	 *            summoner name
+	 * @return Normalized summoner name
+	 * @throws NullPointerException
+	 *             If {@code summonerName} is {@code null}
+	 */
 	public static String normalizeSummonerName(String summonerName) {
+		Objects.requireNonNull(summonerName);
 		// Note for contributors: If you change this, don't strip commas! It could break comma-separated lists of summonerNames
 		return summonerName.toLowerCase().replaceAll("\\s+", "");
 	}
 
+	/**
+	 * Normalizes and returns an array of summoner names. This casts each of {@code String[] summonerNames} to lower case and strips any
+	 * whitespaces.
+	 * 
+	 * @param summonerNames
+	 *            summoner names
+	 * @return Normalized summoner names
+	 * @throws NullPointerException
+	 *             If {@code summonerNames} is {@code null}
+	 */
 	public static String[] normalizeSummonerNames(String... summonerNames) {
+		Objects.requireNonNull(summonerNames);
 		// Java 8
 		// return Arrays.stream(summonerNames).map(s -> normalizeSummonerName(s)).toArray(size -> new String[size]);
 
@@ -47,12 +80,28 @@ public final class Convert {
 		return summonerNames;
 	}
 
-	public static String joinString(String separator, String... strings) {
+	/**
+	 * Returns a new String composed of copies of the {@code CharSequence elements} joined together with a copy of the specified
+	 * {@code delimiter}.
+	 *
+	 * Note that if an element is null, then {@code "null"} is added.
+	 *
+	 * @param delimiter
+	 *            the delimiter that separates each element
+	 * @param elements
+	 *            the elements to join together
+	 * @return a new {@code String} that is composed of the {@code elements} separated by the {@code delimiter}
+	 * @throws NullPointerException
+	 *             If {@code delimiter} or {@code elements} is {@code null}
+	 */
+	public static String joinString(CharSequence delimiter, CharSequence... elements) {
+		Objects.requireNonNull(delimiter);
+		Objects.requireNonNull(elements);
 		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < strings.length - 1; i++) {
-			sb.append(strings[i]).append(separator);
+		for (int i = 0; i < elements.length - 1; i++) {
+			sb.append(elements[i]).append(delimiter);
 		}
-		sb.append(strings[strings.length - 1]);
+		sb.append(elements[elements.length - 1]);
 		return sb.toString();
 	}
 }
