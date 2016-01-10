@@ -99,10 +99,7 @@ final class LeagueApi {
 	}
 
 	public static League getChallengerLeague(Region region, String key, QueueType queueType) throws RiotApiException {
-		String url = region.getEndpoint() + VERSION + "league/challenger/?api_key=" + key;
-		if (queueType != null) {
-			url += "&type=" + queueType.name();
-		}
+		String url = region.getEndpoint() + VERSION + "league/challenger/?api_key=" + key + "&type=" + queueType.name();
 
 		League leagues = null;
 		try {
@@ -118,10 +115,7 @@ final class LeagueApi {
 	}
 
 	public static League getMasterLeague(Region region, String key, QueueType queueType) throws RiotApiException {
-		String url = region.getEndpoint() + VERSION + "league/master/?api_key=" + key;
-		if (queueType != null) {
-			url += "&type=" + queueType.name();
-		}
+		String url = region.getEndpoint() + VERSION + "league/master/?api_key=" + key + "&type=" + queueType.name();
 
 		League leagues = null;
 		try {
