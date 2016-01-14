@@ -141,4 +141,4 @@ All contributions are appreciated.
 If you would like to contribute to this repo, please send a pull request.
 
 ## Contact
-Have a suggestion, complaint, or question? Open an [issue](https://github.com/rithms/riot-api-java/issues), or [tweet me](http://twitter.com/itsRithms) for a quick reply.
+Have a suggestion, complaint, or question? Open an [issue](https://github.com/rithms/riot-api-java/issues).
