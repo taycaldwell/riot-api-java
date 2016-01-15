@@ -4,7 +4,7 @@
 ----------
 
 A simple to use, Riot Games API wrapper for Java.
-This library makes it easy to gather and use League of Legends data in your web and mobile (Android) apps.
+This library makes it easy to gather and use League of Legends data in your apps.
 
 ## Disclaimer
 This product is not endorsed, certified or otherwise approved in any way by Riot Games, Inc. or any of its affiliates.
@@ -14,14 +14,9 @@ This product is not endorsed, certified or otherwise approved in any way by Riot
 **riot-api-java** requires Java 7 and the following libraries:
 - [Google Gson](https://code.google.com/p/google-gson/)
 
-## Download
-[Download (Version 3.8.2)](https://github.com/rithms/riot-api-java/releases/tag/v3.8.2)
-
-[Download for Android (Version 3.8.2)](https://github.com/rithms/riot-api-java/releases/tag/v3.8.2-android) 
-
 ## Setup
 
-[Download](https://www.dropbox.com/s/te7kxqqrhzsp60e/riot-api-java.jar?dl=0) the .jar file, and add it as an external library to your project.
+[Download](https://github.com/rithms/riot-api-java/releases) the .jar file, and add it as an external library to your project.
 
 If you are using Eclipse, this can be done by right clicking your project, and selecting:
 
@@ -138,7 +133,7 @@ The current version of this library supports the following Riot Games API versio
 
 ## Contributing
 All contributions are appreciated.
-If you would like to contribute to this repo, please send a pull request.
+If you would like to contribute to this project, please send a pull request.
 
 ## Contact
 Have a suggestion, complaint, or question? Open an [issue](https://github.com/rithms/riot-api-java/issues).
