@@ -46,13 +46,15 @@ public enum QueueType {
 	ODIN_5x5_BLIND("Dominion 5v5 Blind Pick", 16),
 	ODIN_5x5_DRAFT("Dominion 5v5 Draft Pick", 17),
 	ONEFORALL_5x5("One for All", 70),
-    ONEFORALL_MIRRORMODE_5x5("One for All: Mirror Mode", 70),
+    	ONEFORALL_MIRRORMODE_5x5("One for All: Mirror Mode", 70),
 	RANKED_PREMADE_3x3("Ranked Premade 3v3", 9),
 	RANKED_PREMADE_5x5("Ranked Premade 5v5", 6),
 	RANKED_SOLO_5x5("Ranked Solo 5v5", 4),
 	RANKED_TEAM_3x3("Ranked Team 3v3", 41),
 	RANKED_TEAM_5x5("Ranked Team 5v5", 42),
 	SR_6x6("Hexakill", 75),
+	TEAM_BUILDER_DRAFT_RANKED_5x5("Ranked 5v5 Draft Pick", 410),
+	TEAM_BUILDER_DRAFT_UNRANKED_5x5("Normal 5v5 Draft Pick", 400),
 	URF_5x5("Ultra Rapid Fire", 76);
 
 	private String name;
