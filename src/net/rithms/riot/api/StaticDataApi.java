@@ -44,6 +44,9 @@ import net.rithms.riot.dto.Static.RuneList;
 import net.rithms.riot.dto.Static.SummonerSpell;
 import net.rithms.riot.dto.Static.SummonerSpellList;
 
+/**
+ * @version 1.2
+ */
 final class StaticDataApi {
 
 	private static final String VERSION = "/v1.2/";

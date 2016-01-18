@@ -21,9 +21,10 @@ import com.google.gson.JsonSyntaxException;
 import net.rithms.riot.constant.PlatformId;
 import net.rithms.riot.dto.CurrentGame.CurrentGameInfo;
 
+/**
+ * @version 1.0
+ */
 final class CurrentGameApi {
-
-	private static final String VERSION = "/v1.0/";
 
 	private static final String endpoint = ".api.pvp.net/observer-mode/rest/consumer/getSpectatorGameInfo/";
 

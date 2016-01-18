@@ -22,6 +22,9 @@ import net.rithms.riot.constant.Region;
 import net.rithms.riot.dto.Champion.Champion;
 import net.rithms.riot.dto.Champion.ChampionList;
 
+/**
+ * @version 1.2
+ */
 final class ChampionApi {
 
 	private static final String VERSION = "/v1.2/";

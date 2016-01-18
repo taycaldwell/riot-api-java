@@ -23,6 +23,9 @@ import net.rithms.riot.constant.Season;
 import net.rithms.riot.dto.Stats.PlayerStatsSummaryList;
 import net.rithms.riot.dto.Stats.RankedStats;
 
+/**
+ * @version 1.3
+ */
 final class StatsApi {
 
 	private static final String VERSION = "/v1.3/";

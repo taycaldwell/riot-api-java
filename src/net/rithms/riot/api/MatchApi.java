@@ -24,6 +24,9 @@ import com.google.gson.reflect.TypeToken;
 import net.rithms.riot.constant.Region;
 import net.rithms.riot.dto.Match.MatchDetail;
 
+/**
+ * @version 2.2
+ */
 final class MatchApi {
 
 	private static final String VERSION = "/v2.2/";

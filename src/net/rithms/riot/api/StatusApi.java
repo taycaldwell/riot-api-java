@@ -25,9 +25,10 @@ import net.rithms.riot.constant.Region;
 import net.rithms.riot.dto.Status.Shard;
 import net.rithms.riot.dto.Status.ShardStatus;
 
+/**
+ * @version 1.0
+ */
 final class StatusApi {
-
-	private static final String VERSION = "/v1.0/";
 
 	public static List<Shard> getShards() throws RiotApiException {
 		String url = "http://status.leagueoflegends.com/shards";

@@ -21,9 +21,10 @@ import com.google.gson.JsonSyntaxException;
 import net.rithms.riot.constant.Region;
 import net.rithms.riot.dto.FeaturedGames.FeaturedGames;
 
+/**
+ * @version 1.0
+ */
 final class FeaturedGamesApi {
-
-	private static final String VERSION = "/v1.0/";
 
 	private static final String endpoint = ".api.pvp.net/observer-mode/rest/featured";
 

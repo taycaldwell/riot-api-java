@@ -25,6 +25,9 @@ import com.google.gson.reflect.TypeToken;
 import net.rithms.riot.constant.Region;
 import net.rithms.riot.dto.Team.Team;
 
+/**
+ * @version 2.4
+ */
 final class TeamApi {
 
 	private static final String VERSION = "/v2.4/";

@@ -29,6 +29,9 @@ import net.rithms.riot.dto.Summoner.RunePages;
 import net.rithms.riot.dto.Summoner.Summoner;
 import net.rithms.util.Convert;
 
+/**
+ * @version 1.4
+ */
 final class SummonerApi {
 
 	private static final String VERSION = "/v1.4/";

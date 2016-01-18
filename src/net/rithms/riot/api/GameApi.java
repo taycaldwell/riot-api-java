@@ -21,6 +21,9 @@ import com.google.gson.JsonSyntaxException;
 import net.rithms.riot.constant.Region;
 import net.rithms.riot.dto.Game.RecentGames;
 
+/**
+ * @version 1.3
+ */
 final class GameApi {
 
 	private static final String VERSION = "/v1.3/";

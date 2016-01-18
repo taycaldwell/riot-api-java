@@ -29,6 +29,9 @@ import net.rithms.riot.constant.TournamentMap;
 import net.rithms.riot.dto.Tournament.LobbyEventList;
 import net.rithms.riot.dto.Tournament.TournamentCode;
 
+/**
+ * @version 1
+ */
 final class TournamentApi {
 
 	private static final String VERSION = "/v1/";

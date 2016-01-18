@@ -26,6 +26,9 @@ import net.rithms.riot.constant.QueueType;
 import net.rithms.riot.constant.Region;
 import net.rithms.riot.dto.League.League;
 
+/**
+ * @version 2.5
+ */
 final class LeagueApi {
 
 	private static final String VERSION = "/v2.5/";

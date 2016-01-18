@@ -21,6 +21,9 @@ import com.google.gson.JsonSyntaxException;
 import net.rithms.riot.constant.Region;
 import net.rithms.riot.dto.MatchList.MatchList;
 
+/**
+ * @version 2.2
+ */
 final class MatchListApi {
 
 	private static final String VERSION = "/v2.2/";
