@@ -109,13 +109,13 @@ final class TournamentApi {
 		String url = TOURNAMENT_ENDPOINT + "code?tournamentId=" + tournamentId + "&count=" + count;
 		HashMap<String, Object> bodyMap = new HashMap<String, Object>();
 		bodyMap.put("teamSize", teamSize);
-		bodyMap.put("spectatorType", spectatorType);
-		bodyMap.put("pickType", pickType);
 		bodyMap.put("mapType", mapType);
+		bodyMap.put("pickType", pickType);
+		bodyMap.put("spectatorType", spectatorType);
 		if (metaData != null) {
 			bodyMap.put("metaData", metaData);
 		}
-		if (allowedSummonerIds.length > 0) {
+		if (allowedSummonerIds != null && allowedSummonerIds.length > 0) {
 			HashMap<String, Object> allowedSummonerIdsMap = new HashMap<String, Object>();
 			allowedSummonerIdsMap.put("participants", allowedSummonerIds);
 			bodyMap.put("allowedSummonerIds", allowedSummonerIdsMap);
@@ -139,15 +139,17 @@ final class TournamentApi {
 			long... allowedSummonerIds) throws RiotApiException {
 		String url = TOURNAMENT_ENDPOINT + "code/" + tournamentCode;
 		HashMap<String, Object> bodyMap = new HashMap<String, Object>();
-		bodyMap.put("allowedParticipants", allowedSummonerIds);
-		if (spectatorType != null) {
-			bodyMap.put("spectatorType", spectatorType);
+		if (mapType != null) {
+			bodyMap.put("mapType", mapType);
 		}
 		if (pickType != null) {
 			bodyMap.put("pickType", pickType);
 		}
-		if (mapType != null) {
-			bodyMap.put("mapType", mapType);
+		if (spectatorType != null) {
+			bodyMap.put("spectatorType", spectatorType);
+		}
+		if (allowedSummonerIds != null && allowedSummonerIds.length > 0) {
+			bodyMap.put("allowedParticipants", allowedSummonerIds);
 		}
 
 		Request.sendPut(url, key, new Gson().toJson(bodyMap));

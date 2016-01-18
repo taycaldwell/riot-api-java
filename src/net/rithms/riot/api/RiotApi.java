@@ -205,11 +205,11 @@ public class RiotApi {
 	}
 
 	/**
-	 * Retrieve champion by {@code champId}.
+	 * Retrieve champion by {@code id}.
 	 *
 	 * @param region
 	 *            Region where to retrieve the data.
-	 * @param champId
+	 * @param id
 	 *            The ID of the desired champion
 	 * @return The champion of the given ID
 	 * @throws NullPointerException
@@ -218,23 +218,23 @@ public class RiotApi {
 	 *             If the API returns an error or unparsable result
 	 * @see Champion
 	 */
-	public Champion getChampionById(Region region, int champId) throws RiotApiException {
+	public Champion getChampionById(Region region, int id) throws RiotApiException {
 		Objects.requireNonNull(region);
-		return ChampionApi.getChampionById(region, getKey(), champId);
+		return ChampionApi.getChampionById(region, getKey(), id);
 	}
 
 	/**
-	 * Retrieve champion by {@code champId}.
+	 * Retrieve champion by {@code id}.
 	 *
-	 * @param champId
+	 * @param id
 	 *            The ID of the desired champion
 	 * @return The champion of the given ID
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 * @see Champion
 	 */
-	public Champion getChampionById(int champId) throws RiotApiException {
-		return getChampionById(getRegion(), champId);
+	public Champion getChampionById(int id) throws RiotApiException {
+		return getChampionById(getRegion(), id);
 	}
 
 	/**
@@ -353,13 +353,14 @@ public class RiotApi {
 	 *            List of summoner IDs. Maximum allowed at once is 10.
 	 * @return A map, mapping each summoner ID to a list of leagues
 	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 *             If {@code region} or {@code summonerIds} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 * @see League
 	 */
 	public Map<String, List<League>> getLeagueBySummoners(Region region, long... summonerIds) throws RiotApiException {
 		Objects.requireNonNull(region);
+		Objects.requireNonNull(summonerIds);
 		return getLeagueBySummoners(region, Convert.longToString(summonerIds));
 	}
 
@@ -369,11 +370,14 @@ public class RiotApi {
 	 * @param summonerIds
 	 *            List of summoner IDs. Maximum allowed at once is 10.
 	 * @return A map, mapping each summoner ID to a list of leagues
+	 * @throws NullPointerException
+	 *             If {@code summonerIds} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 * @see League
 	 */
 	public Map<String, List<League>> getLeagueBySummoners(long... summonerIds) throws RiotApiException {
+		Objects.requireNonNull(summonerIds);
 		return getLeagueBySummoners(getRegion(), summonerIds);
 	}
 
@@ -497,13 +501,14 @@ public class RiotApi {
 	 *            List of summoner IDs. Maximum allowed at once is 10.
 	 * @return A map, mapping each summoner ID to a list of leagues
 	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 *             If {@code region} or {@code summonerIds} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 * @see League
 	 */
 	public Map<String, List<League>> getLeagueEntryBySummoners(Region region, long... summonerIds) throws RiotApiException {
 		Objects.requireNonNull(region);
+		Objects.requireNonNull(summonerIds);
 		return getLeagueEntryBySummoners(region, Convert.longToString(summonerIds));
 	}
 
@@ -513,11 +518,14 @@ public class RiotApi {
 	 * @param summonerIds
 	 *            List of summoner IDs. Maximum allowed at once is 10.
 	 * @return A map, mapping each summoner ID to a list of leagues
+	 * @throws NullPointerException
+	 *             If {@code summonerIds} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 * @see League
 	 */
 	public Map<String, List<League>> getLeagueEntryBySummoners(long... summonerIds) throws RiotApiException {
+		Objects.requireNonNull(summonerIds);
 		return getLeagueEntryBySummoners(getRegion(), summonerIds);
 	}
 
@@ -826,7 +834,7 @@ public class RiotApi {
 	}
 
 	/**
-	 * Get player stats summaries by summoner ID.
+	 * Get player stats summaries by {@code summonerId}.
 	 *
 	 * @param region
 	 *            Region where to retrieve the data.
@@ -835,62 +843,68 @@ public class RiotApi {
 	 * @param season
 	 *            If specified, stats for the given season are returned. Otherwise, stats for the current season are returned.
 	 * @return A summary of player statistics for the given summoner
-	 * @see PlayerStatsSummaryList
+	 * @throws NullPointerException
+	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see PlayerStatsSummaryList
 	 */
 	public PlayerStatsSummaryList getPlayerStatsSummary(Region region, Season season, long summonerId) throws RiotApiException {
+		Objects.requireNonNull(region);
 		return StatsApi.getPlayerStatsSummary(region, season, getKey(), summonerId);
 	}
 
 	/**
-	 * Get player stats summaries by summoner ID.
+	 * Get player stats summaries by {@code summonerId}.
 	 *
 	 * @param summonerId
 	 *            ID of the summoner for which to retrieve player stats.
 	 * @param season
 	 *            If specified, stats for the given season are returned. Otherwise, stats for the current season are returned.
 	 * @return A summary of player statistics for the given summoner
-	 * @see PlayerStatsSummaryList
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see PlayerStatsSummaryList
 	 */
 	public PlayerStatsSummaryList getPlayerStatsSummary(Season season, long summonerId) throws RiotApiException {
 		return getPlayerStatsSummary(getRegion(), season, summonerId);
 	}
 
 	/**
-	 * Get player stats summaries by summoner ID.
+	 * Get player stats summaries by {@code summonerId}.
 	 *
 	 * @param region
 	 *            Region where to retrieve the data.
 	 * @param summonerId
 	 *            ID of the summoner for which to retrieve player stats.
 	 * @return A summary of player statistics for the given summoner
-	 * @see PlayerStatsSummaryList
+	 * @throws NullPointerException
+	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see PlayerStatsSummaryList
 	 */
 	public PlayerStatsSummaryList getPlayerStatsSummary(Region region, long summonerId) throws RiotApiException {
+		Objects.requireNonNull(region);
 		return getPlayerStatsSummary(region, getSeason(), summonerId);
 	}
 
 	/**
-	 * Get player stats summaries by summoner ID.
+	 * Get player stats summaries by {@code summonerId}.
 	 *
 	 * @param summonerId
 	 *            ID of the summoner for which to retrieve player stats.
 	 * @return A summary of player statistics for the given summoner
-	 * @see PlayerStatsSummaryList
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see PlayerStatsSummaryList
 	 */
 	public PlayerStatsSummaryList getPlayerStatsSummary(long summonerId) throws RiotApiException {
 		return getPlayerStatsSummary(getRegion(), summonerId);
 	}
 
 	/**
-	 * Get ranked stats by summoner ID.
+	 * Get ranked stats by {@code summonerId}.
 	 *
 	 * @param region
 	 *            Region where to retrieve the data.
@@ -899,133 +913,156 @@ public class RiotApi {
 	 * @param season
 	 *            If specified, stats for the given season are returned. Otherwise, stats for the current season are returned.
 	 * @return Ranked statistics of the given summoner
-	 * @see RankedStats
+	 * @throws NullPointerException
+	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see RankedStats
 	 */
 	public RankedStats getRankedStats(Region region, Season season, long summonerId) throws RiotApiException {
+		Objects.requireNonNull(region);
 		return StatsApi.getRankedStats(region, season, getKey(), summonerId);
 	}
 
 	/**
-	 * Get ranked stats by summoner ID.
+	 * Get ranked stats by {@code summonerId}.
 	 *
 	 * @param summonerId
 	 *            ID of the summoner for which to retrieve ranked stats.
 	 * @param season
 	 *            If specified, stats for the given season are returned. Otherwise, stats for the current season are returned.
 	 * @return Ranked statistics of the given summoner
-	 * @see RankedStats
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see RankedStats
 	 */
 	public RankedStats getRankedStats(Season season, long summonerId) throws RiotApiException {
 		return getRankedStats(getRegion(), season, summonerId);
 	}
 
 	/**
-	 * Get ranked stats by summoner ID.
+	 * Get ranked stats by {@code summonerId}.
 	 *
 	 * @param region
 	 *            Region where to retrieve the data.
 	 * @param summonerId
 	 *            ID of the summoner for which to retrieve ranked stats.
 	 * @return Ranked statistics of the given summoner
-	 * @see RankedStats
+	 * @throws NullPointerException
+	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see RankedStats
 	 */
 	public RankedStats getRankedStats(Region region, long summonerId) throws RiotApiException {
+		Objects.requireNonNull(region);
 		return getRankedStats(region, getSeason(), summonerId);
 	}
 
 	/**
-	 * Get ranked stats by summoner ID.
+	 * Get ranked stats by {@code summonerId}.
 	 *
 	 * @param summonerId
 	 *            ID of the summoner for which to retrieve ranked stats.
 	 * @return Ranked statistics of the given summoner
-	 * @see RankedStats
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see RankedStats
 	 */
 	public RankedStats getRankedStats(long summonerId) throws RiotApiException {
 		return getRankedStats(getRegion(), summonerId);
 	}
 
 	/**
-	 * Get mastery pages mapped by summoner ID for a given list of summoner IDs.
+	 * Get mastery pages mapped by summoner ID for a given list of {@code summonerIds}.
 	 *
 	 * @param region
 	 *            Region where to retrieve the data.
 	 * @param summonerIds
 	 *            Comma-separated list of summoner IDs associated with masteries to retrieve. Maximum allowed at once is 40.
 	 * @return A map of mastery pages of the given summoners
-	 * @see MasteryPages
+	 * @throws NullPointerException
+	 *             If {@code region} or {@code summonerIds} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see MasteryPages
 	 */
 	public Map<String, MasteryPages> getMasteryPages(Region region, String... summonerIds) throws RiotApiException {
+		Objects.requireNonNull(region);
+		Objects.requireNonNull(summonerIds);
 		return SummonerApi.getMasteryPages(region, getKey(), Convert.joinString(",", summonerIds));
 	}
 
 	/**
-	 * Get mastery pages mapped by summoner ID for a given list of summoner IDs.
+	 * Get mastery pages mapped by summoner ID for a given list of {@code summonerIds}.
 	 *
 	 * @param summonerIds
 	 *            Comma-separated list of summoner IDs associated with masteries to retrieve. Maximum allowed at once is 40.
 	 * @return A map of mastery pages of the given summoners
-	 * @see MasteryPages
+	 * @throws NullPointerException
+	 *             If {@code summonerIds} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see MasteryPages
 	 */
 	public Map<String, MasteryPages> getMasteryPages(String... summonerIds) throws RiotApiException {
+		Objects.requireNonNull(summonerIds);
 		return getMasteryPages(getRegion(), summonerIds);
 	}
 
 	/**
-	 * Get mastery pages mapped by summoner ID for a given list of summoner IDs.
+	 * Get mastery pages mapped by summoner ID for a given list of {@code summonerIds}.
 	 *
 	 * @param region
 	 *            Region where to retrieve the data.
 	 * @param summonerIds
 	 *            List of summoner IDs associated with masteries to retrieve. Maximum allowed at once is 40.
 	 * @return A map of mastery pages of the given summoners
-	 * @see MasteryPages
+	 * @throws NullPointerException
+	 *             If {@code region} or {@code summonerIds} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see MasteryPages
 	 */
 	public Map<String, MasteryPages> getMasteryPages(Region region, long... summonerIds) throws RiotApiException {
+		Objects.requireNonNull(region);
+		Objects.requireNonNull(summonerIds);
 		return getMasteryPages(region, Convert.longToString(summonerIds));
 	}
 
 	/**
-	 * Get mastery pages mapped by summoner ID for a given list of summoner IDs.
+	 * Get mastery pages mapped by summoner ID for a given list of {@code summonerIds}.
 	 *
 	 * @param summonerIds
 	 *            List of summoner IDs associated with masteries to retrieve. Maximum allowed at once is 40.
 	 * @return A map of mastery pages of the given summoners
-	 * @see MasteryPages
+	 * @throws NullPointerException
+	 *             If {@code summonerIds} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see MasteryPages
 	 */
 	public Map<String, MasteryPages> getMasteryPages(long... summonerIds) throws RiotApiException {
+		Objects.requireNonNull(summonerIds);
 		return getMasteryPages(getRegion(), summonerIds);
 	}
 
 	/**
-	 * Get mastery pages for a given summoner ID.
+	 * Get mastery pages for a given {@code summonerId}.
 	 *
 	 * @param region
 	 *            Region where to retrieve the data.
 	 * @param summonerId
 	 *            Summoner ID associated with masteries to retrieve.
 	 * @return A map of mastery pages of the given summoner
-	 * @see MasteryPages
+	 * @throws NullPointerException
+	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see MasteryPages
 	 */
 	public MasteryPages getMasteryPages(Region region, long summonerId) throws RiotApiException {
+		Objects.requireNonNull(region);
 		String summonerIdString = String.valueOf(summonerId);
 		Map<String, MasteryPages> masteryPages = getMasteryPages(region, summonerIdString);
 		if (!masteryPages.containsKey(summonerIdString)) {
@@ -1035,92 +1072,109 @@ public class RiotApi {
 	}
 
 	/**
-	 * Get mastery pages for a given summoner ID.
+	 * Get mastery pages for a given {@code summonerId}.
 	 *
 	 * @param summonerId
 	 *            Summoner ID associated with masteries to retrieve.
 	 * @return A map of mastery pages of the given summoner
-	 * @see MasteryPages
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see MasteryPages
 	 */
 	public MasteryPages getMasteryPages(long summonerId) throws RiotApiException {
 		return getMasteryPages(getRegion(), summonerId);
 	}
 
 	/**
-	 * Get rune pages mapped by summoner ID for a given list of summoner IDs.
+	 * Get rune pages mapped by summoner ID for a given list of {@code summonerIds}.
 	 *
 	 * @param region
 	 *            Region where to retrieve the data.
 	 * @param summonerIds
 	 *            Comma-separated list of summoner IDs associated with runes to retrieve. Maximum allowed at once is 40.
 	 * @return A map of rune pages of the given summoners
-	 * @see RunePages
+	 * @throws NullPointerException
+	 *             If {@code region} or {@code summonerIds} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see RunePages
 	 */
 	public Map<String, RunePages> getRunePages(Region region, String... summonerIds) throws RiotApiException {
+		Objects.requireNonNull(region);
+		Objects.requireNonNull(summonerIds);
 		return SummonerApi.getRunePages(region, getKey(), Convert.joinString(",", summonerIds));
 	}
 
 	/**
-	 * Get rune pages mapped by summoner ID for a given list of summoner IDs.
+	 * Get rune pages mapped by summoner ID for a given list of {@code summonerIds}.
 	 *
 	 * @param summonerIds
 	 *            Comma-separated list of summoner IDs associated with runes to retrieve. Maximum allowed at once is 40.
 	 * @return A map of rune pages of the given summoners
-	 * @see RunePages
+	 * @throws NullPointerException
+	 *             If {@code summonerIds} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see RunePages
 	 */
 	public Map<String, RunePages> getRunePages(String... summonerIds) throws RiotApiException {
+		Objects.requireNonNull(summonerIds);
 		return getRunePages(getRegion(), summonerIds);
 	}
 
 	/**
-	 * Get rune pages mapped by summoner ID for a given list of summoner IDs.
+	 * Get rune pages mapped by summoner ID for a given list of {@code summonerIds}.
 	 *
 	 * @param region
 	 *            Region where to retrieve the data.
 	 * @param summonerIds
 	 *            List of summoner IDs associated with runes to retrieve. Maximum allowed at once is 40.
 	 * @return A map of rune pages of the given summoners
-	 * @see RunePages
+	 * @throws NullPointerException
+	 *             If {@code region} or {@code summonerIds} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see RunePages
 	 */
 	public Map<String, RunePages> getRunePages(Region region, long... summonerIds) throws RiotApiException {
+		Objects.requireNonNull(region);
+		Objects.requireNonNull(summonerIds);
 		return getRunePages(region, Convert.longToString(summonerIds));
 	}
 
 	/**
-	 * Get rune pages mapped by summoner ID for a given list of summoner IDs.
+	 * Get rune pages mapped by summoner ID for a given list of {@code summonerIds}.
 	 *
 	 * @param summonerIds
 	 *            List of summoner IDs associated with runes to retrieve. Maximum allowed at once is 40.
 	 * @return A map of rune pages of the given summoners
-	 * @see RunePages
+	 * @throws NullPointerException
+	 *             If {@code summonerIds} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see RunePages
 	 */
 	public Map<String, RunePages> getRunePages(long... summonerIds) throws RiotApiException {
+		Objects.requireNonNull(summonerIds);
 		return getRunePages(getRegion(), summonerIds);
 	}
 
 	/**
-	 * Get rune pages for a given summoner ID.
+	 * Get rune pages for a given {@code summonerId}.
 	 *
 	 * @param region
 	 *            Region where to retrieve the data.
 	 * @param summonerId
 	 *            Summoner ID associated with runes to retrieve.
 	 * @return A map of rune pages of the given summoner
-	 * @see RunePages
+	 * @throws NullPointerException
+	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see RunePages
 	 */
 	public RunePages getRunePages(Region region, long summonerId) throws RiotApiException {
+		Objects.requireNonNull(region);
 		String summonerIdString = String.valueOf(summonerId);
 		Map<String, RunePages> runePages = getRunePages(region, summonerIdString);
 		if (!runePages.containsKey(summonerIdString)) {
@@ -1130,21 +1184,21 @@ public class RiotApi {
 	}
 
 	/**
-	 * Get rune pages for a given summoner ID.
+	 * Get rune pages for a given {@code summonerId}.
 	 *
 	 * @param summonerId
 	 *            Summoner ID associated with runes to retrieve.
 	 * @return A map of rune pages of the given summoner
-	 * @see RunePages
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see RunePages
 	 */
 	public RunePages getRunePages(long summonerId) throws RiotApiException {
 		return getRunePages(getRegion(), summonerId);
 	}
 
 	/**
-	 * Get summoner objects mapped by standardized summoner name for a given list of summoner names.
+	 * Get summoner objects mapped by standardized summoner name for a given list of {@code summonerNames}.
 	 *
 	 * @param region
 	 *            Region where to retrieve the data.
@@ -1152,42 +1206,53 @@ public class RiotApi {
 	 *            Comma-separated list of summoner names or standardized summoner names associated with summoners to retrieve. Maximum
 	 *            allowed at once is 40.
 	 * @return A map of desired summoners
-	 * @see Summoner
+	 * @throws NullPointerException
+	 *             If {@code region} or {@code summonerNames} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see Summoner
 	 */
 	public Map<String, Summoner> getSummonersByName(Region region, String... summonerNames) throws RiotApiException {
+		Objects.requireNonNull(region);
+		Objects.requireNonNull(summonerNames);
 		return SummonerApi.getSummonersByName(region, getKey(), Convert.joinString(",", summonerNames));
 	}
 
 	/**
-	 * Get summoner objects mapped by standardized summoner name for a given list of summoner names.
+	 * Get summoner objects mapped by standardized summoner name for a given list of {@code summonerNames}.
 	 *
 	 * @param summonerNames
 	 *            Comma-separated list of summoner names or standardized summoner names associated with summoners to retrieve. Maximum
 	 *            allowed at once is 40.
 	 * @return A map of desired summoners
-	 * @see Summoner
+	 * @throws NullPointerException
+	 *             If {@code summonerNames} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see Summoner
 	 */
 	public Map<String, Summoner> getSummonersByName(String... summonerNames) throws RiotApiException {
+		Objects.requireNonNull(summonerNames);
 		return getSummonersByName(getRegion(), summonerNames);
 	}
 
 	/**
-	 * Get a single summoner object for a given summoner name.
+	 * Get a single summoner object for a given {@code summonerName}.
 	 *
 	 * @param region
 	 *            Region where to retrieve the data.
 	 * @param summonerName
 	 *            Summoner name or standardized summoner name associated with summoner to retrieve.
 	 * @return The desired summoner
-	 * @see Summoner
+	 * @throws NullPointerException
+	 *             If {@code region} or {@code summonerName} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see Summoner
 	 */
 	public Summoner getSummonerByName(Region region, String summonerName) throws RiotApiException {
+		Objects.requireNonNull(region);
+		Objects.requireNonNull(summonerName);
 		Map<String, Summoner> summoners = getSummonersByName(region, summonerName);
 		String key = Convert.normalizeSummonerName(summonerName);
 		if (!summoners.containsKey(key)) {
@@ -1197,92 +1262,113 @@ public class RiotApi {
 	}
 
 	/**
-	 * Get a single summoner object for a given summoner name.
+	 * Get a single summoner object for a given {@code summonerName}.
 	 *
 	 * @param summonerName
 	 *            Summoner name or standardized summoner name associated with summoner to retrieve.
 	 * @return The desired summoner
-	 * @see Summoner
+	 * @throws NullPointerException
+	 *             If {@code summonerName} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see Summoner
 	 */
 	public Summoner getSummonerByName(String summonerName) throws RiotApiException {
+		Objects.requireNonNull(summonerName);
 		return getSummonerByName(getRegion(), summonerName);
 	}
 
 	/**
-	 * Get summoner objects mapped by summoner ID for a given list of summoner IDs.
+	 * Get summoner objects mapped by summoner ID for a given list of {@code summonerIds}.
 	 *
 	 * @param region
 	 *            Region where to retrieve the data.
 	 * @param summonerIds
 	 *            Comma-separated list of summoner IDs associated with summoners to retrieve. Maximum allowed at once is 40.
 	 * @return A map of desired summoners
-	 * @see Summoner
+	 * @throws NullPointerException
+	 *             If {@code region} or {@code summonerIds} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see Summoner
 	 */
 	public Map<String, Summoner> getSummonersById(Region region, String... summonerIds) throws RiotApiException {
+		Objects.requireNonNull(region);
+		Objects.requireNonNull(summonerIds);
 		return SummonerApi.getSummonersById(region, getKey(), Convert.joinString(",", summonerIds));
 	}
 
 	/**
-	 * Get summoner objects mapped by summoner ID for a given list of summoner IDs.
+	 * Get summoner objects mapped by summoner ID for a given list of {@code summonerIds}.
 	 *
 	 * @param summonerIds
 	 *            Comma-separated list of summoner IDs associated with summoners to retrieve. Maximum allowed at once is 40.
 	 * @return A map of desired summoners
-	 * @see Summoner
+	 * @throws NullPointerException
+	 *             If {@code summonerIds} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see Summoner
 	 */
 	public Map<String, Summoner> getSummonersById(String... summonerIds) throws RiotApiException {
+		Objects.requireNonNull(summonerIds);
 		return getSummonersById(getRegion(), summonerIds);
 	}
 
 	/**
-	 * Get summoner objects mapped by summoner ID for a given list of summoner IDs.
+	 * Get summoner objects mapped by summoner ID for a given list of {@code summonerIds}.
 	 *
 	 * @param region
 	 *            Region where to retrieve the data.
 	 * @param summonerIds
 	 *            List of summoner IDs associated with summoners to retrieve. Maximum allowed at once is 40.
 	 * @return A map of desired summoners
-	 * @see Summoner
+	 * @throws NullPointerException
+	 *             If {@code region} or {@code summonerIds} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see Summoner
 	 */
 	public Map<String, Summoner> getSummonersById(Region region, long... summonerIds) throws RiotApiException {
+		Objects.requireNonNull(region);
+		Objects.requireNonNull(summonerIds);
 		return getSummonersById(region, Convert.longToString(summonerIds));
 	}
 
 	/**
-	 * Get summoner objects mapped by summoner ID for a given list of summoner IDs.
+	 * Get summoner objects mapped by summoner ID for a given list of {@code summonerIds}.
 	 *
 	 * @param summonerIds
 	 *            List of summoner IDs associated with summoners to retrieve. Maximum allowed at once is 40.
 	 * @return A map of desired summoners
-	 * @see Summoner
+	 * @throws NullPointerException
+	 *             If {@code summonerIds} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see Summoner
 	 */
 	public Map<String, Summoner> getSummonersById(long... summonerIds) throws RiotApiException {
+		Objects.requireNonNull(summonerIds);
 		return getSummonersById(getRegion(), summonerIds);
 	}
 
 	/**
-	 * Get a summoner objects for a given summoner ID.
+	 * Get a summoner objects for a given {@code summonerId}.
 	 *
 	 * @param region
 	 *            Region where to retrieve the data.
 	 * @param summonerId
 	 *            Summoner IDs associated with summoner to retrieve.
 	 * @return The desired summoner
-	 * @see Summoner
+	 * @throws NullPointerException
+	 *             If {@code region} or {@code summonerId} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see Summoner
 	 */
 	public Summoner getSummonerById(Region region, String summonerId) throws RiotApiException {
+		Objects.requireNonNull(region);
+		Objects.requireNonNull(summonerId);
 		Map<String, Summoner> summoners = getSummonersById(region, summonerId);
 		if (!summoners.containsKey(summonerId)) {
 			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
@@ -1291,117 +1377,141 @@ public class RiotApi {
 	}
 
 	/**
-	 * Get a summoner objects for a given summoner ID.
+	 * Get a summoner objects for a given {@code summonerId}.
 	 *
 	 * @param summonerId
 	 *            Summoner IDs associated with summoner to retrieve.
 	 * @return The desired summoner
-	 * @see Summoner
+	 * @throws NullPointerException
+	 *             If {@code summonerId} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see Summoner
 	 */
 	public Summoner getSummonerById(String summonerId) throws RiotApiException {
+		Objects.requireNonNull(summonerId);
 		return getSummonerById(getRegion(), summonerId);
 	}
 
 	/**
-	 * Get a summoner objects for a given summoner ID.
+	 * Get a summoner objects for a given {@code summonerId}.
 	 *
 	 * @param region
 	 *            Region where to retrieve the data.
 	 * @param summonerId
 	 *            Summoner IDs associated with summoner to retrieve.
 	 * @return The desired summoner
-	 * @see Summoner
+	 * @throws NullPointerException
+	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see Summoner
 	 */
 	public Summoner getSummonerById(Region region, long summonerId) throws RiotApiException {
+		Objects.requireNonNull(region);
 		return getSummonerById(region, String.valueOf(summonerId));
 	}
 
 	/**
-	 * Get a summoner objects for a given summoner ID.
+	 * Get a summoner objects for a given {@code summonerId}.
 	 *
 	 * @param summonerId
 	 *            Summoner IDs associated with summoner to retrieve.
 	 * @return The desired summoner
-	 * @see Summoner
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see Summoner
 	 */
 	public Summoner getSummonerById(long summonerId) throws RiotApiException {
 		return getSummonerById(getRegion(), summonerId);
 	}
 
 	/**
-	 * Get summoner names mapped by summoner ID for a given list of summoner IDs.
+	 * Get summoner names mapped by summoner ID for a given list of {@code summonerIds}.
 	 *
 	 * @param region
 	 *            Region where to retrieve the data.
 	 * @param summonerIds
 	 *            Comma-separated list of summoner IDs associated with summoner names to retrieve. Maximum allowed at once is 40.
 	 * @return A map of desired summoner names
+	 * @throws NullPointerException
+	 *             If {@code region} or {@code summonerIds} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 */
 	public Map<String, String> getSummonerNames(Region region, String... summonerIds) throws RiotApiException {
+		Objects.requireNonNull(region);
+		Objects.requireNonNull(summonerIds);
 		return SummonerApi.getSummonerNames(region, getKey(), Convert.joinString(",", summonerIds));
 	}
 
 	/**
-	 * Get summoner names mapped by summoner ID for a given list of summoner IDs.
+	 * Get summoner names mapped by summoner ID for a given list of {@code summonerIds}.
 	 *
 	 * @param summonerIds
 	 *            Comma-separated list of summoner IDs associated with summoner names to retrieve. Maximum allowed at once is 40.
 	 * @return A map of desired summoner names
+	 * @throws NullPointerException
+	 *             If {@code summonerIds} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 */
 	public Map<String, String> getSummonerNames(String... summonerIds) throws RiotApiException {
+		Objects.requireNonNull(summonerIds);
 		return getSummonerNames(getRegion(), summonerIds);
 	}
 
 	/**
-	 * Get summoner names mapped by summoner ID for a given list of summoner IDs.
+	 * Get summoner names mapped by summoner ID for a given list of {@code summonerIds}.
 	 *
 	 * @param region
 	 *            Region where to retrieve the data.
 	 * @param summonerIds
 	 *            List of summoner IDs associated with summoner names to retrieve. Maximum allowed at once is 40.
 	 * @return A map of desired summoner names
+	 * @throws NullPointerException
+	 *             If {@code region} or {@code summonerIds} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 */
 	public Map<String, String> getSummonerNames(Region region, long... summonerIds) throws RiotApiException {
+		Objects.requireNonNull(region);
+		Objects.requireNonNull(summonerIds);
 		return getSummonerNames(region, Convert.longToString(summonerIds));
 	}
 
 	/**
-	 * Get summoner names mapped by summoner ID for a given list of summoner IDs.
+	 * Get summoner names mapped by summoner ID for a given list of {@code summonerIds}.
 	 *
 	 * @param summonerIds
 	 *            List of summoner IDs associated with summoner names to retrieve. Maximum allowed at once is 40.
 	 * @return A map of desired summoner names
+	 * @throws NullPointerException
+	 *             If {@code summonerIds} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 */
 	public Map<String, String> getSummonerNames(long... summonerIds) throws RiotApiException {
+		Objects.requireNonNull(summonerIds);
 		return getSummonerNames(getRegion(), summonerIds);
 	}
 
 	/**
-	 * Get summoner name for a given summoner ID.
+	 * Get summoner name for a given {@code summonerId}.
 	 *
 	 * @param region
 	 *            Region where to retrieve the data.
 	 * @param summonerId
 	 *            Summoner ID associated with summoner name to retrieve.
 	 * @return The desired summoner name
+	 * @throws NullPointerException
+	 *             If {@code region} or {@code summonerId} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 */
 	public String getSummonerName(Region region, String summonerId) throws RiotApiException {
+		Objects.requireNonNull(region);
+		Objects.requireNonNull(summonerId);
 		Map<String, String> summoners = getSummonerNames(region, summonerId);
 		if (!summoners.containsKey(summonerId)) {
 			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
@@ -1410,35 +1520,41 @@ public class RiotApi {
 	}
 
 	/**
-	 * Get summoner name for a given summoner ID.
+	 * Get summoner name for a given {@code summonerId}.
 	 *
 	 * @param summonerId
 	 *            Summoner ID associated with summoner name to retrieve.
 	 * @return A map of desired summoner names
+	 * @throws NullPointerException
+	 *             If {@code summonerId} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 */
 	public String getSummonerName(String summonerId) throws RiotApiException {
+		Objects.requireNonNull(summonerId);
 		return getSummonerName(getRegion(), summonerId);
 	}
 
 	/**
-	 * Get summoner name for a given summoner ID.
+	 * Get summoner name for a given {@code summonerId}.
 	 *
 	 * @param region
 	 *            Region where to retrieve the data.
 	 * @param summonerId
 	 *            Summoner ID associated with summoner name to retrieve.
 	 * @return The desired summoner name
+	 * @throws NullPointerException
+	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 */
 	public String getSummonerName(Region region, long summonerId) throws RiotApiException {
+		Objects.requireNonNull(region);
 		return getSummonerName(region, String.valueOf(summonerId));
 	}
 
 	/**
-	 * Get summoner name for a given summoner ID.
+	 * Get summoner name for a given {@code summonerId}.
 	 *
 	 * @param summonerId
 	 *            Summoner ID associated with summoner name to retrieve.
@@ -1451,78 +1567,96 @@ public class RiotApi {
 	}
 
 	/**
-	 * Get teams mapped by summoner ID for a given list of summoner IDs.
+	 * Get teams mapped by summoner ID for a given list of {@code summonerIds}.
 	 *
 	 * @param region
 	 *            The region of the summoner.
 	 * @param summonerIds
 	 *            Comma-separated list of summoner IDs. Maximum allowed at once is 10.
 	 * @return A map of the summoners' teams
-	 * @see Team
+	 * @throws NullPointerException
+	 *             If {@code region} or {@code summonerIds} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see Team
 	 */
 	public Map<String, List<Team>> getTeamsBySummonerIds(Region region, String... summonerIds) throws RiotApiException {
+		Objects.requireNonNull(region);
+		Objects.requireNonNull(summonerIds);
 		return TeamApi.getTeamsBySummonerIds(region, getKey(), Convert.joinString(",", summonerIds));
 	}
 
 	/**
-	 * Get teams mapped by summoner ID for a given list of summoner IDs.
+	 * Get teams mapped by summoner ID for a given list of {@code summonerIds}.
 	 *
 	 * @param summonerIds
 	 *            Comma-separated list of summoner IDs
 	 * @return A map of the summoners' teams
-	 * @see Team
+	 * @throws NullPointerException
+	 *             If {@code summonerIds} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see Team
 	 */
 	public Map<String, List<Team>> getTeamsBySummonerIds(String... summonerIds) throws RiotApiException {
+		Objects.requireNonNull(summonerIds);
 		return getTeamsBySummonerIds(getRegion(), summonerIds);
 	}
 
 	/**
-	 * Get teams mapped by summoner ID for a given list of summoner IDs.
+	 * Get teams mapped by summoner ID for a given list of {@code summonerIds}.
 	 *
 	 * @param region
 	 *            The region of the summoner.
 	 * @param summonerIds
 	 *            A list of summoner IDs. Maximum allowed at once is 10.
 	 * @return A map of the summoners' teams
-	 * @see Team
+	 * @throws NullPointerException
+	 *             If {@code region} or {@code summonerIds} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see Team
 	 */
 	public Map<String, List<Team>> getTeamsBySummonerIds(Region region, long... summonerIds) throws RiotApiException {
+		Objects.requireNonNull(region);
+		Objects.requireNonNull(summonerIds);
 		return getTeamsBySummonerIds(region, Convert.longToString(summonerIds));
 	}
 
 	/**
-	 * Get teams mapped by summoner ID for a given list of summoner IDs.
+	 * Get teams mapped by summoner ID for a given list of {@code summonerIds}.
 	 *
 	 * @param summonerIds
 	 *            A list of summoner IDs. Maximum allowed at once is 10.
 	 * @return A map of the summoners' teams
-	 * @see Team
+	 * @throws NullPointerException
+	 *             If {@code summonerIds} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see Team
 	 */
 	public Map<String, List<Team>> getTeamsBySummonerIds(long... summonerIds) throws RiotApiException {
+		Objects.requireNonNull(summonerIds);
 		return getTeamsBySummonerIds(getRegion(), summonerIds);
 	}
 
 	/**
-	 * Get teams for a given summoner ID.
+	 * Get teams for a given {@code summonerId}.
 	 *
 	 * @param region
 	 *            The region of the summoner.
 	 * @param summonerId
 	 *            Summoner ID
 	 * @return A list of the summoner's teams
-	 * @see Team
+	 * @throws NullPointerException
+	 *             If {@code region} or {@code summonerId} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see Team
 	 */
 	public List<Team> getTeamsBySummonerId(Region region, String summonerId) throws RiotApiException {
+		Objects.requireNonNull(region);
+		Objects.requireNonNull(summonerId);
 		Map<String, List<Team>> teams = getTeamsBySummonerIds(region, summonerId);
 		if (!teams.containsKey(summonerId)) {
 			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
@@ -1531,92 +1665,109 @@ public class RiotApi {
 	}
 
 	/**
-	 * Get teams for a given summoner ID.
+	 * Get teams for a given {@code summonerId}.
 	 *
 	 * @param summonerId
 	 *            A summoner ID
 	 * @return A list of the summoner's teams
-	 * @see Team
+	 * @throws NullPointerException
+	 *             If {@code summonerId} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see Team
 	 */
 	public List<Team> getTeamsBySummonerId(String summonerId) throws RiotApiException {
+		Objects.requireNonNull(summonerId);
 		return getTeamsBySummonerId(getRegion(), summonerId);
 	}
 
 	/**
-	 * Get teams for a given summoner ID.
+	 * Get teams for a given {@code summonerId}.
 	 *
 	 * @param region
 	 *            The region of the summoner.
 	 * @param summonerId
 	 *            Summoner ID
 	 * @return A list of the summoner's teams
-	 * @see Team
+	 * @throws NullPointerException
+	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see Team
 	 */
 	public List<Team> getTeamsBySummonerId(Region region, long summonerId) throws RiotApiException {
+		Objects.requireNonNull(region);
 		return getTeamsBySummonerId(region, Convert.longToString(summonerId));
 	}
 
 	/**
-	 * Get teams for a given summoner ID.
+	 * Get teams for a given {@code summonerId}.
 	 *
 	 * @param summonerId
 	 *            A summoner ID
 	 * @return A list of the summoner's teams
-	 * @see Team
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see Team
 	 */
 	public List<Team> getTeamsBySummonerId(long summonerId) throws RiotApiException {
 		return getTeamsBySummonerId(getRegion(), summonerId);
 	}
 
 	/**
-	 * Get teams mapped by team ID for a given list of team IDs.
+	 * Get teams mapped by team ID for a given list of {@code teamIds}.
 	 *
 	 * @param region
 	 *            The region of the summoner.
 	 * @param teamIds
 	 *            Comma-separated list of team IDs. Maximum allowed at once is 10.
 	 * @return A map of teams
-	 * @see Team
+	 * @throws NullPointerException
+	 *             If {@code region} or {@code teamIds} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see Team
 	 */
 	public Map<String, Team> getTeamsByTeamIds(Region region, String... teamIds) throws RiotApiException {
+		Objects.requireNonNull(region);
+		Objects.requireNonNull(teamIds);
 		return TeamApi.getTeamsByTeamIds(region, getKey(), Convert.joinString(",", teamIds));
 	}
 
 	/**
-	 * Get teams mapped by team ID for a given list of team IDs.
+	 * Get teams mapped by team ID for a given list of {@code teamIds}.
 	 *
 	 * @param teamIds
 	 *            Comma-separated list of team IDs. Maximum allowed at once is 10.
 	 * @return A map of teams
-	 * @see Team
+	 * @throws NullPointerException
+	 *             If {@code teamIds} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see Team
 	 */
 	public Map<String, Team> getTeamsByTeamIds(String... teamIds) throws RiotApiException {
+		Objects.requireNonNull(teamIds);
 		return getTeamsByTeamIds(getRegion(), teamIds);
 	}
 
 	/**
-	 * Get team for a given team ID.
+	 * Get team for a given {@code teamId}.
 	 *
 	 * @param region
 	 *            The region of the summoner.
 	 * @param teamId
 	 *            Team ID
 	 * @return A team
-	 * @see Team
+	 * @throws NullPointerException
+	 *             If {@code region} or {@code teamId} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see Team
 	 */
 	public Team getTeamByTeamId(Region region, String teamId) throws RiotApiException {
+		Objects.requireNonNull(region);
+		Objects.requireNonNull(teamId);
 		Map<String, Team> teams = getTeamsByTeamIds(region, teamId);
 		if (!teams.containsKey(teamId)) {
 			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
@@ -1625,21 +1776,24 @@ public class RiotApi {
 	}
 
 	/**
-	 * Get team for a given team ID.
+	 * Get team for a given {@code teamId}.
 	 *
 	 * @param teamId
 	 *            Comma-separated list of team IDs. Maximum allowed at once is 10.
 	 * @return A team
-	 * @see Team
+	 * @throws NullPointerException
+	 *             If {@code teamId} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see Team
 	 */
 	public Team getTeamByTeamId(String teamId) throws RiotApiException {
+		Objects.requireNonNull(teamId);
 		return getTeamByTeamId(getRegion(), teamId);
 	}
 
 	/**
-	 * Retrieve match by match ID.
+	 * Retrieve match by {@code matchId}.
 	 *
 	 * @param region
 	 *            The region of the summoner.
@@ -1648,62 +1802,68 @@ public class RiotApi {
 	 * @param includeTimeline
 	 *            Flag indicating whether or not to include match timeline data
 	 * @return A map with match details
-	 * @see MatchDetail
+	 * @throws NullPointerException
+	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see MatchDetail
 	 */
 	public MatchDetail getMatch(Region region, long matchId, boolean includeTimeline) throws RiotApiException {
+		Objects.requireNonNull(region);
 		return MatchApi.getMatch(region, getKey(), matchId, includeTimeline);
 	}
 
 	/**
-	 * Retrieve match by match ID.
+	 * Retrieve match by {@code matchId}.
 	 *
 	 * @param matchId
 	 *            The ID of the match.
 	 * @param includeTimeline
 	 *            Flag indicating whether or not to include match timeline data
 	 * @return A map with match details
-	 * @see MatchDetail
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see MatchDetail
 	 */
 	public MatchDetail getMatch(long matchId, boolean includeTimeline) throws RiotApiException {
 		return getMatch(getRegion(), matchId, includeTimeline);
 	}
 
 	/**
-	 * Retrieve match by match ID.
+	 * Retrieve match by {@code matchId}.
 	 *
 	 * @param region
 	 *            The region of the summoner.
 	 * @param matchId
 	 *            The ID of the match.
 	 * @return A map with match details
-	 * @see MatchDetail
+	 * @throws NullPointerException
+	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see MatchDetail
 	 */
 	public MatchDetail getMatch(Region region, long matchId) throws RiotApiException {
+		Objects.requireNonNull(region);
 		return getMatch(region, matchId, false);
 	}
 
 	/**
-	 * Retrieve match by match ID.
+	 * Retrieve match by {@code matchId}.
 	 *
 	 * @param matchId
 	 *            The ID of the match
 	 * @return A map with match details
-	 * @see MatchDetail
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see MatchDetail
 	 */
 	public MatchDetail getMatch(long matchId) throws RiotApiException {
 		return getMatch(getRegion(), matchId);
 	}
 
 	/**
-	 * Retrieve match list by summoner ID.
+	 * Retrieve match list by {@code summonerId}.
 	 *
 	 * @param region
 	 *            The region of the summoner.
@@ -1716,25 +1876,28 @@ public class RiotApi {
 	 * @param seasons
 	 *            Comma-separated list of seasons to use for fetching games.
 	 * @param beginTime
-	 *            The begin time to use for fetching games specified as epoch milliseconds.
+	 *            The begin time to use for fetching games specified as epoch milliseconds. Use {@code -1} to not use this parameter.
 	 * @param endTime
-	 *            The end time to use for fetching games specified as epoch milliseconds.
+	 *            The end time to use for fetching games specified as epoch milliseconds. Use {@code -1} to not use this parameter.
 	 * @param beginIndex
-	 *            The begin index to use for fetching games.
+	 *            The begin index to use for fetching games. Use {@code -1} to not use this parameter.
 	 * @param endIndex
-	 *            The end index to use for fetching games.
+	 *            The end index to use for fetching games. Use {@code -1} to not use this parameter.
 	 * @return A list with matches
-	 * @see MatchList
+	 * @throws NullPointerException
+	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see MatchList
 	 */
 	public MatchList getMatchList(Region region, long summonerId, String championIds, String rankedQueues, String seasons, long beginTime, long endTime,
 			int beginIndex, int endIndex) throws RiotApiException {
+		Objects.requireNonNull(region);
 		return MatchListApi.getMatchList(region, getKey(), summonerId, championIds, rankedQueues, seasons, beginTime, endTime, beginIndex, endIndex);
 	}
 
 	/**
-	 * Retrieve match list by summoner ID.
+	 * Retrieve match list by {@code summonerId}.
 	 *
 	 * @param summonerId
 	 *            The ID of the summoner.
@@ -1745,17 +1908,17 @@ public class RiotApi {
 	 * @param seasons
 	 *            Comma-separated list of seasons to use for fetching games.
 	 * @param beginTime
-	 *            The begin time to use for fetching games specified as epoch milliseconds.
+	 *            The begin time to use for fetching games specified as epoch milliseconds. Use {@code -1} to not use this parameter.
 	 * @param endTime
-	 *            The end time to use for fetching games specified as epoch milliseconds.
+	 *            The end time to use for fetching games specified as epoch milliseconds. Use {@code -1} to not use this parameter.
 	 * @param beginIndex
-	 *            The begin index to use for fetching games.
+	 *            The begin index to use for fetching games. Use {@code -1} to not use this parameter.
 	 * @param endIndex
-	 *            The end index to use for fetching games.
+	 *            The end index to use for fetching games. Use {@code -1} to not use this parameter.
 	 * @return A list with matches
-	 * @see MatchList
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see MatchList
 	 */
 	public MatchList getMatchList(long summonerId, String championIds, String rankedQueues, String seasons, long beginTime, long endTime, int beginIndex,
 			int endIndex) throws RiotApiException {
@@ -1763,30 +1926,33 @@ public class RiotApi {
 	}
 
 	/**
-	 * Retrieve match list by summoner ID.
+	 * Retrieve match list by {@code summonerId}.
 	 *
 	 * @param region
 	 *            The region of the summoner.
 	 * @param summonerId
 	 *            The ID of the summoner.
 	 * @return A list with matches
-	 * @see MatchList
+	 * @throws NullPointerException
+	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see MatchList
 	 */
 	public MatchList getMatchList(Region region, long summonerId) throws RiotApiException {
+		Objects.requireNonNull(region);
 		return getMatchList(region, summonerId, null, null, null, -1, -1, -1, -1);
 	}
 
 	/**
-	 * Retrieve match list by summoner ID.
+	 * Retrieve match list by {@code summonerId}.
 	 *
 	 * @param summonerId
 	 *            The ID of the summoner.
 	 * @return A list with matches
-	 * @see MatchList
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see MatchList
 	 */
 	public MatchList getMatchList(long summonerId) throws RiotApiException {
 		return getMatchList(getRegion(), summonerId);
@@ -1800,11 +1966,15 @@ public class RiotApi {
 	 * @param summonerId
 	 *            The ID of the summoner.
 	 * @return Current game info
-	 * @see CurrentGameInfo
+	 * @throws NullPointerException
+	 *             If {@code platformId} or {@code summonerId} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see CurrentGameInfo
 	 */
 	public CurrentGameInfo getCurrentGameInfo(PlatformId platformId, String summonerId) throws RiotApiException {
+		Objects.requireNonNull(platformId);
+		Objects.requireNonNull(summonerId);
 		return CurrentGameApi.getCurrentGameInfo(platformId, getKey(), summonerId);
 	}
 
@@ -1816,11 +1986,14 @@ public class RiotApi {
 	 * @param summonerId
 	 *            The ID of the summoner.
 	 * @return Current game info
-	 * @see CurrentGameInfo
+	 * @throws NullPointerException
+	 *             If {@code platformId} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see CurrentGameInfo
 	 */
 	public CurrentGameInfo getCurrentGameInfo(PlatformId platformId, long summonerId) throws RiotApiException {
+		Objects.requireNonNull(platformId);
 		return getCurrentGameInfo(platformId, String.valueOf(summonerId));
 	}
 
@@ -1830,11 +2003,14 @@ public class RiotApi {
 	 * @param region
 	 *            Region from which to retrieve data.
 	 * @return Featured games
-	 * @see FeaturedGames
+	 * @throws NullPointerException
+	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see FeaturedGames
 	 */
 	public FeaturedGames getFeaturedGames(Region region) throws RiotApiException {
+		Objects.requireNonNull(region);
 		return FeaturedGamesApi.getFeaturedGames(region, getKey());
 	}
 
@@ -1842,9 +2018,9 @@ public class RiotApi {
 	 * Get list of featured games.
 	 * 
 	 * @return Featured games
-	 * @see FeaturedGames
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see FeaturedGames
 	 */
 	public FeaturedGames getFeaturedGames() throws RiotApiException {
 		return getFeaturedGames(getRegion());
@@ -2788,9 +2964,9 @@ public class RiotApi {
 	 * Get shard list.
 	 * 
 	 * @return Status for a list of shards
-	 * @see Shard
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see Shard
 	 */
 	public List<Shard> getShards() throws RiotApiException {
 		return StatusApi.getShards();
@@ -2802,11 +2978,14 @@ public class RiotApi {
 	 * @param region
 	 *            The region for which to fetch data.
 	 * @return Status for a single shard
-	 * @see ShardStatus
+	 * @throws NullPointerException
+	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see ShardStatus
 	 */
 	public ShardStatus getShardStatus(Region region) throws RiotApiException {
+		Objects.requireNonNull(region);
 		return StatusApi.getShardStatus(region);
 	}
 
@@ -2814,42 +2993,50 @@ public class RiotApi {
 	 * Get shard status. Returns the data available on the status.leagueoflegends.com website for the given region.
 	 * 
 	 * @return Status for a single shard
-	 * @see ShardStatus
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see ShardStatus
 	 */
 	public ShardStatus getShardStatus() throws RiotApiException {
 		return getShardStatus(getRegion());
 	}
 
 	/**
-	 * Returns the tournament code DTO associated with a tournament code string.
+	 * Returns the tournament code DTO associated with a {@code tournamentCode} string.
 	 * 
 	 * @param tournamentCode
 	 *            Tournament code corresponding to data to retrieve.
 	 * @return Data associated with a tournament code
+	 * @throws NullPointerException
+	 *             If {@code tournamentCode} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see TournamentCode
 	 */
 	public TournamentCode getTournamentCode(String tournamentCode) throws RiotApiException {
+		Objects.requireNonNull(tournamentCode);
 		return TournamentApi.getTournamentCode(getTournamentKey(), tournamentCode);
 	}
 
 	/**
-	 * Gets a list of lobby events by tournament code
+	 * Gets a list of lobby events by {@code tournamentCode}
 	 * 
 	 * @param tournamentCode
 	 *            Tournament code used to enter the lobby.
 	 * @return Lobby event data
+	 * @throws NullPointerException
+	 *             If {@code tournamentCode} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see LobbyEventList
 	 */
 	public LobbyEventList getLobbyEventsByTournament(String tournamentCode) throws RiotApiException {
+		Objects.requireNonNull(tournamentCode);
 		return TournamentApi.getLobbyEventsByTournament(getTournamentKey(), tournamentCode);
 	}
 
 	/**
-	 * Retrieve match by match ID and tournament code.
+	 * Retrieve match by {@code matchId} and {@code tournamentCode}.
 	 *
 	 * @param region
 	 *            The region of the match.
@@ -2860,16 +3047,20 @@ public class RiotApi {
 	 * @param includeTimeline
 	 *            Flag indicating whether or not to include match timeline data
 	 * @return A map with match details
-	 * @see MatchDetail
+	 * @throws NullPointerException
+	 *             If {@code region} or {@code tournamentCode} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see MatchDetail
 	 */
 	public MatchDetail getMatchForTournament(Region region, long matchId, String tournamentCode, boolean includeTimeline) throws RiotApiException {
+		Objects.requireNonNull(region);
+		Objects.requireNonNull(tournamentCode);
 		return MatchApi.getMatchForTournament(region, getTournamentKey(), matchId, tournamentCode, includeTimeline);
 	}
 
 	/**
-	 * Retrieve match by match ID and tournament code.
+	 * Retrieve match by {@code matchId} and {@code tournamentCode}.
 	 *
 	 * @param matchId
 	 *            The ID of the match.
@@ -2878,16 +3069,19 @@ public class RiotApi {
 	 * @param includeTimeline
 	 *            Flag indicating whether or not to include match timeline data
 	 * @return A map with match details
-	 * @see MatchDetail
+	 * @throws NullPointerException
+	 *             If {@code tournamentCode} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see MatchDetail
 	 */
 	public MatchDetail getMatchForTournament(long matchId, String tournamentCode, boolean includeTimeline) throws RiotApiException {
+		Objects.requireNonNull(tournamentCode);
 		return getMatchForTournament(getRegion(), matchId, tournamentCode, includeTimeline);
 	}
 
 	/**
-	 * Retrieve match by match ID and tournament code.
+	 * Retrieve match by {@code matchId} and {@code tournamentCode}.
 	 *
 	 * @param region
 	 *            The region of the match.
@@ -2896,55 +3090,69 @@ public class RiotApi {
 	 * @param tournamentCode
 	 *            The code of the tournament.
 	 * @return A map with match details
-	 * @see MatchDetail
+	 * @throws NullPointerException
+	 *             If {@code region} or {@code tournamentCode} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see MatchDetail
 	 */
 	public MatchDetail getMatchForTournament(Region region, long matchId, String tournamentCode) throws RiotApiException {
+		Objects.requireNonNull(region);
+		Objects.requireNonNull(tournamentCode);
 		return getMatchForTournament(region, matchId, tournamentCode, false);
 	}
 
 	/**
-	 * Retrieve match by match ID and tournament code.
+	 * Retrieve match by {@code matchId} and {@code tournamentCode}.
 	 *
 	 * @param matchId
 	 *            The ID of the match.
 	 * @param tournamentCode
 	 *            The code of the tournament.
 	 * @return A map with match details
-	 * @see MatchDetail
+	 * @throws NullPointerException
+	 *             If {@code tournamentCode} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see MatchDetail
 	 */
 	public MatchDetail getMatchForTournament(long matchId, String tournamentCode) throws RiotApiException {
+		Objects.requireNonNull(tournamentCode);
 		return getMatchForTournament(getRegion(), matchId, tournamentCode);
 	}
 
 	/**
-	 * Retrieve match IDs by tournament code.
+	 * Retrieve match IDs by {@code tournamentCode}.
 	 *
 	 * @param region
 	 *            The region of the matches/tournament.
 	 * @param tournamentCode
 	 *            The code of the tournament.
 	 * @return A list of match IDs
+	 * @throws NullPointerException
+	 *             If {@code region} or {@code tournamentCode} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 */
 	public List<Long> getMatchesByTournament(Region region, String tournamentCode) throws RiotApiException {
+		Objects.requireNonNull(region);
+		Objects.requireNonNull(tournamentCode);
 		return MatchApi.getMatchesByTournament(region, getTournamentKey(), tournamentCode);
 	}
 
 	/**
-	 * Retrieve match IDs by tournament code.
+	 * Retrieve match IDs by {@code tournamentCode}.
 	 *
 	 * @param tournamentCode
 	 *            The code of the tournament.
 	 * @return A list of match IDs
+	 * @throws NullPointerException
+	 *             If {@code tournamentCode} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 */
 	public List<Long> getMatchesByTournament(String tournamentCode) throws RiotApiException {
+		Objects.requireNonNull(tournamentCode);
 		return getMatchesByTournament(getRegion(), tournamentCode);
 	}
 
@@ -2957,10 +3165,14 @@ public class RiotApi {
 	 *            The provider's callback URL to which tournament game results in this region should be posted. (http URLs must use port 80,
 	 *            https URLs must use port 443).
 	 * @return A provider ID
+	 * @throws NullPointerException
+	 *             If {@code region} or {@code callbackUrl} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 */
 	public int createProvider(Region region, String callbackUrl) throws RiotApiException {
+		Objects.requireNonNull(region);
+		Objects.requireNonNull(callbackUrl);
 		return TournamentApi.createProvider(getTournamentKey(), region, callbackUrl);
 	}
 
@@ -2971,10 +3183,13 @@ public class RiotApi {
 	 *            The provider's callback URL to which tournament game results in this region should be posted. (http URLs must use port 80,
 	 *            https URLs must use port 443).
 	 * @return A provider ID
+	 * @throws NullPointerException
+	 *             If {@code callbackUrl} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 */
 	public int createProvider(String callbackUrl) throws RiotApiException {
+		Objects.requireNonNull(callbackUrl);
 		return createProvider(getRegion(), callbackUrl);
 	}
 
@@ -2986,10 +3201,13 @@ public class RiotApi {
 	 * @param providerId
 	 *            The provider ID to specify the regional registered provider data to associate this tournament.
 	 * @return A tournament ID
+	 * @throws NullPointerException
+	 *             If {@code tournamentName} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 */
 	public int createTournament(String tournamentName, int providerId) throws RiotApiException {
+		Objects.requireNonNull(tournamentName);
 		return TournamentApi.createTournament(getTournamentKey(), tournamentName, providerId);
 	}
 
@@ -3027,11 +3245,16 @@ public class RiotApi {
 	 * @param allowedSummonerIds
 	 *            Optional list of participants in order to validate the players eligible to join the lobby.
 	 * @return A list of tournament codes
+	 * @throws NullPointerException
+	 *             If {@code mapType} or {@code pickType} or {@code spectatorType} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 */
 	public List<String> createTournamentCodes(int tournamentId, int count, int teamSize, TournamentMap mapType, PickType pickType, SpectatorType spectatorType,
 			String metaData, long... allowedSummonerIds) throws RiotApiException {
+		Objects.requireNonNull(mapType);
+		Objects.requireNonNull(pickType);
+		Objects.requireNonNull(spectatorType);
 		return TournamentApi.createTournamentCodes(getTournamentKey(), tournamentId, count, teamSize, mapType, pickType, spectatorType, metaData,
 				allowedSummonerIds);
 	}
@@ -3054,11 +3277,16 @@ public class RiotApi {
 	 * @param allowedSummonerIds
 	 *            Optional list of participants in order to validate the players eligible to join the lobby.
 	 * @return A list of tournament codes
+	 * @throws NullPointerException
+	 *             If {@code mapType} or {@code pickType} or {@code spectatorType} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 */
 	public List<String> createTournamentCodes(int tournamentId, int count, int teamSize, TournamentMap mapType, PickType pickType, SpectatorType spectatorType,
 			long... allowedSummonerIds) throws RiotApiException {
+		Objects.requireNonNull(mapType);
+		Objects.requireNonNull(pickType);
+		Objects.requireNonNull(spectatorType);
 		return createTournamentCodes(tournamentId, count, teamSize, mapType, pickType, spectatorType, null, allowedSummonerIds);
 	}
 
@@ -3081,13 +3309,17 @@ public class RiotApi {
 	 * @param allowedSummonerIds
 	 *            Optional list of participants in order to validate the players eligible to join the lobby.
 	 * @return A tournament code
+	 * @throws NullPointerException
+	 *             If {@code mapType} or {@code pickType} or {@code spectatorType} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 */
 	public String createTournamentCode(int tournamentId, int teamSize, TournamentMap mapType, PickType pickType, SpectatorType spectatorType, String metaData,
 			long... allowedSummonerIds) throws RiotApiException {
-		List<String> tournamentCodeList = TournamentApi.createTournamentCodes(getTournamentKey(), tournamentId, 1, teamSize, mapType, pickType, spectatorType,
-				metaData, allowedSummonerIds);
+		Objects.requireNonNull(mapType);
+		Objects.requireNonNull(pickType);
+		Objects.requireNonNull(spectatorType);
+		List<String> tournamentCodeList = createTournamentCodes(tournamentId, 1, teamSize, mapType, pickType, spectatorType, metaData, allowedSummonerIds);
 		if (tournamentCodeList.size() < 1) {
 			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
 		}
@@ -3110,16 +3342,21 @@ public class RiotApi {
 	 * @param allowedSummonerIds
 	 *            Optional list of participants in order to validate the players eligible to join the lobby.
 	 * @return A tournament code
+	 * @throws NullPointerException
+	 *             If {@code mapType} or {@code pickType} or {@code spectatorType} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 */
 	public String createTournamentCode(int tournamentId, int teamSize, TournamentMap mapType, PickType pickType, SpectatorType spectatorType,
 			long... allowedSummonerIds) throws RiotApiException {
+		Objects.requireNonNull(mapType);
+		Objects.requireNonNull(pickType);
+		Objects.requireNonNull(spectatorType);
 		return createTournamentCode(tournamentId, teamSize, mapType, pickType, spectatorType, null, allowedSummonerIds);
 	}
 
 	/**
-	 * Update the pick type, map, spectator type, or allowed summoners for a code
+	 * Update the pick type, map, spectator type, or allowed summoners for a {@code tournamentCode}
 	 *
 	 * @param tournamentCode
 	 *            The tournament code to update.
@@ -3131,16 +3368,19 @@ public class RiotApi {
 	 *            The spectator type of the game.
 	 * @param allowedSummonerIds
 	 *            Optional list of participants in order to validate the players eligible to join the lobby.
+	 * @throws NullPointerException
+	 *             If {@code tournamentCode} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 */
 	public void updateTournamentCode(String tournamentCode, TournamentMap mapType, PickType pickType, SpectatorType spectatorType, long... allowedSummonerIds)
 			throws RiotApiException {
+		Objects.requireNonNull(tournamentCode);
 		TournamentApi.updateTournamentCode(getTournamentKey(), tournamentCode, mapType, pickType, spectatorType, allowedSummonerIds);
 	}
 
 	/**
-	 * Update the pick type, map, spectator type, or allowed summoners for a code
+	 * Update the pick type, map, spectator type, or allowed summoners for a {@code tournamentCode}
 	 *
 	 * @param tournamentCode
 	 *            The tournament code to update.
@@ -3150,16 +3390,19 @@ public class RiotApi {
 	 *            The spectator type of the game.
 	 * @param allowedSummonerIds
 	 *            Optional list of participants in order to validate the players eligible to join the lobby.
+	 * @throws NullPointerException
+	 *             If {@code tournamentCode} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 */
 	public void updateTournamentCode(String tournamentCode, PickType pickType, SpectatorType spectatorType, long... allowedSummonerIds)
 			throws RiotApiException {
+		Objects.requireNonNull(tournamentCode);
 		updateTournamentCode(tournamentCode, null, pickType, spectatorType, allowedSummonerIds);
 	}
 
 	/**
-	 * Update the pick type, map, spectator type, or allowed summoners for a code
+	 * Update the pick type, map, spectator type, or allowed summoners for a {@code tournamentCode}
 	 *
 	 * @param tournamentCode
 	 *            The tournament code to update.
@@ -3169,16 +3412,19 @@ public class RiotApi {
 	 *            The spectator type of the game.
 	 * @param allowedSummonerIds
 	 *            Optional list of participants in order to validate the players eligible to join the lobby.
+	 * @throws NullPointerException
+	 *             If {@code tournamentCode} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 */
 	public void updateTournamentCode(String tournamentCode, TournamentMap mapType, SpectatorType spectatorType, long... allowedSummonerIds)
 			throws RiotApiException {
+		Objects.requireNonNull(tournamentCode);
 		updateTournamentCode(tournamentCode, mapType, null, spectatorType, allowedSummonerIds);
 	}
 
 	/**
-	 * Update the pick type, map, spectator type, or allowed summoners for a code
+	 * Update the pick type, map, spectator type, or allowed summoners for a {@code tournamentCode}
 	 *
 	 * @param tournamentCode
 	 *            The tournament code to update.
@@ -3188,15 +3434,18 @@ public class RiotApi {
 	 *            The pick type of the game.
 	 * @param allowedSummonerIds
 	 *            Optional list of participants in order to validate the players eligible to join the lobby.
+	 * @throws NullPointerException
+	 *             If {@code tournamentCode} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 */
 	public void updateTournamentCode(String tournamentCode, TournamentMap mapType, PickType pickType, long... allowedSummonerIds) throws RiotApiException {
+		Objects.requireNonNull(tournamentCode);
 		updateTournamentCode(tournamentCode, mapType, pickType, null, allowedSummonerIds);
 	}
 
 	/**
-	 * Update the pick type, map, spectator type, or allowed summoners for a code
+	 * Update the pick type, map, spectator type, or allowed summoners for a {@code tournamentCode}
 	 *
 	 * @param tournamentCode
 	 *            The tournament code to update.
@@ -3204,15 +3453,18 @@ public class RiotApi {
 	 *            The map type of the game.
 	 * @param allowedSummonerIds
 	 *            Optional list of participants in order to validate the players eligible to join the lobby.
+	 * @throws NullPointerException
+	 *             If {@code tournamentCode} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 */
 	public void updateTournamentCode(String tournamentCode, TournamentMap mapType, long... allowedSummonerIds) throws RiotApiException {
+		Objects.requireNonNull(tournamentCode);
 		updateTournamentCode(tournamentCode, mapType, null, null, allowedSummonerIds);
 	}
 
 	/**
-	 * Update the pick type, map, spectator type, or allowed summoners for a code
+	 * Update the pick type, map, spectator type, or allowed summoners for a {@code tournamentCode}
 	 *
 	 * @param tournamentCode
 	 *            The tournament code to update.
@@ -3220,15 +3472,18 @@ public class RiotApi {
 	 *            The pick type of the game.
 	 * @param allowedSummonerIds
 	 *            Optional list of participants in order to validate the players eligible to join the lobby.
+	 * @throws NullPointerException
+	 *             If {@code tournamentCode} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 */
 	public void updateTournamentCode(String tournamentCode, PickType pickType, long... allowedSummonerIds) throws RiotApiException {
+		Objects.requireNonNull(tournamentCode);
 		updateTournamentCode(tournamentCode, null, pickType, null, allowedSummonerIds);
 	}
 
 	/**
-	 * Update the pick type, map, spectator type, or allowed summoners for a code
+	 * Update the pick type, map, spectator type, or allowed summoners for a {@code tournamentCode}
 	 *
 	 * @param tournamentCode
 	 *            The tournament code to update.
@@ -3236,10 +3491,13 @@ public class RiotApi {
 	 *            The spectator type of the game.
 	 * @param allowedSummonerIds
 	 *            Optional list of participants in order to validate the players eligible to join the lobby.
+	 * @throws NullPointerException
+	 *             If {@code tournamentCode} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 */
 	public void updateTournamentCode(String tournamentCode, SpectatorType spectatorType, long... allowedSummonerIds) throws RiotApiException {
+		Objects.requireNonNull(tournamentCode);
 		updateTournamentCode(tournamentCode, null, null, spectatorType, allowedSummonerIds);
 	}
 
@@ -3274,6 +3532,7 @@ public class RiotApi {
 	 * Get the currently set region
 	 *
 	 * @return The currently set region
+	 * @see Region
 	 */
 	public Region getRegion() {
 		return region;
@@ -3283,6 +3542,7 @@ public class RiotApi {
 	 * Get the currently set season
 	 *
 	 * @return The currently set season
+	 * @see Season
 	 */
 	public Season getSeason() {
 		return season;
