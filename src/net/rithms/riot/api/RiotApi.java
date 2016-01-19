@@ -2032,23 +2032,27 @@ public class RiotApi {
 	 * @param region
 	 *            Region from which to retrieve data.
 	 * @param locale
-	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
+	 *            used.
 	 * @param version
 	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
-	 *            can be obtained from the getDataVersions() method.
+	 *            can be obtained from the {@link #getDataVersions()} method.
 	 * @param dataById
 	 *            If specified as true, the returned data map will use the champions' IDs as the keys. If specified as false, the returned
 	 *            data map will use the champions' keys instead.
 	 * @param champData
-	 *            Tags to return additional data. Only id, key, name, and title are returned by default if this parameter isn't specified.
-	 *            To return all additional data, use ChampData.ALL.
+	 *            Tags to return additional data. Only {@code id}, {@code key}, {@code name}, and {@code title} are returned by default if
+	 *            this parameter isn't specified. To return all additional data, use {@code ChampData.ALL}.
 	 * @return A list with champions
-	 * @see net.rithms.riot.dto.Static.ChampionList
+	 * @throws NullPointerException
+	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see net.rithms.riot.dto.Static.ChampionList
 	 */
 	public net.rithms.riot.dto.Static.ChampionList getDataChampionList(Region region, String locale, String version, boolean dataById, ChampData... champData)
 			throws RiotApiException {
+		Objects.requireNonNull(region);
 		return StaticDataApi.getDataChampionList(region, getKey(), locale, version, dataById, champData);
 	}
 
@@ -2056,20 +2060,23 @@ public class RiotApi {
 	 * Retrieves champion list.
 	 * 
 	 * @param locale
-	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
+	 *            used.
 	 * @param version
 	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
-	 *            can be obtained from the getDataVersions() method.
+	 *            can be obtained from the {@link #getDataVersions()} method.
 	 * @param dataById
 	 *            If specified as true, the returned data map will use the champions' IDs as the keys. If specified as false, the returned
 	 *            data map will use the champions' keys instead.
 	 * @param champData
-	 *            Tags to return additional data. Only id, key, name, and title are returned by default if this parameter isn't specified.
-	 *            To return all additional data, use ChampData.ALL.
+	 *            Tags to return additional data. Only {@code id}, {@code key}, {@code name}, and {@code title} are returned by default if
+	 *            this parameter isn't specified. To return all additional data, use {@code ChampData.ALL}.
 	 * @return A list with champions
-	 * @see net.rithms.riot.dto.Static.ChampionList
+	 * @throws NullPointerException
+	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see net.rithms.riot.dto.Static.ChampionList
 	 */
 	public net.rithms.riot.dto.Static.ChampionList getDataChampionList(String locale, String version, boolean dataById, ChampData... champData)
 			throws RiotApiException {
@@ -2082,11 +2089,12 @@ public class RiotApi {
 	 * @param region
 	 *            Region from which to retrieve data.
 	 * @return A list with champions
-	 * @see net.rithms.riot.dto.Static.ChampionList
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see net.rithms.riot.dto.Static.ChampionList
 	 */
 	public net.rithms.riot.dto.Static.ChampionList getDataChampionList(Region region) throws RiotApiException {
+		Objects.requireNonNull(region);
 		return getDataChampionList(region, null, null, false, (ChampData) null);
 	}
 
@@ -2094,86 +2102,94 @@ public class RiotApi {
 	 * Retrieves champion list.
 	 * 
 	 * @return A list with champions
-	 * @see net.rithms.riot.dto.Static.ChampionList
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see net.rithms.riot.dto.Static.ChampionList
 	 */
 	public net.rithms.riot.dto.Static.ChampionList getDataChampionList() throws RiotApiException {
 		return getDataChampionList(getRegion());
 	}
 
 	/**
-	 * Retrieves a champion by its ID.
+	 * Retrieves a champion by its {@code id}.
 	 * 
 	 * @param region
 	 *            Region from which to retrieve data.
 	 * @param id
 	 *            Champion ID
 	 * @param locale
-	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
+	 *            used.
 	 * @param version
 	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
-	 *            can be obtained from the getDataVersions() method.
+	 *            can be obtained from the {@link #getDataVersions()} method.
 	 * @param champData
-	 *            Tags to return additional data. Only id, key, name, and title are returned by default if this parameter isn't specified.
-	 *            To return all additional data, use ChampData.ALL.
+	 *            Tags to return additional data. Only {@code id}, {@code key}, {@code name}, and {@code title} are returned by default if
+	 *            this parameter isn't specified. To return all additional data, use {@code ChampData.ALL}.
 	 * @return A single champion
-	 * @see Champion
+	 * @throws NullPointerException
+	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see net.rithms.riot.dto.Static.Champion
 	 */
 	public net.rithms.riot.dto.Static.Champion getDataChampion(Region region, int id, String locale, String version, ChampData... champData)
 			throws RiotApiException {
+		Objects.requireNonNull(region);
 		return StaticDataApi.getDataChampion(region, getKey(), id, locale, version, champData);
 	}
 
 	/**
-	 * Retrieves a champion by its ID.
+	 * Retrieves a champion by its {@code id}.
 	 * 
 	 * @param id
 	 *            Champion ID
 	 * @param locale
-	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
+	 *            used.
 	 * @param version
 	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
-	 *            can be obtained from the getDataVersions() method.
+	 *            can be obtained from the {@link #getDataVersions()} method.
 	 * @param champData
-	 *            Tags to return additional data. Only id, key, name, and title are returned by default if this parameter isn't specified.
-	 *            To return all additional data, use ChampData.ALL.
+	 *            Tags to return additional data. Only {@code id}, {@code key}, {@code name}, and {@code title} are returned by default if
+	 *            this parameter isn't specified. To return all additional data, use {@code ChampData.ALL}.
 	 * @return A single champion
-	 * @see net.rithms.riot.dto.Static.Champion
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see net.rithms.riot.dto.Static.Champion
 	 */
 	public net.rithms.riot.dto.Static.Champion getDataChampion(int id, String locale, String version, ChampData... champData) throws RiotApiException {
 		return getDataChampion(getRegion(), id, locale, version, champData);
 	}
 
 	/**
-	 * Retrieves a champion by its ID.
+	 * Retrieves a champion by its {@code id}.
 	 * 
 	 * @param region
 	 *            Region from which to retrieve data.
 	 * @param id
 	 *            Champion ID
 	 * @return A single champion
-	 * @see net.rithms.riot.dto.Static.Champion
+	 * @throws NullPointerException
+	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see net.rithms.riot.dto.Static.Champion
 	 */
 	public net.rithms.riot.dto.Static.Champion getDataChampion(Region region, int id) throws RiotApiException {
+		Objects.requireNonNull(region);
 		return getDataChampion(region, id, null, null, (ChampData) null);
 	}
 
 	/**
-	 * Retrieves a champion by its ID.
+	 * Retrieves a champion by its {@code id}.
 	 * 
 	 * @param id
 	 *            Champion ID
 	 * @return A single champion
-	 * @see net.rithms.riot.dto.Static.Champion
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see net.rithms.riot.dto.Static.Champion
 	 */
 	public net.rithms.riot.dto.Static.Champion getDataChampion(int id) throws RiotApiException {
 		return getDataChampion(getRegion(), id);
@@ -2185,16 +2201,20 @@ public class RiotApi {
 	 * @param region
 	 *            Region from which to retrieve data.
 	 * @param locale
-	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
+	 *            used.
 	 * @param version
 	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
-	 *            can be obtained from the getDataVersions() method.
+	 *            can be obtained from the {@link #getDataVersions()} method.
 	 * @return A list of game maps
-	 * @see GameMapList
+	 * @throws NullPointerException
+	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see GameMapList
 	 */
 	public GameMapList getDataGameMapList(Region region, String locale, String version) throws RiotApiException {
+		Objects.requireNonNull(region);
 		return StaticDataApi.getDataGameMapList(region, getKey(), locale, version);
 	}
 
@@ -2202,14 +2222,15 @@ public class RiotApi {
 	 * Retrieves map data.
 	 * 
 	 * @param locale
-	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
+	 *            used.
 	 * @param version
 	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
-	 *            can be obtained from the getDataVersions() method.
+	 *            can be obtained from the {@link #getDataVersions()} method.
 	 * @return A list of game maps
-	 * @see GameMapList
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see GameMapList
 	 */
 	public GameMapList getDataGameMapList(String locale, String version) throws RiotApiException {
 		return getDataGameMapList(getRegion(), locale, version);
@@ -2221,11 +2242,14 @@ public class RiotApi {
 	 * @param region
 	 *            Region from which to retrieve data.
 	 * @return A list of game maps
-	 * @see GameMapList
+	 * @throws NullPointerException
+	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see GameMapList
 	 */
 	public GameMapList getDataGameMapList(Region region) throws RiotApiException {
+		Objects.requireNonNull(region);
 		return getDataGameMapList(region, null, null);
 	}
 
@@ -2233,9 +2257,9 @@ public class RiotApi {
 	 * Retrieves map data.
 	 * 
 	 * @return A list of game maps
-	 * @see GameMapList
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see GameMapList
 	 */
 	public GameMapList getDataGameMapList() throws RiotApiException {
 		return getDataGameMapList(getRegion());
@@ -2247,19 +2271,24 @@ public class RiotApi {
 	 * @param region
 	 *            Region from which to retrieve data.
 	 * @param locale
-	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
+	 *            used.
 	 * @param version
 	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
-	 *            can be obtained from the getDataVersions() method.
+	 *            can be obtained from the {@link #getDataVersions()} method.
 	 * @param itemListData
-	 *            Tags to return additional data. Only type, version, basic, data, id, name, plaintext, group, and description are returned
-	 *            by default if this parameter isn't specified. To return all additional data, use ItemListData.ALL.
+	 *            Tags to return additional data. Only {@code type}, {@code version}, {@code basic}, {@code data}, {@code id}, {@code name},
+	 *            {@code plaintext}, {@code group}, and {@code description} are returned by default if this parameter isn't specified. To
+	 *            return all additional data, use {@code ItemListData.ALL}.
 	 * @return A list of items
-	 * @see ItemList
+	 * @throws NullPointerException
+	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see ItemList
 	 */
 	public ItemList getDataItemList(Region region, String locale, String version, ItemListData... itemListData) throws RiotApiException {
+		Objects.requireNonNull(region);
 		return StaticDataApi.getDataItemList(region, getKey(), locale, version, itemListData);
 	}
 
@@ -2267,17 +2296,19 @@ public class RiotApi {
 	 * Retrieves item list.
 	 * 
 	 * @param locale
-	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
+	 *            used.
 	 * @param version
 	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
-	 *            can be obtained from the getDataVersions() method.
+	 *            can be obtained from the {@link #getDataVersions()} method.
 	 * @param itemListData
-	 *            Tags to return additional data. Only type, version, basic, data, id, name, plaintext, group, and description are returned
-	 *            by default if this parameter isn't specified. To return all additional data, use ItemListData.ALL.
+	 *            Tags to return additional data. Only {@code type}, {@code version}, {@code basic}, {@code data}, {@code id}, {@code name},
+	 *            {@code plaintext}, {@code group}, and {@code description} are returned by default if this parameter isn't specified. To
+	 *            return all additional data, use {@code ItemListData.ALL}.
 	 * @return A list of items
-	 * @see ItemList
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see ItemList
 	 */
 	public ItemList getDataItemList(String locale, String version, ItemListData... itemListData) throws RiotApiException {
 		return getDataItemList(getRegion(), locale, version, itemListData);
@@ -2289,11 +2320,14 @@ public class RiotApi {
 	 * @param region
 	 *            Region from which to retrieve data.
 	 * @return A list of items
-	 * @see ItemList
+	 * @throws NullPointerException
+	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see ItemList
 	 */
 	public ItemList getDataItemList(Region region) throws RiotApiException {
+		Objects.requireNonNull(region);
 		return getDataItemList(region, null, null, (ItemListData) null);
 	}
 
@@ -2301,85 +2335,95 @@ public class RiotApi {
 	 * Retrieves item list.
 	 * 
 	 * @return A list of items
-	 * @see ItemList
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see ItemList
 	 */
 	public ItemList getDataItemList() throws RiotApiException {
 		return getDataItemList(getRegion());
 	}
 
 	/**
-	 * Retrieves item by its unique ID.
+	 * Retrieves item by its unique {@code id}.
 	 * 
 	 * @param region
 	 *            Region from which to retrieve data.
 	 * @param id
 	 *            Item ID
 	 * @param locale
-	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
+	 *            used.
 	 * @param version
 	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
-	 *            can be obtained from the getDataVersions() method.
+	 *            can be obtained from the {@link #getDataVersions()} method.
 	 * @param itemData
-	 *            Tags to return additional data. Only type, version, basic, data, id, name, plaintext, group, and description are returned
-	 *            by default if this parameter isn't specified. To return all additional data, use ItemData.ALL.
+	 *            Tags to return additional data. Only {@code type}, {@code version}, {@code basic}, {@code data}, {@code id}, {@code name},
+	 *            {@code plaintext}, {@code group}, and {@code description} are returned by default if this parameter isn't specified. To
+	 *            return all additional data, use {@code ItemData.ALL}.
 	 * @return A single item
-	 * @see Item
+	 * @throws NullPointerException
+	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see Item
 	 */
 	public Item getDataItem(Region region, int id, String locale, String version, ItemData... itemData) throws RiotApiException {
+		Objects.requireNonNull(region);
 		return StaticDataApi.getDataItem(region, getKey(), id, locale, version, itemData);
 	}
 
 	/**
-	 * Retrieves item by its unique ID.
+	 * Retrieves item by its unique {@code id}.
 	 * 
 	 * @param id
 	 *            Item ID
 	 * @param locale
-	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
+	 *            used.
 	 * @param version
 	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
-	 *            can be obtained from the getDataVersions() method.
+	 *            can be obtained from the {@link #getDataVersions()} method.
 	 * @param itemData
-	 *            Tags to return additional data. Only type, version, basic, data, id, name, plaintext, group, and description are returned
-	 *            by default if this parameter isn't specified. To return all additional data, use ItemData.ALL.
+	 *            Tags to return additional data. Only {@code type}, {@code version}, {@code basic}, {@code data}, {@code id}, {@code name},
+	 *            {@code plaintext}, {@code group}, and {@code description} are returned by default if this parameter isn't specified. To
+	 *            return all additional data, use {@code ItemData.ALL}.
 	 * @return A single item
-	 * @see Item
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see Item
 	 */
 	public Item getDataItem(int id, String locale, String version, ItemData... itemData) throws RiotApiException {
 		return getDataItem(getRegion(), id, locale, version, itemData);
 	}
 
 	/**
-	 * Retrieves item by its unique ID.
+	 * Retrieves item by its unique {@code id}.
 	 * 
 	 * @param region
 	 *            Region from which to retrieve data.
 	 * @param id
 	 *            Item ID
 	 * @return A single item
-	 * @see Item
+	 * @throws NullPointerException
+	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see Item
 	 */
 	public Item getDataItem(Region region, int id) throws RiotApiException {
+		Objects.requireNonNull(region);
 		return getDataItem(region, id, null, null, (ItemData) null);
 	}
 
 	/**
-	 * Retrieves item by its unique ID.
+	 * Retrieves item by its unique {@code id}.
 	 * 
 	 * @param id
 	 *            Item ID
 	 * @return A single item
-	 * @see Item
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see Item
 	 */
 	public Item getDataItem(int id) throws RiotApiException {
 		return getDataItem(getRegion(), id);
@@ -2391,10 +2435,13 @@ public class RiotApi {
 	 * @param region
 	 *            Region from which to retrieve data.
 	 * @return A list with languages
+	 * @throws NullPointerException
+	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 */
 	public List<String> getDataLanguages(Region region) throws RiotApiException {
+		Objects.requireNonNull(region);
 		return StaticDataApi.getDataLanguages(region, getKey());
 	}
 
@@ -2415,16 +2462,20 @@ public class RiotApi {
 	 * @param region
 	 *            Region from which to retrieve data.
 	 * @param locale
-	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
+	 *            used.
 	 * @param version
 	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
-	 *            can be obtained from the getDataVersions() method.
+	 *            can be obtained from the {@link #getDataVersions()} method.
 	 * @return Language strings
-	 * @see LanguageStrings
+	 * @throws NullPointerException
+	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see LanguageStrings
 	 */
 	public LanguageStrings getDataLanguageStrings(Region region, String locale, String version) throws RiotApiException {
+		Objects.requireNonNull(region);
 		return StaticDataApi.getDataLanguageStrings(region, getKey(), locale, version);
 	}
 
@@ -2432,14 +2483,15 @@ public class RiotApi {
 	 * Retrieve language strings data.
 	 * 
 	 * @param locale
-	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
+	 *            used.
 	 * @param version
 	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
-	 *            can be obtained from the getDataVersions() method.
+	 *            can be obtained from the {@link #getDataVersions()} method.
 	 * @return Language strings
-	 * @see LanguageStrings
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see LanguageStrings
 	 */
 	public LanguageStrings getDataLanguageStrings(String locale, String version) throws RiotApiException {
 		return getDataLanguageStrings(getRegion(), locale, version);
@@ -2451,11 +2503,14 @@ public class RiotApi {
 	 * @param region
 	 *            Region from which to retrieve data.
 	 * @return Language strings
-	 * @see LanguageStrings
+	 * @throws NullPointerException
+	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see LanguageStrings
 	 */
 	public LanguageStrings getDataLanguageStrings(Region region) throws RiotApiException {
+		Objects.requireNonNull(region);
 		return getDataLanguageStrings(region, null, null);
 	}
 
@@ -2463,9 +2518,9 @@ public class RiotApi {
 	 * Retrieve language strings data.
 	 * 
 	 * @return Language strings
-	 * @see LanguageStrings
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see LanguageStrings
 	 */
 	public LanguageStrings getDataLanguageStrings() throws RiotApiException {
 		return getDataLanguageStrings(getRegion());
@@ -2477,19 +2532,24 @@ public class RiotApi {
 	 * @param region
 	 *            Region from which to retrieve data.
 	 * @param locale
-	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
+	 *            used.
 	 * @param version
 	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
-	 *            can be obtained from the getDataVersions() method.
+	 *            can be obtained from the {@link #getDataVersions()} method.
 	 * @param masteryListData
-	 *            Tags to return additional data. Only type, version, data, id, name, and description are returned by default if this
-	 *            parameter isn't specified. To return all additional data, use MasteryListData.ALL.
+	 *            Tags to return additional data. Only {@code type}, {@code version}, {@code data}, {@code id}, {@code name}, and
+	 *            {@code description} are returned by default if this parameter isn't specified. To return all additional data, use
+	 *            {@code MasteryListData.ALL}.
 	 * @return A list with masteries
-	 * @see MasteryList
+	 * @throws NullPointerException
+	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see MasteryList
 	 */
 	public MasteryList getDataMasteryList(Region region, String locale, String version, MasteryListData... masteryListData) throws RiotApiException {
+		Objects.requireNonNull(region);
 		return StaticDataApi.getDataMasteryList(region, getKey(), locale, version, masteryListData);
 	}
 
@@ -2497,17 +2557,19 @@ public class RiotApi {
 	 * Retrieves mastery list.
 	 * 
 	 * @param locale
-	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
+	 *            used.
 	 * @param version
 	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
-	 *            can be obtained from the getDataVersions() method.
+	 *            can be obtained from the {@link #getDataVersions()} method.
 	 * @param masteryListData
-	 *            Tags to return additional data. Only type, version, data, id, name, and description are returned by default if this
-	 *            parameter isn't specified. To return all additional data, use MasteryListData.ALL.
+	 *            Tags to return additional data. Only {@code type}, {@code version}, {@code data}, {@code id}, {@code name}, and
+	 *            {@code description} are returned by default if this parameter isn't specified. To return all additional data, use
+	 *            {@code MasteryListData.ALL}.
 	 * @return A list with masteries
-	 * @see MasteryList
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see MasteryList
 	 */
 	public MasteryList getDataMasteryList(String locale, String version, MasteryListData... masteryListData) throws RiotApiException {
 		return getDataMasteryList(getRegion(), locale, version, masteryListData);
@@ -2519,11 +2581,14 @@ public class RiotApi {
 	 * @param region
 	 *            Region from which to retrieve data.
 	 * @return A list with masteries
-	 * @see MasteryList
+	 * @throws NullPointerException
+	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see MasteryList
 	 */
 	public MasteryList getDataMasteryList(Region region) throws RiotApiException {
+		Objects.requireNonNull(region);
 		return getDataMasteryList(region, null, null, (MasteryListData) null);
 	}
 
@@ -2531,85 +2596,93 @@ public class RiotApi {
 	 * Retrieves mastery list.
 	 * 
 	 * @return A list with masteries
-	 * @see MasteryList
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see MasteryList
 	 */
 	public MasteryList getDataMasteryList() throws RiotApiException {
 		return getDataMasteryList(getRegion());
 	}
 
 	/**
-	 * Retrieves mastery item by its unique ID.
+	 * Retrieves mastery item by its unique {@code id}.
 	 * 
 	 * @param region
 	 *            Region from which to retrieve data.
 	 * @param id
 	 *            Mastery ID
 	 * @param locale
-	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
+	 *            used.
 	 * @param version
 	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
-	 *            can be obtained from the getDataVersions() method.
+	 *            can be obtained from the {@link #getDataVersions()} method.
 	 * @param masteryData
-	 *            Tags to return additional data. Only id, name, and description are returned by default if this parameter isn't specified.
-	 *            To return all additional data, use MasteryData.ALL.
+	 *            Tags to return additional data. Only {@code id}, {@code name}, and {@code description} are returned by default if this
+	 *            parameter isn't specified. To return all additional data, use {@code MasteryData.ALL}.
 	 * @return A single mastery
-	 * @see Mastery
+	 * @throws NullPointerException
+	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see Mastery
 	 */
 	public Mastery getDataMastery(Region region, int id, String locale, String version, MasteryData... masteryData) throws RiotApiException {
+		Objects.requireNonNull(region);
 		return StaticDataApi.getDataMastery(region, getKey(), id, locale, version, masteryData);
 	}
 
 	/**
-	 * Retrieves mastery item by its unique ID.
+	 * Retrieves mastery item by its unique {@code id}.
 	 * 
 	 * @param id
 	 *            Mastery ID
 	 * @param locale
-	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
+	 *            used.
 	 * @param version
 	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
-	 *            can be obtained from the getDataVersions() method.
+	 *            can be obtained from the {@link #getDataVersions()} method.
 	 * @param masteryData
-	 *            Tags to return additional data. Only id, name, and description are returned by default if this parameter isn't specified.
-	 *            To return all additional data, use MasteryData.ALL.
+	 *            Tags to return additional data. Only {@code id}, {@code name}, and {@code description} are returned by default if this
+	 *            parameter isn't specified. To return all additional data, use {@code MasteryData.ALL}.
 	 * @return A single mastery
-	 * @see Mastery
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see Mastery
 	 */
 	public Mastery getDataMastery(int id, String locale, String version, MasteryData... masteryData) throws RiotApiException {
 		return getDataMastery(getRegion(), id, locale, version, masteryData);
 	}
 
 	/**
-	 * Retrieves mastery item by its unique ID.
+	 * Retrieves mastery item by its unique {@code id}.
 	 * 
 	 * @param region
 	 *            Region from which to retrieve data.
 	 * @param id
 	 *            Mastery ID
 	 * @return A single mastery
-	 * @see Mastery
+	 * @throws NullPointerException
+	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see Mastery
 	 */
 	public Mastery getDataMastery(Region region, int id) throws RiotApiException {
+		Objects.requireNonNull(region);
 		return getDataMastery(region, id, null, null, (MasteryData) null);
 	}
 
 	/**
-	 * Retrieves mastery item by its unique ID.
+	 * Retrieves mastery item by its unique {@code id}.
 	 * 
 	 * @param id
 	 *            Mastery ID
 	 * @return A single mastery
-	 * @see Mastery
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see Mastery
 	 */
 	public Mastery getDataMastery(int id) throws RiotApiException {
 		return getDataMastery(getRegion(), id);
@@ -2621,11 +2694,14 @@ public class RiotApi {
 	 * @param region
 	 *            Region corresponding to data to retrieve.
 	 * @return A single realm
-	 * @see Realm
+	 * @throws NullPointerException
+	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see Realm
 	 */
 	public Realm getDataRealm(Region region) throws RiotApiException {
+		Objects.requireNonNull(region);
 		return StaticDataApi.getDataRealm(region, getKey());
 	}
 
@@ -2633,9 +2709,9 @@ public class RiotApi {
 	 * Retrieve realm data.
 	 * 
 	 * @return A single realm
-	 * @see Realm
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see Realm
 	 */
 	public Realm getDataRealm() throws RiotApiException {
 		return getDataRealm(getRegion());
@@ -2647,19 +2723,24 @@ public class RiotApi {
 	 * @param region
 	 *            Region from which to retrieve data.
 	 * @param locale
-	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
+	 *            used.
 	 * @param version
 	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
-	 *            can be obtained from the getDataVersions() method.
+	 *            can be obtained from the {@link #getDataVersions()} method.
 	 * @param runeListData
-	 *            Tags to return additional data. Only type, version, data, id, name, rune, and description are returned by default if this
-	 *            parameter isn't specified. To return all additional data, use RuneListData.ALL.
+	 *            Tags to return additional data. Only {@code type}, {@code version}, {@code data}, {@code id}, {@code name}, {@code rune},
+	 *            and {@code description} are returned by default if this parameter isn't specified. To return all additional data, use
+	 *            {@code RuneListData.ALL}.
 	 * @return A list with runes
-	 * @see RuneList
+	 * @throws NullPointerException
+	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see RuneList
 	 */
 	public RuneList getDataRuneList(Region region, String locale, String version, RuneListData... runeListData) throws RiotApiException {
+		Objects.requireNonNull(region);
 		return StaticDataApi.getDataRuneList(region, getKey(), locale, version, runeListData);
 	}
 
@@ -2667,17 +2748,19 @@ public class RiotApi {
 	 * Retrieves rune list.
 	 * 
 	 * @param locale
-	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
+	 *            used.
 	 * @param version
 	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
-	 *            can be obtained from the getDataVersions() method.
+	 *            can be obtained from the {@link #getDataVersions()} method.
 	 * @param runeListData
-	 *            Tags to return additional data. Only type, version, data, id, name, rune, and description are returned by default if this
-	 *            parameter isn't specified. To return all additional data, use RuneListData.ALL.
+	 *            Tags to return additional data. Only {@code type}, {@code version}, {@code data}, {@code id}, {@code name}, {@code rune},
+	 *            and {@code description} are returned by default if this parameter isn't specified. To return all additional data, use
+	 *            {@code RuneListData.ALL}.
 	 * @return A list with runes
-	 * @see RuneList
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see RuneList
 	 */
 	public RuneList getDataRuneList(String locale, String version, RuneListData... runeListData) throws RiotApiException {
 		return getDataRuneList(getRegion(), locale, version, runeListData);
@@ -2689,11 +2772,14 @@ public class RiotApi {
 	 * @param region
 	 *            Region from which to retrieve data.
 	 * @return A list with runes
-	 * @see RuneList
+	 * @throws NullPointerException
+	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see RuneList
 	 */
 	public RuneList getDataRuneList(Region region) throws RiotApiException {
+		Objects.requireNonNull(region);
 		return getDataRuneList(region, null, null, (RuneListData) null);
 	}
 
@@ -2701,85 +2787,93 @@ public class RiotApi {
 	 * Retrieves rune list.
 	 * 
 	 * @return A list with runes
-	 * @see RuneList
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see RuneList
 	 */
 	public RuneList getDataRuneList() throws RiotApiException {
 		return getDataRuneList(getRegion());
 	}
 
 	/**
-	 * Retrieves rune by its unique ID.
+	 * Retrieves rune by its unique {@code id}.
 	 * 
 	 * @param region
 	 *            Region from which to retrieve data.
 	 * @param id
 	 *            Rune ID
 	 * @param locale
-	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
+	 *            used.
 	 * @param version
 	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
-	 *            can be obtained from the getDataVersions() method.
+	 *            can be obtained from the {@link #getDataVersions()} method.
 	 * @param runeData
-	 *            Tags to return additional data. Only id, name, rune, and description are returned by default if this parameter isn't
-	 *            specified. To return all additional data, use RuneData.ALL.
+	 *            Tags to return additional data. Only {@code id}, {@code name}, {@code rune}, and {@code description} are returned by
+	 *            default if this parameter isn't specified. To return all additional data, use {@code RuneData.ALL}.
 	 * @return A single rune
-	 * @see Rune
+	 * @throws NullPointerException
+	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see Rune
 	 */
 	public Rune getDataRune(Region region, int id, String locale, String version, RuneData... runeData) throws RiotApiException {
+		Objects.requireNonNull(region);
 		return StaticDataApi.getDataRune(region, getKey(), id, locale, version, runeData);
 	}
 
 	/**
-	 * Retrieves rune by its unique ID.
+	 * Retrieves rune by its unique {@code id}.
 	 * 
 	 * @param id
 	 *            Rune ID
 	 * @param locale
-	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
+	 *            used.
 	 * @param version
 	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
-	 *            can be obtained from the getDataVersions() method.
+	 *            can be obtained from the {@link #getDataVersions()} method.
 	 * @param runeData
-	 *            Tags to return additional data. Only id, name, rune, and description are returned by default if this parameter isn't
-	 *            specified. To return all additional data, use RuneData.ALL.
+	 *            Tags to return additional data. Only {@code id}, {@code name}, {@code rune}, and {@code description} are returned by
+	 *            default if this parameter isn't specified. To return all additional data, use {@code RuneData.ALL}.
 	 * @return A single rune
-	 * @see Rune
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see Rune
 	 */
 	public Rune getDataRune(int id, String locale, String version, RuneData... runeData) throws RiotApiException {
 		return getDataRune(getRegion(), id, locale, version, runeData);
 	}
 
 	/**
-	 * Retrieves rune by its unique ID.
+	 * Retrieves rune by its unique {@code id}.
 	 * 
 	 * @param region
 	 *            Region from which to retrieve data.
 	 * @param id
 	 *            Rune ID
 	 * @return A single rune
-	 * @see Rune
+	 * @throws NullPointerException
+	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see Rune
 	 */
 	public Rune getDataRune(Region region, int id) throws RiotApiException {
+		Objects.requireNonNull(region);
 		return getDataRune(region, id, null, null, (RuneData) null);
 	}
 
 	/**
-	 * Retrieves rune by its unique ID.
+	 * Retrieves rune by its unique {@code id}.
 	 * 
 	 * @param id
 	 *            Rune ID
 	 * @return A single rune
-	 * @see Rune
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see Rune
 	 */
 	public Rune getDataRune(int id) throws RiotApiException {
 		return getDataRune(getRegion(), id);
@@ -2791,23 +2885,28 @@ public class RiotApi {
 	 * @param region
 	 *            Region from which to retrieve data.
 	 * @param locale
-	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
+	 *            used.
 	 * @param version
 	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
-	 *            can be obtained from the getDataVersions() method.
+	 *            can be obtained from the {@link #getDataVersions()} method.
 	 * @param dataById
 	 *            If specified as true, the returned data map will use the spells' IDs as the keys. If specified as false, the returned data
 	 *            map will use the spells' keys instead
 	 * @param spellData
-	 *            Tags to return additional data. Only type, version, data, id, key, name, description, and summonerLevel are returned by
-	 *            default if this parameter isn't specified. To return all additional data, use SpellData.ALL.
+	 *            Tags to return additional data. Only {@code type}, {@code version}, {@code data}, {@code id}, {@code key}, {@code name},
+	 *            {@code description}, and {@code summonerLevel} are returned by default if this parameter isn't specified. To return all
+	 *            additional data, use {@code SpellData.ALL}.
 	 * @return A list with summoner spells
-	 * @see SummonerSpellList
+	 * @throws NullPointerException
+	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see SummonerSpellList
 	 */
 	public SummonerSpellList getDataSummonerSpellList(Region region, String locale, String version, boolean dataById, SpellData... spellData)
 			throws RiotApiException {
+		Objects.requireNonNull(region);
 		return StaticDataApi.getDataSummonerSpellList(region, getKey(), locale, version, dataById, spellData);
 	}
 
@@ -2815,20 +2914,22 @@ public class RiotApi {
 	 * Retrieves summoner spell list.
 	 * 
 	 * @param locale
-	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
+	 *            used.
 	 * @param version
 	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
-	 *            can be obtained from the getDataVersions() method.
+	 *            can be obtained from the {@link #getDataVersions()} method.
 	 * @param dataById
 	 *            If specified as true, the returned data map will use the spells' IDs as the keys. If specified as false, the returned data
 	 *            map will use the spells' keys instead
 	 * @param spellData
-	 *            Tags to return additional data. Only type, version, data, id, key, name, description, and summonerLevel are returned by
-	 *            default if this parameter isn't specified. To return all additional data, use SpellData.ALL.
+	 *            Tags to return additional data. Only {@code type}, {@code version}, {@code data}, {@code id}, {@code key}, {@code name},
+	 *            {@code description}, and {@code summonerLevel} are returned by default if this parameter isn't specified. To return all
+	 *            additional data, use {@code SpellData.ALL}.
 	 * @return A list with summoner spells
-	 * @see SummonerSpellList
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see SummonerSpellList
 	 */
 	public SummonerSpellList getDataSummonerSpellList(String locale, String version, boolean dataById, SpellData... spellData) throws RiotApiException {
 		return getDataSummonerSpellList(getRegion(), locale, version, dataById, spellData);
@@ -2840,11 +2941,14 @@ public class RiotApi {
 	 * @param region
 	 *            Region from which to retrieve data.
 	 * @return A list with summoner spells
-	 * @see SummonerSpellList
+	 * @throws NullPointerException
+	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see SummonerSpellList
 	 */
 	public SummonerSpellList getDataSummonerSpellList(Region region) throws RiotApiException {
+		Objects.requireNonNull(region);
 		return getDataSummonerSpellList(region, null, null, false, (SpellData) null);
 	}
 
@@ -2852,85 +2956,93 @@ public class RiotApi {
 	 * Retrieves summoner spell list.
 	 * 
 	 * @return A list with summoner spells
-	 * @see SummonerSpellList
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see SummonerSpellList
 	 */
 	public SummonerSpellList getDataSummonerSpellList() throws RiotApiException {
 		return getDataSummonerSpellList(getRegion());
 	}
 
 	/**
-	 * Retrieves summoner spell by its unique ID.
+	 * Retrieves summoner spell by its unique {@code id}.
 	 * 
 	 * @param region
 	 *            Region from which to retrieve data.
 	 * @param id
 	 *            Summoner spell ID
 	 * @param locale
-	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
+	 *            used.
 	 * @param version
 	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
-	 *            can be obtained from the getDataVersions() method.
+	 *            can be obtained from the {@link #getDataVersions()} method.
 	 * @param spellData
-	 *            Tags to return additional data. Only id, key, name, description, and summonerLevel are returned by default if this
-	 *            parameter isn't specified. To return all additional data, use SpellData.ALL.
+	 *            Tags to return additional data. Only {@code id}, {@code key}, {@code name}, {@code description}, and {@code summonerLevel}
+	 *            are returned by default if this parameter isn't specified. To return all additional data, use {@code SpellData.ALL}.
 	 * @return A single summoner spell
-	 * @see SummonerSpell
+	 * @throws NullPointerException
+	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see SummonerSpell
 	 */
 	public SummonerSpell getDataSummonerSpell(Region region, int id, String locale, String version, SpellData... spellData) throws RiotApiException {
+		Objects.requireNonNull(region);
 		return StaticDataApi.getDataSummonerSpell(region, getKey(), id, locale, version, spellData);
 	}
 
 	/**
-	 * Retrieves summoner spell by its unique ID.
+	 * Retrieves summoner spell by its unique {@code id}.
 	 * 
 	 * @param id
 	 *            Summoner spell ID
 	 * @param locale
-	 *            Locale code for returned data (e.g., en_US, es_ES). If not specified, the default locale for the region is used.
+	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
+	 *            used.
 	 * @param version
 	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
-	 *            can be obtained from the getDataVersions() method.
+	 *            can be obtained from the {@link #getDataVersions()} method.
 	 * @param spellData
-	 *            Tags to return additional data. Only id, key, name, description, and summonerLevel are returned by default if this
-	 *            parameter isn't specified. To return all additional data, use SpellData.ALL.
+	 *            Tags to return additional data. Only {@code id}, {@code key}, {@code name}, {@code description}, and {@code summonerLevel}
+	 *            are returned by default if this parameter isn't specified. To return all additional data, use {@code SpellData.ALL}.
 	 * @return A single summoner spell
-	 * @see SummonerSpell
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see SummonerSpell
 	 */
 	public SummonerSpell getDataSummonerSpell(int id, String locale, String version, SpellData... spellData) throws RiotApiException {
 		return getDataSummonerSpell(getRegion(), id, locale, version, spellData);
 	}
 
 	/**
-	 * Retrieves summoner spell by its unique ID.
+	 * Retrieves summoner spell by its unique {@code id}.
 	 * 
 	 * @param region
 	 *            Region from which to retrieve data.
 	 * @param id
 	 *            Summoner spell ID
 	 * @return A single summoner spell
-	 * @see SummonerSpell
+	 * @throws NullPointerException
+	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see SummonerSpell
 	 */
 	public SummonerSpell getDataSummonerSpell(Region region, int id) throws RiotApiException {
+		Objects.requireNonNull(region);
 		return getDataSummonerSpell(region, id, null, null, (SpellData) null);
 	}
 
 	/**
-	 * Retrieves summoner spell by its unique ID.
+	 * Retrieves summoner spell by its unique {@code id}.
 	 * 
 	 * @param id
 	 *            Summoner spell ID
 	 * @return A single summoner spell
-	 * @see SummonerSpell
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see SummonerSpell
 	 */
 	public SummonerSpell getDataSummonerSpell(int id) throws RiotApiException {
 		return getDataSummonerSpell(getRegion(), id);
