@@ -76,7 +76,7 @@ import net.rithms.util.Convert;
 public class RiotApi {
 
 	private Region region = Region.NA; // North American region default
-	private Season season = null;
+	private Season season = Season.CURRENT;
 	private String key;
 	private String tournamentKey;
 
