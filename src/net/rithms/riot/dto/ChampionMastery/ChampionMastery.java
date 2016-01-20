@@ -19,47 +19,46 @@ package net.rithms.riot.dto.ChampionMastery;
 import java.io.Serializable;
 
 public class ChampionMastery implements Serializable {
-	
+
 	private static final long serialVersionUID = 1980259216579071478L;
 	private long championId, championPointsSinceLastLevel, championPointsUntilNextLevel, lastPlayTime, playerId;
 	private int championLevel, championPoints;
 	private boolean chestGranted;
 	private String highestGrade;
-	
+
 	public int getChampionLevel() {
 		return championLevel;
 	}
-	
+
 	public int getChampionPoints() {
 		return championPoints;
 	}
-	
+
 	public long getChampionId() {
 		return championId;
 	}
-	
+
 	public long getChampionPointsSinceLastLevel() {
 		return championPointsSinceLastLevel;
 	}
-	
+
 	public long getChampionPointsUntilNextLevel() {
 		return championPointsUntilNextLevel;
 	}
-	
+
 	public long getLastPlayTime() {
 		return lastPlayTime;
 	}
-	
+
 	public long getPlayerId() {
 		return playerId;
 	}
-	
+
 	public boolean isChestGranted() {
 		return chestGranted;
 	}
-	
+
 	public String getHighestGrade() {
 		return highestGrade;
 	}
-
 }

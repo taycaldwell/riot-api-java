@@ -32,7 +32,8 @@ final class ChampionMasteryApi {
 	private static final String endpoint = ".api.pvp.net/championmastery/location/";
 
 	public static ChampionMastery getChampionMastery(PlatformId platformId, String key, String summonerId, long championId) throws RiotApiException {
-		String url = "https://" + platformId.getName() + endpoint + platformId.getId() + "/player/" + summonerId + "/champion/" + championId + "?api_key=" + key;
+		String url = "https://" + platformId.getName() + endpoint + platformId.getId() + "/player/" + summonerId + "/champion/" + championId + "?api_key="
+				+ key;
 
 		ChampionMastery championMastery = null;
 		try {
@@ -45,7 +46,7 @@ final class ChampionMasteryApi {
 		}
 		return championMastery;
 	}
-	
+
 	public static List<ChampionMastery> getChampionMasteries(PlatformId platformId, String key, String summonerId) throws RiotApiException {
 		String url = "https://" + platformId.getName() + endpoint + platformId.getId() + "/player/" + summonerId + "/champions?api_key=" + key;
 
@@ -61,7 +62,7 @@ final class ChampionMasteryApi {
 		}
 		return championMasteryList;
 	}
-	
+
 	public static int getChampionMasteryScore(PlatformId platformId, String key, String summonerId) throws RiotApiException {
 		String url = "https://" + platformId.getName() + endpoint + platformId.getId() + "/player/" + summonerId + "/score?api_key=" + key;
 
@@ -76,7 +77,7 @@ final class ChampionMasteryApi {
 		}
 		return score.intValue();
 	}
-	
+
 	public static List<ChampionMastery> getTopChampionMasteries(PlatformId platformId, String key, String summonerId, int count) throws RiotApiException {
 		String url = "https://" + platformId.getName() + endpoint + platformId.getId() + "/player/" + summonerId + "/topchampions?api_key=" + key;
 		if (count != -1) {

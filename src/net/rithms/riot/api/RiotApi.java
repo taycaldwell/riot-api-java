@@ -3613,7 +3613,7 @@ public class RiotApi {
 		Objects.requireNonNull(tournamentCode);
 		updateTournamentCode(tournamentCode, null, null, spectatorType, allowedSummonerIds);
 	}
-	
+
 	/**
 	 * Retrieve champion mastery by {@code summonerId} and {@code championId}.
 	 *
@@ -3628,13 +3628,14 @@ public class RiotApi {
 	 *             If {@code platformId} or {@code summonerId} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see ChampionMastery
 	 */
 	public ChampionMastery getChampionMastery(PlatformId platformId, String summonerId, long championId) throws RiotApiException {
 		Objects.requireNonNull(platformId);
 		Objects.requireNonNull(summonerId);
 		return ChampionMasteryApi.getChampionMastery(platformId, getKey(), summonerId, championId);
 	}
-	
+
 	/**
 	 * Retrieve champion mastery by {@code summonerId} and {@code championId}.
 	 *
@@ -3649,11 +3650,13 @@ public class RiotApi {
 	 *             If {@code platformId} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see ChampionMastery
 	 */
 	public ChampionMastery getChampionMastery(PlatformId platformId, long summonerId, long championId) throws RiotApiException {
+		Objects.requireNonNull(platformId);
 		return getChampionMastery(platformId, String.valueOf(summonerId), championId);
 	}
-	
+
 	/**
 	 * Retrieve all champion masteries by {@code summonerId}.
 	 *
@@ -3666,13 +3669,14 @@ public class RiotApi {
 	 *             If {@code platformId} or {@code summonerId} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see ChampionMastery
 	 */
 	public List<ChampionMastery> getChampionMasteries(PlatformId platformId, String summonerId) throws RiotApiException {
 		Objects.requireNonNull(platformId);
 		Objects.requireNonNull(summonerId);
 		return ChampionMasteryApi.getChampionMasteries(platformId, getKey(), summonerId);
 	}
-	
+
 	/**
 	 * Retrieve all champion masteries by {@code summonerId}.
 	 *
@@ -3685,11 +3689,13 @@ public class RiotApi {
 	 *             If {@code platformId} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see ChampionMastery
 	 */
 	public List<ChampionMastery> getChampionMasteries(PlatformId platformId, long summonerId) throws RiotApiException {
+		Objects.requireNonNull(platformId);
 		return getChampionMasteries(platformId, String.valueOf(summonerId));
 	}
-	
+
 	/**
 	 * Retrieve total champion mastery score by {@code summonerId}.
 	 *
@@ -3708,7 +3714,7 @@ public class RiotApi {
 		Objects.requireNonNull(summonerId);
 		return ChampionMasteryApi.getChampionMasteryScore(platformId, getKey(), summonerId);
 	}
-	
+
 	/**
 	 * Retrieve total champion mastery score by {@code summonerId}.
 	 *
@@ -3723,9 +3729,10 @@ public class RiotApi {
 	 *             If the API returns an error or unparsable result
 	 */
 	public int getChampionMasteryScore(PlatformId platformId, long summonerId) throws RiotApiException {
+		Objects.requireNonNull(platformId);
 		return getChampionMasteryScore(platformId, String.valueOf(summonerId));
 	}
-	
+
 	/**
 	 * Retrieve specified number of top champion masteries by {@code summonerId}.
 	 *
@@ -3740,13 +3747,14 @@ public class RiotApi {
 	 *             If {@code platformId} or {@code summonerId} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see ChampionMastery
 	 */
 	public List<ChampionMastery> getTopChampionMasteries(PlatformId platformId, String summonerId, int count) throws RiotApiException {
 		Objects.requireNonNull(platformId);
 		Objects.requireNonNull(summonerId);
 		return ChampionMasteryApi.getTopChampionMasteries(platformId, getKey(), summonerId, count);
 	}
-	
+
 	/**
 	 * Retrieve specified number of top champion masteries by {@code summonerId}.
 	 *
@@ -3761,11 +3769,13 @@ public class RiotApi {
 	 *             If {@code platformId} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see ChampionMastery
 	 */
 	public List<ChampionMastery> getTopChampionMasteries(PlatformId platformId, long summonerId, int count) throws RiotApiException {
+		Objects.requireNonNull(platformId);
 		return getTopChampionMasteries(platformId, String.valueOf(summonerId), count);
 	}
-	
+
 	/**
 	 * Retrieve top 3 champion masteries by {@code summonerId}.
 	 *
@@ -3778,11 +3788,14 @@ public class RiotApi {
 	 *             If {@code platformId} or {@code summonerId} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see ChampionMastery
 	 */
 	public List<ChampionMastery> getTopChampionMasteries(PlatformId platformId, String summonerId) throws RiotApiException {
+		Objects.requireNonNull(platformId);
+		Objects.requireNonNull(summonerId);
 		return getTopChampionMasteries(platformId, summonerId, -1);
 	}
-	
+
 	/**
 	 * Retrieve top 3 champion masteries by {@code summonerId}.
 	 *
@@ -3795,11 +3808,13 @@ public class RiotApi {
 	 *             If {@code platformId} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @see ChampionMastery
 	 */
 	public List<ChampionMastery> getTopChampionMasteries(PlatformId platformId, long summonerId) throws RiotApiException {
+		Objects.requireNonNull(platformId);
 		return getTopChampionMasteries(platformId, String.valueOf(summonerId));
 	}
-	
+
 	/**
 	 * Get the base URL for API requests
 	 *
