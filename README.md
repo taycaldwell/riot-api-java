@@ -1,6 +1,6 @@
 #[RIOT-API-JAVA](http://rithms.net/riot-api-java/)
 ----------
-[![JitPack](https://img.shields.io/github/tag/rithms/riot-api-java.svg?label=maven)](https://jitpack.io/#rithms/riot-api-java/v3.8.2)
+[![JitPack](https://img.shields.io/github/tag/rithms/riot-api-java.svg?label=maven)](https://jitpack.io/#rithms/riot-api-java/v3.9.0)
 ----------
 
 A simple to use, Riot Games API wrapper for Java.
@@ -25,7 +25,7 @@ Build Path -> Configure Build Path -> Libraries -> Add External Jars
 and selecting the jar under the Order and Export tab.
 
 
-This project is also available on [Jitpack](https://jitpack.io/#rithms/riot-api-java/v3.8.2)
+This project is also available on [Jitpack](https://jitpack.io/#rithms/riot-api-java/v3.9.0)
 
 ## Usage
 
@@ -118,6 +118,7 @@ The documentation for this library can be found [here.](http://rithms.net/riot-a
 ## API Versions
 The current version of this library supports the following Riot Games API versions:
 - **champion-v1.2 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
+--**championmastery [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
 - **current-game-v1.0 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, PBE, RU, TR]**
 - **featured-games-v1.0 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, PBE, RU, TR]**
 - **game-v1.3 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**

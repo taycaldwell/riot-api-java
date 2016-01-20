@@ -71,7 +71,7 @@ import net.rithms.util.Convert;
  * 
  * @author Taylor 'rithms' Caldwell
  * @author Daniel 'Linnun' Figge
- * @version 3.8.2
+ * @version 3.9.0
  */
 public class RiotApi {
 
