@@ -42,7 +42,7 @@ final class ChampionMasteryApi {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
 		}
 		if (championMastery == null) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
+			return null;
 		}
 		return championMastery;
 	}

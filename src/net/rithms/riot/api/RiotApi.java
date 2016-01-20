@@ -3623,7 +3623,7 @@ public class RiotApi {
 	 *            The ID of the summoner.
 	 * @param championId
 	 *            The ID of the champion.
-	 * @return Champion mastery for a given summoner and championId.
+	 * @return Champion mastery for a given summoner and championId, or {@code null} if given player has no mastery for given champion.
 	 * @throws NullPointerException
 	 *             If {@code platformId} or {@code summonerId} is {@code null}
 	 * @throws RiotApiException
@@ -3645,7 +3645,7 @@ public class RiotApi {
 	 *            The ID of the summoner.
 	 * @param championId
 	 *            The ID of the champion.
-	 * @return Champion mastery for a given summoner and championId.
+	 * @return Champion mastery for a given summoner and championId, or {@code null} if given player has no mastery for given champion.
 	 * @throws NullPointerException
 	 *             If {@code platformId} is {@code null}
 	 * @throws RiotApiException
