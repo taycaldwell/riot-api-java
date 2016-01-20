@@ -3623,6 +3623,7 @@ public class RiotApi {
 	 *            The ID of the summoner.
 	 * @param championId
 	 *            The ID of the champion.
+	 * @return Champion mastery for a given summoner and championId.
 	 * @throws NullPointerException
 	 *             If {@code platformId} or {@code summonerId} is {@code null}
 	 * @throws RiotApiException
@@ -3643,6 +3644,7 @@ public class RiotApi {
 	 *            The ID of the summoner.
 	 * @param championId
 	 *            The ID of the champion.
+	 * @return Champion mastery for a given summoner and championId.
 	 * @throws NullPointerException
 	 *             If {@code platformId} is {@code null}
 	 * @throws RiotApiException
@@ -3659,6 +3661,7 @@ public class RiotApi {
 	 *            The platform ID for which to fetch data.
 	 * @param summonerId
 	 *            The ID of the summoner.
+	 * @return A list of champion masteries for a given summoner.
 	 * @throws NullPointerException
 	 *             If {@code platformId} or {@code summonerId} is {@code null}
 	 * @throws RiotApiException
@@ -3677,6 +3680,7 @@ public class RiotApi {
 	 *            The platform ID for which to fetch data.
 	 * @param summonerId
 	 *            The ID of the summoner.
+	 * @return A list of champion masteries for a given summoner.
 	 * @throws NullPointerException
 	 *             If {@code platformId} is {@code null}
 	 * @throws RiotApiException
@@ -3693,6 +3697,7 @@ public class RiotApi {
 	 *            The platform ID for which to fetch data.
 	 * @param summonerId
 	 *            The ID of the summoner.
+	 * @return The total champion mastery score of a given summoner.
 	 * @throws NullPointerException
 	 *             If {@code platformId} or {@code summonerId} is {@code null}
 	 * @throws RiotApiException
@@ -3711,6 +3716,7 @@ public class RiotApi {
 	 *            The platform ID for which to fetch data.
 	 * @param summonerId
 	 *            The ID of the summoner.
+	 * @return The total champion mastery score of a given summoner.
 	 * @throws NullPointerException
 	 *             If {@code platformId} is {@code null}
 	 * @throws RiotApiException
@@ -3729,6 +3735,7 @@ public class RiotApi {
 	 *            The ID of the summoner.
 	 * @param count
 	 *            Number of entries to retrieve.
+	 * @return A list of the top champion masteries of a given summoner.
 	 * @throws NullPointerException
 	 *             If {@code platformId} or {@code summonerId} is {@code null}
 	 * @throws RiotApiException
@@ -3749,6 +3756,7 @@ public class RiotApi {
 	 *            The ID of the summoner.
 	 * @param count
 	 *            Number of entries to retrieve.
+	 * @return A list of the top champion masteries of a given summoner.
 	 * @throws NullPointerException
 	 *             If {@code platformId} is {@code null}
 	 * @throws RiotApiException
@@ -3765,6 +3773,7 @@ public class RiotApi {
 	 *            The platform ID for which to fetch data.
 	 * @param summonerId
 	 *            The ID of the summoner.
+	 * @return A list of the top champion masteries of a given summoner.
 	 * @throws NullPointerException
 	 *             If {@code platformId} or {@code summonerId} is {@code null}
 	 * @throws RiotApiException
@@ -3781,6 +3790,7 @@ public class RiotApi {
 	 *            The platform ID for which to fetch data.
 	 * @param summonerId
 	 *            The ID of the summoner.
+	 * @return A list of the top champion masteries of a given summoner.
 	 * @throws NullPointerException
 	 *             If {@code platformId} is {@code null}
 	 * @throws RiotApiException
