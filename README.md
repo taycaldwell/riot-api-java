@@ -118,7 +118,7 @@ The documentation for this library can be found [here.](http://rithms.net/riot-a
 ## API Versions
 The current version of this library supports the following Riot Games API versions:
 - **champion-v1.2 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
---**championmastery [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
+- **championmastery [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
 - **current-game-v1.0 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, PBE, RU, TR]**
 - **featured-games-v1.0 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, PBE, RU, TR]**
 - **game-v1.3 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
