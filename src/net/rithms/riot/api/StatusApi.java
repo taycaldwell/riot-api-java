@@ -1,5 +1,3 @@
-package net.rithms.riot.api;
-
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -15,12 +13,14 @@ package net.rithms.riot.api;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+package net.rithms.riot.api;
+
 import java.util.List;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
+import net.rithms.riot.api.request.Request;
 import net.rithms.riot.constant.Region;
 import net.rithms.riot.dto.Status.Shard;
 import net.rithms.riot.dto.Status.ShardStatus;
@@ -31,38 +31,23 @@ import net.rithms.riot.dto.Status.ShardStatus;
 final class StatusApi {
 
 	public static List<Shard> getShards() throws RiotApiException {
-		String url = "http://status.leagueoflegends.com/shards";
-
-		List<Shard> shards = null;
-		try {
-			shards = new Gson().fromJson(Request.sendGet(url), new TypeToken<List<Shard>>() {
-			}.getType());
-		} catch (JsonSyntaxException e) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-		if (shards == null) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-
-		return shards;
+		Request request = new Request();
+		request.addToUrl("http://status.leagueoflegends.com/shards");
+		request.execute();
+		List<Shard> dto = request.getDto(new TypeToken<List<Shard>>() {
+		}.getType());
+		return dto;
 	}
 
 	public static ShardStatus getShardStatus(Region region) throws RiotApiException {
-		String url = "http://status.leagueoflegends.com/shards/" + region;
-		if (region.equals(Region.PBE.getName())) {
-			url = "http://status.pbe.leagueoflegends.com/shards/pbe";
+		Request request = new Request();
+		if (region == Region.PBE) {
+			request.addToUrl("http://status.pbe.leagueoflegends.com/shards/pbe");
+		} else {
+			request.addToUrl("http://status.leagueoflegends.com/shards", region);
 		}
-
-		ShardStatus status = null;
-		try {
-			status = new Gson().fromJson(Request.sendGet(url), ShardStatus.class);
-		} catch (JsonSyntaxException e) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-		if (status == null) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-
-		return status;
+		request.execute();
+		ShardStatus dto = request.getDto(ShardStatus.class);
+		return dto;
 	}
 }

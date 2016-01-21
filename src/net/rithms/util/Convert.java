@@ -1,7 +1,3 @@
-package net.rithms.util;
-
-import java.util.Objects;
-
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -17,6 +13,10 @@ import java.util.Objects;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+package net.rithms.util;
+
+import java.util.Objects;
 
 public final class Convert {
 

@@ -1,7 +1,5 @@
-package net.rithms.riot.api;
-
 /*
- * Copyright 2014 Taylor Caldwell
+ * Copyright 2016 Taylor Caldwell
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,9 +13,10 @@ package net.rithms.riot.api;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
 
+package net.rithms.riot.api;
+
+import net.rithms.riot.api.request.Request;
 import net.rithms.riot.constant.Region;
 import net.rithms.riot.dto.Game.RecentGames;
 
@@ -29,18 +28,10 @@ final class GameApi {
 	private static final String VERSION = "/v1.3/";
 
 	public static RecentGames getRecentGames(Region region, String key, String summonerId) throws RiotApiException {
-		String url = region.getEndpoint() + VERSION + "game/by-summoner/" + summonerId + "/recent?api_key=" + key;
-
-		RecentGames recentGames = null;
-		try {
-			recentGames = new Gson().fromJson(Request.sendGet(url), RecentGames.class);
-		} catch (JsonSyntaxException e) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-		if (recentGames == null) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-
-		return recentGames;
+		Request request = new Request();
+		request.addToUrl(region.getEndpoint(), VERSION, "game/by-summoner/", summonerId, "/recent?api_key=", key);
+		request.execute();
+		RecentGames dto = request.getDto(RecentGames.class);
+		return dto;
 	}
 }

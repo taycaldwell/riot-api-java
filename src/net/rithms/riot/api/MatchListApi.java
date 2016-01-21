@@ -1,5 +1,3 @@
-package net.rithms.riot.api;
-
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -15,9 +13,10 @@ package net.rithms.riot.api;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
 
+package net.rithms.riot.api;
+
+import net.rithms.riot.api.request.Request;
 import net.rithms.riot.constant.Region;
 import net.rithms.riot.dto.MatchList.MatchList;
 
@@ -30,39 +29,31 @@ final class MatchListApi {
 
 	public static MatchList getMatchList(Region region, String key, long summonerId, String championIds, String rankedQueues, String seasons, long beginTime,
 			long endTime, int beginIndex, int endIndex) throws RiotApiException {
-		String url = region.getEndpoint() + VERSION + "matchlist/by-summoner/" + summonerId + "?api_key=" + key;
+		Request request = new Request();
+		request.addToUrl(region.getEndpoint(), VERSION, "matchlist/by-summoner/", summonerId, "?api_key=", key);
 		if (championIds != null) {
-			url += "&championIds=" + championIds;
+			request.addToUrl("&championIds=", championIds);
 		}
 		if (rankedQueues != null) {
-			url += "&rankedQueues=" + rankedQueues;
+			request.addToUrl("&rankedQueues=", rankedQueues);
 		}
 		if (seasons != null) {
-			url += "&seasons=" + seasons;
+			request.addToUrl("&seasons=", seasons);
 		}
 		if (beginTime != -1) {
-			url += "&beginTime=" + beginTime;
+			request.addToUrl("&beginTime=", beginTime);
 		}
 		if (endTime != -1) {
-			url += "&endTime=" + endTime;
+			request.addToUrl("&endTime=", endTime);
 		}
 		if (beginIndex != -1) {
-			url += "&beginIndex=" + beginIndex;
+			request.addToUrl("&beginIndex=", beginIndex);
 		}
 		if (endIndex != -1) {
-			url += "&endIndex=" + endIndex;
+			request.addToUrl("&endIndex=", endIndex);
 		}
-
-		MatchList matchList = null;
-		try {
-			matchList = new Gson().fromJson(Request.sendGet(url), MatchList.class);
-		} catch (JsonSyntaxException e) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-		if (matchList == null) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-
-		return matchList;
+		request.execute();
+		MatchList dto = request.getDto(MatchList.class);
+		return dto;
 	}
 }

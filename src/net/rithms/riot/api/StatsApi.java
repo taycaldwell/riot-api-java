@@ -1,5 +1,3 @@
-package net.rithms.riot.api;
-
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -15,9 +13,10 @@ package net.rithms.riot.api;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
 
+package net.rithms.riot.api;
+
+import net.rithms.riot.api.request.Request;
 import net.rithms.riot.constant.Region;
 import net.rithms.riot.constant.Season;
 import net.rithms.riot.dto.Stats.PlayerStatsSummaryList;
@@ -31,40 +30,24 @@ final class StatsApi {
 	private static final String VERSION = "/v1.3/";
 
 	public static PlayerStatsSummaryList getPlayerStatsSummary(Region region, Season season, String key, long summonerId) throws RiotApiException {
-		String url = region.getEndpoint() + VERSION + "stats/by-summoner/" + summonerId + "/summary?api_key=" + key;
+		Request request = new Request();
+		request.addToUrl(region.getEndpoint(), VERSION, "stats/by-summoner/", summonerId, "/summary?api_key=", key);
 		if (season != null) {
-			url += "&season=" + season;
+			request.addToUrl("&season=", season);
 		}
-
-		PlayerStatsSummaryList summaryList = null;
-		try {
-			summaryList = new Gson().fromJson(Request.sendGet(url), PlayerStatsSummaryList.class);
-		} catch (JsonSyntaxException e) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-		if (summaryList == null) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-
-		return summaryList;
+		request.execute();
+		PlayerStatsSummaryList dto = request.getDto(PlayerStatsSummaryList.class);
+		return dto;
 	}
 
 	public static RankedStats getRankedStats(Region region, Season season, String key, long summonerId) throws RiotApiException {
-		String url = region.getEndpoint() + VERSION + "stats/by-summoner/" + summonerId + "/ranked?api_key=" + key;
+		Request request = new Request();
+		request.addToUrl(region.getEndpoint(), VERSION, "stats/by-summoner/", summonerId, "/ranked?api_key=", key);
 		if (season != null) {
-			url += "&season=" + season;
+			request.addToUrl("&season=", season);
 		}
-
-		RankedStats rankedStats = null;
-		try {
-			rankedStats = new Gson().fromJson(Request.sendGet(url), RankedStats.class);
-		} catch (JsonSyntaxException e) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-		if (rankedStats == null) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-
-		return rankedStats;
+		request.execute();
+		RankedStats dto = request.getDto(RankedStats.class);
+		return dto;
 	}
 }

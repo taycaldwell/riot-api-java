@@ -1,5 +1,3 @@
-package net.rithms.riot.api;
-
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -15,13 +13,15 @@ package net.rithms.riot.api;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+package net.rithms.riot.api;
+
 import java.util.List;
 import java.util.Map;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
+import net.rithms.riot.api.request.Request;
 import net.rithms.riot.constant.Region;
 import net.rithms.riot.dto.Team.Team;
 
@@ -33,36 +33,20 @@ final class TeamApi {
 	private static final String VERSION = "/v2.4/";
 
 	public static Map<String, List<Team>> getTeamsBySummonerIds(Region region, String key, String summonerIds) throws RiotApiException {
-		String url = region.getEndpoint() + VERSION + "team/by-summoner/" + summonerIds + "?api_key=" + key;
-
-		Map<String, List<Team>> teams = null;
-		try {
-			teams = new Gson().fromJson(Request.sendGet(url), new TypeToken<Map<String, List<Team>>>() {
-			}.getType());
-		} catch (JsonSyntaxException e) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-		if (teams == null) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-
-		return teams;
+		Request request = new Request();
+		request.addToUrl(region.getEndpoint(), VERSION, "team/by-summoner/", summonerIds, "?api_key=", key);
+		request.execute();
+		Map<String, List<Team>> dto = request.getDto(new TypeToken<Map<String, List<Team>>>() {
+		}.getType());
+		return dto;
 	}
 
 	public static Map<String, Team> getTeamsByTeamIds(Region region, String key, String teamIds) throws RiotApiException {
-		String url = region.getEndpoint() + VERSION + "team/" + teamIds + "?api_key=" + key;
-
-		Map<String, Team> teams = null;
-		try {
-			teams = new Gson().fromJson(Request.sendGet(url), new TypeToken<Map<String, Team>>() {
-			}.getType());
-		} catch (JsonSyntaxException e) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-		if (teams == null) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-
-		return teams;
+		Request request = new Request();
+		request.addToUrl(region.getEndpoint(), VERSION, "team/", teamIds, "?api_key=", key);
+		request.execute();
+		Map<String, Team> dto = request.getDto(new TypeToken<Map<String, Team>>() {
+		}.getType());
+		return dto;
 	}
 }

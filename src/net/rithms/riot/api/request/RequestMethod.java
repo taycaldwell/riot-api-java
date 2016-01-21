@@ -14,30 +14,8 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.api;
+package net.rithms.riot.api.request;
 
-public class RateLimitException extends RiotApiException {
-
-	private static final long serialVersionUID = 8523329282717166886L;
-
-	protected final int retryAfter;
-	protected final String rateLimitType;
-
-	public RateLimitException(final int retryAfter, final String rateLimitType) {
-		super(RATE_LIMITED);
-		this.retryAfter = retryAfter;
-		this.rateLimitType = rateLimitType;
-	}
-
-	public RateLimitException() {
-		this(0, null);
-	}
-
-	public int getRetryAfter() {
-		return retryAfter;
-	}
-
-	public String getRateLimitType() {
-		return rateLimitType;
-	}
+public enum RequestMethod {
+	DELETE, GET, HEAD, OPTIONS, POST, PUT, TRACE
 }

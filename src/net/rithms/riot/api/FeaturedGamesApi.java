@@ -1,7 +1,5 @@
-package net.rithms.riot.api;
-
 /*
- * Copyright 2015 Taylor Caldwell
+ * Copyright 2016 Taylor Caldwell
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,9 +13,10 @@ package net.rithms.riot.api;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
 
+package net.rithms.riot.api;
+
+import net.rithms.riot.api.request.Request;
 import net.rithms.riot.constant.Region;
 import net.rithms.riot.dto.FeaturedGames.FeaturedGames;
 
@@ -29,18 +28,10 @@ final class FeaturedGamesApi {
 	private static final String endpoint = ".api.pvp.net/observer-mode/rest/featured";
 
 	public static FeaturedGames getFeaturedGames(Region region, String key) throws RiotApiException {
-		String url = "https://" + region + endpoint + "?api_key=" + key;
-
-		FeaturedGames featuredGames = null;
-		try {
-			featuredGames = new Gson().fromJson(Request.sendGet(url), FeaturedGames.class);
-		} catch (JsonSyntaxException e) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-		if (featuredGames == null) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-
-		return featuredGames;
+		Request request = new Request();
+		request.addToUrl("https://", region, endpoint, "?api_key=", key);
+		request.execute();
+		FeaturedGames dto = request.getDto(FeaturedGames.class);
+		return dto;
 	}
 }

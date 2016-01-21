@@ -1,5 +1,3 @@
-package net.rithms.riot.api;
-
 /*
  * Copyright 2015 Taylor Caldwell
  *
@@ -15,13 +13,16 @@ package net.rithms.riot.api;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+package net.rithms.riot.api;
+
 import java.util.HashMap;
 import java.util.List;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
+import net.rithms.riot.api.request.Request;
+import net.rithms.riot.api.request.RequestMethod;
 import net.rithms.riot.constant.PickType;
 import net.rithms.riot.constant.Region;
 import net.rithms.riot.constant.SpectatorType;
@@ -35,126 +36,100 @@ import net.rithms.riot.dto.Tournament.TournamentCode;
 final class TournamentApi {
 
 	private static final String VERSION = "/v1/";
-	private static final String TOURNAMENT_ENDPOINT = "https://global.api.pvp.net/tournament/public" + VERSION;
+	private static final String ENDPOINT = "https://global.api.pvp.net/tournament/public" + VERSION;
 
 	public static TournamentCode getTournamentCode(String key, String tournamentCode) throws RiotApiException {
-		String url = TOURNAMENT_ENDPOINT + "code/" + tournamentCode;
-
-		TournamentCode tournamentCodeData = null;
-		try {
-			tournamentCodeData = new Gson().fromJson(Request.sendGet(url, key), TournamentCode.class);
-		} catch (JsonSyntaxException e) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-		if (tournamentCodeData == null) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-
-		return tournamentCodeData;
+		Request request = new Request();
+		request.addToUrl(ENDPOINT, "code/", tournamentCode);
+		request.setRiotToken(key);
+		request.execute();
+		TournamentCode dto = request.getDto(TournamentCode.class);
+		return dto;
 	}
 
 	public static LobbyEventList getLobbyEventsByTournament(String key, String tournamentCode) throws RiotApiException {
-		String url = TOURNAMENT_ENDPOINT + "lobby/events/by-code/" + tournamentCode;
-
-		LobbyEventList lobbyEvents = null;
-		try {
-			lobbyEvents = new Gson().fromJson(Request.sendGet(url, key), LobbyEventList.class);
-		} catch (JsonSyntaxException e) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-		if (lobbyEvents == null) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-
-		return lobbyEvents;
+		Request request = new Request();
+		request.addToUrl(ENDPOINT, "lobby/events/by-code/", tournamentCode);
+		request.setRiotToken(key);
+		request.execute();
+		LobbyEventList dto = request.getDto(LobbyEventList.class);
+		return dto;
 	}
 
 	public static int createProvider(String key, Region region, String callbackUrl) throws RiotApiException {
-		String url = TOURNAMENT_ENDPOINT + "provider";
-		HashMap<String, Object> bodyMap = new HashMap<String, Object>();
-		bodyMap.put("region", region.getName().toUpperCase());
-		bodyMap.put("url", callbackUrl);
-
-		Integer providerId = null;
-		try {
-			providerId = new Gson().fromJson(Request.sendPost(url, key, new Gson().toJson(bodyMap)), Integer.class);
-		} catch (JsonSyntaxException e) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-		if (providerId == null) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-
-		return providerId.intValue();
+		Request request = new Request();
+		request.addToUrl(ENDPOINT, "provider");
+		request.setMethod(RequestMethod.POST);
+		request.setRiotToken(key);
+		HashMap<String, Object> body = new HashMap<String, Object>();
+		body.put("region", region.getName().toUpperCase());
+		body.put("url", callbackUrl);
+		request.buildJsonBody(body);
+		request.execute();
+		Integer dto = request.getDto(Integer.class);
+		return dto.intValue();
 	}
 
 	public static int createTournament(String key, String tournamentName, int providerId) throws RiotApiException {
-		String url = TOURNAMENT_ENDPOINT + "tournament";
-		HashMap<String, Object> bodyMap = new HashMap<String, Object>();
-		bodyMap.put("name", (tournamentName == null) ? "" : tournamentName);
-		bodyMap.put("providerId", providerId);
-
-		Integer tournamentId = null;
-		try {
-			tournamentId = new Gson().fromJson(Request.sendPost(url, key, new Gson().toJson(bodyMap)), Integer.class);
-		} catch (JsonSyntaxException e) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-		if (tournamentId == null) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-
-		return tournamentId.intValue();
+		Request request = new Request();
+		request.addToUrl(ENDPOINT, "tournament");
+		request.setMethod(RequestMethod.POST);
+		request.setRiotToken(key);
+		HashMap<String, Object> body = new HashMap<String, Object>();
+		body.put("name", (tournamentName == null) ? "" : tournamentName);
+		body.put("providerId", providerId);
+		request.buildJsonBody(body);
+		request.execute();
+		Integer dto = request.getDto(Integer.class);
+		return dto.intValue();
 	}
 
 	public static List<String> createTournamentCodes(String key, int tournamentId, int count, int teamSize, TournamentMap mapType, PickType pickType,
 			SpectatorType spectatorType, String metaData, long... allowedSummonerIds) throws RiotApiException {
-		String url = TOURNAMENT_ENDPOINT + "code?tournamentId=" + tournamentId + "&count=" + count;
-		HashMap<String, Object> bodyMap = new HashMap<String, Object>();
-		bodyMap.put("teamSize", teamSize);
-		bodyMap.put("mapType", mapType);
-		bodyMap.put("pickType", pickType);
-		bodyMap.put("spectatorType", spectatorType);
+		Request request = new Request();
+		request.addToUrl(ENDPOINT, "code?tournamentId=", tournamentId, "&count=", count);
+		request.setMethod(RequestMethod.POST);
+		request.setRiotToken(key);
+		HashMap<String, Object> body = new HashMap<String, Object>();
+		body.put("teamSize", teamSize);
+		body.put("mapType", mapType);
+		body.put("pickType", pickType);
+		body.put("spectatorType", spectatorType);
 		if (metaData != null) {
-			bodyMap.put("metaData", metaData);
+			body.put("metaData", metaData);
 		}
 		if (allowedSummonerIds != null && allowedSummonerIds.length > 0) {
 			HashMap<String, Object> allowedSummonerIdsMap = new HashMap<String, Object>();
 			allowedSummonerIdsMap.put("participants", allowedSummonerIds);
-			bodyMap.put("allowedSummonerIds", allowedSummonerIdsMap);
+			body.put("allowedSummonerIds", allowedSummonerIdsMap);
 		}
-
-		List<String> tournamentCodes = null;
-		try {
-			tournamentCodes = new Gson().fromJson(Request.sendPost(url, key, new Gson().toJson(bodyMap)), new TypeToken<List<String>>() {
-			}.getType());
-		} catch (JsonSyntaxException e) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-		if (tournamentCodes == null) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-
-		return tournamentCodes;
+		request.buildJsonBody(body);
+		request.execute();
+		List<String> dto = request.getDto(new TypeToken<List<String>>() {
+		}.getType());
+		return dto;
 	}
 
 	public static void updateTournamentCode(String key, String tournamentCode, TournamentMap mapType, PickType pickType, SpectatorType spectatorType,
 			long... allowedSummonerIds) throws RiotApiException {
-		String url = TOURNAMENT_ENDPOINT + "code/" + tournamentCode;
-		HashMap<String, Object> bodyMap = new HashMap<String, Object>();
+		Request request = new Request();
+		request.addToUrl(ENDPOINT, "code/", tournamentCode);
+		request.setMethod(RequestMethod.PUT);
+		request.setRiotToken(key);
+		HashMap<String, Object> body = new HashMap<String, Object>();
 		if (mapType != null) {
-			bodyMap.put("mapType", mapType);
+			body.put("mapType", mapType);
 		}
 		if (pickType != null) {
-			bodyMap.put("pickType", pickType);
+			body.put("pickType", pickType);
 		}
 		if (spectatorType != null) {
-			bodyMap.put("spectatorType", spectatorType);
+			body.put("spectatorType", spectatorType);
 		}
 		if (allowedSummonerIds != null && allowedSummonerIds.length > 0) {
-			bodyMap.put("allowedParticipants", allowedSummonerIds);
+			body.put("allowedParticipants", allowedSummonerIds);
 		}
-
-		Request.sendPut(url, key, new Gson().toJson(bodyMap));
+		request.buildJsonBody(body);
+		request.execute();
 	}
 }

@@ -1,5 +1,3 @@
-package net.rithms.riot.api;
-
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -15,12 +13,14 @@ package net.rithms.riot.api;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+package net.rithms.riot.api;
+
 import java.util.List;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
+import net.rithms.riot.api.request.Request;
 import net.rithms.riot.constant.Region;
 import net.rithms.riot.dto.Match.MatchDetail;
 
@@ -32,58 +32,34 @@ final class MatchApi {
 	private static final String VERSION = "/v2.2/";
 
 	public static MatchDetail getMatch(Region region, String key, long matchId, boolean includeTimeline) throws RiotApiException {
-		String url = region.getEndpoint() + VERSION + "match/" + matchId + "?api_key=" + key;
+		Request request = new Request();
+		request.addToUrl(region.getEndpoint(), VERSION, "match/", matchId, "?api_key=", key);
 		if (includeTimeline) {
-			url += "&includeTimeline=" + includeTimeline;
+			request.addToUrl("&includeTimeline=", includeTimeline);
 		}
-
-		MatchDetail matchDetail = null;
-		try {
-			matchDetail = new Gson().fromJson(Request.sendGet(url), MatchDetail.class);
-		} catch (JsonSyntaxException e) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-		if (matchDetail == null) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-
-		return matchDetail;
+		request.execute();
+		MatchDetail dto = request.getDto(MatchDetail.class);
+		return dto;
 	}
 
 	public static MatchDetail getMatchForTournament(Region region, String key, long matchId, String tournamentCode, boolean includeTimeline)
 			throws RiotApiException {
-		String url = region.getEndpoint() + VERSION + "match/for-tournament/" + matchId + "?tournamentCode=" + tournamentCode + "&api_key=" + key;
+		Request request = new Request();
+		request.addToUrl(region.getEndpoint(), VERSION, "match/for-tournament/", matchId, "?api_key=", key, "&tournamentCode=" + tournamentCode);
 		if (includeTimeline) {
-			url += "&includeTimeline=" + includeTimeline;
+			request.addToUrl("&includeTimeline=", includeTimeline);
 		}
-
-		MatchDetail matchDetail = null;
-		try {
-			matchDetail = new Gson().fromJson(Request.sendGet(url), MatchDetail.class);
-		} catch (JsonSyntaxException e) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-		if (matchDetail == null) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-
-		return matchDetail;
+		request.execute();
+		MatchDetail dto = request.getDto(MatchDetail.class);
+		return dto;
 	}
 
 	public static List<Long> getMatchesByTournament(Region region, String key, String tournamentCode) throws RiotApiException {
-		String url = region.getEndpoint() + VERSION + "match/by-tournament/" + tournamentCode + "/ids?api_key=" + key;
-
-		List<Long> matchIds = null;
-		try {
-			matchIds = new Gson().fromJson(Request.sendGet(url), new TypeToken<List<Long>>() {
-			}.getType());
-		} catch (JsonSyntaxException e) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-		if (matchIds == null) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-
-		return matchIds;
+		Request request = new Request();
+		request.addToUrl(region.getEndpoint(), VERSION, "match/by-tournament/", tournamentCode, "/ids?api_key=", key);
+		request.execute();
+		List<Long> dto = request.getDto(new TypeToken<List<Long>>() {
+		}.getType());
+		return dto;
 	}
 }

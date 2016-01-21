@@ -1,5 +1,3 @@
-package net.rithms.riot.api;
-
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -15,6 +13,9 @@ package net.rithms.riot.api;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+package net.rithms.riot.api;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -3634,6 +3635,21 @@ public class RiotApi {
 		Objects.requireNonNull(platformId);
 		Objects.requireNonNull(summonerId);
 		return ChampionMasteryApi.getChampionMastery(platformId, getKey(), summonerId, championId);
+	}
+
+	public static void main(String[] args) {
+		RiotApi a = new RiotApi("03db6dc7-c7ad-4fe9-adb6-73b86048a1dd");
+		a.setRegion(Region.EUW);
+		PlatformId p = PlatformId.EUW;
+		long id = 19452728;
+		long id2 = 46847877;
+		try {
+			ChampionMastery x = a.getChampionMastery(p, id2, 117);
+			System.out.println(x);
+		} catch (RiotApiException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**

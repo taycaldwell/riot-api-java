@@ -1,5 +1,3 @@
-package net.rithms.riot.api;
-
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -15,13 +13,15 @@ package net.rithms.riot.api;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+package net.rithms.riot.api;
+
 import java.util.List;
 import java.util.Map;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
+import net.rithms.riot.api.request.Request;
 import net.rithms.riot.constant.QueueType;
 import net.rithms.riot.constant.Region;
 import net.rithms.riot.dto.League.League;
@@ -34,102 +34,54 @@ final class LeagueApi {
 	private static final String VERSION = "/v2.5/";
 
 	public static Map<String, List<League>> getLeagueBySummoners(Region region, String key, String summonerIds) throws RiotApiException {
-		String url = region.getEndpoint() + VERSION + "league/by-summoner/" + summonerIds + "?api_key=" + key;
-
-		Map<String, List<League>> leagues = null;
-		try {
-			leagues = new Gson().fromJson(Request.sendGet(url), new TypeToken<Map<String, List<League>>>() {
-			}.getType());
-		} catch (JsonSyntaxException e) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-		if (leagues == null) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-
-		return leagues;
+		Request request = new Request();
+		request.addToUrl(region.getEndpoint(), VERSION, "league/by-summoner/", summonerIds, "?api_key=", key);
+		request.execute();
+		Map<String, List<League>> dto = request.getDto(new TypeToken<Map<String, List<League>>>() {
+		}.getType());
+		return dto;
 	}
 
 	public static Map<String, List<League>> getLeagueEntryBySummoners(Region region, String key, String summonerIds) throws RiotApiException {
-		String url = region.getEndpoint() + VERSION + "league/by-summoner/" + summonerIds + "/entry?api_key=" + key;
-
-		Map<String, List<League>> leagues = null;
-		try {
-			leagues = new Gson().fromJson(Request.sendGet(url), new TypeToken<Map<String, List<League>>>() {
-			}.getType());
-		} catch (JsonSyntaxException e) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-		if (leagues == null) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-
-		return leagues;
+		Request request = new Request();
+		request.addToUrl(region.getEndpoint(), VERSION, "league/by-summoner/", summonerIds, "/entry?api_key=", key);
+		request.execute();
+		Map<String, List<League>> dto = request.getDto(new TypeToken<Map<String, List<League>>>() {
+		}.getType());
+		return dto;
 	}
 
 	public static Map<String, List<League>> getLeagueByTeams(Region region, String key, String teamIds) throws RiotApiException {
-		String url = region.getEndpoint() + VERSION + "league/by-team/" + teamIds + "?api_key=" + key;
-
-		Map<String, List<League>> leagues = null;
-		try {
-			leagues = new Gson().fromJson(Request.sendGet(url), new TypeToken<Map<String, List<League>>>() {
-			}.getType());
-		} catch (JsonSyntaxException e) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-		if (leagues == null) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-
-		return leagues;
+		Request request = new Request();
+		request.addToUrl(region.getEndpoint(), VERSION, "league/by-team/", teamIds, "?api_key=", key);
+		request.execute();
+		Map<String, List<League>> dto = request.getDto(new TypeToken<Map<String, List<League>>>() {
+		}.getType());
+		return dto;
 	}
 
 	public static Map<String, List<League>> getLeagueEntryByTeams(Region region, String key, String teamIds) throws RiotApiException {
-		String url = region.getEndpoint() + VERSION + "league/by-team/" + teamIds + "/entry?api_key=" + key;
-
-		Map<String, List<League>> leagues = null;
-		try {
-			leagues = new Gson().fromJson(Request.sendGet(url), new TypeToken<Map<String, List<League>>>() {
-			}.getType());
-		} catch (JsonSyntaxException e) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-		if (leagues == null) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-
-		return leagues;
+		Request request = new Request();
+		request.addToUrl(region.getEndpoint(), VERSION, "league/by-team/", teamIds, "/entry?api_key=", key);
+		request.execute();
+		Map<String, List<League>> dto = request.getDto(new TypeToken<Map<String, List<League>>>() {
+		}.getType());
+		return dto;
 	}
 
 	public static League getChallengerLeague(Region region, String key, QueueType queueType) throws RiotApiException {
-		String url = region.getEndpoint() + VERSION + "league/challenger/?api_key=" + key + "&type=" + queueType.name();
-
-		League leagues = null;
-		try {
-			leagues = new Gson().fromJson(Request.sendGet(url), League.class);
-		} catch (JsonSyntaxException e) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-		if (leagues == null) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-
-		return leagues;
+		Request request = new Request();
+		request.addToUrl(region.getEndpoint(), VERSION, "league/challenger/?api_key=", key, "&type=", queueType.name());
+		request.execute();
+		League dto = request.getDto(League.class);
+		return dto;
 	}
 
 	public static League getMasterLeague(Region region, String key, QueueType queueType) throws RiotApiException {
-		String url = region.getEndpoint() + VERSION + "league/master/?api_key=" + key + "&type=" + queueType.name();
-
-		League leagues = null;
-		try {
-			leagues = new Gson().fromJson(Request.sendGet(url), League.class);
-		} catch (JsonSyntaxException e) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-		if (leagues == null) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
-		}
-
-		return leagues;
+		Request request = new Request();
+		request.addToUrl(region.getEndpoint(), VERSION, "league/master/?api_key=", key, "&type=", queueType.name());
+		request.execute();
+		League dto = request.getDto(League.class);
+		return dto;
 	}
 }
