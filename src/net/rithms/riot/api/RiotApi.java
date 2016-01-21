@@ -3616,14 +3616,14 @@ public class RiotApi {
 	}
 
 	/**
-	 * Retrieve champion mastery by {@code summonerId} and {@code championId}.
+	 * Get a champion mastery by {@code summonerId} and {@code championId}.
 	 *
 	 * @param platformId
-	 *            The platform ID for which to fetch data.
+	 *            Region where to retrieve the data.
 	 * @param summonerId
-	 *            The ID of the summoner.
+	 *            Summoner ID associated with the player
 	 * @param championId
-	 *            The ID of the champion.
+	 *            Champion ID to retrieve Champion Mastery for
 	 * @return Champion mastery for a given summoner and championId, or {@code null} if given player has no mastery for given champion.
 	 * @throws NullPointerException
 	 *             If {@code platformId} or {@code summonerId} is {@code null}
@@ -3638,14 +3638,14 @@ public class RiotApi {
 	}
 
 	/**
-	 * Retrieve champion mastery by {@code summonerId} and {@code championId}.
+	 * Get a champion mastery by {@code summonerId} and {@code championId}.
 	 *
 	 * @param platformId
 	 *            The platform ID for which to fetch data.
 	 * @param summonerId
-	 *            The ID of the summoner.
+	 *            Summoner ID associated with the player
 	 * @param championId
-	 *            The ID of the champion.
+	 *            Champion ID to retrieve Champion Mastery for
 	 * @return Champion mastery for a given summoner and championId, or {@code null} if given player has no mastery for given champion.
 	 * @throws NullPointerException
 	 *             If {@code platformId} is {@code null}
@@ -3659,12 +3659,12 @@ public class RiotApi {
 	}
 
 	/**
-	 * Retrieve all champion masteries by {@code summonerId}.
+	 * Get all champion mastery entries sorted by number of champion points descending
 	 *
 	 * @param platformId
-	 *            The platform ID for which to fetch data.
+	 *            Region where to retrieve the data.
 	 * @param summonerId
-	 *            The ID of the summoner.
+	 *            Summoner ID associated with the player
 	 * @return A list of champion masteries for a given summoner.
 	 * @throws NullPointerException
 	 *             If {@code platformId} or {@code summonerId} is {@code null}
@@ -3679,12 +3679,12 @@ public class RiotApi {
 	}
 
 	/**
-	 * Retrieve all champion masteries by {@code summonerId}.
+	 * Get all champion mastery entries sorted by number of champion points descending
 	 *
 	 * @param platformId
-	 *            The platform ID for which to fetch data.
+	 *            Region where to retrieve the data.
 	 * @param summonerId
-	 *            The ID of the summoner.
+	 *            Summoner ID associated with the player
 	 * @return A list of champion masteries for a given summoner.
 	 * @throws NullPointerException
 	 *             If {@code platformId} is {@code null}
@@ -3698,12 +3698,12 @@ public class RiotApi {
 	}
 
 	/**
-	 * Retrieve total champion mastery score by {@code summonerId}.
+	 * Get a player's total champion mastery score, which is sum of individual champion mastery levels
 	 *
 	 * @param platformId
-	 *            The platform ID for which to fetch data.
+	 *            Region where to retrieve the data.
 	 * @param summonerId
-	 *            The ID of the summoner.
+	 *            Summoner ID associated with the player
 	 * @return The total champion mastery score of a given summoner.
 	 * @throws NullPointerException
 	 *             If {@code platformId} or {@code summonerId} is {@code null}
@@ -3717,12 +3717,12 @@ public class RiotApi {
 	}
 
 	/**
-	 * Retrieve total champion mastery score by {@code summonerId}.
+	 * Get a player's total champion mastery score, which is sum of individual champion mastery levels
 	 *
 	 * @param platformId
-	 *            The platform ID for which to fetch data.
+	 *            Region where to retrieve the data.
 	 * @param summonerId
-	 *            The ID of the summoner.
+	 *            Summoner ID associated with the player
 	 * @return The total champion mastery score of a given summoner.
 	 * @throws NullPointerException
 	 *             If {@code platformId} is {@code null}
@@ -3735,12 +3735,12 @@ public class RiotApi {
 	}
 
 	/**
-	 * Retrieve specified number of top champion masteries by {@code summonerId}.
+	 * Get specified number of top champion mastery entries sorted by number of champion points descending
 	 *
 	 * @param platformId
-	 *            The platform ID for which to fetch data.
+	 *            Region where to retrieve the data.
 	 * @param summonerId
-	 *            The ID of the summoner.
+	 *            Summoner ID associated with the player
 	 * @param count
 	 *            Number of entries to retrieve.
 	 * @return A list of the top champion masteries of a given summoner.
@@ -3757,12 +3757,12 @@ public class RiotApi {
 	}
 
 	/**
-	 * Retrieve specified number of top champion masteries by {@code summonerId}.
+	 * Get specified number of top champion mastery entries sorted by number of champion points descending
 	 *
 	 * @param platformId
-	 *            The platform ID for which to fetch data.
+	 *            Region where to retrieve the data.
 	 * @param summonerId
-	 *            The ID of the summoner.
+	 *            Summoner ID associated with the player
 	 * @param count
 	 *            Number of entries to retrieve.
 	 * @return A list of the top champion masteries of a given summoner.
@@ -3781,9 +3781,9 @@ public class RiotApi {
 	 * Retrieve top 3 champion masteries by {@code summonerId}.
 	 *
 	 * @param platformId
-	 *            The platform ID for which to fetch data.
+	 *            Region where to retrieve the data.
 	 * @param summonerId
-	 *            The ID of the summoner.
+	 *            Summoner ID associated with the player
 	 * @return A list of the top champion masteries of a given summoner.
 	 * @throws NullPointerException
 	 *             If {@code platformId} or {@code summonerId} is {@code null}
@@ -3801,9 +3801,9 @@ public class RiotApi {
 	 * Retrieve top 3 champion masteries by {@code summonerId}.
 	 *
 	 * @param platformId
-	 *            The platform ID for which to fetch data.
+	 *            Region where to retrieve the data.
 	 * @param summonerId
-	 *            The ID of the summoner.
+	 *            Summoner ID associated with the player
 	 * @return A list of the top champion masteries of a given summoner.
 	 * @throws NullPointerException
 	 *             If {@code platformId} is {@code null}
