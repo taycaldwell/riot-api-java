@@ -3637,21 +3637,6 @@ public class RiotApi {
 		return ChampionMasteryApi.getChampionMastery(platformId, getKey(), summonerId, championId);
 	}
 
-	public static void main(String[] args) {
-		RiotApi a = new RiotApi("03db6dc7-c7ad-4fe9-adb6-73b86048a1dd");
-		a.setRegion(Region.EUW);
-		PlatformId p = PlatformId.EUW;
-		long id = 19452728;
-		long id2 = 46847877;
-		try {
-			ChampionMastery x = a.getChampionMastery(p, id2, 117);
-			System.out.println(x);
-		} catch (RiotApiException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
 	/**
 	 * Retrieve champion mastery by {@code summonerId} and {@code championId}.
 	 *
