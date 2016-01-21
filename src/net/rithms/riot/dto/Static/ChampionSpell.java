@@ -1,8 +1,3 @@
-package net.rithms.riot.dto.Static;
-
-import java.io.Serializable;
-import java.util.List;
-
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -19,6 +14,11 @@ import java.util.List;
  * limitations under the License.
  */
 
+package net.rithms.riot.dto.Static;
+
+import java.io.Serializable;
+import java.util.List;
+
 public class ChampionSpell implements Serializable {
 
 	private static final long serialVersionUID = 5070619841076416615L;
@@ -33,7 +33,7 @@ public class ChampionSpell implements Serializable {
 	private Image image;
 	private int maxrank;
 	private LevelTip leveltip;
-	
+
 	public LevelTip getLeveltip() {
 		return leveltip;
 	}

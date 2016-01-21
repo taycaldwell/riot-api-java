@@ -1,9 +1,3 @@
-package net.rithms.riot.dto.Static;
-
-import java.io.Serializable;
-import java.util.List;
-import java.util.Map;
-
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -19,6 +13,12 @@ import java.util.Map;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+package net.rithms.riot.dto.Static;
+
+import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
 public class Rune implements Serializable {
 

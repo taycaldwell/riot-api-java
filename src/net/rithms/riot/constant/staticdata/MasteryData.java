@@ -1,5 +1,3 @@
-package net.rithms.riot.constant.staticdata;
-
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -15,6 +13,8 @@ package net.rithms.riot.constant.staticdata;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+package net.rithms.riot.constant.staticdata;
 
 public enum MasteryData {
 	ALL("all"),

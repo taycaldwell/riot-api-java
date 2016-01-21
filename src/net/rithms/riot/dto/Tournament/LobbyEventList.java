@@ -1,8 +1,3 @@
-package net.rithms.riot.dto.Tournament;
-
-import java.io.Serializable;
-import java.util.List;
-
 /*
  * Copyright 2015 Taylor Caldwell
  *
@@ -18,6 +13,11 @@ import java.util.List;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+package net.rithms.riot.dto.Tournament;
+
+import java.io.Serializable;
+import java.util.List;
 
 public class LobbyEventList implements Serializable {
 

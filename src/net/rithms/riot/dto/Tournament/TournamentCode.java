@@ -1,8 +1,3 @@
-package net.rithms.riot.dto.Tournament;
-
-import java.io.Serializable;
-import java.util.Set;
-
 /*
  * Copyright 2015 Taylor Caldwell
  *
@@ -18,6 +13,11 @@ import java.util.Set;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+package net.rithms.riot.dto.Tournament;
+
+import java.io.Serializable;
+import java.util.Set;
 
 public class TournamentCode implements Serializable {
 

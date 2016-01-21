@@ -1,5 +1,3 @@
-package net.rithms.riot.dto.Summoner;
-
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -15,6 +13,8 @@ package net.rithms.riot.dto.Summoner;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+package net.rithms.riot.dto.Summoner;
 
 import java.io.Serializable;
 import java.util.Set;

@@ -1,5 +1,3 @@
-package net.rithms.riot.constant;
-
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -15,6 +13,8 @@ package net.rithms.riot.constant;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+package net.rithms.riot.constant;
 
 public enum GameMode {
 	ARAM("ARAM"),

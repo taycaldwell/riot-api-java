@@ -1,7 +1,3 @@
-package net.rithms.riot.dto.Summoner;
-
-import java.io.Serializable;
-
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -17,6 +13,10 @@ import java.io.Serializable;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+package net.rithms.riot.dto.Summoner;
+
+import java.io.Serializable;
 
 public class RuneSlot implements Serializable {
 

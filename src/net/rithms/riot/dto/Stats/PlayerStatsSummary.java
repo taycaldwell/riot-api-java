@@ -1,7 +1,3 @@
-package net.rithms.riot.dto.Stats;
-
-import java.io.Serializable;
-
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -14,6 +10,10 @@ import java.io.Serializable;
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions
  * and limitations under the License.
  */
+
+package net.rithms.riot.dto.Stats;
+
+import java.io.Serializable;
 
 public class PlayerStatsSummary implements Serializable {
 

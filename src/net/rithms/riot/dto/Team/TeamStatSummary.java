@@ -1,7 +1,3 @@
-package net.rithms.riot.dto.Team;
-
-/** DEPRECATED **/
-
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -18,15 +14,19 @@ package net.rithms.riot.dto.Team;
  * limitations under the License.
  */
 
+package net.rithms.riot.dto.Team;
+
 import java.io.Serializable;
 import java.util.Set;
+
+/** DEPRECATED **/
 
 public class TeamStatSummary implements Serializable {
 
 	private static final long serialVersionUID = 1944217232079180107L;
 	private String fullId;
 	private Set<TeamStatDetail> teamStatDetails;
-	
+
 	public String getFullId() {
 		return fullId;
 	}

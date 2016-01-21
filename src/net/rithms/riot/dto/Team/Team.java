@@ -1,5 +1,3 @@
-package net.rithms.riot.dto.Team;
-
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -15,6 +13,8 @@ package net.rithms.riot.dto.Team;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+package net.rithms.riot.dto.Team;
 
 import java.io.Serializable;
 import java.util.List;

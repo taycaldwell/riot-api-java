@@ -1,5 +1,3 @@
-package net.rithms.riot.dto.Champion;
-
 /*
  * Copyright 2014 Taylor Caldwell
  *
@@ -15,6 +13,8 @@ package net.rithms.riot.dto.Champion;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+package net.rithms.riot.dto.Champion;
 
 import java.io.Serializable;
 import java.util.List;
