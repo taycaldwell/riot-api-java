@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 Taylor Caldwell
+ * Copyright 2016 Taylor Caldwell
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,9 @@
 
 package net.rithms.riot.api.request;
 
+/**
+ * @author Daniel 'Linnun' Figge
+ */
 public enum RequestMethod {
 	DELETE, GET, HEAD, OPTIONS, POST, PUT, TRACE
 }

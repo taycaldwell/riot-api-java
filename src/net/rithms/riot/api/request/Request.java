@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 Taylor Caldwell
+ * Copyright 2016 Taylor Caldwell
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,6 +34,9 @@ import com.google.gson.JsonSyntaxException;
 import net.rithms.riot.api.RateLimitException;
 import net.rithms.riot.api.RiotApiException;
 
+/**
+ * @author Daniel 'Linnun' Figge
+ */
 public class Request {
 	public static final int CODE_SUCCESS_OK = 200;
 	public static final int CODE_SUCCESS_NOCONTENT = 204;
@@ -163,7 +166,7 @@ public class Request {
 			}
 			responseBody = responseBodyBuilder.toString();
 			setState(RequestState.Succeeded);
-		} catch (RiotApiException e){
+		} catch (RiotApiException e) {
 			exception = e;
 			setState(RequestState.Failed);
 			throw e;
