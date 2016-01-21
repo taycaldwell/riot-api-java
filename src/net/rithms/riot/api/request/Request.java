@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
+import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.util.Map;
 import java.util.logging.Level;
@@ -45,24 +46,32 @@ public class Request {
 	public static final int CODE_ERROR_SERVER_ERROR = 500;
 	public static final int CODE_ERROR_SERVICE_UNAVAILABLE = 503;
 
-	private RequestState state = RequestState.NotSent;
-	private RequestMethod method = RequestMethod.GET;
-	private StringBuilder urlBuilder = new StringBuilder();
-	private String riotToken = null;
-	private String body = null;
+	protected RequestState state = RequestState.NotSent;
+	protected RequestMethod method = RequestMethod.GET;
+	protected int timeout = 0;
+	protected StringBuilder urlBuilder = new StringBuilder();
+	protected String riotToken = null;
+	protected String body = null;
 
-	private int responseCode = -1;
-	private String responseBody = null;
+	protected int responseCode = -1;
+	protected String responseBody = null;
+
+	protected HttpURLConnection connection = null;
+	protected Exception exception = null;
 
 	public Request() {
 	}
 
-	public Request(RequestMethod method) {
-		setMethod(method);
-	}
-
 	public void setMethod(RequestMethod method) {
 		this.method = method;
+	}
+
+	public void setTimeout(int timeout) {
+		this.timeout = timeout;
+	}
+
+	public int getTimeout() {
+		return timeout;
 	}
 
 	public void setRiotToken(String riotToken) {
@@ -93,23 +102,33 @@ public class Request {
 		return responseBody;
 	}
 
+	protected boolean setState(RequestState state) {
+		if (!isDone()) {
+			this.state = state;
+			return true;
+		}
+		return false;
+	}
+
 	public synchronized void execute() throws RiotApiException, RateLimitException {
 		if (state != RequestState.NotSent) {
 			throw new IllegalStateException("The request has already been sent");
 		}
-		state = RequestState.Waiting;
-		HttpURLConnection connection = null;
+		setState(RequestState.Waiting);
+
 		try {
 			URL url = new URL(urlBuilder.toString());
 			connection = (HttpURLConnection) url.openConnection();
+			if (timeout > 0) {
+				connection.setConnectTimeout(timeout);
+				connection.setReadTimeout(timeout);
+			}
 			connection.setDoInput(true);
 			connection.setInstanceFollowRedirects(false);
 			connection.setRequestMethod(method.name());
-
 			if (riotToken != null) {
 				connection.setRequestProperty("X-Riot-Token", riotToken);
 			}
-
 			if (body != null) {
 				connection.setRequestProperty("Content-Type", "application/json");
 				connection.setDoOutput(true);
@@ -129,7 +148,6 @@ public class Request {
 				} else {
 					throw new RateLimitException(0, rateLimitType);
 				}
-
 			} else if (responseCode < 200 || responseCode >= 300) {
 				throw new RiotApiException(responseCode);
 			}
@@ -144,11 +162,23 @@ public class Request {
 				br.close();
 			}
 			responseBody = responseBodyBuilder.toString();
-			state = RequestState.Succeeded;
+			setState(RequestState.Succeeded);
+		} catch (RiotApiException e){
+			exception = e;
+			setState(RequestState.Failed);
+			throw e;
+		} catch (SocketTimeoutException e) {
+			RiotApiException exception = new RiotApiException(RiotApiException.IOEXCEPTION);
+			this.exception = exception;
+			setState(RequestState.TimeOut);
+			Logger.getLogger(Request.class.getName()).log(Level.FINE, null, e);
+			throw exception;
 		} catch (IOException e) {
-			state = RequestState.Failed;
+			RiotApiException exception = new RiotApiException(RiotApiException.IOEXCEPTION);
+			this.exception = exception;
+			setState(RequestState.Failed);
 			Logger.getLogger(Request.class.getName()).log(Level.SEVERE, null, e);
-			throw new RiotApiException(RiotApiException.IOEXCEPTION);
+			throw exception;
 		} finally {
 			if (connection != null) {
 				connection.disconnect();
@@ -166,10 +196,14 @@ public class Request {
 		try {
 			dto = new Gson().fromJson(responseBody, desiredDto);
 		} catch (JsonSyntaxException e) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
+			RiotApiException exception = new RiotApiException(RiotApiException.PARSE_FAILURE);
+			this.exception = exception;
+			throw exception;
 		}
 		if (dto == null) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
+			RiotApiException exception = new RiotApiException(RiotApiException.PARSE_FAILURE);
+			this.exception = exception;
+			throw exception;
 		}
 		return dto;
 	}
@@ -184,15 +218,19 @@ public class Request {
 		try {
 			dto = new Gson().fromJson(responseBody, desiredDto);
 		} catch (JsonSyntaxException e) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
+			RiotApiException exception = new RiotApiException(RiotApiException.PARSE_FAILURE);
+			this.exception = exception;
+			throw exception;
 		}
 		if (dto == null) {
-			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
+			RiotApiException exception = new RiotApiException(RiotApiException.PARSE_FAILURE);
+			this.exception = exception;
+			throw exception;
 		}
 		return dto;
 	}
 
-	private void requireSucceededRequestState() {
+	protected void requireSucceededRequestState() {
 		if (state == RequestState.NotSent) {
 			throw new IllegalStateException("The request has not yet been sent");
 		} else if (state == RequestState.Waiting) {
@@ -200,5 +238,44 @@ public class Request {
 		} else if (state == RequestState.Failed) {
 			throw new IllegalStateException("The request has failed");
 		}
+	}
+
+	public void cancel() {
+		if (isDone()) {
+			// Ignore
+			return;
+		}
+		state = RequestState.Cancelled;
+	}
+
+	public boolean isDone() {
+		return (state != RequestState.NotSent && state != RequestState.Waiting);
+	}
+
+	public boolean isPending() {
+		return state == RequestState.Waiting;
+	}
+
+	public boolean isSuccessful() {
+		return state == RequestState.Succeeded;
+	}
+
+	public boolean isFailed() {
+		return state == RequestState.Failed;
+	}
+
+	public boolean isCancelled() {
+		return state == RequestState.Cancelled;
+	}
+
+	public boolean isTimeOut() {
+		return state == RequestState.TimeOut;
+	}
+
+	public Exception getException() {
+		if (!isFailed()) {
+			return null;
+		}
+		return exception;
 	}
 }
