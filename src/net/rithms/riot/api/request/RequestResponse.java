@@ -39,7 +39,7 @@ class RequestResponse {
 		return code;
 	}
 
-	boolean isSuccessful() {
+	public boolean isSuccessful() {
 		return (code != -1 && code >= 200 && code < 300);
 	}
 
