@@ -87,7 +87,7 @@ public class Request {
 		return response.getBody();
 	}
 
-	public void execute() throws RiotApiException, RateLimitException {
+	public synchronized void execute() throws RiotApiException, RateLimitException {
 		response = new RequestResponse();
 		HttpURLConnection connection = null;
 		try {
