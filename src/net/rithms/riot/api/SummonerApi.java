@@ -16,6 +16,7 @@
 
 package net.rithms.riot.api;
 
+import java.net.URLEncoder;
 import java.util.Map;
 
 import com.google.gson.reflect.TypeToken;
@@ -55,7 +56,12 @@ final class SummonerApi {
 	public static Map<String, Summoner> getSummonersByName(Region region, String key, String summonerNames) throws RiotApiException {
 		summonerNames = Convert.normalizeSummonerName(summonerNames);
 		Request request = new Request();
-		request.addToUrl(region.getEndpoint(), VERSION, "summoner/by-name/", summonerNames, "?api_key=", key);
+		try {
+			request.addToUrl(region.getEndpoint(), VERSION, "summoner/by-name/", URLEncoder.encode(summonerNames, "UTF-8"), "?api_key=", key);
+		} catch (Exception e) {
+			// This should never happen
+			e.printStackTrace();
+		}
 		request.execute();
 		Map<String, Summoner> dto = request.getDto(new TypeToken<Map<String, Summoner>>() {
 		}.getType());
