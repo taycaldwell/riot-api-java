@@ -34,12 +34,25 @@ import net.rithms.riot.api.RateLimitException;
 import net.rithms.riot.api.RiotApiException;
 
 public class Request {
+	public static final int CODE_SUCCESS_OK = 200;
+	public static final int CODE_SUCCESS_NOCONTENT = 204;
+	public static final int CODE_ERROR_BAD_REQUEST = 400;
+	public static final int CODE_ERROR_UNAUTHORIZED = 401;
+	public static final int CODE_ERROR_FORBIDDEN = 403;
+	public static final int CODE_ERROR_NOT_FOUND = 404;
+	public static final int CODE_ERROR_UNPROCESSABLE_ENTITY = 422;
+	public static final int CODE_ERROR_RATE_LIMITED = 429;
+	public static final int CODE_ERROR_SERVER_ERROR = 500;
+	public static final int CODE_ERROR_SERVICE_UNAVAILABLE = 503;
 
+	private RequestState state = RequestState.NotSent;
 	private RequestMethod method = RequestMethod.GET;
 	private StringBuilder urlBuilder = new StringBuilder();
 	private String riotToken = null;
 	private String body = null;
-	private RequestResponse response = null;
+
+	private int responseCode = -1;
+	private String responseBody = null;
 
 	public Request() {
 	}
@@ -71,24 +84,20 @@ public class Request {
 	}
 
 	public int getResponseCode() {
-		if (response == null) {
-			throw new IllegalStateException("The request must first be executed");
-		}
-		return response.getCode();
+		requireSucceededRequestState();
+		return responseCode;
 	}
 
 	public String getResponseBody() {
-		if (response == null) {
-			throw new IllegalStateException("The request must first be executed");
-		}
-		if (!response.isSuccessful()) {
-			throw new IllegalStateException("The request threw an exception");
-		}
-		return response.getBody();
+		requireSucceededRequestState();
+		return responseBody;
 	}
 
 	public synchronized void execute() throws RiotApiException, RateLimitException {
-		response = new RequestResponse();
+		if (state != RequestState.NotSent) {
+			throw new IllegalStateException("The request has already been sent");
+		}
+		state = RequestState.Waiting;
 		HttpURLConnection connection = null;
 		try {
 			URL url = new URL(urlBuilder.toString());
@@ -110,8 +119,8 @@ public class Request {
 				dos.close();
 			}
 
-			response.setCode(connection.getResponseCode());
-			if (response.getCode() == RequestResponse.CODE_ERROR_RATE_LIMITED) {
+			responseCode = connection.getResponseCode();
+			if (responseCode == CODE_ERROR_RATE_LIMITED) {
 				String retryAfterString = connection.getHeaderField("Retry-After");
 				String rateLimitType = connection.getHeaderField("X-Rate-Limit-Type");
 				if (retryAfterString != null) {
@@ -121,12 +130,12 @@ public class Request {
 					throw new RateLimitException(0, rateLimitType);
 				}
 
-			} else if (!response.isSuccessful()) {
-				throw new RiotApiException(response.getCode());
+			} else if (responseCode < 200 || responseCode >= 300) {
+				throw new RiotApiException(responseCode);
 			}
 
 			StringBuilder responseBodyBuilder = new StringBuilder();
-			if (response.getCode() != RequestResponse.CODE_SUCCESS_NOCONTENT) {
+			if (responseCode != CODE_SUCCESS_NOCONTENT) {
 				BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
 				String line;
 				while ((line = br.readLine()) != null) {
@@ -134,8 +143,10 @@ public class Request {
 				}
 				br.close();
 			}
-			response.setBody(responseBodyBuilder.toString());
+			responseBody = responseBodyBuilder.toString();
+			state = RequestState.Succeeded;
 		} catch (IOException e) {
+			state = RequestState.Failed;
 			Logger.getLogger(Request.class.getName()).log(Level.SEVERE, null, e);
 			throw new RiotApiException(RiotApiException.IOEXCEPTION);
 		} finally {
@@ -146,17 +157,14 @@ public class Request {
 	}
 
 	public <T> T getDto(Class<T> desiredDto) throws RiotApiException, RateLimitException {
-		if (!response.isSuccessful()) {
-			// I think we can never get here. Let's make sure though
-			throw new RiotApiException(RiotApiException.IOEXCEPTION);
-		}
-		if (response.getCode() == RequestResponse.CODE_SUCCESS_NOCONTENT) {
+		requireSucceededRequestState();
+		if (responseCode == CODE_SUCCESS_NOCONTENT) {
 			// The Riot Api is fine with the request, and explicitly sends no content
 			return null;
 		}
 		T dto = null;
 		try {
-			dto = new Gson().fromJson(response.getBody(), desiredDto);
+			dto = new Gson().fromJson(responseBody, desiredDto);
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
 		}
@@ -167,17 +175,14 @@ public class Request {
 	}
 
 	public <T> T getDto(Type desiredDto) throws RiotApiException, RateLimitException {
-		if (!response.isSuccessful()) {
-			// I think we can never get here. Let's make sure though
-			throw new RiotApiException(RiotApiException.IOEXCEPTION);
-		}
-		if (response.getCode() == RequestResponse.CODE_SUCCESS_NOCONTENT) {
+		requireSucceededRequestState();
+		if (responseCode == CODE_SUCCESS_NOCONTENT) {
 			// The Riot Api is fine with the request, and explicitly sends no content
 			return null;
 		}
 		T dto = null;
 		try {
-			dto = new Gson().fromJson(response.getBody(), desiredDto);
+			dto = new Gson().fromJson(responseBody, desiredDto);
 		} catch (JsonSyntaxException e) {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
 		}
@@ -185,5 +190,15 @@ public class Request {
 			throw new RiotApiException(RiotApiException.PARSE_FAILURE);
 		}
 		return dto;
+	}
+
+	private void requireSucceededRequestState() {
+		if (state == RequestState.NotSent) {
+			throw new IllegalStateException("The request has not yet been sent");
+		} else if (state == RequestState.Waiting) {
+			throw new IllegalStateException("The request has not received a response yet");
+		} else if (state == RequestState.Failed) {
+			throw new IllegalStateException("The request has failed");
+		}
 	}
 }
