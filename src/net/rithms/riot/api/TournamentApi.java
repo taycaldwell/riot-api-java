@@ -38,29 +38,11 @@ final class TournamentApi {
 	private static final String VERSION = "/v1/";
 	private static final String ENDPOINT = "https://global.api.pvp.net/tournament/public" + VERSION;
 
-	public static TournamentCode getTournamentCode(String key, String tournamentCode) throws RiotApiException {
-		Request request = new Request();
-		request.addToUrl(ENDPOINT, "code/", tournamentCode);
-		request.setRiotToken(key);
-		request.execute();
-		TournamentCode dto = request.getDto(TournamentCode.class);
-		return dto;
-	}
-
-	public static LobbyEventList getLobbyEventsByTournament(String key, String tournamentCode) throws RiotApiException {
-		Request request = new Request();
-		request.addToUrl(ENDPOINT, "lobby/events/by-code/", tournamentCode);
-		request.setRiotToken(key);
-		request.execute();
-		LobbyEventList dto = request.getDto(LobbyEventList.class);
-		return dto;
-	}
-
-	public static int createProvider(String key, Region region, String callbackUrl) throws RiotApiException {
-		Request request = new Request();
-		request.addToUrl(ENDPOINT, "provider");
+	public static int createProvider(ApiConfig config, Region region, String callbackUrl) throws RiotApiException {
+		Request request = new Request(config);
 		request.setMethod(RequestMethod.POST);
-		request.setRiotToken(key);
+		request.addTournamentKeyToRiotToken();
+		request.setUrlBase(ENDPOINT, "provider");
 		HashMap<String, Object> body = new HashMap<String, Object>();
 		body.put("region", region.getName().toUpperCase());
 		body.put("url", callbackUrl);
@@ -70,11 +52,11 @@ final class TournamentApi {
 		return dto.intValue();
 	}
 
-	public static int createTournament(String key, String tournamentName, int providerId) throws RiotApiException {
-		Request request = new Request();
-		request.addToUrl(ENDPOINT, "tournament");
+	public static int createTournament(ApiConfig config, String tournamentName, int providerId) throws RiotApiException {
+		Request request = new Request(config);
 		request.setMethod(RequestMethod.POST);
-		request.setRiotToken(key);
+		request.addTournamentKeyToRiotToken();
+		request.setUrlBase(ENDPOINT, "tournament");
 		HashMap<String, Object> body = new HashMap<String, Object>();
 		body.put("name", (tournamentName == null) ? "" : tournamentName);
 		body.put("providerId", providerId);
@@ -84,12 +66,13 @@ final class TournamentApi {
 		return dto.intValue();
 	}
 
-	public static List<String> createTournamentCodes(String key, int tournamentId, int count, int teamSize, TournamentMap mapType, PickType pickType,
+	public static List<String> createTournamentCodes(ApiConfig config, int tournamentId, int count, int teamSize, TournamentMap mapType, PickType pickType,
 			SpectatorType spectatorType, String metaData, long... allowedSummonerIds) throws RiotApiException {
-		Request request = new Request();
-		request.addToUrl(ENDPOINT, "code?tournamentId=", tournamentId, "&count=", count);
+		Request request = new Request(config);
 		request.setMethod(RequestMethod.POST);
-		request.setRiotToken(key);
+		request.addTournamentKeyToRiotToken();
+		request.setUrlBase(ENDPOINT, "code?tournamentId=", tournamentId);
+		request.addUrlParameter("count", count);
 		HashMap<String, Object> body = new HashMap<String, Object>();
 		body.put("teamSize", teamSize);
 		body.put("mapType", mapType);
@@ -110,12 +93,30 @@ final class TournamentApi {
 		return dto;
 	}
 
-	public static void updateTournamentCode(String key, String tournamentCode, TournamentMap mapType, PickType pickType, SpectatorType spectatorType,
+	public static LobbyEventList getLobbyEventsByTournament(ApiConfig config, String tournamentCode) throws RiotApiException {
+		Request request = new Request(config);
+		request.addTournamentKeyToRiotToken();
+		request.setUrlBase(ENDPOINT, "lobby/events/by-code/", tournamentCode);
+		request.execute();
+		LobbyEventList dto = request.getDto(LobbyEventList.class);
+		return dto;
+	}
+
+	public static TournamentCode getTournamentCode(ApiConfig config, String tournamentCode) throws RiotApiException {
+		Request request = new Request(config);
+		request.addTournamentKeyToRiotToken();
+		request.setUrlBase(ENDPOINT, "code/", tournamentCode);
+		request.execute();
+		TournamentCode dto = request.getDto(TournamentCode.class);
+		return dto;
+	}
+
+	public static void updateTournamentCode(ApiConfig config, String tournamentCode, TournamentMap mapType, PickType pickType, SpectatorType spectatorType,
 			long... allowedSummonerIds) throws RiotApiException {
-		Request request = new Request();
-		request.addToUrl(ENDPOINT, "code/", tournamentCode);
+		Request request = new Request(config);
 		request.setMethod(RequestMethod.PUT);
-		request.setRiotToken(key);
+		request.addTournamentKeyToRiotToken();
+		request.setUrlBase(ENDPOINT, "code/", tournamentCode);
 		HashMap<String, Object> body = new HashMap<String, Object>();
 		if (mapType != null) {
 			body.put("mapType", mapType);

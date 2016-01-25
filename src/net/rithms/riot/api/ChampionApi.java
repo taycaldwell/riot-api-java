@@ -28,22 +28,24 @@ final class ChampionApi {
 
 	private static final String VERSION = "/v1.2/";
 
-	public static ChampionList getChampions(Region region, String key, boolean freeToPlay) throws RiotApiException {
-		Request request = new Request();
-		request.addToUrl(region.getEndpoint(), VERSION, "champion?api_key=", key);
-		if (freeToPlay) {
-			request.addToUrl("&freeToPlay=", freeToPlay);
-		}
+	public static Champion getChampionById(ApiConfig config, Region region, int id) throws RiotApiException {
+		Request request = new Request(config);
+		request.addApiKeyToUrl();
+		request.setUrlBase(region.getEndpoint(), VERSION, "champion/", id);
 		request.execute();
-		ChampionList dto = request.getDto(ChampionList.class);
+		Champion dto = request.getDto(Champion.class);
 		return dto;
 	}
 
-	public static Champion getChampionById(Region region, String key, int id) throws RiotApiException {
-		Request request = new Request();
-		request.addToUrl(region.getEndpoint(), VERSION, "champion/", id, "?api_key=", key);
+	public static ChampionList getChampions(ApiConfig config, Region region, boolean freeToPlay) throws RiotApiException {
+		Request request = new Request(config);
+		request.addApiKeyToUrl();
+		request.setUrlBase(region.getEndpoint(), VERSION, "champion");
+		if (freeToPlay) {
+			request.addUrlParameter("freeToPlay", freeToPlay);
+		}
 		request.execute();
-		Champion dto = request.getDto(Champion.class);
+		ChampionList dto = request.getDto(ChampionList.class);
 		return dto;
 	}
 }

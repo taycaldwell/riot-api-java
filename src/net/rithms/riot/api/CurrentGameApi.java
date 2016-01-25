@@ -27,9 +27,10 @@ final class CurrentGameApi {
 
 	private static final String endpoint = ".api.pvp.net/observer-mode/rest/consumer/getSpectatorGameInfo/";
 
-	public static CurrentGameInfo getCurrentGameInfo(PlatformId platformId, String key, String summonerId) throws RiotApiException {
-		Request request = new Request();
-		request.addToUrl("https://", platformId.getName(), endpoint, platformId.getId(), "/", summonerId, "?api_key=", key);
+	public static CurrentGameInfo getCurrentGameInfo(ApiConfig config, PlatformId platformId, String summonerId) throws RiotApiException {
+		Request request = new Request(config);
+		request.addApiKeyToUrl();
+		request.setUrlBase("https://", platformId.getName(), endpoint, platformId.getId(), '/', summonerId);
 		request.execute();
 		CurrentGameInfo dto = request.getDto(CurrentGameInfo.class);
 		return dto;

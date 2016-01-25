@@ -27,9 +27,10 @@ final class GameApi {
 
 	private static final String VERSION = "/v1.3/";
 
-	public static RecentGames getRecentGames(Region region, String key, String summonerId) throws RiotApiException {
-		Request request = new Request();
-		request.addToUrl(region.getEndpoint(), VERSION, "game/by-summoner/", summonerId, "/recent?api_key=", key);
+	public static RecentGames getRecentGames(ApiConfig config, Region region, String summonerId) throws RiotApiException {
+		Request request = new Request(config);
+		request.addApiKeyToUrl();
+		request.setUrlBase(region.getEndpoint(), VERSION, "game/by-summoner/", summonerId, "/recent");
 		request.execute();
 		RecentGames dto = request.getDto(RecentGames.class);
 		return dto;

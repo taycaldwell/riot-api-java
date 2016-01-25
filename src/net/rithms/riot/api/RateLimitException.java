@@ -33,11 +33,11 @@ public class RateLimitException extends RiotApiException {
 		this(0, null);
 	}
 
-	public int getRetryAfter() {
-		return retryAfter;
-	}
-
 	public String getRateLimitType() {
 		return rateLimitType;
+	}
+
+	public int getRetryAfter() {
+		return retryAfter;
 	}
 }

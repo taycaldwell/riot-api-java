@@ -37,6 +37,10 @@ public class RiotApiException extends Exception {
 		this.errorCode = errorCode;
 	}
 
+	public int getErrorCode() {
+		return errorCode;
+	}
+
 	public static String getMessage(final int errorCode) {
 		switch (errorCode) {
 		case BAD_REQUEST:
@@ -62,10 +66,6 @@ public class RiotApiException extends Exception {
 		default:
 			return "An unknown API error occured: " + errorCode;
 		}
-	}
-
-	public int getErrorCode() {
-		return errorCode;
 	}
 
 	@Override

@@ -19,6 +19,8 @@ package net.rithms.riot.api.request;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+import net.rithms.riot.api.ApiConfig;
+
 /**
  * @author Daniel 'Linnun' Figge
  */
@@ -31,6 +33,10 @@ public class AsyncRequest extends Request implements Runnable {
 
 	public AsyncRequest() {
 		super();
+	}
+
+	public AsyncRequest(ApiConfig config) {
+		super(config);
 	}
 
 	public void await() throws InterruptedException {
@@ -54,12 +60,42 @@ public class AsyncRequest extends Request implements Runnable {
 	}
 
 	@Override
-	public void setTimeout(int timeout) {
-		super.setTimeout(timeout);
-		if (connection != null && timeout > 0) {
-			connection.setConnectTimeout(timeout);
-			connection.setReadTimeout(timeout);
+	public void cancel() {
+		super.cancel();
+		if (state != RequestState.Cancelled) {
+			return;
 		}
+		synchronized (signal) {
+			signal.notifyAll();
+		}
+		// Try to force-quit the connection
+		setTimeout(1);
+	}
+
+	@Override
+	public synchronized void execute() {
+		if (state != RequestState.NotSent) {
+			throw new IllegalStateException("The request has already been sent");
+		}
+		executionThread = new Thread(this);
+		executionThread.start();
+	}
+
+	public RequestListener getListener() {
+		return listener;
+	}
+
+	@Override
+	public void run() {
+		try {
+			super.execute();
+		} catch (Exception e) {
+			exception = e;
+		}
+	}
+
+	public void setListener(RequestListener listener) {
+		this.listener = listener;
 	}
 
 	@Override
@@ -83,44 +119,5 @@ public class AsyncRequest extends Request implements Runnable {
 			}
 		}
 		return true;
-	}
-
-	@Override
-	public synchronized void execute() {
-		if (state != RequestState.NotSent) {
-			throw new IllegalStateException("The request has already been sent");
-		}
-		executionThread = new Thread(this);
-		executionThread.start();
-	}
-
-	@Override
-	public void run() {
-		try {
-			super.execute();
-		} catch (Exception e) {
-			exception = e;
-		}
-	}
-
-	@Override
-	public void cancel() {
-		super.cancel();
-		if (state != RequestState.Cancelled) {
-			return;
-		}
-		synchronized (signal) {
-			signal.notifyAll();
-		}
-		// Try to force-quit the connection
-		setTimeout(1);
-	}
-
-	public void setListener(RequestListener listener) {
-		this.listener = listener;
-	}
-
-	public RequestListener getListener() {
-		return listener;
 	}
 }

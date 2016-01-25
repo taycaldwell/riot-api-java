@@ -32,18 +32,20 @@ final class TeamApi {
 
 	private static final String VERSION = "/v2.4/";
 
-	public static Map<String, List<Team>> getTeamsBySummonerIds(Region region, String key, String summonerIds) throws RiotApiException {
-		Request request = new Request();
-		request.addToUrl(region.getEndpoint(), VERSION, "team/by-summoner/", summonerIds, "?api_key=", key);
+	public static Map<String, List<Team>> getTeamsBySummonerIds(ApiConfig config, Region region, String summonerIds) throws RiotApiException {
+		Request request = new Request(config);
+		request.addApiKeyToUrl();
+		request.setUrlBase(region.getEndpoint(), VERSION, "team/by-summoner/", summonerIds);
 		request.execute();
 		Map<String, List<Team>> dto = request.getDto(new TypeToken<Map<String, List<Team>>>() {
 		}.getType());
 		return dto;
 	}
 
-	public static Map<String, Team> getTeamsByTeamIds(Region region, String key, String teamIds) throws RiotApiException {
-		Request request = new Request();
-		request.addToUrl(region.getEndpoint(), VERSION, "team/", teamIds, "?api_key=", key);
+	public static Map<String, Team> getTeamsByTeamIds(ApiConfig config, Region region, String teamIds) throws RiotApiException {
+		Request request = new Request(config);
+		request.addApiKeyToUrl();
+		request.setUrlBase(region.getEndpoint(), VERSION, "team/", teamIds);
 		request.execute();
 		Map<String, Team> dto = request.getDto(new TypeToken<Map<String, Team>>() {
 		}.getType());

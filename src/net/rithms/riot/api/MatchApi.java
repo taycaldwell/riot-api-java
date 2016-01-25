@@ -31,32 +31,36 @@ final class MatchApi {
 
 	private static final String VERSION = "/v2.2/";
 
-	public static MatchDetail getMatch(Region region, String key, long matchId, boolean includeTimeline) throws RiotApiException {
-		Request request = new Request();
-		request.addToUrl(region.getEndpoint(), VERSION, "match/", matchId, "?api_key=", key);
+	public static MatchDetail getMatch(ApiConfig config, Region region, long matchId, boolean includeTimeline) throws RiotApiException {
+		Request request = new Request(config);
+		request.addApiKeyToUrl();
+		request.setUrlBase(region.getEndpoint(), VERSION, "match/", matchId);
 		if (includeTimeline) {
-			request.addToUrl("&includeTimeline=", includeTimeline);
+			request.addUrlParameter("includeTimeline", includeTimeline);
 		}
 		request.execute();
 		MatchDetail dto = request.getDto(MatchDetail.class);
 		return dto;
 	}
 
-	public static MatchDetail getMatchForTournament(Region region, String key, long matchId, String tournamentCode, boolean includeTimeline)
+	public static MatchDetail getMatchForTournament(ApiConfig config, Region region, long matchId, String tournamentCode, boolean includeTimeline)
 			throws RiotApiException {
-		Request request = new Request();
-		request.addToUrl(region.getEndpoint(), VERSION, "match/for-tournament/", matchId, "?api_key=", key, "&tournamentCode=" + tournamentCode);
+		Request request = new Request(config);
+		request.addApiKeyToUrl();
+		request.setUrlBase(region.getEndpoint(), VERSION, "match/for-tournament/", matchId);
+		request.addUrlParameter("tournamentCode", tournamentCode);
 		if (includeTimeline) {
-			request.addToUrl("&includeTimeline=", includeTimeline);
+			request.addUrlParameter("includeTimeline", includeTimeline);
 		}
 		request.execute();
 		MatchDetail dto = request.getDto(MatchDetail.class);
 		return dto;
 	}
 
-	public static List<Long> getMatchesByTournament(Region region, String key, String tournamentCode) throws RiotApiException {
-		Request request = new Request();
-		request.addToUrl(region.getEndpoint(), VERSION, "match/by-tournament/", tournamentCode, "/ids?api_key=", key);
+	public static List<Long> getMatchesByTournament(ApiConfig config, Region region, String tournamentCode) throws RiotApiException {
+		Request request = new Request(config);
+		request.addApiKeyToUrl();
+		request.setUrlBase(region.getEndpoint(), VERSION, "match/by-tournament/", tournamentCode, "/ids");
 		request.execute();
 		List<Long> dto = request.getDto(new TypeToken<List<Long>>() {
 		}.getType());

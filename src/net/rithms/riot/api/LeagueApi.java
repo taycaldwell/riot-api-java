@@ -33,53 +33,61 @@ final class LeagueApi {
 
 	private static final String VERSION = "/v2.5/";
 
-	public static Map<String, List<League>> getLeagueBySummoners(Region region, String key, String summonerIds) throws RiotApiException {
-		Request request = new Request();
-		request.addToUrl(region.getEndpoint(), VERSION, "league/by-summoner/", summonerIds, "?api_key=", key);
-		request.execute();
-		Map<String, List<League>> dto = request.getDto(new TypeToken<Map<String, List<League>>>() {
-		}.getType());
-		return dto;
-	}
-
-	public static Map<String, List<League>> getLeagueEntryBySummoners(Region region, String key, String summonerIds) throws RiotApiException {
-		Request request = new Request();
-		request.addToUrl(region.getEndpoint(), VERSION, "league/by-summoner/", summonerIds, "/entry?api_key=", key);
-		request.execute();
-		Map<String, List<League>> dto = request.getDto(new TypeToken<Map<String, List<League>>>() {
-		}.getType());
-		return dto;
-	}
-
-	public static Map<String, List<League>> getLeagueByTeams(Region region, String key, String teamIds) throws RiotApiException {
-		Request request = new Request();
-		request.addToUrl(region.getEndpoint(), VERSION, "league/by-team/", teamIds, "?api_key=", key);
-		request.execute();
-		Map<String, List<League>> dto = request.getDto(new TypeToken<Map<String, List<League>>>() {
-		}.getType());
-		return dto;
-	}
-
-	public static Map<String, List<League>> getLeagueEntryByTeams(Region region, String key, String teamIds) throws RiotApiException {
-		Request request = new Request();
-		request.addToUrl(region.getEndpoint(), VERSION, "league/by-team/", teamIds, "/entry?api_key=", key);
-		request.execute();
-		Map<String, List<League>> dto = request.getDto(new TypeToken<Map<String, List<League>>>() {
-		}.getType());
-		return dto;
-	}
-
-	public static League getChallengerLeague(Region region, String key, QueueType queueType) throws RiotApiException {
-		Request request = new Request();
-		request.addToUrl(region.getEndpoint(), VERSION, "league/challenger/?api_key=", key, "&type=", queueType.name());
+	public static League getChallengerLeague(ApiConfig config, Region region, QueueType queueType) throws RiotApiException {
+		Request request = new Request(config);
+		request.addApiKeyToUrl();
+		request.setUrlBase(region.getEndpoint(), VERSION, "league/challenger");
+		request.addUrlParameter("type", queueType.getName());
 		request.execute();
 		League dto = request.getDto(League.class);
 		return dto;
 	}
 
-	public static League getMasterLeague(Region region, String key, QueueType queueType) throws RiotApiException {
-		Request request = new Request();
-		request.addToUrl(region.getEndpoint(), VERSION, "league/master/?api_key=", key, "&type=", queueType.name());
+	public static Map<String, List<League>> getLeagueBySummoners(ApiConfig config, Region region, String summonerIds) throws RiotApiException {
+		Request request = new Request(config);
+		request.addApiKeyToUrl();
+		request.setUrlBase(region.getEndpoint(), VERSION, "league/by-summoner/", summonerIds);
+		request.execute();
+		Map<String, List<League>> dto = request.getDto(new TypeToken<Map<String, List<League>>>() {
+		}.getType());
+		return dto;
+	}
+
+	public static Map<String, List<League>> getLeagueByTeams(ApiConfig config, Region region, String teamIds) throws RiotApiException {
+		Request request = new Request(config);
+		request.addApiKeyToUrl();
+		request.setUrlBase(region.getEndpoint(), VERSION, "league/by-team/", teamIds);
+		request.execute();
+		Map<String, List<League>> dto = request.getDto(new TypeToken<Map<String, List<League>>>() {
+		}.getType());
+		return dto;
+	}
+
+	public static Map<String, List<League>> getLeagueEntryBySummoners(ApiConfig config, Region region, String summonerIds) throws RiotApiException {
+		Request request = new Request(config);
+		request.addApiKeyToUrl();
+		request.setUrlBase(region.getEndpoint(), VERSION, "league/by-summoner/", summonerIds, "/entry");
+		request.execute();
+		Map<String, List<League>> dto = request.getDto(new TypeToken<Map<String, List<League>>>() {
+		}.getType());
+		return dto;
+	}
+
+	public static Map<String, List<League>> getLeagueEntryByTeams(ApiConfig config, Region region, String teamIds) throws RiotApiException {
+		Request request = new Request(config);
+		request.addApiKeyToUrl();
+		request.setUrlBase(region.getEndpoint(), VERSION, "league/by-team/", teamIds, "/entry");
+		request.execute();
+		Map<String, List<League>> dto = request.getDto(new TypeToken<Map<String, List<League>>>() {
+		}.getType());
+		return dto;
+	}
+
+	public static League getMasterLeague(ApiConfig config, Region region, QueueType queueType) throws RiotApiException {
+		Request request = new Request(config);
+		request.addApiKeyToUrl();
+		request.setUrlBase(region.getEndpoint(), VERSION, "league/master");
+		request.addUrlParameter("type", queueType.getName());
 		request.execute();
 		League dto = request.getDto(League.class);
 		return dto;

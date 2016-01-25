@@ -16,6 +16,7 @@
 
 package net.rithms.riot.api;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Map;
 
@@ -35,53 +36,58 @@ final class SummonerApi {
 
 	private static final String VERSION = "/v1.4/";
 
-	public static Map<String, MasteryPages> getMasteryPages(Region region, String key, String summonerIds) throws RiotApiException {
-		Request request = new Request();
-		request.addToUrl(region.getEndpoint(), VERSION, "summoner/", summonerIds, "/masteries?api_key=", key);
+	public static Map<String, MasteryPages> getMasteryPages(ApiConfig config, Region region, String summonerIds) throws RiotApiException {
+		Request request = new Request(config);
+		request.addApiKeyToUrl();
+		request.setUrlBase(region.getEndpoint(), VERSION, "summoner/", summonerIds, "/masteries");
 		request.execute();
 		Map<String, MasteryPages> dto = request.getDto(new TypeToken<Map<String, MasteryPages>>() {
 		}.getType());
 		return dto;
 	}
 
-	public static Map<String, RunePages> getRunePages(Region region, String key, String summonerIds) throws RiotApiException {
-		Request request = new Request();
-		request.addToUrl(region.getEndpoint(), VERSION, "summoner/", summonerIds, "/runes?api_key=", key);
+	public static Map<String, RunePages> getRunePages(ApiConfig config, Region region, String summonerIds) throws RiotApiException {
+		Request request = new Request(config);
+		request.addApiKeyToUrl();
+		request.setUrlBase(region.getEndpoint(), VERSION, "summoner/", summonerIds, "/runes");
 		request.execute();
 		Map<String, RunePages> dto = request.getDto(new TypeToken<Map<String, RunePages>>() {
 		}.getType());
 		return dto;
 	}
 
-	public static Map<String, Summoner> getSummonersByName(Region region, String key, String summonerNames) throws RiotApiException {
+	public static Map<String, String> getSummonerNames(ApiConfig config, Region region, String summonerIds) throws RiotApiException {
+		Request request = new Request(config);
+		request.addApiKeyToUrl();
+		request.setUrlBase(region.getEndpoint(), VERSION, "summoner/", summonerIds, "/name");
+		request.execute();
+		Map<String, String> dto = request.getDto(new TypeToken<Map<String, String>>() {
+		}.getType());
+		return dto;
+	}
+
+	public static Map<String, Summoner> getSummonersById(ApiConfig config, Region region, String summonerIds) throws RiotApiException {
+		Request request = new Request(config);
+		request.addApiKeyToUrl();
+		request.setUrlBase(region.getEndpoint(), VERSION, "summoner/", summonerIds);
+		request.execute();
+		Map<String, Summoner> dto = request.getDto(new TypeToken<Map<String, Summoner>>() {
+		}.getType());
+		return dto;
+	}
+
+	public static Map<String, Summoner> getSummonersByName(ApiConfig config, Region region, String summonerNames) throws RiotApiException {
 		summonerNames = Convert.normalizeSummonerName(summonerNames);
-		Request request = new Request();
+		Request request = new Request(config);
+		request.addApiKeyToUrl();
 		try {
-			request.addToUrl(region.getEndpoint(), VERSION, "summoner/by-name/", URLEncoder.encode(summonerNames, "UTF-8"), "?api_key=", key);
-		} catch (Exception e) {
+			request.setUrlBase(region.getEndpoint(), VERSION, "summoner/by-name/", URLEncoder.encode(summonerNames, "UTF-8"));
+		} catch (UnsupportedEncodingException e) {
 			// This should never happen
 			e.printStackTrace();
 		}
 		request.execute();
 		Map<String, Summoner> dto = request.getDto(new TypeToken<Map<String, Summoner>>() {
-		}.getType());
-		return dto;
-	}
-
-	public static Map<String, Summoner> getSummonersById(Region region, String key, String summonerIds) throws RiotApiException {
-		Request request = new Request();
-		request.addToUrl(region.getEndpoint(), VERSION, "summoner/", summonerIds, "?api_key=", key);
-		request.execute();
-		Map<String, Summoner> dto = request.getDto(new TypeToken<Map<String, Summoner>>() {
-		}.getType());
-		return dto;
-	}
-
-	public static Map<String, String> getSummonerNames(Region region, String key, String summonerIds) throws RiotApiException {
-		Request request = new Request();
-		request.addToUrl(region.getEndpoint(), VERSION, "summoner/", summonerIds, "/name?api_key=", key);
-		request.execute();
-		Map<String, String> dto = request.getDto(new TypeToken<Map<String, String>>() {
 		}.getType());
 		return dto;
 	}

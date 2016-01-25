@@ -29,22 +29,24 @@ final class StatsApi {
 
 	private static final String VERSION = "/v1.3/";
 
-	public static PlayerStatsSummaryList getPlayerStatsSummary(Region region, Season season, String key, long summonerId) throws RiotApiException {
-		Request request = new Request();
-		request.addToUrl(region.getEndpoint(), VERSION, "stats/by-summoner/", summonerId, "/summary?api_key=", key);
+	public static PlayerStatsSummaryList getPlayerStatsSummary(ApiConfig config, Region region, Season season, long summonerId) throws RiotApiException {
+		Request request = new Request(config);
+		request.addApiKeyToUrl();
+		request.setUrlBase(region.getEndpoint(), VERSION, "stats/by-summoner/", summonerId, "/summary");
 		if (season != null) {
-			request.addToUrl("&season=", season);
+			request.addUrlParameter("season", season);
 		}
 		request.execute();
 		PlayerStatsSummaryList dto = request.getDto(PlayerStatsSummaryList.class);
 		return dto;
 	}
 
-	public static RankedStats getRankedStats(Region region, Season season, String key, long summonerId) throws RiotApiException {
-		Request request = new Request();
-		request.addToUrl(region.getEndpoint(), VERSION, "stats/by-summoner/", summonerId, "/ranked?api_key=", key);
+	public static RankedStats getRankedStats(ApiConfig config, Region region, Season season, long summonerId) throws RiotApiException {
+		Request request = new Request(config);
+		request.addApiKeyToUrl();
+		request.setUrlBase(region.getEndpoint(), VERSION, "stats/by-summoner/", summonerId, "/ranked");
 		if (season != null) {
-			request.addToUrl("&season=", season);
+			request.addUrlParameter("season", season);
 		}
 		request.execute();
 		RankedStats dto = request.getDto(RankedStats.class);

@@ -27,9 +27,10 @@ final class FeaturedGamesApi {
 
 	private static final String endpoint = ".api.pvp.net/observer-mode/rest/featured";
 
-	public static FeaturedGames getFeaturedGames(Region region, String key) throws RiotApiException {
-		Request request = new Request();
-		request.addToUrl("https://", region, endpoint, "?api_key=", key);
+	public static FeaturedGames getFeaturedGames(ApiConfig config, Region region) throws RiotApiException {
+		Request request = new Request(config);
+		request.addApiKeyToUrl();
+		request.setUrlBase("https://", region, endpoint);
 		request.execute();
 		FeaturedGames dto = request.getDto(FeaturedGames.class);
 		return dto;

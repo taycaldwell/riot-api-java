@@ -1,5 +1,6 @@
 package net.rithms.test;
 
+import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.RateLimitException;
 import net.rithms.riot.api.RiotApiException;
 import net.rithms.riot.api.request.AsyncRequest;
@@ -17,13 +18,15 @@ class AsyncRequestTest implements RequestListener {
 	}
 
 	AsyncRequestTest() {
-		AsyncRequest request = new AsyncRequest();
-		// Test Success
-		request.addToUrl("https://euw.api.pvp.net/api/lol/euw/v2.2/match/2000000000?api_key=");
-		// Test Error
-//		request.addToUrl("https://euw.api.pvp.net/api/lol/euw/v2.2/match/5000000000?api_key=");
+		ApiConfig config = new ApiConfig().setKey("API-KEY-HERE");
 		// Test Timeout
-//		request.setTimeout(50);
+//		config.setTimeout(50);
+		AsyncRequest request = new AsyncRequest(config);
+		request.addApiKeyToUrl();
+		// Test Success
+		request.setUrlBase("https://euw.api.pvp.net/api/lol/euw/v2.2/match/2000000000");
+		// Test Error
+//		request.setUrlBase("https://euw.api.pvp.net/api/lol/euw/v2.2/match/5000000000");
 		request.setListener(this);
 		request.execute();
 		try {

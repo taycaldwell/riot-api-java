@@ -31,36 +31,40 @@ final class ChampionMasteryApi {
 
 	private static final String endpoint = ".api.pvp.net/championmastery/location/";
 
-	public static ChampionMastery getChampionMastery(PlatformId platformId, String key, String summonerId, long championId) throws RiotApiException {
-		Request request = new Request();
-		request.addToUrl("https://", platformId.getName(), endpoint, platformId.getId(), "/player/", summonerId, "/champion/", championId, "?api_key=", key);
-		request.execute();
-		ChampionMastery dto = request.getDto(ChampionMastery.class);
-		return dto;
-	}
-
-	public static List<ChampionMastery> getChampionMasteries(PlatformId platformId, String key, String summonerId) throws RiotApiException {
-		Request request = new Request();
-		request.addToUrl("https://", platformId.getName(), endpoint, platformId.getId(), "/player/", summonerId, "/champions?api_key=", key);
+	public static List<ChampionMastery> getChampionMasteries(ApiConfig config, PlatformId platformId, String summonerId) throws RiotApiException {
+		Request request = new Request(config);
+		request.addApiKeyToUrl();
+		request.setUrlBase("https://", platformId.getName(), endpoint, platformId.getId(), "/player/", summonerId, "/champions");
 		request.execute();
 		List<ChampionMastery> dto = request.getDto(new TypeToken<List<ChampionMastery>>() {
 		}.getType());
 		return dto;
 	}
 
-	public static int getChampionMasteryScore(PlatformId platformId, String key, String summonerId) throws RiotApiException {
-		Request request = new Request();
-		request.addToUrl("https://", platformId.getName(), endpoint, platformId.getId(), "/player/", summonerId, "/score?api_key=", key);
+	public static ChampionMastery getChampionMastery(ApiConfig config, PlatformId platformId, String summonerId, long championId) throws RiotApiException {
+		Request request = new Request(config);
+		request.addApiKeyToUrl();
+		request.setUrlBase("https://", platformId.getName(), endpoint, platformId.getId(), "/player/", summonerId, "/champion/", championId);
+		request.execute();
+		ChampionMastery dto = request.getDto(ChampionMastery.class);
+		return dto;
+	}
+
+	public static int getChampionMasteryScore(ApiConfig config, PlatformId platformId, String summonerId) throws RiotApiException {
+		Request request = new Request(config);
+		request.addApiKeyToUrl();
+		request.setUrlBase("https://", platformId.getName(), endpoint, platformId.getId(), "/player/", summonerId, "/score");
 		request.execute();
 		Integer dto = request.getDto(Integer.class);
 		return dto.intValue();
 	}
 
-	public static List<ChampionMastery> getTopChampionMasteries(PlatformId platformId, String key, String summonerId, int count) throws RiotApiException {
-		Request request = new Request();
-		request.addToUrl("https://", platformId.getName(), endpoint, platformId.getId(), "/player/", summonerId, "/topchampions?api_key=", key);
+	public static List<ChampionMastery> getTopChampionMasteries(ApiConfig config, PlatformId platformId, String summonerId, int count) throws RiotApiException {
+		Request request = new Request(config);
+		request.addApiKeyToUrl();
+		request.setUrlBase("https://", platformId.getName(), endpoint, platformId.getId(), "/player/", summonerId, "/topchampions");
 		if (count != -1) {
-			request.addToUrl("&count=", count);
+			request.addUrlParameter("count", count);
 		}
 		request.execute();
 		List<ChampionMastery> dto = request.getDto(new TypeToken<List<ChampionMastery>>() {

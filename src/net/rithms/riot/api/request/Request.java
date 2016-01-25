@@ -24,6 +24,7 @@ import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,6 +32,7 @@ import java.util.logging.Logger;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
+import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.RateLimitException;
 import net.rithms.riot.api.RiotApiException;
 
@@ -52,65 +54,49 @@ public class Request {
 	protected RequestState state = RequestState.NotSent;
 	protected RequestMethod method = RequestMethod.GET;
 	protected int timeout = 0;
-	protected StringBuilder urlBuilder = new StringBuilder();
+	protected StringBuilder urlBase = new StringBuilder();
+	protected Map<String, String> urlParameter = new HashMap<String, String>();
 	protected String riotToken = null;
 	protected String body = null;
 
 	protected int responseCode = -1;
 	protected String responseBody = null;
 
+	protected final ApiConfig config;
 	protected HttpURLConnection connection = null;
 	protected Exception exception = null;
 
 	public Request() {
+		this(new ApiConfig());
 	}
 
-	public void setMethod(RequestMethod method) {
-		this.method = method;
+	public Request(ApiConfig config) {
+		this.config = config;
+		setTimeout(config.getTimeout());
 	}
 
-	public void setTimeout(int timeout) {
-		this.timeout = timeout;
+	public void addApiKeyToUrl() {
+		addUrlParameter("api_key", config.getKey());
 	}
 
-	public int getTimeout() {
-		return timeout;
+	public void addTournamentKeyToRiotToken() {
+		setRiotToken(config.getTournamentKey());
 	}
 
-	public void setRiotToken(String riotToken) {
-		this.riotToken = riotToken;
-	}
-
-	public void setBody(String body) {
-		this.body = body;
+	public void addUrlParameter(String key, Object value) {
+		urlParameter.put(key, value.toString());
 	}
 
 	public void buildJsonBody(Map<String, Object> map) {
 		body = new Gson().toJson(map);
 	}
 
-	public void addToUrl(Object... pieces) {
-		for (Object piece : pieces) {
-			urlBuilder.append(piece);
+	public void cancel() {
+		if (isDone()) {
+			// Ignore
+			return;
 		}
-	}
-
-	public int getResponseCode() {
-		requireSucceededRequestState();
-		return responseCode;
-	}
-
-	public String getResponseBody() {
-		requireSucceededRequestState();
-		return responseBody;
-	}
-
-	protected boolean setState(RequestState state) {
-		if (!isDone()) {
-			this.state = state;
-			return true;
-		}
-		return false;
+		state = RequestState.Cancelled;
 	}
 
 	public synchronized void execute() throws RiotApiException, RateLimitException {
@@ -120,7 +106,7 @@ public class Request {
 		setState(RequestState.Waiting);
 
 		try {
-			URL url = new URL(urlBuilder.toString());
+			URL url = new URL(getUrl());
 			connection = (HttpURLConnection) url.openConnection();
 			if (timeout > 0) {
 				connection.setConnectTimeout(timeout);
@@ -233,26 +219,47 @@ public class Request {
 		return dto;
 	}
 
-	protected void requireSucceededRequestState() {
-		if (state == RequestState.NotSent) {
-			throw new IllegalStateException("The request has not yet been sent");
-		} else if (state == RequestState.Waiting) {
-			throw new IllegalStateException("The request has not received a response yet");
-		} else if (state == RequestState.Failed) {
-			throw new IllegalStateException("The request has failed");
+	public Exception getException() {
+		if (!isFailed()) {
+			return null;
 		}
+		return exception;
 	}
 
-	public void cancel() {
-		if (isDone()) {
-			// Ignore
-			return;
+	public String getResponseBody() {
+		requireSucceededRequestState();
+		return responseBody;
+	}
+
+	public int getResponseCode() {
+		requireSucceededRequestState();
+		return responseCode;
+	}
+
+	public int getTimeout() {
+		return timeout;
+	}
+
+	protected String getUrl() {
+		StringBuilder url = new StringBuilder(urlBase);
+		char connector = !url.toString().contains("?") ? '?' : '&';
+		for (String key : urlParameter.keySet()) {
+			url.append(connector).append(key).append('=').append(urlParameter.get(key));
+			connector = '&';
 		}
-		state = RequestState.Cancelled;
+		return url.toString();
+	}
+
+	public boolean isCancelled() {
+		return state == RequestState.Cancelled;
 	}
 
 	public boolean isDone() {
 		return (state != RequestState.NotSent && state != RequestState.Waiting);
+	}
+
+	public boolean isFailed() {
+		return state == RequestState.Failed;
 	}
 
 	public boolean isPending() {
@@ -263,22 +270,52 @@ public class Request {
 		return state == RequestState.Succeeded;
 	}
 
-	public boolean isFailed() {
-		return state == RequestState.Failed;
-	}
-
-	public boolean isCancelled() {
-		return state == RequestState.Cancelled;
-	}
-
 	public boolean isTimeOut() {
 		return state == RequestState.TimeOut;
 	}
 
-	public Exception getException() {
-		if (!isFailed()) {
-			return null;
+	protected void requireSucceededRequestState() {
+		if (state == RequestState.NotSent) {
+			throw new IllegalStateException("The request has not yet been sent");
+		} else if (state == RequestState.Waiting) {
+			throw new IllegalStateException("The request has not received a response yet");
+		} else if (state == RequestState.Failed) {
+			throw new IllegalStateException("The request has failed");
 		}
-		return exception;
+	}
+
+	public void setBody(String body) {
+		this.body = body;
+	}
+
+	public void setMethod(RequestMethod method) {
+		this.method = method;
+	}
+
+	protected void setRiotToken(String riotToken) {
+		this.riotToken = riotToken;
+	}
+
+	protected boolean setState(RequestState state) {
+		if (!isDone()) {
+			this.state = state;
+			return true;
+		}
+		return false;
+	}
+
+	protected void setTimeout(int timeout) {
+		this.timeout = timeout;
+		if (connection != null && timeout > 0) {
+			connection.setConnectTimeout(timeout);
+			connection.setReadTimeout(timeout);
+		}
+	}
+
+	public void setUrlBase(Object... pieces) {
+		urlBase = new StringBuilder();
+		for (Object piece : pieces) {
+			urlBase.append(piece);
+		}
 	}
 }

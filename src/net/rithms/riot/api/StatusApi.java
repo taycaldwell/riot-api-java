@@ -30,21 +30,21 @@ import net.rithms.riot.dto.Status.ShardStatus;
  */
 final class StatusApi {
 
-	public static List<Shard> getShards() throws RiotApiException {
-		Request request = new Request();
-		request.addToUrl("http://status.leagueoflegends.com/shards");
+	public static List<Shard> getShards(ApiConfig config) throws RiotApiException {
+		Request request = new Request(config);
+		request.setUrlBase("http://status.leagueoflegends.com/shards");
 		request.execute();
 		List<Shard> dto = request.getDto(new TypeToken<List<Shard>>() {
 		}.getType());
 		return dto;
 	}
 
-	public static ShardStatus getShardStatus(Region region) throws RiotApiException {
-		Request request = new Request();
+	public static ShardStatus getShardStatus(ApiConfig config, Region region) throws RiotApiException {
+		Request request = new Request(config);
 		if (region == Region.PBE) {
-			request.addToUrl("http://status.pbe.leagueoflegends.com/shards/pbe");
+			request.setUrlBase("http://status.pbe.leagueoflegends.com/shards/pbe");
 		} else {
-			request.addToUrl("http://status.leagueoflegends.com/shards", region);
+			request.setUrlBase("http://status.leagueoflegends.com/shards/", region);
 		}
 		request.execute();
 		ShardStatus dto = request.getDto(ShardStatus.class);

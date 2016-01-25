@@ -27,30 +27,31 @@ final class MatchListApi {
 
 	private static final String VERSION = "/v2.2/";
 
-	public static MatchList getMatchList(Region region, String key, long summonerId, String championIds, String rankedQueues, String seasons, long beginTime,
-			long endTime, int beginIndex, int endIndex) throws RiotApiException {
-		Request request = new Request();
-		request.addToUrl(region.getEndpoint(), VERSION, "matchlist/by-summoner/", summonerId, "?api_key=", key);
+	public static MatchList getMatchList(ApiConfig config, Region region, long summonerId, String championIds, String rankedQueues, String seasons,
+			long beginTime, long endTime, int beginIndex, int endIndex) throws RiotApiException {
+		Request request = new Request(config);
+		request.addApiKeyToUrl();
+		request.setUrlBase(region.getEndpoint(), VERSION, "matchlist/by-summoner/", summonerId);
 		if (championIds != null) {
-			request.addToUrl("&championIds=", championIds);
+			request.addUrlParameter("championIds", championIds);
 		}
 		if (rankedQueues != null) {
-			request.addToUrl("&rankedQueues=", rankedQueues);
+			request.addUrlParameter("rankedQueues", rankedQueues);
 		}
 		if (seasons != null) {
-			request.addToUrl("&seasons=", seasons);
+			request.addUrlParameter("seasons", seasons);
 		}
 		if (beginTime != -1) {
-			request.addToUrl("&beginTime=", beginTime);
+			request.addUrlParameter("beginTime", beginTime);
 		}
 		if (endTime != -1) {
-			request.addToUrl("&endTime=", endTime);
+			request.addUrlParameter("endTime", endTime);
 		}
 		if (beginIndex != -1) {
-			request.addToUrl("&beginIndex=", beginIndex);
+			request.addUrlParameter("beginIndex", beginIndex);
 		}
 		if (endIndex != -1) {
-			request.addToUrl("&endIndex=", endIndex);
+			request.addUrlParameter("endIndex", endIndex);
 		}
 		request.execute();
 		MatchList dto = request.getDto(MatchList.class);

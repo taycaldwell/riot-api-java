@@ -20,9 +20,9 @@ package net.rithms.riot.api.request;
  * @author Daniel 'Linnun' Figge
  */
 public interface RequestListener {
-	public void onRequestSucceeded(Request request);
-
 	public void onRequestFailed(Exception e);
+
+	public void onRequestSucceeded(Request request);
 
 	public void onRequestTimeout(Request request);
 }
