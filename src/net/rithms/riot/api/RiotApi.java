@@ -36,6 +36,13 @@ import net.rithms.riot.api.endpoints.featured_game.dto.FeaturedGames;
 import net.rithms.riot.api.endpoints.featured_game.methods.GetFeaturedGames;
 import net.rithms.riot.api.endpoints.game.dto.RecentGames;
 import net.rithms.riot.api.endpoints.game.methods.GetRecentGames;
+import net.rithms.riot.api.endpoints.league.dto.League;
+import net.rithms.riot.api.endpoints.league.methods.GetChallengerLeague;
+import net.rithms.riot.api.endpoints.league.methods.GetLeagueBySummoners;
+import net.rithms.riot.api.endpoints.league.methods.GetLeagueByTeams;
+import net.rithms.riot.api.endpoints.league.methods.GetLeagueEntryBySummoners;
+import net.rithms.riot.api.endpoints.league.methods.GetLeagueEntryByTeams;
+import net.rithms.riot.api.endpoints.league.methods.GetMasterLeague;
 import net.rithms.riot.api.endpoints.matchlist.dto.MatchList;
 import net.rithms.riot.api.endpoints.matchlist.methods.GetMatchList;
 import net.rithms.riot.api.endpoints.stats.dto.PlayerStatsSummaryList;
@@ -69,7 +76,6 @@ import net.rithms.riot.constant.staticdata.MasteryListData;
 import net.rithms.riot.constant.staticdata.RuneData;
 import net.rithms.riot.constant.staticdata.RuneListData;
 import net.rithms.riot.constant.staticdata.SpellData;
-import net.rithms.riot.dto.League.League;
 import net.rithms.riot.dto.Match.MatchDetail;
 import net.rithms.riot.dto.Static.GameMapList;
 import net.rithms.riot.dto.Static.Item;
@@ -311,7 +317,8 @@ public class RiotApi {
 	public League getChallengerLeague(Region region, QueueType queueType) throws RiotApiException {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(queueType);
-		return LeagueApi.getChallengerLeague(getConfig(), region, queueType);
+		ApiMethod method = new GetChallengerLeague(getConfig(), region, queueType);
+		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
@@ -1140,7 +1147,8 @@ public class RiotApi {
 	public Map<String, List<League>> getLeagueBySummoners(Region region, String... summonerIds) throws RiotApiException {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(summonerIds);
-		return LeagueApi.getLeagueBySummoners(getConfig(), region, Convert.joinString(",", summonerIds));
+		ApiMethod method = new GetLeagueBySummoners(getConfig(), region, Convert.joinString(",", summonerIds));
+		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
@@ -1204,7 +1212,8 @@ public class RiotApi {
 	public Map<String, List<League>> getLeagueByTeams(Region region, String... teamIds) throws RiotApiException {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(teamIds);
-		return LeagueApi.getLeagueByTeams(getConfig(), region, Convert.joinString(",", teamIds));
+		ApiMethod method = new GetLeagueByTeams(getConfig(), region, Convert.joinString(",", teamIds));
+		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
@@ -1267,7 +1276,8 @@ public class RiotApi {
 	public Map<String, List<League>> getLeagueEntryBySummoners(Region region, String... summonerIds) throws RiotApiException {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(summonerIds);
-		return LeagueApi.getLeagueEntryBySummoners(getConfig(), region, Convert.joinString(",", summonerIds));
+		ApiMethod method = new GetLeagueEntryBySummoners(getConfig(), region, Convert.joinString(",", summonerIds));
+		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
@@ -1331,7 +1341,8 @@ public class RiotApi {
 	public Map<String, List<League>> getLeagueEntryByTeams(Region region, String... teamIds) throws RiotApiException {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(teamIds);
-		return LeagueApi.getLeagueEntryByTeams(getConfig(), region, Convert.joinString(",", teamIds));
+		ApiMethod method = new GetLeagueEntryByTeams(getConfig(), region, Convert.joinString(",", teamIds));
+		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
@@ -1368,7 +1379,8 @@ public class RiotApi {
 	public League getMasterLeague(Region region, QueueType queueType) throws RiotApiException {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(queueType);
-		return LeagueApi.getMasterLeague(getConfig(), region, queueType);
+		ApiMethod method = new GetMasterLeague(getConfig(), region, queueType);
+		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
