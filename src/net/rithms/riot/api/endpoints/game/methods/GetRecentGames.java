@@ -9,7 +9,7 @@ public class GetRecentGames extends ApiMethod {
 
 	public GetRecentGames(ApiConfig config, Region region, long summonerId) {
 		super(config);
-		setDtoClass(RecentGames.class);
+		setDtoType(RecentGames.class);
 		setUrlBase(region.getEndpoint() + "/v1.3/game/by-summoner/" + summonerId + "/recent");
 		addApiKeyParameter();
 	}

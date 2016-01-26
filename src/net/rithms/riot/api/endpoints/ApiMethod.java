@@ -75,7 +75,7 @@ public class ApiMethod {
 		return url.toString();
 	}
 
-	public void setDtoClass(Class<?> dtoClass) {
+	public void setDtoType(Class<?> dtoClass) {
 		this.dtoClass = dtoClass;
 	}
 

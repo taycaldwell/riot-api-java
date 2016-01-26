@@ -152,20 +152,20 @@ public class Request {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public <T> T getDto() throws RiotApiException, RateLimitException {
 		Class<?> clazz = method.getDtoClass();
 		if (clazz != null) {
-			return getDto(clazz);
+			return getDto((Class<T>) clazz);
 		}
 		Type type = method.getDtoType();
 		if (type != null) {
 			return getDto(type);
 		}
-		throw new NullPointerException(
-				"Neither the dtoClass nor the dtoType is set for that ApiMethod. Please manually set either of these as parameter for getDto().");
+		throw new NullPointerException("That ApiMethod has not set a dtoType. If you encounter this issue, please file a bug.");
 	}
 
-	public <T> T getDto(Class<T> desiredDto) throws RiotApiException, RateLimitException {
+	private <T> T getDto(Class<T> desiredDto) throws RiotApiException, RateLimitException {
 		requireSucceededRequestState();
 		if (responseCode == CODE_SUCCESS_NOCONTENT) {
 			// The Riot Api is fine with the request, and explicitly sends no content
@@ -187,7 +187,7 @@ public class Request {
 		return dto;
 	}
 
-	public <T> T getDto(Type desiredDto) throws RiotApiException, RateLimitException {
+	private <T> T getDto(Type desiredDto) throws RiotApiException, RateLimitException {
 		requireSucceededRequestState();
 		if (responseCode == CODE_SUCCESS_NOCONTENT) {
 			// The Riot Api is fine with the request, and explicitly sends no content

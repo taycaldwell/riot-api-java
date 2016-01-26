@@ -8,7 +8,7 @@ public class GetChampionMasteryScore extends ApiMethod {
 
 	public GetChampionMasteryScore(ApiConfig config, PlatformId platformId, long summonerId) {
 		super(config);
-		setDtoClass(Integer.class);
+		setDtoType(Integer.class);
 		setUrlBase("https://" + platformId.getName() + ".api.pvp.net/championmastery/location/" + platformId.getId() + "/player/" + summonerId + "/score");
 		addApiKeyParameter();
 	}

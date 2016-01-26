@@ -10,7 +10,7 @@ public class GetChampions extends ApiMethod {
 
 	public GetChampions(ApiConfig config, Region region, boolean freeToPlay) {
 		super(config);
-		setDtoClass(ChampionList.class);
+		setDtoType(ChampionList.class);
 		setUrlBase(region.getEndpoint() + "/v1.2/champion");
 		if (freeToPlay) {
 			add(new UrlParameter("freeToPlay", freeToPlay));

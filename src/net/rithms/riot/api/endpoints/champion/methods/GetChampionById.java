@@ -9,7 +9,7 @@ public class GetChampionById extends ApiMethod {
 
 	public GetChampionById(ApiConfig config, Region region, int id) {
 		super(config);
-		setDtoClass(Champion.class);
+		setDtoType(Champion.class);
 		setUrlBase(region.getEndpoint() + "/v1.2/champion/" + id);
 		addApiKeyParameter();
 	}

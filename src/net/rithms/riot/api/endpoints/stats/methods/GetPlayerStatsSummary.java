@@ -11,7 +11,7 @@ public class GetPlayerStatsSummary extends ApiMethod {
 
 	public GetPlayerStatsSummary(ApiConfig config, Region region, Season season, long summonerId) {
 		super(config);
-		setDtoClass(PlayerStatsSummaryList.class);
+		setDtoType(PlayerStatsSummaryList.class);
 		setUrlBase(region.getEndpoint() + "/v1.3/stats/by-summoner/" + summonerId + "/summary");
 		if (season != null) {
 			add(new UrlParameter("season", season));
