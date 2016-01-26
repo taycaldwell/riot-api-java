@@ -14,28 +14,31 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.constant.staticdata;
+package net.rithms.riot.api.endpoints.static_data.constant;
 
-public enum ChampData {
+public enum ItemData {
 	ALL("all"),
-	ALLYTIPS("allytips"),
-	ALTIMAGES("altimages"),
-	BLURB("blurb"),
-	ENEMYTIPS("enemytips"),
+	COLLOQ("colloq"),
+	CONSUME_ON_FULL("consumeOnFull"),
+	CONSUMED("consumed"),
+	DEPTH("depth"),
+	FROM("from"),
+	GOLD("gold"),
+	HIDE_FROM_ALL("hideFromAll"),
 	IMAGE("image"),
-	INFO("info"),
-	LORE("lore"),
-	PARTYPE("partype"),
-	PASSIVE("passive"),
-	RECOMMENDED("recommended"),
-	SKINS("skins"),
-	SPELLS("spells"),
+	IN_STORE("inStore"),
+	INTO("into"),
+	MAPS("maps"),
+	REQUIRED_CHAMPION("requiredChampion"),
+	SANITIZED_DESCRIPTION("sanitizedDescription"),
+	SPECIAL_RECIPE("specialRecipe"),
+	STACKS("stacks"),
 	STATS("stats"),
 	TAGS("tags");
 
 	private String name;
 
-	ChampData(String name) {
+	ItemData(String name) {
 		this.name = name;
 	}
 

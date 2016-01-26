@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.constant.staticdata;
+package net.rithms.riot.api.endpoints.static_data.constant;
 
-public enum ItemListData {
+public enum RuneData {
 	ALL("all"),
 	COLLOQ("colloq"),
 	CONSUME_ON_FULL("consumeOnFull"),
@@ -24,7 +24,6 @@ public enum ItemListData {
 	DEPTH("depth"),
 	FROM("from"),
 	GOLD("gold"),
-	GROUPS("groups"),
 	HIDE_FROM_ALL("hideFromAll"),
 	IMAGE("image"),
 	IN_STORE("inStore"),
@@ -35,12 +34,11 @@ public enum ItemListData {
 	SPECIAL_RECIPE("specialRecipe"),
 	STACKS("stacks"),
 	STATS("stats"),
-	TAGS("tags"),
-	TREE("tree");
+	TAGS("tags");
 
 	private String name;
 
-	ItemListData(String name) {
+	RuneData(String name) {
 		this.name = name;
 	}
 

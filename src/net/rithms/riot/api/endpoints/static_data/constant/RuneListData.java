@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.constant.staticdata;
+package net.rithms.riot.api.endpoints.static_data.constant;
 
-public enum RuneData {
+public enum RuneListData {
 	ALL("all"),
+	BASIC("basic"),
 	COLLOQ("colloq"),
 	CONSUME_ON_FULL("consumeOnFull"),
 	CONSUMED("consumed"),
@@ -38,7 +39,7 @@ public enum RuneData {
 
 	private String name;
 
-	RuneData(String name) {
+	RuneListData(String name) {
 		this.name = name;
 	}
 

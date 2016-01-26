@@ -20,6 +20,14 @@ import java.util.List;
 
 import com.google.gson.reflect.TypeToken;
 
+import net.rithms.riot.api.endpoints.static_data.constant.ChampData;
+import net.rithms.riot.api.endpoints.static_data.constant.ItemData;
+import net.rithms.riot.api.endpoints.static_data.constant.ItemListData;
+import net.rithms.riot.api.endpoints.static_data.constant.MasteryData;
+import net.rithms.riot.api.endpoints.static_data.constant.MasteryListData;
+import net.rithms.riot.api.endpoints.static_data.constant.RuneData;
+import net.rithms.riot.api.endpoints.static_data.constant.RuneListData;
+import net.rithms.riot.api.endpoints.static_data.constant.SpellData;
 import net.rithms.riot.api.endpoints.static_data.dto.Champion;
 import net.rithms.riot.api.endpoints.static_data.dto.ChampionList;
 import net.rithms.riot.api.endpoints.static_data.dto.GameMapList;
@@ -35,14 +43,6 @@ import net.rithms.riot.api.endpoints.static_data.dto.SummonerSpell;
 import net.rithms.riot.api.endpoints.static_data.dto.SummonerSpellList;
 import net.rithms.riot.api.request.Request;
 import net.rithms.riot.constant.Region;
-import net.rithms.riot.constant.staticdata.ChampData;
-import net.rithms.riot.constant.staticdata.ItemData;
-import net.rithms.riot.constant.staticdata.ItemListData;
-import net.rithms.riot.constant.staticdata.MasteryData;
-import net.rithms.riot.constant.staticdata.MasteryListData;
-import net.rithms.riot.constant.staticdata.RuneData;
-import net.rithms.riot.constant.staticdata.RuneListData;
-import net.rithms.riot.constant.staticdata.SpellData;
 
 /**
  * @version 1.2

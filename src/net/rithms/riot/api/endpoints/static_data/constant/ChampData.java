@@ -14,32 +14,28 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.constant.staticdata;
+package net.rithms.riot.api.endpoints.static_data.constant;
 
-public enum RuneListData {
+public enum ChampData {
 	ALL("all"),
-	BASIC("basic"),
-	COLLOQ("colloq"),
-	CONSUME_ON_FULL("consumeOnFull"),
-	CONSUMED("consumed"),
-	DEPTH("depth"),
-	FROM("from"),
-	GOLD("gold"),
-	HIDE_FROM_ALL("hideFromAll"),
+	ALLYTIPS("allytips"),
+	ALTIMAGES("altimages"),
+	BLURB("blurb"),
+	ENEMYTIPS("enemytips"),
 	IMAGE("image"),
-	IN_STORE("inStore"),
-	INTO("into"),
-	MAPS("maps"),
-	REQUIRED_CHAMPION("requiredChampion"),
-	SANITIZED_DESCRIPTION("sanitizedDescription"),
-	SPECIAL_RECIPE("specialRecipe"),
-	STACKS("stacks"),
+	INFO("info"),
+	LORE("lore"),
+	PARTYPE("partype"),
+	PASSIVE("passive"),
+	RECOMMENDED("recommended"),
+	SKINS("skins"),
+	SPELLS("spells"),
 	STATS("stats"),
 	TAGS("tags");
 
 	private String name;
 
-	RuneListData(String name) {
+	ChampData(String name) {
 		this.name = name;
 	}
 

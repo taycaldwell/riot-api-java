@@ -14,31 +14,20 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.constant.staticdata;
+package net.rithms.riot.api.endpoints.static_data.constant;
 
-public enum ItemData {
+public enum MasteryListData {
 	ALL("all"),
-	COLLOQ("colloq"),
-	CONSUME_ON_FULL("consumeOnFull"),
-	CONSUMED("consumed"),
-	DEPTH("depth"),
-	FROM("from"),
-	GOLD("gold"),
-	HIDE_FROM_ALL("hideFromAll"),
 	IMAGE("image"),
-	IN_STORE("inStore"),
-	INTO("into"),
-	MAPS("maps"),
-	REQUIRED_CHAMPION("requiredChampion"),
+	MASTERY_TREE("masteryTree"),
+	PREREQ("prereq"),
+	RANKS("ranks"),
 	SANITIZED_DESCRIPTION("sanitizedDescription"),
-	SPECIAL_RECIPE("specialRecipe"),
-	STACKS("stacks"),
-	STATS("stats"),
-	TAGS("tags");
+	TREE("tree");
 
 	private String name;
 
-	ItemData(String name) {
+	MasteryListData(String name) {
 		this.name = name;
 	}
 

@@ -14,33 +14,19 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.constant.staticdata;
+package net.rithms.riot.api.endpoints.static_data.constant;
 
-public enum SpellData {
+public enum MasteryData {
 	ALL("all"),
-	COOLDOWN("cooldown"),
-	COOLDOWN_BURN("cooldownBurn"),
-	COST("cost"),
-	COST_BURN("costBurn"),
-	COST_TYPE("costType"),
-	EFFECT("effect"),
-	EFFECT_BURN("effectBurn"),
 	IMAGE("image"),
-	KEY("key"),
-	LEVELTIP("leveltip"),
-	MAXRANK("maxrank"),
-	MODES("modes"),
-	RANGE("range"),
-	RANGE_BURN("rangeBurn"),
-	RESOURCE("resource"),
-	SANITIZED_DESCRIPTION("sanitizedDescription"),
-	SANITIZED_TOOLTIP("sanitizedTooltip"),
-	TOOLTIP("tooltip"),
-	VARS("vars");
+	MASTERY_TREE("masteryTree"),
+	PREREQ("prereq"),
+	RANKS("ranks"),
+	SANITIZED_DESCRIPTION("sanitizedDescription");
 
 	private String name;
 
-	SpellData(String name) {
+	MasteryData(String name) {
 		this.name = name;
 	}
 
