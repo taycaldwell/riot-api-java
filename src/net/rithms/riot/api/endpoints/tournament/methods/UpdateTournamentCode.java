@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package net.rithms.riot.api.endpoints.tournament.methods;
 
 import java.util.HashMap;
