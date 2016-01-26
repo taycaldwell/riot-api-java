@@ -43,6 +43,10 @@ import net.rithms.riot.api.endpoints.league.methods.GetLeagueByTeams;
 import net.rithms.riot.api.endpoints.league.methods.GetLeagueEntryBySummoners;
 import net.rithms.riot.api.endpoints.league.methods.GetLeagueEntryByTeams;
 import net.rithms.riot.api.endpoints.league.methods.GetMasterLeague;
+import net.rithms.riot.api.endpoints.match.dto.MatchDetail;
+import net.rithms.riot.api.endpoints.match.methods.GetMatch;
+import net.rithms.riot.api.endpoints.match.methods.GetMatchForTournament;
+import net.rithms.riot.api.endpoints.match.methods.GetMatchesByTournament;
 import net.rithms.riot.api.endpoints.matchlist.dto.MatchList;
 import net.rithms.riot.api.endpoints.matchlist.methods.GetMatchList;
 import net.rithms.riot.api.endpoints.stats.dto.PlayerStatsSummaryList;
@@ -76,7 +80,6 @@ import net.rithms.riot.constant.staticdata.MasteryListData;
 import net.rithms.riot.constant.staticdata.RuneData;
 import net.rithms.riot.constant.staticdata.RuneListData;
 import net.rithms.riot.constant.staticdata.SpellData;
-import net.rithms.riot.dto.Match.MatchDetail;
 import net.rithms.riot.dto.Static.GameMapList;
 import net.rithms.riot.dto.Static.Item;
 import net.rithms.riot.dto.Static.ItemList;
@@ -1466,7 +1469,8 @@ public class RiotApi {
 	 */
 	public MatchDetail getMatch(Region region, long matchId, boolean includeTimeline) throws RiotApiException {
 		Objects.requireNonNull(region);
-		return MatchApi.getMatch(getConfig(), region, matchId, includeTimeline);
+		ApiMethod method = new GetMatch(getConfig(), region, matchId, includeTimeline);
+		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
@@ -1504,7 +1508,8 @@ public class RiotApi {
 	public List<Long> getMatchesByTournament(Region region, String tournamentCode) throws RiotApiException {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(tournamentCode);
-		return MatchApi.getMatchesByTournament(getConfig(), region, tournamentCode);
+		ApiMethod method = new GetMatchesByTournament(getConfig(), region, tournamentCode);
+		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
@@ -1528,7 +1533,8 @@ public class RiotApi {
 	public MatchDetail getMatchForTournament(Region region, long matchId, String tournamentCode, boolean includeTimeline) throws RiotApiException {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(tournamentCode);
-		return MatchApi.getMatchForTournament(getConfig(), region, matchId, tournamentCode, includeTimeline);
+		ApiMethod method = new GetMatchForTournament(getConfig(), region, matchId, tournamentCode, includeTimeline);
+		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
