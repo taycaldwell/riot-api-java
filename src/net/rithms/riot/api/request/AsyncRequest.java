@@ -20,6 +20,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 import net.rithms.riot.api.ApiConfig;
+import net.rithms.riot.api.endpoints.ApiMethod;
 
 /**
  * @author Daniel 'Linnun' Figge
@@ -31,12 +32,10 @@ public class AsyncRequest extends Request implements Runnable {
 	protected RequestListener listener = null;
 	protected Thread executionThread = null;
 
-	public AsyncRequest() {
+	public AsyncRequest(ApiConfig config, ApiMethod method) {
 		super();
-	}
-
-	public AsyncRequest(ApiConfig config) {
-		super(config);
+		init(config, method);
+		execute();
 	}
 
 	public void await() throws InterruptedException {
@@ -48,6 +47,10 @@ public class AsyncRequest extends Request implements Runnable {
 	}
 
 	public void await(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
+		await(timeout, unit, false);
+	}
+
+	public void await(long timeout, TimeUnit unit, boolean cancelOnTimeout) throws InterruptedException, TimeoutException {
 		final long end = System.currentTimeMillis() + unit.toMillis(timeout);
 		while (!isDone() && System.currentTimeMillis() < end) {
 			synchronized (signal) {
@@ -55,6 +58,9 @@ public class AsyncRequest extends Request implements Runnable {
 			}
 		}
 		if (!isDone()) {
+			if (cancelOnTimeout) {
+				cancel();
+			}
 			throw new TimeoutException();
 		}
 	}
@@ -62,21 +68,23 @@ public class AsyncRequest extends Request implements Runnable {
 	@Override
 	public void cancel() {
 		super.cancel();
-		if (state != RequestState.Cancelled) {
+		if (!isCancelled()) {
+			// If this request was already done before cancelling it, don't do anything anymore
 			return;
 		}
 		synchronized (signal) {
 			signal.notifyAll();
 		}
 		// Try to force-quit the connection
-		setTimeout(1);
+		if (connection != null) {
+			// Force Quit
+			setTimeout(1);
+			connection.disconnect();
+		}
 	}
 
 	@Override
-	public synchronized void execute() {
-		if (state != RequestState.NotSent) {
-			throw new IllegalStateException("The request has already been sent");
-		}
+	protected synchronized void execute() {
 		executionThread = new Thread(this);
 		executionThread.start();
 	}
@@ -90,7 +98,7 @@ public class AsyncRequest extends Request implements Runnable {
 		try {
 			super.execute();
 		} catch (Exception e) {
-			exception = e;
+			setException(e);
 		}
 	}
 
@@ -108,7 +116,7 @@ public class AsyncRequest extends Request implements Runnable {
 			if (state == RequestState.Succeeded) {
 				listener.onRequestSucceeded(this);
 			} else if (state == RequestState.Failed) {
-				listener.onRequestFailed(exception);
+				listener.onRequestFailed(getException());
 			} else if (state == RequestState.TimeOut) {
 				listener.onRequestTimeout(this);
 			}

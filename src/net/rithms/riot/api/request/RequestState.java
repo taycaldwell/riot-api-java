@@ -20,5 +20,5 @@ package net.rithms.riot.api.request;
  * @author Daniel 'Linnun' Figge
  */
 public enum RequestState {
-	NotSent, Waiting, Cancelled, Succeeded, Failed, TimeOut
+	Waiting, Cancelled, Succeeded, Failed, TimeOut
 }

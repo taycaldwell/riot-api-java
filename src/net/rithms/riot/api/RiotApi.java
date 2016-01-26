@@ -20,6 +20,40 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import net.rithms.riot.api.endpoints.ApiMethod;
+import net.rithms.riot.api.endpoints.champion.dto.Champion;
+import net.rithms.riot.api.endpoints.champion.dto.ChampionList;
+import net.rithms.riot.api.endpoints.champion.methods.GetChampionById;
+import net.rithms.riot.api.endpoints.champion.methods.GetChampions;
+import net.rithms.riot.api.endpoints.championmastery.dto.ChampionMastery;
+import net.rithms.riot.api.endpoints.championmastery.methods.GetChampionMasteries;
+import net.rithms.riot.api.endpoints.championmastery.methods.GetChampionMastery;
+import net.rithms.riot.api.endpoints.championmastery.methods.GetChampionMasteryScore;
+import net.rithms.riot.api.endpoints.championmastery.methods.GetTopChampionMasteries;
+import net.rithms.riot.api.endpoints.current_game.dto.CurrentGameInfo;
+import net.rithms.riot.api.endpoints.current_game.methods.GetCurrentGameInfo;
+import net.rithms.riot.api.endpoints.featured_game.dto.FeaturedGames;
+import net.rithms.riot.api.endpoints.featured_game.methods.GetFeaturedGames;
+import net.rithms.riot.api.endpoints.game.dto.RecentGames;
+import net.rithms.riot.api.endpoints.game.methods.GetRecentGames;
+import net.rithms.riot.api.endpoints.matchlist.dto.MatchList;
+import net.rithms.riot.api.endpoints.matchlist.methods.GetMatchList;
+import net.rithms.riot.api.endpoints.stats.dto.PlayerStatsSummaryList;
+import net.rithms.riot.api.endpoints.stats.dto.RankedStats;
+import net.rithms.riot.api.endpoints.stats.methods.GetPlayerStatsSummary;
+import net.rithms.riot.api.endpoints.stats.methods.GetRankedStats;
+import net.rithms.riot.api.endpoints.status.dto.Shard;
+import net.rithms.riot.api.endpoints.status.dto.ShardStatus;
+import net.rithms.riot.api.endpoints.status.methods.GetShardStatus;
+import net.rithms.riot.api.endpoints.status.methods.GetShards;
+import net.rithms.riot.api.endpoints.summoner.dto.MasteryPages;
+import net.rithms.riot.api.endpoints.summoner.dto.RunePages;
+import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
+import net.rithms.riot.api.endpoints.summoner.methods.GetMasteryPages;
+import net.rithms.riot.api.endpoints.summoner.methods.GetRunePages;
+import net.rithms.riot.api.endpoints.summoner.methods.GetSummonerNames;
+import net.rithms.riot.api.endpoints.summoner.methods.GetSummonersById;
+import net.rithms.riot.api.endpoints.summoner.methods.GetSummonersByName;
 import net.rithms.riot.constant.PickType;
 import net.rithms.riot.constant.PlatformId;
 import net.rithms.riot.constant.QueueType;
@@ -35,15 +69,8 @@ import net.rithms.riot.constant.staticdata.MasteryListData;
 import net.rithms.riot.constant.staticdata.RuneData;
 import net.rithms.riot.constant.staticdata.RuneListData;
 import net.rithms.riot.constant.staticdata.SpellData;
-import net.rithms.riot.dto.Champion.Champion;
-import net.rithms.riot.dto.Champion.ChampionList;
-import net.rithms.riot.dto.ChampionMastery.ChampionMastery;
-import net.rithms.riot.dto.CurrentGame.CurrentGameInfo;
-import net.rithms.riot.dto.FeaturedGames.FeaturedGames;
-import net.rithms.riot.dto.Game.RecentGames;
 import net.rithms.riot.dto.League.League;
 import net.rithms.riot.dto.Match.MatchDetail;
-import net.rithms.riot.dto.MatchList.MatchList;
 import net.rithms.riot.dto.Static.GameMapList;
 import net.rithms.riot.dto.Static.Item;
 import net.rithms.riot.dto.Static.ItemList;
@@ -55,13 +82,6 @@ import net.rithms.riot.dto.Static.Rune;
 import net.rithms.riot.dto.Static.RuneList;
 import net.rithms.riot.dto.Static.SummonerSpell;
 import net.rithms.riot.dto.Static.SummonerSpellList;
-import net.rithms.riot.dto.Stats.PlayerStatsSummaryList;
-import net.rithms.riot.dto.Stats.RankedStats;
-import net.rithms.riot.dto.Status.Shard;
-import net.rithms.riot.dto.Status.ShardStatus;
-import net.rithms.riot.dto.Summoner.MasteryPages;
-import net.rithms.riot.dto.Summoner.RunePages;
-import net.rithms.riot.dto.Summoner.Summoner;
 import net.rithms.riot.dto.Team.Team;
 import net.rithms.riot.dto.Tournament.LobbyEventList;
 import net.rithms.riot.dto.Tournament.TournamentCode;
@@ -77,6 +97,7 @@ import net.rithms.util.Convert;
 public class RiotApi {
 
 	private final ApiConfig config;
+	private final EndpointManager endpointManager;
 
 	public RiotApi() {
 		this(new ApiConfig());
@@ -84,6 +105,7 @@ public class RiotApi {
 
 	public RiotApi(ApiConfig config) {
 		this.config = config;
+		endpointManager = new EndpointManager(config);
 	}
 
 	@Override
@@ -308,7 +330,8 @@ public class RiotApi {
 	 */
 	public Champion getChampionById(Region region, int id) throws RiotApiException {
 		Objects.requireNonNull(region);
-		return ChampionApi.getChampionById(getConfig(), region, id);
+		ApiMethod method = new GetChampionById(getConfig(), region, id);
+		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
@@ -321,33 +344,14 @@ public class RiotApi {
 	 * @return A list of champion masteries for a given summoner.
 	 * @throws NullPointerException
 	 *             If {@code platformId} or {@code summonerId} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
-	 * @see ChampionMastery
-	 */
-	public List<ChampionMastery> getChampionMasteries(PlatformId platformId, String summonerId) throws RiotApiException {
-		Objects.requireNonNull(platformId);
-		Objects.requireNonNull(summonerId);
-		return ChampionMasteryApi.getChampionMasteries(getConfig(), platformId, summonerId);
-	}
-
-	/**
-	 * Get all champion mastery entries sorted by number of champion points descending
-	 *
-	 * @param platformId
-	 *            Region where to retrieve the data.
-	 * @param summonerId
-	 *            Summoner ID associated with the player
-	 * @return A list of champion masteries for a given summoner.
-	 * @throws NullPointerException
-	 *             If {@code platformId} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 * @see ChampionMastery
 	 */
 	public List<ChampionMastery> getChampionMasteries(PlatformId platformId, long summonerId) throws RiotApiException {
 		Objects.requireNonNull(platformId);
-		return getChampionMasteries(platformId, String.valueOf(summonerId));
+		ApiMethod method = new GetChampionMasteries(getConfig(), platformId, summonerId);
+		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
@@ -362,35 +366,14 @@ public class RiotApi {
 	 * @return Champion mastery for a given summoner and championId, or {@code null} if given player has no mastery for given champion.
 	 * @throws NullPointerException
 	 *             If {@code platformId} or {@code summonerId} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
-	 * @see ChampionMastery
-	 */
-	public ChampionMastery getChampionMastery(PlatformId platformId, String summonerId, long championId) throws RiotApiException {
-		Objects.requireNonNull(platformId);
-		Objects.requireNonNull(summonerId);
-		return ChampionMasteryApi.getChampionMastery(getConfig(), platformId, summonerId, championId);
-	}
-
-	/**
-	 * Get a champion mastery by {@code summonerId} and {@code championId}.
-	 *
-	 * @param platformId
-	 *            The platform ID for which to fetch data.
-	 * @param summonerId
-	 *            Summoner ID associated with the player
-	 * @param championId
-	 *            Champion ID to retrieve Champion Mastery for
-	 * @return Champion mastery for a given summoner and championId, or {@code null} if given player has no mastery for given champion.
-	 * @throws NullPointerException
-	 *             If {@code platformId} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 * @see ChampionMastery
 	 */
 	public ChampionMastery getChampionMastery(PlatformId platformId, long summonerId, long championId) throws RiotApiException {
 		Objects.requireNonNull(platformId);
-		return getChampionMastery(platformId, String.valueOf(summonerId), championId);
+		ApiMethod method = new GetChampionMastery(getConfig(), platformId, summonerId, championId);
+		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
@@ -406,28 +389,10 @@ public class RiotApi {
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 */
-	public int getChampionMasteryScore(PlatformId platformId, String summonerId) throws RiotApiException {
-		Objects.requireNonNull(platformId);
-		Objects.requireNonNull(summonerId);
-		return ChampionMasteryApi.getChampionMasteryScore(getConfig(), platformId, summonerId);
-	}
-
-	/**
-	 * Get a player's total champion mastery score, which is sum of individual champion mastery levels
-	 *
-	 * @param platformId
-	 *            Region where to retrieve the data.
-	 * @param summonerId
-	 *            Summoner ID associated with the player
-	 * @return The total champion mastery score of a given summoner.
-	 * @throws NullPointerException
-	 *             If {@code platformId} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
-	 */
 	public int getChampionMasteryScore(PlatformId platformId, long summonerId) throws RiotApiException {
 		Objects.requireNonNull(platformId);
-		return getChampionMasteryScore(platformId, String.valueOf(summonerId));
+		ApiMethod method = new GetChampionMasteryScore(getConfig(), platformId, summonerId);
+		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
@@ -446,7 +411,8 @@ public class RiotApi {
 	 */
 	public ChampionList getChampions(Region region, boolean freeToPlay) throws RiotApiException {
 		Objects.requireNonNull(region);
-		return ChampionApi.getChampions(getConfig(), region, freeToPlay);
+		ApiMethod method = new GetChampions(getConfig(), region, freeToPlay);
+		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
@@ -484,29 +450,11 @@ public class RiotApi {
 	 *             If the API returns an error or unparsable result
 	 * @see CurrentGameInfo
 	 */
-	public CurrentGameInfo getCurrentGameInfo(PlatformId platformId, String summonerId) throws RiotApiException {
-		Objects.requireNonNull(platformId);
-		Objects.requireNonNull(summonerId);
-		return CurrentGameApi.getCurrentGameInfo(getConfig(), platformId, summonerId);
-	}
-
-	/**
-	 * Get current game information for the given summoner ID.
-	 * 
-	 * @param platformId
-	 *            The platform ID for which to fetch data.
-	 * @param summonerId
-	 *            The ID of the summoner.
-	 * @return Current game info
-	 * @throws NullPointerException
-	 *             If {@code platformId} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
-	 * @see CurrentGameInfo
-	 */
 	public CurrentGameInfo getCurrentGameInfo(PlatformId platformId, long summonerId) throws RiotApiException {
 		Objects.requireNonNull(platformId);
-		return getCurrentGameInfo(platformId, String.valueOf(summonerId));
+		Objects.requireNonNull(summonerId);
+		ApiMethod method = new GetCurrentGameInfo(getConfig(), platformId, summonerId);
+		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
@@ -1111,7 +1059,8 @@ public class RiotApi {
 	 */
 	public FeaturedGames getFeaturedGames(Region region) throws RiotApiException {
 		Objects.requireNonNull(region);
-		return FeaturedGamesApi.getFeaturedGames(getConfig(), region);
+		ApiMethod method = new GetFeaturedGames(getConfig(), region);
+		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
@@ -1439,7 +1388,8 @@ public class RiotApi {
 	public Map<String, MasteryPages> getMasteryPages(Region region, String... summonerIds) throws RiotApiException {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(summonerIds);
-		return SummonerApi.getMasteryPages(getConfig(), region, Convert.joinString(",", summonerIds));
+		ApiMethod method = new GetMasteryPages(getConfig(), region, Convert.joinString(",", summonerIds));
+		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
@@ -1622,7 +1572,8 @@ public class RiotApi {
 	public MatchList getMatchList(Region region, long summonerId, String championIds, String rankedQueues, String seasons, long beginTime, long endTime,
 			int beginIndex, int endIndex) throws RiotApiException {
 		Objects.requireNonNull(region);
-		return MatchListApi.getMatchList(getConfig(), region, summonerId, championIds, rankedQueues, seasons, beginTime, endTime, beginIndex, endIndex);
+		ApiMethod method = new GetMatchList(getConfig(), region, summonerId, championIds, rankedQueues, seasons, beginTime, endTime, beginIndex, endIndex);
+		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
@@ -1662,7 +1613,8 @@ public class RiotApi {
 	 */
 	public PlayerStatsSummaryList getPlayerStatsSummary(Region region, Season season, long summonerId) throws RiotApiException {
 		Objects.requireNonNull(region);
-		return StatsApi.getPlayerStatsSummary(getConfig(), region, season, summonerId);
+		ApiMethod method = new GetPlayerStatsSummary(getConfig(), region, season, summonerId);
+		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
@@ -1702,7 +1654,8 @@ public class RiotApi {
 	 */
 	public RankedStats getRankedStats(Region region, Season season, long summonerId) throws RiotApiException {
 		Objects.requireNonNull(region);
-		return StatsApi.getRankedStats(getConfig(), region, season, summonerId);
+		ApiMethod method = new GetRankedStats(getConfig(), region, season, summonerId);
+		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
@@ -1735,26 +1688,6 @@ public class RiotApi {
 	 *            ID of the summoner for which to retrieve recent games.
 	 * @return Recent games of the given summoner
 	 * @throws NullPointerException
-	 *             If {@code region} or {@code summonerId} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
-	 * @see RecentGames
-	 */
-	public RecentGames getRecentGames(Region region, String summonerId) throws RiotApiException {
-		Objects.requireNonNull(region);
-		Objects.requireNonNull(summonerId);
-		return GameApi.getRecentGames(getConfig(), region, summonerId);
-	}
-
-	/**
-	 * Get recent games for a given {@code summonerId}.
-	 *
-	 * @param region
-	 *            Region where to retrieve the data.
-	 * @param summonerId
-	 *            ID of the summoner for which to retrieve recent games.
-	 * @return Recent games of the given summoner
-	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
@@ -1762,7 +1695,9 @@ public class RiotApi {
 	 */
 	public RecentGames getRecentGames(Region region, long summonerId) throws RiotApiException {
 		Objects.requireNonNull(region);
-		return getRecentGames(region, String.valueOf(summonerId));
+		Objects.requireNonNull(summonerId);
+		ApiMethod method = new GetRecentGames(getConfig(), region, summonerId);
+		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
@@ -1782,7 +1717,8 @@ public class RiotApi {
 	public Map<String, RunePages> getRunePages(Region region, String... summonerIds) throws RiotApiException {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(summonerIds);
-		return SummonerApi.getRunePages(getConfig(), region, Convert.joinString(",", summonerIds));
+		ApiMethod method = new GetRunePages(getConfig(), region, Convert.joinString(",", summonerIds));
+		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
@@ -1838,7 +1774,8 @@ public class RiotApi {
 	 * @see Shard
 	 */
 	public List<Shard> getShards() throws RiotApiException {
-		return StatusApi.getShards(getConfig());
+		ApiMethod method = new GetShards(getConfig());
+		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
@@ -1854,8 +1791,8 @@ public class RiotApi {
 	 * @see ShardStatus
 	 */
 	public ShardStatus getShardStatus(Region region) throws RiotApiException {
-		Objects.requireNonNull(region);
-		return StatusApi.getShardStatus(getConfig(), region);
+		ApiMethod method = new GetShardStatus(getConfig(), region);
+		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
@@ -1942,7 +1879,8 @@ public class RiotApi {
 	public Map<String, String> getSummonerNames(Region region, String... summonerIds) throws RiotApiException {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(summonerIds);
-		return SummonerApi.getSummonerNames(getConfig(), region, Convert.joinString(",", summonerIds));
+		ApiMethod method = new GetSummonerNames(getConfig(), region, Convert.joinString(",", summonerIds));
+		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
@@ -2022,7 +1960,8 @@ public class RiotApi {
 	public Map<String, Summoner> getSummonersById(Region region, String... summonerIds) throws RiotApiException {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(summonerIds);
-		return SummonerApi.getSummonersById(getConfig(), region, Convert.joinString(",", summonerIds));
+		ApiMethod method = new GetSummonersById(getConfig(), region, Convert.joinString(",", summonerIds));
+		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
@@ -2063,7 +2002,32 @@ public class RiotApi {
 	public Map<String, Summoner> getSummonersByName(Region region, String... summonerNames) throws RiotApiException {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(summonerNames);
-		return SummonerApi.getSummonersByName(getConfig(), region, Convert.joinString(",", summonerNames));
+		ApiMethod method = new GetSummonersByName(getConfig(), region, Convert.joinString(",", summonerNames));
+		return endpointManager.callMethodAndReturnDto(method);
+	}
+
+	/**
+	 * Get team for a given {@code teamId}.
+	 *
+	 * @param region
+	 *            The region of the summoner.
+	 * @param teamId
+	 *            Team ID
+	 * @return A team
+	 * @throws NullPointerException
+	 *             If {@code region} or {@code teamId} is {@code null}
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 * @see Team
+	 */
+	public Team getTeamByTeamId(Region region, String teamId) throws RiotApiException {
+		Objects.requireNonNull(region);
+		Objects.requireNonNull(teamId);
+		Map<String, Team> teams = getTeamsByTeamIds(region, teamId);
+		if (!teams.containsKey(teamId)) {
+			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
+		}
+		return teams.get(teamId);
 	}
 
 	/**
@@ -2150,30 +2114,6 @@ public class RiotApi {
 	}
 
 	/**
-	 * Get team for a given {@code teamId}.
-	 *
-	 * @param region
-	 *            The region of the summoner.
-	 * @param teamId
-	 *            Team ID
-	 * @return A team
-	 * @throws NullPointerException
-	 *             If {@code region} or {@code teamId} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
-	 * @see Team
-	 */
-	public Team getTeamByTeamId(Region region, String teamId) throws RiotApiException {
-		Objects.requireNonNull(region);
-		Objects.requireNonNull(teamId);
-		Map<String, Team> teams = getTeamsByTeamIds(region, teamId);
-		if (!teams.containsKey(teamId)) {
-			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
-		}
-		return teams.get(teamId);
-	}
-
-	/**
 	 * Get teams mapped by team ID for a given list of {@code teamIds}.
 	 *
 	 * @param region
@@ -2209,31 +2149,10 @@ public class RiotApi {
 	 *             If the API returns an error or unparsable result
 	 * @see ChampionMastery
 	 */
-	public List<ChampionMastery> getTopChampionMasteries(PlatformId platformId, String summonerId, int count) throws RiotApiException {
-		Objects.requireNonNull(platformId);
-		Objects.requireNonNull(summonerId);
-		return ChampionMasteryApi.getTopChampionMasteries(getConfig(), platformId, summonerId, count);
-	}
-
-	/**
-	 * Get specified number of top champion mastery entries sorted by number of champion points descending
-	 *
-	 * @param platformId
-	 *            Region where to retrieve the data.
-	 * @param summonerId
-	 *            Summoner ID associated with the player
-	 * @param count
-	 *            Number of entries to retrieve.
-	 * @return A list of the top champion masteries of a given summoner.
-	 * @throws NullPointerException
-	 *             If {@code platformId} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
-	 * @see ChampionMastery
-	 */
 	public List<ChampionMastery> getTopChampionMasteries(PlatformId platformId, long summonerId, int count) throws RiotApiException {
 		Objects.requireNonNull(platformId);
-		return getTopChampionMasteries(platformId, String.valueOf(summonerId), count);
+		ApiMethod method = new GetTopChampionMasteries(getConfig(), platformId, summonerId, count);
+		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
@@ -2250,29 +2169,10 @@ public class RiotApi {
 	 *             If the API returns an error or unparsable result
 	 * @see ChampionMastery
 	 */
-	public List<ChampionMastery> getTopChampionMasteries(PlatformId platformId, String summonerId) throws RiotApiException {
+	public List<ChampionMastery> getTopChampionMasteries(PlatformId platformId, long summonerId) throws RiotApiException {
 		Objects.requireNonNull(platformId);
 		Objects.requireNonNull(summonerId);
 		return getTopChampionMasteries(platformId, summonerId, -1);
-	}
-
-	/**
-	 * Retrieve top 3 champion masteries by {@code summonerId}.
-	 *
-	 * @param platformId
-	 *            Region where to retrieve the data.
-	 * @param summonerId
-	 *            Summoner ID associated with the player
-	 * @return A list of the top champion masteries of a given summoner.
-	 * @throws NullPointerException
-	 *             If {@code platformId} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
-	 * @see ChampionMastery
-	 */
-	public List<ChampionMastery> getTopChampionMasteries(PlatformId platformId, long summonerId) throws RiotApiException {
-		Objects.requireNonNull(platformId);
-		return getTopChampionMasteries(platformId, String.valueOf(summonerId));
 	}
 
 	/**

@@ -24,8 +24,6 @@ import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -35,6 +33,8 @@ import com.google.gson.JsonSyntaxException;
 import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.RateLimitException;
 import net.rithms.riot.api.RiotApiException;
+import net.rithms.riot.api.endpoints.ApiMethod;
+import net.rithms.riot.api.endpoints.HttpHeadParameter;
 
 /**
  * @author Daniel 'Linnun' Figge
@@ -51,44 +51,23 @@ public class Request {
 	public static final int CODE_ERROR_SERVER_ERROR = 500;
 	public static final int CODE_ERROR_SERVICE_UNAVAILABLE = 503;
 
-	protected RequestState state = RequestState.NotSent;
-	protected RequestMethod method = RequestMethod.GET;
-	protected int timeout = 0;
-	protected StringBuilder urlBase = new StringBuilder();
-	protected Map<String, String> urlParameter = new HashMap<String, String>();
-	protected String riotToken = null;
-	protected String body = null;
+	private RequestState state = RequestState.Waiting;
 
-	protected int responseCode = -1;
-	protected String responseBody = null;
+	private int responseCode = -1;
+	private String responseBody = null;
 
-	protected final ApiConfig config;
+	protected ApiConfig config;
+	protected ApiMethod method;
 	protected HttpURLConnection connection = null;
-	protected Exception exception = null;
+	private Exception exception = null;
 
-	public Request() {
-		this(new ApiConfig());
+	public Request(ApiConfig config, ApiMethod method) throws RateLimitException, RiotApiException {
+		init(config, method);
+		execute();
 	}
 
-	public Request(ApiConfig config) {
-		this.config = config;
-		setTimeout(config.getTimeout());
-	}
-
-	public void addApiKeyToUrl() {
-		addUrlParameter("api_key", config.getKey());
-	}
-
-	public void addTournamentKeyToRiotToken() {
-		setRiotToken(config.getTournamentKey());
-	}
-
-	public void addUrlParameter(String key, Object value) {
-		urlParameter.put(key, value.toString());
-	}
-
-	public void buildJsonBody(Map<String, Object> map) {
-		body = new Gson().toJson(map);
+	protected Request() {
+		// Allow child classes to do their own constructor
 	}
 
 	public void cancel() {
@@ -99,25 +78,23 @@ public class Request {
 		state = RequestState.Cancelled;
 	}
 
-	public synchronized void execute() throws RiotApiException, RateLimitException {
-		if (state != RequestState.NotSent) {
-			throw new IllegalStateException("The request has already been sent");
-		}
+	protected synchronized void execute() throws RiotApiException, RateLimitException {
 		setState(RequestState.Waiting);
-
 		try {
-			URL url = new URL(getUrl());
+			URL url = new URL(method.getUrl());
+			System.out.println(url);
 			connection = (HttpURLConnection) url.openConnection();
-			if (timeout > 0) {
-				connection.setConnectTimeout(timeout);
-				connection.setReadTimeout(timeout);
+			if (config.getTimeout() > 0) {
+				connection.setConnectTimeout(config.getTimeout());
+				connection.setReadTimeout(config.getTimeout());
 			}
 			connection.setDoInput(true);
 			connection.setInstanceFollowRedirects(false);
-			connection.setRequestMethod(method.name());
-			if (riotToken != null) {
-				connection.setRequestProperty("X-Riot-Token", riotToken);
+			connection.setRequestMethod(method.getMethod().name());
+			for (HttpHeadParameter p : method.getHttpHeadParameters()) {
+				connection.setRequestProperty(p.getKey(), p.getValue());
 			}
+			String body = method.getBody();
 			if (body != null) {
 				connection.setRequestProperty("Content-Type", "application/json");
 				connection.setDoOutput(true);
@@ -153,18 +130,18 @@ public class Request {
 			responseBody = responseBodyBuilder.toString();
 			setState(RequestState.Succeeded);
 		} catch (RiotApiException e) {
-			exception = e;
+			setException(e);
 			setState(RequestState.Failed);
 			throw e;
 		} catch (SocketTimeoutException e) {
 			RiotApiException exception = new RiotApiException(RiotApiException.IOEXCEPTION);
-			this.exception = exception;
+			setException(exception);
 			setState(RequestState.TimeOut);
 			Logger.getLogger(Request.class.getName()).log(Level.FINE, null, e);
 			throw exception;
 		} catch (IOException e) {
 			RiotApiException exception = new RiotApiException(RiotApiException.IOEXCEPTION);
-			this.exception = exception;
+			setException(exception);
 			setState(RequestState.Failed);
 			Logger.getLogger(Request.class.getName()).log(Level.SEVERE, null, e);
 			throw exception;
@@ -173,6 +150,19 @@ public class Request {
 				connection.disconnect();
 			}
 		}
+	}
+
+	public <T> T getDto() throws RiotApiException, RateLimitException {
+		Class<?> clazz = method.getDtoClass();
+		if (clazz != null) {
+			return getDto(clazz);
+		}
+		Type type = method.getDtoType();
+		if (type != null) {
+			return getDto(type);
+		}
+		throw new NullPointerException(
+				"Neither the dtoClass nor the dtoType is set for that ApiMethod. Please manually set either of these as parameter for getDto().");
 	}
 
 	public <T> T getDto(Class<T> desiredDto) throws RiotApiException, RateLimitException {
@@ -186,12 +176,12 @@ public class Request {
 			dto = new Gson().fromJson(responseBody, desiredDto);
 		} catch (JsonSyntaxException e) {
 			RiotApiException exception = new RiotApiException(RiotApiException.PARSE_FAILURE);
-			this.exception = exception;
+			setException(exception);
 			throw exception;
 		}
 		if (dto == null) {
 			RiotApiException exception = new RiotApiException(RiotApiException.PARSE_FAILURE);
-			this.exception = exception;
+			setException(exception);
 			throw exception;
 		}
 		return dto;
@@ -208,12 +198,12 @@ public class Request {
 			dto = new Gson().fromJson(responseBody, desiredDto);
 		} catch (JsonSyntaxException e) {
 			RiotApiException exception = new RiotApiException(RiotApiException.PARSE_FAILURE);
-			this.exception = exception;
+			setException(exception);
 			throw exception;
 		}
 		if (dto == null) {
 			RiotApiException exception = new RiotApiException(RiotApiException.PARSE_FAILURE);
-			this.exception = exception;
+			setException(exception);
 			throw exception;
 		}
 		return dto;
@@ -236,18 +226,10 @@ public class Request {
 		return responseCode;
 	}
 
-	public int getTimeout() {
-		return timeout;
-	}
-
-	protected String getUrl() {
-		StringBuilder url = new StringBuilder(urlBase);
-		char connector = !url.toString().contains("?") ? '?' : '&';
-		for (String key : urlParameter.keySet()) {
-			url.append(connector).append(key).append('=').append(urlParameter.get(key));
-			connector = '&';
-		}
-		return url.toString();
+	protected void init(ApiConfig config, ApiMethod method) {
+		this.config = config;
+		this.method = method;
+		setTimeout(config.getTimeout());
 	}
 
 	public boolean isCancelled() {
@@ -255,7 +237,7 @@ public class Request {
 	}
 
 	public boolean isDone() {
-		return (state != RequestState.NotSent && state != RequestState.Waiting);
+		return state != RequestState.Waiting;
 	}
 
 	public boolean isFailed() {
@@ -275,25 +257,17 @@ public class Request {
 	}
 
 	protected void requireSucceededRequestState() {
-		if (state == RequestState.NotSent) {
-			throw new IllegalStateException("The request has not yet been sent");
-		} else if (state == RequestState.Waiting) {
+		if (state == RequestState.Waiting) {
 			throw new IllegalStateException("The request has not received a response yet");
+		} else if (state == RequestState.Cancelled) {
+			throw new IllegalStateException("The request has been cancelled");
 		} else if (state == RequestState.Failed) {
 			throw new IllegalStateException("The request has failed");
 		}
 	}
 
-	public void setBody(String body) {
-		this.body = body;
-	}
-
-	public void setMethod(RequestMethod method) {
-		this.method = method;
-	}
-
-	protected void setRiotToken(String riotToken) {
-		this.riotToken = riotToken;
+	protected void setException(Exception exception) {
+		this.exception = exception;
 	}
 
 	protected boolean setState(RequestState state) {
@@ -305,17 +279,9 @@ public class Request {
 	}
 
 	protected void setTimeout(int timeout) {
-		this.timeout = timeout;
 		if (connection != null && timeout > 0) {
 			connection.setConnectTimeout(timeout);
 			connection.setReadTimeout(timeout);
-		}
-	}
-
-	public void setUrlBase(Object... pieces) {
-		urlBase = new StringBuilder();
-		for (Object piece : pieces) {
-			urlBase.append(piece);
 		}
 	}
 }

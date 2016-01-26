@@ -26,10 +26,10 @@ import org.junit.Test;
 
 import net.rithms.riot.api.RiotApi;
 import net.rithms.riot.api.RiotApiException;
+import net.rithms.riot.api.endpoints.summoner.dto.MasteryPages;
+import net.rithms.riot.api.endpoints.summoner.dto.RunePages;
+import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
 import net.rithms.riot.constant.Region;
-import net.rithms.riot.dto.Summoner.MasteryPages;
-import net.rithms.riot.dto.Summoner.RunePages;
-import net.rithms.riot.dto.Summoner.Summoner;
 
 public class SummonerTest {
 
