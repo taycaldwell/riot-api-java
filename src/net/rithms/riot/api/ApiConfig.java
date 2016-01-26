@@ -16,6 +16,11 @@
 
 package net.rithms.riot.api;
 
+import java.util.Objects;
+
+/**
+ * Configuration class to use with the {@link RiotApi}.
+ */
 public class ApiConfig {
 
 	private String key = null;
@@ -24,7 +29,7 @@ public class ApiConfig {
 
 	@Override
 	public ApiConfig clone() {
-		return new ApiConfig().setKey(getKey()).setTournamentKey(getTournamentKey()).setTimeout(getTimeout());
+		return new ApiConfig().setKey(getKey()).setTimeout(getTimeout()).setTournamentKey(getTournamentKey());
 	}
 
 	public String getKey() {
@@ -39,17 +44,50 @@ public class ApiConfig {
 		return tournamentKey;
 	}
 
+	/**
+	 * Sets the api key for the Riot Api. Most endpoints require this key to be set.
+	 *
+	 * @param key
+	 *            Your api key
+	 * @return This ApiConfig object for chaining
+	 * @throws NullPointerException
+	 *             If the {@code key} is null
+	 */
 	public ApiConfig setKey(String key) {
+		Objects.requireNonNull(key, "key must not be null");
 		this.key = key;
 		return this;
 	}
 
+	/**
+	 * Sets how many milliseconds a call in {@link RiotApi} should block at most until a command without response fails. This value can be
+	 * set to zero to disable the timeout. By default, there is no timeout.
+	 *
+	 * @param timeout
+	 *            The maximum time to wait for a response until a synchronous call fails
+	 * @return This ApiConfig object for chaining
+	 * @throws IllegalArgumentException
+	 *             If the timeout value is smaller than {@code 0}
+	 */
 	public ApiConfig setTimeout(int timeout) {
+		if (timeout < 0) {
+			throw new IllegalArgumentException("The timeout value must be greater than or equal to 0");
+		}
 		this.timeout = timeout;
 		return this;
 	}
 
+	/**
+	 * Sets the tournament api key for the Riot Api. Tournament-related endpoints require this key to be set.
+	 *
+	 * @param key
+	 *            Your tournament api key
+	 * @return This ApiConfig object for chaining
+	 * @throws NullPointerException
+	 *             If the {@code tournamentKey} is null
+	 */
 	public ApiConfig setTournamentKey(String tournamentKey) {
+		Objects.requireNonNull(tournamentKey, "tournamentKey must not be null");
 		this.tournamentKey = tournamentKey;
 		return this;
 	}

@@ -104,21 +104,45 @@ import net.rithms.riot.constant.staticdata.SpellData;
 import net.rithms.util.Convert;
 
 /**
- * Riot Games API Java Library - riot-api-java
- * 
+ * This is the main class for using this riot api wrapper. This api is typically used by first constructing a RiotApi instance, and then
+ * invoking methods on it.
+ *
+ * <p>
+ * Here is an example of how RiotApi is used:
+ *
+ * <pre>
+ * ApiConfig config = new ApiConfig();
+ * config.setKey("YOUR-API-KEY-HERE");
+ * RiotApi api = new RiotApi(config);
+ * Summoner summoner = api.getSummonerByName(Region.NA, "Tryndamere"); // Gets a Summoner object for the summoner Tryndamere on NA
+ * </pre>
+ * </p>
+ *
+ * @version 4.0.0 alpha
  * @author Taylor 'rithms' Caldwell
  * @author Daniel 'Linnun' Figge
- * @version 4.0.0 alpha
+ * @see ApiConfig
  */
 public class RiotApi {
 
 	private final ApiConfig config;
 	private final EndpointManager endpointManager;
 
+	/**
+	 * Constructs a RiotApi object with default configuration. Please note that the default configuration does not contain an api key, and
+	 * thus cannot be used for most endpoints.
+	 */
 	public RiotApi() {
 		this(new ApiConfig());
 	}
 
+	/**
+	 * Constructs a RiotApi object with the given configuration.
+	 * 
+	 * @param config
+	 *            Your configuration to use for this RiotApi object
+	 * @see ApiConfig
+	 */
 	public RiotApi(ApiConfig config) {
 		this.config = config;
 		endpointManager = new EndpointManager(config);
