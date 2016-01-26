@@ -37,8 +37,12 @@ public class ApiMethod {
 		add(new UrlParameter("api_key", config.getKey()));
 	}
 
-	protected void addTournamentApiKeyParameter() {
+	protected void addTournamentApiKeyHeadParameter() {
 		add(new HttpHeadParameter("X-Riot-Token", config.getTournamentKey()));
+	}
+
+	protected void addTournamentApiKeyParameter() {
+		add(new UrlParameter("api_key", config.getTournamentKey()));
 	}
 
 	public void buildJsonBody(Map<String, Object> map) {
