@@ -29,7 +29,7 @@ public class GetMasterLeague extends ApiMethod {
 		super(config);
 		setDtoType(League.class);
 		setUrlBase(region.getEndpoint() + "/v2.5/league/master");
-		add(new UrlParameter("type", queueType.getName()));
+		add(new UrlParameter("type", queueType.name()));
 		addApiKeyParameter();
 	}
 }
