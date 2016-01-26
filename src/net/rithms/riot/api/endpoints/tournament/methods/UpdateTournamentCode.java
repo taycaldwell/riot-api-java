@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.endpoints.ApiMethod;
+import net.rithms.riot.api.ApiMethod;
 import net.rithms.riot.api.request.RequestMethod;
 import net.rithms.riot.constant.PickType;
 import net.rithms.riot.constant.SpectatorType;

@@ -21,7 +21,7 @@ import java.util.Map;
 import com.google.gson.reflect.TypeToken;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.endpoints.ApiMethod;
+import net.rithms.riot.api.ApiMethod;
 import net.rithms.riot.api.endpoints.team.dto.Team;
 import net.rithms.riot.constant.Region;
 

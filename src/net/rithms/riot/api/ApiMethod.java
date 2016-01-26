@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.rithms.riot.api.endpoints;
+package net.rithms.riot.api;
 
 import java.lang.reflect.Type;
 import java.util.LinkedList;
@@ -22,7 +22,6 @@ import java.util.Map;
 
 import com.google.gson.Gson;
 
-import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.request.RequestMethod;
 
 public class ApiMethod {
@@ -52,7 +51,7 @@ public class ApiMethod {
 		add(new UrlParameter("api_key", config.getKey()));
 	}
 
-	protected void addTournamentApiKeyHeadParameter() {
+	protected void addTournamentApiKeyHttpHeadParameter() {
 		add(new HttpHeadParameter("X-Riot-Token", config.getTournamentKey()));
 	}
 

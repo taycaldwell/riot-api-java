@@ -16,7 +16,7 @@
 package net.rithms.riot.api.endpoints.tournament.methods;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.endpoints.ApiMethod;
+import net.rithms.riot.api.ApiMethod;
 import net.rithms.riot.api.endpoints.tournament.dto.TournamentCode;
 
 public class GetTournamentCode extends ApiMethod {

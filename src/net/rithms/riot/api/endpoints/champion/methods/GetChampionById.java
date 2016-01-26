@@ -16,7 +16,7 @@
 package net.rithms.riot.api.endpoints.champion.methods;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.endpoints.ApiMethod;
+import net.rithms.riot.api.ApiMethod;
 import net.rithms.riot.api.endpoints.champion.dto.Champion;
 import net.rithms.riot.constant.Region;
 

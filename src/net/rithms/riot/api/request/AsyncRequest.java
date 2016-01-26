@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.endpoints.ApiMethod;
+import net.rithms.riot.api.ApiMethod;
 
 /**
  * @author Daniel 'Linnun' Figge

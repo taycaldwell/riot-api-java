@@ -16,7 +16,7 @@
 package net.rithms.riot.api.endpoints.current_game.methods;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.endpoints.ApiMethod;
+import net.rithms.riot.api.ApiMethod;
 import net.rithms.riot.api.endpoints.current_game.dto.CurrentGameInfo;
 import net.rithms.riot.constant.PlatformId;
 

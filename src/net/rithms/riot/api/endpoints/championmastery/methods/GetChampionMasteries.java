@@ -20,7 +20,7 @@ import java.util.List;
 import com.google.gson.reflect.TypeToken;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.endpoints.ApiMethod;
+import net.rithms.riot.api.ApiMethod;
 import net.rithms.riot.api.endpoints.championmastery.dto.ChampionMastery;
 import net.rithms.riot.constant.PlatformId;
 

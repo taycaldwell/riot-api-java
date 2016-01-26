@@ -17,8 +17,8 @@
 package net.rithms.riot.api.endpoints.match.methods;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.endpoints.ApiMethod;
-import net.rithms.riot.api.endpoints.UrlParameter;
+import net.rithms.riot.api.ApiMethod;
+import net.rithms.riot.api.UrlParameter;
 import net.rithms.riot.api.endpoints.match.dto.MatchDetail;
 import net.rithms.riot.constant.Region;
 
@@ -32,6 +32,6 @@ public class GetMatchForTournament extends ApiMethod {
 		if (includeTimeline) {
 			add(new UrlParameter("includeTimeline", includeTimeline));
 		}
-		addTournamentApiKeyParameter();
+		addTournamentApiKeyHttpHeadParameter();
 	}
 }

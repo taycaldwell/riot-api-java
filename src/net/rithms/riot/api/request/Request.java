@@ -31,10 +31,10 @@ import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
 import net.rithms.riot.api.ApiConfig;
+import net.rithms.riot.api.ApiMethod;
+import net.rithms.riot.api.HttpHeadParameter;
 import net.rithms.riot.api.RateLimitException;
 import net.rithms.riot.api.RiotApiException;
-import net.rithms.riot.api.endpoints.ApiMethod;
-import net.rithms.riot.api.endpoints.HttpHeadParameter;
 
 /**
  * @author Daniel 'Linnun' Figge

@@ -16,8 +16,8 @@
 package net.rithms.riot.api.endpoints.league.methods;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.endpoints.ApiMethod;
-import net.rithms.riot.api.endpoints.UrlParameter;
+import net.rithms.riot.api.ApiMethod;
+import net.rithms.riot.api.UrlParameter;
 import net.rithms.riot.api.endpoints.league.dto.League;
 import net.rithms.riot.constant.QueueType;
 import net.rithms.riot.constant.Region;

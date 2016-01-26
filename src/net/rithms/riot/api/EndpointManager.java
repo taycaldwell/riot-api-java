@@ -15,7 +15,6 @@
  */
 package net.rithms.riot.api;
 
-import net.rithms.riot.api.endpoints.ApiMethod;
 import net.rithms.riot.api.request.Request;
 
 public class EndpointManager {
