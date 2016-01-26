@@ -31,6 +31,6 @@ public class GetMatchesByTournament extends ApiMethod {
 		setDtoType(new TypeToken<List<Long>>() {
 		}.getType());
 		setUrlBase(region.getEndpoint() + "/v2.2/match/by-tournament/" + tournamentCode + "/ids");
-		addTournamentApiKeyHttpHeadParameter();
+		addTournamentApiKeyParameter();
 	}
 }

@@ -32,6 +32,6 @@ public class GetMatchForTournament extends ApiMethod {
 		if (includeTimeline) {
 			add(new UrlParameter("includeTimeline", includeTimeline));
 		}
-		addTournamentApiKeyHttpHeadParameter();
+		addTournamentApiKeyParameter();
 	}
 }
