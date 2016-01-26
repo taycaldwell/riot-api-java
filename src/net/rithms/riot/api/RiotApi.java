@@ -20,17 +20,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import net.rithms.riot.api.endpoints._static.dto.GameMapList;
-import net.rithms.riot.api.endpoints._static.dto.Item;
-import net.rithms.riot.api.endpoints._static.dto.ItemList;
-import net.rithms.riot.api.endpoints._static.dto.LanguageStrings;
-import net.rithms.riot.api.endpoints._static.dto.Mastery;
-import net.rithms.riot.api.endpoints._static.dto.MasteryList;
-import net.rithms.riot.api.endpoints._static.dto.Realm;
-import net.rithms.riot.api.endpoints._static.dto.Rune;
-import net.rithms.riot.api.endpoints._static.dto.RuneList;
-import net.rithms.riot.api.endpoints._static.dto.SummonerSpell;
-import net.rithms.riot.api.endpoints._static.dto.SummonerSpellList;
 import net.rithms.riot.api.endpoints.champion.dto.Champion;
 import net.rithms.riot.api.endpoints.champion.dto.ChampionList;
 import net.rithms.riot.api.endpoints.champion.methods.GetChampionById;
@@ -59,6 +48,17 @@ import net.rithms.riot.api.endpoints.match.methods.GetMatchForTournament;
 import net.rithms.riot.api.endpoints.match.methods.GetMatchesByTournament;
 import net.rithms.riot.api.endpoints.matchlist.dto.MatchList;
 import net.rithms.riot.api.endpoints.matchlist.methods.GetMatchList;
+import net.rithms.riot.api.endpoints.static_data.dto.GameMapList;
+import net.rithms.riot.api.endpoints.static_data.dto.Item;
+import net.rithms.riot.api.endpoints.static_data.dto.ItemList;
+import net.rithms.riot.api.endpoints.static_data.dto.LanguageStrings;
+import net.rithms.riot.api.endpoints.static_data.dto.Mastery;
+import net.rithms.riot.api.endpoints.static_data.dto.MasteryList;
+import net.rithms.riot.api.endpoints.static_data.dto.Realm;
+import net.rithms.riot.api.endpoints.static_data.dto.Rune;
+import net.rithms.riot.api.endpoints.static_data.dto.RuneList;
+import net.rithms.riot.api.endpoints.static_data.dto.SummonerSpell;
+import net.rithms.riot.api.endpoints.static_data.dto.SummonerSpellList;
 import net.rithms.riot.api.endpoints.stats.dto.PlayerStatsSummaryList;
 import net.rithms.riot.api.endpoints.stats.dto.RankedStats;
 import net.rithms.riot.api.endpoints.stats.methods.GetPlayerStatsSummary;
@@ -523,9 +523,9 @@ public class RiotApi {
 	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
-	 * @see net.rithms.riot.api.endpoints._static.dto.Champion
+	 * @see net.rithms.riot.api.endpoints.static_data.dto.Champion
 	 */
-	public net.rithms.riot.api.endpoints._static.dto.Champion getDataChampion(Region region, int id, String locale, String version, ChampData... champData)
+	public net.rithms.riot.api.endpoints.static_data.dto.Champion getDataChampion(Region region, int id, String locale, String version, ChampData... champData)
 			throws RiotApiException {
 		Objects.requireNonNull(region);
 		return StaticDataApi.getDataChampion(getConfig(), region, id, locale, version, champData);
@@ -543,9 +543,9 @@ public class RiotApi {
 	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
-	 * @see net.rithms.riot.api.endpoints._static.dto.Champion
+	 * @see net.rithms.riot.api.endpoints.static_data.dto.Champion
 	 */
-	public net.rithms.riot.api.endpoints._static.dto.Champion getDataChampion(Region region, int id) throws RiotApiException {
+	public net.rithms.riot.api.endpoints.static_data.dto.Champion getDataChampion(Region region, int id) throws RiotApiException {
 		Objects.requireNonNull(region);
 		return getDataChampion(region, id, null, null, (ChampData) null);
 	}
@@ -572,9 +572,9 @@ public class RiotApi {
 	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
-	 * @see net.rithms.riot.api.endpoints._static.dto.ChampionList
+	 * @see net.rithms.riot.api.endpoints.static_data.dto.ChampionList
 	 */
-	public net.rithms.riot.api.endpoints._static.dto.ChampionList getDataChampionList(Region region, String locale, String version, boolean dataById,
+	public net.rithms.riot.api.endpoints.static_data.dto.ChampionList getDataChampionList(Region region, String locale, String version, boolean dataById,
 			ChampData... champData) throws RiotApiException {
 		Objects.requireNonNull(region);
 		return StaticDataApi.getDataChampionList(getConfig(), region, locale, version, dataById, champData);
@@ -588,9 +588,9 @@ public class RiotApi {
 	 * @return A list with champions
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
-	 * @see net.rithms.riot.api.endpoints._static.dto.ChampionList
+	 * @see net.rithms.riot.api.endpoints.static_data.dto.ChampionList
 	 */
-	public net.rithms.riot.api.endpoints._static.dto.ChampionList getDataChampionList(Region region) throws RiotApiException {
+	public net.rithms.riot.api.endpoints.static_data.dto.ChampionList getDataChampionList(Region region) throws RiotApiException {
 		Objects.requireNonNull(region);
 		return getDataChampionList(region, null, null, false, (ChampData) null);
 	}
