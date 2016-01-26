@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.dto.League;
+package net.rithms.riot.api.endpoints.league.dto;
 
 import java.io.Serializable;
 import java.util.List;
