@@ -14,28 +14,20 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.dto.Match;
+package net.rithms.riot.api.endpoints.match.dto;
 
 import java.io.Serializable;
 
-public class ParticipantTimelineData implements Serializable {
+public class Position implements Serializable {
 
-	private static final long serialVersionUID = 3515118575430099707L;
-	private double tenToTwenty, thirtyToEnd, twentyToThirty, zeroToTen;
+	private static final long serialVersionUID = -6998248732159256525L;
+	private int x, y;
 
-	public double getTenToTwenty() {
-		return tenToTwenty;
+	public int getY() {
+		return y;
 	}
 
-	public double getThirtyToEnd() {
-		return thirtyToEnd;
-	}
-
-	public double getTwentyToThirty() {
-		return twentyToThirty;
-	}
-
-	public double getZeroToTen() {
-		return zeroToTen;
+	public int getX() {
+		return x;
 	}
 }

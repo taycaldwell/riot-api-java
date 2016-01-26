@@ -14,21 +14,45 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.dto.Match;
+package net.rithms.riot.api.endpoints.match.dto;
 
 import java.io.Serializable;
 
-public class ParticipantIdentity implements Serializable {
+public class ParticipantFrame implements Serializable {
 
-	private static final long serialVersionUID = 7750317217073991764L;
-	private int participantId;
-	private Player player;
+	private static final long serialVersionUID = -7134736662198942818L;
+	private int currentGold, jungleMinionsKilled, level, minionsKilled, participantId, totalGold, xp;
+	private Position position;
+
+	public int getCurrentGold() {
+		return currentGold;
+	}
+
+	public int getJungleMinionsKilled() {
+		return jungleMinionsKilled;
+	}
+
+	public int getLevel() {
+		return level;
+	}
+
+	public int getMinionsKilled() {
+		return minionsKilled;
+	}
 
 	public int getParticipantId() {
 		return participantId;
 	}
 
-	public Player getPlayer() {
-		return player;
+	public int getTotalGold() {
+		return totalGold;
+	}
+
+	public int getXp() {
+		return xp;
+	}
+
+	public Position getPosition() {
+		return position;
 	}
 }

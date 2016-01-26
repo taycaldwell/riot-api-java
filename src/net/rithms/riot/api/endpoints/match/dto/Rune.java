@@ -14,30 +14,20 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.dto.Match;
+package net.rithms.riot.api.endpoints.match.dto;
 
 import java.io.Serializable;
 
-public class Player implements Serializable {
+public class Rune implements Serializable {
 
-	private static final long serialVersionUID = -4459702825178547603L;
-	private String matchHistoryUri, summonerName;
-	private int profileIcon;
-	private long summonerId;
+	private static final long serialVersionUID = -6196166736612993781L;
+	private long rank, runeId;
 
-	public String getMatchHistoryUri() {
-		return matchHistoryUri;
+	public long getRank() {
+		return rank;
 	}
 
-	public long getSummonerId() {
-		return summonerId;
-	}
-
-	public String getSummonerName() {
-		return summonerName;
-	}
-
-	public int getProfileIcon() {
-		return profileIcon;
+	public long getRuneId() {
+		return runeId;
 	}
 }

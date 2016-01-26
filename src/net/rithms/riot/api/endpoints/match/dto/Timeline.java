@@ -14,20 +14,22 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.dto.Match;
+package net.rithms.riot.api.endpoints.match.dto;
 
 import java.io.Serializable;
+import java.util.List;
 
-public class Mastery implements Serializable {
+public class Timeline implements Serializable {
 
-	private static final long serialVersionUID = 1049623074386811783L;
-	private long rank, masteryId;
+	private static final long serialVersionUID = 3888184958883394435L;
+	private List<Frame> frames;
+	private long frameInterval;
 
-	public long getRank() {
-		return rank;
+	public List<Frame> getFrames() {
+		return frames;
 	}
 
-	public long getMasteryId() {
-		return masteryId;
+	public long getFrameInterval() {
+		return frameInterval;
 	}
 }

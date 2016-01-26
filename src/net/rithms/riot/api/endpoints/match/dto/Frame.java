@@ -14,20 +14,28 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.dto.Match;
+package net.rithms.riot.api.endpoints.match.dto;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
-public class Position implements Serializable {
+public class Frame implements Serializable {
 
-	private static final long serialVersionUID = -6998248732159256525L;
-	private int x, y;
+	private static final long serialVersionUID = 4359409042534560829L;
+	private List<Event> events;
+	private Map<String, ParticipantFrame> participantFrames;
+	private long timestamp;
 
-	public int getY() {
-		return y;
+	public List<Event> getEvents() {
+		return events;
 	}
 
-	public int getX() {
-		return x;
+	public Map<String, ParticipantFrame> getParticipantFrames() {
+		return participantFrames;
+	}
+
+	public long getTimestamp() {
+		return timestamp;
 	}
 }
