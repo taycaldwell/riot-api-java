@@ -41,7 +41,7 @@ import net.rithms.riot.api.endpoints.HttpHeadParameter;
  */
 public class Request {
 	public static final int CODE_SUCCESS_OK = 200;
-	public static final int CODE_SUCCESS_NOCONTENT = 204;
+	public static final int CODE_SUCCESS_NO_CONTENT = 204;
 	public static final int CODE_ERROR_BAD_REQUEST = 400;
 	public static final int CODE_ERROR_UNAUTHORIZED = 401;
 	public static final int CODE_ERROR_FORBIDDEN = 403;
@@ -82,7 +82,6 @@ public class Request {
 		setState(RequestState.Waiting);
 		try {
 			URL url = new URL(method.getUrl());
-			System.out.println(url);
 			connection = (HttpURLConnection) url.openConnection();
 			if (config.getTimeout() > 0) {
 				connection.setConnectTimeout(config.getTimeout());
@@ -119,7 +118,7 @@ public class Request {
 			}
 
 			StringBuilder responseBodyBuilder = new StringBuilder();
-			if (responseCode != CODE_SUCCESS_NOCONTENT) {
+			if (responseCode != CODE_SUCCESS_NO_CONTENT) {
 				BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
 				String line;
 				while ((line = br.readLine()) != null) {
@@ -156,7 +155,7 @@ public class Request {
 	public <T> T getDto() throws RiotApiException, RateLimitException {
 		Class<?> clazz = method.getDtoClass();
 		if (clazz != null) {
-			return getDto((Class<T>) clazz);
+			return (T) getDto((Class<T>) clazz);
 		}
 		Type type = method.getDtoType();
 		if (type != null) {
@@ -167,7 +166,7 @@ public class Request {
 
 	private <T> T getDto(Class<T> desiredDto) throws RiotApiException, RateLimitException {
 		requireSucceededRequestState();
-		if (responseCode == CODE_SUCCESS_NOCONTENT) {
+		if (responseCode == CODE_SUCCESS_NO_CONTENT) {
 			// The Riot Api is fine with the request, and explicitly sends no content
 			return null;
 		}
@@ -189,7 +188,7 @@ public class Request {
 
 	private <T> T getDto(Type desiredDto) throws RiotApiException, RateLimitException {
 		requireSucceededRequestState();
-		if (responseCode == CODE_SUCCESS_NOCONTENT) {
+		if (responseCode == CODE_SUCCESS_NO_CONTENT) {
 			// The Riot Api is fine with the request, and explicitly sends no content
 			return null;
 		}
