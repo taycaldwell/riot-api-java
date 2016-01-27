@@ -17,6 +17,8 @@
 package net.rithms.riot.api.request;
 
 /**
+ * An enumeration to indicate the state of a request
+ * 
  * @author Daniel 'Linnun' Figge
  */
 public enum RequestState {

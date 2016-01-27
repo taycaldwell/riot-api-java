@@ -30,7 +30,7 @@ import net.rithms.riot.api.RiotApiException;
 
 /**
  * This class is used to fire asynchronous call at the Riot Api. You should not construct these requests manually. To fire asynchronous
- * requests, use an {@link RiotApiAsync} object.
+ * requests, use a {@link RiotApiAsync} object.
  * 
  * @author Daniel 'Linnun' Figge
  * @see RiotApiAsync
@@ -171,11 +171,10 @@ public class AsyncRequest extends Request implements Runnable {
 	}
 
 	@Override
-	public void cancel() {
-		super.cancel();
-		if (!isCancelled()) {
-			// If this request was already done before cancelling it, don't do anything anymore
-			return;
+	public boolean cancel() {
+		boolean cancelled = super.cancel();
+		if (!cancelled) {
+			return false;
 		}
 		synchronized (signal) {
 			signal.notifyAll();
@@ -185,6 +184,7 @@ public class AsyncRequest extends Request implements Runnable {
 			setTimeout(1);
 			connection.disconnect();
 		}
+		return true;
 	}
 
 	@Override
@@ -201,7 +201,7 @@ public class AsyncRequest extends Request implements Runnable {
 	 * Waits if necessary for the request to complete, and then retrieves its result.
 	 * 
 	 * @return The object returned by the api call
-	 * @throw RiotApiException If an exception occured while executing the request
+	 * @throw RiotApiException If an exception occured while executing the request or parsing the Riot Api's response fails
 	 */
 	@Override
 	public <T> T getDto() throws RiotApiException, RateLimitException {

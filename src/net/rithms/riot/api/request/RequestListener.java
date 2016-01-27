@@ -17,12 +17,36 @@
 package net.rithms.riot.api.request;
 
 /**
+ * The listener interface for receiving events from asynchronous requests.
+ * 
  * @author Daniel 'Linnun' Figge
+ * @see AsyncRequest
  */
 public interface RequestListener {
+
+	/**
+	 * Invoked when a request fails.
+	 * 
+	 * @param e
+	 *            Exception thrown
+	 */
 	public void onRequestFailed(Exception e);
 
-	public void onRequestSucceeded(Request request);
+	/**
+	 * Invoked when a request succeeds.
+	 * 
+	 * @param request
+	 *            AsyncRequest object
+	 * @see AsyncRequest
+	 */
+	public void onRequestSucceeded(AsyncRequest request);
 
-	public void onRequestTimeout(Request request);
+	/**
+	 * Invoked when a request times out.
+	 * 
+	 * @param request
+	 *            AsyncRequest object
+	 * @see AsyncRequest
+	 */
+	public void onRequestTimeout(AsyncRequest request);
 }

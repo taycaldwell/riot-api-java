@@ -17,6 +17,8 @@
 package net.rithms.riot.api.request;
 
 /**
+ * An enumeration to indicate the HTTP method that the request should use
+ * 
  * @author Daniel 'Linnun' Figge
  */
 public enum RequestMethod {

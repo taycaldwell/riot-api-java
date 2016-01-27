@@ -34,10 +34,15 @@ import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.ApiMethod;
 import net.rithms.riot.api.HttpHeadParameter;
 import net.rithms.riot.api.RateLimitException;
+import net.rithms.riot.api.RiotApi;
 import net.rithms.riot.api.RiotApiException;
 
 /**
+ * This class is used to fire synchronous call at the Riot Api. You should not construct these requests manually. To fire synchronous
+ * requests, use a {@link RiotApi} object.
+ * 
  * @author Daniel 'Linnun' Figge
+ * @see RiotApi
  */
 public class Request {
 	public static final int CODE_SUCCESS_OK = 200;
@@ -61,26 +66,42 @@ public class Request {
 	protected HttpURLConnection connection = null;
 	private RiotApiException exception = null;
 
+	/**
+	 * Constructs a synchronous request
+	 * 
+	 * @param config
+	 *            Configuration to use
+	 * @param method
+	 *            Api method to call
+	 * @see ApiConfig
+	 * @see ApiMethod
+	 */
 	public Request(ApiConfig config, ApiMethod method) throws RateLimitException, RiotApiException {
 		init(config, method);
 		setTimeout();
 		execute();
 	}
 
-	protected Request() {
-		// Allow child classes to do their own constructor
+	protected Request() { // Allow child classes to make their own constructor
 	}
 
-	public void cancel() {
+	/**
+	 * Attempts to cancel the request. This attempt will fail if the request has already been completed, or could not be cancelled for some
+	 * other reason. If successful, and this request has not started when {@code cancel} is called, this request should never run.
+	 * 
+	 * @return {@code false} if the request could not be cancelled, typically because it has already completed normally; {@code true}
+	 *         otherwise
+	 */
+	public boolean cancel() {
 		if (isDone()) {
-			// Ignore
-			return;
+			return false;
 		}
 		state = RequestState.Cancelled;
+		return true;
 	}
 
 	protected synchronized void execute() throws RiotApiException, RateLimitException {
-System.out.println("START");
+		System.out.println("START");
 		setState(RequestState.Waiting);
 		try {
 			URL url = new URL(method.getUrl());
@@ -150,6 +171,13 @@ System.out.println("START");
 		}
 	}
 
+	/**
+	 * Retrieves the result of the request.
+	 * 
+	 * @return The object returned by the api call
+	 * @throws RiotApiException
+	 *             If parsing the Riot Api's response fails
+	 */
 	@SuppressWarnings("unchecked")
 	public <T> T getDto() throws RiotApiException, RateLimitException {
 		Class<?> clazz = method.getDtoClass();
@@ -163,7 +191,7 @@ System.out.println("START");
 		throw new NullPointerException("That ApiMethod has not set a dtoType. If you encounter this issue, please file a bug.");
 	}
 
-	private <T> T getDto(Class<T> desiredDto) throws RiotApiException, RateLimitException {
+	private <T> T getDto(Class<T> desiredDto) throws RiotApiException {
 		requireSucceededRequestState();
 		if (responseCode == CODE_SUCCESS_NO_CONTENT) {
 			// The Riot Api is fine with the request, and explicitly sends no content
@@ -185,7 +213,7 @@ System.out.println("START");
 		return dto;
 	}
 
-	private <T> T getDto(Type desiredDto) throws RiotApiException, RateLimitException {
+	private <T> T getDto(Type desiredDto) throws RiotApiException {
 		requireSucceededRequestState();
 		if (responseCode == CODE_SUCCESS_NO_CONTENT) {
 			// The Riot Api is fine with the request, and explicitly sends no content
@@ -207,6 +235,11 @@ System.out.println("START");
 		return dto;
 	}
 
+	/**
+	 * Returns the exception that was thrown when calling {@link #execute()}.
+	 * 
+	 * @return The exception that was thrown when executing this request
+	 */
 	public RiotApiException getException() {
 		if (!isFailed()) {
 			return null;
@@ -214,41 +247,62 @@ System.out.println("START");
 		return exception;
 	}
 
-	public String getResponseBody() {
-		requireSucceededRequestState();
-		return responseBody;
-	}
-
-	public int getResponseCode() {
-		requireSucceededRequestState();
-		return responseCode;
-	}
-
 	protected void init(ApiConfig config, ApiMethod method) {
 		this.config = config;
 		this.method = method;
 	}
 
+	/**
+	 * Returns {@code true} if this request was cancelled before it completed normally.
+	 * 
+	 * @return {@code true} if this request was cancelled before it completed
+	 */
 	public boolean isCancelled() {
 		return state == RequestState.Cancelled;
 	}
 
+	/**
+	 * Returns {@code true} if this request completed. Completion may be due to normal termination, an exception, cancellation or timing out
+	 * -- in all of these cases, this method will return {@code true}.
+	 * 
+	 * @return {@code true} if this request completed
+	 */
 	public boolean isDone() {
 		return state != RequestState.Waiting;
 	}
 
+	/**
+	 * Returns {@code true} if this request failed.
+	 * 
+	 * @return {@code true} if this request failed
+	 */
 	public boolean isFailed() {
 		return state == RequestState.Failed;
 	}
 
+	/**
+	 * Returns {@code true} if this request is still waiting for a response from the Riot Api.
+	 * 
+	 * @return {@code true} if this request is still waiting for a response
+	 */
 	public boolean isPending() {
 		return state == RequestState.Waiting;
 	}
 
+	/**
+	 * Returns {@code true} if this request completed successfully.
+	 * 
+	 * @return {@code true} if this request completed successfully
+	 */
 	public boolean isSuccessful() {
 		return state == RequestState.Succeeded;
 	}
 
+	/**
+	 * Returns {@code true} if this request timed out before it completed normally.
+	 * 
+	 * @return {@code true} if this request timed out before it completed
+	 */
 	public boolean isTimeOut() {
 		return state == RequestState.TimeOut;
 	}
