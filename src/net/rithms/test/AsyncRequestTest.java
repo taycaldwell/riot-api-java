@@ -4,7 +4,9 @@ import java.util.Map;
 
 import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.RateLimitException;
+import net.rithms.riot.api.RiotApi;
 import net.rithms.riot.api.RiotApiException;
+import net.rithms.riot.api.endpoints.champion.dto.Champion;
 import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
 import net.rithms.riot.api.endpoints.summoner.methods.GetSummonersByName;
 import net.rithms.riot.api.request.AsyncRequest;
@@ -22,16 +24,25 @@ class AsyncRequestTest implements RequestListener {
 	}
 
 	AsyncRequestTest() {
-		ApiConfig config = new ApiConfig().setKey("API-KEY-HERE");
-		// Test Timeout
-//		config.setTimeout(50);
+		ApiConfig config = new ApiConfig().setKey("API-KEY-HERE").setRequestTimeout(10);
+		RiotApi api = new RiotApi(config);
+		try {
+			// Test synchronous timeout
+			Champion x = api.getChampionById(Region.NA, 76);
+			System.out.println("champ id: " + x.getId());
+		} catch (RiotApiException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		// Test asynchronous timeout
+		config.setAsyncRequestTimeout(10);
 		new AsyncRequest(config, new GetSummonersByName(config, Region.EUW, "linnun,jszeus")).setListener(this);
 		try {
 			// Test Cancel
-//			Thread.sleep(20);
-//			request.cancel();
+			// Thread.sleep(20);
+			// request.cancel();
 			System.out.println("waiting now");
-//			request.await();
+			// request.await();
 			for (int i = 0; i < 10; i++) {
 				System.out.println(i);
 				Thread.sleep(100);
@@ -47,7 +58,7 @@ class AsyncRequestTest implements RequestListener {
 		System.out.println("success");
 		try {
 			Map<String, Summoner> dto = request.getDto();
-			for(String s : dto.keySet()){
+			for (String s : dto.keySet()) {
 				System.out.println(s + " - " + dto.get(s).getId());
 			}
 		} catch (RateLimitException e) {

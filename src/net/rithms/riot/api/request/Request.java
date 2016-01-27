@@ -83,10 +83,7 @@ public class Request {
 		try {
 			URL url = new URL(method.getUrl());
 			connection = (HttpURLConnection) url.openConnection();
-			if (config.getTimeout() > 0) {
-				connection.setConnectTimeout(config.getTimeout());
-				connection.setReadTimeout(config.getTimeout());
-			}
+			setTimeout();
 			connection.setDoInput(true);
 			connection.setInstanceFollowRedirects(false);
 			connection.setRequestMethod(method.getMethod().name());
@@ -133,7 +130,7 @@ public class Request {
 			setState(RequestState.Failed);
 			throw e;
 		} catch (SocketTimeoutException e) {
-			RiotApiException exception = new RiotApiException(RiotApiException.IOEXCEPTION);
+			RiotApiException exception = new RiotApiException(RiotApiException.TIMEOUT_EXCEPTION);
 			setException(exception);
 			setState(RequestState.TimeOut);
 			Logger.getLogger(Request.class.getName()).log(Level.FINE, null, e);
@@ -228,7 +225,7 @@ public class Request {
 	protected void init(ApiConfig config, ApiMethod method) {
 		this.config = config;
 		this.method = method;
-		setTimeout(config.getTimeout());
+		setTimeout();
 	}
 
 	public boolean isCancelled() {
@@ -275,6 +272,10 @@ public class Request {
 			return true;
 		}
 		return false;
+	}
+
+	protected void setTimeout() {
+		setTimeout(config.getRequestTimeout());
 	}
 
 	protected void setTimeout(int timeout) {

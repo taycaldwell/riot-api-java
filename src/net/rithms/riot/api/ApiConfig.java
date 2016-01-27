@@ -25,23 +25,51 @@ public class ApiConfig {
 
 	private String key = null;
 	private String tournamentKey = null;
-	private int timeout = 0;
+	private int requestTimeout = 0;
+	private int asyncRequestTimeout = 10000;
 
 	@Override
 	public ApiConfig clone() {
-		return new ApiConfig().setKey(getKey()).setTimeout(getTimeout()).setTournamentKey(getTournamentKey());
+		return new ApiConfig().setAsyncRequestTimeout(getAsyncRequestTimeout()).setKey(getKey()).setRequestTimeout(getRequestTimeout())
+				.setTournamentKey(getTournamentKey());
+	}
+
+	public int getAsyncRequestTimeout() {
+		return asyncRequestTimeout;
 	}
 
 	public String getKey() {
 		return key;
 	}
 
-	public int getTimeout() {
-		return timeout;
+	public int getRequestTimeout() {
+		return requestTimeout;
 	}
 
 	public String getTournamentKey() {
 		return tournamentKey;
+	}
+
+	/**
+	 * Sets how many milliseconds a call in {@link RiotApiAsync} waits for a response at most before timing out. This value can be set to
+	 * zero to disable the request timeout. By default, the timeout value for asynchronous requests is 10 seconds.
+	 * 
+	 * <p>
+	 * To set the timeout for synchronous requests use {@link #setRequestTimeout(int)} instead.
+	 * </p>
+	 *
+	 * @param timeout
+	 *            The maximum time for an asynchronous call to wait for a response until it times out
+	 * @return This ApiConfig object for chaining
+	 * @throws IllegalArgumentException
+	 *             If the timeout value is smaller than {@code 0}
+	 */
+	public ApiConfig setAsyncRequestTimeout(int asyncRequestTimeout) {
+		if (asyncRequestTimeout < 0) {
+			throw new IllegalArgumentException("The timeout value must be greater than or equal to 0");
+		}
+		this.asyncRequestTimeout = asyncRequestTimeout;
+		return this;
 	}
 
 	/**
@@ -60,8 +88,12 @@ public class ApiConfig {
 	}
 
 	/**
-	 * Sets how many milliseconds a call in {@link RiotApi} should block at most until a command without response fails. This value can be
-	 * set to zero to disable the timeout. By default, there is no timeout.
+	 * Sets how many milliseconds a call in {@link RiotApi} should block at most until an api call is cancelled. This value can be set to
+	 * zero to disable the request timeout. By default, there is no timeout.
+	 * 
+	 * <p>
+	 * To set the timeout for asynchronous requests use {@link #setAsyncRequestTimeout(int)} instead.
+	 * </p>
 	 *
 	 * @param timeout
 	 *            The maximum time to wait for a response until a synchronous call fails
@@ -69,11 +101,11 @@ public class ApiConfig {
 	 * @throws IllegalArgumentException
 	 *             If the timeout value is smaller than {@code 0}
 	 */
-	public ApiConfig setTimeout(int timeout) {
-		if (timeout < 0) {
+	public ApiConfig setRequestTimeout(int requestTimeout) {
+		if (requestTimeout < 0) {
 			throw new IllegalArgumentException("The timeout value must be greater than or equal to 0");
 		}
-		this.timeout = timeout;
+		this.requestTimeout = requestTimeout;
 		return this;
 	}
 

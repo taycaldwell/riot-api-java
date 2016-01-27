@@ -29,6 +29,7 @@ public class RiotApiException extends Exception {
 	public static final int UNAVAILABLE = 503;
 	public static final int PARSE_FAILURE = 600;
 	public static final int IOEXCEPTION = 601;
+	public static final int TIMEOUT_EXCEPTION = 602;
 
 	protected final int errorCode;
 
@@ -59,6 +60,8 @@ public class RiotApiException extends Exception {
 			return "Rate limit exceeded";
 		case SERVER_ERROR:
 			return "Internal server error";
+		case TIMEOUT_EXCEPTION:
+			return "The request timed out";
 		case UNAUTHORIZED:
 			return "Unauthorized";
 		case UNAVAILABLE:

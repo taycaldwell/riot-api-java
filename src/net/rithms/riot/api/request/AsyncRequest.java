@@ -128,4 +128,9 @@ public class AsyncRequest extends Request implements Runnable {
 		}
 		return true;
 	}
+
+	@Override
+	protected void setTimeout() {
+		setTimeout(config.getAsyncRequestTimeout());
+	}
 }

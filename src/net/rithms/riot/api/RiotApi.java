@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 Taylor Caldwell
+ * Copyright 2016 Taylor Caldwell
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -120,28 +120,33 @@ import net.rithms.util.Convert;
 
 /**
  * This is the main class for using this riot api wrapper. This api is typically used by first constructing a RiotApi instance, and then
- * invoking methods on it.
+ * invoking methods on it to fire synchronous api calls.
  *
  * <p>
  * Here is an example of how RiotApi is used:
  *
  * <pre>
- * ApiConfig config = new ApiConfig();
- * config.setKey("YOUR-API-KEY-HERE");
+ * ApiConfig config = new ApiConfig().setKey("YOUR-API-KEY-HERE");
  * RiotApi api = new RiotApi(config);
  * Summoner summoner = api.getSummonerByName(Region.NA, "Tryndamere"); // Gets a Summoner object for the summoner Tryndamere on NA
  * </pre>
+ * </p>
+ * 
+ * <p>
+ * To fire asynchronous api calls, you need an instance of {@link RiotApiAsync}, which you can get by calling {@link RiotApi#getAsyncApi()}.
  * </p>
  *
  * @version 4.0.0 alpha
  * @author Taylor 'rithms' Caldwell
  * @author Daniel 'Linnun' Figge
  * @see ApiConfig
+ * @see RiotApiAsync
  */
 public class RiotApi {
 
 	private final ApiConfig config;
 	private final EndpointManager endpointManager;
+	private RiotApiAsync asyncApi;
 
 	/**
 	 * Constructs a RiotApi object with default configuration. Please note that the default configuration does not contain an api key, and
@@ -351,6 +356,19 @@ public class RiotApi {
 		Objects.requireNonNull(pickType);
 		Objects.requireNonNull(spectatorType);
 		return createTournamentCodes(tournamentId, count, teamSize, mapType, pickType, spectatorType, null, allowedSummonerIds);
+	}
+
+	/**
+	 * Provides a RiotApiAsync object to use for asynchronous api calls.
+	 * 
+	 * @return RotApiAsync object
+	 * @see RiotApiAsync
+	 */
+	public RiotApiAsync getAsyncApi() {
+		if (asyncApi == null) {
+			asyncApi = new RiotApiAsync(config, endpointManager);
+		}
+		return asyncApi;
 	}
 
 	/**
