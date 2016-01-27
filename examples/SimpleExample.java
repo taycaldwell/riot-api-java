@@ -7,7 +7,7 @@ import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
 import net.rithms.riot.constant.Region;
 
 /**
- * This is a simple example using the RiotApi to synchronously request summoner information
+ * This is a simple example using the RiotApi to request summoner information for a few given summoner names
  */
 public class SimpleExample {
 

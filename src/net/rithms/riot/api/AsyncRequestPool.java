@@ -41,6 +41,9 @@ public class AsyncRequestPool {
 	}
 
 	public void awaitAll() throws InterruptedException {
+		if (pool.isEmpty() && queue.isEmpty()) {
+			return;
+		}
 		List<AsyncRequest> pool = new ArrayList<AsyncRequest>(this.pool);
 		for (AsyncRequest request : pool) {
 			request.await();
@@ -49,6 +52,9 @@ public class AsyncRequestPool {
 		for (AsyncRequest request : queue) {
 			request.await();
 		}
+		// Repeat until queue and pool are empty
+		clearPool();
+		awaitAll();
 	}
 
 	public int clearPool() {

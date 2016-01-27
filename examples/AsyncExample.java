@@ -13,7 +13,7 @@ import net.rithms.riot.constant.Region;
 
 /**
  * This is an example for how to use asynchronous requests. In this example we get a summoner's base information, as well as league
- * information asynchronously. Requesting these information asynchronously saves alot of time, since the requests don't block each other.
+ * information asynchronously. Requesting these information asynchronously saves a lot of time, since the requests do not block each other.
  */
 public class AsyncExample {
 
