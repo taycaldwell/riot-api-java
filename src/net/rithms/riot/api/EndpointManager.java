@@ -16,18 +16,35 @@
 
 package net.rithms.riot.api;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.rithms.riot.api.request.AsyncRequest;
 import net.rithms.riot.api.request.Request;
+import net.rithms.riot.api.request.RequestListener;
 
 public class EndpointManager {
 
 	private final ApiConfig config;
+	private final List<RequestListener> listeners = new ArrayList<RequestListener>();
 
-	public EndpointManager(ApiConfig config) {
+	// INTERNAL
+
+	EndpointManager(ApiConfig config) {
 		this.config = config;
 	}
 
-	// INTERNAL
+	boolean addListener(RequestListener listener) {
+		if (!listeners.contains(listener)) {
+			listeners.add(listener);
+			return true;
+		}
+		return false;
+	}
+
+	boolean removeListener(RequestListener listener) {
+		return listeners.remove(listener);
+	}
 
 	void callMethod(ApiMethod method) throws RateLimitException, RiotApiException {
 		new Request(config, method);

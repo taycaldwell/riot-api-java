@@ -16,6 +16,8 @@
 
 package net.rithms.riot.api.request;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
@@ -31,7 +33,7 @@ public class AsyncRequest extends Request implements Runnable {
 
 	protected final Object signal = new Object();
 
-	protected RequestListener listener = null;
+	protected List<RequestListener> listeners = new ArrayList<RequestListener>();
 	protected Thread executionThread = null;
 
 	public AsyncRequest(ApiConfig config, ApiMethod method) {
@@ -39,6 +41,20 @@ public class AsyncRequest extends Request implements Runnable {
 		init(config, method);
 		setTimeout();
 		execute();
+	}
+
+	public void addListener(RequestListener listener) {
+		if (!listeners.contains(listener)) {
+			listeners.add(listener);
+		}
+	}
+
+	public void addListeners(List<RequestListener> listeners) {
+		for (RequestListener listener : listeners) {
+			if (!this.listeners.contains(listener)) {
+				this.listeners.add(listener);
+			}
+		}
 	}
 
 	public void await() throws InterruptedException {
@@ -91,20 +107,24 @@ public class AsyncRequest extends Request implements Runnable {
 		executionThread = new Thread(this);
 		executionThread.start();
 	}
-	
+
 	@Override
 	public <T> T getDto() throws RiotApiException, RateLimitException {
-		if(isFailed()){
+		if (isFailed()) {
 			throw getException();
 		}
-		if(isTimeOut()){
+		if (isTimeOut()) {
 			throw new RiotApiException(RiotApiException.TIMEOUT_EXCEPTION);
 		}
 		return super.getDto();
 	}
 
-	public RequestListener getListener() {
-		return listener;
+	public void removeAllListeners() {
+		listeners.clear();
+	}
+
+	public void removeListener(RequestListener listener) {
+		listeners.remove(listener);
 	}
 
 	@Override
@@ -116,23 +136,25 @@ public class AsyncRequest extends Request implements Runnable {
 		}
 	}
 
-	public void setListener(RequestListener listener) {
-		this.listener = listener;
-	}
-
 	@Override
 	protected boolean setState(RequestState state) {
 		boolean success = super.setState(state);
 		if (!success) {
 			return false;
 		}
-		if (listener != null) {
+		if (!listeners.isEmpty()) {
 			if (state == RequestState.Succeeded) {
-				listener.onRequestSucceeded(this);
+				for (RequestListener listener : listeners) {
+					listener.onRequestSucceeded(this);
+				}
 			} else if (state == RequestState.Failed) {
-				listener.onRequestFailed(getException());
+				for (RequestListener listener : listeners) {
+					listener.onRequestFailed(getException());
+				}
 			} else if (state == RequestState.TimeOut) {
-				listener.onRequestTimeout(this);
+				for (RequestListener listener : listeners) {
+					listener.onRequestTimeout(this);
+				}
 			}
 		}
 		if (state == RequestState.Succeeded || state == RequestState.Failed || state == RequestState.TimeOut) {

@@ -107,6 +107,7 @@ import net.rithms.riot.api.endpoints.tournament.methods.GetLobbyEventsByTourname
 import net.rithms.riot.api.endpoints.tournament.methods.GetTournamentCode;
 import net.rithms.riot.api.endpoints.tournament.methods.UpdateTournamentCode;
 import net.rithms.riot.api.request.AsyncRequest;
+import net.rithms.riot.api.request.RequestListener;
 import net.rithms.riot.constant.PickType;
 import net.rithms.riot.constant.PlatformId;
 import net.rithms.riot.constant.QueueType;
@@ -147,6 +148,18 @@ public class RiotApiAsync {
 	RiotApiAsync(ApiConfig config, EndpointManager endpointManager) {
 		this.config = config;
 		this.endpointManager = endpointManager;
+	}
+
+	/**
+	 * Adds a request listener to get informed when asynchronous requests finish.
+	 * 
+	 * @param listener
+	 *            An object that implements {@link RequestListener}
+	 * @return {@code true} if the specified listener was not already listening
+	 * @see RequestListener
+	 */
+	public boolean addListener(RequestListener listener) {
+		return endpointManager.addListener(listener);
 	}
 
 	/**
@@ -1773,6 +1786,18 @@ public class RiotApiAsync {
 		Objects.requireNonNull(tournamentCode);
 		ApiMethod method = new GetTournamentCode(getConfig(), tournamentCode);
 		return endpointManager.callMethodAsynchronously(method);
+	}
+
+	/**
+	 * Removes a listener from getting informed when asynchronous requests finish.
+	 * 
+	 * @param listener
+	 *            An object that implements {@link RequestListener}
+	 * @return {@code true} if the specified listener was listening
+	 * @see RequestListener
+	 */
+	public boolean removeListener(RequestListener listener) {
+		return endpointManager.removeListener(listener);
 	}
 
 	/**
