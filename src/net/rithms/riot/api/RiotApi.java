@@ -160,7 +160,7 @@ public class RiotApi {
 	 * Constructs a RiotApi object with the given configuration.
 	 * 
 	 * @param config
-	 *            Your configuration to use for this RiotApi object
+	 *            Configuration to use for this RiotApi object
 	 * @see ApiConfig
 	 */
 	public RiotApi(ApiConfig config) {
@@ -510,6 +510,12 @@ public class RiotApi {
 		return getChampions(region, false);
 	}
 
+	/**
+	 * Get the configuration
+	 * 
+	 * @return {@link ApiConfig} object
+	 * @see ApiConfig
+	 */
 	protected ApiConfig getConfig() {
 		return config;
 	}
