@@ -174,11 +174,20 @@ public class Request {
 	 * Retrieves the result of the request.
 	 * 
 	 * @return The object returned by the api call
+	 * @throws IllegalStateException
+	 *             If this request did not complete yet or did not succeed
 	 * @throws RiotApiException
 	 *             If parsing the Riot Api's response fails
 	 */
-	@SuppressWarnings("unchecked")
 	public <T> T getDto() throws RiotApiException, RateLimitException {
+		return getDto(false);
+	}
+
+	@SuppressWarnings("unchecked")
+	protected <T> T getDto(boolean overrideStateRequirement) throws RiotApiException, RateLimitException {
+		if (!overrideStateRequirement) {
+			requireSucceededRequestState();
+		}
 		Class<?> clazz = method.getDtoClass();
 		if (clazz != null) {
 			return (T) getDto((Class<T>) clazz);
@@ -191,7 +200,6 @@ public class Request {
 	}
 
 	private <T> T getDto(Class<T> desiredDto) throws RiotApiException {
-		requireSucceededRequestState();
 		if (responseCode == CODE_SUCCESS_NO_CONTENT) {
 			// The Riot Api is fine with the request, and explicitly sends no content
 			return null;
@@ -213,7 +221,6 @@ public class Request {
 	}
 
 	private <T> T getDto(Type desiredDto) throws RiotApiException {
-		requireSucceededRequestState();
 		if (responseCode == CODE_SUCCESS_NO_CONTENT) {
 			// The Riot Api is fine with the request, and explicitly sends no content
 			return null;
@@ -321,11 +328,11 @@ public class Request {
 	}
 
 	protected boolean setState(RequestState state) {
-		if (!isDone()) {
-			this.state = state;
-			return true;
+		if (isDone()) {
+			return false;
 		}
-		return false;
+		this.state = state;
+		return true;
 	}
 
 	protected void setTimeout() {

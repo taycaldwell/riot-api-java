@@ -197,19 +197,14 @@ public class AsyncRequest extends Request implements Runnable {
 	}
 
 	/**
-	 * Waits if necessary for the request to complete, and then retrieves its result.
+	 * Retrieves the request's result.
 	 * 
-	 * @return The object returned by the api call
+	 * @return The object returned by the api call, or {@code null} if the request did not finish yet
 	 */
 	@Override
 	public <T> T getDto() {
 		try {
-			await();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		try {
-			return super.getDto();
+			return super.getDto(true);
 		} catch (RiotApiException e) {
 			e.printStackTrace();
 		}
@@ -256,8 +251,7 @@ public class AsyncRequest extends Request implements Runnable {
 
 	@Override
 	protected boolean setState(RequestState state) {
-		boolean success = super.setState(state);
-		if (!success) {
+		if (isDone()) {
 			return false;
 		}
 		for (RequestListener listener : listeners) {
@@ -269,7 +263,8 @@ public class AsyncRequest extends Request implements Runnable {
 				listener.onRequestTimeout(this);
 			}
 		}
-		if (state == RequestState.Succeeded || state == RequestState.Failed || state == RequestState.TimeOut) {
+		super.setState(state);
+		if (state == RequestState.Cancelled || state == RequestState.Succeeded || state == RequestState.Failed || state == RequestState.TimeOut) {
 			synchronized (signal) {
 				signal.notifyAll();
 			}

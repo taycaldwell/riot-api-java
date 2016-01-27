@@ -57,9 +57,6 @@ public class AsyncExample {
 		try {
 			// Wait for all asynchronous requests to finish
 			apiAsync.awaitAll();
-			// we must wait a bit longer to make sure that the onRequestSuceeded() methods have finished filling the eSummoner object.
-			// this is ugly. is there a nice way to solve this internally, without having the user to do synchronization stuff?
-			Thread.sleep(500);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
