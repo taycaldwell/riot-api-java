@@ -101,7 +101,6 @@ public class Request {
 	}
 
 	protected synchronized void execute() throws RiotApiException, RateLimitException {
-		System.out.println("START");
 		setState(RequestState.Waiting);
 		try {
 			URL url = new URL(method.getUrl());
