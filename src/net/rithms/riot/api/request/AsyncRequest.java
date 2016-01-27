@@ -142,19 +142,13 @@ public class AsyncRequest extends Request implements Runnable {
 		if (!success) {
 			return false;
 		}
-		if (!listeners.isEmpty()) {
+		for (RequestListener listener : listeners) {
 			if (state == RequestState.Succeeded) {
-				for (RequestListener listener : listeners) {
-					listener.onRequestSucceeded(this);
-				}
+				listener.onRequestSucceeded(this);
 			} else if (state == RequestState.Failed) {
-				for (RequestListener listener : listeners) {
-					listener.onRequestFailed(getException());
-				}
+				listener.onRequestFailed(getException());
 			} else if (state == RequestState.TimeOut) {
-				for (RequestListener listener : listeners) {
-					listener.onRequestTimeout(this);
-				}
+				listener.onRequestTimeout(this);
 			}
 		}
 		if (state == RequestState.Succeeded || state == RequestState.Failed || state == RequestState.TimeOut) {
