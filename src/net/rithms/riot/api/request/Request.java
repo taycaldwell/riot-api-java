@@ -144,7 +144,6 @@ System.out.println("START");
 			Logger.getLogger(Request.class.getName()).log(Level.SEVERE, null, e);
 			throw exception;
 		} finally {
-System.out.println("END");
 			if (connection != null) {
 				connection.disconnect();
 			}

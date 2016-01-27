@@ -17,6 +17,7 @@
 package net.rithms.riot.api.request;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
@@ -24,10 +25,15 @@ import java.util.concurrent.TimeoutException;
 import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.ApiMethod;
 import net.rithms.riot.api.RateLimitException;
+import net.rithms.riot.api.RiotApiAsync;
 import net.rithms.riot.api.RiotApiException;
 
 /**
+ * This class is used to fire asynchronous call at the Riot Api. You should not construct these requests manually. To fire asynchronous
+ * requests, use an {@link RiotApiAsync} object.
+ * 
  * @author Daniel 'Linnun' Figge
+ * @see RiotApiAsync
  */
 public class AsyncRequest extends Request implements Runnable {
 
@@ -37,19 +43,43 @@ public class AsyncRequest extends Request implements Runnable {
 	protected Thread executionThread = null;
 	private boolean sent = false;
 
+	/**
+	 * Constructs an asynchronous request
+	 * 
+	 * @param config
+	 *            Configuration to use
+	 * @param method
+	 *            Api method to call
+	 * @see ApiConfig
+	 * @see ApiMethod
+	 */
 	public AsyncRequest(ApiConfig config, ApiMethod method) {
 		super();
 		init(config, method);
 		setTimeout();
 	}
 
+	/**
+	 * Adds a {@link RequestListener} to this request
+	 * 
+	 * @param listener
+	 *            A request listener
+	 * @see RequestListener
+	 */
 	public void addListener(RequestListener listener) {
 		if (!listeners.contains(listener)) {
 			listeners.add(listener);
 		}
 	}
 
-	public void addListeners(List<RequestListener> listeners) {
+	/**
+	 * Adds a given collection of {@link RequestListener} to this request
+	 * 
+	 * @param listeners
+	 *            A collection of request listeners
+	 * @see RequestListener
+	 */
+	public void addListeners(Collection<RequestListener> listeners) {
 		for (RequestListener listener : listeners) {
 			if (!this.listeners.contains(listener)) {
 				this.listeners.add(listener);
@@ -57,6 +87,20 @@ public class AsyncRequest extends Request implements Runnable {
 		}
 	}
 
+	/**
+	 * Waits indefinitely until the request completes.
+	 * <p>
+	 * If the thread is interrupted while waiting for the request to complete, this method will throw an {@code InterruptedException} and
+	 * the thread's interrupt flag will be cleared.
+	 * </p>
+	 * <p>
+	 * <i>Please note that this method is blocking and thus negates the advantage of the asynchronous nature of this class. Consider using a
+	 * {@link RequestListener} instead.</i>
+	 * </p>
+	 * 
+	 * @throws InterruptedException
+	 *             If the method is interrupted by calling {@link Thread#interrupt()}. The interrupt flag will be cleared
+	 */
 	public void await() throws InterruptedException {
 		while (!isDone()) {
 			synchronized (signal) {
@@ -65,10 +109,52 @@ public class AsyncRequest extends Request implements Runnable {
 		}
 	}
 
+	/**
+	 * Waits for at most the given time until the request completes.
+	 * <p>
+	 * If the thread is interrupted while waiting for the request to complete, this method will throw an {@code InterruptedException} and
+	 * the thread's interrupt flag will be cleared.
+	 * </p>
+	 * <p>
+	 * <i>Please note that this method is blocking and thus negates the advantage of the asynchronous nature of this class. Consider using a
+	 * {@link RequestListener} instead.</i>
+	 * </p>
+	 *
+	 * @param timeout
+	 *            The maximum amount of the given time unit to wait
+	 * @param unit
+	 *            The time unit of the {@code timeout} argument
+	 * @throws InterruptedException
+	 *             If the method is interrupted by calling {@link Thread#interrupt()}. The interrupt flag will be cleared
+	 * @throws TimeoutException
+	 *             If the given time elapsed without the request completing
+	 */
 	public void await(long timeout, TimeUnit unit) throws InterruptedException, TimeoutException {
 		await(timeout, unit, false);
 	}
 
+	/**
+	 * Waits for at most the given time until the request completes.
+	 * <p>
+	 * If the thread is interrupted while waiting for the request to complete, this method will throw an {@code InterruptedException} and
+	 * the thread's interrupt flag will be cleared.
+	 * </p>
+	 * <p>
+	 * <i>Please note that this method is blocking and thus negates the advantage of the asynchronous nature of this class. Consider using a
+	 * {@link RequestListener} instead.</i>
+	 * </p>
+	 *
+	 * @param timeout
+	 *            The maximum amount of the given time unit to wait
+	 * @param unit
+	 *            The time unit of the {@code timeout} argument
+	 * @param cancelOnTimeout
+	 *            Whether or not the request should be cancelled, if the given {@code timeout} is elapsed without the request completing
+	 * @throws InterruptedException
+	 *             If the method is interrupted by calling {@link Thread#interrupt()}. The interrupt flag will be cleared
+	 * @throws TimeoutException
+	 *             If the given time elapsed without the request completing
+	 */
 	public void await(long timeout, TimeUnit unit, boolean cancelOnTimeout) throws InterruptedException, TimeoutException {
 		final long end = System.currentTimeMillis() + unit.toMillis(timeout);
 		while (!isDone() && System.currentTimeMillis() < end) {
@@ -111,8 +197,19 @@ public class AsyncRequest extends Request implements Runnable {
 		executionThread.start();
 	}
 
+	/**
+	 * Waits if necessary for the request to complete, and then retrieves its result.
+	 * 
+	 * @return The object returned by the api call
+	 * @throw RiotApiException If an exception occured while executing the request
+	 */
 	@Override
 	public <T> T getDto() throws RiotApiException, RateLimitException {
+		try {
+			await();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		if (isFailed()) {
 			throw getException();
 		}
@@ -122,14 +219,31 @@ public class AsyncRequest extends Request implements Runnable {
 		return super.getDto();
 	}
 
+	/**
+	 * Returns {@code true} if this request has started execution
+	 * 
+	 * @return {@code true} if this request has started execution
+	 */
 	public boolean isSent() {
 		return sent;
 	}
 
+	/**
+	 * Removes all listeners from this request
+	 * 
+	 * @see RequestListener
+	 */
 	public void removeAllListeners() {
 		listeners.clear();
 	}
 
+	/**
+	 * Removes a listener from this request
+	 * 
+	 * @param listener
+	 *            Listener to remove
+	 * @see RequestListener
+	 */
 	public void removeListener(RequestListener listener) {
 		listeners.remove(listener);
 	}
