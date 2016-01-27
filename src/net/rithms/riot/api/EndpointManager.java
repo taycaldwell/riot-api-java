@@ -44,6 +44,10 @@ public class EndpointManager {
 		return false;
 	}
 
+	void awaitAll() throws InterruptedException {
+		pool.awaitAll();
+	}
+
 	boolean removeListener(RequestListener listener) {
 		return listeners.remove(listener);
 	}

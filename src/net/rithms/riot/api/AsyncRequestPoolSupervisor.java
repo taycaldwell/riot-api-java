@@ -17,18 +17,16 @@
 package net.rithms.riot.api;
 
 public class AsyncRequestPoolSupervisor extends Thread {
-	
+
 	private static final long IDLE_TIME_RESIGN = 5000;
 
 	private final AsyncRequestPool pool;
-	private final ApiConfig config;
 	private long lastJob = 0;
 	private boolean running = true;
 
-	AsyncRequestPoolSupervisor(AsyncRequestPool pool, ApiConfig config) {
+	AsyncRequestPoolSupervisor(AsyncRequestPool pool) {
 		super("Riot Api - Async Request Pool Supervisor Thread");
 		this.pool = pool;
-		this.config = config;
 	}
 
 	private void clearPool() {
@@ -38,13 +36,13 @@ public class AsyncRequestPoolSupervisor extends Thread {
 	}
 
 	private void pollQueue() {
-		if (pool.getPoolSize() == config.getMaxAsyncThreads()) {
+		if (pool.getPoolSize() == pool.getMaxAsyncThreads()) {
 			return;
 		}
-		for (int i = pool.getPoolSize(); i < config.getMaxAsyncThreads(); i++) {
+		for (int i = pool.getPoolSize(); i < pool.getMaxAsyncThreads(); i++) {
 			if (pool.pollQueue()) {
 				lastJob = System.currentTimeMillis();
-			}else{
+			} else {
 				break;
 			}
 		}

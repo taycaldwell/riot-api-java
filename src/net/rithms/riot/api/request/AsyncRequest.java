@@ -24,7 +24,6 @@ import java.util.concurrent.TimeoutException;
 
 import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.ApiMethod;
-import net.rithms.riot.api.RateLimitException;
 import net.rithms.riot.api.RiotApiAsync;
 import net.rithms.riot.api.RiotApiException;
 
@@ -201,22 +200,20 @@ public class AsyncRequest extends Request implements Runnable {
 	 * Waits if necessary for the request to complete, and then retrieves its result.
 	 * 
 	 * @return The object returned by the api call
-	 * @throw RiotApiException If an exception occured while executing the request or parsing the Riot Api's response fails
 	 */
 	@Override
-	public <T> T getDto() throws RiotApiException, RateLimitException {
+	public <T> T getDto() {
 		try {
 			await();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		if (isFailed()) {
-			throw getException();
+		try {
+			return super.getDto();
+		} catch (RiotApiException e) {
+			e.printStackTrace();
 		}
-		if (isTimeOut()) {
-			throw new RiotApiException(RiotApiException.TIMEOUT_EXCEPTION);
-		}
-		return super.getDto();
+		return null;
 	}
 
 	/**

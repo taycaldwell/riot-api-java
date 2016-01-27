@@ -153,13 +153,37 @@ public class RiotApiAsync {
 	/**
 	 * Adds a request listener to get informed when asynchronous requests finish.
 	 * 
+	 * <p>
+	 * Please note, that by adding a listener here, you will listen to ALL asynchronous requests made with this RiotApiAsync object. To only
+	 * listen to a specific asynchronous request, you can set a listener directly in the {@link AsyncRequest} using
+	 * {@link AsyncRequest#addListener(RequestListener)}.
+	 * </p>
+	 * 
 	 * @param listener
 	 *            An object that implements {@link RequestListener}
 	 * @return {@code true} if the specified listener was not already listening
 	 * @see RequestListener
 	 */
-	public boolean addListener(RequestListener listener) {
+	public boolean addListener(RequestListener listener, boolean onlyListenOnce) {
 		return endpointManager.addListener(listener);
+	}
+
+	/**
+	 * Waits indefinitely until all currently running and queued requests complete.
+	 * <p>
+	 * If the thread is interrupted while waiting for the requests to complete, this method will throw an {@code InterruptedException} and
+	 * the thread's interrupt flag will be cleared.
+	 * </p>
+	 * <p>
+	 * <i>Please note that this method is blocking and thus negates the advantage of the asynchronous nature of this class. Consider using a
+	 * {@link RequestListener} instead.</i>
+	 * </p>
+	 * 
+	 * @throws InterruptedException
+	 *             If the method is interrupted by calling {@link Thread#interrupt()}. The interrupt flag will be cleared
+	 */
+	public void awaitAll() throws InterruptedException {
+		endpointManager.awaitAll();
 	}
 
 	/**

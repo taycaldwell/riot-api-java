@@ -40,6 +40,17 @@ public class AsyncRequestPool {
 		invokeSupervisor();
 	}
 
+	public void awaitAll() throws InterruptedException {
+		List<AsyncRequest> pool = new ArrayList<AsyncRequest>(this.pool);
+		for (AsyncRequest request : pool) {
+			request.await();
+		}
+		List<AsyncRequest> queue = new ArrayList<AsyncRequest>(this.queue);
+		for (AsyncRequest request : queue) {
+			request.await();
+		}
+	}
+
 	public int clearPool() {
 		int clearedFromPool = 0;
 		Iterator<AsyncRequest> iterator = pool.iterator();
@@ -53,6 +64,13 @@ public class AsyncRequestPool {
 		return clearedFromPool;
 	}
 
+	int getMaxAsyncThreads() {
+		if (config.getMaxAsyncThreads() > 0) {
+			return config.getMaxAsyncThreads();
+		}
+		return Integer.MAX_VALUE;
+	}
+
 	public int getPoolSize() {
 		return pool.size();
 	}
@@ -63,13 +81,13 @@ public class AsyncRequestPool {
 
 	private void invokeSupervisor() {
 		if (supervisor == null) {
-			supervisor = new AsyncRequestPoolSupervisor(this, config);
+			supervisor = new AsyncRequestPoolSupervisor(this);
 			supervisor.start();
 		}
 	}
 
 	public boolean pollQueue() {
-		if (getPoolSize() == config.getMaxAsyncThreads()) {
+		if (getPoolSize() == getMaxAsyncThreads()) {
 			return false;
 		}
 		AsyncRequest request = queue.poll();
