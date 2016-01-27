@@ -35,12 +35,12 @@ public class AsyncRequest extends Request implements Runnable {
 
 	protected List<RequestListener> listeners = new ArrayList<RequestListener>();
 	protected Thread executionThread = null;
+	private boolean sent = false;
 
 	public AsyncRequest(ApiConfig config, ApiMethod method) {
 		super();
 		init(config, method);
 		setTimeout();
-		execute();
 	}
 
 	public void addListener(RequestListener listener) {
@@ -96,14 +96,17 @@ public class AsyncRequest extends Request implements Runnable {
 		}
 		// Try to force-quit the connection
 		if (connection != null) {
-			// Force Quit
 			setTimeout(1);
 			connection.disconnect();
 		}
 	}
 
 	@Override
-	protected synchronized void execute() {
+	public synchronized void execute() {
+		if (isSent()) {
+			return;
+		}
+		sent = true;
 		executionThread = new Thread(this);
 		executionThread.start();
 	}
@@ -117,6 +120,10 @@ public class AsyncRequest extends Request implements Runnable {
 			throw new RiotApiException(RiotApiException.TIMEOUT_EXCEPTION);
 		}
 		return super.getDto();
+	}
+
+	public boolean isSent() {
+		return sent;
 	}
 
 	public void removeAllListeners() {

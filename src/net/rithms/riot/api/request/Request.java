@@ -80,6 +80,7 @@ public class Request {
 	}
 
 	protected synchronized void execute() throws RiotApiException, RateLimitException {
+System.out.println("START");
 		setState(RequestState.Waiting);
 		try {
 			URL url = new URL(method.getUrl());
@@ -143,6 +144,7 @@ public class Request {
 			Logger.getLogger(Request.class.getName()).log(Level.SEVERE, null, e);
 			throw exception;
 		} finally {
+System.out.println("END");
 			if (connection != null) {
 				connection.disconnect();
 			}

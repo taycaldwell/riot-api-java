@@ -27,6 +27,7 @@ public class ApiConfig {
 	private String tournamentKey = null;
 	private int requestTimeout = 0;
 	private int asyncRequestTimeout = 10000;
+	private int maxAsyncThreads = 0;
 
 	@Override
 	public ApiConfig clone() {
@@ -40,6 +41,10 @@ public class ApiConfig {
 
 	public String getKey() {
 		return key;
+	}
+
+	public int getMaxAsyncThreads() {
+		return maxAsyncThreads;
 	}
 
 	public int getRequestTimeout() {
@@ -84,6 +89,29 @@ public class ApiConfig {
 	public ApiConfig setKey(String key) {
 		Objects.requireNonNull(key, "key must not be null");
 		this.key = key;
+		return this;
+	}
+
+	/**
+	 * Sets the maximum amount of threads for asynchronous api calls running at once. This value can be set to zero to disable the limit. By
+	 * default, there is no limit.
+	 * 
+	 * <p>
+	 * If you make asynchronous calls, and the current thread limit is reached, the api call will be queued and executed when resources
+	 * become available.
+	 * </p>
+	 * 
+	 * @param maxAsyncThreads
+	 *            Max amount of threads to run at the same time
+	 * @return This ApiConfig object for chaining
+	 * @throws IllegalArgumentException
+	 *             If the limit is smaller than {@code 0}
+	 */
+	public ApiConfig setMaxAsyncThreads(int maxAsyncThreads) {
+		if (maxAsyncThreads < 0) {
+			throw new IllegalArgumentException("The max amount of threads to run must be greater than or equal to 0");
+		}
+		this.maxAsyncThreads = maxAsyncThreads;
 		return this;
 	}
 

@@ -26,12 +26,14 @@ import net.rithms.riot.api.request.RequestListener;
 public class EndpointManager {
 
 	private final ApiConfig config;
+	private final AsyncRequestPool pool;
 	private final List<RequestListener> listeners = new ArrayList<RequestListener>();
 
 	// INTERNAL
 
 	EndpointManager(ApiConfig config) {
 		this.config = config;
+		pool = new AsyncRequestPool(config);
 	}
 
 	boolean addListener(RequestListener listener) {
@@ -56,6 +58,9 @@ public class EndpointManager {
 	}
 
 	AsyncRequest callMethodAsynchronously(ApiMethod method) throws RateLimitException, RiotApiException {
-		return new AsyncRequest(config, method);
+		AsyncRequest request = new AsyncRequest(config, method);
+		request.addListeners(listeners);
+		pool.add(request);
+		return request;
 	}
 }
