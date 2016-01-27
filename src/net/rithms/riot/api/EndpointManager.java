@@ -16,6 +16,7 @@
 
 package net.rithms.riot.api;
 
+import net.rithms.riot.api.request.AsyncRequest;
 import net.rithms.riot.api.request.Request;
 
 public class EndpointManager {
@@ -32,8 +33,12 @@ public class EndpointManager {
 		new Request(config, method);
 	}
 
-	public <T> T callMethodAndReturnDto(ApiMethod method) throws RateLimitException, RiotApiException {
+	<T> T callMethodAndReturnDto(ApiMethod method) throws RateLimitException, RiotApiException {
 		Request request = new Request(config, method);
 		return request.getDto();
+	}
+
+	AsyncRequest callMethodAsynchronously(ApiMethod method) throws RateLimitException, RiotApiException {
+		return new AsyncRequest(config, method);
 	}
 }

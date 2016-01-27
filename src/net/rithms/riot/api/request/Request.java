@@ -59,10 +59,11 @@ public class Request {
 	protected ApiConfig config;
 	protected ApiMethod method;
 	protected HttpURLConnection connection = null;
-	private Exception exception = null;
+	private RiotApiException exception = null;
 
 	public Request(ApiConfig config, ApiMethod method) throws RateLimitException, RiotApiException {
 		init(config, method);
+		setTimeout();
 		execute();
 	}
 
@@ -205,7 +206,7 @@ public class Request {
 		return dto;
 	}
 
-	public Exception getException() {
+	public RiotApiException getException() {
 		if (!isFailed()) {
 			return null;
 		}
@@ -225,7 +226,6 @@ public class Request {
 	protected void init(ApiConfig config, ApiMethod method) {
 		this.config = config;
 		this.method = method;
-		setTimeout();
 	}
 
 	public boolean isCancelled() {
@@ -262,7 +262,7 @@ public class Request {
 		}
 	}
 
-	protected void setException(Exception exception) {
+	protected void setException(RiotApiException exception) {
 		this.exception = exception;
 	}
 

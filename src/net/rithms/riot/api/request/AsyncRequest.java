@@ -21,6 +21,8 @@ import java.util.concurrent.TimeoutException;
 
 import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.ApiMethod;
+import net.rithms.riot.api.RateLimitException;
+import net.rithms.riot.api.RiotApiException;
 
 /**
  * @author Daniel 'Linnun' Figge
@@ -35,6 +37,7 @@ public class AsyncRequest extends Request implements Runnable {
 	public AsyncRequest(ApiConfig config, ApiMethod method) {
 		super();
 		init(config, method);
+		setTimeout();
 		execute();
 	}
 
@@ -88,6 +91,17 @@ public class AsyncRequest extends Request implements Runnable {
 		executionThread = new Thread(this);
 		executionThread.start();
 	}
+	
+	@Override
+	public <T> T getDto() throws RiotApiException, RateLimitException {
+		if(isFailed()){
+			throw getException();
+		}
+		if(isTimeOut()){
+			throw new RiotApiException(RiotApiException.TIMEOUT_EXCEPTION);
+		}
+		return super.getDto();
+	}
 
 	public RequestListener getListener() {
 		return listener;
@@ -97,7 +111,7 @@ public class AsyncRequest extends Request implements Runnable {
 	public void run() {
 		try {
 			super.execute();
-		} catch (Exception e) {
+		} catch (RiotApiException e) {
 			setException(e);
 		}
 	}
