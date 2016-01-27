@@ -67,6 +67,21 @@ import net.rithms.riot.api.endpoints.static_data.dto.Rune;
 import net.rithms.riot.api.endpoints.static_data.dto.RuneList;
 import net.rithms.riot.api.endpoints.static_data.dto.SummonerSpell;
 import net.rithms.riot.api.endpoints.static_data.dto.SummonerSpellList;
+import net.rithms.riot.api.endpoints.static_data.methods.GetDataChampion;
+import net.rithms.riot.api.endpoints.static_data.methods.GetDataChampionList;
+import net.rithms.riot.api.endpoints.static_data.methods.GetDataGameMapList;
+import net.rithms.riot.api.endpoints.static_data.methods.GetDataItem;
+import net.rithms.riot.api.endpoints.static_data.methods.GetDataItemList;
+import net.rithms.riot.api.endpoints.static_data.methods.GetDataLanguageStrings;
+import net.rithms.riot.api.endpoints.static_data.methods.GetDataLanguages;
+import net.rithms.riot.api.endpoints.static_data.methods.GetDataMastery;
+import net.rithms.riot.api.endpoints.static_data.methods.GetDataMasteryList;
+import net.rithms.riot.api.endpoints.static_data.methods.GetDataRealm;
+import net.rithms.riot.api.endpoints.static_data.methods.GetDataRune;
+import net.rithms.riot.api.endpoints.static_data.methods.GetDataRuneList;
+import net.rithms.riot.api.endpoints.static_data.methods.GetDataSummonerSpell;
+import net.rithms.riot.api.endpoints.static_data.methods.GetDataSummonerSpellList;
+import net.rithms.riot.api.endpoints.static_data.methods.GetDataVersions;
 import net.rithms.riot.api.endpoints.stats.dto.PlayerStatsSummaryList;
 import net.rithms.riot.api.endpoints.stats.dto.RankedStats;
 import net.rithms.riot.api.endpoints.stats.methods.GetPlayerStatsSummary;
@@ -528,7 +543,8 @@ public class RiotApi {
 	public net.rithms.riot.api.endpoints.static_data.dto.Champion getDataChampion(Region region, int id, String locale, String version, ChampData... champData)
 			throws RiotApiException {
 		Objects.requireNonNull(region);
-		return StaticDataApi.getDataChampion(getConfig(), region, id, locale, version, champData);
+		ApiMethod method = new GetDataChampion(getConfig(), region, id, locale, version, champData);
+		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
@@ -577,7 +593,8 @@ public class RiotApi {
 	public net.rithms.riot.api.endpoints.static_data.dto.ChampionList getDataChampionList(Region region, String locale, String version, boolean dataById,
 			ChampData... champData) throws RiotApiException {
 		Objects.requireNonNull(region);
-		return StaticDataApi.getDataChampionList(getConfig(), region, locale, version, dataById, champData);
+		ApiMethod method = new GetDataChampionList(getConfig(), region, locale, version, dataById, champData);
+		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
@@ -615,7 +632,8 @@ public class RiotApi {
 	 */
 	public GameMapList getDataGameMapList(Region region, String locale, String version) throws RiotApiException {
 		Objects.requireNonNull(region);
-		return StaticDataApi.getDataGameMapList(getConfig(), region, locale, version);
+		ApiMethod method = new GetDataGameMapList(getConfig(), region, locale, version);
+		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
@@ -661,7 +679,8 @@ public class RiotApi {
 	 */
 	public Item getDataItem(Region region, int id, String locale, String version, ItemData... itemData) throws RiotApiException {
 		Objects.requireNonNull(region);
-		return StaticDataApi.getDataItem(getConfig(), region, id, locale, version, itemData);
+		ApiMethod method = new GetDataItem(getConfig(), region, id, locale, version, itemData);
+		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
@@ -707,7 +726,8 @@ public class RiotApi {
 	 */
 	public ItemList getDataItemList(Region region, String locale, String version, ItemListData... itemListData) throws RiotApiException {
 		Objects.requireNonNull(region);
-		return StaticDataApi.getDataItemList(getConfig(), region, locale, version, itemListData);
+		ApiMethod method = new GetDataItemList(getConfig(), region, locale, version, itemListData);
+		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
@@ -740,7 +760,8 @@ public class RiotApi {
 	 */
 	public List<String> getDataLanguages(Region region) throws RiotApiException {
 		Objects.requireNonNull(region);
-		return StaticDataApi.getDataLanguages(getConfig(), region);
+		ApiMethod method = new GetDataLanguages(getConfig(), region);
+		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
@@ -763,7 +784,8 @@ public class RiotApi {
 	 */
 	public LanguageStrings getDataLanguageStrings(Region region, String locale, String version) throws RiotApiException {
 		Objects.requireNonNull(region);
-		return StaticDataApi.getDataLanguageStrings(getConfig(), region, locale, version);
+		ApiMethod method = new GetDataLanguageStrings(getConfig(), region, locale, version);
+		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
@@ -808,7 +830,8 @@ public class RiotApi {
 	 */
 	public Mastery getDataMastery(Region region, int id, String locale, String version, MasteryData... masteryData) throws RiotApiException {
 		Objects.requireNonNull(region);
-		return StaticDataApi.getDataMastery(getConfig(), region, id, locale, version, masteryData);
+		ApiMethod method = new GetDataMastery(getConfig(), region, id, locale, version, masteryData);
+		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
@@ -854,7 +877,8 @@ public class RiotApi {
 	 */
 	public MasteryList getDataMasteryList(Region region, String locale, String version, MasteryListData... masteryListData) throws RiotApiException {
 		Objects.requireNonNull(region);
-		return StaticDataApi.getDataMasteryList(getConfig(), region, locale, version, masteryListData);
+		ApiMethod method = new GetDataMasteryList(getConfig(), region, locale, version, masteryListData);
+		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
@@ -888,7 +912,8 @@ public class RiotApi {
 	 */
 	public Realm getDataRealm(Region region) throws RiotApiException {
 		Objects.requireNonNull(region);
-		return StaticDataApi.getDataRealm(getConfig(), region);
+		ApiMethod method = new GetDataRealm(getConfig(), region);
+		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
@@ -916,7 +941,8 @@ public class RiotApi {
 	 */
 	public Rune getDataRune(Region region, int id, String locale, String version, RuneData... runeData) throws RiotApiException {
 		Objects.requireNonNull(region);
-		return StaticDataApi.getDataRune(getConfig(), region, id, locale, version, runeData);
+		ApiMethod method = new GetDataRune(getConfig(), region, id, locale, version, runeData);
+		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
@@ -962,7 +988,8 @@ public class RiotApi {
 	 */
 	public RuneList getDataRuneList(Region region, String locale, String version, RuneListData... runeListData) throws RiotApiException {
 		Objects.requireNonNull(region);
-		return StaticDataApi.getDataRuneList(getConfig(), region, locale, version, runeListData);
+		ApiMethod method = new GetDataRuneList(getConfig(), region, locale, version, runeListData);
+		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
@@ -1007,7 +1034,8 @@ public class RiotApi {
 	 */
 	public SummonerSpell getDataSummonerSpell(Region region, int id, String locale, String version, SpellData... spellData) throws RiotApiException {
 		Objects.requireNonNull(region);
-		return StaticDataApi.getDataSummonerSpell(getConfig(), region, id, locale, version, spellData);
+		ApiMethod method = new GetDataSummonerSpell(getConfig(), region, id, locale, version, spellData);
+		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
@@ -1057,7 +1085,8 @@ public class RiotApi {
 	public SummonerSpellList getDataSummonerSpellList(Region region, String locale, String version, boolean dataById, SpellData... spellData)
 			throws RiotApiException {
 		Objects.requireNonNull(region);
-		return StaticDataApi.getDataSummonerSpellList(getConfig(), region, locale, version, dataById, spellData);
+		ApiMethod method = new GetDataSummonerSpellList(getConfig(), region, locale, version, dataById, spellData);
+		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
@@ -1087,7 +1116,9 @@ public class RiotApi {
 	 *             If the API returns an error or unparsable result
 	 */
 	public List<String> getDataVersions(Region region) throws RiotApiException {
-		return StaticDataApi.getDataVersions(getConfig(), region);
+		Objects.requireNonNull(region);
+		ApiMethod method = new GetDataVersions(getConfig(), region);
+		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
