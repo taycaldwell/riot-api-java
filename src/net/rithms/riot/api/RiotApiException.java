@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 Taylor Caldwell
+ * Copyright 2016 Taylor Caldwell
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,9 +16,13 @@
 
 package net.rithms.riot.api;
 
+/**
+ * Thrown when the Riot Api returns an error code, or if the Riot Api's response can not be parsed successfully.
+ */
 public class RiotApiException extends Exception {
 
 	private static final long serialVersionUID = 2658256159686373725L;
+	
 	public static final int BAD_REQUEST = 400;
 	public static final int UNAUTHORIZED = 401;
 	public static final int FORBIDDEN = 403;
@@ -31,17 +35,35 @@ public class RiotApiException extends Exception {
 	public static final int IOEXCEPTION = 601;
 	public static final int TIMEOUT_EXCEPTION = 602;
 
-	protected final int errorCode;
+	private final int errorCode;
 
+	/**
+	 * Constructs a {@code RiotApiException} with the specified error code.
+	 *
+	 * @param errorCode
+	 *            Error code
+	 */
 	public RiotApiException(final int errorCode) {
 		super(getMessage(errorCode));
 		this.errorCode = errorCode;
 	}
 
+	/**
+	 * Gets the error code of this {@code RiotApiException}
+	 * 
+	 * @return Error code
+	 */
 	public int getErrorCode() {
 		return errorCode;
 	}
 
+	/**
+	 * Returns a short description for the specified error code.
+	 * 
+	 * @param errorCode
+	 *            Error code
+	 * @return Short description for the specified error code
+	 */
 	public static String getMessage(final int errorCode) {
 		switch (errorCode) {
 		case BAD_REQUEST:
@@ -69,10 +91,5 @@ public class RiotApiException extends Exception {
 		default:
 			return "An unknown API error occured: " + errorCode;
 		}
-	}
-
-	@Override
-	public String toString() {
-		return getClass().getName() + ": " + getMessage(errorCode);
 	}
 }

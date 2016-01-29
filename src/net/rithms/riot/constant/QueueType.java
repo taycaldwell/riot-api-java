@@ -16,7 +16,7 @@
 
 package net.rithms.riot.constant;
 
-import net.rithms.riot.api.RiotStringNotFound;
+import net.rithms.riot.api.RiotStringNotFoundException;
 
 public enum QueueType {
 	ARAM_5x5("ARAM", 65),
@@ -60,14 +60,14 @@ public enum QueueType {
 	private String name;
 	private int gameQueueConfigId;
 
-	public static String getQueueNameByConfigId(int gameQueueConfigId) throws RiotStringNotFound {
+	public static String getQueueNameByConfigId(int gameQueueConfigId) throws RiotStringNotFoundException {
 		QueueType[] queueTypes = QueueType.values();
 		for (QueueType queueType : queueTypes) {
 			if (queueType.getGameQueueConfigId() == gameQueueConfigId) {
 				return queueType.getName();
 			}
 		}
-		throw new RiotStringNotFound("Could not find queue " + gameQueueConfigId);
+		throw new RiotStringNotFoundException("Could not find queue " + gameQueueConfigId);
 	}
 
 	QueueType(String name, int gameQueueConfigId) {

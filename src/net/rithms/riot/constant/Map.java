@@ -16,7 +16,7 @@
 
 package net.rithms.riot.constant;
 
-import net.rithms.riot.api.RiotStringNotFound;
+import net.rithms.riot.api.RiotStringNotFoundException;
 
 public enum Map {
 	ARAM(12, "Howling Abyss"),
@@ -35,14 +35,14 @@ public enum Map {
 	private int id;
 	private String name;
 
-	public static String getNameById(int mapId) throws RiotStringNotFound {
+	public static String getNameById(int mapId) throws RiotStringNotFoundException {
 		Map[] maps = Map.values();
 		for (Map map : maps) {
 			if (mapId == map.getId()) {
 				return map.getName();
 			}
 		}
-		throw new RiotStringNotFound("Could not find map " + mapId);
+		throw new RiotStringNotFoundException("Could not find map " + mapId);
 	}
 
 	Map(int id, String name) {

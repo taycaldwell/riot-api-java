@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 Taylor Caldwell
+ * Copyright 2016 Taylor Caldwell
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,16 +16,20 @@
 
 package net.rithms.riot.api;
 
-public class RiotStringNotFound extends Exception {
+/**
+ * Thrown when the Riot Api returns some unexpected values for some fields. If you ever get this exception, please file a bug, because we
+ * likely need to adjust this api wrapper to reflect changes to the Riot Api.
+ */
+public class RiotStringNotFoundException extends Exception {
 
 	private static final long serialVersionUID = 1401308670684857994L;
 
-	public RiotStringNotFound(String msg) {
+	/**
+	 * Constructs a {@code RiotStringNotFoundException} with the specified message.
+	 * 
+	 * @param msg
+	 */
+	public RiotStringNotFoundException(String msg) {
 		super(msg);
-	}
-
-	@Override
-	public String toString() {
-		return getClass().getName() + ": " + getMessage();
 	}
 }
