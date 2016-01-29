@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package net.rithms.test;
+package net.rithms.test.sync;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -30,7 +30,11 @@ import net.rithms.riot.api.endpoints.summoner.dto.MasteryPages;
 import net.rithms.riot.api.endpoints.summoner.dto.RunePages;
 import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
 import net.rithms.riot.constant.Region;
+import net.rithms.test.RiotApiTest;
 
+/**
+ * Tests synchronous calls to the summoner endpoint
+ */
 public class SummonerTest {
 
 	private static RiotApi api = null;

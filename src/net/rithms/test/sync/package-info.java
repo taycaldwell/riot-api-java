@@ -12,6 +12,6 @@
  */
 
 /**
- * This package provides JUnit tests to test this api's classes and functions.
+ * This package provides JUnit tests to test synchronous api calls.
  */
-package net.rithms.test;
+package net.rithms.test.sync;

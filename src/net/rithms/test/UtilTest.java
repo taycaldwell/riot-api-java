@@ -25,6 +25,9 @@ import org.junit.rules.ExpectedException;
 import net.rithms.riot.api.RiotApiException;
 import net.rithms.util.Convert;
 
+/**
+ * Tests all the utility features provided by the classes in the package {@code net.rithms.util}.
+ */
 public class UtilTest {
 
 	@Rule
