@@ -19,6 +19,7 @@ package net.rithms.riot.api;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.logging.Logger;
 
 import net.rithms.riot.api.endpoints.champion.dto.Champion;
 import net.rithms.riot.api.endpoints.champion.dto.ChampionList;
@@ -144,6 +145,8 @@ import net.rithms.util.Convert;
  */
 public class RiotApi {
 
+	public static final Logger log = Logger.getLogger(RiotApi.class.getName());
+
 	private final ApiConfig config;
 	private final EndpointManager endpointManager;
 	private RiotApiAsync asyncApi;
@@ -164,6 +167,7 @@ public class RiotApi {
 	 * @see ApiConfig
 	 */
 	public RiotApi(ApiConfig config) {
+		log.setLevel(config.getDebugLevel());
 		this.config = config;
 		endpointManager = new EndpointManager(config);
 	}

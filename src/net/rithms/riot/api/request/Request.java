@@ -25,7 +25,6 @@ import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
@@ -155,13 +154,13 @@ public class Request {
 			RiotApiException exception = new RiotApiException(RiotApiException.TIMEOUT_EXCEPTION);
 			setException(exception);
 			setState(RequestState.TimeOut);
-			Logger.getLogger(Request.class.getName()).log(Level.FINE, null, e);
+			RiotApi.log.log(Level.FINE, null, e);
 			throw exception;
 		} catch (IOException e) {
 			RiotApiException exception = new RiotApiException(RiotApiException.IOEXCEPTION);
 			setException(exception);
 			setState(RequestState.Failed);
-			Logger.getLogger(Request.class.getName()).log(Level.SEVERE, null, e);
+			RiotApi.log.log(Level.SEVERE, null, e);
 			throw exception;
 		} finally {
 			if (connection != null) {

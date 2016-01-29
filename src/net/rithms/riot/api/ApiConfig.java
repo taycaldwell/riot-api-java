@@ -17,12 +17,14 @@
 package net.rithms.riot.api;
 
 import java.util.Objects;
+import java.util.logging.Level;
 
 /**
  * Configuration class to use with the {@link RiotApi}.
  */
 public class ApiConfig {
 
+	private Level level = Level.WARNING;
 	private String key = null;
 	private String tournamentKey = null;
 	private int requestTimeout = 0;
@@ -37,6 +39,10 @@ public class ApiConfig {
 
 	public int getAsyncRequestTimeout() {
 		return asyncRequestTimeout;
+	}
+
+	public Level getDebugLevel() {
+		return level;
 	}
 
 	public String getKey() {
@@ -74,6 +80,19 @@ public class ApiConfig {
 			throw new IllegalArgumentException("The timeout value must be greater than or equal to 0");
 		}
 		this.asyncRequestTimeout = asyncRequestTimeout;
+		return this;
+	}
+
+	/**
+	 * Sets the debug level for the Riot Api.
+	 * 
+	 * @param level
+	 *            Debug level
+	 * @return This ApiConfig object for chaining
+	 */
+	public ApiConfig setDebugLevel(Level level) {
+		Objects.requireNonNull(level, "level must not be null");
+		this.level = level;
 		return this;
 	}
 
