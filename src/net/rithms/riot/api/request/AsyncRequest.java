@@ -21,9 +21,11 @@ import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+import java.util.logging.Level;
 
 import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.ApiMethod;
+import net.rithms.riot.api.RiotApi;
 import net.rithms.riot.api.RiotApiAsync;
 import net.rithms.riot.api.RiotApiException;
 
@@ -197,18 +199,38 @@ public class AsyncRequest extends Request implements Runnable {
 	}
 
 	/**
-	 * Retrieves the request's result.
+	 * Retrieves the request's result. If an exception would be thrown, it is swallowed, since you should only call this method, if the
+	 * request succeeded.
+	 * 
+	 * <p>
+	 * If you want this method to throw exceptions, please use {@link #getDtoAndThrowException()} instead.
+	 * </p>
 	 * 
 	 * @return The object returned by the api call, or {@code null} if the request did not finish yet
 	 */
 	@Override
 	public <T> T getDto() {
 		try {
-			return super.getDto(true);
+			super.getDto(true);
 		} catch (RiotApiException e) {
-			e.printStackTrace();
+			RiotApi.log.log(Level.FINE, "Retrieving Dto Failed", e);
 		}
 		return null;
+	}
+
+	/**
+	 * Retrieves the request's result. If an exception occures, it is thrown.
+	 * 
+	 * <p>
+	 * If you do not want this method to throw exceptions, please use {@link #getDto()} instead.
+	 * </p>
+	 * 
+	 * @return The object returned by the api call, or {@code null} if the request did not finish yet
+	 * @throws RiotApiException
+	 *             If an exception occurs while parsing the Riot Api's response
+	 */
+	public <T> T getDtoAndThrowException() throws RiotApiException {
+		return super.getDto(true);
 	}
 
 	/**

@@ -16,6 +16,7 @@
 
 package net.rithms.riot.constant;
 
+import net.rithms.riot.api.RiotApi;
 import net.rithms.riot.api.RiotStringNotFoundException;
 
 public enum Map {
@@ -42,6 +43,7 @@ public enum Map {
 				return map.getName();
 			}
 		}
+		RiotApi.log.warning("Unknown MapId: " + mapId);
 		throw new RiotStringNotFoundException("Could not find map " + mapId);
 	}
 

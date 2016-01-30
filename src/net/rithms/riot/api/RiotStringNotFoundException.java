@@ -17,8 +17,8 @@
 package net.rithms.riot.api;
 
 /**
- * Thrown when the Riot Api returns some unexpected values for some fields. If you ever get this exception, please file a bug, because we
- * likely need to adjust this api wrapper to reflect changes to the Riot Api.
+ * Thrown when the Riot Api returns some unexpected values for some fields. If you ever get this exception without manually enforcing it,
+ * please file a bug, because we likely need to adjust this api wrapper to reflect changes to the Riot Api.
  */
 public class RiotStringNotFoundException extends Exception {
 

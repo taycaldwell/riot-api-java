@@ -154,13 +154,13 @@ public class Request {
 			RiotApiException exception = new RiotApiException(RiotApiException.TIMEOUT_EXCEPTION);
 			setException(exception);
 			setState(RequestState.TimeOut);
-			RiotApi.log.log(Level.FINE, null, e);
+			RiotApi.log.log(Level.FINE, "Request Timeout", e);
 			throw exception;
 		} catch (IOException e) {
 			RiotApiException exception = new RiotApiException(RiotApiException.IOEXCEPTION);
 			setException(exception);
 			setState(RequestState.Failed);
-			RiotApi.log.log(Level.SEVERE, null, e);
+			RiotApi.log.log(Level.SEVERE, "IOException in Request", e);
 			throw exception;
 		} finally {
 			if (connection != null) {
@@ -183,7 +183,7 @@ public class Request {
 	}
 
 	@SuppressWarnings("unchecked")
-	protected <T> T getDto(boolean overrideStateRequirement) throws RiotApiException, RateLimitException {
+	protected <T> T getDto(boolean overrideStateRequirement) throws RiotApiException {
 		if (!overrideStateRequirement) {
 			requireSucceededRequestState();
 		}

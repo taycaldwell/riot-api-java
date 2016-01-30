@@ -41,7 +41,7 @@ public class GetSummonersByName extends ApiMethod {
 			setUrlBase(region.getEndpoint() + "/v1.4/summoner/by-name/" + URLEncoder.encode(summonerNames, "UTF-8"));
 		} catch (UnsupportedEncodingException e) {
 			// This should never happen
-			RiotApi.log.log(Level.SEVERE, null, e);
+			RiotApi.log.log(Level.SEVERE, "URL Encoding Failed", e);
 		}
 		addApiKeyParameter();
 	}

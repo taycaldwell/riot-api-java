@@ -16,6 +16,7 @@
 
 package net.rithms.riot.constant;
 
+import net.rithms.riot.api.RiotApi;
 import net.rithms.riot.api.RiotStringNotFoundException;
 
 public enum QueueType {
@@ -67,6 +68,7 @@ public enum QueueType {
 				return queueType.getName();
 			}
 		}
+		RiotApi.log.warning("Unknown GameQueueConfigId: " + gameQueueConfigId);
 		throw new RiotStringNotFoundException("Could not find queue " + gameQueueConfigId);
 	}
 

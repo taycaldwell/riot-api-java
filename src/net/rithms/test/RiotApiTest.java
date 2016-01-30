@@ -16,6 +16,8 @@
 
 package net.rithms.test;
 
+import java.util.logging.Level;
+
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
@@ -38,6 +40,7 @@ import net.rithms.test.sync.AllSyncTests;
 public class RiotApiTest {
 
 	private static final String apiKey = "YOUR-API-KEY-HERE";
+	private static final String tournamentApiKey = "YOUR-TOURNAMENT-API-KEY-HERE";
 
 	/**
 	 * This method provides an {@link RiotApi} object with the {@code apiKey} specified in this class to other tests.
@@ -47,7 +50,7 @@ public class RiotApiTest {
 	 */
 	public static RiotApi getRiotApi() {
 		ApiConfig config = new ApiConfig();
-		config.setKey(apiKey);
+		config.setDebugLevel(Level.FINEST).setKey(apiKey).setTournamentKey(tournamentApiKey);
 		return new RiotApi(config);
 	}
 
