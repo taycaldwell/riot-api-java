@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
 
 import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.RiotApi;
@@ -58,7 +59,8 @@ public class AsyncExample {
 			// Wait for all asynchronous requests to finish
 			apiAsync.awaitAll();
 		} catch (InterruptedException e) {
-			e.printStackTrace();
+			// We can use the Api's logger
+			RiotApi.log.log(Level.SEVERE, "Waiting Interrupted", e);
 		}
 
 		System.out.println("Summoner name: " + eSummoner.summoner.getName());
