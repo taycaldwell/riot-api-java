@@ -1696,6 +1696,31 @@ public class RiotApi {
 	 *            The region of the summoner.
 	 * @param summonerId
 	 *            The ID of the summoner.
+	 * @param championIds
+	 *            Comma-separated list of champion IDs to use for fetching games.
+	 * @param rankedQueues
+	 *            Comma-separated list of ranked queue types to use for fetching games. Non-ranked queue types will be ignored.
+	 * @param seasons
+	 *            Comma-separated list of seasons to use for fetching games.
+	 * @return A list with matches
+	 * @throws NullPointerException
+	 *             If {@code region} is {@code null}
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 * @see MatchList
+	 */
+	public MatchList getMatchList(Region region, long summonerId, String championIds, String rankedQueues, String seasons) throws RiotApiException {
+		Objects.requireNonNull(region);
+		return getMatchList(region, summonerId, championIds, rankedQueues, seasons, -1, -1, -1, -1);
+	}
+
+	/**
+	 * Retrieve match list by {@code summonerId}.
+	 *
+	 * @param region
+	 *            The region of the summoner.
+	 * @param summonerId
+	 *            The ID of the summoner.
 	 * @return A list with matches
 	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
@@ -1705,7 +1730,7 @@ public class RiotApi {
 	 */
 	public MatchList getMatchList(Region region, long summonerId) throws RiotApiException {
 		Objects.requireNonNull(region);
-		return getMatchList(region, summonerId, null, null, null, -1, -1, -1, -1);
+		return getMatchList(region, summonerId, null, null, null);
 	}
 
 	/**

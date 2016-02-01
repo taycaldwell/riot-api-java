@@ -40,8 +40,8 @@ public class AsyncRequest extends Request implements Runnable {
 
 	protected final Object signal = new Object();
 
-	protected List<RequestListener> listeners = new ArrayList<RequestListener>();
-	protected Thread executionThread = null;
+	private List<RequestListener> listeners = new ArrayList<RequestListener>();
+	private Thread executionThread = null;
 	private boolean sent = false;
 
 	/**
@@ -243,6 +243,24 @@ public class AsyncRequest extends Request implements Runnable {
 	}
 
 	/**
+	 * Notifies the listeners about the given {@code state}.
+	 * 
+	 * @param state
+	 *            The state to notify the listeners about
+	 */
+	protected void notifyListeners(RequestState state) {
+		for (RequestListener listener : listeners) {
+			if (state == RequestState.Succeeded) {
+				listener.onRequestSucceeded(this);
+			} else if (state == RequestState.Failed) {
+				listener.onRequestFailed(getException());
+			} else if (state == RequestState.TimeOut) {
+				listener.onRequestTimeout(this);
+			}
+		}
+	}
+
+	/**
 	 * Removes all listeners from this request
 	 * 
 	 * @see RequestListener
@@ -276,17 +294,9 @@ public class AsyncRequest extends Request implements Runnable {
 		if (isDone()) {
 			return false;
 		}
-		for (RequestListener listener : listeners) {
-			if (state == RequestState.Succeeded) {
-				listener.onRequestSucceeded(this);
-			} else if (state == RequestState.Failed) {
-				listener.onRequestFailed(getException());
-			} else if (state == RequestState.TimeOut) {
-				listener.onRequestTimeout(this);
-			}
-		}
+		notifyListeners(state);
 		super.setState(state);
-		if (state == RequestState.Cancelled || state == RequestState.Succeeded || state == RequestState.Failed || state == RequestState.TimeOut) {
+		if (isDone()) {
 			synchronized (signal) {
 				signal.notifyAll();
 			}
