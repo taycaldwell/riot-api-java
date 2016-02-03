@@ -16,6 +16,9 @@
 
 package net.rithms.riot.constant;
 
+import net.rithms.riot.api.RiotApi;
+import net.rithms.riot.api.RiotStringNotFoundException;
+
 public enum Region {
 	BR("br.api.pvp.net", "br"),
 	EUNE("eune.api.pvp.net", "eune"),
@@ -29,9 +32,19 @@ public enum Region {
 	RU("ru.api.pvp.net", "ru"),
 	TR("tr.api.pvp.net", "tr"),
 	GLOBAL("global.api.pvp.net", "global");
-
+	
 	private String endpoint;
 	private String region;
+
+	public static Region getRegionByName(String name) throws RiotStringNotFoundException {
+		for (Region region : Region.values()) {
+			if (region.getName().equals(name.toLowerCase())) {
+				return region;
+			}
+		}
+		RiotApi.log.warning("Unknown region: " + name);
+		throw new RiotStringNotFoundException("Could not find region " + name);
+	}
 
 	Region(String endpoint, String region) {
 		this.endpoint = endpoint;

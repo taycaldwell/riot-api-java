@@ -61,11 +61,10 @@ public enum QueueType {
 	private String name;
 	private int gameQueueConfigId;
 
-	public static String getQueueNameByConfigId(int gameQueueConfigId) throws RiotStringNotFoundException {
-		QueueType[] queueTypes = QueueType.values();
-		for (QueueType queueType : queueTypes) {
+	public static QueueType getQueueTypeByConfigId(int gameQueueConfigId) throws RiotStringNotFoundException {
+		for (QueueType queueType : QueueType.values()) {
 			if (queueType.getGameQueueConfigId() == gameQueueConfigId) {
-				return queueType.getName();
+				return queueType;
 			}
 		}
 		RiotApi.log.warning("Unknown GameQueueConfigId: " + gameQueueConfigId);

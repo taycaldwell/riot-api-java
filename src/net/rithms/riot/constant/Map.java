@@ -36,11 +36,10 @@ public enum Map {
 	private int id;
 	private String name;
 
-	public static String getNameById(int mapId) throws RiotStringNotFoundException {
-		Map[] maps = Map.values();
-		for (Map map : maps) {
+	public static Map getMapById(int mapId) throws RiotStringNotFoundException {
+		for (Map map : Map.values()) {
 			if (mapId == map.getId()) {
-				return map.getName();
+				return map;
 			}
 		}
 		RiotApi.log.warning("Unknown MapId: " + mapId);

@@ -48,10 +48,6 @@ public class EndpointManager {
 		pool.awaitAll();
 	}
 
-	boolean removeListener(RequestListener listener) {
-		return listeners.remove(listener);
-	}
-
 	void callMethod(ApiMethod method) throws RateLimitException, RiotApiException {
 		new Request(config, method);
 	}
@@ -61,10 +57,22 @@ public class EndpointManager {
 		return request.getDto();
 	}
 
-	AsyncRequest callMethodAsynchronously(ApiMethod method) throws RateLimitException, RiotApiException {
+	AsyncRequest callMethodAsynchronously(ApiMethod method) {
 		AsyncRequest request = new AsyncRequest(config, method);
 		request.addListeners(listeners);
 		pool.add(request);
 		return request;
+	}
+
+	int getPoolSize() {
+		return pool.getPoolSize();
+	}
+
+	int getQueueSize() {
+		return pool.getQueueSize();
+	}
+
+	boolean removeListener(RequestListener listener) {
+		return listeners.remove(listener);
 	}
 }

@@ -164,7 +164,7 @@ public class RiotApiAsync {
 	 * @return {@code true} if the specified listener was not already listening
 	 * @see RequestListener
 	 */
-	public boolean addListener(RequestListener listener, boolean onlyListenOnce) {
+	public boolean addListener(RequestListener listener) {
 		return endpointManager.addListener(listener);
 	}
 
@@ -197,10 +197,8 @@ public class RiotApiAsync {
 	 * @return A provider ID
 	 * @throws NullPointerException
 	 *             If {@code region} or {@code callbackUrl} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 */
-	public AsyncRequest createProvider(Region region, String callbackUrl) throws RiotApiException {
+	public AsyncRequest createProvider(Region region, String callbackUrl) {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(callbackUrl);
 		ApiMethod method = new CreateProvider(getConfig(), region, callbackUrl);
@@ -217,10 +215,8 @@ public class RiotApiAsync {
 	 * @return A tournament ID
 	 * @throws NullPointerException
 	 *             If {@code tournamentName} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 */
-	public AsyncRequest createTournament(String tournamentName, int providerId) throws RiotApiException {
+	public AsyncRequest createTournament(String tournamentName, int providerId) {
 		Objects.requireNonNull(tournamentName);
 		ApiMethod method = new CreateTournament(getConfig(), tournamentName, providerId);
 		return endpointManager.callMethodAsynchronously(method);
@@ -232,10 +228,8 @@ public class RiotApiAsync {
 	 * @param providerId
 	 *            The provider ID to specify the regional registered provider data to associate this tournament.
 	 * @return A tournament Id
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 */
-	public AsyncRequest createTournament(int providerId) throws RiotApiException {
+	public AsyncRequest createTournament(int providerId) {
 		return createTournament(null, providerId);
 	}
 
@@ -249,11 +243,9 @@ public class RiotApiAsync {
 	 * @return A single league
 	 * @throws NullPointerException
 	 *             If {@code region} or {@code queueType} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see League
 	 */
-	public AsyncRequest getChallengerLeague(Region region, QueueType queueType) throws RiotApiException {
+	public AsyncRequest getChallengerLeague(Region region, QueueType queueType) {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(queueType);
 		ApiMethod method = new GetChallengerLeague(getConfig(), region, queueType);
@@ -270,11 +262,9 @@ public class RiotApiAsync {
 	 * @return The champion of the given ID
 	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see Champion
 	 */
-	public AsyncRequest getChampionById(Region region, int id) throws RiotApiException {
+	public AsyncRequest getChampionById(Region region, int id) {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetChampionById(getConfig(), region, id);
 		return endpointManager.callMethodAsynchronously(method);
@@ -290,11 +280,9 @@ public class RiotApiAsync {
 	 * @return A list of champion masteries for a given summoner.
 	 * @throws NullPointerException
 	 *             If {@code platformId} or {@code summonerId} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see ChampionMastery
 	 */
-	public AsyncRequest getChampionMasteries(PlatformId platformId, long summonerId) throws RiotApiException {
+	public AsyncRequest getChampionMasteries(PlatformId platformId, long summonerId) {
 		Objects.requireNonNull(platformId);
 		ApiMethod method = new GetChampionMasteries(getConfig(), platformId, summonerId);
 		return endpointManager.callMethodAsynchronously(method);
@@ -312,11 +300,9 @@ public class RiotApiAsync {
 	 * @return Champion mastery for a given summoner and championId, or {@code null} if given player has no mastery for given champion.
 	 * @throws NullPointerException
 	 *             If {@code platformId} or {@code summonerId} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see ChampionMastery
 	 */
-	public AsyncRequest getChampionMastery(PlatformId platformId, long summonerId, long championId) throws RiotApiException {
+	public AsyncRequest getChampionMastery(PlatformId platformId, long summonerId, long championId) {
 		Objects.requireNonNull(platformId);
 		ApiMethod method = new GetChampionMastery(getConfig(), platformId, summonerId, championId);
 		return endpointManager.callMethodAsynchronously(method);
@@ -332,10 +318,8 @@ public class RiotApiAsync {
 	 * @return The total champion mastery score of a given summoner.
 	 * @throws NullPointerException
 	 *             If {@code platformId} or {@code summonerId} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 */
-	public AsyncRequest getChampionMasteryScore(PlatformId platformId, long summonerId) throws RiotApiException {
+	public AsyncRequest getChampionMasteryScore(PlatformId platformId, long summonerId) {
 		Objects.requireNonNull(platformId);
 		ApiMethod method = new GetChampionMasteryScore(getConfig(), platformId, summonerId);
 		return endpointManager.callMethodAsynchronously(method);
@@ -351,11 +335,9 @@ public class RiotApiAsync {
 	 * @return A list of champions for the given region
 	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see ChampionList
 	 */
-	public AsyncRequest getChampions(Region region, boolean freeToPlay) throws RiotApiException {
+	public AsyncRequest getChampions(Region region, boolean freeToPlay) {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetChampions(getConfig(), region, freeToPlay);
 		return endpointManager.callMethodAsynchronously(method);
@@ -369,11 +351,9 @@ public class RiotApiAsync {
 	 * @return A list of champions for the given region
 	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see ChampionList
 	 */
-	public AsyncRequest getChampions(Region region) throws RiotApiException {
+	public AsyncRequest getChampions(Region region) {
 		Objects.requireNonNull(region);
 		return getChampions(region, false);
 	}
@@ -398,11 +378,9 @@ public class RiotApiAsync {
 	 * @return Current game info
 	 * @throws NullPointerException
 	 *             If {@code platformId} or {@code summonerId} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see CurrentGameInfo
 	 */
-	public AsyncRequest getCurrentGameInfo(PlatformId platformId, long summonerId) throws RiotApiException {
+	public AsyncRequest getCurrentGameInfo(PlatformId platformId, long summonerId) {
 		Objects.requireNonNull(platformId);
 		Objects.requireNonNull(summonerId);
 		ApiMethod method = new GetCurrentGameInfo(getConfig(), platformId, summonerId);
@@ -428,11 +406,9 @@ public class RiotApiAsync {
 	 * @return A single champion
 	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see net.rithms.riot.api.endpoints.static_data.dto.Champion
 	 */
-	public AsyncRequest getDataChampion(Region region, int id, String locale, String version, ChampData... champData) throws RiotApiException {
+	public AsyncRequest getDataChampion(Region region, int id, String locale, String version, ChampData... champData) {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetDataChampion(getConfig(), region, id, locale, version, champData);
 		return endpointManager.callMethodAsynchronously(method);
@@ -448,11 +424,9 @@ public class RiotApiAsync {
 	 * @return A single champion
 	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see net.rithms.riot.api.endpoints.static_data.dto.Champion
 	 */
-	public AsyncRequest getDataChampion(Region region, int id) throws RiotApiException {
+	public AsyncRequest getDataChampion(Region region, int id) {
 		Objects.requireNonNull(region);
 		return getDataChampion(region, id, null, null, (ChampData) null);
 	}
@@ -477,11 +451,9 @@ public class RiotApiAsync {
 	 * @return A list with champions
 	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see net.rithms.riot.api.endpoints.static_data.dto.ChampionList
 	 */
-	public AsyncRequest getDataChampionList(Region region, String locale, String version, boolean dataById, ChampData... champData) throws RiotApiException {
+	public AsyncRequest getDataChampionList(Region region, String locale, String version, boolean dataById, ChampData... champData) {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetDataChampionList(getConfig(), region, locale, version, dataById, champData);
 		return endpointManager.callMethodAsynchronously(method);
@@ -493,11 +465,9 @@ public class RiotApiAsync {
 	 * @param region
 	 *            Region from which to retrieve data.
 	 * @return A list with champions
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see net.rithms.riot.api.endpoints.static_data.dto.ChampionList
 	 */
-	public AsyncRequest getDataChampionList(Region region) throws RiotApiException {
+	public AsyncRequest getDataChampionList(Region region) {
 		Objects.requireNonNull(region);
 		return getDataChampionList(region, null, null, false, (ChampData) null);
 	}
@@ -516,11 +486,9 @@ public class RiotApiAsync {
 	 * @return A list of game maps
 	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see GameMapList
 	 */
-	public AsyncRequest getDataGameMapList(Region region, String locale, String version) throws RiotApiException {
+	public AsyncRequest getDataGameMapList(Region region, String locale, String version) {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetDataGameMapList(getConfig(), region, locale, version);
 		return endpointManager.callMethodAsynchronously(method);
@@ -534,11 +502,9 @@ public class RiotApiAsync {
 	 * @return A list of game maps
 	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see GameMapList
 	 */
-	public AsyncRequest getDataGameMapList(Region region) throws RiotApiException {
+	public AsyncRequest getDataGameMapList(Region region) {
 		Objects.requireNonNull(region);
 		return getDataGameMapList(region, null, null);
 	}
@@ -563,11 +529,9 @@ public class RiotApiAsync {
 	 * @return A single item
 	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see Item
 	 */
-	public AsyncRequest getDataItem(Region region, int id, String locale, String version, ItemData... itemData) throws RiotApiException {
+	public AsyncRequest getDataItem(Region region, int id, String locale, String version, ItemData... itemData) {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetDataItem(getConfig(), region, id, locale, version, itemData);
 		return endpointManager.callMethodAsynchronously(method);
@@ -583,11 +547,9 @@ public class RiotApiAsync {
 	 * @return A single item
 	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see Item
 	 */
-	public AsyncRequest getDataItem(Region region, int id) throws RiotApiException {
+	public AsyncRequest getDataItem(Region region, int id) {
 		Objects.requireNonNull(region);
 		return getDataItem(region, id, null, null, (ItemData) null);
 	}
@@ -610,11 +572,9 @@ public class RiotApiAsync {
 	 * @return A list of items
 	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see ItemList
 	 */
-	public AsyncRequest getDataItemList(Region region, String locale, String version, ItemListData... itemListData) throws RiotApiException {
+	public AsyncRequest getDataItemList(Region region, String locale, String version, ItemListData... itemListData) {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetDataItemList(getConfig(), region, locale, version, itemListData);
 		return endpointManager.callMethodAsynchronously(method);
@@ -628,11 +588,9 @@ public class RiotApiAsync {
 	 * @return A list of items
 	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see ItemList
 	 */
-	public AsyncRequest getDataItemList(Region region) throws RiotApiException {
+	public AsyncRequest getDataItemList(Region region) {
 		Objects.requireNonNull(region);
 		return getDataItemList(region, null, null, (ItemListData) null);
 	}
@@ -645,10 +603,8 @@ public class RiotApiAsync {
 	 * @return A list with languages
 	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 */
-	public AsyncRequest getDataLanguages(Region region) throws RiotApiException {
+	public AsyncRequest getDataLanguages(Region region) {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetDataLanguages(getConfig(), region);
 		return endpointManager.callMethodAsynchronously(method);
@@ -668,11 +624,9 @@ public class RiotApiAsync {
 	 * @return Language strings
 	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see LanguageStrings
 	 */
-	public AsyncRequest getDataLanguageStrings(Region region, String locale, String version) throws RiotApiException {
+	public AsyncRequest getDataLanguageStrings(Region region, String locale, String version) {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetDataLanguageStrings(getConfig(), region, locale, version);
 		return endpointManager.callMethodAsynchronously(method);
@@ -686,11 +640,9 @@ public class RiotApiAsync {
 	 * @return Language strings
 	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see LanguageStrings
 	 */
-	public AsyncRequest getDataLanguageStrings(Region region) throws RiotApiException {
+	public AsyncRequest getDataLanguageStrings(Region region) {
 		Objects.requireNonNull(region);
 		return getDataLanguageStrings(region, null, null);
 	}
@@ -714,11 +666,9 @@ public class RiotApiAsync {
 	 * @return A single mastery
 	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see Mastery
 	 */
-	public AsyncRequest getDataMastery(Region region, int id, String locale, String version, MasteryData... masteryData) throws RiotApiException {
+	public AsyncRequest getDataMastery(Region region, int id, String locale, String version, MasteryData... masteryData) {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetDataMastery(getConfig(), region, id, locale, version, masteryData);
 		return endpointManager.callMethodAsynchronously(method);
@@ -734,11 +684,9 @@ public class RiotApiAsync {
 	 * @return A single mastery
 	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see Mastery
 	 */
-	public AsyncRequest getDataMastery(Region region, int id) throws RiotApiException {
+	public AsyncRequest getDataMastery(Region region, int id) {
 		Objects.requireNonNull(region);
 		return getDataMastery(region, id, null, null, (MasteryData) null);
 	}
@@ -761,11 +709,9 @@ public class RiotApiAsync {
 	 * @return A list with masteries
 	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see MasteryList
 	 */
-	public AsyncRequest getDataMasteryList(Region region, String locale, String version, MasteryListData... masteryListData) throws RiotApiException {
+	public AsyncRequest getDataMasteryList(Region region, String locale, String version, MasteryListData... masteryListData) {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetDataMasteryList(getConfig(), region, locale, version, masteryListData);
 		return endpointManager.callMethodAsynchronously(method);
@@ -779,11 +725,9 @@ public class RiotApiAsync {
 	 * @return A list with masteries
 	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see MasteryList
 	 */
-	public AsyncRequest getDataMasteryList(Region region) throws RiotApiException {
+	public AsyncRequest getDataMasteryList(Region region) {
 		Objects.requireNonNull(region);
 		return getDataMasteryList(region, null, null, (MasteryListData) null);
 	}
@@ -796,11 +740,9 @@ public class RiotApiAsync {
 	 * @return A single realm
 	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see Realm
 	 */
-	public AsyncRequest getDataRealm(Region region) throws RiotApiException {
+	public AsyncRequest getDataRealm(Region region) {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetDataRealm(getConfig(), region);
 		return endpointManager.callMethodAsynchronously(method);
@@ -825,11 +767,9 @@ public class RiotApiAsync {
 	 * @return A single rune
 	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see Rune
 	 */
-	public AsyncRequest getDataRune(Region region, int id, String locale, String version, RuneData... runeData) throws RiotApiException {
+	public AsyncRequest getDataRune(Region region, int id, String locale, String version, RuneData... runeData) {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetDataRune(getConfig(), region, id, locale, version, runeData);
 		return endpointManager.callMethodAsynchronously(method);
@@ -845,11 +785,9 @@ public class RiotApiAsync {
 	 * @return A single rune
 	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see Rune
 	 */
-	public AsyncRequest getDataRune(Region region, int id) throws RiotApiException {
+	public AsyncRequest getDataRune(Region region, int id) {
 		Objects.requireNonNull(region);
 		return getDataRune(region, id, null, null, (RuneData) null);
 	}
@@ -872,11 +810,9 @@ public class RiotApiAsync {
 	 * @return A list with runes
 	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see RuneList
 	 */
-	public AsyncRequest getDataRuneList(Region region, String locale, String version, RuneListData... runeListData) throws RiotApiException {
+	public AsyncRequest getDataRuneList(Region region, String locale, String version, RuneListData... runeListData) {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetDataRuneList(getConfig(), region, locale, version, runeListData);
 		return endpointManager.callMethodAsynchronously(method);
@@ -890,11 +826,9 @@ public class RiotApiAsync {
 	 * @return A list with runes
 	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see RuneList
 	 */
-	public AsyncRequest getDataRuneList(Region region) throws RiotApiException {
+	public AsyncRequest getDataRuneList(Region region) {
 		Objects.requireNonNull(region);
 		return getDataRuneList(region, null, null, (RuneListData) null);
 	}
@@ -918,11 +852,9 @@ public class RiotApiAsync {
 	 * @return A single summoner spell
 	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see SummonerSpell
 	 */
-	public AsyncRequest getDataSummonerSpell(Region region, int id, String locale, String version, SpellData... spellData) throws RiotApiException {
+	public AsyncRequest getDataSummonerSpell(Region region, int id, String locale, String version, SpellData... spellData) {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetDataSummonerSpell(getConfig(), region, id, locale, version, spellData);
 		return endpointManager.callMethodAsynchronously(method);
@@ -938,11 +870,9 @@ public class RiotApiAsync {
 	 * @return A single summoner spell
 	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see SummonerSpell
 	 */
-	public AsyncRequest getDataSummonerSpell(Region region, int id) throws RiotApiException {
+	public AsyncRequest getDataSummonerSpell(Region region, int id) {
 		Objects.requireNonNull(region);
 		return getDataSummonerSpell(region, id, null, null, (SpellData) null);
 	}
@@ -968,12 +898,9 @@ public class RiotApiAsync {
 	 * @return A list with summoner spells
 	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see SummonerSpellList
 	 */
-	public AsyncRequest getDataSummonerSpellList(Region region, String locale, String version, boolean dataById, SpellData... spellData)
-			throws RiotApiException {
+	public AsyncRequest getDataSummonerSpellList(Region region, String locale, String version, boolean dataById, SpellData... spellData) {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetDataSummonerSpellList(getConfig(), region, locale, version, dataById, spellData);
 		return endpointManager.callMethodAsynchronously(method);
@@ -987,11 +914,9 @@ public class RiotApiAsync {
 	 * @return A list with summoner spells
 	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see SummonerSpellList
 	 */
-	public AsyncRequest getDataSummonerSpellList(Region region) throws RiotApiException {
+	public AsyncRequest getDataSummonerSpellList(Region region) {
 		Objects.requireNonNull(region);
 		return getDataSummonerSpellList(region, null, null, false, (SpellData) null);
 	}
@@ -1002,10 +927,8 @@ public class RiotApiAsync {
 	 * @param region
 	 *            Region from which to retrieve data.
 	 * @return A list with versions
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 */
-	public AsyncRequest getDataVersions(Region region) throws RiotApiException {
+	public AsyncRequest getDataVersions(Region region) {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetDataVersions(getConfig(), region);
 		return endpointManager.callMethodAsynchronously(method);
@@ -1019,11 +942,9 @@ public class RiotApiAsync {
 	 * @return Featured games
 	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see FeaturedGames
 	 */
-	public AsyncRequest getFeaturedGames(Region region) throws RiotApiException {
+	public AsyncRequest getFeaturedGames(Region region) {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetFeaturedGames(getConfig(), region);
 		return endpointManager.callMethodAsynchronously(method);
@@ -1037,11 +958,9 @@ public class RiotApiAsync {
 	 * @return A list of all the free to play champions for the given region
 	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see ChampionList
 	 */
-	public AsyncRequest getFreeToPlayChampions(Region region) throws RiotApiException {
+	public AsyncRequest getFreeToPlayChampions(Region region) {
 		Objects.requireNonNull(region);
 		return getChampions(region, true);
 	}
@@ -1056,11 +975,9 @@ public class RiotApiAsync {
 	 * @return A map, mapping each summoner ID to a list of leagues
 	 * @throws NullPointerException
 	 *             If {@code region} or {@code summonerIds} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see League
 	 */
-	public AsyncRequest getLeagueBySummoners(Region region, String... summonerIds) throws RiotApiException {
+	public AsyncRequest getLeagueBySummoners(Region region, String... summonerIds) {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(summonerIds);
 		ApiMethod method = new GetLeagueBySummoners(getConfig(), region, Convert.joinString(",", summonerIds));
@@ -1077,11 +994,9 @@ public class RiotApiAsync {
 	 * @return A map, mapping each summoner ID to a list of leagues
 	 * @throws NullPointerException
 	 *             If {@code region} or {@code summonerIds} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see League
 	 */
-	public AsyncRequest getLeagueBySummoners(Region region, long... summonerIds) throws RiotApiException {
+	public AsyncRequest getLeagueBySummoners(Region region, long... summonerIds) {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(summonerIds);
 		return getLeagueBySummoners(region, Convert.longToString(summonerIds));
@@ -1097,11 +1012,9 @@ public class RiotApiAsync {
 	 * @return A map, mapping each team ID to a list of leagues
 	 * @throws NullPointerException
 	 *             If {@code region} or {@code teamIds} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see League
 	 */
-	public AsyncRequest getLeagueByTeams(Region region, String... teamIds) throws RiotApiException {
+	public AsyncRequest getLeagueByTeams(Region region, String... teamIds) {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(teamIds);
 		ApiMethod method = new GetLeagueByTeams(getConfig(), region, Convert.joinString(",", teamIds));
@@ -1118,11 +1031,9 @@ public class RiotApiAsync {
 	 * @return A map, mapping each summoner ID to a list of leagues
 	 * @throws NullPointerException
 	 *             If {@code region} or {@code summonerIds} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see League
 	 */
-	public AsyncRequest getLeagueEntryBySummoners(Region region, String... summonerIds) throws RiotApiException {
+	public AsyncRequest getLeagueEntryBySummoners(Region region, String... summonerIds) {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(summonerIds);
 		ApiMethod method = new GetLeagueEntryBySummoners(getConfig(), region, Convert.joinString(",", summonerIds));
@@ -1139,11 +1050,9 @@ public class RiotApiAsync {
 	 * @return A map, mapping each summoner ID to a list of leagues
 	 * @throws NullPointerException
 	 *             If {@code region} or {@code summonerIds} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see League
 	 */
-	public AsyncRequest getLeagueEntryBySummoners(Region region, long... summonerIds) throws RiotApiException {
+	public AsyncRequest getLeagueEntryBySummoners(Region region, long... summonerIds) {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(summonerIds);
 		return getLeagueEntryBySummoners(region, Convert.longToString(summonerIds));
@@ -1159,11 +1068,9 @@ public class RiotApiAsync {
 	 * @return A map, mapping each team ID to a list of leagues
 	 * @throws NullPointerException
 	 *             If {@code region} or {@code teamIds} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see League
 	 */
-	public AsyncRequest getLeagueEntryByTeams(Region region, String... teamIds) throws RiotApiException {
+	public AsyncRequest getLeagueEntryByTeams(Region region, String... teamIds) {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(teamIds);
 		ApiMethod method = new GetLeagueEntryByTeams(getConfig(), region, Convert.joinString(",", teamIds));
@@ -1178,11 +1085,9 @@ public class RiotApiAsync {
 	 * @return Lobby event data
 	 * @throws NullPointerException
 	 *             If {@code tournamentCode} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see LobbyEventList
 	 */
-	public AsyncRequest getLobbyEventsByTournament(String tournamentCode) throws RiotApiException {
+	public AsyncRequest getLobbyEventsByTournament(String tournamentCode) {
 		Objects.requireNonNull(tournamentCode);
 		ApiMethod method = new GetLobbyEventsByTournament(getConfig(), tournamentCode);
 		return endpointManager.callMethodAsynchronously(method);
@@ -1198,11 +1103,9 @@ public class RiotApiAsync {
 	 * @return A single league
 	 * @throws NullPointerException
 	 *             If {@code region} or {@code queueType} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see League
 	 */
-	public AsyncRequest getMasterLeague(Region region, QueueType queueType) throws RiotApiException {
+	public AsyncRequest getMasterLeague(Region region, QueueType queueType) {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(queueType);
 		ApiMethod method = new GetMasterLeague(getConfig(), region, queueType);
@@ -1219,11 +1122,9 @@ public class RiotApiAsync {
 	 * @return A map of mastery pages of the given summoners
 	 * @throws NullPointerException
 	 *             If {@code region} or {@code summonerIds} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see MasteryPages
 	 */
-	public AsyncRequest getMasteryPages(Region region, String... summonerIds) throws RiotApiException {
+	public AsyncRequest getMasteryPages(Region region, String... summonerIds) {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(summonerIds);
 		ApiMethod method = new GetMasteryPages(getConfig(), region, Convert.joinString(",", summonerIds));
@@ -1240,11 +1141,9 @@ public class RiotApiAsync {
 	 * @return A map of mastery pages of the given summoners
 	 * @throws NullPointerException
 	 *             If {@code region} or {@code summonerIds} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see MasteryPages
 	 */
-	public AsyncRequest getMasteryPages(Region region, long... summonerIds) throws RiotApiException {
+	public AsyncRequest getMasteryPages(Region region, long... summonerIds) {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(summonerIds);
 		return getMasteryPages(region, Convert.longToString(summonerIds));
@@ -1262,11 +1161,9 @@ public class RiotApiAsync {
 	 * @return A map with match details
 	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see MatchDetail
 	 */
-	public AsyncRequest getMatch(Region region, long matchId, boolean includeTimeline) throws RiotApiException {
+	public AsyncRequest getMatch(Region region, long matchId, boolean includeTimeline) {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetMatch(getConfig(), region, matchId, includeTimeline);
 		return endpointManager.callMethodAsynchronously(method);
@@ -1282,11 +1179,9 @@ public class RiotApiAsync {
 	 * @return A map with match details
 	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see MatchDetail
 	 */
-	public AsyncRequest getMatch(Region region, long matchId) throws RiotApiException {
+	public AsyncRequest getMatch(Region region, long matchId) {
 		Objects.requireNonNull(region);
 		return getMatch(region, matchId, false);
 	}
@@ -1301,10 +1196,8 @@ public class RiotApiAsync {
 	 * @return A list of match IDs
 	 * @throws NullPointerException
 	 *             If {@code region} or {@code tournamentCode} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 */
-	public AsyncRequest getMatchesByTournament(Region region, String tournamentCode) throws RiotApiException {
+	public AsyncRequest getMatchesByTournament(Region region, String tournamentCode) {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(tournamentCode);
 		ApiMethod method = new GetMatchesByTournament(getConfig(), region, tournamentCode);
@@ -1325,11 +1218,9 @@ public class RiotApiAsync {
 	 * @return A map with match details
 	 * @throws NullPointerException
 	 *             If {@code region} or {@code tournamentCode} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see MatchDetail
 	 */
-	public AsyncRequest getMatchForTournament(Region region, long matchId, String tournamentCode, boolean includeTimeline) throws RiotApiException {
+	public AsyncRequest getMatchForTournament(Region region, long matchId, String tournamentCode, boolean includeTimeline) {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(tournamentCode);
 		ApiMethod method = new GetMatchForTournament(getConfig(), region, matchId, tournamentCode, includeTimeline);
@@ -1348,11 +1239,9 @@ public class RiotApiAsync {
 	 * @return A map with match details
 	 * @throws NullPointerException
 	 *             If {@code region} or {@code tournamentCode} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see MatchDetail
 	 */
-	public AsyncRequest getMatchForTournament(Region region, long matchId, String tournamentCode) throws RiotApiException {
+	public AsyncRequest getMatchForTournament(Region region, long matchId, String tournamentCode) {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(tournamentCode);
 		return getMatchForTournament(region, matchId, tournamentCode, false);
@@ -1382,12 +1271,10 @@ public class RiotApiAsync {
 	 * @return A list with matches
 	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see MatchList
 	 */
 	public AsyncRequest getMatchList(Region region, long summonerId, String championIds, String rankedQueues, String seasons, long beginTime, long endTime,
-			int beginIndex, int endIndex) throws RiotApiException {
+			int beginIndex, int endIndex) {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetMatchList(getConfig(), region, summonerId, championIds, rankedQueues, seasons, beginTime, endTime, beginIndex, endIndex);
 		return endpointManager.callMethodAsynchronously(method);
@@ -1409,11 +1296,9 @@ public class RiotApiAsync {
 	 * @return A list with matches
 	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see MatchList
 	 */
-	public AsyncRequest getMatchList(Region region, long summonerId, String championIds, String rankedQueues, String seasons) throws RiotApiException {
+	public AsyncRequest getMatchList(Region region, long summonerId, String championIds, String rankedQueues, String seasons) {
 		Objects.requireNonNull(region);
 		return getMatchList(region, summonerId, championIds, rankedQueues, seasons, -1, -1, -1, -1);
 	}
@@ -1428,11 +1313,9 @@ public class RiotApiAsync {
 	 * @return A list with matches
 	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see MatchList
 	 */
-	public AsyncRequest getMatchList(Region region, long summonerId) throws RiotApiException {
+	public AsyncRequest getMatchList(Region region, long summonerId) {
 		Objects.requireNonNull(region);
 		return getMatchList(region, summonerId, null, null, null);
 	}
@@ -1449,11 +1332,9 @@ public class RiotApiAsync {
 	 * @return A summary of player statistics for the given summoner
 	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see PlayerStatsSummaryList
 	 */
-	public AsyncRequest getPlayerStatsSummary(Region region, Season season, long summonerId) throws RiotApiException {
+	public AsyncRequest getPlayerStatsSummary(Region region, Season season, long summonerId) {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetPlayerStatsSummary(getConfig(), region, season, summonerId);
 		return endpointManager.callMethodAsynchronously(method);
@@ -1469,13 +1350,29 @@ public class RiotApiAsync {
 	 * @return A summary of player statistics for the given summoner
 	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see PlayerStatsSummaryList
 	 */
-	public AsyncRequest getPlayerStatsSummary(Region region, long summonerId) throws RiotApiException {
+	public AsyncRequest getPlayerStatsSummary(Region region, long summonerId) {
 		Objects.requireNonNull(region);
 		return getPlayerStatsSummary(region, null, summonerId);
+	}
+
+	/**
+	 * Returns the number of elements in the asynchronous request pool.
+	 *
+	 * @return Number of elements in the asynchronous request pool
+	 */
+	public int getPoolSize() {
+		return endpointManager.getPoolSize();
+	}
+
+	/**
+	 * Returns the number of elements in the asynchronous request queue.
+	 *
+	 * @return Number of elements in the asynchronous request queue
+	 */
+	public int getQueueSize() {
+		return endpointManager.getQueueSize();
 	}
 
 	/**
@@ -1490,11 +1387,9 @@ public class RiotApiAsync {
 	 * @return Ranked statistics of the given summoner
 	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see RankedStats
 	 */
-	public AsyncRequest getRankedStats(Region region, Season season, long summonerId) throws RiotApiException {
+	public AsyncRequest getRankedStats(Region region, Season season, long summonerId) {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetRankedStats(getConfig(), region, season, summonerId);
 		return endpointManager.callMethodAsynchronously(method);
@@ -1512,11 +1407,9 @@ public class RiotApiAsync {
 	 * @return Ranked statistics of the given summoner
 	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see RankedStats
 	 */
-	public AsyncRequest getRankedStats(Region region, long summonerId) throws RiotApiException {
+	public AsyncRequest getRankedStats(Region region, long summonerId) {
 		Objects.requireNonNull(region);
 		return getRankedStats(region, null, summonerId);
 	}
@@ -1531,11 +1424,9 @@ public class RiotApiAsync {
 	 * @return Recent games of the given summoner
 	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see RecentGames
 	 */
-	public AsyncRequest getRecentGames(Region region, long summonerId) throws RiotApiException {
+	public AsyncRequest getRecentGames(Region region, long summonerId) {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(summonerId);
 		ApiMethod method = new GetRecentGames(getConfig(), region, summonerId);
@@ -1552,11 +1443,9 @@ public class RiotApiAsync {
 	 * @return A map of rune pages of the given summoners
 	 * @throws NullPointerException
 	 *             If {@code region} or {@code summonerIds} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see RunePages
 	 */
-	public AsyncRequest getRunePages(Region region, String... summonerIds) throws RiotApiException {
+	public AsyncRequest getRunePages(Region region, String... summonerIds) {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(summonerIds);
 		ApiMethod method = new GetRunePages(getConfig(), region, Convert.joinString(",", summonerIds));
@@ -1573,11 +1462,9 @@ public class RiotApiAsync {
 	 * @return A map of rune pages of the given summoners
 	 * @throws NullPointerException
 	 *             If {@code region} or {@code summonerIds} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see RunePages
 	 */
-	public AsyncRequest getRunePages(Region region, long... summonerIds) throws RiotApiException {
+	public AsyncRequest getRunePages(Region region, long... summonerIds) {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(summonerIds);
 		return getRunePages(region, Convert.longToString(summonerIds));
@@ -1587,11 +1474,9 @@ public class RiotApiAsync {
 	 * Get shard list.
 	 * 
 	 * @return Status for a list of shards
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see Shard
 	 */
-	public AsyncRequest getShards() throws RiotApiException {
+	public AsyncRequest getShards() {
 		ApiMethod method = new GetShards(getConfig());
 		return endpointManager.callMethodAsynchronously(method);
 	}
@@ -1604,11 +1489,9 @@ public class RiotApiAsync {
 	 * @return Status for a single shard
 	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see ShardStatus
 	 */
-	public AsyncRequest getShardStatus(Region region) throws RiotApiException {
+	public AsyncRequest getShardStatus(Region region) {
 		ApiMethod method = new GetShardStatus(getConfig(), region);
 		return endpointManager.callMethodAsynchronously(method);
 	}
@@ -1623,10 +1506,8 @@ public class RiotApiAsync {
 	 * @return A map of desired summoner names
 	 * @throws NullPointerException
 	 *             If {@code region} or {@code summonerIds} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 */
-	public AsyncRequest getSummonerNames(Region region, String... summonerIds) throws RiotApiException {
+	public AsyncRequest getSummonerNames(Region region, String... summonerIds) {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(summonerIds);
 		ApiMethod method = new GetSummonerNames(getConfig(), region, Convert.joinString(",", summonerIds));
@@ -1643,10 +1524,8 @@ public class RiotApiAsync {
 	 * @return A map of desired summoner names
 	 * @throws NullPointerException
 	 *             If {@code region} or {@code summonerIds} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 */
-	public AsyncRequest getSummonerNames(Region region, long... summonerIds) throws RiotApiException {
+	public AsyncRequest getSummonerNames(Region region, long... summonerIds) {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(summonerIds);
 		return getSummonerNames(region, Convert.longToString(summonerIds));
@@ -1662,11 +1541,9 @@ public class RiotApiAsync {
 	 * @return A map of desired summoners
 	 * @throws NullPointerException
 	 *             If {@code region} or {@code summonerIds} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see Summoner
 	 */
-	public AsyncRequest getSummonersById(Region region, String... summonerIds) throws RiotApiException {
+	public AsyncRequest getSummonersById(Region region, String... summonerIds) {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(summonerIds);
 		ApiMethod method = new GetSummonersById(getConfig(), region, Convert.joinString(",", summonerIds));
@@ -1683,11 +1560,9 @@ public class RiotApiAsync {
 	 * @return A map of desired summoners
 	 * @throws NullPointerException
 	 *             If {@code region} or {@code summonerIds} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see Summoner
 	 */
-	public AsyncRequest getSummonersById(Region region, long... summonerIds) throws RiotApiException {
+	public AsyncRequest getSummonersById(Region region, long... summonerIds) {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(summonerIds);
 		return getSummonersById(region, Convert.longToString(summonerIds));
@@ -1704,11 +1579,9 @@ public class RiotApiAsync {
 	 * @return A map of desired summoners
 	 * @throws NullPointerException
 	 *             If {@code region} or {@code summonerNames} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see Summoner
 	 */
-	public AsyncRequest getSummonersByName(Region region, String... summonerNames) throws RiotApiException {
+	public AsyncRequest getSummonersByName(Region region, String... summonerNames) {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(summonerNames);
 		ApiMethod method = new GetSummonersByName(getConfig(), region, Convert.joinString(",", summonerNames));
@@ -1725,11 +1598,9 @@ public class RiotApiAsync {
 	 * @return A map of the summoners' teams
 	 * @throws NullPointerException
 	 *             If {@code region} or {@code summonerIds} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see Team
 	 */
-	public AsyncRequest getTeamsBySummonerIds(Region region, String... summonerIds) throws RiotApiException {
+	public AsyncRequest getTeamsBySummonerIds(Region region, String... summonerIds) {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(summonerIds);
 		ApiMethod method = new GetTeamsBySummonerIds(getConfig(), region, Convert.joinString(",", summonerIds));
@@ -1746,11 +1617,9 @@ public class RiotApiAsync {
 	 * @return A map of the summoners' teams
 	 * @throws NullPointerException
 	 *             If {@code region} or {@code summonerIds} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see Team
 	 */
-	public AsyncRequest getTeamsBySummonerIds(Region region, long... summonerIds) throws RiotApiException {
+	public AsyncRequest getTeamsBySummonerIds(Region region, long... summonerIds) {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(summonerIds);
 		return getTeamsBySummonerIds(region, Convert.longToString(summonerIds));
@@ -1766,11 +1635,9 @@ public class RiotApiAsync {
 	 * @return A map of teams
 	 * @throws NullPointerException
 	 *             If {@code region} or {@code teamIds} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see Team
 	 */
-	public AsyncRequest getTeamsByTeamIds(Region region, String... teamIds) throws RiotApiException {
+	public AsyncRequest getTeamsByTeamIds(Region region, String... teamIds) {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(teamIds);
 		ApiMethod method = new GetTeamsByTeamIds(getConfig(), region, Convert.joinString(",", teamIds));
@@ -1789,11 +1656,9 @@ public class RiotApiAsync {
 	 * @return A list of the top champion masteries of a given summoner.
 	 * @throws NullPointerException
 	 *             If {@code platformId} or {@code summonerId} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see ChampionMastery
 	 */
-	public AsyncRequest getTopChampionMasteries(PlatformId platformId, long summonerId, int count) throws RiotApiException {
+	public AsyncRequest getTopChampionMasteries(PlatformId platformId, long summonerId, int count) {
 		Objects.requireNonNull(platformId);
 		ApiMethod method = new GetTopChampionMasteries(getConfig(), platformId, summonerId, count);
 		return endpointManager.callMethodAsynchronously(method);
@@ -1809,11 +1674,9 @@ public class RiotApiAsync {
 	 * @return A list of the top champion masteries of a given summoner.
 	 * @throws NullPointerException
 	 *             If {@code platformId} or {@code summonerId} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see ChampionMastery
 	 */
-	public AsyncRequest getTopChampionMasteries(PlatformId platformId, long summonerId) throws RiotApiException {
+	public AsyncRequest getTopChampionMasteries(PlatformId platformId, long summonerId) {
 		Objects.requireNonNull(platformId);
 		Objects.requireNonNull(summonerId);
 		return getTopChampionMasteries(platformId, summonerId, -1);
@@ -1827,11 +1690,9 @@ public class RiotApiAsync {
 	 * @return Data associated with a tournament code
 	 * @throws NullPointerException
 	 *             If {@code tournamentCode} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @see TournamentCode
 	 */
-	public AsyncRequest getTournamentCode(String tournamentCode) throws RiotApiException {
+	public AsyncRequest getTournamentCode(String tournamentCode) {
 		Objects.requireNonNull(tournamentCode);
 		ApiMethod method = new GetTournamentCode(getConfig(), tournamentCode);
 		return endpointManager.callMethodAsynchronously(method);
@@ -1864,11 +1725,8 @@ public class RiotApiAsync {
 	 *            Optional list of participants in order to validate the players eligible to join the lobby.
 	 * @throws NullPointerException
 	 *             If {@code tournamentCode} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 */
-	public void updateTournamentCode(String tournamentCode, TournamentMap mapType, PickType pickType, SpectatorType spectatorType, long... allowedSummonerIds)
-			throws RiotApiException {
+	public void updateTournamentCode(String tournamentCode, TournamentMap mapType, PickType pickType, SpectatorType spectatorType, long... allowedSummonerIds) {
 		Objects.requireNonNull(tournamentCode);
 		ApiMethod method = new UpdateTournamentCode(getConfig(), tournamentCode, mapType, pickType, spectatorType, allowedSummonerIds);
 		endpointManager.callMethodAsynchronously(method);
@@ -1887,11 +1745,8 @@ public class RiotApiAsync {
 	 *            Optional list of participants in order to validate the players eligible to join the lobby.
 	 * @throws NullPointerException
 	 *             If {@code tournamentCode} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 */
-	public void updateTournamentCode(String tournamentCode, PickType pickType, SpectatorType spectatorType, long... allowedSummonerIds)
-			throws RiotApiException {
+	public void updateTournamentCode(String tournamentCode, PickType pickType, SpectatorType spectatorType, long... allowedSummonerIds) {
 		Objects.requireNonNull(tournamentCode);
 		updateTournamentCode(tournamentCode, null, pickType, spectatorType, allowedSummonerIds);
 	}
@@ -1909,11 +1764,8 @@ public class RiotApiAsync {
 	 *            Optional list of participants in order to validate the players eligible to join the lobby.
 	 * @throws NullPointerException
 	 *             If {@code tournamentCode} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 */
-	public void updateTournamentCode(String tournamentCode, TournamentMap mapType, SpectatorType spectatorType, long... allowedSummonerIds)
-			throws RiotApiException {
+	public void updateTournamentCode(String tournamentCode, TournamentMap mapType, SpectatorType spectatorType, long... allowedSummonerIds) {
 		Objects.requireNonNull(tournamentCode);
 		updateTournamentCode(tournamentCode, mapType, null, spectatorType, allowedSummonerIds);
 	}
@@ -1931,10 +1783,8 @@ public class RiotApiAsync {
 	 *            Optional list of participants in order to validate the players eligible to join the lobby.
 	 * @throws NullPointerException
 	 *             If {@code tournamentCode} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 */
-	public void updateTournamentCode(String tournamentCode, TournamentMap mapType, PickType pickType, long... allowedSummonerIds) throws RiotApiException {
+	public void updateTournamentCode(String tournamentCode, TournamentMap mapType, PickType pickType, long... allowedSummonerIds) {
 		Objects.requireNonNull(tournamentCode);
 		updateTournamentCode(tournamentCode, mapType, pickType, null, allowedSummonerIds);
 	}
@@ -1950,10 +1800,8 @@ public class RiotApiAsync {
 	 *            Optional list of participants in order to validate the players eligible to join the lobby.
 	 * @throws NullPointerException
 	 *             If {@code tournamentCode} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 */
-	public void updateTournamentCode(String tournamentCode, TournamentMap mapType, long... allowedSummonerIds) throws RiotApiException {
+	public void updateTournamentCode(String tournamentCode, TournamentMap mapType, long... allowedSummonerIds) {
 		Objects.requireNonNull(tournamentCode);
 		updateTournamentCode(tournamentCode, mapType, null, null, allowedSummonerIds);
 	}
@@ -1969,10 +1817,8 @@ public class RiotApiAsync {
 	 *            Optional list of participants in order to validate the players eligible to join the lobby.
 	 * @throws NullPointerException
 	 *             If {@code tournamentCode} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 */
-	public void updateTournamentCode(String tournamentCode, PickType pickType, long... allowedSummonerIds) throws RiotApiException {
+	public void updateTournamentCode(String tournamentCode, PickType pickType, long... allowedSummonerIds) {
 		Objects.requireNonNull(tournamentCode);
 		updateTournamentCode(tournamentCode, null, pickType, null, allowedSummonerIds);
 	}
@@ -1988,10 +1834,8 @@ public class RiotApiAsync {
 	 *            Optional list of participants in order to validate the players eligible to join the lobby.
 	 * @throws NullPointerException
 	 *             If {@code tournamentCode} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 */
-	public void updateTournamentCode(String tournamentCode, SpectatorType spectatorType, long... allowedSummonerIds) throws RiotApiException {
+	public void updateTournamentCode(String tournamentCode, SpectatorType spectatorType, long... allowedSummonerIds) {
 		Objects.requireNonNull(tournamentCode);
 		updateTournamentCode(tournamentCode, null, null, spectatorType, allowedSummonerIds);
 	}

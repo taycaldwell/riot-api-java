@@ -56,9 +56,7 @@ public class Request {
 	public static final int CODE_ERROR_SERVICE_UNAVAILABLE = 503;
 
 	private RequestState state = RequestState.Waiting;
-
-	private int responseCode = -1;
-	private String responseBody = null;
+	private RequestResponse response = null;
 
 	protected ApiConfig config;
 	protected ApiMethod method;
@@ -81,7 +79,10 @@ public class Request {
 		execute();
 	}
 
-	protected Request() { // Allow child classes to make their own constructor
+	/**
+	 * Constructs a synchronous request. This allows child classes to create their own constructor.
+	 */
+	protected Request() {
 	}
 
 	/**
@@ -99,6 +100,14 @@ public class Request {
 		return true;
 	}
 
+	/**
+	 * Executes the request
+	 * 
+	 * @throws RiotApiException
+	 *             If the Riot Api responds with an error code or parsing the response fails
+	 * @throws RateLimitException
+	 *             If a rate limit is exceeded
+	 */
 	protected synchronized void execute() throws RiotApiException, RateLimitException {
 		setState(RequestState.Waiting);
 		try {
@@ -121,7 +130,7 @@ public class Request {
 				dos.close();
 			}
 
-			responseCode = connection.getResponseCode();
+			int responseCode = connection.getResponseCode();
 			if (responseCode == CODE_ERROR_RATE_LIMITED) {
 				String retryAfterString = connection.getHeaderField("Retry-After");
 				String rateLimitType = connection.getHeaderField("X-Rate-Limit-Type");
@@ -144,7 +153,7 @@ public class Request {
 				}
 				br.close();
 			}
-			responseBody = responseBodyBuilder.toString();
+			response = new RequestResponse(connection.getResponseCode(), responseBodyBuilder.toString(), connection.getHeaderFields());
 			setState(RequestState.Succeeded);
 		} catch (RiotApiException e) {
 			setException(e);
@@ -182,6 +191,18 @@ public class Request {
 		return getDto(false);
 	}
 
+	/**
+	 * Retrieves the result of the request.
+	 * 
+	 * @param overrideStateRequirement
+	 *            If set to {@code true}, this method will not check the status of the request, and thus not throw an
+	 *            {@code IllegalStateException}
+	 * @return The object returned by the api call
+	 * @throws IllegalStateException
+	 *             If this request did not complete yet or did not succeed
+	 * @throws RiotApiException
+	 *             If parsing the Riot Api's response fails
+	 */
 	@SuppressWarnings("unchecked")
 	protected <T> T getDto(boolean overrideStateRequirement) throws RiotApiException {
 		if (!overrideStateRequirement) {
@@ -195,17 +216,18 @@ public class Request {
 		if (type != null) {
 			return getDto(type);
 		}
-		throw new NullPointerException("That ApiMethod has not set a dtoType. If you encounter this issue, please file a bug.");
+		throw new NullPointerException(
+				"The ApiMethod \"" + method.getClass().getName() + "\" has not set a dtoType. If you encounter this issue, please file a bug.");
 	}
 
 	private <T> T getDto(Class<T> desiredDto) throws RiotApiException {
-		if (responseCode == CODE_SUCCESS_NO_CONTENT) {
+		if (response.getCode() == CODE_SUCCESS_NO_CONTENT) {
 			// The Riot Api is fine with the request, and explicitly sends no content
 			return null;
 		}
 		T dto = null;
 		try {
-			dto = new Gson().fromJson(responseBody, desiredDto);
+			dto = new Gson().fromJson(response.getBody(), desiredDto);
 		} catch (JsonSyntaxException e) {
 			RiotApiException exception = new RiotApiException(RiotApiException.PARSE_FAILURE);
 			setException(exception);
@@ -220,13 +242,13 @@ public class Request {
 	}
 
 	private <T> T getDto(Type desiredDto) throws RiotApiException {
-		if (responseCode == CODE_SUCCESS_NO_CONTENT) {
+		if (response.getCode() == CODE_SUCCESS_NO_CONTENT) {
 			// The Riot Api is fine with the request, and explicitly sends no content
 			return null;
 		}
 		T dto = null;
 		try {
-			dto = new Gson().fromJson(responseBody, desiredDto);
+			dto = new Gson().fromJson(response.getBody(), desiredDto);
 		} catch (JsonSyntaxException e) {
 			RiotApiException exception = new RiotApiException(RiotApiException.PARSE_FAILURE);
 			setException(exception);
@@ -252,6 +274,27 @@ public class Request {
 		return exception;
 	}
 
+	/**
+	 * Returns the raw response from the Riot Api
+	 * 
+	 * @return A {@link RequestResponse} object, providing raw data of the Riot Api's response
+	 * @see RequestResponse
+	 */
+	public RequestResponse getResponse() {
+		return response;
+	}
+
+	/**
+	 * Initializes the request object. Child classes should call this method instead of the super constructor, if they don't want the
+	 * request to execute automatically.
+	 * 
+	 * @param config
+	 *            ApiConfig object
+	 * @param method
+	 *            ApiMethod object
+	 * @see ApiConfig
+	 * @see ApiMethod
+	 */
 	protected void init(ApiConfig config, ApiMethod method) {
 		this.config = config;
 		this.method = method;
@@ -312,6 +355,12 @@ public class Request {
 		return state == RequestState.TimeOut;
 	}
 
+	/**
+	 * Checks that the current state of this request is succeeded.
+	 * 
+	 * @throws IllegalStateException
+	 *             If the state of this request is anything other than {@code RequestState.Succeeded}.
+	 */
 	protected void requireSucceededRequestState() {
 		if (state == RequestState.Waiting) {
 			throw new IllegalStateException("The request has not received a response yet");
@@ -322,10 +371,25 @@ public class Request {
 		}
 	}
 
+	/**
+	 * Sets the Exception that was thrown when executing this request
+	 * 
+	 * @param exception
+	 *            Exception
+	 * @see RiotApiException
+	 */
 	protected void setException(RiotApiException exception) {
 		this.exception = exception;
 	}
 
+	/**
+	 * Sets the state of this request, if the request is not already done.
+	 * 
+	 * @param state
+	 *            State
+	 * @return {@code true} if the state has been changed
+	 * @see RequestState
+	 */
 	protected boolean setState(RequestState state) {
 		if (isDone()) {
 			return false;
@@ -334,10 +398,19 @@ public class Request {
 		return true;
 	}
 
+	/**
+	 * Sets the timeout according to the {@link ApiConfig} object, associated with this request.
+	 */
 	protected void setTimeout() {
 		setTimeout(config.getRequestTimeout());
 	}
 
+	/**
+	 * Sets a specified timeout value, in milliseconds, until connecting to or reading from the Riot Api times out.
+	 * 
+	 * @param timeout
+	 *            Timeout value in milliseconds
+	 */
 	protected void setTimeout(int timeout) {
 		if (connection != null && timeout > 0) {
 			connection.setConnectTimeout(timeout);
