@@ -167,8 +167,10 @@ public class RiotApi {
 	 * @see ApiConfig
 	 */
 	public RiotApi(ApiConfig config) {
-		log.setLevel(config.getDebugLevel());
 		this.config = config;
+		log.setUseParentHandlers(false);
+		log.addHandler(new LogHandler(config.getDebugToFile()));
+		log.setLevel(config.getDebugLevel());
 		endpointManager = new EndpointManager(config);
 	}
 

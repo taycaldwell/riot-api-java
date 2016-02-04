@@ -24,7 +24,8 @@ import java.util.logging.Level;
  */
 public class ApiConfig {
 
-	private Level level = Level.WARNING;
+	private Level debugLevel = Level.WARNING;
+	private boolean debugToFile = false;
 	private String key = null;
 	private String tournamentKey = null;
 	private int requestTimeout = 0;
@@ -42,7 +43,11 @@ public class ApiConfig {
 	}
 
 	public Level getDebugLevel() {
-		return level;
+		return debugLevel;
+	}
+
+	public boolean getDebugToFile() {
+		return debugToFile;
 	}
 
 	public String getKey() {
@@ -86,13 +91,25 @@ public class ApiConfig {
 	/**
 	 * Sets the debug level for the Riot Api.
 	 * 
-	 * @param level
+	 * @param debugLevel
 	 *            Debug level
 	 * @return This ApiConfig object for chaining
 	 */
-	public ApiConfig setDebugLevel(Level level) {
-		Objects.requireNonNull(level, "level must not be null");
-		this.level = level;
+	public ApiConfig setDebugLevel(Level debugLevel) {
+		Objects.requireNonNull(debugLevel, "debug level must not be null");
+		this.debugLevel = debugLevel;
+		return this;
+	}
+
+	/**
+	 * Sets whether the debug log should be saved in a file
+	 * 
+	 * @param debugToFile
+	 *            {@code true} if the debug log should be saved in a file
+	 * @return This ApiConfig object for chaining
+	 */
+	public ApiConfig setDebugToFile(boolean debugToFile) {
+		this.debugToFile = debugToFile;
 		return this;
 	}
 
