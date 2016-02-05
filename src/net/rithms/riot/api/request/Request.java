@@ -75,7 +75,6 @@ public class Request {
 	 */
 	public Request(ApiConfig config, ApiMethod method) throws RateLimitException, RiotApiException {
 		init(config, method);
-		setTimeout();
 		execute();
 	}
 
@@ -153,7 +152,7 @@ public class Request {
 				}
 				br.close();
 			}
-			response = new RequestResponse(connection.getResponseCode(), responseBodyBuilder.toString(), connection.getHeaderFields());
+			setResponse(new RequestResponse(connection.getResponseCode(), responseBodyBuilder.toString(), connection.getHeaderFields()));
 			setState(RequestState.Succeeded);
 		} catch (RiotApiException e) {
 			setException(e);
@@ -380,6 +379,10 @@ public class Request {
 	 */
 	protected void setException(RiotApiException exception) {
 		this.exception = exception;
+	}
+
+	private void setResponse(RequestResponse response) {
+		this.response = response;
 	}
 
 	/**

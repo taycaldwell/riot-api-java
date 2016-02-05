@@ -57,7 +57,6 @@ public class AsyncRequest extends Request implements Runnable {
 	public AsyncRequest(ApiConfig config, ApiMethod method) {
 		super();
 		init(config, method);
-		setTimeout();
 	}
 
 	/**
