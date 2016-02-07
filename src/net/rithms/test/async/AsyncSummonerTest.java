@@ -52,7 +52,7 @@ public class AsyncSummonerTest {
 		AsyncRequest reqMasteryPages = api.getMasteryPages(Region.NA, 133);
 		reqMasteryPages.addListener(new RequestListener() {
 			@Override
-			public void onRequestFailed(Exception e) {
+			public void onRequestFailed(RiotApiException e) {
 				fail();
 			}
 
@@ -76,7 +76,7 @@ public class AsyncSummonerTest {
 		AsyncRequest reqRunePages = api.getRunePages(Region.NA, 133);
 		reqRunePages.addListener(new RequestListener() {
 			@Override
-			public void onRequestFailed(Exception e) {
+			public void onRequestFailed(RiotApiException e) {
 				fail();
 			}
 
@@ -100,7 +100,7 @@ public class AsyncSummonerTest {
 		AsyncRequest reqSummonerMap = api.getSummonersById(Region.NA, 133, 329);
 		reqSummonerMap.addListener(new RequestListener() {
 			@Override
-			public void onRequestFailed(Exception e) {
+			public void onRequestFailed(RiotApiException e) {
 				fail();
 			}
 
@@ -125,7 +125,7 @@ public class AsyncSummonerTest {
 		AsyncRequest reqSummonerMap = api.getSummonersByName(Region.NA, "ryze", "tryndamere");
 		reqSummonerMap.addListener(new RequestListener() {
 			@Override
-			public void onRequestFailed(Exception e) {
+			public void onRequestFailed(RiotApiException e) {
 				fail();
 			}
 
@@ -150,7 +150,7 @@ public class AsyncSummonerTest {
 		AsyncRequest reqSummonerNameMap = api.getSummonerNames(Region.NA, 133, 329);
 		reqSummonerNameMap.addListener(new RequestListener() {
 			@Override
-			public void onRequestFailed(Exception e) {
+			public void onRequestFailed(RiotApiException e) {
 				fail();
 			}
 

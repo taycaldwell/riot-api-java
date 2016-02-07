@@ -16,6 +16,8 @@
 
 package net.rithms.riot.api.request;
 
+import net.rithms.riot.api.RiotApiException;
+
 /**
  * The listener interface for receiving events from asynchronous requests.
  * 
@@ -30,7 +32,7 @@ public interface RequestListener {
 	 * @param e
 	 *            Exception thrown
 	 */
-	public void onRequestFailed(Exception e);
+	public void onRequestFailed(RiotApiException e);
 
 	/**
 	 * Invoked when a request succeeds.

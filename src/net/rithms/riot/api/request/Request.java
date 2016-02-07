@@ -157,6 +157,7 @@ public class Request {
 		} catch (RiotApiException e) {
 			setException(e);
 			setState(RequestState.Failed);
+			RiotApi.log.log(Level.FINE, "RiotApiException in Request", e);
 			throw e;
 		} catch (SocketTimeoutException e) {
 			RiotApiException exception = new RiotApiException(RiotApiException.TIMEOUT_EXCEPTION);
@@ -267,9 +268,6 @@ public class Request {
 	 * @return The exception that was thrown when executing this request
 	 */
 	public RiotApiException getException() {
-		if (!isFailed()) {
-			return null;
-		}
 		return exception;
 	}
 

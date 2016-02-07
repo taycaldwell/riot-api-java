@@ -194,6 +194,7 @@ public class AsyncRequest extends Request implements Runnable {
 		}
 		sent = true;
 		executionThread = new Thread(this);
+		executionThread.setName("AsyncRequest - " + method);
 		executionThread.start();
 	}
 

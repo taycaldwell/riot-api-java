@@ -172,6 +172,32 @@ public class RiotApi {
 		log.addHandler(new LogHandler(config.getDebugToFile()));
 		log.setLevel(config.getDebugLevel());
 		endpointManager = new EndpointManager(config);
+
+		// DEBUGGING ZONE -- REMOVE THIS BEFORE RELEASE
+		new Thread() {
+			public void run() {
+				ThreadGroup threadGroup = Thread.currentThread().getThreadGroup();
+				ThreadGroup parent;
+				while ((parent = threadGroup.getParent()) != null) {
+					if (null != threadGroup) {
+						threadGroup = parent;
+						if (null != threadGroup) {
+							Thread[] threadList = new Thread[threadGroup.activeCount()];
+							threadGroup.enumerate(threadList);
+							for (Thread thread : threadList)
+								System.out.println(new StringBuilder().append(thread.getThreadGroup().getName()).append("::").append(thread.getName())
+										.append("::PRIORITY:-").append(thread.getPriority()));
+						}
+					}
+				}
+				try {
+					Thread.sleep(5000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		}.start();
+		// DEBUGGING ZONE END
 	}
 
 	@Override

@@ -35,9 +35,11 @@ public class ApiMethod {
 	private String body = null;
 	private Class<?> dtoClass = null;
 	private Type dtoType = null;
+private long l;
 
 	protected ApiMethod(ApiConfig config) {
 		this.config = config;
+l = System.currentTimeMillis();
 	}
 
 	protected void add(HttpHeadParameter p) {
@@ -108,5 +110,11 @@ public class ApiMethod {
 
 	protected void setUrlBase(String urlBase) {
 		this.urlBase = urlBase;
+	}
+	
+	@Override
+	public String toString(){
+		long running = System.currentTimeMillis() - l;
+		return getClass().getSimpleName() + " (running since " + running + " ms)";
 	}
 }
