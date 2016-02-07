@@ -30,7 +30,7 @@ public class GetLeagueEntryBySummoners extends ApiMethod {
 
 	public GetLeagueEntryBySummoners(ApiConfig config, Region region, String summonerIds) {
 		super(config);
-		setDtoType(new TypeToken<Map<String, List<League>>>() {
+		setReturnType(new TypeToken<Map<String, List<League>>>() {
 		}.getType());
 		setUrlBase(region.getEndpoint() + "/v2.5/league/by-summoner/" + summonerIds + "/entry");
 		addApiKeyParameter();

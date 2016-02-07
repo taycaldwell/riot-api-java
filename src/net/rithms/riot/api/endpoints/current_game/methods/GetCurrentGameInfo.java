@@ -25,7 +25,7 @@ public class GetCurrentGameInfo extends ApiMethod {
 
 	public GetCurrentGameInfo(ApiConfig config, PlatformId platformId, long summonerId) {
 		super(config);
-		setDtoType(CurrentGameInfo.class);
+		setReturnType(CurrentGameInfo.class);
 		setUrlBase(
 				"https://" + platformId.getName() + ".api.pvp.net/observer-mode/rest/consumer/getSpectatorGameInfo/" + platformId.getId() + '/' + summonerId);
 		addApiKeyParameter();

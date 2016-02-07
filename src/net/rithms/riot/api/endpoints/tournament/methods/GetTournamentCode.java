@@ -24,7 +24,7 @@ public class GetTournamentCode extends ApiMethod {
 
 	public GetTournamentCode(ApiConfig config, String tournamentCode) {
 		super(config);
-		setDtoType(TournamentCode.class);
+		setReturnType(TournamentCode.class);
 		setUrlBase("https://global.api.pvp.net/tournament/public/v1/code/" + tournamentCode);
 		addTournamentApiKeyParameter();
 	}

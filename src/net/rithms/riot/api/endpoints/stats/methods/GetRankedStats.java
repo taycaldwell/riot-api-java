@@ -27,7 +27,7 @@ public class GetRankedStats extends ApiMethod {
 
 	public GetRankedStats(ApiConfig config, Region region, Season season, long summonerId) {
 		super(config);
-		setDtoType(RankedStats.class);
+		setReturnType(RankedStats.class);
 		setUrlBase(region.getEndpoint() + "/v1.3/stats/by-summoner/" + summonerId + "/ranked");
 		if (season != null) {
 			add(new UrlParameter("season", season));

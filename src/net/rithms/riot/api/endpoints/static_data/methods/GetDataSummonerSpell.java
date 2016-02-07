@@ -27,7 +27,7 @@ public class GetDataSummonerSpell extends ApiMethod {
 
 	public GetDataSummonerSpell(ApiConfig config, Region region, int id, String locale, String version, SpellData... spellData) {
 		super(config);
-		setDtoType(SummonerSpell.class);
+		setReturnType(SummonerSpell.class);
 		setUrlBase("https://global.api.pvp.net/api/lol/static-data/" + region + "/v1.2/summoner-spell/" + id);
 		if (locale != null) {
 			add(new UrlParameter("locale", locale));

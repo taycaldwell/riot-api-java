@@ -27,7 +27,7 @@ public class GetDataItem extends ApiMethod {
 
 	public GetDataItem(ApiConfig config, Region region, int id, String locale, String version, ItemData... itemData) {
 		super(config);
-		setDtoType(Item.class);
+		setReturnType(Item.class);
 		setUrlBase("https://global.api.pvp.net/api/lol/static-data/" + region + "/v1.2/item/" + id);
 		if (locale != null) {
 			add(new UrlParameter("locale", locale));

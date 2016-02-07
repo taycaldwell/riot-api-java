@@ -25,7 +25,7 @@ public class GetDataRealm extends ApiMethod {
 
 	public GetDataRealm(ApiConfig config, Region region) {
 		super(config);
-		setDtoType(Realm.class);
+		setReturnType(Realm.class);
 		setUrlBase("https://global.api.pvp.net/api/lol/static-data/" + region + "/v1.2/realm");
 		addApiKeyParameter();
 	}

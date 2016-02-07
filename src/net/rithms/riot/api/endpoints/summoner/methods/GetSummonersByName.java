@@ -35,7 +35,7 @@ public class GetSummonersByName extends ApiMethod {
 	public GetSummonersByName(ApiConfig config, Region region, String summonerNames) {
 		super(config);
 		summonerNames = Convert.normalizeSummonerName(summonerNames);
-		setDtoType(new TypeToken<Map<String, Summoner>>() {
+		setReturnType(new TypeToken<Map<String, Summoner>>() {
 		}.getType());
 		try {
 			setUrlBase(region.getEndpoint() + "/v1.4/summoner/by-name/" + URLEncoder.encode(summonerNames, "UTF-8"));

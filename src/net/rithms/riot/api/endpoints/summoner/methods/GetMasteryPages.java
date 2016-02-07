@@ -29,7 +29,7 @@ public class GetMasteryPages extends ApiMethod {
 
 	public GetMasteryPages(ApiConfig config, Region region, String summonerIds) {
 		super(config);
-		setDtoType(new TypeToken<Map<String, MasteryPages>>() {
+		setReturnType(new TypeToken<Map<String, MasteryPages>>() {
 		}.getType());
 		setUrlBase(region.getEndpoint() + "/v1.4/summoner/" + summonerIds + "/masteries");
 		addApiKeyParameter();

@@ -54,9 +54,9 @@ public class AsyncRequest extends Request implements Runnable {
 	 * @see ApiConfig
 	 * @see ApiMethod
 	 */
-	public AsyncRequest(ApiConfig config, ApiMethod method) {
+	public AsyncRequest(ApiConfig config, RequestObject object) {
 		super();
-		init(config, method);
+		init(config, object);
 	}
 
 	/**
@@ -194,7 +194,7 @@ public class AsyncRequest extends Request implements Runnable {
 		}
 		sent = true;
 		executionThread = new Thread(this);
-		executionThread.setName("AsyncRequest - " + method);
+		executionThread.setName("AsyncRequest - " + object);
 		executionThread.start();
 	}
 

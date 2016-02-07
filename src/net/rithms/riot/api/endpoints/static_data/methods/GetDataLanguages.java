@@ -28,7 +28,7 @@ public class GetDataLanguages extends ApiMethod {
 
 	public GetDataLanguages(ApiConfig config, Region region) {
 		super(config);
-		setDtoType(new TypeToken<List<String>>() {
+		setReturnType(new TypeToken<List<String>>() {
 		}.getType());
 		setUrlBase("https://global.api.pvp.net/api/lol/static-data/" + region + "/v1.2/languages");
 		addApiKeyParameter();

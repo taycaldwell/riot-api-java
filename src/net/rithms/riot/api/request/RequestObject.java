@@ -14,24 +14,28 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.api.endpoints.team.methods;
+package net.rithms.riot.api.request;
 
-import java.util.Map;
+import java.lang.reflect.Type;
+import java.util.List;
 
-import com.google.gson.reflect.TypeToken;
+import net.rithms.riot.api.HttpHeadParameter;
 
-import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.ApiMethod;
-import net.rithms.riot.api.endpoints.team.dto.Team;
-import net.rithms.riot.constant.Region;
+/**
+ * The interface for objects that can be handled by
+ * 
+ * @author Daniel 'Linnun' Figge
+ * @see AsyncRequest
+ */
+public interface RequestObject {
+	
+	public String getBody();
+	
+	public List<HttpHeadParameter> getHttpHeadParameters();
+	
+	public RequestMethod getMethod();
 
-public class GetTeamsByTeamIds extends ApiMethod {
+	public Type getReturnType();
 
-	public GetTeamsByTeamIds(ApiConfig config, Region region, String teamIds) {
-		super(config);
-		setReturnType(new TypeToken<Map<String, Team>>() {
-		}.getType());
-		setUrlBase(region.getEndpoint() + "/v2.4/team/" + teamIds);
-		addApiKeyParameter();
-	}
+	public String getUrl();
 }

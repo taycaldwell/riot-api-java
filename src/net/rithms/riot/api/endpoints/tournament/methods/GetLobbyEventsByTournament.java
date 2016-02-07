@@ -24,7 +24,7 @@ public class GetLobbyEventsByTournament extends ApiMethod {
 
 	public GetLobbyEventsByTournament(ApiConfig config, String tournamentCode) {
 		super(config);
-		setDtoType(LobbyEventList.class);
+		setReturnType(LobbyEventList.class);
 		setUrlBase("https://global.api.pvp.net/tournament/public/v1/lobby/events/by-code/" + tournamentCode);
 		addTournamentApiKeyParameter();
 	}

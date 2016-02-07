@@ -29,7 +29,7 @@ public class GetSummonersById extends ApiMethod {
 
 	public GetSummonersById(ApiConfig config, Region region, String summonerIds) {
 		super(config);
-		setDtoType(new TypeToken<Map<String, Summoner>>() {
+		setReturnType(new TypeToken<Map<String, Summoner>>() {
 		}.getType());
 		setUrlBase(region.getEndpoint() + "/v1.4/summoner/" + summonerIds);
 		addApiKeyParameter();

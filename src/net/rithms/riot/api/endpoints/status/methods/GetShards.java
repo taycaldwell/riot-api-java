@@ -28,7 +28,7 @@ public class GetShards extends ApiMethod {
 
 	public GetShards(ApiConfig config) {
 		super(config);
-		setDtoType(new TypeToken<List<Shard>>() {
+		setReturnType(new TypeToken<List<Shard>>() {
 		}.getType());
 		setUrlBase("http://status.leagueoflegends.com/shards");
 	}

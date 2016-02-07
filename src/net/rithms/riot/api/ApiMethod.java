@@ -24,8 +24,9 @@ import java.util.Map;
 import com.google.gson.Gson;
 
 import net.rithms.riot.api.request.RequestMethod;
+import net.rithms.riot.api.request.RequestObject;
 
-public class ApiMethod {
+public class ApiMethod implements RequestObject {
 
 	protected final ApiConfig config;
 	private String urlBase;
@@ -33,13 +34,12 @@ public class ApiMethod {
 	private final List<HttpHeadParameter> httpHeadParameters = new LinkedList<HttpHeadParameter>();
 	private RequestMethod method = RequestMethod.GET;
 	private String body = null;
-	private Class<?> dtoClass = null;
-	private Type dtoType = null;
-private long l;
+	private Type returnType = null;
+	private long l; // DEBUG
 
 	protected ApiMethod(ApiConfig config) {
 		this.config = config;
-l = System.currentTimeMillis();
+		l = System.currentTimeMillis(); // DEBUG
 	}
 
 	protected void add(HttpHeadParameter p) {
@@ -66,26 +66,27 @@ l = System.currentTimeMillis();
 		body = new Gson().toJson(map);
 	}
 
+	@Override
 	public String getBody() {
 		return body;
 	}
 
-	public Class<?> getDtoClass() {
-		return dtoClass;
+	@Override
+	public Type getReturnType() {
+		return returnType;
 	}
 
-	public Type getDtoType() {
-		return dtoType;
-	}
-
+	@Override
 	public List<HttpHeadParameter> getHttpHeadParameters() {
 		return httpHeadParameters;
 	}
 
+	@Override
 	public RequestMethod getMethod() {
 		return method;
 	}
 
+	@Override
 	public String getUrl() {
 		StringBuilder url = new StringBuilder(urlBase);
 		char connector = '?';
@@ -96,12 +97,12 @@ l = System.currentTimeMillis();
 		return url.toString();
 	}
 
-	public void setDtoType(Class<?> dtoClass) {
-		this.dtoClass = dtoClass;
-	}
+	// public void setDtoType(Class<?> dtoClass) {
+	// this.dtoClass = dtoClass;
+	// }
 
-	public void setDtoType(Type dtoType) {
-		this.dtoType = dtoType;
+	public void setReturnType(Type returnType) {
+		this.returnType = returnType;
 	}
 
 	protected void setMethod(RequestMethod method) {
@@ -111,10 +112,11 @@ l = System.currentTimeMillis();
 	protected void setUrlBase(String urlBase) {
 		this.urlBase = urlBase;
 	}
-	
+
 	@Override
-	public String toString(){
-		long running = System.currentTimeMillis() - l;
-		return getClass().getSimpleName() + " (running since " + running + " ms)";
+	public String toString() {
+		// return getClass().getSimpleName();
+		long running = System.currentTimeMillis() - l; // DEBUG
+		return getClass().getSimpleName() + " (running since " + running + " ms)"; // DEBUG
 	}
 }

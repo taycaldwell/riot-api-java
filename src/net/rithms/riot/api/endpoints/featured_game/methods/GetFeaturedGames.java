@@ -25,7 +25,7 @@ public class GetFeaturedGames extends ApiMethod {
 
 	public GetFeaturedGames(ApiConfig config, Region region) {
 		super(config);
-		setDtoType(FeaturedGames.class);
+		setReturnType(FeaturedGames.class);
 		setUrlBase("https://" + region + ".api.pvp.net/observer-mode/rest/featured");
 		addApiKeyParameter();
 	}

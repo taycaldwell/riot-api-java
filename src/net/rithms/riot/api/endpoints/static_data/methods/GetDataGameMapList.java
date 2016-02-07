@@ -26,7 +26,7 @@ public class GetDataGameMapList extends ApiMethod {
 
 	public GetDataGameMapList(ApiConfig config, Region region, String locale, String version) {
 		super(config);
-		setDtoType(GameMapList.class);
+		setReturnType(GameMapList.class);
 		setUrlBase("https://global.api.pvp.net/api/lol/static-data/" + region + "/v1.2/map");
 		if (locale != null) {
 			add(new UrlParameter("locale", locale));

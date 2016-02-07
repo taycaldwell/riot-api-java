@@ -30,7 +30,7 @@ public class GetLeagueByTeams extends ApiMethod {
 
 	public GetLeagueByTeams(ApiConfig config, Region region, String teamIds) {
 		super(config);
-		setDtoType(new TypeToken<Map<String, List<League>>>() {
+		setReturnType(new TypeToken<Map<String, List<League>>>() {
 		}.getType());
 		setUrlBase(region.getEndpoint() + "/v2.5/league/by-team/" + teamIds);
 		addApiKeyParameter();

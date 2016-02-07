@@ -29,7 +29,7 @@ public class GetChampionMasteries extends ApiMethod {
 
 	public GetChampionMasteries(ApiConfig config, PlatformId platformId, long summonerId) {
 		super(config);
-		setDtoType(new TypeToken<List<ChampionMastery>>() {
+		setReturnType(new TypeToken<List<ChampionMastery>>() {
 		}.getType());
 		setUrlBase("https://" + platformId.getName() + ".api.pvp.net/championmastery/location/" + platformId.getId() + "/player/" + summonerId + "/champions");
 		addApiKeyParameter();

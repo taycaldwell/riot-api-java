@@ -28,7 +28,7 @@ public class CreateTournament extends ApiMethod {
 	public CreateTournament(ApiConfig config, String tournamentName, int providerId) {
 		super(config);
 		setMethod(RequestMethod.POST);
-		setDtoType(Integer.class);
+		setReturnType(Integer.class);
 		setUrlBase("https://global.api.pvp.net/tournament/public/v1/tournament");
 		addTournamentApiKeyParameter();
 		Map<String, Object> body = new HashMap<String, Object>();

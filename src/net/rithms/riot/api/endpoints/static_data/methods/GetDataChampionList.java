@@ -27,7 +27,7 @@ public class GetDataChampionList extends ApiMethod {
 
 	public GetDataChampionList(ApiConfig config, Region region, String locale, String version, boolean dataById, ChampData... champData) {
 		super(config);
-		setDtoType(ChampionList.class);
+		setReturnType(ChampionList.class);
 		setUrlBase("https://global.api.pvp.net/api/lol/static-data/" + region + "/v1.2/champion");
 		if (locale != null) {
 			add(new UrlParameter("locale", locale));

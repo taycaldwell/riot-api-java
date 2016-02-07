@@ -59,7 +59,7 @@ public class Request {
 	private RequestResponse response = null;
 
 	protected ApiConfig config;
-	protected ApiMethod method;
+	protected RequestObject object;
 	protected HttpURLConnection connection = null;
 	private RiotApiException exception = null;
 
@@ -73,8 +73,8 @@ public class Request {
 	 * @see ApiConfig
 	 * @see ApiMethod
 	 */
-	public Request(ApiConfig config, ApiMethod method) throws RateLimitException, RiotApiException {
-		init(config, method);
+	public Request(ApiConfig config, RequestObject object) throws RateLimitException, RiotApiException {
+		init(config, object);
 		execute();
 	}
 
@@ -110,16 +110,16 @@ public class Request {
 	protected synchronized void execute() throws RiotApiException, RateLimitException {
 		setState(RequestState.Waiting);
 		try {
-			URL url = new URL(method.getUrl());
+			URL url = new URL(object.getUrl());
 			connection = (HttpURLConnection) url.openConnection();
 			setTimeout();
 			connection.setDoInput(true);
 			connection.setInstanceFollowRedirects(false);
-			connection.setRequestMethod(method.getMethod().name());
-			for (HttpHeadParameter p : method.getHttpHeadParameters()) {
+			connection.setRequestMethod(object.getMethod().name());
+			for (HttpHeadParameter p : object.getHttpHeadParameters()) {
 				connection.setRequestProperty(p.getKey(), p.getValue());
 			}
-			String body = method.getBody();
+			String body = object.getBody();
 			if (body != null) {
 				connection.setRequestProperty("Content-Type", "application/json");
 				connection.setDoOutput(true);
@@ -203,52 +203,22 @@ public class Request {
 	 * @throws RiotApiException
 	 *             If parsing the Riot Api's response fails
 	 */
-	@SuppressWarnings("unchecked")
 	protected <T> T getDto(boolean overrideStateRequirement) throws RiotApiException {
 		if (!overrideStateRequirement) {
 			requireSucceededRequestState();
 		}
-		Class<?> clazz = method.getDtoClass();
-		if (clazz != null) {
-			return (T) getDto((Class<T>) clazz);
-		}
-		Type type = method.getDtoType();
-		if (type != null) {
-			return getDto(type);
-		}
-		throw new NullPointerException(
-				"The ApiMethod \"" + method.getClass().getName() + "\" has not set a dtoType. If you encounter this issue, please file a bug.");
-	}
-
-	private <T> T getDto(Class<T> desiredDto) throws RiotApiException {
 		if (response.getCode() == CODE_SUCCESS_NO_CONTENT) {
 			// The Riot Api is fine with the request, and explicitly sends no content
 			return null;
 		}
-		T dto = null;
-		try {
-			dto = new Gson().fromJson(response.getBody(), desiredDto);
-		} catch (JsonSyntaxException e) {
-			RiotApiException exception = new RiotApiException(RiotApiException.PARSE_FAILURE);
-			setException(exception);
-			throw exception;
-		}
-		if (dto == null) {
-			RiotApiException exception = new RiotApiException(RiotApiException.PARSE_FAILURE);
-			setException(exception);
-			throw exception;
-		}
-		return dto;
-	}
-
-	private <T> T getDto(Type desiredDto) throws RiotApiException {
-		if (response.getCode() == CODE_SUCCESS_NO_CONTENT) {
-			// The Riot Api is fine with the request, and explicitly sends no content
-			return null;
+		Type type = object.getReturnType();
+		if (type == null) {
+			throw new NullPointerException("The ApiMethod \"" + object
+					+ "\" has not set a dtoType. If this method is supposed to return something and you encounter this issue, please file a bug.");
 		}
 		T dto = null;
 		try {
-			dto = new Gson().fromJson(response.getBody(), desiredDto);
+			dto = new Gson().fromJson(response.getBody(), type);
 		} catch (JsonSyntaxException e) {
 			RiotApiException exception = new RiotApiException(RiotApiException.PARSE_FAILURE);
 			setException(exception);
@@ -292,9 +262,9 @@ public class Request {
 	 * @see ApiConfig
 	 * @see ApiMethod
 	 */
-	protected void init(ApiConfig config, ApiMethod method) {
+	protected void init(ApiConfig config, RequestObject object) {
 		this.config = config;
-		this.method = method;
+		this.object = object;
 	}
 
 	/**

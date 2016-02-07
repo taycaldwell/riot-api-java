@@ -26,7 +26,7 @@ public class GetDataLanguageStrings extends ApiMethod {
 
 	public GetDataLanguageStrings(ApiConfig config, Region region, String locale, String version) {
 		super(config);
-		setDtoType(LanguageStrings.class);
+		setReturnType(LanguageStrings.class);
 		setUrlBase("https://global.api.pvp.net/api/lol/static-data/" + region + "/v1.2/language-strings");
 		if (locale != null) {
 			add(new UrlParameter("locale", locale));

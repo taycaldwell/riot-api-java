@@ -32,7 +32,6 @@ public class UpdateTournamentCode extends ApiMethod {
 			long... allowedSummonerIds) {
 		super(config);
 		setMethod(RequestMethod.PUT);
-		setDtoType(Void.class);
 		setUrlBase("https://global.api.pvp.net/tournament/public/v1/code/" + tournamentCode);
 		addTournamentApiKeyParameter();
 		Map<String, Object> body = new HashMap<String, Object>();

@@ -28,7 +28,7 @@ public class GetSummonerNames extends ApiMethod {
 
 	public GetSummonerNames(ApiConfig config, Region region, String summonerIds) {
 		super(config);
-		setDtoType(new TypeToken<Map<String, String>>() {
+		setReturnType(new TypeToken<Map<String, String>>() {
 		}.getType());
 		setUrlBase(region.getEndpoint() + "/v1.4/summoner/" + summonerIds + "/name");
 		addApiKeyParameter();

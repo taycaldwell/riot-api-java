@@ -27,7 +27,7 @@ public class GetChallengerLeague extends ApiMethod {
 
 	public GetChallengerLeague(ApiConfig config, Region region, QueueType queueType) {
 		super(config);
-		setDtoType(League.class);
+		setReturnType(League.class);
 		setUrlBase(region.getEndpoint() + "/v2.5/league/challenger");
 		add(new UrlParameter("type", queueType.name()));
 		addApiKeyParameter();

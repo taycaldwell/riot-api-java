@@ -27,7 +27,7 @@ public class GetDataMastery extends ApiMethod {
 
 	public GetDataMastery(ApiConfig config, Region region, int id, String locale, String version, MasteryData... masteryData) {
 		super(config);
-		setDtoType(Mastery.class);
+		setReturnType(Mastery.class);
 		setUrlBase("https://global.api.pvp.net/api/lol/static-data/" + region + "/v1.2/mastery/" + id);
 		if (locale != null) {
 			add(new UrlParameter("locale", locale));

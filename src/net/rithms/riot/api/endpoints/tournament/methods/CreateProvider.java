@@ -29,7 +29,7 @@ public class CreateProvider extends ApiMethod {
 	public CreateProvider(ApiConfig config, Region region, String callbackUrl) {
 		super(config);
 		setMethod(RequestMethod.POST);
-		setDtoType(Integer.class);
+		setReturnType(Integer.class);
 		setUrlBase("https://global.api.pvp.net/tournament/public/v1/provider");
 		addTournamentApiKeyParameter();
 		Map<String, Object> body = new HashMap<String, Object>();

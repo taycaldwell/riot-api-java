@@ -27,7 +27,7 @@ public class GetDataRuneList extends ApiMethod {
 
 	public GetDataRuneList(ApiConfig config, Region region, String locale, String version, RuneListData... runeListData) {
 		super(config);
-		setDtoType(RuneList.class);
+		setReturnType(RuneList.class);
 		setUrlBase("https://global.api.pvp.net/api/lol/static-data/" + region + "/v1.2/rune");
 		if (locale != null) {
 			add(new UrlParameter("locale", locale));

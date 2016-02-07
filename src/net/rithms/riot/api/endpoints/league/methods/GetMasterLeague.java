@@ -27,7 +27,7 @@ public class GetMasterLeague extends ApiMethod {
 
 	public GetMasterLeague(ApiConfig config, Region region, QueueType queueType) {
 		super(config);
-		setDtoType(League.class);
+		setReturnType(League.class);
 		setUrlBase(region.getEndpoint() + "/v2.5/league/master");
 		add(new UrlParameter("type", queueType.name()));
 		addApiKeyParameter();

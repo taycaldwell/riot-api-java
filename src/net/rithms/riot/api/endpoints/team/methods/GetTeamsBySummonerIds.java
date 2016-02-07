@@ -30,7 +30,7 @@ public class GetTeamsBySummonerIds extends ApiMethod {
 
 	public GetTeamsBySummonerIds(ApiConfig config, Region region, String summonerIds) {
 		super(config);
-		setDtoType(new TypeToken<Map<String, List<Team>>>() {
+		setReturnType(new TypeToken<Map<String, List<Team>>>() {
 		}.getType());
 		setUrlBase(region.getEndpoint() + "/v2.4/team/by-summoner/" + summonerIds);
 		addApiKeyParameter();

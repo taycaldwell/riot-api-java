@@ -26,7 +26,7 @@ public class GetMatch extends ApiMethod {
 
 	public GetMatch(ApiConfig config, Region region, long matchId, boolean includeTimeline) {
 		super(config);
-		setDtoType(MatchDetail.class);
+		setReturnType(MatchDetail.class);
 		setUrlBase(region.getEndpoint() + "/v2.2/match/" + matchId);
 		if (includeTimeline) {
 			add(new UrlParameter("includeTimeline", includeTimeline));

@@ -36,7 +36,7 @@ public class CreateTournamentCodes extends ApiMethod {
 			SpectatorType spectatorType, String metaData, long... allowedSummonerIds) {
 		super(config);
 		setMethod(RequestMethod.POST);
-		setDtoType(new TypeToken<List<String>>() {
+		setReturnType(new TypeToken<List<String>>() {
 		}.getType());
 		setUrlBase("https://global.api.pvp.net/tournament/public/v1/code");
 		add(new UrlParameter("tournamentId", tournamentId));

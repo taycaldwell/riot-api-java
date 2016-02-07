@@ -25,7 +25,7 @@ public class GetShardStatus extends ApiMethod {
 
 	public GetShardStatus(ApiConfig config, Region region) {
 		super(config);
-		setDtoType(ShardStatus.class);
+		setReturnType(ShardStatus.class);
 		if (region == Region.PBE) {
 			setUrlBase("http://status.pbe.leagueoflegends.com/shards/pbe");
 		} else {

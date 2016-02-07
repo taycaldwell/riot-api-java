@@ -27,7 +27,7 @@ public class GetMatchList extends ApiMethod {
 	public GetMatchList(ApiConfig config, Region region, long summonerId, String championIds, String rankedQueues, String seasons, long beginTime, long endTime,
 			int beginIndex, int endIndex) {
 		super(config);
-		setDtoType(MatchList.class);
+		setReturnType(MatchList.class);
 		setUrlBase(region.getEndpoint() + "/v2.2/matchlist/by-summoner/" + summonerId);
 		if (championIds != null) {
 			add(new UrlParameter("championIds", championIds));

@@ -26,7 +26,7 @@ public class GetMatchForTournament extends ApiMethod {
 
 	public GetMatchForTournament(ApiConfig config, Region region, long matchId, String tournamentCode, boolean includeTimeline) {
 		super(config);
-		setDtoType(MatchDetail.class);
+		setReturnType(MatchDetail.class);
 		setUrlBase(region.getEndpoint() + "/v2.2/match/for-tournament/" + matchId);
 		add(new UrlParameter("tournamentCode", tournamentCode));
 		if (includeTimeline) {

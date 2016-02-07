@@ -29,7 +29,7 @@ public class GetRunePages extends ApiMethod {
 
 	public GetRunePages(ApiConfig config, Region region, String summonerIds) {
 		super(config);
-		setDtoType(new TypeToken<Map<String, RunePages>>() {
+		setReturnType(new TypeToken<Map<String, RunePages>>() {
 		}.getType());
 		setUrlBase(region.getEndpoint() + "/v1.4/summoner/" + summonerIds + "/runes");
 		addApiKeyParameter();
