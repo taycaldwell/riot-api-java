@@ -35,11 +35,9 @@ public class ApiMethod implements RequestObject {
 	private RequestMethod method = RequestMethod.GET;
 	private String body = null;
 	private Type returnType = null;
-	private long l; // DEBUG
 
 	protected ApiMethod(ApiConfig config) {
 		this.config = config;
-		l = System.currentTimeMillis(); // DEBUG
 	}
 
 	protected void add(HttpHeadParameter p) {
@@ -97,10 +95,6 @@ public class ApiMethod implements RequestObject {
 		return url.toString();
 	}
 
-	// public void setDtoType(Class<?> dtoClass) {
-	// this.dtoClass = dtoClass;
-	// }
-
 	public void setReturnType(Type returnType) {
 		this.returnType = returnType;
 	}
@@ -115,8 +109,6 @@ public class ApiMethod implements RequestObject {
 
 	@Override
 	public String toString() {
-		// return getClass().getSimpleName();
-		long running = System.currentTimeMillis() - l; // DEBUG
-		return getClass().getSimpleName() + " (running since " + running + " ms)"; // DEBUG
+		return getClass().getSimpleName();
 	}
 }

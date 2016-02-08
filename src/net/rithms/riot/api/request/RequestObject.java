@@ -22,17 +22,18 @@ import java.util.List;
 import net.rithms.riot.api.HttpHeadParameter;
 
 /**
- * The interface for objects that can be handled by
+ * The interface for objects that can be handled by requests. These objects provide information about the request to be made, such as the
+ * URL and a few HTTP parameters.
  * 
  * @author Daniel 'Linnun' Figge
  * @see AsyncRequest
  */
 public interface RequestObject {
-	
+
 	public String getBody();
-	
+
 	public List<HttpHeadParameter> getHttpHeadParameters();
-	
+
 	public RequestMethod getMethod();
 
 	public Type getReturnType();
