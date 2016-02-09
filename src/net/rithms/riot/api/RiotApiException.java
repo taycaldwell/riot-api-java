@@ -78,7 +78,7 @@ public class RiotApiException extends Exception {
 		case METHOD_NOT_ALLOWED:
 			return "Method not allowed";
 		case PARSE_FAILURE:
-			return "Failed to parse Riot's JSON response";
+			return "Failed to parse the JSON response";
 		case UNPROCESSABLE_ENTITY:
 			return "Summoner has an entry, but hasn't played since the start of 2013";
 		case RATE_LIMITED:
@@ -86,13 +86,13 @@ public class RiotApiException extends Exception {
 		case SERVER_ERROR:
 			return "Internal server error";
 		case TIMEOUT_EXCEPTION:
-			return "The request timed out";
+			return "Request timed out";
 		case UNAUTHORIZED:
 			return "Unauthorized";
 		case UNAVAILABLE:
 			return "Service unavailable";
 		default:
-			return "An unknown API error occured: " + errorCode;
+			return "Unknown API error (Code " + errorCode + ")";
 		}
 	}
 }

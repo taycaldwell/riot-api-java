@@ -158,19 +158,19 @@ public class Request {
 		} catch (RiotApiException e) {
 			setException(e);
 			setState(RequestState.Failed);
-			RiotApi.log.log(Level.FINE, "RiotApiException in Request", e);
+			RiotApi.log.fine("[" + object + "] Request > RiotApiException: " + e.getMessage());
 			throw e;
 		} catch (SocketTimeoutException e) {
 			RiotApiException exception = new RiotApiException(RiotApiException.TIMEOUT_EXCEPTION);
 			setException(exception);
 			setState(RequestState.TimeOut);
-			RiotApi.log.log(Level.FINE, "Request Timeout", e);
+			RiotApi.log.fine("[" + object + "] Request > Timeout");
 			throw exception;
 		} catch (IOException e) {
 			RiotApiException exception = new RiotApiException(RiotApiException.IOEXCEPTION);
 			setException(exception);
 			setState(RequestState.Failed);
-			RiotApi.log.log(Level.SEVERE, "IOException in Request", e);
+			RiotApi.log.log(Level.SEVERE, "Request > IOException", e);
 			throw exception;
 		} finally {
 			if (connection != null) {
