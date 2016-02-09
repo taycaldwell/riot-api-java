@@ -34,7 +34,8 @@ public class RiotApiException extends Exception {
 	public static final int UNAVAILABLE = 503;
 	public static final int PARSE_FAILURE = 600;
 	public static final int IOEXCEPTION = 601;
-	public static final int TIMEOUT_EXCEPTION = 602;
+	public static final int NULLPOINTEREXCEPTION = 602;
+	public static final int TIMEOUT_EXCEPTION = 603;
 
 	private final int errorCode;
 
@@ -77,6 +78,8 @@ public class RiotApiException extends Exception {
 			return "I/O Exception thrown";
 		case METHOD_NOT_ALLOWED:
 			return "Method not allowed";
+		case NULLPOINTEREXCEPTION:
+			return "NullPointerException thrown";
 		case PARSE_FAILURE:
 			return "Failed to parse the JSON response";
 		case UNPROCESSABLE_ENTITY:

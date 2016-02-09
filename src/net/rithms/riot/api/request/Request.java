@@ -24,6 +24,7 @@ import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.logging.Level;
 
 import com.google.gson.Gson;
@@ -116,7 +117,7 @@ public class Request {
 			setTimeout();
 			connection.setDoInput(true);
 			connection.setInstanceFollowRedirects(false);
-			connection.setRequestMethod(object.getMethod().name());
+			connection.setRequestMethod(getMethod().name());
 			for (HttpHeadParameter p : object.getHttpHeadParameters()) {
 				connection.setRequestProperty(p.getKey(), p.getValue());
 			}
@@ -170,7 +171,13 @@ public class Request {
 			RiotApiException exception = new RiotApiException(RiotApiException.IOEXCEPTION);
 			setException(exception);
 			setState(RequestState.Failed);
-			RiotApi.log.log(Level.SEVERE, "Request > IOException", e);
+			RiotApi.log.log(Level.SEVERE, "[" + object + "] Request > IOException", e);
+			throw exception;
+		} catch (NullPointerException e) {
+			RiotApiException exception = new RiotApiException(RiotApiException.NULLPOINTEREXCEPTION);
+			setException(exception);
+			setState(RequestState.Failed);
+			RiotApi.log.log(Level.SEVERE, "[" + object + "] Request > NullPointerException", e);
 			throw exception;
 		} finally {
 			if (connection != null) {
@@ -240,6 +247,12 @@ public class Request {
 	 */
 	public RiotApiException getException() {
 		return exception;
+	}
+
+	private RequestMethod getMethod() {
+		RequestMethod method = object.getMethod();
+		Objects.requireNonNull(method);
+		return method;
 	}
 
 	/**

@@ -19,6 +19,8 @@ package net.rithms.riot.api.request;
 import java.lang.reflect.Type;
 import java.util.List;
 
+import com.google.gson.Gson;
+
 import net.rithms.riot.api.HttpHeadParameter;
 
 /**
@@ -30,13 +32,38 @@ import net.rithms.riot.api.HttpHeadParameter;
  */
 public interface RequestObject {
 
+	/**
+	 * Returns the HTTP body that should be sent with the request. Returns {@code null} if no body should be used.
+	 * 
+	 * @return HTTP body
+	 */
 	public String getBody();
 
+	/**
+	 * Returns a list of parameters for the HTTP head to be sent with the request.
+	 * 
+	 * @return List of paramters for the HTTP head
+	 */
 	public List<HttpHeadParameter> getHttpHeadParameters();
 
+	/**
+	 * Returns the HTTP method that should be used for the request.
+	 * 
+	 * @return HTTP method
+	 */
 	public RequestMethod getMethod();
 
+	/**
+	 * Returns the return type that the request's response should be parsed to using {@link Gson}.
+	 * 
+	 * @return Return type
+	 */
 	public Type getReturnType();
 
+	/**
+	 * Returns the URL for the request.
+	 * 
+	 * @return URL
+	 */
 	public String getUrl();
 }
