@@ -50,6 +50,7 @@ public class Request {
 	public static final int CODE_ERROR_UNAUTHORIZED = 401;
 	public static final int CODE_ERROR_FORBIDDEN = 403;
 	public static final int CODE_ERROR_NOT_FOUND = 404;
+	public static final int CODE_ERROR_METHOD_NOT_ALLOWED = 405;
 	public static final int CODE_ERROR_UNPROCESSABLE_ENTITY = 422;
 	public static final int CODE_ERROR_RATE_LIMITED = 429;
 	public static final int CODE_ERROR_SERVER_ERROR = 500;

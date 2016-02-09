@@ -22,11 +22,12 @@ package net.rithms.riot.api;
 public class RiotApiException extends Exception {
 
 	private static final long serialVersionUID = 2658256159686373725L;
-	
+
 	public static final int BAD_REQUEST = 400;
 	public static final int UNAUTHORIZED = 401;
 	public static final int FORBIDDEN = 403;
 	public static final int DATA_NOT_FOUND = 404;
+	public static final int METHOD_NOT_ALLOWED = 405;
 	public static final int UNPROCESSABLE_ENTITY = 422;
 	public static final int RATE_LIMITED = 429;
 	public static final int SERVER_ERROR = 500;
@@ -74,6 +75,8 @@ public class RiotApiException extends Exception {
 			return "Requested data not found";
 		case IOEXCEPTION:
 			return "I/O Exception thrown";
+		case METHOD_NOT_ALLOWED:
+			return "Method not allowed";
 		case PARSE_FAILURE:
 			return "Failed to parse Riot's JSON response";
 		case UNPROCESSABLE_ENTITY:
