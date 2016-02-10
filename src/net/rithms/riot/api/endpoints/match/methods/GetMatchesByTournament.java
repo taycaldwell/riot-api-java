@@ -21,13 +21,14 @@ import java.util.List;
 import com.google.gson.reflect.TypeToken;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.ApiMethod;
+import net.rithms.riot.api.endpoints.match.MatchApiMethod;
 import net.rithms.riot.constant.Region;
 
-public class GetMatchesByTournament extends ApiMethod {
+public class GetMatchesByTournament extends MatchApiMethod {
 
 	public GetMatchesByTournament(ApiConfig config, Region region, String tournamentCode) {
 		super(config);
+		setRegion(region);
 		setReturnType(new TypeToken<List<Long>>() {
 		}.getType());
 		setUrlBase(region.getEndpoint() + "/v2.2/match/by-tournament/" + tournamentCode + "/ids");

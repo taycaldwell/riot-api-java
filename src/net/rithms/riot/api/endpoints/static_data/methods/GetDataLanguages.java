@@ -21,13 +21,14 @@ import java.util.List;
 import com.google.gson.reflect.TypeToken;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.ApiMethod;
+import net.rithms.riot.api.endpoints.static_data.StaticDataApiMethod;
 import net.rithms.riot.constant.Region;
 
-public class GetDataLanguages extends ApiMethod {
+public class GetDataLanguages extends StaticDataApiMethod {
 
 	public GetDataLanguages(ApiConfig config, Region region) {
 		super(config);
+		setRegion(region);
 		setReturnType(new TypeToken<List<String>>() {
 		}.getType());
 		setUrlBase("https://global.api.pvp.net/api/lol/static-data/" + region + "/v1.2/languages");

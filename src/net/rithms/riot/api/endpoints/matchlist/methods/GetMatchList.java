@@ -17,16 +17,17 @@
 package net.rithms.riot.api.endpoints.matchlist.methods;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.ApiMethod;
 import net.rithms.riot.api.UrlParameter;
+import net.rithms.riot.api.endpoints.matchlist.MatchListApiMethod;
 import net.rithms.riot.api.endpoints.matchlist.dto.MatchList;
 import net.rithms.riot.constant.Region;
 
-public class GetMatchList extends ApiMethod {
+public class GetMatchList extends MatchListApiMethod {
 
 	public GetMatchList(ApiConfig config, Region region, long summonerId, String championIds, String rankedQueues, String seasons, long beginTime, long endTime,
 			int beginIndex, int endIndex) {
 		super(config);
+		setRegion(region);
 		setReturnType(MatchList.class);
 		setUrlBase(region.getEndpoint() + "/v2.2/matchlist/by-summoner/" + summonerId);
 		if (championIds != null) {

@@ -20,13 +20,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.ApiMethod;
+import net.rithms.riot.api.endpoints.tournament.TournamentApiMethod;
 import net.rithms.riot.api.request.RequestMethod;
 import net.rithms.riot.constant.PickType;
 import net.rithms.riot.constant.SpectatorType;
 import net.rithms.riot.constant.TournamentMap;
 
-public class UpdateTournamentCode extends ApiMethod {
+public class UpdateTournamentCode extends TournamentApiMethod {
 
 	public UpdateTournamentCode(ApiConfig config, String tournamentCode, TournamentMap mapType, PickType pickType, SpectatorType spectatorType,
 			long... allowedSummonerIds) {

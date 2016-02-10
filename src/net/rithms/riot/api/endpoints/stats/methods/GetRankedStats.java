@@ -17,16 +17,17 @@
 package net.rithms.riot.api.endpoints.stats.methods;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.ApiMethod;
 import net.rithms.riot.api.UrlParameter;
+import net.rithms.riot.api.endpoints.stats.StatsApiMethod;
 import net.rithms.riot.api.endpoints.stats.dto.RankedStats;
 import net.rithms.riot.constant.Region;
 import net.rithms.riot.constant.Season;
 
-public class GetRankedStats extends ApiMethod {
+public class GetRankedStats extends StatsApiMethod {
 
 	public GetRankedStats(ApiConfig config, Region region, Season season, long summonerId) {
 		super(config);
+		setRegion(region);
 		setReturnType(RankedStats.class);
 		setUrlBase(region.getEndpoint() + "/v1.3/stats/by-summoner/" + summonerId + "/ranked");
 		if (season != null) {

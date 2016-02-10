@@ -17,16 +17,17 @@
 package net.rithms.riot.api.endpoints.static_data.methods;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.ApiMethod;
 import net.rithms.riot.api.UrlParameter;
+import net.rithms.riot.api.endpoints.static_data.StaticDataApiMethod;
 import net.rithms.riot.api.endpoints.static_data.constant.MasteryData;
 import net.rithms.riot.api.endpoints.static_data.dto.Mastery;
 import net.rithms.riot.constant.Region;
 
-public class GetDataMastery extends ApiMethod {
+public class GetDataMastery extends StaticDataApiMethod {
 
 	public GetDataMastery(ApiConfig config, Region region, int id, String locale, String version, MasteryData... masteryData) {
 		super(config);
+		setRegion(region);
 		setReturnType(Mastery.class);
 		setUrlBase("https://global.api.pvp.net/api/lol/static-data/" + region + "/v1.2/mastery/" + id);
 		if (locale != null) {

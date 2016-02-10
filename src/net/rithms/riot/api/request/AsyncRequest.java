@@ -54,7 +54,7 @@ public class AsyncRequest extends Request implements Runnable {
 	 * @see ApiConfig
 	 * @see ApiMethod
 	 */
-	public AsyncRequest(ApiConfig config, RequestObject object) {
+	public AsyncRequest(ApiConfig config, ApiMethod object) {
 		super();
 		init(config, object);
 	}
@@ -254,7 +254,7 @@ public class AsyncRequest extends Request implements Runnable {
 				listener.onRequestSucceeded(this);
 			} else if (state == RequestState.Failed) {
 				listener.onRequestFailed(getException());
-			} else if (state == RequestState.TimeOut) {
+			} else if (state == RequestState.Timeout) {
 				listener.onRequestTimeout(this);
 			}
 		}

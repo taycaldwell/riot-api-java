@@ -21,14 +21,15 @@ import java.util.Map;
 import com.google.gson.reflect.TypeToken;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.ApiMethod;
+import net.rithms.riot.api.endpoints.team.TeamApiMethod;
 import net.rithms.riot.api.endpoints.team.dto.Team;
 import net.rithms.riot.constant.Region;
 
-public class GetTeamsByTeamIds extends ApiMethod {
+public class GetTeamsByTeamIds extends TeamApiMethod {
 
 	public GetTeamsByTeamIds(ApiConfig config, Region region, String teamIds) {
 		super(config);
+		setRegion(region);
 		setReturnType(new TypeToken<Map<String, Team>>() {
 		}.getType());
 		setUrlBase(region.getEndpoint() + "/v2.4/team/" + teamIds);

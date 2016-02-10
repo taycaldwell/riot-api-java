@@ -28,6 +28,7 @@ public class RiotApiException extends Exception {
 	public static final int FORBIDDEN = 403;
 	public static final int DATA_NOT_FOUND = 404;
 	public static final int METHOD_NOT_ALLOWED = 405;
+	public static final int UNSUPPORTED_MEDIA_TYPE = 415;
 	public static final int UNPROCESSABLE_ENTITY = 422;
 	public static final int RATE_LIMITED = 429;
 	public static final int SERVER_ERROR = 500;
@@ -40,14 +41,26 @@ public class RiotApiException extends Exception {
 	private final int errorCode;
 
 	/**
+	 * Constructs a {@code RiotApiException} with the specified error code and error message.
+	 *
+	 * @param errorCode
+	 *            Error code
+	 * @param message
+	 *            Error message
+	 */
+	public RiotApiException(final int errorCode, String message) {
+		super(message);
+		this.errorCode = errorCode;
+	}
+
+	/**
 	 * Constructs a {@code RiotApiException} with the specified error code.
 	 *
 	 * @param errorCode
 	 *            Error code
 	 */
 	public RiotApiException(final int errorCode) {
-		super(getMessage(errorCode));
-		this.errorCode = errorCode;
+		this(errorCode, getMessage(errorCode));
 	}
 
 	/**
@@ -84,6 +97,8 @@ public class RiotApiException extends Exception {
 			return "Failed to parse the JSON response";
 		case UNPROCESSABLE_ENTITY:
 			return "Summoner has an entry, but hasn't played since the start of 2013";
+		case UNSUPPORTED_MEDIA_TYPE:
+			return "Unsupported media type";
 		case RATE_LIMITED:
 			return "Rate limit exceeded";
 		case SERVER_ERROR:

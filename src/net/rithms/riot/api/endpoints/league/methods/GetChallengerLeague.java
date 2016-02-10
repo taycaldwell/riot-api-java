@@ -17,16 +17,17 @@
 package net.rithms.riot.api.endpoints.league.methods;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.ApiMethod;
 import net.rithms.riot.api.UrlParameter;
+import net.rithms.riot.api.endpoints.league.LeagueApiMethod;
 import net.rithms.riot.api.endpoints.league.dto.League;
 import net.rithms.riot.constant.QueueType;
 import net.rithms.riot.constant.Region;
 
-public class GetChallengerLeague extends ApiMethod {
+public class GetChallengerLeague extends LeagueApiMethod {
 
 	public GetChallengerLeague(ApiConfig config, Region region, QueueType queueType) {
 		super(config);
+		setRegion(region);
 		setReturnType(League.class);
 		setUrlBase(region.getEndpoint() + "/v2.5/league/challenger");
 		add(new UrlParameter("type", queueType.name()));

@@ -24,16 +24,17 @@ import java.util.logging.Level;
 import com.google.gson.reflect.TypeToken;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.ApiMethod;
 import net.rithms.riot.api.RiotApi;
+import net.rithms.riot.api.endpoints.summoner.SummonerApiMethod;
 import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
 import net.rithms.riot.constant.Region;
 import net.rithms.util.Convert;
 
-public class GetSummonersByName extends ApiMethod {
+public class GetSummonersByName extends SummonerApiMethod {
 
 	public GetSummonersByName(ApiConfig config, Region region, String summonerNames) {
 		super(config);
+		setRegion(region);
 		summonerNames = Convert.normalizeSummonerName(summonerNames);
 		setReturnType(new TypeToken<Map<String, Summoner>>() {
 		}.getType());

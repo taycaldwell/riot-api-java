@@ -21,14 +21,15 @@ import java.util.Map;
 import com.google.gson.reflect.TypeToken;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.ApiMethod;
+import net.rithms.riot.api.endpoints.summoner.SummonerApiMethod;
 import net.rithms.riot.api.endpoints.summoner.dto.MasteryPages;
 import net.rithms.riot.constant.Region;
 
-public class GetMasteryPages extends ApiMethod {
+public class GetMasteryPages extends SummonerApiMethod {
 
 	public GetMasteryPages(ApiConfig config, Region region, String summonerIds) {
 		super(config);
+		setRegion(region);
 		setReturnType(new TypeToken<Map<String, MasteryPages>>() {
 		}.getType());
 		setUrlBase(region.getEndpoint() + "/v1.4/summoner/" + summonerIds + "/masteries");

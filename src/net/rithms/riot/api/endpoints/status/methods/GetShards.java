@@ -21,10 +21,10 @@ import java.util.List;
 import com.google.gson.reflect.TypeToken;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.ApiMethod;
+import net.rithms.riot.api.endpoints.status.StatusApiMethod;
 import net.rithms.riot.api.endpoints.status.dto.Shard;
 
-public class GetShards extends ApiMethod {
+public class GetShards extends StatusApiMethod {
 
 	public GetShards(ApiConfig config) {
 		super(config);

@@ -32,7 +32,7 @@ public enum Region {
 	RU("ru.api.pvp.net", "ru"),
 	TR("tr.api.pvp.net", "tr"),
 	GLOBAL("global.api.pvp.net", "global");
-	
+
 	private String endpoint;
 	private String region;
 
@@ -44,6 +44,14 @@ public enum Region {
 		}
 		RiotApi.log.warning("Unknown region: " + name);
 		throw new RiotStringNotFoundException("Could not find region " + name);
+	}
+
+	public static Region getRegionByPlatformId(PlatformId platformId) {
+		try {
+			return getRegionByName(platformId.getName());
+		} catch (RiotStringNotFoundException e) {
+			return null;
+		}
 	}
 
 	Region(String endpoint, String region) {

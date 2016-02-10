@@ -24,11 +24,13 @@ import java.util.Map;
 import com.google.gson.Gson;
 
 import net.rithms.riot.api.request.RequestMethod;
-import net.rithms.riot.api.request.RequestObject;
+import net.rithms.riot.constant.Region;
 
-public class ApiMethod implements RequestObject {
+abstract public class ApiMethod {
 
-	protected final ApiConfig config;
+	private final ApiConfig config;
+	private final String service;
+	private Region region = null;
 	private String urlBase;
 	private final List<UrlParameter> urlParameters = new LinkedList<UrlParameter>();
 	private final List<HttpHeadParameter> httpHeadParameters = new LinkedList<HttpHeadParameter>();
@@ -36,8 +38,9 @@ public class ApiMethod implements RequestObject {
 	private String body = null;
 	private Type returnType = null;
 
-	protected ApiMethod(ApiConfig config) {
+	protected ApiMethod(ApiConfig config, String service) {
 		this.config = config;
+		this.service = service;
 	}
 
 	protected void add(HttpHeadParameter p) {
@@ -64,27 +67,30 @@ public class ApiMethod implements RequestObject {
 		body = new Gson().toJson(map);
 	}
 
-	@Override
 	public String getBody() {
 		return body;
 	}
 
-	@Override
+	public Region getRegion() {
+		return region;
+	}
+
 	public Type getReturnType() {
 		return returnType;
 	}
 
-	@Override
 	public List<HttpHeadParameter> getHttpHeadParameters() {
 		return httpHeadParameters;
 	}
 
-	@Override
 	public RequestMethod getMethod() {
 		return method;
 	}
 
-	@Override
+	public String getService() {
+		return service;
+	}
+
 	public String getUrl() {
 		StringBuilder url = new StringBuilder(urlBase);
 		char connector = '?';
@@ -93,6 +99,10 @@ public class ApiMethod implements RequestObject {
 			connector = '&';
 		}
 		return url.toString();
+	}
+
+	public void setRegion(Region region) {
+		this.region = region;
 	}
 
 	public void setReturnType(Type returnType) {

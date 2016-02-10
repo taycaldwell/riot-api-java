@@ -17,16 +17,17 @@
 package net.rithms.riot.api.endpoints.static_data.methods;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.ApiMethod;
 import net.rithms.riot.api.UrlParameter;
+import net.rithms.riot.api.endpoints.static_data.StaticDataApiMethod;
 import net.rithms.riot.api.endpoints.static_data.constant.ChampData;
 import net.rithms.riot.api.endpoints.static_data.dto.Champion;
 import net.rithms.riot.constant.Region;
 
-public class GetDataChampion extends ApiMethod {
+public class GetDataChampion extends StaticDataApiMethod {
 
 	public GetDataChampion(ApiConfig config, Region region, int id, String locale, String version, ChampData... champData) {
 		super(config);
+		setRegion(region);
 		setReturnType(Champion.class);
 		setUrlBase("https://global.api.pvp.net/api/lol/static-data/" + region + "/v1.2/champion/" + id);
 		if (locale != null) {

@@ -20,10 +20,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.ApiMethod;
+import net.rithms.riot.api.endpoints.tournament.TournamentApiMethod;
 import net.rithms.riot.api.request.RequestMethod;
 
-public class CreateTournament extends ApiMethod {
+public class CreateTournament extends TournamentApiMethod {
 
 	public CreateTournament(ApiConfig config, String tournamentName, int providerId) {
 		super(config);

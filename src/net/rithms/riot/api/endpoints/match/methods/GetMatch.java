@@ -17,15 +17,16 @@
 package net.rithms.riot.api.endpoints.match.methods;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.ApiMethod;
 import net.rithms.riot.api.UrlParameter;
+import net.rithms.riot.api.endpoints.match.MatchApiMethod;
 import net.rithms.riot.api.endpoints.match.dto.MatchDetail;
 import net.rithms.riot.constant.Region;
 
-public class GetMatch extends ApiMethod {
+public class GetMatch extends MatchApiMethod {
 
 	public GetMatch(ApiConfig config, Region region, long matchId, boolean includeTimeline) {
 		super(config);
+		setRegion(region);
 		setReturnType(MatchDetail.class);
 		setUrlBase(region.getEndpoint() + "/v2.2/match/" + matchId);
 		if (includeTimeline) {

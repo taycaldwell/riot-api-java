@@ -17,16 +17,17 @@
 package net.rithms.riot.api.endpoints.static_data.methods;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.ApiMethod;
 import net.rithms.riot.api.UrlParameter;
+import net.rithms.riot.api.endpoints.static_data.StaticDataApiMethod;
 import net.rithms.riot.api.endpoints.static_data.constant.SpellData;
 import net.rithms.riot.api.endpoints.static_data.dto.SummonerSpell;
 import net.rithms.riot.constant.Region;
 
-public class GetDataSummonerSpell extends ApiMethod {
+public class GetDataSummonerSpell extends StaticDataApiMethod {
 
 	public GetDataSummonerSpell(ApiConfig config, Region region, int id, String locale, String version, SpellData... spellData) {
 		super(config);
+		setRegion(region);
 		setReturnType(SummonerSpell.class);
 		setUrlBase("https://global.api.pvp.net/api/lol/static-data/" + region + "/v1.2/summoner-spell/" + id);
 		if (locale != null) {

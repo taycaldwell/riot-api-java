@@ -17,15 +17,16 @@
 package net.rithms.riot.api.endpoints.match.methods;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.ApiMethod;
 import net.rithms.riot.api.UrlParameter;
+import net.rithms.riot.api.endpoints.match.MatchApiMethod;
 import net.rithms.riot.api.endpoints.match.dto.MatchDetail;
 import net.rithms.riot.constant.Region;
 
-public class GetMatchForTournament extends ApiMethod {
+public class GetMatchForTournament extends MatchApiMethod {
 
 	public GetMatchForTournament(ApiConfig config, Region region, long matchId, String tournamentCode, boolean includeTimeline) {
 		super(config);
+		setRegion(region);
 		setReturnType(MatchDetail.class);
 		setUrlBase(region.getEndpoint() + "/v2.2/match/for-tournament/" + matchId);
 		add(new UrlParameter("tournamentCode", tournamentCode));

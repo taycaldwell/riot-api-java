@@ -17,13 +17,15 @@
 package net.rithms.riot.api.endpoints.championmastery.methods;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.ApiMethod;
+import net.rithms.riot.api.endpoints.championmastery.ChampionMasteryApiMethod;
 import net.rithms.riot.constant.PlatformId;
+import net.rithms.riot.constant.Region;
 
-public class GetChampionMasteryScore extends ApiMethod {
+public class GetChampionMasteryScore extends ChampionMasteryApiMethod {
 
 	public GetChampionMasteryScore(ApiConfig config, PlatformId platformId, long summonerId) {
 		super(config);
+		setRegion(Region.getRegionByPlatformId(platformId));
 		setReturnType(Integer.class);
 		setUrlBase("https://" + platformId.getName() + ".api.pvp.net/championmastery/location/" + platformId.getId() + "/player/" + summonerId + "/score");
 		addApiKeyParameter();

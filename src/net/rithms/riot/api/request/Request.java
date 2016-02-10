@@ -24,7 +24,9 @@ import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
 import java.net.URL;
+import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 
 import com.google.gson.Gson;
@@ -33,9 +35,12 @@ import com.google.gson.JsonSyntaxException;
 import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.ApiMethod;
 import net.rithms.riot.api.HttpHeadParameter;
-import net.rithms.riot.api.RateLimitException;
 import net.rithms.riot.api.RiotApi;
 import net.rithms.riot.api.RiotApiException;
+import net.rithms.riot.api.request.ratelimit.RateLimit;
+import net.rithms.riot.api.request.ratelimit.RateLimitException;
+import net.rithms.riot.api.request.ratelimit.RateLimitList;
+import net.rithms.riot.api.request.ratelimit.RespectedRateLimitException;
 
 /**
  * This class is used to fire synchronous call at the Riot Api. You should not construct these requests manually. To fire synchronous
@@ -52,16 +57,19 @@ public class Request {
 	public static final int CODE_ERROR_FORBIDDEN = 403;
 	public static final int CODE_ERROR_NOT_FOUND = 404;
 	public static final int CODE_ERROR_METHOD_NOT_ALLOWED = 405;
+	public static final int CODE_ERROR_UNSUPPORTED_MEDIA_TYPE = 415;
 	public static final int CODE_ERROR_UNPROCESSABLE_ENTITY = 422;
 	public static final int CODE_ERROR_RATE_LIMITED = 429;
 	public static final int CODE_ERROR_SERVER_ERROR = 500;
 	public static final int CODE_ERROR_SERVICE_UNAVAILABLE = 503;
 
+	private static final Map<String, RateLimitList> rateLimitMap = new ConcurrentHashMap<String, RateLimitList>();
+
 	private RequestState state = RequestState.Waiting;
 	private RequestResponse response = null;
 
 	protected ApiConfig config;
-	protected RequestObject object;
+	protected ApiMethod object;
 	protected HttpURLConnection connection = null;
 	private RiotApiException exception = null;
 
@@ -75,7 +83,7 @@ public class Request {
 	 * @see ApiConfig
 	 * @see ApiMethod
 	 */
-	public Request(ApiConfig config, RequestObject object) throws RateLimitException, RiotApiException {
+	public Request(ApiConfig config, ApiMethod object) throws RateLimitException, RiotApiException {
 		init(config, object);
 		execute();
 	}
@@ -112,6 +120,7 @@ public class Request {
 	protected synchronized void execute() throws RiotApiException, RateLimitException {
 		setState(RequestState.Waiting);
 		try {
+			respectRateLimit();
 			URL url = new URL(object.getUrl());
 			connection = (HttpURLConnection) url.openConnection();
 			setTimeout();
@@ -137,6 +146,7 @@ public class Request {
 				String rateLimitType = connection.getHeaderField("X-Rate-Limit-Type");
 				if (retryAfterString != null) {
 					int retryAfter = Integer.parseInt(retryAfterString);
+					setRetryAfter(rateLimitType, retryAfter);
 					throw new RateLimitException(retryAfter, rateLimitType);
 				} else {
 					throw new RateLimitException(0, rateLimitType);
@@ -156,6 +166,11 @@ public class Request {
 			}
 			setResponse(new RequestResponse(connection.getResponseCode(), responseBodyBuilder.toString(), connection.getHeaderFields()));
 			setState(RequestState.Succeeded);
+		} catch (RateLimitException e) {
+			setException(e);
+			setState(RequestState.Failed);
+			RiotApi.log.fine("[" + object + "] Request > RateLimitException: " + e.getMessage());
+			throw e;
 		} catch (RiotApiException e) {
 			setException(e);
 			setState(RequestState.Failed);
@@ -164,7 +179,7 @@ public class Request {
 		} catch (SocketTimeoutException e) {
 			RiotApiException exception = new RiotApiException(RiotApiException.TIMEOUT_EXCEPTION);
 			setException(exception);
-			setState(RequestState.TimeOut);
+			setState(RequestState.Timeout);
 			RiotApi.log.fine("[" + object + "] Request > Timeout");
 			throw exception;
 		} catch (IOException e) {
@@ -276,7 +291,7 @@ public class Request {
 	 * @see ApiConfig
 	 * @see ApiMethod
 	 */
-	protected void init(ApiConfig config, RequestObject object) {
+	protected void init(ApiConfig config, ApiMethod object) {
 		this.config = config;
 		this.object = object;
 	}
@@ -318,6 +333,14 @@ public class Request {
 		return state == RequestState.Waiting;
 	}
 
+	private boolean isRateLimitExceeded() {
+		if (!rateLimitMap.containsKey(config.getKey())) {
+			return false;
+		}
+		RateLimitList rateLimitList = rateLimitMap.get(config.getKey());
+		return rateLimitList.isLimitExceeded(object.getService(), object.getRegion());
+	}
+
 	/**
 	 * Returns {@code true} if this request completed successfully.
 	 * 
@@ -333,7 +356,7 @@ public class Request {
 	 * @return {@code true} if this request timed out before it completed
 	 */
 	public boolean isTimeOut() {
-		return state == RequestState.TimeOut;
+		return state == RequestState.Timeout;
 	}
 
 	/**
@@ -352,6 +375,19 @@ public class Request {
 		}
 	}
 
+	private void respectRateLimit() throws RespectedRateLimitException {
+		if (!config.getRespectRateLimit()) {
+			return;
+		}
+		if (isRateLimitExceeded()) {
+			RateLimit rateLimit = rateLimitMap.get(config.getKey()).getRateLimit(object.getService(), object.getRegion());
+			if (rateLimit == null) {
+				return;
+			}
+			throw new RespectedRateLimitException(rateLimit.getRetryAfter(), rateLimit.getType());
+		}
+	}
+
 	/**
 	 * Sets the Exception that was thrown when executing this request
 	 * 
@@ -365,6 +401,14 @@ public class Request {
 
 	private void setResponse(RequestResponse response) {
 		this.response = response;
+	}
+
+	private void setRetryAfter(String rateLimitType, int retryAfter) {
+		String key = config.getKey();
+		if (!rateLimitMap.containsKey(key)) {
+			rateLimitMap.put(key, new RateLimitList());
+		}
+		rateLimitMap.get(key).setRateLimit(object.getService(), object.getRegion(), rateLimitType, retryAfter);
 	}
 
 	/**

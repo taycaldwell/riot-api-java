@@ -57,7 +57,7 @@ public class AsyncRequestPool {
 		awaitAll();
 	}
 
-	public int clearPool() {
+	public synchronized int clearPool() {
 		int clearedFromPool = 0;
 		Iterator<AsyncRequest> iterator = pool.iterator();
 		while (iterator.hasNext()) {

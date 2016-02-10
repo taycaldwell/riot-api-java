@@ -17,14 +17,15 @@
 package net.rithms.riot.api.endpoints.featured_game.methods;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.ApiMethod;
+import net.rithms.riot.api.endpoints.featured_game.FeaturedGameApiMethod;
 import net.rithms.riot.api.endpoints.featured_game.dto.FeaturedGames;
 import net.rithms.riot.constant.Region;
 
-public class GetFeaturedGames extends ApiMethod {
+public class GetFeaturedGames extends FeaturedGameApiMethod {
 
 	public GetFeaturedGames(ApiConfig config, Region region) {
 		super(config);
+		setRegion(region);
 		setReturnType(FeaturedGames.class);
 		setUrlBase("https://" + region + ".api.pvp.net/observer-mode/rest/featured");
 		addApiKeyParameter();

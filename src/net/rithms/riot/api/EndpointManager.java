@@ -22,6 +22,7 @@ import java.util.List;
 import net.rithms.riot.api.request.AsyncRequest;
 import net.rithms.riot.api.request.Request;
 import net.rithms.riot.api.request.RequestListener;
+import net.rithms.riot.api.request.ratelimit.RateLimitException;
 
 public class EndpointManager {
 

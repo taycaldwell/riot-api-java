@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.api;
+package net.rithms.riot.api.request.ratelimit;
+
+import net.rithms.riot.api.RiotApiException;
 
 /**
  * Thrown when the Riot Api returns error code 429 (rate limit exceeded). This can either mean, that the limits of your api key have been
@@ -37,16 +39,25 @@ public class RateLimitException extends RiotApiException {
 	 *            The type of rate limit that has been exceeded
 	 */
 	public RateLimitException(final int retryAfter, final String rateLimitType) {
-		super(RATE_LIMITED);
+		super(RATE_LIMITED, getMessage(RATE_LIMITED) + " (Retry After: " + retryAfter + ")");
 		this.retryAfter = retryAfter;
 		this.rateLimitType = rateLimitType;
 	}
 
 	/**
-	 * Constructs a {@code RateLimitException} without specifying details.
+	 * Constructs a {@code RateLimitException} with the specified attributes.
+	 * 
+	 * @param message
+	 *            Error message
+	 * @param retryAfter
+	 *            The time in seconds to wait before the api key limits get refreshed
+	 * @param rateLimitType
+	 *            The type of rate limit that has been exceeded
 	 */
-	public RateLimitException() {
-		this(0, null);
+	protected RateLimitException(final String message, final int retryAfter, final String rateLimitType) {
+		super(RATE_LIMITED, message);
+		this.retryAfter = retryAfter;
+		this.rateLimitType = rateLimitType;
 	}
 
 	/**

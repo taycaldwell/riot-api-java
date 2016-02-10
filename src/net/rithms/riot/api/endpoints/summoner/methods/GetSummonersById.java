@@ -21,14 +21,15 @@ import java.util.Map;
 import com.google.gson.reflect.TypeToken;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.ApiMethod;
+import net.rithms.riot.api.endpoints.summoner.SummonerApiMethod;
 import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
 import net.rithms.riot.constant.Region;
 
-public class GetSummonersById extends ApiMethod {
+public class GetSummonersById extends SummonerApiMethod {
 
 	public GetSummonersById(ApiConfig config, Region region, String summonerIds) {
 		super(config);
+		setRegion(region);
 		setReturnType(new TypeToken<Map<String, Summoner>>() {
 		}.getType());
 		setUrlBase(region.getEndpoint() + "/v1.4/summoner/" + summonerIds);

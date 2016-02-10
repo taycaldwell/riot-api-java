@@ -17,11 +17,11 @@
 package net.rithms.riot.api.endpoints.status.methods;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.ApiMethod;
+import net.rithms.riot.api.endpoints.status.StatusApiMethod;
 import net.rithms.riot.api.endpoints.status.dto.ShardStatus;
 import net.rithms.riot.constant.Region;
 
-public class GetShardStatus extends ApiMethod {
+public class GetShardStatus extends StatusApiMethod {
 
 	public GetShardStatus(ApiConfig config, Region region) {
 		super(config);

@@ -24,17 +24,19 @@ import java.util.logging.Level;
  */
 public class ApiConfig {
 
+	private int asyncRequestTimeout = 10000;
 	private Level debugLevel = Level.WARNING;
 	private boolean debugToFile = false;
 	private String key = null;
-	private String tournamentKey = null;
-	private int requestTimeout = 0;
-	private int asyncRequestTimeout = 10000;
 	private int maxAsyncThreads = 0;
+	private int requestTimeout = 0;
+	private boolean respectRateLimit = true;
+	private String tournamentKey = null;
 
 	@Override
 	public ApiConfig clone() {
-		return new ApiConfig().setAsyncRequestTimeout(getAsyncRequestTimeout()).setKey(getKey()).setRequestTimeout(getRequestTimeout())
+		return new ApiConfig().setAsyncRequestTimeout(getAsyncRequestTimeout()).setDebugLevel(getDebugLevel()).setDebugToFile(getDebugToFile()).setKey(getKey())
+				.setMaxAsyncThreads(getMaxAsyncThreads()).setRequestTimeout(getRequestTimeout()).setRespectRateLimit(getRespectRateLimit())
 				.setTournamentKey(getTournamentKey());
 	}
 
@@ -60,6 +62,10 @@ public class ApiConfig {
 
 	public int getRequestTimeout() {
 		return requestTimeout;
+	}
+
+	public boolean getRespectRateLimit() {
+		return respectRateLimit;
 	}
 
 	public String getTournamentKey() {
@@ -170,6 +176,19 @@ public class ApiConfig {
 			throw new IllegalArgumentException("The timeout value must be greater than or equal to 0");
 		}
 		this.requestTimeout = requestTimeout;
+		return this;
+	}
+
+	/**
+	 * Sets whether the api should attempt to automatically respect rate limits. If set to {@code true}, the api will listen to
+	 * rate-limit-specific headers from the Riot Api and try to respect them.
+	 *
+	 * @param respectRateLimit
+	 *            {@code true} if the api should attempt to automatically respect rate limits
+	 * @return This ApiConfig object for chaining
+	 */
+	public ApiConfig setRespectRateLimit(boolean respectRateLimit) {
+		this.respectRateLimit = respectRateLimit;
 		return this;
 	}
 

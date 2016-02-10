@@ -21,14 +21,16 @@ import java.util.List;
 import com.google.gson.reflect.TypeToken;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.ApiMethod;
+import net.rithms.riot.api.endpoints.championmastery.ChampionMasteryApiMethod;
 import net.rithms.riot.api.endpoints.championmastery.dto.ChampionMastery;
 import net.rithms.riot.constant.PlatformId;
+import net.rithms.riot.constant.Region;
 
-public class GetChampionMasteries extends ApiMethod {
+public class GetChampionMasteries extends ChampionMasteryApiMethod {
 
 	public GetChampionMasteries(ApiConfig config, PlatformId platformId, long summonerId) {
 		super(config);
+		setRegion(Region.getRegionByPlatformId(platformId));
 		setReturnType(new TypeToken<List<ChampionMastery>>() {
 		}.getType());
 		setUrlBase("https://" + platformId.getName() + ".api.pvp.net/championmastery/location/" + platformId.getId() + "/player/" + summonerId + "/champions");

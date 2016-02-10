@@ -20,11 +20,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.ApiMethod;
+import net.rithms.riot.api.endpoints.tournament.TournamentApiMethod;
 import net.rithms.riot.api.request.RequestMethod;
 import net.rithms.riot.constant.Region;
 
-public class CreateProvider extends ApiMethod {
+public class CreateProvider extends TournamentApiMethod {
 
 	public CreateProvider(ApiConfig config, Region region, String callbackUrl) {
 		super(config);

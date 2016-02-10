@@ -22,14 +22,15 @@ import java.util.Map;
 import com.google.gson.reflect.TypeToken;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.ApiMethod;
+import net.rithms.riot.api.endpoints.league.LeagueApiMethod;
 import net.rithms.riot.api.endpoints.league.dto.League;
 import net.rithms.riot.constant.Region;
 
-public class GetLeagueEntryBySummoners extends ApiMethod {
+public class GetLeagueEntryBySummoners extends LeagueApiMethod {
 
 	public GetLeagueEntryBySummoners(ApiConfig config, Region region, String summonerIds) {
 		super(config);
+		setRegion(region);
 		setReturnType(new TypeToken<Map<String, List<League>>>() {
 		}.getType());
 		setUrlBase(region.getEndpoint() + "/v2.5/league/by-summoner/" + summonerIds + "/entry");

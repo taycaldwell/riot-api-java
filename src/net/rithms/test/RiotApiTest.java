@@ -49,8 +49,7 @@ public class RiotApiTest {
 	 * @see RiotApi
 	 */
 	public static RiotApi getRiotApi() {
-		ApiConfig config = new ApiConfig();
-		config.setDebugLevel(Level.FINEST).setKey(apiKey).setTournamentKey(tournamentApiKey);
+		ApiConfig config = new ApiConfig().setDebugLevel(Level.FINEST).setKey(apiKey).setTournamentKey(tournamentApiKey);
 		return new RiotApi(config);
 	}
 
