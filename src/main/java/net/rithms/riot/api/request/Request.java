@@ -122,6 +122,7 @@ public class Request {
 		try {
 			respectRateLimit();
 			URL url = new URL(object.getUrl());
+			System.out.println(url);
 			connection = (HttpURLConnection) url.openConnection();
 			setTimeout();
 			connection.setDoInput(true);

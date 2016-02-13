@@ -22,6 +22,7 @@ import net.rithms.riot.api.endpoints.static_data.StaticDataApiMethod;
 import net.rithms.riot.api.endpoints.static_data.constant.MasteryListData;
 import net.rithms.riot.api.endpoints.static_data.dto.MasteryList;
 import net.rithms.riot.constant.Region;
+import net.rithms.util.Convert;
 
 public class GetDataMasteryList extends StaticDataApiMethod {
 
@@ -37,11 +38,7 @@ public class GetDataMasteryList extends StaticDataApiMethod {
 			add(new UrlParameter("version", version));
 		}
 		if (masteryListData[0] != null) {
-			StringBuilder dataBuilder = new StringBuilder();
-			for (MasteryListData data : masteryListData) {
-				dataBuilder.append(',').append(data.getName());
-			}
-			add(new UrlParameter("masteryListData", dataBuilder.substring(1)));
+			add(new UrlParameter("masteryListData", Convert.joinString(",", (Object[]) masteryListData)));
 		}
 		addApiKeyParameter();
 	}

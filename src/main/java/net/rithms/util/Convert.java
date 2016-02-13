@@ -81,8 +81,31 @@ public final class Convert {
 	}
 
 	/**
-	 * Returns a new String composed of copies of the {@code CharSequence elements} joined together with a copy of the specified
-	 * {@code delimiter}.
+	 * Returns a new String composed of copies of the {@code elements} joined together with a copy of the specified {@code delimiter}.
+	 *
+	 * Note that if an element is null, then {@code "null"} is added.
+	 *
+	 * @param delimiter
+	 *            the delimiter that separates each element
+	 * @param elements
+	 *            the elements to join together
+	 * @return a new {@code String} that is composed of the {@code elements} separated by the {@code delimiter}
+	 * @throws NullPointerException
+	 *             If {@code delimiter} or {@code elements} is {@code null}
+	 */
+	public static String joinString(CharSequence delimiter, Object... elements) {
+		Objects.requireNonNull(delimiter);
+		Objects.requireNonNull(elements);
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < elements.length - 1; i++) {
+			sb.append(elements[i]).append(delimiter);
+		}
+		sb.append(elements[elements.length - 1]);
+		return sb.toString();
+	}
+
+	/**
+	 * Returns a new String composed of copies of the {@code elements} joined together with a copy of the specified {@code delimiter}.
 	 *
 	 * Note that if an element is null, then {@code "null"} is added.
 	 *
@@ -95,13 +118,6 @@ public final class Convert {
 	 *             If {@code delimiter} or {@code elements} is {@code null}
 	 */
 	public static String joinString(CharSequence delimiter, CharSequence... elements) {
-		Objects.requireNonNull(delimiter);
-		Objects.requireNonNull(elements);
-		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < elements.length - 1; i++) {
-			sb.append(elements[i]).append(delimiter);
-		}
-		sb.append(elements[elements.length - 1]);
-		return sb.toString();
+		return joinString(delimiter, (Object[]) elements);
 	}
 }

@@ -22,6 +22,7 @@ import net.rithms.riot.api.endpoints.static_data.StaticDataApiMethod;
 import net.rithms.riot.api.endpoints.static_data.constant.SpellData;
 import net.rithms.riot.api.endpoints.static_data.dto.SummonerSpellList;
 import net.rithms.riot.constant.Region;
+import net.rithms.util.Convert;
 
 public class GetDataSummonerSpellList extends StaticDataApiMethod {
 
@@ -38,11 +39,7 @@ public class GetDataSummonerSpellList extends StaticDataApiMethod {
 		}
 		add(new UrlParameter("dataById", dataById));
 		if (spellData[0] != null) {
-			StringBuilder dataBuilder = new StringBuilder();
-			for (SpellData data : spellData) {
-				dataBuilder.append(',').append(data.getName());
-			}
-			add(new UrlParameter("spellData", dataBuilder.substring(1)));
+			add(new UrlParameter("spellData", Convert.joinString(",", (Object[]) spellData)));
 		}
 		addApiKeyParameter();
 	}

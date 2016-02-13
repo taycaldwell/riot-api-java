@@ -22,6 +22,7 @@ import net.rithms.riot.api.endpoints.static_data.StaticDataApiMethod;
 import net.rithms.riot.api.endpoints.static_data.constant.RuneData;
 import net.rithms.riot.api.endpoints.static_data.dto.Rune;
 import net.rithms.riot.constant.Region;
+import net.rithms.util.Convert;
 
 public class GetDataRune extends StaticDataApiMethod {
 
@@ -37,11 +38,7 @@ public class GetDataRune extends StaticDataApiMethod {
 			add(new UrlParameter("version", version));
 		}
 		if (runeData[0] != null) {
-			StringBuilder dataBuilder = new StringBuilder();
-			for (RuneData data : runeData) {
-				dataBuilder.append(',').append(data.getName());
-			}
-			add(new UrlParameter("runeData", dataBuilder.substring(1)));
+			add(new UrlParameter("runeData", Convert.joinString(",", (Object[]) runeData)));
 		}
 		addApiKeyParameter();
 	}
