@@ -22,19 +22,27 @@ public class Champion implements Serializable {
 
 	private static final long serialVersionUID = 4342849519353550572L;
 
-	private boolean active, botEnabled, botMmEnabled, freeToPlay, rankedPlayEnabled;
-	private long id;
+	private boolean active;
+	private boolean botEnabled;
+	private boolean botMmEnabled;
+	private boolean freeToPlay;
+	private int id;
+	private boolean rankedPlayEnabled;
+
+	public int getId() {
+		return id;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
 
 	public boolean isBotEnabled() {
 		return botEnabled;
 	}
 
-	public void setBotEnabled(boolean botEnabled) {
-		this.botEnabled = botEnabled;
-	}
-
-	public boolean isActive() {
-		return active;
+	public boolean isBotMmEnabled() {
+		return botMmEnabled;
 	}
 
 	public boolean isFreeToPlay() {
@@ -43,13 +51,5 @@ public class Champion implements Serializable {
 
 	public boolean isRankedPlayEnabled() {
 		return rankedPlayEnabled;
-	}
-
-	public boolean isBotMmEnabled() {
-		return botMmEnabled;
-	}
-
-	public long getId() {
-		return id;
 	}
 }

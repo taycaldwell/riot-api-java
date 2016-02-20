@@ -22,35 +22,28 @@ import java.util.List;
 public class CurrentGameInfo implements Serializable {
 
 	private static final long serialVersionUID = -6094147804616587912L;
+
 	private List<BannedChampion> bannedChampions;
-	private List<Participant> participants;
-	private String gameMode, gameType, platformId;
+	private long gameId;
+	private long gameLength;
+	private String gameMode;
+	private int gameQueueConfigId;
+	private long gameStartTime;
+	private String gameType;
+	private int mapId;
 	private Observer observers;
-	private long gameId, gameLength, gameQueueConfigId, gameStartTime, gameTypeConfigId, mapId;
-	private TeamInfo teamInfoOne, teamInfoTwo;
+	private List<CurrentGameParticipant> participants;
+	private String platformId;
+
+	@Deprecated
+	private int gameTypeConfigId;
+	@Deprecated
+	private TeamInfo teamInfoOne;
+	@Deprecated
+	private TeamInfo teamInfoTwo;
 
 	public List<BannedChampion> getBannedChampions() {
 		return bannedChampions;
-	}
-
-	public List<Participant> getParticipants() {
-		return participants;
-	}
-
-	public String getGameMode() {
-		return gameMode;
-	}
-
-	public String getGameType() {
-		return gameType;
-	}
-
-	public String getPlatformId() {
-		return platformId;
-	}
-
-	public Observer getObservers() {
-		return observers;
 	}
 
 	public long getGameId() {
@@ -61,7 +54,11 @@ public class CurrentGameInfo implements Serializable {
 		return gameLength;
 	}
 
-	public long getGameQueueConfigId() {
+	public String getGameMode() {
+		return gameMode;
+	}
+
+	public int getGameQueueConfigId() {
 		return gameQueueConfigId;
 	}
 
@@ -69,7 +66,12 @@ public class CurrentGameInfo implements Serializable {
 		return gameStartTime;
 	}
 
-	public long getGameTypeConfigId() {
+	public String getGameType() {
+		return gameType;
+	}
+
+	@Deprecated
+	public int getGameTypeConfigId() {
 		return gameTypeConfigId;
 	}
 
@@ -77,10 +79,24 @@ public class CurrentGameInfo implements Serializable {
 		return mapId;
 	}
 
+	public Observer getObservers() {
+		return observers;
+	}
+
+	public List<CurrentGameParticipant> getParticipants() {
+		return participants;
+	}
+
+	public String getPlatformId() {
+		return platformId;
+	}
+
+	@Deprecated
 	public TeamInfo getTeamInfoOne() {
 		return teamInfoOne;
 	}
 
+	@Deprecated
 	public TeamInfo getTeamInfoTwo() {
 		return teamInfoTwo;
 	}

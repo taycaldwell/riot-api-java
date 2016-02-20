@@ -21,14 +21,15 @@ import java.io.Serializable;
 public class Mastery implements Serializable {
 
 	private static final long serialVersionUID = -7365282903295128662L;
+
+	private int masteryId;
 	private int rank;
-	private long masteryId;
+
+	public int getMasteryId() {
+		return masteryId;
+	}
 
 	public int getRank() {
 		return rank;
-	}
-
-	public long getMasteryId() {
-		return masteryId;
 	}
 }

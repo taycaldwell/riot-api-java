@@ -21,18 +21,20 @@ import java.io.Serializable;
 public class BannedChampion implements Serializable {
 
 	private static final long serialVersionUID = -2518840271357794856L;
-	private long championId, teamId;
+
+	private int championId;
 	private int pickTurn;
+	private int teamId;
 
-	public long getChampionId() {
+	public int getChampionId() {
 		return championId;
-	}
-
-	public long getTeamId() {
-		return teamId;
 	}
 
 	public int getPickTurn() {
 		return pickTurn;
+	}
+
+	public int getTeamId() {
+		return teamId;
 	}
 }

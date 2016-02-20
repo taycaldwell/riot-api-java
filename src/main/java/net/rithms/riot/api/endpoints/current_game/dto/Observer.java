@@ -21,6 +21,7 @@ import java.io.Serializable;
 public class Observer implements Serializable {
 
 	private static final long serialVersionUID = 1866998515867420059L;
+
 	private String encryptionKey;
 
 	public String getEncryptionKey() {

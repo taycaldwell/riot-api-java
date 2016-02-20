@@ -19,32 +19,42 @@ package net.rithms.riot.api.endpoints.current_game.dto;
 import java.io.Serializable;
 import java.util.List;
 
-public class Participant implements Serializable {
+public class CurrentGameParticipant implements Serializable {
 
 	private static final long serialVersionUID = -2549733502630146814L;
+
 	private boolean bot;
-	private long championId, profileIconId, spell1Id, spell2Id, summonerId, teamId;
+	private int championId;
 	private List<Mastery> masteries;
+	private int profileIconId;
 	private List<Rune> runes;
+	private int spell1Id;
+	private int spell2Id;
+	private long summonerId;
 	private String summonerName;
+	private int teamId;
 
-	public boolean isBot() {
-		return bot;
-	}
-
-	public long getChampionId() {
+	public int getChampionId() {
 		return championId;
 	}
 
-	public long getProfileIconId() {
+	public List<Mastery> getMasteries() {
+		return masteries;
+	}
+
+	public int getProfileIconId() {
 		return profileIconId;
 	}
 
-	public long getSpell1Id() {
+	public List<Rune> getRunes() {
+		return runes;
+	}
+
+	public int getSpell1Id() {
 		return spell1Id;
 	}
 
-	public long getSpell2Id() {
+	public int getSpell2Id() {
 		return spell2Id;
 	}
 
@@ -52,19 +62,15 @@ public class Participant implements Serializable {
 		return summonerId;
 	}
 
-	public long getTeamId() {
+	public String getSummonerName() {
+		return summonerName;
+	}
+
+	public int getTeamId() {
 		return teamId;
 	}
 
-	public List<Mastery> getMasteries() {
-		return masteries;
-	}
-
-	public List<Rune> getRunes() {
-		return runes;
-	}
-
-	public String getSummonerName() {
-		return summonerName;
+	public boolean isBot() {
+		return bot;
 	}
 }

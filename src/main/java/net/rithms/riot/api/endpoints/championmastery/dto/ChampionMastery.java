@@ -21,10 +21,20 @@ import java.io.Serializable;
 public class ChampionMastery implements Serializable {
 
 	private static final long serialVersionUID = 1980259216579071478L;
-	private long championId, championPointsSinceLastLevel, championPointsUntilNextLevel, lastPlayTime, playerId;
-	private int championLevel, championPoints;
+
+	private int championId;
+	private int championLevel;
+	private int championPoints;
+	private long championPointsSinceLastLevel;
+	private long championPointsUntilNextLevel;
 	private boolean chestGranted;
 	private String highestGrade;
+	private long lastPlayTime;
+	private long playerId;
+
+	public int getChampionId() {
+		return championId;
+	}
 
 	public int getChampionLevel() {
 		return championLevel;
@@ -34,16 +44,16 @@ public class ChampionMastery implements Serializable {
 		return championPoints;
 	}
 
-	public long getChampionId() {
-		return championId;
-	}
-
 	public long getChampionPointsSinceLastLevel() {
 		return championPointsSinceLastLevel;
 	}
 
 	public long getChampionPointsUntilNextLevel() {
 		return championPointsUntilNextLevel;
+	}
+
+	public String getHighestGrade() {
+		return highestGrade;
 	}
 
 	public long getLastPlayTime() {
@@ -56,9 +66,5 @@ public class ChampionMastery implements Serializable {
 
 	public boolean isChestGranted() {
 		return chestGranted;
-	}
-
-	public String getHighestGrade() {
-		return highestGrade;
 	}
 }
