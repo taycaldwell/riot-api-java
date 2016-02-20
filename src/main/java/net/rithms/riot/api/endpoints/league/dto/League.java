@@ -22,8 +22,12 @@ import java.util.List;
 public class League implements Serializable {
 
 	private static final long serialVersionUID = 1878237445691308532L;
+
 	private List<LeagueEntry> entries;
-	private String name, queue, tier, participantId;
+	private String name;
+	private String participantId;
+	private String queue;
+	private String tier;
 
 	public List<LeagueEntry> getEntries() {
 		return entries;
@@ -33,15 +37,15 @@ public class League implements Serializable {
 		return name;
 	}
 
+	public String getParticipantId() {
+		return participantId;
+	}
+
 	public String getQueue() {
 		return queue;
 	}
 
 	public String getTier() {
 		return tier;
-	}
-
-	public String getParticipantId() {
-		return participantId;
 	}
 }

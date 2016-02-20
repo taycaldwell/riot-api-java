@@ -19,37 +19,27 @@ package net.rithms.riot.api.endpoints.featured_game.dto;
 import java.io.Serializable;
 import java.util.List;
 
-public class CurrentGameInfo implements Serializable {
+public class FeaturedGameInfo implements Serializable {
 
 	private static final long serialVersionUID = -3351906462835367100L;
+
 	private List<BannedChampion> bannedChampions;
-	private List<Participant> participants;
-	private String gameMode, gameType, platformId;
+	private long gameId;
+	private long gameLength;
+	private String gameMode;
+	private int gameQueueConfigId;
+	private long gameStartTime;
+	private String gameType;
+	private int mapId;
 	private Observer observers;
-	private long gameId, gameLength, gameQueueConfigId, gameStartTime, gameTypeConfigId, mapId;
+	private List<Participant> participants;
+	private String platformId;
+
+	@Deprecated
+	private int gameTypeConfigId;
 
 	public List<BannedChampion> getBannedChampions() {
 		return bannedChampions;
-	}
-
-	public List<Participant> getParticipants() {
-		return participants;
-	}
-
-	public String getGameMode() {
-		return gameMode;
-	}
-
-	public String getGameType() {
-		return gameType;
-	}
-
-	public String getPlatformId() {
-		return platformId;
-	}
-
-	public Observer getObservers() {
-		return observers;
 	}
 
 	public long getGameId() {
@@ -60,7 +50,11 @@ public class CurrentGameInfo implements Serializable {
 		return gameLength;
 	}
 
-	public long getGameQueueConfigId() {
+	public String getGameMode() {
+		return gameMode;
+	}
+
+	public int getGameQueueConfigId() {
 		return gameQueueConfigId;
 	}
 
@@ -68,11 +62,28 @@ public class CurrentGameInfo implements Serializable {
 		return gameStartTime;
 	}
 
-	public long getGameTypeConfigId() {
+	public String getGameType() {
+		return gameType;
+	}
+
+	@Deprecated
+	public int getGameTypeConfigId() {
 		return gameTypeConfigId;
 	}
 
-	public long getMapId() {
+	public int getMapId() {
 		return mapId;
+	}
+
+	public Observer getObservers() {
+		return observers;
+	}
+
+	public List<Participant> getParticipants() {
+		return participants;
+	}
+
+	public String getPlatformId() {
+		return platformId;
 	}
 }

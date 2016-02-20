@@ -21,29 +21,25 @@ import java.io.Serializable;
 public class LeagueEntry implements Serializable {
 
 	private static final long serialVersionUID = 3987113536371700279L;
-	private String division, playerOrTeamId, playerOrTeamName;
-	private boolean isFreshBlood, isHotStreak, isInactive, isVeteran;
-	private int leaguePoints, wins, losses;
+
+	private String division;
+	private boolean isFreshBlood;
+	private boolean isHotStreak;
+	private boolean isInactive;
+	private boolean isVeteran;
+	private int leaguePoints;
+	private int losses;
 	private MiniSeries miniSeries;
+	private String playerOrTeamId;
+	private String playerOrTeamName;
+	private int wins;
 
-	public String getPlayerOrTeamId() {
-		return playerOrTeamId;
-	}
-
-	public boolean isHotStreak() {
-		return isHotStreak;
-	}
-
-	public boolean isInactive() {
-		return isInactive;
+	public String getDivision() {
+		return division;
 	}
 
 	public int getLeaguePoints() {
 		return leaguePoints;
-	}
-
-	public int getWins() {
-		return wins;
 	}
 
 	public int getLosses() {
@@ -54,19 +50,31 @@ public class LeagueEntry implements Serializable {
 		return miniSeries;
 	}
 
-	public boolean isFreshBlood() {
-		return isFreshBlood;
+	public String getPlayerOrTeamId() {
+		return playerOrTeamId;
 	}
 
 	public String getPlayerOrTeamName() {
 		return playerOrTeamName;
 	}
 
-	public boolean isVeteran() {
-		return isVeteran;
+	public int getWins() {
+		return wins;
 	}
 
-	public String getDivision() {
-		return division;
+	public boolean isFreshBlood() {
+		return isFreshBlood;
+	}
+
+	public boolean isHotStreak() {
+		return isHotStreak;
+	}
+
+	public boolean isInactive() {
+		return isInactive;
+	}
+
+	public boolean isVeteran() {
+		return isVeteran;
 	}
 }

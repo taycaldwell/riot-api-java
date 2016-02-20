@@ -18,17 +18,19 @@ package net.rithms.riot.api.endpoints.featured_game.dto;
 
 import java.io.Serializable;
 
+@Deprecated
 public class Mastery implements Serializable {
 
 	private static final long serialVersionUID = 5693570765958275483L;
+
 	private int rank;
 	private long masteryId;
 
-	public int getRank() {
-		return rank;
-	}
-
 	public long getMasteryId() {
 		return masteryId;
+	}
+
+	public int getRank() {
+		return rank;
 	}
 }

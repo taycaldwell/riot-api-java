@@ -18,9 +18,11 @@ package net.rithms.riot.api.endpoints.featured_game.dto;
 
 import java.io.Serializable;
 
+@Deprecated
 public class Rune implements Serializable {
 
 	private static final long serialVersionUID = 4847580791285473535L;
+
 	private int count;
 	private long runeId;
 

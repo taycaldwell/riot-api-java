@@ -21,22 +21,25 @@ import java.io.Serializable;
 public class MiniSeries implements Serializable {
 
 	private static final long serialVersionUID = -1698803031525933530L;
-	private int losses, target, wins;
-	private String progress;
 
-	public String getProgress() {
-		return progress;
-	}
+	private int losses;
+	private String progress;
+	private int target;
+	private int wins;
 
 	public int getLosses() {
 		return losses;
 	}
 
-	public int getWins() {
-		return wins;
+	public String getProgress() {
+		return progress;
 	}
 
 	public int getTarget() {
 		return target;
+	}
+
+	public int getWins() {
+		return wins;
 	}
 }

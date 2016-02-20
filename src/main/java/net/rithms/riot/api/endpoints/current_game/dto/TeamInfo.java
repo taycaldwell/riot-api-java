@@ -23,27 +23,28 @@ import java.util.Map;
 public class TeamInfo implements Serializable {
 
 	private static final long serialVersionUID = -1268634988633731822L;
+
 	private String tag, name, memberStatus;
 	private long secondsUntilEligibleForDeletion;
 	private Map<String, String> teamId;
 
-	public String getTag() {
-		return tag;
-	}
-
-	public String getName() {
-		return name;
+	public String getFullTeamId() {
+		return teamId.get("fullId");
 	}
 
 	public String getMemberStatus() {
 		return memberStatus;
 	}
 
+	public String getName() {
+		return name;
+	}
+
 	public long getSecondsUntilEligibleForDeletion() {
 		return secondsUntilEligibleForDeletion;
 	}
 
-	public String getFullTeamId() {
-		return teamId.get("fullId");
+	public String getTag() {
+		return tag;
 	}
 }

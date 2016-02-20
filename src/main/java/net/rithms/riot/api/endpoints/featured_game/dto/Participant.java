@@ -22,53 +22,69 @@ import java.util.List;
 public class Participant implements Serializable {
 
 	private static final long serialVersionUID = 7105307616042600638L;
-	private boolean bot;
-	private long championId, profileIconId, spell1Id, spell2Id, summonerId, teamId, teamParticipantId;
-	private List<Mastery> masteries;
-	private List<Rune> runes;
-	private String summonerName;
 
+	private boolean bot;
+	private int championId;
+	private int profileIconId;
+	private int spell1Id;
+	private int spell2Id;
+	private String summonerName;
+	private int teamId;
+
+	@Deprecated
+	private long summonerId;
+	@Deprecated
+	private long teamParticipantId;
+	@Deprecated
+	private List<Mastery> masteries;
+	@Deprecated
+	private List<Rune> runes;
+
+	public int getChampionId() {
+		return championId;
+	}
+
+	@Deprecated
+	public List<Mastery> getMasteries() {
+		return masteries;
+	}
+
+	public int getProfileIconId() {
+		return profileIconId;
+	}
+
+	@Deprecated
+	public List<Rune> getRunes() {
+		return runes;
+	}
+
+	public int getSpell1Id() {
+		return spell1Id;
+	}
+
+	public int getSpell2Id() {
+		return spell2Id;
+	}
+
+	@Deprecated
+	public long getSummonerId() {
+		return summonerId;
+	}
+
+	public String getSummonerName() {
+		return summonerName;
+	}
+
+	public int getTeamId() {
+		return teamId;
+	}
+
+	@Deprecated
 	public long getTeamParticipantId() {
 		return teamParticipantId;
 	}
 
 	public boolean isBot() {
 		return bot;
-	}
-
-	public long getChampionId() {
-		return championId;
-	}
-
-	public long getProfileIconId() {
-		return profileIconId;
-	}
-
-	public long getSpell1Id() {
-		return spell1Id;
-	}
-
-	public long getSpell2Id() {
-		return spell2Id;
-	}
-
-	public long getSummonerId() {
-		return summonerId;
-	}
-
-	public long getTeamId() {
-		return teamId;
-	}
-
-	public List<Mastery> getMasteries() {
-		return masteries;
-	}
-
-	public List<Rune> getRunes() {
-		return runes;
-	}
-
-	public String getSummonerName() {
-		return summonerName;
 	}
 }

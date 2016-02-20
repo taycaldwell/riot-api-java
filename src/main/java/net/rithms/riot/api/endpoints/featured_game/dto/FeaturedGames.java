@@ -22,14 +22,15 @@ import java.util.List;
 public class FeaturedGames implements Serializable {
 
 	private static final long serialVersionUID = -8500784155234313042L;
+
 	private long clientRefreshInterval;
-	private List<CurrentGameInfo> gameList;
+	private List<FeaturedGameInfo> gameList;
 
 	public long getClientRefreshInterval() {
 		return clientRefreshInterval;
 	}
 
-	public List<CurrentGameInfo> getGameList() {
+	public List<FeaturedGameInfo> getGameList() {
 		return gameList;
 	}
 }
