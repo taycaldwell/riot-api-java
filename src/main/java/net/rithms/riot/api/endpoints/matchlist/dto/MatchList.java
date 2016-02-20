@@ -23,8 +23,10 @@ public class MatchList implements Serializable {
 
 	private static final long serialVersionUID = 939383850419752274L;
 
-	private int endIndex, startIndex, totalGames;
+	private int endIndex;
 	private List<MatchReference> matches;
+	private int startIndex;
+	private int totalGames;
 
 	public int getEndIndex() {
 		return endIndex;

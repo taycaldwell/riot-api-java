@@ -21,11 +21,24 @@ import java.io.Serializable;
 public class ParticipantFrame implements Serializable {
 
 	private static final long serialVersionUID = -7134736662198942818L;
-	private int currentGold, jungleMinionsKilled, level, minionsKilled, participantId, totalGold, xp;
+
+	private int currentGold;
+	private int dominionScore;
+	private int jungleMinionsKilled;
+	private int level;
+	private int minionsKilled;
+	private int participantId;
 	private Position position;
+	private int teamScore;
+	private int totalGold;
+	private int xp;
 
 	public int getCurrentGold() {
 		return currentGold;
+	}
+
+	public int getDominionScore() {
+		return dominionScore;
 	}
 
 	public int getJungleMinionsKilled() {
@@ -44,15 +57,19 @@ public class ParticipantFrame implements Serializable {
 		return participantId;
 	}
 
+	public Position getPosition() {
+		return position;
+	}
+
+	public int getTeamScore() {
+		return teamScore;
+	}
+
 	public int getTotalGold() {
 		return totalGold;
 	}
 
 	public int getXp() {
 		return xp;
-	}
-
-	public Position getPosition() {
-		return position;
 	}
 }

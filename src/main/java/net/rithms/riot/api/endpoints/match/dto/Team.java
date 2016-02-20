@@ -22,14 +22,23 @@ import java.util.List;
 public class Team implements Serializable {
 
 	private static final long serialVersionUID = -3414402914522684688L;
-	private List<BannedChampion> bans;
-	private int baronKills, dragonKills, riftHeraldKills, inhibitorKills, teamId, towerKills, vilemawKills;
-	private boolean firstBaron, firstBlood, firstDragon, firstRiftHerald, firstInhibitor, firstTower, winner;
-	private long dominionVictoryScore;
 
-	public long getDominionVictoryScore() {
-		return dominionVictoryScore;
-	}
+	private List<BannedChampion> bans;
+	private int baronKills;
+	private int dominionVictoryScore;
+	private int dragonKills;
+	private boolean firstBaron;
+	private boolean firstBlood;
+	private boolean firstDragon;
+	private boolean firstInhibitor;
+	private boolean firstRiftHerald;
+	private boolean firstTower;
+	private int inhibitorKills;
+	private int riftHeraldKills;
+	private int teamId;
+	private int towerKills;
+	private int vilemawKills;
+	private boolean winner;
 
 	public List<BannedChampion> getBans() {
 		return bans;
@@ -39,12 +48,20 @@ public class Team implements Serializable {
 		return baronKills;
 	}
 
+	public int getDominionVictoryScore() {
+		return dominionVictoryScore;
+	}
+
 	public int getDragonKills() {
 		return dragonKills;
 	}
 
 	public int getInhibitorKills() {
 		return inhibitorKills;
+	}
+
+	public int getRiftHeraldKills() {
+		return riftHeraldKills;
 	}
 
 	public int getTeamId() {
@@ -75,20 +92,16 @@ public class Team implements Serializable {
 		return firstInhibitor;
 	}
 
+	public boolean isFirstRiftHerald() {
+		return firstRiftHerald;
+	}
+
 	public boolean isFirstTower() {
 		return firstTower;
 	}
 
 	public boolean isWinner() {
 		return winner;
-	}
-
-	public boolean isFirstRiftHerald() {
-		return firstRiftHerald;
-	}
-
-	public int getRiftHeraldKills() {
-		return riftHeraldKills;
 	}
 
 }

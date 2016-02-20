@@ -23,6 +23,7 @@ import java.util.Map;
 public class Frame implements Serializable {
 
 	private static final long serialVersionUID = 4359409042534560829L;
+
 	private List<Event> events;
 	private Map<String, ParticipantFrame> participantFrames;
 	private long timestamp;

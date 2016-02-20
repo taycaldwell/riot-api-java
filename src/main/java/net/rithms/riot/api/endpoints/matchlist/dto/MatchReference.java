@@ -21,23 +21,27 @@ import java.io.Serializable;
 public class MatchReference implements Serializable {
 
 	private static final long serialVersionUID = 3975874858170021162L;
-	private long champion, matchId, timestamp;
-	private String lane, platformId, queue, role, season;
 
-	public long getChampion() {
+	private int champion;
+	private String lane;
+	private long matchId;
+	private String platformId;
+	private String queue;
+	private String region;
+	private String role;
+	private String season;
+	private long timestamp;
+
+	public int getChampion() {
 		return champion;
-	}
-
-	public long getMatchId() {
-		return matchId;
-	}
-
-	public long getTimestamp() {
-		return timestamp;
 	}
 
 	public String getLane() {
 		return lane;
+	}
+
+	public long getMatchId() {
+		return matchId;
 	}
 
 	public String getPlatformId() {
@@ -48,11 +52,19 @@ public class MatchReference implements Serializable {
 		return queue;
 	}
 
+	public String getRegion() {
+		return region;
+	}
+
 	public String getRole() {
 		return role;
 	}
 
 	public String getSeason() {
 		return season;
+	}
+
+	public long getTimestamp() {
+		return timestamp;
 	}
 }

@@ -22,14 +22,15 @@ import java.util.List;
 public class Timeline implements Serializable {
 
 	private static final long serialVersionUID = 3888184958883394435L;
-	private List<Frame> frames;
-	private long frameInterval;
 
-	public List<Frame> getFrames() {
-		return frames;
-	}
+	private long frameInterval;
+	private List<Frame> frames;
 
 	public long getFrameInterval() {
 		return frameInterval;
+	}
+
+	public List<Frame> getFrames() {
+		return frames;
 	}
 }

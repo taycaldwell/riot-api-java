@@ -22,14 +22,49 @@ import java.util.List;
 public class Event implements Serializable {
 
 	private static final long serialVersionUID = -2911353385877952457L;
-	private int creatorId, itemAfter, itemBefore, itemId, killerId, participantId, skillSlot, teamId, victimId;
-	private String buildingType, eventType, laneType, levelUpType, monsterType, towerType, wardType;
+
+	private String ascendedType;
 	private List<Integer> assistingParticipantIds;
-	private Position position;
+	private String buildingType;
+	private int creatorId;
+	private String eventType;
+	private int itemAfter;
+	private int itemBefore;
+	private int itemId;
+	private int killerId;
+	private String laneType;
+	private String levelUpType;
+	private String monsterType;
+	private int participantId;
+	private String pointCaptured;
+	private int skillSlot;
+	private int teamId;
 	private long timestamp;
+	private String towerType;
+	private int victimId;
+	private String wardType;
+
+	@Deprecated
+	private Position position;
+
+	public String getAscendedType() {
+		return ascendedType;
+	}
+
+	public List<Integer> getAssistingParticipantIds() {
+		return assistingParticipantIds;
+	}
+
+	public String getBuildingType() {
+		return buildingType;
+	}
 
 	public int getCreatorId() {
 		return creatorId;
+	}
+
+	public String getEventType() {
+		return eventType;
 	}
 
 	public int getItemAfter() {
@@ -48,30 +83,6 @@ public class Event implements Serializable {
 		return killerId;
 	}
 
-	public int getParticipantId() {
-		return participantId;
-	}
-
-	public int getSkillSlot() {
-		return skillSlot;
-	}
-
-	public int getTeamId() {
-		return teamId;
-	}
-
-	public int getVictimId() {
-		return victimId;
-	}
-
-	public String getBuildingType() {
-		return buildingType;
-	}
-
-	public String getEventType() {
-		return eventType;
-	}
-
 	public String getLaneType() {
 		return laneType;
 	}
@@ -84,23 +95,40 @@ public class Event implements Serializable {
 		return monsterType;
 	}
 
-	public String getTowerType() {
-		return towerType;
+	public int getParticipantId() {
+		return participantId;
 	}
 
-	public String getWardType() {
-		return wardType;
+	public String getPointCaptured() {
+		return pointCaptured;
 	}
 
-	public List<Integer> getAssistingParticipantIds() {
-		return assistingParticipantIds;
-	}
-
+	@Deprecated
 	public Position getPosition() {
 		return position;
 	}
 
+	public int getSkillSlot() {
+		return skillSlot;
+	}
+
+	public int getTeamId() {
+		return teamId;
+	}
+
 	public long getTimestamp() {
 		return timestamp;
+	}
+
+	public String getTowerType() {
+		return towerType;
+	}
+
+	public int getVictimId() {
+		return victimId;
+	}
+
+	public String getWardType() {
+		return wardType;
 	}
 }

@@ -21,7 +21,11 @@ import java.io.Serializable;
 public class ParticipantTimelineData implements Serializable {
 
 	private static final long serialVersionUID = 3515118575430099707L;
-	private double tenToTwenty, thirtyToEnd, twentyToThirty, zeroToTen;
+
+	private double tenToTwenty;
+	private double thirtyToEnd;
+	private double twentyToThirty;
+	private double zeroToTen;
 
 	public double getTenToTwenty() {
 		return tenToTwenty;

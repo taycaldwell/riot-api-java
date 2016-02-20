@@ -22,26 +22,22 @@ import java.util.List;
 public class MatchDetail implements Serializable {
 
 	private static final long serialVersionUID = 2606895296338330266L;
+
 	private int mapId;
-	private long matchCreation, matchDuration, matchId;
-	private String matchVersion, queueType, region, season;
+	private long matchCreation;
+	private long matchDuration;
+	private long matchId;
+	private String matchMode;
+	private String matchType;
+	private String matchVersion;
 	private List<ParticipantIdentity> participantIdentities;
 	private List<Participant> participants;
+	private String platformId;
+	private String queueType;
+	private String region;
+	private String season;
 	private List<Team> teams;
 	private Timeline timeline;
-	private String matchMode, matchType, platformId;
-
-	public String getMatchMode() {
-		return matchMode;
-	}
-
-	public String getMatchType() {
-		return matchType;
-	}
-
-	public String getPlatformId() {
-		return platformId;
-	}
 
 	public int getMapId() {
 		return mapId;
@@ -59,8 +55,28 @@ public class MatchDetail implements Serializable {
 		return matchId;
 	}
 
+	public String getMatchMode() {
+		return matchMode;
+	}
+
+	public String getMatchType() {
+		return matchType;
+	}
+
 	public String getMatchVersion() {
 		return matchVersion;
+	}
+
+	public List<ParticipantIdentity> getParticipantIdentities() {
+		return participantIdentities;
+	}
+
+	public List<Participant> getParticipants() {
+		return participants;
+	}
+
+	public String getPlatformId() {
+		return platformId;
 	}
 
 	public String getQueueType() {
@@ -73,14 +89,6 @@ public class MatchDetail implements Serializable {
 
 	public String getSeason() {
 		return season;
-	}
-
-	public List<ParticipantIdentity> getParticipantIdentities() {
-		return participantIdentities;
-	}
-
-	public List<Participant> getParticipants() {
-		return participants;
 	}
 
 	public List<Team> getTeams() {

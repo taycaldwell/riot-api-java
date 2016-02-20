@@ -21,21 +21,34 @@ import java.io.Serializable;
 public class ParticipantTimeline implements Serializable {
 
 	private static final long serialVersionUID = -6355300896423737331L;
-	private String lane, role;
-	private ParticipantTimelineData ancientGolemAssistsPerMinCounts, ancientGolemKillsPerMinCounts, assistedLaneDeathsPerMinDeltas,
-			assistedLaneKillsPerMinDeltas, baronAssistsPerMinCounts, baronKillsPerMinCounts, creepsPerMinDeltas, csDiffPerMinDeltas,
-			damageTakenDiffPerMinDeltas, damageTakenPerMinDeltas, dragonAssistsPerMinCounts, dragonKillsPerMinCounts, elderLizardAssistsPerMinCounts,
-			elderLizardKillsPerMinCounts, goldPerMinDeltas, inhibitorAssistsPerMinCounts, inhibitorKillsPerMinCounts, towerAssistsPerMinCounts,
-			towerKillsPerMinCounts, towerKillsPerMinDeltas, vilemawAssistsPerMinCounts, vilemawKillsPerMinCounts, wardsPerMinDeltas, xpDiffPerMinDeltas,
-			xpPerMinDeltas;
 
-	public String getLane() {
-		return lane;
-	}
-
-	public String getRole() {
-		return role;
-	}
+	private ParticipantTimelineData ancientGolemAssistsPerMinCounts;
+	private ParticipantTimelineData ancientGolemKillsPerMinCounts;
+	private ParticipantTimelineData assistedLaneDeathsPerMinDeltas;
+	private ParticipantTimelineData assistedLaneKillsPerMinDeltas;
+	private ParticipantTimelineData baronAssistsPerMinCounts;
+	private ParticipantTimelineData baronKillsPerMinCounts;
+	private ParticipantTimelineData creepsPerMinDeltas;
+	private ParticipantTimelineData csDiffPerMinDeltas;
+	private ParticipantTimelineData damageTakenDiffPerMinDeltas;
+	private ParticipantTimelineData damageTakenPerMinDeltas;
+	private ParticipantTimelineData dragonAssistsPerMinCounts;
+	private ParticipantTimelineData dragonKillsPerMinCounts;
+	private ParticipantTimelineData elderLizardAssistsPerMinCounts;
+	private ParticipantTimelineData elderLizardKillsPerMinCounts;
+	private ParticipantTimelineData goldPerMinDeltas;
+	private ParticipantTimelineData inhibitorAssistsPerMinCounts;
+	private ParticipantTimelineData inhibitorKillsPerMinCounts;
+	private String lane;
+	private String role;
+	private ParticipantTimelineData towerAssistsPerMinCounts;
+	private ParticipantTimelineData towerKillsPerMinCounts;
+	private ParticipantTimelineData towerKillsPerMinDeltas;
+	private ParticipantTimelineData vilemawAssistsPerMinCounts;
+	private ParticipantTimelineData vilemawKillsPerMinCounts;
+	private ParticipantTimelineData wardsPerMinDeltas;
+	private ParticipantTimelineData xpDiffPerMinDeltas;
+	private ParticipantTimelineData xpPerMinDeltas;
 
 	public ParticipantTimelineData getAncientGolemAssistsPerMinCounts() {
 		return ancientGolemAssistsPerMinCounts;
@@ -103,6 +116,14 @@ public class ParticipantTimeline implements Serializable {
 
 	public ParticipantTimelineData getInhibitorKillsPerMinCounts() {
 		return inhibitorKillsPerMinCounts;
+	}
+
+	public String getLane() {
+		return lane;
+	}
+
+	public String getRole() {
+		return role;
 	}
 
 	public ParticipantTimelineData getTowerAssistsPerMinCounts() {

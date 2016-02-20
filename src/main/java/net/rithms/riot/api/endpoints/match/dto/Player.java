@@ -21,12 +21,18 @@ import java.io.Serializable;
 public class Player implements Serializable {
 
 	private static final long serialVersionUID = -4459702825178547603L;
-	private String matchHistoryUri, summonerName;
+
+	private String matchHistoryUri;
 	private int profileIcon;
 	private long summonerId;
+	private String summonerName;
 
 	public String getMatchHistoryUri() {
 		return matchHistoryUri;
+	}
+
+	public int getProfileIcon() {
+		return profileIcon;
 	}
 
 	public long getSummonerId() {
@@ -35,9 +41,5 @@ public class Player implements Serializable {
 
 	public String getSummonerName() {
 		return summonerName;
-	}
-
-	public int getProfileIcon() {
-		return profileIcon;
 	}
 }
