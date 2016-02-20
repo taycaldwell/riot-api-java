@@ -23,70 +23,79 @@ public class Game implements Serializable {
 
 	private static final long serialVersionUID = 1228681223919935293L;
 
-	private int championId, ipEarned, level, mapId, spell1, spell2, teamId;
-	private long createDate, gameId;
+	private int championId;
+	private long createDate;
 	private List<Player> fellowPlayers;
-	private String gameMode, gameType, subType;
+	private long gameId;
+	private String gameMode;
+	private String gameType;
 	private boolean invalid;
+	private int ipEarned;
+	private int level;
+	private int mapId;
+	private int spell1;
+	private int spell2;
 	private RawStats stats;
-
-	public long getCreateDate() {
-		return createDate;
-	}
-
-	public long getGameId() {
-		return gameId;
-	}
-
-	public int getTeamId() {
-		return teamId;
-	}
-
-	public int getLevel() {
-		return level;
-	}
-
-	public int getSpell2() {
-		return spell2;
-	}
+	private String subType;
+	private int teamId;
 
 	public int getChampionId() {
 		return championId;
+	}
+
+	public long getCreateDate() {
+		return createDate;
 	}
 
 	public List<Player> getFellowPlayers() {
 		return fellowPlayers;
 	}
 
-	public int getSpell1() {
-		return spell1;
-	}
-
-	public int getMapId() {
-		return mapId;
-	}
-
-	public boolean isInvalid() {
-		return invalid;
-	}
-
-	public String getSubType() {
-		return subType;
-	}
-
-	public String getGameType() {
-		return gameType;
+	public long getGameId() {
+		return gameId;
 	}
 
 	public String getGameMode() {
 		return gameMode;
 	}
 
+	public String getGameType() {
+		return gameType;
+	}
+
 	public int getIpEarned() {
 		return ipEarned;
 	}
 
+	public int getLevel() {
+		return level;
+	}
+
+	public int getMapId() {
+		return mapId;
+	}
+
+	public int getSpell1() {
+		return spell1;
+	}
+
+	public int getSpell2() {
+		return spell2;
+	}
+
 	public RawStats getStats() {
 		return stats;
+	}
+
+	public String getSubType() {
+		return subType;
+	}
+
+	public int getTeamId() {
+		return teamId;
+	}
+
+	public boolean isInvalid() {
+		return invalid;
 	}
 }

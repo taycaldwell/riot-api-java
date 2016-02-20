@@ -21,24 +21,86 @@ import java.io.Serializable;
 public class RawStats implements Serializable {
 
 	private static final long serialVersionUID = -5596702203314851885L;
-	private boolean nexusKilled, win;
-	private int assists, barracksKilled, championsKilled, combatPlayerScore, consumablesPurchased, damageDealtPlayer, doubleKills, firstBlood, gold, goldEarned,
-			goldSpent, item0, item1, item2, item3, item4, item5, item6, itemsPurchased, killingSprees, largestCriticalStrike, largestKillingSpree,
-			largestMultiKill, legendaryItemsCreated, level, magicDamageDealtPlayer, magicDamageDealtToChampions, magicDamageTaken, minionsDenied, minionsKilled,
-			neutralMinionsKilled, neutralMinionsKilledEnemyJungle, neutralMinionsKilledYourJungle, nodeCapture, nodeCaptureAssist, nodeNeutralize,
-			nodeNeutralizeAssist, numDeaths, numItemsBought, objectivePlayerScore, pentaKills, physicalDamageDealtPlayer, physicalDamageDealtToChampions,
-			physicalDamageTaken, quadraKills, sightWardsBought, spell1Cast, spell2Cast, spell3Cast, spell4Cast, summonSpell1Cast, summonSpell2Cast,
-			superMonsterKilled, team, teamObjective, timePlayed, totalDamageDealt, totalDamageDealtToChampions, totalDamageTaken, totalHeal, totalPlayerScore,
-			totalScoreRank, totalTimeCrowdControlDealt, totalUnitsHealed, tripleKills, trueDamageDealtPlayer, trueDamageDealtToChampions, trueDamageTaken,
-			turretsKilled, unrealKills, victoryPointTotal, visionWardsBought, wardKilled, wardPlaced;
 
-	public boolean isNexusKilled() {
-		return nexusKilled;
-	}
-
-	public boolean isWin() {
-		return win;
-	}
+	private int assists;
+	private int barracksKilled;
+	private int bountyLevel;
+	private int championsKilled;
+	private int combatPlayerScore;
+	private int consumablesPurchased;
+	private int damageDealtPlayer;
+	private int doubleKills;
+	private int firstBlood;
+	private int gold;
+	private int goldEarned;
+	private int goldSpent;
+	private int item0;
+	private int item1;
+	private int item2;
+	private int item3;
+	private int item4;
+	private int item5;
+	private int item6;
+	private int itemsPurchased;
+	private int killingSprees;
+	private int largestCriticalStrike;
+	private int largestKillingSpree;
+	private int largestMultiKill;
+	private int legendaryItemsCreated;
+	private int level;
+	private int magicDamageDealtPlayer;
+	private int magicDamageDealtToChampions;
+	private int magicDamageTaken;
+	private int minionsDenied;
+	private int minionsKilled;
+	private int neutralMinionsKilled;
+	private int neutralMinionsKilledEnemyJungle;
+	private int neutralMinionsKilledYourJungle;
+	private boolean nexusKilled;
+	private int nodeCapture;
+	private int nodeCaptureAssist;
+	private int nodeNeutralize;
+	private int nodeNeutralizeAssist;
+	private int numDeaths;
+	private int numItemsBought;
+	private int objectivePlayerScore;
+	private int pentaKills;
+	private int physicalDamageDealtPlayer;
+	private int physicalDamageDealtToChampions;
+	private int physicalDamageTaken;
+	private int playerPosition;
+	private int playerRole;
+	private int quadraKills;
+	private int sightWardsBought;
+	private int spell1Cast;
+	private int spell2Cast;
+	private int spell3Cast;
+	private int spell4Cast;
+	private int summonSpell1Cast;
+	private int summonSpell2Cast;
+	private int superMonsterKilled;
+	private int team;
+	private int teamObjective;
+	private int timePlayed;
+	private int totalDamageDealt;
+	private int totalDamageDealtToChampions;
+	private int totalDamageTaken;
+	private int totalHeal;
+	private int totalPlayerScore;
+	private int totalScoreRank;
+	private int totalTimeCrowdControlDealt;
+	private int totalUnitsHealed;
+	private int tripleKills;
+	private int trueDamageDealtPlayer;
+	private int trueDamageDealtToChampions;
+	private int trueDamageTaken;
+	private int turretsKilled;
+	private int unrealKills;
+	private int victoryPointTotal;
+	private int visionWardsBought;
+	private int wardKilled;
+	private int wardPlaced;
+	private boolean win;
 
 	public int getAssists() {
 		return assists;
@@ -46,6 +108,10 @@ public class RawStats implements Serializable {
 
 	public int getBarracksKilled() {
 		return barracksKilled;
+	}
+
+	public int getBountyLevel() {
+		return bountyLevel;
 	}
 
 	public int getChampionsKilled() {
@@ -216,6 +282,14 @@ public class RawStats implements Serializable {
 		return physicalDamageTaken;
 	}
 
+	public int getPlayerPosition() {
+		return playerPosition;
+	}
+
+	public int getPlayerRole() {
+		return playerRole;
+	}
+
 	public int getQuadraKills() {
 		return quadraKills;
 	}
@@ -334,5 +408,13 @@ public class RawStats implements Serializable {
 
 	public int getWardPlaced() {
 		return wardPlaced;
+	}
+
+	public boolean isNexusKilled() {
+		return nexusKilled;
+	}
+
+	public boolean isWin() {
+		return win;
 	}
 }

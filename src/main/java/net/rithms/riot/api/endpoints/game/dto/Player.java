@@ -21,12 +21,10 @@ import java.io.Serializable;
 public class Player implements Serializable {
 
 	private static final long serialVersionUID = -2222223068241891011L;
-	private int championId, teamId;
-	private long summonerId;
 
-	public int getTeamId() {
-		return teamId;
-	}
+	private int championId;
+	private long summonerId;
+	private int teamId;
 
 	public int getChampionId() {
 		return championId;
@@ -34,5 +32,9 @@ public class Player implements Serializable {
 
 	public long getSummonerId() {
 		return summonerId;
+	}
+
+	public int getTeamId() {
+		return teamId;
 	}
 }

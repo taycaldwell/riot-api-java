@@ -18,9 +18,11 @@ package net.rithms.riot.api.endpoints.game.dto;
 
 import java.io.Serializable;
 
+@Deprecated
 public class RawStat implements Serializable {
 
 	private static final long serialVersionUID = -5650534089794129668L;
+
 	private int id, value;
 	private String name;
 
@@ -28,11 +30,11 @@ public class RawStat implements Serializable {
 		return id;
 	}
 
-	public int getValue() {
-		return value;
-	}
-
 	public String getName() {
 		return name;
+	}
+
+	public int getValue() {
+		return value;
 	}
 }
