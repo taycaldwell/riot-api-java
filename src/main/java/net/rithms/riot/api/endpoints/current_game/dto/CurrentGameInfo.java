@@ -75,7 +75,7 @@ public class CurrentGameInfo implements Serializable {
 		return gameTypeConfigId;
 	}
 
-	public long getMapId() {
+	public int getMapId() {
 		return mapId;
 	}
 
