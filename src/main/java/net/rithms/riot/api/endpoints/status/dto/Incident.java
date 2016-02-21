@@ -22,16 +22,13 @@ import java.util.List;
 public class Incident implements Serializable {
 
 	private static final long serialVersionUID = -5984477375688730952L;
+
 	private boolean active;
 	private String created_at;
 	private long id;
 	private List<Message> updates;
 
-	public boolean isActive() {
-		return active;
-	}
-
-	public String getCreated_at() {
+	public String getCreatedAt() {
 		return created_at;
 	}
 
@@ -41,5 +38,9 @@ public class Incident implements Serializable {
 
 	public List<Message> getUpdates() {
 		return updates;
+	}
+
+	public boolean isActive() {
+		return active;
 	}
 }

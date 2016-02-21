@@ -21,6 +21,7 @@ import java.io.Serializable;
 public class ChampionStats implements Serializable {
 
 	private static final long serialVersionUID = 5305743875267859091L;
+
 	private int id;
 	private AggregatedStats stats;
 

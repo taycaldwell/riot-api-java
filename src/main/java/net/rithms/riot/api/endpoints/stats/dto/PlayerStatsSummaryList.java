@@ -22,6 +22,7 @@ import java.util.List;
 public class PlayerStatsSummaryList implements Serializable {
 
 	private static final long serialVersionUID = 1005704777989478627L;
+
 	private List<PlayerStatsSummary> playerStatSummaries;
 	private long summonerId;
 

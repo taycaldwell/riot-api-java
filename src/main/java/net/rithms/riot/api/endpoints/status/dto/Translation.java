@@ -21,7 +21,10 @@ import java.io.Serializable;
 public class Translation implements Serializable {
 
 	private static final long serialVersionUID = -8923544184113630844L;
-	private String content, locale, updated_at;
+
+	private String content;
+	private String locale;
+	private String updated_at;
 
 	public String getContent() {
 		return content;
@@ -31,7 +34,7 @@ public class Translation implements Serializable {
 		return locale;
 	}
 
-	public String getUpdated_at() {
+	public String getUpdatedAt() {
 		return updated_at;
 	}
 }

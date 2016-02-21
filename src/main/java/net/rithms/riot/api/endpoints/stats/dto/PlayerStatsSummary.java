@@ -18,10 +18,12 @@ import java.io.Serializable;
 public class PlayerStatsSummary implements Serializable {
 
 	private static final long serialVersionUID = -3584187392263947778L;
+
 	private AggregatedStats aggregatedStats;
-	private int losses, wins;
+	private int losses;
 	private long modifyDate;
 	private String playerStatSummaryType;
+	private int wins;
 
 	public AggregatedStats getAggregatedStats() {
 		return aggregatedStats;
@@ -31,15 +33,15 @@ public class PlayerStatsSummary implements Serializable {
 		return losses;
 	}
 
-	public int getWins() {
-		return wins;
-	}
-
 	public long getModifyDate() {
 		return modifyDate;
 	}
 
 	public String getPlayerStatSummaryType() {
 		return playerStatSummaryType;
+	}
+
+	public int getWins() {
+		return wins;
 	}
 }

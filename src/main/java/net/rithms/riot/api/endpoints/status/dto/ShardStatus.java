@@ -22,20 +22,20 @@ import java.util.List;
 public class ShardStatus implements Serializable {
 
 	private static final long serialVersionUID = -530404100006610537L;
+
+	private String hostname;
 	private List<String> locales;
+	private String name;
+	private String region_tag;
 	private List<Service> services;
-	private String hostname, name, region_tag, slug;
-
-	public List<String> getLocales() {
-		return locales;
-	}
-
-	public List<Service> getServices() {
-		return services;
-	}
+	private String slug;
 
 	public String getHostname() {
 		return hostname;
+	}
+
+	public List<String> getLocales() {
+		return locales;
 	}
 
 	public String getName() {
@@ -44,6 +44,10 @@ public class ShardStatus implements Serializable {
 
 	public String getRegion_tag() {
 		return region_tag;
+	}
+
+	public List<Service> getServices() {
+		return services;
 	}
 
 	public String getSlug() {

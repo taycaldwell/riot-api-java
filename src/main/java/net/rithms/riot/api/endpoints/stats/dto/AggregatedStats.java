@@ -21,27 +21,63 @@ import java.io.Serializable;
 public class AggregatedStats implements Serializable {
 
 	private static final long serialVersionUID = 5450927796643171275L;
-	private int averageAssists, averageChampionsKilled, averageCombatPlayerScore, averageNodeCapture, averageNodeCaptureAssist, totalNodeCapture,
-			averageNodeNeutralizeAssist, averageNumDeaths, totalGoldEarned, averageTeamObjective, averageTotalPlayerScore, botGamesPlayed, maxAssists,
-			maxChampionsKilled, maxCombatPlayerScore, totalHeal, maxLargestKillingSpree, maxNodeCapture, maxNodeCaptureAssist, maxNodeNeutralizeAssist,
-			maxObjectivePlayerScore, maxTeamObjective, maxTimePlayed, maxTimeSpentLiving, maxTotalPlayerScore, totalAssists, mostChampionKillsPerSession,
-			mostSpellsCast, normalGamesPlayed, rankedPremadeGamesPlayed, rankedSoloGamesPlayed, totalChampionKills, totalDamageDealt, totalDamageTaken,
-			totalDoubleKills, totalFirstBlood, maxNodeNeutralize, maxLargestCriticalStrike, averageObjectivePlayerScore, killingSpree, totalMagicDamageDealt,
-			totalMinionKills, totalSessionsWon, totalNodeNeutralize, totalPentaKills, totalPhysicalDamageDealt, totalQuadraKills, totalSessionsLost,
-			totalSessionsPlayed, totalTurretsKilled, totalUnrealKills, averageNodeNeutralize, totalNeutralMinionsKilled, totalTripleKills, maxNumDeaths,
-			totalDeathsPerSession;
 
-	public int getTotalMinionKills() {
-		return totalMinionKills;
-	}
-
-	public int getMaxNumDeaths() {
-		return maxNumDeaths;
-	}
-
-	public int getTotalDeathsPerSession() {
-		return totalDeathsPerSession;
-	}
+	private int averageAssists;
+	private int averageChampionsKilled;
+	private int averageCombatPlayerScore;
+	private int averageNodeCapture;
+	private int averageNodeCaptureAssist;
+	private int averageNodeNeutralize;
+	private int averageNodeNeutralizeAssist;
+	private int averageNumDeaths;
+	private int averageObjectivePlayerScore;
+	private int averageTeamObjective;
+	private int averageTotalPlayerScore;
+	private int botGamesPlayed;
+	private int killingSpree;
+	private int maxAssists;
+	private int maxChampionsKilled;
+	private int maxCombatPlayerScore;
+	private int maxLargestCriticalStrike;
+	private int maxLargestKillingSpree;
+	private int maxNodeCapture;
+	private int maxNodeCaptureAssist;
+	private int maxNodeNeutralize;
+	private int maxNodeNeutralizeAssist;
+	private int maxNumDeaths;
+	private int maxObjectivePlayerScore;
+	private int maxTeamObjective;
+	private int maxTimePlayed;
+	private int maxTimeSpentLiving;
+	private int maxTotalPlayerScore;
+	private int mostChampionKillsPerSession;
+	private int mostSpellsCast;
+	private int normalGamesPlayed;
+	private int rankedPremadeGamesPlayed;
+	private int rankedSoloGamesPlayed;
+	private int totalAssists;
+	private int totalChampionKills;
+	private int totalDamageDealt;
+	private int totalDamageTaken;
+	private int totalDeathsPerSession;
+	private int totalDoubleKills;
+	private int totalFirstBlood;
+	private int totalGoldEarned;
+	private int totalHeal;
+	private int totalMagicDamageDealt;
+	private int totalMinionKills;
+	private int totalNeutralMinionsKilled;
+	private int totalNodeCapture;
+	private int totalNodeNeutralize;
+	private int totalPentaKills;
+	private int totalPhysicalDamageDealt;
+	private int totalQuadraKills;
+	private int totalSessionsLost;
+	private int totalSessionsPlayed;
+	private int totalSessionsWon;
+	private int totalTripleKills;
+	private int totalTurretsKilled;
+	private int totalUnrealKills;
 
 	public int getAverageAssists() {
 		return averageAssists;
@@ -63,8 +99,8 @@ public class AggregatedStats implements Serializable {
 		return averageNodeCaptureAssist;
 	}
 
-	public int getTotalNodeCapture() {
-		return totalNodeCapture;
+	public int getAverageNodeNeutralize() {
+		return averageNodeNeutralize;
 	}
 
 	public int getAverageNodeNeutralizeAssist() {
@@ -75,8 +111,8 @@ public class AggregatedStats implements Serializable {
 		return averageNumDeaths;
 	}
 
-	public int getTotalGoldEarned() {
-		return totalGoldEarned;
+	public int getAverageObjectivePlayerScore() {
+		return averageObjectivePlayerScore;
 	}
 
 	public int getAverageTeamObjective() {
@@ -91,6 +127,10 @@ public class AggregatedStats implements Serializable {
 		return botGamesPlayed;
 	}
 
+	public int getKillingSpree() {
+		return killingSpree;
+	}
+
 	public int getMaxAssists() {
 		return maxAssists;
 	}
@@ -103,8 +143,8 @@ public class AggregatedStats implements Serializable {
 		return maxCombatPlayerScore;
 	}
 
-	public int getTotalHeal() {
-		return totalHeal;
+	public int getMaxLargestCriticalStrike() {
+		return maxLargestCriticalStrike;
 	}
 
 	public int getMaxLargestKillingSpree() {
@@ -119,8 +159,16 @@ public class AggregatedStats implements Serializable {
 		return maxNodeCaptureAssist;
 	}
 
+	public int getMaxNodeNeutralize() {
+		return maxNodeNeutralize;
+	}
+
 	public int getMaxNodeNeutralizeAssist() {
 		return maxNodeNeutralizeAssist;
+	}
+
+	public int getMaxNumDeaths() {
+		return maxNumDeaths;
 	}
 
 	public int getMaxObjectivePlayerScore() {
@@ -143,10 +191,6 @@ public class AggregatedStats implements Serializable {
 		return maxTotalPlayerScore;
 	}
 
-	public int getTotalAssists() {
-		return totalAssists;
-	}
-
 	public int getMostChampionKillsPerSession() {
 		return mostChampionKillsPerSession;
 	}
@@ -167,6 +211,10 @@ public class AggregatedStats implements Serializable {
 		return rankedSoloGamesPlayed;
 	}
 
+	public int getTotalAssists() {
+		return totalAssists;
+	}
+
 	public int getTotalChampionKills() {
 		return totalChampionKills;
 	}
@@ -179,6 +227,10 @@ public class AggregatedStats implements Serializable {
 		return totalDamageTaken;
 	}
 
+	public int getTotalDeathsPerSession() {
+		return totalDeathsPerSession;
+	}
+
 	public int getTotalDoubleKills() {
 		return totalDoubleKills;
 	}
@@ -187,28 +239,28 @@ public class AggregatedStats implements Serializable {
 		return totalFirstBlood;
 	}
 
-	public int getMaxNodeNeutralize() {
-		return maxNodeNeutralize;
+	public int getTotalGoldEarned() {
+		return totalGoldEarned;
 	}
 
-	public int getMaxLargestCriticalStrike() {
-		return maxLargestCriticalStrike;
-	}
-
-	public int getAverageObjectivePlayerScore() {
-		return averageObjectivePlayerScore;
-	}
-
-	public int getKillingSpree() {
-		return killingSpree;
+	public int getTotalHeal() {
+		return totalHeal;
 	}
 
 	public int getTotalMagicDamageDealt() {
 		return totalMagicDamageDealt;
 	}
 
-	public int getTotalSessionsWon() {
-		return totalSessionsWon;
+	public int getTotalMinionKills() {
+		return totalMinionKills;
+	}
+
+	public int getTotalNeutralMinionsKilled() {
+		return totalNeutralMinionsKilled;
+	}
+
+	public int getTotalNodeCapture() {
+		return totalNodeCapture;
 	}
 
 	public int getTotalNodeNeutralize() {
@@ -235,23 +287,19 @@ public class AggregatedStats implements Serializable {
 		return totalSessionsPlayed;
 	}
 
+	public int getTotalSessionsWon() {
+		return totalSessionsWon;
+	}
+
+	public int getTotalTripleKills() {
+		return totalTripleKills;
+	}
+
 	public int getTotalTurretsKilled() {
 		return totalTurretsKilled;
 	}
 
 	public int getTotalUnrealKills() {
 		return totalUnrealKills;
-	}
-
-	public int getAverageNodeNeutralize() {
-		return averageNodeNeutralize;
-	}
-
-	public int getTotalNeutralMinionsKilled() {
-		return totalNeutralMinionsKilled;
-	}
-
-	public int getTotalTripleKills() {
-		return totalTripleKills;
 	}
 }

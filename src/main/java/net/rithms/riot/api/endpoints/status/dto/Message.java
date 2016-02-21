@@ -22,13 +22,14 @@ import java.util.List;
 public class Message implements Serializable {
 
 	private static final long serialVersionUID = 9036838901306467780L;
-	private List<Translation> translations;
-	private String author, content, created_at, severity, updated_at;
-	private long id;
 
-	public List<Translation> getTranslations() {
-		return translations;
-	}
+	private String author;
+	private String content;
+	private String created_at;
+	private long id;
+	private String severity;
+	private List<Translation> translations;
+	private String updated_at;
 
 	public String getAuthor() {
 		return author;
@@ -38,19 +39,23 @@ public class Message implements Serializable {
 		return content;
 	}
 
-	public String getCreated_at() {
+	public String getCreatedAt() {
 		return created_at;
+	}
+
+	public long getId() {
+		return id;
 	}
 
 	public String getSeverity() {
 		return severity;
 	}
 
-	public String getUpdated_at() {
-		return updated_at;
+	public List<Translation> getTranslations() {
+		return translations;
 	}
 
-	public long getId() {
-		return id;
+	public String getUpdatedAt() {
+		return updated_at;
 	}
 }
