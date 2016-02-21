@@ -22,14 +22,15 @@ import java.util.List;
 public class Roster implements Serializable {
 
 	private static final long serialVersionUID = 1860524282741648264L;
-	private long ownerId;
-	private List<TeamMemberInfo> memberList;
 
-	public long getOwnerId() {
-		return ownerId;
-	}
+	private List<TeamMemberInfo> memberList;
+	private long ownerId;
 
 	public List<TeamMemberInfo> getMemberList() {
 		return memberList;
+	}
+
+	public long getOwnerId() {
+		return ownerId;
 	}
 }

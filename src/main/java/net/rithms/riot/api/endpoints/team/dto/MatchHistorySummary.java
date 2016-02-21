@@ -21,17 +21,37 @@ import java.io.Serializable;
 public class MatchHistorySummary implements Serializable {
 
 	private static final long serialVersionUID = 3300531318253810880L;
-	private int assists, deaths, kills, mapId, opposingTeamKills;
-	private String gameMode, opposingTeamName;
-	private boolean invalid, win;
-	private long gameId, date;
+
+	private int assists;
+	private long date;
+	private int deaths;
+	private long gameId;
+	private String gameMode;
+	private boolean invalid;
+	private int kills;
+	private int mapId;
+	private int opposingTeamKills;
+	private String opposingTeamName;
+	private boolean win;
 
 	public int getAssists() {
 		return assists;
 	}
 
+	public long getDate() {
+		return date;
+	}
+
 	public int getDeaths() {
 		return deaths;
+	}
+
+	public long getGameId() {
+		return gameId;
+	}
+
+	public String getGameMode() {
+		return gameMode;
 	}
 
 	public int getKills() {
@@ -46,10 +66,6 @@ public class MatchHistorySummary implements Serializable {
 		return opposingTeamKills;
 	}
 
-	public String getGameMode() {
-		return gameMode;
-	}
-
 	public String getOpposingTeamName() {
 		return opposingTeamName;
 	}
@@ -60,13 +76,5 @@ public class MatchHistorySummary implements Serializable {
 
 	public boolean isWin() {
 		return win;
-	}
-
-	public long getGameId() {
-		return gameId;
-	}
-
-	public long getDate() {
-		return date;
 	}
 }

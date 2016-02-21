@@ -21,22 +21,25 @@ import java.io.Serializable;
 public class TeamStatDetail implements Serializable {
 
 	private static final long serialVersionUID = -3736635288922730192L;
-	private int wins, losses, averageGamesPlayed;
-	private String teamStatType;
 
-	public int getWins() {
-		return wins;
+	private int averageGamesPlayed;
+	private int losses;
+	private String teamStatType;
+	private int wins;
+
+	public int getAverageGamesPlayed() {
+		return averageGamesPlayed;
 	}
 
 	public int getLosses() {
 		return losses;
 	}
 
-	public int getAverageGamesPlayed() {
-		return averageGamesPlayed;
-	}
-
 	public String getTeamStatType() {
 		return teamStatType;
+	}
+
+	public int getWins() {
+		return wins;
 	}
 }

@@ -22,12 +22,27 @@ import java.util.Set;
 public class TournamentCode implements Serializable {
 
 	private static final long serialVersionUID = -1525318794336918321L;
-	private String code, lobbyName, map, metaData, password, pickType, region, spectators;
-	private int id, providerId, teamSize, tournamentId;
+
+	private String code;
+	private int id;
+	private String lobbyName;
+	private String map;
+	private String metaData;
 	private Set<Long> participants;
+	private String password;
+	private String pickType;
+	private int providerId;
+	private String region;
+	private String spectators;
+	private int teamSize;
+	private int tournamentId;
 
 	public String getCode() {
 		return code;
+	}
+
+	public int getId() {
+		return id;
 	}
 
 	public String getLobbyName() {
@@ -42,12 +57,20 @@ public class TournamentCode implements Serializable {
 		return metaData;
 	}
 
+	public Set<Long> getParticipants() {
+		return participants;
+	}
+
 	public String getPassword() {
 		return password;
 	}
 
 	public String getPickType() {
 		return pickType;
+	}
+
+	public int getProviderId() {
+		return providerId;
 	}
 
 	public String getRegion() {
@@ -58,24 +81,12 @@ public class TournamentCode implements Serializable {
 		return spectators;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public int getProviderId() {
-		return providerId;
-	}
-
 	public int getTeamSize() {
 		return teamSize;
 	}
 
 	public int getTournamentId() {
 		return tournamentId;
-	}
-
-	public Set<Long> getParticipants() {
-		return participants;
 	}
 
 	@Override

@@ -21,7 +21,10 @@ import java.io.Serializable;
 public class LobbyEvent implements Serializable {
 
 	private static final long serialVersionUID = 2914669820313091597L;
-	private String eventType, summonerId, timestamp;
+
+	private String eventType;
+	private String summonerId;
+	private String timestamp;
 
 	public String getEventType() {
 		return eventType;

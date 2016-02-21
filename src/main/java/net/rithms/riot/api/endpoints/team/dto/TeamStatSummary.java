@@ -19,11 +19,11 @@ package net.rithms.riot.api.endpoints.team.dto;
 import java.io.Serializable;
 import java.util.Set;
 
-/** DEPRECATED **/
-
+@Deprecated
 public class TeamStatSummary implements Serializable {
 
 	private static final long serialVersionUID = 1944217232079180107L;
+
 	private String fullId;
 	private Set<TeamStatDetail> teamStatDetails;
 
