@@ -22,14 +22,15 @@ import java.util.Set;
 public class RunePages implements Serializable {
 
 	private static final long serialVersionUID = 3636621264321429110L;
-	private long summonerId;
-	private Set<RunePage> pages;
 
-	public long getSummonerId() {
-		return summonerId;
-	}
+	private Set<RunePage> pages;
+	private long summonerId;
 
 	public Set<RunePage> getPages() {
 		return pages;
+	}
+
+	public long getSummonerId() {
+		return summonerId;
 	}
 }

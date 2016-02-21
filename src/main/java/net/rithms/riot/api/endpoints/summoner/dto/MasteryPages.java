@@ -22,14 +22,15 @@ import java.util.Set;
 public class MasteryPages implements Serializable {
 
 	private static final long serialVersionUID = 2574314573359467443L;
-	private long summonerId;
-	private Set<MasteryPage> pages;
 
-	public long getSummonerId() {
-		return summonerId;
-	}
+	private Set<MasteryPage> pages;
+	private long summonerId;
 
 	public Set<MasteryPage> getPages() {
 		return pages;
+	}
+
+	public long getSummonerId() {
+		return summonerId;
 	}
 }

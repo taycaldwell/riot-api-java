@@ -21,13 +21,15 @@ import java.io.Serializable;
 public class RuneSlot implements Serializable {
 
 	private static final long serialVersionUID = -8204125507572318573L;
-	private int runeId, runeSlotId;
 
-	public int getRuneSlotId() {
-		return runeSlotId;
-	}
+	private int runeId;
+	private int runeSlotId;
 
 	public int getRuneId() {
 		return runeId;
+	}
+
+	public int getRuneSlotId() {
+		return runeSlotId;
 	}
 }

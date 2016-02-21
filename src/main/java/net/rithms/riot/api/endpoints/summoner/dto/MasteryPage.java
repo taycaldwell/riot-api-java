@@ -22,24 +22,25 @@ import java.util.List;
 public class MasteryPage implements Serializable {
 
 	private static final long serialVersionUID = -8442771692820615671L;
+
 	private boolean current;
 	private long id;
-	private String name;
 	private List<Mastery> masteries;
-
-	public boolean isCurrent() {
-		return current;
-	}
+	private String name;
 
 	public long getId() {
 		return id;
+	}
+
+	public List<Mastery> getMasteries() {
+		return masteries;
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	public List<Mastery> getMasteries() {
-		return masteries;
+	public boolean isCurrent() {
+		return current;
 	}
 }

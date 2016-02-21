@@ -22,14 +22,11 @@ import java.util.Set;
 public class RunePage implements Serializable {
 
 	private static final long serialVersionUID = 97699628656087959L;
+
 	private boolean current;
 	private long id;
 	private String name;
 	private Set<RuneSlot> slots;
-
-	public boolean isCurrent() {
-		return current;
-	}
 
 	public long getId() {
 		return id;
@@ -41,5 +38,9 @@ public class RunePage implements Serializable {
 
 	public Set<RuneSlot> getSlots() {
 		return slots;
+	}
+
+	public boolean isCurrent() {
+		return current;
 	}
 }

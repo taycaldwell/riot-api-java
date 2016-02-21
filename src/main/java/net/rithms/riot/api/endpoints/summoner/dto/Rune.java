@@ -15,11 +15,11 @@ package net.rithms.riot.api.endpoints.summoner.dto;
 
 import java.io.Serializable;
 
-/** DEPRECATED **/
-
+@Deprecated
 public class Rune implements Serializable {
 
 	private static final long serialVersionUID = -7246944638208327134L;
+
 	private int id, tier;
 	private String description, name;
 
