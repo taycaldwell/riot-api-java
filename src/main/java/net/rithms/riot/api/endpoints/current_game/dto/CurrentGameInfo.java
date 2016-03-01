@@ -34,13 +34,11 @@ public class CurrentGameInfo implements Serializable {
 	private Observer observers;
 	private List<CurrentGameParticipant> participants;
 	private String platformId;
+	private TeamInfo teamInfoOne;
+	private TeamInfo teamInfoTwo;
 
 	@Deprecated
 	private int gameTypeConfigId;
-	@Deprecated
-	private TeamInfo teamInfoOne;
-	@Deprecated
-	private TeamInfo teamInfoTwo;
 
 	public List<BannedChampion> getBannedChampions() {
 		return bannedChampions;
@@ -91,12 +89,10 @@ public class CurrentGameInfo implements Serializable {
 		return platformId;
 	}
 
-	@Deprecated
 	public TeamInfo getTeamInfoOne() {
 		return teamInfoOne;
 	}
 
-	@Deprecated
 	public TeamInfo getTeamInfoTwo() {
 		return teamInfoTwo;
 	}
