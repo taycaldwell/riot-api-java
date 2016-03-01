@@ -21,7 +21,11 @@ import java.io.Serializable;
 public class Info implements Serializable {
 
 	private static final long serialVersionUID = -671408952920494867L;
-	private int attack, defense, difficulty, magic;
+
+	private int attack;
+	private int defense;
+	private int difficulty;
+	private int magic;
 
 	public int getAttack() {
 		return attack;

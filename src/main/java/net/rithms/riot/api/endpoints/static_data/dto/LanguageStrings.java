@@ -17,14 +17,17 @@
 package net.rithms.riot.api.endpoints.static_data.dto;
 
 import java.io.Serializable;
+import java.util.Map;
 
 public class LanguageStrings implements Serializable {
 
 	private static final long serialVersionUID = -5097401216029512928L;
-	private LanguageStringsData data;
-	private String type, version;
 
-	public LanguageStringsData getData() {
+	private Map<String, String> data;
+	private String type;
+	private String version;
+
+	public Map<String, String> getData() {
 		return data;
 	}
 

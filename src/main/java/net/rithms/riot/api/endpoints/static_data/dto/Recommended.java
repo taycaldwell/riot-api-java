@@ -22,9 +22,14 @@ import java.util.List;
 public class Recommended implements Serializable {
 
 	private static final long serialVersionUID = 8722523053273835114L;
+
 	private List<Block> blocks;
-	private String champion, map, mode, title, type;
+	private String champion;
+	private String map;
+	private String mode;
 	private boolean priority;
+	private String title;
+	private String type;
 
 	public List<Block> getBlocks() {
 		return blocks;

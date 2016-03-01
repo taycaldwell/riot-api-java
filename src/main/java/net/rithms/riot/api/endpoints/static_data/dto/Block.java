@@ -22,6 +22,7 @@ import java.util.List;
 public class Block implements Serializable {
 
 	private static final long serialVersionUID = -4041031408263653499L;
+
 	private List<BlockItem> items;
 	private boolean recMath;
 	private String type;
@@ -30,11 +31,11 @@ public class Block implements Serializable {
 		return items;
 	}
 
-	public boolean isRecMath() {
-		return recMath;
-	}
-
 	public String getType() {
 		return type;
+	}
+
+	public boolean isRecMath() {
+		return recMath;
 	}
 }

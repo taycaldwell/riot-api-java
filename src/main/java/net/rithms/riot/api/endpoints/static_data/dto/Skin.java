@@ -21,18 +21,20 @@ import java.io.Serializable;
 public class Skin implements Serializable {
 
 	private static final long serialVersionUID = -8984891033284072910L;
-	private int id, num;
+
+	private int id;
 	private String name;
+	private int num;
 
 	public int getId() {
 		return id;
 	}
 
-	public int getNum() {
-		return num;
-	}
-
 	public String getName() {
 		return name;
+	}
+
+	public int getNum() {
+		return num;
 	}
 }

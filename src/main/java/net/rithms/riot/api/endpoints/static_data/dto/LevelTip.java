@@ -22,6 +22,7 @@ import java.util.List;
 public class LevelTip implements Serializable {
 
 	private static final long serialVersionUID = -3061786573868823081L;
+
 	private List<String> effect;
 	private List<String> label;
 

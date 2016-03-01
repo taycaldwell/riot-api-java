@@ -22,41 +22,39 @@ import java.util.List;
 public class Champion implements Serializable {
 
 	private static final long serialVersionUID = 8120597968700936522L;
+
 	private List<String> allytips;
+	private String blurb;
 	private List<String> enemytips;
+	private int id;
+	private Image image;
+	private Info info;
+	private String key;
+	private String lore;
+	private String name;
+	private String partype;
+	private Passive passive;
 	private List<Recommended> recommended;
 	private List<Skin> skins;
 	private List<ChampionSpell> spells;
-	private List<String> tags;
-	private Image image;
-	private Info info;
-	private Passive passive;
 	private Stats stats;
-	private int id;
-	private String blurb, key, lore, name, partype, title;
+	private List<String> tags;
+	private String title;
 
 	public List<String> getAllytips() {
 		return allytips;
+	}
+
+	public String getBlurb() {
+		return blurb;
 	}
 
 	public List<String> getEnemytips() {
 		return enemytips;
 	}
 
-	public List<Recommended> getRecommended() {
-		return recommended;
-	}
-
-	public List<Skin> getSkins() {
-		return skins;
-	}
-
-	public List<ChampionSpell> getSpells() {
-		return spells;
-	}
-
-	public List<String> getTags() {
-		return tags;
+	public int getId() {
+		return id;
 	}
 
 	public Image getImage() {
@@ -65,22 +63,6 @@ public class Champion implements Serializable {
 
 	public Info getInfo() {
 		return info;
-	}
-
-	public Passive getPassive() {
-		return passive;
-	}
-
-	public Stats getStats() {
-		return stats;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public String getBlurb() {
-		return blurb;
 	}
 
 	public String getKey() {
@@ -97,6 +79,30 @@ public class Champion implements Serializable {
 
 	public String getPartype() {
 		return partype;
+	}
+
+	public Passive getPassive() {
+		return passive;
+	}
+
+	public List<Recommended> getRecommended() {
+		return recommended;
+	}
+
+	public List<Skin> getSkins() {
+		return skins;
+	}
+
+	public List<ChampionSpell> getSpells() {
+		return spells;
+	}
+
+	public Stats getStats() {
+		return stats;
+	}
+
+	public List<String> getTags() {
+		return tags;
 	}
 
 	public String getTitle() {

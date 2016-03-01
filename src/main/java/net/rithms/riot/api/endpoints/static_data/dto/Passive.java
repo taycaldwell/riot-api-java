@@ -21,11 +21,18 @@ import java.io.Serializable;
 public class Passive implements Serializable {
 
 	private static final long serialVersionUID = 3894157958044991050L;
-	private String description, name, sanitizedDescription;
+
+	private String description;
 	private Image image;
+	private String name;
+	private String sanitizedDescription;
 
 	public String getDescription() {
 		return description;
+	}
+
+	public Image getImage() {
+		return image;
 	}
 
 	public String getName() {
@@ -34,9 +41,5 @@ public class Passive implements Serializable {
 
 	public String getSanitizedDescription() {
 		return sanitizedDescription;
-	}
-
-	public Image getImage() {
-		return image;
 	}
 }

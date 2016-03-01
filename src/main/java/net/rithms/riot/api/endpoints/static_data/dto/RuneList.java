@@ -22,16 +22,18 @@ import java.util.Map;
 public class RuneList implements Serializable {
 
 	private static final long serialVersionUID = 1696878942733740445L;
-	private Map<String, Rune> data;
-	private BasicData basic;
-	private String type, version;
 
-	public Map<String, Rune> getData() {
-		return data;
-	}
+	private BasicData basic;
+	private Map<String, Rune> data;
+	private String type;
+	private String version;
 
 	public BasicData getBasic() {
 		return basic;
+	}
+
+	public Map<String, Rune> getData() {
+		return data;
 	}
 
 	public String getType() {

@@ -22,21 +22,28 @@ import java.util.List;
 public class ChampionSpell implements Serializable {
 
 	private static final long serialVersionUID = 5070619841076416615L;
+
 	private List<Image> altimages;
 	private List<Double> cooldown;
+	private String cooldownBurn;
 	private List<Integer> cost;
+	private String costBurn;
+	private String costType;
+	private String description;
 	private List<Object> effect;
 	private List<String> effectBurn;
-	private Object range;
-	private List<SpellVars> vars;
-	private String cooldownBurn, costBurn, costType, description, key, name, rangeBurn, resource, sanitizedDescription, sanitizedTooltip, tooltip;
 	private Image image;
-	private int maxrank;
+	private String key;
 	private LevelTip leveltip;
-
-	public LevelTip getLeveltip() {
-		return leveltip;
-	}
+	private int maxrank;
+	private String name;
+	private Object range;
+	private String rangeBurn;
+	private String resource;
+	private String sanitizedDescription;
+	private String sanitizedTooltip;
+	private String tooltip;
+	private List<SpellVars> vars;
 
 	public List<Image> getAltimages() {
 		return altimages;
@@ -46,24 +53,12 @@ public class ChampionSpell implements Serializable {
 		return cooldown;
 	}
 
+	public String getCooldownBurn() {
+		return cooldownBurn;
+	}
+
 	public List<Integer> getCost() {
 		return cost;
-	}
-
-	public List<Object> getEffect() {
-		return effect;
-	}
-
-	public List<String> getEffectBurn() {
-		return effectBurn;
-	}
-
-	public Object getRange() {
-		return range;
-	}
-
-	public List<SpellVars> getVars() {
-		return vars;
 	}
 
 	public String getCostBurn() {
@@ -78,12 +73,36 @@ public class ChampionSpell implements Serializable {
 		return description;
 	}
 
+	public List<Object> getEffect() {
+		return effect;
+	}
+
+	public List<String> getEffectBurn() {
+		return effectBurn;
+	}
+
+	public Image getImage() {
+		return image;
+	}
+
 	public String getKey() {
 		return key;
 	}
 
+	public LevelTip getLeveltip() {
+		return leveltip;
+	}
+
+	public int getMaxrank() {
+		return maxrank;
+	}
+
 	public String getName() {
 		return name;
+	}
+
+	public Object getRange() {
+		return range;
 	}
 
 	public String getRangeBurn() {
@@ -106,15 +125,7 @@ public class ChampionSpell implements Serializable {
 		return tooltip;
 	}
 
-	public Image getImage() {
-		return image;
-	}
-
-	public int getMaxrank() {
-		return maxrank;
-	}
-
-	public String getCooldownBurn() {
-		return cooldownBurn;
+	public List<SpellVars> getVars() {
+		return vars;
 	}
 }

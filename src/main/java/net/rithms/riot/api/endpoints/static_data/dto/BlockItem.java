@@ -21,7 +21,9 @@ import java.io.Serializable;
 public class BlockItem implements Serializable {
 
 	private static final long serialVersionUID = 716305113317412182L;
-	private int count, id;
+
+	private int count;
+	private int id;
 
 	public int getCount() {
 		return count;

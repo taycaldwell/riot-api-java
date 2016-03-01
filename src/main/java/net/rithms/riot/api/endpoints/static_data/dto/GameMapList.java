@@ -19,6 +19,7 @@ package net.rithms.riot.api.endpoints.static_data.dto;
 import java.io.Serializable;
 import java.util.Map;
 
+@Deprecated
 public class GameMapList implements Serializable {
 
 	private static final long serialVersionUID = -1624000877653131904L;

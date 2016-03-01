@@ -54,10 +54,10 @@ import net.rithms.riot.api.endpoints.static_data.constant.MasteryListData;
 import net.rithms.riot.api.endpoints.static_data.constant.RuneData;
 import net.rithms.riot.api.endpoints.static_data.constant.RuneListData;
 import net.rithms.riot.api.endpoints.static_data.constant.SpellData;
-import net.rithms.riot.api.endpoints.static_data.dto.GameMapList;
 import net.rithms.riot.api.endpoints.static_data.dto.Item;
 import net.rithms.riot.api.endpoints.static_data.dto.ItemList;
 import net.rithms.riot.api.endpoints.static_data.dto.LanguageStrings;
+import net.rithms.riot.api.endpoints.static_data.dto.MapData;
 import net.rithms.riot.api.endpoints.static_data.dto.Mastery;
 import net.rithms.riot.api.endpoints.static_data.dto.MasteryList;
 import net.rithms.riot.api.endpoints.static_data.dto.Realm;
@@ -67,11 +67,11 @@ import net.rithms.riot.api.endpoints.static_data.dto.SummonerSpell;
 import net.rithms.riot.api.endpoints.static_data.dto.SummonerSpellList;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataChampion;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataChampionList;
-import net.rithms.riot.api.endpoints.static_data.methods.GetDataGameMapList;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataItem;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataItemList;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataLanguageStrings;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataLanguages;
+import net.rithms.riot.api.endpoints.static_data.methods.GetDataMap;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataMastery;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataMasteryList;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataRealm;
@@ -473,43 +473,6 @@ public class RiotApiAsync {
 	}
 
 	/**
-	 * Retrieves map data.
-	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
-	 * @param locale
-	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
-	 *            used.
-	 * @param version
-	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
-	 *            can be obtained from the {@link #getDataVersions()} method.
-	 * @return A list of game maps
-	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
-	 * @see GameMapList
-	 */
-	public AsyncRequest getDataGameMapList(Region region, String locale, String version) {
-		Objects.requireNonNull(region);
-		ApiMethod method = new GetDataGameMapList(getConfig(), region, locale, version);
-		return endpointManager.callMethodAsynchronously(method);
-	}
-
-	/**
-	 * Retrieves map data.
-	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
-	 * @return A list of game maps
-	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
-	 * @see GameMapList
-	 */
-	public AsyncRequest getDataGameMapList(Region region) {
-		Objects.requireNonNull(region);
-		return getDataGameMapList(region, null, null);
-	}
-
-	/**
 	 * Retrieves item by its unique {@code id}.
 	 * 
 	 * @param region
@@ -645,6 +608,43 @@ public class RiotApiAsync {
 	public AsyncRequest getDataLanguageStrings(Region region) {
 		Objects.requireNonNull(region);
 		return getDataLanguageStrings(region, null, null);
+	}
+
+	/**
+	 * Retrieves map data.
+	 * 
+	 * @param region
+	 *            Region from which to retrieve data.
+	 * @param locale
+	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
+	 *            used.
+	 * @param version
+	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
+	 *            can be obtained from the {@link #getDataVersions()} method.
+	 * @return A list of game maps
+	 * @throws NullPointerException
+	 *             If {@code region} is {@code null}
+	 * @see MapData
+	 */
+	public AsyncRequest getDataMap(Region region, String locale, String version) {
+		Objects.requireNonNull(region);
+		ApiMethod method = new GetDataMap(getConfig(), region, locale, version);
+		return endpointManager.callMethodAsynchronously(method);
+	}
+
+	/**
+	 * Retrieves map data.
+	 * 
+	 * @param region
+	 *            Region from which to retrieve data.
+	 * @return A list of game maps
+	 * @throws NullPointerException
+	 *             If {@code region} is {@code null}
+	 * @see MapData
+	 */
+	public AsyncRequest getDataMap(Region region) {
+		Objects.requireNonNull(region);
+		return getDataMap(region, null, null);
 	}
 
 	/**

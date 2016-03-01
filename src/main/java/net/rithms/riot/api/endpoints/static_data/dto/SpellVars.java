@@ -22,8 +22,12 @@ import java.util.List;
 public class SpellVars implements Serializable {
 
 	private static final long serialVersionUID = -8316487089517907400L;
+
 	private List<Double> coeff;
-	private String dyn, key, link, ranksWith;
+	private String dyn;
+	private String key;
+	private String link;
+	private String ranksWith;
 
 	public List<Double> getCoeff() {
 		return coeff;

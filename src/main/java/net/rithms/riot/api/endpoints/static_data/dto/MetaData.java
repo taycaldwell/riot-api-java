@@ -21,12 +21,10 @@ import java.io.Serializable;
 public class MetaData implements Serializable {
 
 	private static final long serialVersionUID = 8983953859724300000L;
-	private boolean isRune;
-	private String tier, type;
 
-	public boolean isRune() {
-		return isRune;
-	}
+	private boolean isRune;
+	private String tier;
+	private String type;
 
 	public String getTier() {
 		return tier;
@@ -34,5 +32,9 @@ public class MetaData implements Serializable {
 
 	public String getType() {
 		return type;
+	}
+
+	public boolean isRune() {
+		return isRune;
 	}
 }

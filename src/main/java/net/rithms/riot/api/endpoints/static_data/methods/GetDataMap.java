@@ -19,15 +19,15 @@ package net.rithms.riot.api.endpoints.static_data.methods;
 import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.UrlParameter;
 import net.rithms.riot.api.endpoints.static_data.StaticDataApiMethod;
-import net.rithms.riot.api.endpoints.static_data.dto.GameMapList;
+import net.rithms.riot.api.endpoints.static_data.dto.MapData;
 import net.rithms.riot.constant.Region;
 
-public class GetDataGameMapList extends StaticDataApiMethod {
+public class GetDataMap extends StaticDataApiMethod {
 
-	public GetDataGameMapList(ApiConfig config, Region region, String locale, String version) {
+	public GetDataMap(ApiConfig config, Region region, String locale, String version) {
 		super(config);
 		setRegion(region);
-		setReturnType(GameMapList.class);
+		setReturnType(MapData.class);
 		setUrlBase("https://global.api.pvp.net/api/lol/static-data/" + region + "/v1.2/map");
 		if (locale != null) {
 			add(new UrlParameter("locale", locale));

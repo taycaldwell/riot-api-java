@@ -23,49 +23,31 @@ import java.util.Map;
 public class Item implements Serializable {
 
 	private static final long serialVersionUID = -2356960824032495693L;
+
+	private String colloq;
+	private boolean consumeOnFull;
+	private boolean consumed;
+	private int depth;
+	private String description;
+	private Map<String, String> effect;
 	private List<String> from;
+	private Gold gold;
+	private String group;
+	private boolean hideFromAll;
+	private int id;
+	private Image image;
+	private boolean inStore;
 	private List<String> into;
 	private Map<String, Boolean> maps;
-	private List<String> tags;
-	private Gold gold;
-	private Image image;
+	private String name;
+	private String plaintext;
+	private String requiredChampion;
 	private MetaData rune;
+	private String sanitizedDescription;
+	private int specialRecipe;
+	private int stacks;
 	private BasicDataStats stats;
-	private String colloq, description, group, name, plaintext, requiredChampion, sanitizedDescription;
-	private boolean consumeOnFull, consumed, hideFromAll, inStore;
-	private int depth, id, specialRecipe, stacks;
-
-	public List<String> getFrom() {
-		return from;
-	}
-
-	public List<String> getInto() {
-		return into;
-	}
-
-	public Map<String, Boolean> getMaps() {
-		return maps;
-	}
-
-	public List<String> getTags() {
-		return tags;
-	}
-
-	public Gold getGold() {
-		return gold;
-	}
-
-	public Image getImage() {
-		return image;
-	}
-
-	public MetaData getRune() {
-		return rune;
-	}
-
-	public BasicDataStats getStats() {
-		return stats;
-	}
+	private List<String> tags;
 
 	public String getColloq() {
 		return colloq;
@@ -75,8 +57,40 @@ public class Item implements Serializable {
 		return description;
 	}
 
+	public int getDepth() {
+		return depth;
+	}
+
+	public Map<String, String> getEffect() {
+		return effect;
+	}
+
+	public List<String> getFrom() {
+		return from;
+	}
+
+	public Gold getGold() {
+		return gold;
+	}
+
 	public String getGroup() {
 		return group;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public Image getImage() {
+		return image;
+	}
+
+	public List<String> getInto() {
+		return into;
+	}
+
+	public Map<String, Boolean> getMaps() {
+		return maps;
 	}
 
 	public String getName() {
@@ -91,8 +105,28 @@ public class Item implements Serializable {
 		return requiredChampion;
 	}
 
+	public MetaData getRune() {
+		return rune;
+	}
+
 	public String getSanitizedDescription() {
 		return sanitizedDescription;
+	}
+
+	public int getSpecialRecipe() {
+		return specialRecipe;
+	}
+
+	public int getStacks() {
+		return stacks;
+	}
+
+	public BasicDataStats getStats() {
+		return stats;
+	}
+
+	public List<String> getTags() {
+		return tags;
 	}
 
 	public boolean isConsumeOnFull() {
@@ -109,21 +143,5 @@ public class Item implements Serializable {
 
 	public boolean isInStore() {
 		return inStore;
-	}
-
-	public int getDepth() {
-		return depth;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public int getSpecialRecipe() {
-		return specialRecipe;
-	}
-
-	public int getStacks() {
-		return stacks;
 	}
 }

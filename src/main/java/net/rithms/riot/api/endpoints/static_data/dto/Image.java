@@ -21,8 +21,14 @@ import java.io.Serializable;
 public class Image implements Serializable {
 
 	private static final long serialVersionUID = 5802273643884377746L;
-	private String full, group, sprite;
-	private int h, w, x, y;
+
+	private String full;
+	private String group;
+	private int h;
+	private String sprite;
+	private int w;
+	private int x;
+	private int y;
 
 	public String getFull() {
 		return full;
@@ -32,12 +38,12 @@ public class Image implements Serializable {
 		return group;
 	}
 
-	public String getSprite() {
-		return sprite;
-	}
-
 	public int getH() {
 		return h;
+	}
+
+	public String getSprite() {
+		return sprite;
 	}
 
 	public int getW() {

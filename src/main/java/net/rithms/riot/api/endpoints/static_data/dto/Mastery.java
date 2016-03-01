@@ -22,30 +22,33 @@ import java.util.List;
 public class Mastery implements Serializable {
 
 	private static final long serialVersionUID = 8480226179945327205L;
+	
 	private List<String> description;
-	private List<String> sanitizedDescription;
+	private int id;
 	private Image image;
-	private int id, ranks;
-	private String name, prereq, masteryTree;
+	private String masteryTree;
+	private String name;
+	private String prereq;
+	private int ranks;
+	private List<String> sanitizedDescription;
 
 	public List<String> getDescription() {
 		return description;
-	}
-
-	public List<String> getSanitizedDescription() {
-		return sanitizedDescription;
-	}
-
-	public Image getImage() {
-		return image;
 	}
 
 	public int getId() {
 		return id;
 	}
 
-	public int getRanks() {
-		return ranks;
+	public Image getImage() {
+		return image;
+	}
+
+	/**
+	 * Legal values: Defense, Offense, Utility
+	 */
+	public String getMasteryTree() {
+		return masteryTree;
 	}
 
 	public String getName() {
@@ -56,10 +59,11 @@ public class Mastery implements Serializable {
 		return prereq;
 	}
 
-	/**
-	 * Legal values: Defense, Offense, Utility
-	 */
-	public String getMasteryTree() {
-		return masteryTree;
+	public int getRanks() {
+		return ranks;
+	}
+
+	public List<String> getSanitizedDescription() {
+		return sanitizedDescription;
 	}
 }

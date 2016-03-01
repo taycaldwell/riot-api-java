@@ -22,48 +22,41 @@ import java.util.List;
 public class SummonerSpell implements Serializable {
 
 	private static final long serialVersionUID = -8682930729114683183L;
+
 	private List<Double> cooldown;
+	private String cooldownBurn;
 	private List<Integer> cost;
+	private String costBurn;
+	private String costType;
+	private String description;
 	private List<Object> effect;
 	private List<String> effectBurn;
-	private List<String> modes;
-	private Object range;
-	private List<SpellVars> vars;
-	private String cooldownBurn, costBurn, costType, description, key, name, rangeBurn, resource, sanitizedDescription, sanitizedTooltip, tooltip;
-	private int id, maxrank, summonerLevel;
+	private int id;
 	private Image image;
+	private String key;
 	private LevelTip leveltip;
+	private int maxrank;
+	private List<String> modes;
+	private String name;
+	private Object range;
+	private String rangeBurn;
+	private String resource;
+	private String sanitizedDescription;
+	private String sanitizedTooltip;
+	private int summonerLevel;
+	private String tooltip;
+	private List<SpellVars> vars;
 
 	public List<Double> getCooldown() {
 		return cooldown;
 	}
 
-	public List<Integer> getCost() {
-		return cost;
-	}
-
-	public List<Object> getEffect() {
-		return effect;
-	}
-
-	public List<String> getEffectBurn() {
-		return effectBurn;
-	}
-
-	public List<String> getModes() {
-		return modes;
-	}
-
-	public Object getRange() {
-		return range;
-	}
-
-	public List<SpellVars> getVars() {
-		return vars;
-	}
-
 	public String getCooldownBurn() {
 		return cooldownBurn;
+	}
+
+	public List<Integer> getCost() {
+		return cost;
 	}
 
 	public String getCostBurn() {
@@ -78,12 +71,44 @@ public class SummonerSpell implements Serializable {
 		return description;
 	}
 
+	public List<Object> getEffect() {
+		return effect;
+	}
+
+	public List<String> getEffectBurn() {
+		return effectBurn;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public Image getImage() {
+		return image;
+	}
+
 	public String getKey() {
 		return key;
 	}
 
+	public LevelTip getLeveltip() {
+		return leveltip;
+	}
+
+	public int getMaxrank() {
+		return maxrank;
+	}
+
+	public List<String> getModes() {
+		return modes;
+	}
+
 	public String getName() {
 		return name;
+	}
+
+	public Object getRange() {
+		return range;
 	}
 
 	public String getRangeBurn() {
@@ -102,27 +127,15 @@ public class SummonerSpell implements Serializable {
 		return sanitizedTooltip;
 	}
 
-	public String getTooltip() {
-		return tooltip;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public int getMaxrank() {
-		return maxrank;
-	}
-
 	public int getSummonerLevel() {
 		return summonerLevel;
 	}
 
-	public Image getImage() {
-		return image;
+	public String getTooltip() {
+		return tooltip;
 	}
 
-	public LevelTip getLeveltip() {
-		return leveltip;
+	public List<SpellVars> getVars() {
+		return vars;
 	}
 }

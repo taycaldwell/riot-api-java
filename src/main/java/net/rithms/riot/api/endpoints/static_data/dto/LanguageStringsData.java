@@ -18,6 +18,7 @@ package net.rithms.riot.api.endpoints.static_data.dto;
 
 import java.io.Serializable;
 
+@Deprecated
 public class LanguageStringsData implements Serializable {
 
 	private static final long serialVersionUID = 7114446344596103892L;

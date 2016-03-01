@@ -23,20 +23,61 @@ import java.util.Map;
 public class BasicData implements Serializable {
 
 	private static final long serialVersionUID = 4928673824824907056L;
+
+	private String colloq;
+	private boolean consumeOnFull;
+	private boolean consumed;
+	private int depth;
+	private String decription;
 	private List<String> from;
+	private Gold gold;
+	private String group;
+	private boolean hideFromAll;
+	private int id;
+	private Image image;
+	private boolean inStore;
 	private List<String> into;
 	private Map<String, Boolean> maps;
-	private List<String> tags;
-	private Gold gold;
-	private Image image;
+	private String name;
+	private String plaintext;
+	private String requiredChampion;
 	private MetaData rune;
+	private String sanitizedDescription;
+	private int specialRecipe;
+	private int stacks;
 	private BasicDataStats stats;
-	private String colloq, decription, group, ame, plaintext, requiredChampion, sanitizedDescription;
-	private boolean consumeOnFull, consumed, hideFromAll, inStore;
-	private int depth, id, specialRecipe, stacks;
+	private List<String> tags;
+
+	public String getColloq() {
+		return colloq;
+	}
+
+	public String getDecription() {
+		return decription;
+	}
+
+	public int getDepth() {
+		return depth;
+	}
 
 	public List<String> getFrom() {
 		return from;
+	}
+
+	public Gold getGold() {
+		return gold;
+	}
+
+	public String getGroup() {
+		return group;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public Image getImage() {
+		return image;
 	}
 
 	public List<String> getInto() {
@@ -47,40 +88,8 @@ public class BasicData implements Serializable {
 		return maps;
 	}
 
-	public List<String> getTags() {
-		return tags;
-	}
-
-	public Gold getGold() {
-		return gold;
-	}
-
-	public Image getImage() {
-		return image;
-	}
-
-	public MetaData getRune() {
-		return rune;
-	}
-
-	public BasicDataStats getStats() {
-		return stats;
-	}
-
-	public String getColloq() {
-		return colloq;
-	}
-
-	public String getDecription() {
-		return decription;
-	}
-
-	public String getGroup() {
-		return group;
-	}
-
-	public String getAme() {
-		return ame;
+	public String getName() {
+		return name;
 	}
 
 	public String getPlaintext() {
@@ -91,8 +100,28 @@ public class BasicData implements Serializable {
 		return requiredChampion;
 	}
 
+	public MetaData getRune() {
+		return rune;
+	}
+
 	public String getSanitizedDescription() {
 		return sanitizedDescription;
+	}
+
+	public int getSpecialRecipe() {
+		return specialRecipe;
+	}
+
+	public int getStacks() {
+		return stacks;
+	}
+
+	public BasicDataStats getStats() {
+		return stats;
+	}
+
+	public List<String> getTags() {
+		return tags;
 	}
 
 	public boolean isConsumeOnFull() {
@@ -109,21 +138,5 @@ public class BasicData implements Serializable {
 
 	public boolean isInStore() {
 		return inStore;
-	}
-
-	public int getDepth() {
-		return depth;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public int getSpecialRecipe() {
-		return specialRecipe;
-	}
-
-	public int getStacks() {
-		return stacks;
 	}
 }

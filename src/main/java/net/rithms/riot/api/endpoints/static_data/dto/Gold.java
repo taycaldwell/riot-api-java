@@ -21,12 +21,11 @@ import java.io.Serializable;
 public class Gold implements Serializable {
 
 	private static final long serialVersionUID = -2996361282729522012L;
-	private boolean purchasable;
-	private int base, sell, total;
 
-	public boolean isPurchasable() {
-		return purchasable;
-	}
+	private int base;
+	private boolean purchasable;
+	private int sell;
+	private int total;
 
 	public int getBase() {
 		return base;
@@ -38,5 +37,9 @@ public class Gold implements Serializable {
 
 	public int getTotal() {
 		return total;
+	}
+
+	public boolean isPurchasable() {
+		return purchasable;
 	}
 }
