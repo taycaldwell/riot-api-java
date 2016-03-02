@@ -37,15 +37,13 @@ public class Event implements Serializable {
 	private String monsterType;
 	private int participantId;
 	private String pointCaptured;
+	private Position position;
 	private int skillSlot;
 	private int teamId;
 	private long timestamp;
 	private String towerType;
 	private int victimId;
 	private String wardType;
-
-	@Deprecated
-	private Position position;
 
 	public String getAscendedType() {
 		return ascendedType;
@@ -103,7 +101,6 @@ public class Event implements Serializable {
 		return pointCaptured;
 	}
 
-	@Deprecated
 	public Position getPosition() {
 		return position;
 	}

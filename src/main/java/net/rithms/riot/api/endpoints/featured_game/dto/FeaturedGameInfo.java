@@ -35,9 +35,6 @@ public class FeaturedGameInfo implements Serializable {
 	private List<Participant> participants;
 	private String platformId;
 
-	@Deprecated
-	private int gameTypeConfigId;
-
 	public List<BannedChampion> getBannedChampions() {
 		return bannedChampions;
 	}
@@ -64,11 +61,6 @@ public class FeaturedGameInfo implements Serializable {
 
 	public String getGameType() {
 		return gameType;
-	}
-
-	@Deprecated
-	public int getGameTypeConfigId() {
-		return gameTypeConfigId;
 	}
 
 	public int getMapId() {

@@ -17,7 +17,6 @@
 package net.rithms.riot.api.endpoints.featured_game.dto;
 
 import java.io.Serializable;
-import java.util.List;
 
 public class Participant implements Serializable {
 
@@ -31,31 +30,12 @@ public class Participant implements Serializable {
 	private String summonerName;
 	private int teamId;
 
-	@Deprecated
-	private long summonerId;
-	@Deprecated
-	private long teamParticipantId;
-	@Deprecated
-	private List<Mastery> masteries;
-	@Deprecated
-	private List<Rune> runes;
-
 	public int getChampionId() {
 		return championId;
 	}
 
-	@Deprecated
-	public List<Mastery> getMasteries() {
-		return masteries;
-	}
-
 	public int getProfileIconId() {
 		return profileIconId;
-	}
-
-	@Deprecated
-	public List<Rune> getRunes() {
-		return runes;
 	}
 
 	public int getSpell1Id() {
@@ -66,22 +46,12 @@ public class Participant implements Serializable {
 		return spell2Id;
 	}
 
-	@Deprecated
-	public long getSummonerId() {
-		return summonerId;
-	}
-
 	public String getSummonerName() {
 		return summonerName;
 	}
 
 	public int getTeamId() {
 		return teamId;
-	}
-
-	@Deprecated
-	public long getTeamParticipantId() {
-		return teamParticipantId;
 	}
 
 	public boolean isBot() {
