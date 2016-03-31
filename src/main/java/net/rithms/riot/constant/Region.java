@@ -23,6 +23,7 @@ public enum Region {
 	BR("br.api.pvp.net", "br"),
 	EUNE("eune.api.pvp.net", "eune"),
 	EUW("euw.api.pvp.net", "euw"),
+	JP("jp.api.pvp.net", "jp"),
 	KR("kr.api.pvp.net", "kr"),
 	LAS("las.api.pvp.net", "las"),
 	LAN("lan.api.pvp.net", "lan"),
