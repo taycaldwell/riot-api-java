@@ -117,20 +117,20 @@ The documentation for this library can be found [here.](http://rithms.net/riot-a
 
 ## API Versions
 The current version of this library supports the following Riot Games API versions:
-- **champion-v1.2 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
-- **championmastery [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
-- **current-game-v1.0 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, PBE, RU, TR]**
-- **featured-games-v1.0 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, PBE, RU, TR]**
-- **game-v1.3 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
-- **league-v2.5 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
-- **lol-static-data-v1.2 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, PBE, RU, TR]**
+- **champion-v1.2 [BR, EUNE, EUW, JP, KR, LAN, LAS, NA, OCE, RU, TR]**
+- **championmastery [BR, EUNE, EUW, JP, KR, LAN, LAS, NA, OCE, RU, TR]**
+- **current-game-v1.0 [BR, EUNE, EUW, JP, KR, LAN, LAS, NA, OCE, PBE, RU, TR]**
+- **featured-games-v1.0 [BR, EUNE, EUW, JP, KR, LAN, LAS, NA, OCE, PBE, RU, TR]**
+- **game-v1.3 [BR, EUNE, EUW, JP, KR, LAN, LAS, NA, OCE, RU, TR]**
+- **league-v2.5 [BR, EUNE, EUW, JP, KR, LAN, LAS, NA, OCE, RU, TR]**
+- **lol-static-data-v1.2 [BR, EUNE, EUW, JP, KR, LAN, LAS, NA, OCE, PBE, RU, TR]**
 - **lol-status-v1.0 [BR, EUNE, EUW, LAN, LAS, NA, OCE, PBE, RU, TR]**
-- **match-v2.2 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
-- **matchlist-v2.2 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
-- **stats-v1.3 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
-- **summoner-v1.4 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
-- **team-v2.4 [BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR]**
-- **tournament-provider-v1 [ALL]**
+- **match-v2.2 [BR, EUNE, EUW, JP, KR, LAN, LAS, NA, OCE, RU, TR]**
+- **matchlist-v2.2 [BR, EUNE, EUW, JP, KR, LAN, LAS, NA, OCE, RU, TR]**
+- **stats-v1.3 [BR, EUNE, EUW, JP, KR, LAN, LAS, NA, OCE, RU, TR]**
+- **summoner-v1.4 [BR, EUNE, EUW, JP, KR, LAN, LAS, NA, OCE, RU, TR]**
+- **team-v2.4 [BR, EUNE, EUW, JP, KR, LAN, LAS, NA, OCE, RU, TR]**
+- **tournament-provider-v1 [BR, EUNE, EUW, LAN, LAS, NA, OCE, RU, TR]**
 
 ## Contributing
 All contributions are appreciated.
