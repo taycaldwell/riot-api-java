@@ -22,7 +22,7 @@ import java.util.logging.Level;
 /**
  * Configuration class to use with the {@link RiotApi}.
  */
-public class ApiConfig {
+public class ApiConfig implements Cloneable {
 
 	private int asyncRequestTimeout = 10000;
 	private Level debugLevel = Level.WARNING;

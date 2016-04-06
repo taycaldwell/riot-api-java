@@ -143,7 +143,7 @@ import net.rithms.util.Convert;
  * @see ApiConfig
  * @see RiotApiAsync
  */
-public class RiotApi {
+public class RiotApi implements Cloneable {
 
 	public static final Logger log = Logger.getLogger(RiotApi.class.getName());
 
