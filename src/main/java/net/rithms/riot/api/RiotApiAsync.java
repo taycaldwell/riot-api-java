@@ -213,11 +213,8 @@ public class RiotApiAsync {
 	 * @param providerId
 	 *            The provider ID to specify the regional registered provider data to associate this tournament.
 	 * @return A tournament ID
-	 * @throws NullPointerException
-	 *             If {@code tournamentName} is {@code null}
 	 */
 	public AsyncRequest createTournament(String tournamentName, int providerId) {
-		Objects.requireNonNull(tournamentName);
 		ApiMethod method = new CreateTournament(getConfig(), tournamentName, providerId);
 		return endpointManager.callMethodAsynchronously(method);
 	}

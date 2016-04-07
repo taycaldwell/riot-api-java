@@ -208,13 +208,10 @@ public class RiotApi implements Cloneable {
 	 * @param providerId
 	 *            The provider ID to specify the regional registered provider data to associate this tournament.
 	 * @return A tournament ID
-	 * @throws NullPointerException
-	 *             If {@code tournamentName} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 */
 	public int createTournament(String tournamentName, int providerId) throws RiotApiException {
-		Objects.requireNonNull(tournamentName);
 		ApiMethod method = new CreateTournament(getConfig(), tournamentName, providerId);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
