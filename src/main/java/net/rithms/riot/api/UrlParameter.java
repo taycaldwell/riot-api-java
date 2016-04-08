@@ -20,7 +20,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.logging.Level;
 
-public class UrlParameter {
+public class UrlParameter implements Cloneable {
 
 	private final String key;
 	private final String value;
@@ -44,6 +44,10 @@ public class UrlParameter {
 
 	public UrlParameter(String key, Object value) {
 		this(key, value.toString());
+	}
+
+	public UrlParameter clone() {
+		return new UrlParameter(key, value);
 	}
 
 	protected String getKey() {

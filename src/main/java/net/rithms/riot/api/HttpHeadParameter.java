@@ -16,7 +16,7 @@
 
 package net.rithms.riot.api;
 
-public class HttpHeadParameter {
+public class HttpHeadParameter implements Cloneable {
 
 	private final String key;
 	private final String value;
@@ -24,6 +24,10 @@ public class HttpHeadParameter {
 	public HttpHeadParameter(String key, String value) {
 		this.key = key;
 		this.value = value;
+	}
+
+	public HttpHeadParameter clone() {
+		return new HttpHeadParameter(key, value);
 	}
 
 	public String getKey() {
