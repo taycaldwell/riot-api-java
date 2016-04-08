@@ -149,7 +149,9 @@ public class RiotApi implements Cloneable {
 
 	private final ApiConfig config;
 	private final EndpointManager endpointManager;
-	private RiotApiAsync asyncApi;
+
+	private final Object asyncApiLock = new Object();
+	private volatile RiotApiAsync asyncApi;
 
 	/**
 	 * Constructs a RiotApi object with default configuration. Please note that the default configuration does not contain an api key, and
@@ -369,7 +371,11 @@ public class RiotApi implements Cloneable {
 	 */
 	public RiotApiAsync getAsyncApi() {
 		if (asyncApi == null) {
-			asyncApi = new RiotApiAsync(config, endpointManager);
+			synchronized (asyncApiLock) {
+				if (asyncApi == null) {
+					asyncApi = new RiotApiAsync(config, endpointManager);
+				}
+			}
 		}
 		return asyncApi;
 	}
