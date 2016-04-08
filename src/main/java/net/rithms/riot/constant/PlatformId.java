@@ -20,6 +20,7 @@ public enum PlatformId {
 	BR("BR1", "br"),
 	EUNE("EUN1", "eune"),
 	EUW("EUW1", "euw"),
+	JP("JP1", "jp"),
 	KR("KR", "kr"),
 	LAN("LA1", "lan"),
 	LAS("LA2", "las"),
