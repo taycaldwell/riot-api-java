@@ -30,14 +30,17 @@ import java.util.logging.LogRecord;
 
 public class LogHandler extends Handler {
 
-	private static final DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS"); // ISO 8601
+	private static final String FILE_DATE_PATTERN = "yyyy-MM-dd HH:mm:ss.SSS"; // ISO 8601
+
 	private final boolean writeToFile;
 	private final PrintWriter fileWriter;
 
-	public LogHandler(boolean writeToFile) {
-		boolean toFile = writeToFile;
-		PrintWriter out = null;
+	public LogHandler() {
+		this(false);
+	}
 
+	public LogHandler(boolean toFile) {
+		PrintWriter out = null;
 		if (toFile) {
 			try {
 				File log = new File("riot-api.log");
@@ -52,8 +55,8 @@ public class LogHandler extends Handler {
 			}
 		}
 
-		this.writeToFile = toFile;
-		this.fileWriter = out;
+		writeToFile = toFile;
+		fileWriter = out;
 	}
 
 	@Override
@@ -74,6 +77,7 @@ public class LogHandler extends Handler {
 	@Override
 	public void publish(LogRecord record) {
 		StringBuilder logMessage = new StringBuilder();
+		DateFormat format = new SimpleDateFormat(FILE_DATE_PATTERN);
 
 		// Timestamp
 		logMessage.append("[").append(format.format(new Date())).append("] ");
