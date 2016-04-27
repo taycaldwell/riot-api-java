@@ -106,6 +106,9 @@ public class AsyncRequestPool {
 	}
 
 	void resignSupervisor() {
+		if (supervisor == null) {
+			return;
+		}
 		supervisor.shutdown();
 		supervisor = null;
 	}
