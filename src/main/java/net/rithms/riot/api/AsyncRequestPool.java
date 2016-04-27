@@ -57,7 +57,7 @@ public class AsyncRequestPool {
 		awaitAll();
 	}
 
-	public synchronized int clearPool() {
+	synchronized int clearPool() {
 		int clearedFromPool = 0;
 		Iterator<AsyncRequest> iterator = pool.iterator();
 		while (iterator.hasNext()) {
@@ -92,7 +92,7 @@ public class AsyncRequestPool {
 		}
 	}
 
-	public boolean pollQueue() {
+	synchronized boolean pollQueue() {
 		if (getPoolSize() == getMaxAsyncThreads()) {
 			return false;
 		}
