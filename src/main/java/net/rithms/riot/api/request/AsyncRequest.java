@@ -176,17 +176,17 @@ public class AsyncRequest extends Request implements Runnable {
 
 	@Override
 	public boolean cancel() {
-		boolean cancelled = super.cancel();
-		if (!cancelled) {
-			return false;
-		}
 		synchronized (signal) {
+			boolean cancelled = super.cancel();
+			if (!cancelled) {
+				return false;
+			}
 			signal.notifyAll();
-		}
-		// Try to force-quit the connection
-		if (connection != null) {
-			setTimeout(1);
-			connection.disconnect();
+			// Try to force-quit the connection
+			if (connection != null) {
+				setTimeout(1);
+				connection.disconnect();
+			}
 		}
 		return true;
 	}
@@ -252,7 +252,7 @@ public class AsyncRequest extends Request implements Runnable {
 	 * @param state
 	 *            The state to notify the listeners about
 	 */
-	protected void notifyListeners(RequestState state) {
+	protected synchronized void notifyListeners(RequestState state) {
 		for (RequestListener listener : listeners) {
 			if (state == RequestState.Succeeded) {
 				listener.onRequestSucceeded(this);
