@@ -3,12 +3,14 @@ package net.rithms.riot.api.request;
 import net.rithms.riot.api.RiotApiException;
 
 /**
- * This is a simple implementation of the RequestListener, implementing all required methods with an empty body. This way other classes can
- * extend this simple implementation and only need to override the methods they really care about.
+ * A template class implementing {@link RequestListener} similar to Swing's event adapters.
+ * <p>
+ * All method in this class do nothing, so the user only has to override the interface methods for the events they want to take action on.
+ * </p>
  * 
  * @author Daniel 'Linnun' Figge
  */
-public class SimpleRequestListener implements RequestListener {
+public abstract class RequestAdapter implements RequestListener {
 
 	@Override
 	public void onRequestFailed(RiotApiException e) {

@@ -9,7 +9,7 @@ import net.rithms.riot.api.RiotApiException;
 import net.rithms.riot.api.endpoints.league.dto.League;
 import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
 import net.rithms.riot.api.request.AsyncRequest;
-import net.rithms.riot.api.request.SimpleRequestListener;
+import net.rithms.riot.api.request.RequestAdapter;
 import net.rithms.riot.constant.Region;
 
 /**
@@ -38,7 +38,7 @@ public class AsyncExample {
 
 		// Asynchronously get summoner information
 		AsyncRequest requestSummoner = apiAsync.getSummonersById(region, summonerId);
-		requestSummoner.addListener(new SimpleRequestListener() {
+		requestSummoner.addListener(new RequestAdapter() {
 			@Override
 			public void onRequestSucceeded(AsyncRequest request) {
 				Map<String, Summoner> summoners = request.getDto();
@@ -47,7 +47,7 @@ public class AsyncExample {
 		});
 		// Asynchronously get league information
 		AsyncRequest requestLeague = apiAsync.getLeagueEntryBySummoners(region, summonerId);
-		requestLeague.addListener(new SimpleRequestListener() {
+		requestLeague.addListener(new RequestAdapter() {
 			@Override
 			public void onRequestSucceeded(AsyncRequest request) {
 				Map<String, List<League>> league = request.getDto();
