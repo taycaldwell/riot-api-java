@@ -24,13 +24,11 @@ import net.rithms.riot.api.request.Request;
 import net.rithms.riot.api.request.RequestListener;
 import net.rithms.riot.api.request.ratelimit.RateLimitException;
 
-public class EndpointManager {
+class EndpointManager {
 
 	private final ApiConfig config;
 	private final AsyncRequestPool pool;
 	private final List<RequestListener> listeners = new ArrayList<RequestListener>();
-
-	// INTERNAL
 
 	EndpointManager(ApiConfig config) {
 		this.config = config;
