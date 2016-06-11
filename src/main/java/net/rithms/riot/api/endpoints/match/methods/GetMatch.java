@@ -30,7 +30,7 @@ public class GetMatch extends MatchApiMethod {
 		setReturnType(MatchDetail.class);
 		setUrlBase(region.getEndpoint() + "/v2.2/match/" + matchId);
 		if (includeTimeline) {
-			add(new UrlParameter("includeTimeline", includeTimeline));
+			add(new UrlParameter("includeTimeline", String.valueOf(includeTimeline)));
 		}
 		addApiKeyParameter();
 	}
