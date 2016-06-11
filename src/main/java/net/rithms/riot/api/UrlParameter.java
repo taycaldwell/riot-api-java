@@ -39,7 +39,7 @@ public class UrlParameter implements Cloneable {
 	}
 
 	public UrlParameter(String key, boolean value) {
-		this(key, value ? "1" : "0");
+		this(key, value ? "true" : "false");
 	}
 
 	public UrlParameter(String key, Object value) {
