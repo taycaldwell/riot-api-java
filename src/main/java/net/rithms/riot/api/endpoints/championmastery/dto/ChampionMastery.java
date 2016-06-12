@@ -28,9 +28,9 @@ public class ChampionMastery implements Serializable {
 	private long championPointsSinceLastLevel;
 	private long championPointsUntilNextLevel;
 	private boolean chestGranted;
-	private String highestGrade;
 	private long lastPlayTime;
 	private long playerId;
+	private int tokensEarned;
 
 	public int getChampionId() {
 		return championId;
@@ -52,16 +52,16 @@ public class ChampionMastery implements Serializable {
 		return championPointsUntilNextLevel;
 	}
 
-	public String getHighestGrade() {
-		return highestGrade;
-	}
-
 	public long getLastPlayTime() {
 		return lastPlayTime;
 	}
 
 	public long getPlayerId() {
 		return playerId;
+	}
+
+	public int getTokensEarned() {
+		return tokensEarned;
 	}
 
 	public boolean isChestGranted() {
