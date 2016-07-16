@@ -24,6 +24,7 @@ public enum GameMode {
 	KINGPORO("King Poro"),
 	ODIN("Dominion/Crystal Scar"),
 	ONEFORALL("One for All"),
+	SIEGE("Nexus Siege"),
 	TUTORIAL("Tutorial");
 
 	private String name;
