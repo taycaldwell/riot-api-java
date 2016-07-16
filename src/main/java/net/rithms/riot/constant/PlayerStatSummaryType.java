@@ -34,6 +34,7 @@ public enum PlayerStatSummaryType {
 	RankedSolo5x5("Summoner's Rift Ranked Solo"),
 	RankedTeam3x3("Twisted Treeline Ranked Team"),
 	RankedTeam5x5("Summoner's Rift Ranked Team"),
+	Siege("Nexus Siege"),
 	SummonersRift6x6("Hexakill"),
 	Unranked("Summoner's Rift Unranked"),
 	Unranked3x3("Twisted Treeline Unranked"),
