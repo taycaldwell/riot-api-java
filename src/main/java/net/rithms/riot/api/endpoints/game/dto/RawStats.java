@@ -83,6 +83,7 @@ public class RawStats implements Serializable {
 	private int teamObjective;
 	private int timePlayed;
 	private int totalDamageDealt;
+	private int totalDamageDealtToBuildings;
 	private int totalDamageDealtToChampions;
 	private int totalDamageTaken;
 	private int totalHeal;
@@ -340,6 +341,10 @@ public class RawStats implements Serializable {
 
 	public int getTotalDamageDealt() {
 		return totalDamageDealt;
+	}
+	
+	public int getTotalDamageDealtToBuildings() {
+		return totalDamageDealtToBuildings;
 	}
 
 	public int getTotalDamageDealtToChampions() {
