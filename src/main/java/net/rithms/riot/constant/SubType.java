@@ -37,6 +37,7 @@ public enum SubType {
 	RANKED_SOLO_5x5("Summoner's Rift Ranked Solo"),
 	RANKED_TEAM_3x3("Twisted Treeline Ranked Team"),
 	RANKED_TEAM_5x5("Summoner's Rift Ranked Team"),
+	SIEGE("Nexus Siege"),
 	SR_6x6("Hexakill"),
 	URF("Ultra Rapid Fire"),
 	URF_BOT("Ultra Rapid Fire Bots");
