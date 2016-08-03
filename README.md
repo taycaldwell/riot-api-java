@@ -43,7 +43,9 @@ public class Example {
 
 	public static void main(String[] args) throws RiotApiException {
 		
-		RiotApi api = new RiotApi("YOUR-API-KEY-HERE");
+		ApiConfig config = new ApiConfig();
+		config.setKey("YOUR-API-KEY-HERE");
+		RiotApi api = new RiotApi(config);
 
 		Map<String, Summoner> summoners = api.getSummonersByName(Region.NA, "rithms, tryndamere");
 		Summoner summoner = summoners.get("rithms");
