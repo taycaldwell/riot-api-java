@@ -43,39 +43,11 @@ public class Example {
 
 	public static void main(String[] args) throws RiotApiException {
 		
-		RiotApi api = new RiotApi("YOUR-API-KEY-HERE");
+		ApiConfig config = new ApiConfig();
+		config.setKey("YOUR-API-KEY-HERE");
+		RiotApi api = new RiotApi(config);
 
 		Map<String, Summoner> summoners = api.getSummonersByName(Region.NA, "rithms, tryndamere");
-		Summoner summoner = summoners.get("rithms");
-		long id = summoner.getId();
-		System.out.println(id);
-	}
-
-}
-
-```
-
-
-Available accessors allow you to accomplish similar tasks in a different way.
-Below is an example of how to set your region. Because the region was set before a method was called, there is no need to pass in the region parameter. This is great for people that know they will only be working in one region when making multiple requests. The same can be done for the season.
-
-
-```java
-import java.util.Map;
-import net.rithms.riot.constant.Region;
-import net.rithms.riot.dto.Summoner.Summoner;
-import net.rithms.riot.api.RiotApi;
-import net.rithms.riot.api.RiotApiException;
-import com.google.gson*;
-
-public class Example {
-
-	public static void main(String[] args) throws RiotApiException {
-		
-		RiotApi api = new RiotApi("YOUR-API-KEY-HERE");
-		
-		api.setRegion(Region.NA);
-		Map<String, Summoner> summoners = api.getSummonersByName("rithms, tryndamere");
 		Summoner summoner = summoners.get("rithms");
 		long id = summoner.getId();
 		System.out.println(id);
@@ -102,7 +74,9 @@ public class Example {
 
 	public static void main(String[] args) throws RiotApiException {
 		
-		RiotApi api = new RiotApi("YOUR-API-KEY-HERE", Region.NA);
+		ApiConfig config = new ApiConfig();
+		config.setKey("YOUR-API-KEY-HERE");
+		RiotApi api = new RiotApi(config);
 		api.setSeason(Season.FIVE);
 		
 		RankedStats rankedStats = api.getRankedStats(api.getSummonerByName("rithms").getId());
