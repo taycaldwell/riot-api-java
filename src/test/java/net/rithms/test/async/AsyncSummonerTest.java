@@ -50,7 +50,7 @@ public class AsyncSummonerTest {
 	@Test
 	public void testGetMasteryPages() throws RiotApiException, InterruptedException {
 		AsyncRequest reqMasteryPages = api.getMasteryPages(Region.NA, 133);
-		reqMasteryPages.addListener(new RequestListener() {
+		reqMasteryPages.addListeners(new RequestListener() {
 			@Override
 			public void onRequestFailed(RiotApiException e) {
 				fail();
@@ -74,7 +74,7 @@ public class AsyncSummonerTest {
 	@Test
 	public void testGetRunePages() throws RiotApiException, InterruptedException {
 		AsyncRequest reqRunePages = api.getRunePages(Region.NA, 133);
-		reqRunePages.addListener(new RequestListener() {
+		reqRunePages.addListeners(new RequestListener() {
 			@Override
 			public void onRequestFailed(RiotApiException e) {
 				fail();
@@ -98,7 +98,7 @@ public class AsyncSummonerTest {
 	@Test
 	public void testGetSummonersById() throws RiotApiException, InterruptedException {
 		AsyncRequest reqSummonerMap = api.getSummonersById(Region.NA, 133, 329);
-		reqSummonerMap.addListener(new RequestListener() {
+		reqSummonerMap.addListeners(new RequestListener() {
 			@Override
 			public void onRequestFailed(RiotApiException e) {
 				fail();
@@ -123,7 +123,7 @@ public class AsyncSummonerTest {
 	@Test
 	public void testGetSummonersByName() throws RiotApiException, InterruptedException {
 		AsyncRequest reqSummonerMap = api.getSummonersByName(Region.NA, "ryze", "tryndamere");
-		reqSummonerMap.addListener(new RequestListener() {
+		reqSummonerMap.addListeners(new RequestListener() {
 			@Override
 			public void onRequestFailed(RiotApiException e) {
 				fail();
@@ -148,7 +148,7 @@ public class AsyncSummonerTest {
 	@Test
 	public void testGetSummonerNames() throws RiotApiException, InterruptedException {
 		AsyncRequest reqSummonerNameMap = api.getSummonerNames(Region.NA, 133, 329);
-		reqSummonerNameMap.addListener(new RequestListener() {
+		reqSummonerNameMap.addListeners(new RequestListener() {
 			@Override
 			public void onRequestFailed(RiotApiException e) {
 				fail();

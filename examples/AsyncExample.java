@@ -38,7 +38,7 @@ public class AsyncExample {
 
 		// Asynchronously get summoner information
 		AsyncRequest requestSummoner = apiAsync.getSummonersById(region, summonerId);
-		requestSummoner.addListener(new RequestAdapter() {
+		requestSummoner.addListeners(new RequestAdapter() {
 			@Override
 			public void onRequestSucceeded(AsyncRequest request) {
 				Map<String, Summoner> summoners = request.getDto();
@@ -47,7 +47,7 @@ public class AsyncExample {
 		});
 		// Asynchronously get league information
 		AsyncRequest requestLeague = apiAsync.getLeagueEntryBySummoners(region, summonerId);
-		requestLeague.addListener(new RequestAdapter() {
+		requestLeague.addListeners(new RequestAdapter() {
 			@Override
 			public void onRequestSucceeded(AsyncRequest request) {
 				Map<String, List<League>> league = request.getDto();

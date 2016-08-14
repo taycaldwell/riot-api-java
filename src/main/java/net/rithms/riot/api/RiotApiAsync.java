@@ -151,21 +151,20 @@ public class RiotApiAsync {
 	}
 
 	/**
-	 * Adds a request listener to get informed when asynchronous requests finish.
+	 * Adds one or more request listener to get informed when asynchronous requests finish.
 	 * 
 	 * <p>
-	 * Please note, that by adding a listener here, you will listen to ALL asynchronous requests made with this RiotApiAsync object. To only
-	 * listen to a specific asynchronous request, you can set a listener directly in the {@link AsyncRequest} using
-	 * {@link AsyncRequest#addListener(RequestListener)}.
+	 * Please note, that by adding listeners here, you will listen to ALL asynchronous requests made with this RiotApiAsync object. To only
+	 * listen to a specific asynchronous request, you can set listeners directly in the {@link AsyncRequest} using
+	 * {@link AsyncRequest#addListeners(RequestListener...)}.
 	 * </p>
 	 * 
-	 * @param listener
-	 *            An object that implements {@link RequestListener}
-	 * @return {@code true} if the specified listener was not already listening
+	 * @param listeners
+	 *            One or more objects that implement {@link RequestListener}
 	 * @see RequestListener
 	 */
-	public boolean addListener(RequestListener listener) {
-		return endpointManager.addListener(listener);
+	public void addListeners(RequestListener... listeners) {
+		endpointManager.addListeners(listeners);
 	}
 
 	/**
@@ -1696,15 +1695,14 @@ public class RiotApiAsync {
 	}
 
 	/**
-	 * Removes a listener from getting informed when asynchronous requests finish.
+	 * Removes one or more listeners from getting informed when asynchronous requests finish.
 	 * 
-	 * @param listener
-	 *            An object that implements {@link RequestListener}
-	 * @return {@code true} if the specified listener was listening
+	 * @param listeners
+	 *            One or more objects that implement {@link RequestListener}
 	 * @see RequestListener
 	 */
-	public boolean removeListener(RequestListener listener) {
-		return endpointManager.removeListener(listener);
+	public void removeListeners(RequestListener... listeners) {
+		endpointManager.removeListeners(listeners);
 	}
 
 	/**

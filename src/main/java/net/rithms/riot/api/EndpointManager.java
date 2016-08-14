@@ -16,8 +16,9 @@
 
 package net.rithms.riot.api;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import net.rithms.riot.api.request.AsyncRequest;
 import net.rithms.riot.api.request.Request;
@@ -28,19 +29,15 @@ class EndpointManager {
 
 	private final ApiConfig config;
 	private final AsyncRequestPool pool;
-	private final List<RequestListener> listeners = new ArrayList<RequestListener>();
+	private final Collection<RequestListener> listeners = new CopyOnWriteArrayList<RequestListener>();
 
 	EndpointManager(ApiConfig config) {
 		this.config = config;
 		pool = new AsyncRequestPool(config);
 	}
 
-	boolean addListener(RequestListener listener) {
-		if (!listeners.contains(listener)) {
-			listeners.add(listener);
-			return true;
-		}
-		return false;
+	void addListeners(RequestListener... listeners) {
+		this.listeners.addAll(Arrays.asList(listeners));
 	}
 
 	void awaitAll() throws InterruptedException {
@@ -58,7 +55,7 @@ class EndpointManager {
 
 	AsyncRequest callMethodAsynchronously(ApiMethod method) {
 		AsyncRequest request = new AsyncRequest(config, method);
-		request.addListeners(listeners);
+		request.addListeners(listeners.toArray(new RequestListener[listeners.size()]));
 		pool.add(request);
 		return request;
 	}
@@ -71,7 +68,7 @@ class EndpointManager {
 		return pool.getQueueSize();
 	}
 
-	boolean removeListener(RequestListener listener) {
-		return listeners.remove(listener);
+	void removeListeners(RequestListener... listeners) {
+		this.listeners.removeAll(Arrays.asList(listeners));
 	}
 }

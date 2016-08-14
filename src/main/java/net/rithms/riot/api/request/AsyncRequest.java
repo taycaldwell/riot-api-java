@@ -16,9 +16,9 @@
 
 package net.rithms.riot.api.request;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.logging.Level;
@@ -40,7 +40,7 @@ public class AsyncRequest extends Request implements Runnable {
 
 	protected final Object signal = new Object();
 
-	private List<RequestListener> listeners = new ArrayList<RequestListener>();
+	private Collection<RequestListener> listeners = new CopyOnWriteArrayList<RequestListener>();
 	private Thread executionThread = null;
 	private boolean sent = false;
 
@@ -60,31 +60,14 @@ public class AsyncRequest extends Request implements Runnable {
 	}
 
 	/**
-	 * Adds a {@link RequestListener} to this request
-	 * 
-	 * @param listener
-	 *            A request listener
-	 * @see RequestListener
-	 */
-	public void addListener(RequestListener listener) {
-		if (!listeners.contains(listener)) {
-			listeners.add(listener);
-		}
-	}
-
-	/**
-	 * Adds a given collection of {@link RequestListener} to this request
+	 * Adds one or more {@link RequestListener} to this request
 	 * 
 	 * @param listeners
-	 *            A collection of request listeners
+	 *            One or more request listeners
 	 * @see RequestListener
 	 */
-	public void addListeners(Collection<RequestListener> listeners) {
-		for (RequestListener listener : listeners) {
-			if (!this.listeners.contains(listener)) {
-				this.listeners.add(listener);
-			}
-		}
+	public void addListeners(RequestListener... listeners) {
+		this.listeners.addAll(Arrays.asList(listeners));
 	}
 
 	/**
@@ -265,7 +248,7 @@ public class AsyncRequest extends Request implements Runnable {
 	}
 
 	/**
-	 * Removes all listeners from this request
+	 * Removes all {@link RequestListener} from this request
 	 * 
 	 * @see RequestListener
 	 */
@@ -274,14 +257,14 @@ public class AsyncRequest extends Request implements Runnable {
 	}
 
 	/**
-	 * Removes a listener from this request
+	 * Removes one or more {@link RequestListener} from this request
 	 * 
 	 * @param listener
-	 *            Listener to remove
+	 *            One or more listeners to remove
 	 * @see RequestListener
 	 */
-	public void removeListener(RequestListener listener) {
-		listeners.remove(listener);
+	public void removeListener(RequestListener listeners) {
+		this.listeners.removeAll(Arrays.asList(listeners));
 	}
 
 	@Override
