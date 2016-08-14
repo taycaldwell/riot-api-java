@@ -151,7 +151,7 @@ public class RiotApiAsync {
 	}
 
 	/**
-	 * Adds one or more request listener to get informed when asynchronous requests finish.
+	 * Adds one or more {@link RequestListener} to get informed when asynchronous requests finish.
 	 * 
 	 * <p>
 	 * Please note, that by adding listeners here, you will listen to ALL asynchronous requests made with this RiotApiAsync object. To only
@@ -1695,7 +1695,7 @@ public class RiotApiAsync {
 	}
 
 	/**
-	 * Removes one or more listeners from getting informed when asynchronous requests finish.
+	 * Removes one or more {@link RequestListener} from getting informed when asynchronous requests finish.
 	 * 
 	 * @param listeners
 	 *            One or more objects that implement {@link RequestListener}
