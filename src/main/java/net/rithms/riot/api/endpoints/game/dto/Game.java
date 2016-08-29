@@ -19,7 +19,9 @@ package net.rithms.riot.api.endpoints.game.dto;
 import java.io.Serializable;
 import java.util.List;
 
-public class Game implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class Game extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 1228681223919935293L;
 
@@ -97,5 +99,10 @@ public class Game implements Serializable {
 
 	public boolean isInvalid() {
 		return invalid;
+	}
+
+	@Override
+	public String toString() {
+		return getGameId() + " (" + getGameMode() + ")";
 	}
 }

@@ -18,7 +18,9 @@ package net.rithms.riot.api.endpoints.featured_game.dto;
 
 import java.io.Serializable;
 
-public class Observer implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class Observer extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -8034830134572570668L;
 
@@ -26,5 +28,10 @@ public class Observer implements Serializable {
 
 	public String getEncryptionKey() {
 		return encryptionKey;
+	}
+
+	@Override
+	public String toString() {
+		return getEncryptionKey();
 	}
 }

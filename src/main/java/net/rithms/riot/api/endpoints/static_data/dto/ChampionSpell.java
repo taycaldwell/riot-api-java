@@ -19,7 +19,9 @@ package net.rithms.riot.api.endpoints.static_data.dto;
 import java.io.Serializable;
 import java.util.List;
 
-public class ChampionSpell implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class ChampionSpell extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 5070619841076416615L;
 
@@ -127,5 +129,10 @@ public class ChampionSpell implements Serializable {
 
 	public List<SpellVars> getVars() {
 		return vars;
+	}
+
+	@Override
+	public String toString() {
+		return getName();
 	}
 }

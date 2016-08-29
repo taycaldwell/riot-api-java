@@ -19,7 +19,9 @@ package net.rithms.riot.api.endpoints.static_data.dto;
 import java.io.Serializable;
 import java.util.Map;
 
-public class MapData implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class MapData extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 1718454202345877041L;
 
@@ -37,5 +39,10 @@ public class MapData implements Serializable {
 
 	public String getVersion() {
 		return version;
+	}
+
+	@Override
+	public String toString() {
+		return getType();
 	}
 }

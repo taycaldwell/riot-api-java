@@ -19,7 +19,9 @@ package net.rithms.riot.api.endpoints.static_data.dto;
 import java.io.Serializable;
 import java.util.List;
 
-public class Block implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class Block extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -4041031408263653499L;
 
@@ -37,5 +39,10 @@ public class Block implements Serializable {
 
 	public boolean isRecMath() {
 		return recMath;
+	}
+
+	@Override
+	public String toString() {
+		return getType();
 	}
 }

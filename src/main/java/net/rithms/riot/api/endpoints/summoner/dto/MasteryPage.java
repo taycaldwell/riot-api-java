@@ -19,7 +19,9 @@ package net.rithms.riot.api.endpoints.summoner.dto;
 import java.io.Serializable;
 import java.util.List;
 
-public class MasteryPage implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class MasteryPage extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -8442771692820615671L;
 
@@ -42,5 +44,10 @@ public class MasteryPage implements Serializable {
 
 	public boolean isCurrent() {
 		return current;
+	}
+
+	@Override
+	public String toString() {
+		return getId() + ": " + getName();
 	}
 }

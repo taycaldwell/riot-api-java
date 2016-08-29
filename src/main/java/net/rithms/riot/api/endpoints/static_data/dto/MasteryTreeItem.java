@@ -18,7 +18,9 @@ package net.rithms.riot.api.endpoints.static_data.dto;
 
 import java.io.Serializable;
 
-public class MasteryTreeItem implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class MasteryTreeItem extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -1538829926775279621L;
 
@@ -31,5 +33,10 @@ public class MasteryTreeItem implements Serializable {
 
 	public String getPrereq() {
 		return prereq;
+	}
+
+	@Override
+	public String toString() {
+		return String.valueOf(getMasteryId());
 	}
 }

@@ -18,7 +18,9 @@ package net.rithms.riot.api.endpoints.match.dto;
 
 import java.io.Serializable;
 
-public class ParticipantTimelineData implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class ParticipantTimelineData extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 3515118575430099707L;
 

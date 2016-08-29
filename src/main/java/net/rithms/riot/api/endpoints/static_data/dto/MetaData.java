@@ -18,7 +18,9 @@ package net.rithms.riot.api.endpoints.static_data.dto;
 
 import java.io.Serializable;
 
-public class MetaData implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class MetaData extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 8983953859724300000L;
 
@@ -36,5 +38,10 @@ public class MetaData implements Serializable {
 
 	public boolean isRune() {
 		return isRune;
+	}
+
+	@Override
+	public String toString() {
+		return getTier();
 	}
 }

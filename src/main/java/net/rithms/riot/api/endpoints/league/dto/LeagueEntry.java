@@ -18,7 +18,9 @@ package net.rithms.riot.api.endpoints.league.dto;
 
 import java.io.Serializable;
 
-public class LeagueEntry implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class LeagueEntry extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 3987113536371700279L;
 
@@ -76,5 +78,10 @@ public class LeagueEntry implements Serializable {
 
 	public boolean isVeteran() {
 		return isVeteran;
+	}
+
+	@Override
+	public String toString() {
+		return getPlayerOrTeamName();
 	}
 }

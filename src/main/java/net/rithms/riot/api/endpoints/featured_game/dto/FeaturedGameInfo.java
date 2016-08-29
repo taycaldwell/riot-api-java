@@ -19,7 +19,9 @@ package net.rithms.riot.api.endpoints.featured_game.dto;
 import java.io.Serializable;
 import java.util.List;
 
-public class FeaturedGameInfo implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class FeaturedGameInfo extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -3351906462835367100L;
 
@@ -77,5 +79,10 @@ public class FeaturedGameInfo implements Serializable {
 
 	public String getPlatformId() {
 		return platformId;
+	}
+
+	@Override
+	public String toString() {
+		return getGameId() + " (" + getGameMode() + ")";
 	}
 }

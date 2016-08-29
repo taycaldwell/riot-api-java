@@ -19,7 +19,9 @@ package net.rithms.riot.api.endpoints.stats.dto;
 import java.io.Serializable;
 import java.util.List;
 
-public class RankedStats implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class RankedStats extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 6544447595249079077L;
 

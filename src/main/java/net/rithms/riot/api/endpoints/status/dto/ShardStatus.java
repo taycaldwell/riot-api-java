@@ -19,7 +19,9 @@ package net.rithms.riot.api.endpoints.status.dto;
 import java.io.Serializable;
 import java.util.List;
 
-public class ShardStatus implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class ShardStatus extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -530404100006610537L;
 
@@ -52,5 +54,10 @@ public class ShardStatus implements Serializable {
 
 	public String getSlug() {
 		return slug;
+	}
+
+	@Override
+	public String toString() {
+		return getName();
 	}
 }

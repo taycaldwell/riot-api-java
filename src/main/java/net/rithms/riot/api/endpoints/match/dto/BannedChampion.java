@@ -18,7 +18,9 @@ package net.rithms.riot.api.endpoints.match.dto;
 
 import java.io.Serializable;
 
-public class BannedChampion implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class BannedChampion extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 2323180505557888125L;
 
@@ -31,5 +33,10 @@ public class BannedChampion implements Serializable {
 
 	public int getPickTurn() {
 		return pickTurn;
+	}
+
+	@Override
+	public String toString() {
+		return String.valueOf(getChampionId());
 	}
 }

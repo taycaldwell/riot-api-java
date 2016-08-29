@@ -19,7 +19,9 @@ package net.rithms.riot.api.endpoints.current_game.dto;
 import java.io.Serializable;
 import java.util.Map;
 
-public class TeamInfo implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class TeamInfo extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -1268634988633731822L;
 
@@ -47,5 +49,10 @@ public class TeamInfo implements Serializable {
 
 	public String getTag() {
 		return tag;
+	}
+
+	@Override
+	public String toString() {
+		return getName();
 	}
 }

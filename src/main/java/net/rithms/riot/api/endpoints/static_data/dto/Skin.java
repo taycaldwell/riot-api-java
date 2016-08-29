@@ -18,7 +18,9 @@ package net.rithms.riot.api.endpoints.static_data.dto;
 
 import java.io.Serializable;
 
-public class Skin implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class Skin extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -8984891033284072910L;
 
@@ -36,5 +38,10 @@ public class Skin implements Serializable {
 
 	public int getNum() {
 		return num;
+	}
+
+	@Override
+	public String toString() {
+		return getId() + ": " + getName();
 	}
 }

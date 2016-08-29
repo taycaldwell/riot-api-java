@@ -15,7 +15,9 @@ package net.rithms.riot.api.endpoints.stats.dto;
 
 import java.io.Serializable;
 
-public class PlayerStatsSummary implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class PlayerStatsSummary extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -3584187392263947778L;
 
@@ -43,5 +45,10 @@ public class PlayerStatsSummary implements Serializable {
 
 	public int getWins() {
 		return wins;
+	}
+
+	@Override
+	public String toString() {
+		return getPlayerStatSummaryType();
 	}
 }

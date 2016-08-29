@@ -18,7 +18,9 @@ package net.rithms.riot.api.endpoints.static_data.dto;
 
 import java.io.Serializable;
 
-public class BasicDataStats implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class BasicDataStats extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -6907555892482131577L;
 

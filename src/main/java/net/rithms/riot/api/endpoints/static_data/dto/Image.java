@@ -18,7 +18,9 @@ package net.rithms.riot.api.endpoints.static_data.dto;
 
 import java.io.Serializable;
 
-public class Image implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class Image extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 5802273643884377746L;
 
@@ -56,5 +58,10 @@ public class Image implements Serializable {
 
 	public int getY() {
 		return y;
+	}
+
+	@Override
+	public String toString() {
+		return getSprite();
 	}
 }

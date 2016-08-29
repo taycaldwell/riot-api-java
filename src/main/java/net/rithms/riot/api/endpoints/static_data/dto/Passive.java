@@ -18,7 +18,9 @@ package net.rithms.riot.api.endpoints.static_data.dto;
 
 import java.io.Serializable;
 
-public class Passive implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class Passive extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 3894157958044991050L;
 
@@ -41,5 +43,10 @@ public class Passive implements Serializable {
 
 	public String getSanitizedDescription() {
 		return sanitizedDescription;
+	}
+
+	@Override
+	public String toString() {
+		return getName();
 	}
 }

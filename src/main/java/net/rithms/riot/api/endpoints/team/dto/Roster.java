@@ -19,7 +19,9 @@ package net.rithms.riot.api.endpoints.team.dto;
 import java.io.Serializable;
 import java.util.List;
 
-public class Roster implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class Roster extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 1860524282741648264L;
 
@@ -32,5 +34,10 @@ public class Roster implements Serializable {
 
 	public long getOwnerId() {
 		return ownerId;
+	}
+
+	@Override
+	public String toString() {
+		return getMemberList().toString();
 	}
 }

@@ -19,7 +19,9 @@ package net.rithms.riot.api.endpoints.featured_game.dto;
 import java.io.Serializable;
 import java.util.List;
 
-public class FeaturedGames implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class FeaturedGames extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -8500784155234313042L;
 

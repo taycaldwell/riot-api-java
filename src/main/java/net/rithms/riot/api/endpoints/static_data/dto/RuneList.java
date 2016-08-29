@@ -19,7 +19,9 @@ package net.rithms.riot.api.endpoints.static_data.dto;
 import java.io.Serializable;
 import java.util.Map;
 
-public class RuneList implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class RuneList extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 1696878942733740445L;
 
@@ -42,5 +44,10 @@ public class RuneList implements Serializable {
 
 	public String getVersion() {
 		return version;
+	}
+
+	@Override
+	public String toString() {
+		return getType();
 	}
 }

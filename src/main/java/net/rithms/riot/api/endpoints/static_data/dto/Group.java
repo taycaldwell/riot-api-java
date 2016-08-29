@@ -18,7 +18,9 @@ package net.rithms.riot.api.endpoints.static_data.dto;
 
 import java.io.Serializable;
 
-public class Group implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class Group extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -4691215871693156751L;
 
@@ -31,5 +33,10 @@ public class Group implements Serializable {
 
 	public String getKey() {
 		return key;
+	}
+
+	@Override
+	public String toString() {
+		return getKey();
 	}
 }

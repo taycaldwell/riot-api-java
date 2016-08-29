@@ -19,7 +19,9 @@ package net.rithms.riot.api.endpoints.champion.dto;
 import java.io.Serializable;
 import java.util.List;
 
-public class ChampionList implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class ChampionList extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 987562252588662376L;
 

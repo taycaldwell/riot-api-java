@@ -19,7 +19,9 @@ package net.rithms.riot.api.endpoints.static_data.dto;
 import java.io.Serializable;
 import java.util.List;
 
-public class Champion implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class Champion extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 8120597968700936522L;
 
@@ -107,5 +109,10 @@ public class Champion implements Serializable {
 
 	public String getTitle() {
 		return title;
+	}
+
+	@Override
+	public String toString() {
+		return getId() + ": " + getName();
 	}
 }

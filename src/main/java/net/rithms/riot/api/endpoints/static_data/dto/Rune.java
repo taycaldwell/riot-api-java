@@ -20,7 +20,9 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-public class Rune implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class Rune extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -4823668922402235509L;
 
@@ -133,5 +135,10 @@ public class Rune implements Serializable {
 
 	public boolean isInStore() {
 		return inStore;
+	}
+
+	@Override
+	public String toString() {
+		return getId() + ": " + getName();
 	}
 }

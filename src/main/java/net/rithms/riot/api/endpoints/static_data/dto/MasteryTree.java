@@ -19,7 +19,9 @@ package net.rithms.riot.api.endpoints.static_data.dto;
 import java.io.Serializable;
 import java.util.List;
 
-public class MasteryTree implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class MasteryTree extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 5475789665588541152L;
 

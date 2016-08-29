@@ -19,7 +19,9 @@ package net.rithms.riot.api.endpoints.static_data.dto;
 import java.io.Serializable;
 import java.util.Map;
 
-public class Realm implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class Realm extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -3494066446872616575L;
 
@@ -67,5 +69,10 @@ public class Realm implements Serializable {
 
 	public String getV() {
 		return v;
+	}
+
+	@Override
+	public String toString() {
+		return getL();
 	}
 }

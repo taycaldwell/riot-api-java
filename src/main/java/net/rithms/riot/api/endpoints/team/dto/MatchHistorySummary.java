@@ -18,7 +18,9 @@ package net.rithms.riot.api.endpoints.team.dto;
 
 import java.io.Serializable;
 
-public class MatchHistorySummary implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class MatchHistorySummary extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 3300531318253810880L;
 
@@ -76,5 +78,10 @@ public class MatchHistorySummary implements Serializable {
 
 	public boolean isWin() {
 		return win;
+	}
+
+	@Override
+	public String toString() {
+		return getGameId() + " (" + getGameMode() + ")";
 	}
 }

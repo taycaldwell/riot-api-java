@@ -19,7 +19,9 @@ package net.rithms.riot.api.endpoints.tournament.dto;
 import java.io.Serializable;
 import java.util.Set;
 
-public class TournamentCode implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class TournamentCode extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -1525318794336918321L;
 

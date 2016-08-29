@@ -19,10 +19,12 @@ package net.rithms.riot.api.endpoints.static_data.dto;
 import java.io.Serializable;
 import java.util.List;
 
-public class Mastery implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class Mastery extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 8480226179945327205L;
-	
+
 	private List<String> description;
 	private int id;
 	private Image image;
@@ -44,9 +46,7 @@ public class Mastery implements Serializable {
 		return image;
 	}
 
-	/**
-	 * Legal values: Defense, Offense, Utility
-	 */
+	// Legal values: Defense, Offense, Utility
 	public String getMasteryTree() {
 		return masteryTree;
 	}
@@ -65,5 +65,10 @@ public class Mastery implements Serializable {
 
 	public List<String> getSanitizedDescription() {
 		return sanitizedDescription;
+	}
+
+	@Override
+	public String toString() {
+		return getId() + ": " + getName();
 	}
 }

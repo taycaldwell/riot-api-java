@@ -19,7 +19,9 @@ package net.rithms.riot.api.endpoints.summoner.dto;
 import java.io.Serializable;
 import java.util.Set;
 
-public class RunePage implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class RunePage extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 97699628656087959L;
 
@@ -42,5 +44,10 @@ public class RunePage implements Serializable {
 
 	public boolean isCurrent() {
 		return current;
+	}
+
+	@Override
+	public String toString() {
+		return getId() + ": " + getName();
 	}
 }

@@ -18,7 +18,9 @@ package net.rithms.riot.api.endpoints.championmastery.dto;
 
 import java.io.Serializable;
 
-public class ChampionMastery implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class ChampionMastery extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 1980259216579071478L;
 
@@ -66,5 +68,10 @@ public class ChampionMastery implements Serializable {
 
 	public boolean isChestGranted() {
 		return chestGranted;
+	}
+
+	@Override
+	public String toString() {
+		return getChampionId() + ": " + getChampionPoints() + " (Level " + getChampionLevel() + ")";
 	}
 }

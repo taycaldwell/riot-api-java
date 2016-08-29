@@ -18,7 +18,9 @@ package net.rithms.riot.api.endpoints.summoner.dto;
 
 import java.io.Serializable;
 
-public class RuneSlot implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class RuneSlot extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -8204125507572318573L;
 
@@ -31,5 +33,10 @@ public class RuneSlot implements Serializable {
 
 	public int getRuneSlotId() {
 		return runeSlotId;
+	}
+
+	@Override
+	public String toString() {
+		return getRuneSlotId() + ": " + getRuneId();
 	}
 }

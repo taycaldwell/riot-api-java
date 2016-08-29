@@ -18,7 +18,9 @@ package net.rithms.riot.api.endpoints.featured_game.dto;
 
 import java.io.Serializable;
 
-public class Participant implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class Participant extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 7105307616042600638L;
 
@@ -56,5 +58,10 @@ public class Participant implements Serializable {
 
 	public boolean isBot() {
 		return bot;
+	}
+
+	@Override
+	public String toString() {
+		return getSummonerName();
 	}
 }

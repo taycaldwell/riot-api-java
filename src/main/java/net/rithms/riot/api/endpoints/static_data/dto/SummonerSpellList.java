@@ -19,7 +19,9 @@ package net.rithms.riot.api.endpoints.static_data.dto;
 import java.io.Serializable;
 import java.util.Map;
 
-public class SummonerSpellList implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class SummonerSpellList extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 3109246145319877891L;
 
@@ -37,5 +39,10 @@ public class SummonerSpellList implements Serializable {
 
 	public String getVersion() {
 		return version;
+	}
+
+	@Override
+	public String toString() {
+		return getType();
 	}
 }

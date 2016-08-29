@@ -18,7 +18,9 @@ package net.rithms.riot.api.endpoints.match.dto;
 
 import java.io.Serializable;
 
-public class Player implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class Player extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -4459702825178547603L;
 
@@ -41,5 +43,10 @@ public class Player implements Serializable {
 
 	public String getSummonerName() {
 		return summonerName;
+	}
+
+	@Override
+	public String toString() {
+		return getSummonerName();
 	}
 }

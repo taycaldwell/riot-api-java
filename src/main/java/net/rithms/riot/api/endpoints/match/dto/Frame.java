@@ -20,7 +20,9 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-public class Frame implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class Frame extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 4359409042534560829L;
 
@@ -38,5 +40,10 @@ public class Frame implements Serializable {
 
 	public long getTimestamp() {
 		return timestamp;
+	}
+
+	@Override
+	public String toString() {
+		return String.valueOf(getTimestamp());
 	}
 }

@@ -18,7 +18,9 @@ package net.rithms.riot.api.endpoints.featured_game.dto;
 
 import java.io.Serializable;
 
-public class BannedChampion implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class BannedChampion extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -1094265845803914995L;
 
@@ -36,5 +38,10 @@ public class BannedChampion implements Serializable {
 
 	public int getTeamId() {
 		return teamId;
+	}
+
+	@Override
+	public String toString() {
+		return String.valueOf(getChampionId());
 	}
 }

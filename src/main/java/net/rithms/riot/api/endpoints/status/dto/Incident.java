@@ -19,7 +19,9 @@ package net.rithms.riot.api.endpoints.status.dto;
 import java.io.Serializable;
 import java.util.List;
 
-public class Incident implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class Incident extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -5984477375688730952L;
 
@@ -42,5 +44,10 @@ public class Incident implements Serializable {
 
 	public boolean isActive() {
 		return active;
+	}
+
+	@Override
+	public String toString() {
+		return String.valueOf(getId());
 	}
 }

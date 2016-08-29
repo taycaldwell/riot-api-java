@@ -19,7 +19,9 @@ package net.rithms.riot.api.endpoints.static_data.dto;
 import java.io.Serializable;
 import java.util.List;
 
-public class SpellVars implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class SpellVars extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -8316487089517907400L;
 
@@ -47,5 +49,10 @@ public class SpellVars implements Serializable {
 
 	public String getRanksWith() {
 		return ranksWith;
+	}
+
+	@Override
+	public String toString() {
+		return getKey();
 	}
 }

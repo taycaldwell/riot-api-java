@@ -19,7 +19,9 @@ package net.rithms.riot.api.endpoints.current_game.dto;
 import java.io.Serializable;
 import java.util.List;
 
-public class CurrentGameInfo implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class CurrentGameInfo extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -6094147804616587912L;
 

@@ -20,7 +20,9 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-public class Item implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class Item extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -2356960824032495693L;
 
@@ -143,5 +145,10 @@ public class Item implements Serializable {
 
 	public boolean isInStore() {
 		return inStore;
+	}
+
+	@Override
+	public String toString() {
+		return getId() + ": " + getName();
 	}
 }

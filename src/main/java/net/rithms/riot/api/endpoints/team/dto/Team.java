@@ -19,7 +19,9 @@ package net.rithms.riot.api.endpoints.team.dto;
 import java.io.Serializable;
 import java.util.List;
 
-public class Team implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class Team extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -3318215531984856913L;
 
@@ -92,5 +94,10 @@ public class Team implements Serializable {
 
 	public long getThirdLastJoinDate() {
 		return thirdLastJoinDate;
+	}
+
+	@Override
+	public String toString() {
+		return getFullId() + ": " + getName();
 	}
 }

@@ -19,7 +19,9 @@ package net.rithms.riot.api.endpoints.static_data.dto;
 import java.io.Serializable;
 import java.util.List;
 
-public class Recommended implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class Recommended extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 8722523053273835114L;
 
@@ -57,5 +59,10 @@ public class Recommended implements Serializable {
 
 	public boolean isPriority() {
 		return priority;
+	}
+
+	@Override
+	public String toString() {
+		return getTitle();
 	}
 }

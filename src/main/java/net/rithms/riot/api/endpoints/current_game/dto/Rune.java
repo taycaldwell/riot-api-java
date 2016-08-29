@@ -18,7 +18,9 @@ package net.rithms.riot.api.endpoints.current_game.dto;
 
 import java.io.Serializable;
 
-public class Rune implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class Rune extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -5212321615648903989L;
 
@@ -31,5 +33,10 @@ public class Rune implements Serializable {
 
 	public int getRuneId() {
 		return runeId;
+	}
+
+	@Override
+	public String toString() {
+		return getRuneId() + ": " + getCount();
 	}
 }

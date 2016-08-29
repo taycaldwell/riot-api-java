@@ -19,7 +19,9 @@ package net.rithms.riot.api.endpoints.static_data.dto;
 import java.io.Serializable;
 import java.util.List;
 
-public class LevelTip implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class LevelTip extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -3061786573868823081L;
 
@@ -32,5 +34,10 @@ public class LevelTip implements Serializable {
 
 	public List<String> getLabel() {
 		return label;
+	}
+
+	@Override
+	public String toString() {
+		return getLabel().toString();
 	}
 }

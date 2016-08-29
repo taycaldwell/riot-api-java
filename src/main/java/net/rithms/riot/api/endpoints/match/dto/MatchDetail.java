@@ -19,7 +19,9 @@ package net.rithms.riot.api.endpoints.match.dto;
 import java.io.Serializable;
 import java.util.List;
 
-public class MatchDetail implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class MatchDetail extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 2606895296338330266L;
 
@@ -97,5 +99,10 @@ public class MatchDetail implements Serializable {
 
 	public Timeline getTimeline() {
 		return timeline;
+	}
+
+	@Override
+	public String toString() {
+		return String.valueOf(getMatchId());
 	}
 }

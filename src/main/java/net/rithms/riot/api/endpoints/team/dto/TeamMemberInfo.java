@@ -18,7 +18,9 @@ package net.rithms.riot.api.endpoints.team.dto;
 
 import java.io.Serializable;
 
-public class TeamMemberInfo implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class TeamMemberInfo extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 7987276053364898769L;
 
@@ -41,5 +43,10 @@ public class TeamMemberInfo implements Serializable {
 
 	public String getStatus() {
 		return status;
+	}
+
+	@Override
+	public String toString() {
+		return String.valueOf(getPlayerId());
 	}
 }

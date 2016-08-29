@@ -19,7 +19,9 @@ package net.rithms.riot.api.endpoints.status.dto;
 import java.io.Serializable;
 import java.util.List;
 
-public class Message implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class Message extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 9036838901306467780L;
 
@@ -57,5 +59,10 @@ public class Message implements Serializable {
 
 	public String getUpdatedAt() {
 		return updated_at;
+	}
+
+	@Override
+	public String toString() {
+		return getContent();
 	}
 }

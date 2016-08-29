@@ -19,7 +19,9 @@ package net.rithms.riot.api.endpoints.league.dto;
 import java.io.Serializable;
 import java.util.List;
 
-public class League implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class League extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 1878237445691308532L;
 
@@ -47,5 +49,10 @@ public class League implements Serializable {
 
 	public String getTier() {
 		return tier;
+	}
+
+	@Override
+	public String toString() {
+		return getName();
 	}
 }

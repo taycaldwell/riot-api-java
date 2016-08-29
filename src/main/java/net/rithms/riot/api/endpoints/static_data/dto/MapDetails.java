@@ -19,7 +19,9 @@ package net.rithms.riot.api.endpoints.static_data.dto;
 import java.io.Serializable;
 import java.util.List;
 
-public class MapDetails implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class MapDetails extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -8161048291003061062L;
 
@@ -42,5 +44,10 @@ public class MapDetails implements Serializable {
 
 	public List<Long> getUnpurchasableItemList() {
 		return unpurchasableItemList;
+	}
+
+	@Override
+	public String toString() {
+		return getMapName();
 	}
 }

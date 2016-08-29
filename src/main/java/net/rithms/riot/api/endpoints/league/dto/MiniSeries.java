@@ -18,7 +18,9 @@ package net.rithms.riot.api.endpoints.league.dto;
 
 import java.io.Serializable;
 
-public class MiniSeries implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class MiniSeries extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -1698803031525933530L;
 
@@ -41,5 +43,10 @@ public class MiniSeries implements Serializable {
 
 	public int getWins() {
 		return wins;
+	}
+
+	@Override
+	public String toString() {
+		return getProgress();
 	}
 }

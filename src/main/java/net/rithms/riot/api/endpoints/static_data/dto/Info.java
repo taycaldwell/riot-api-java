@@ -18,7 +18,9 @@ package net.rithms.riot.api.endpoints.static_data.dto;
 
 import java.io.Serializable;
 
-public class Info implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class Info extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -671408952920494867L;
 
@@ -41,5 +43,10 @@ public class Info implements Serializable {
 
 	public int getMagic() {
 		return magic;
+	}
+
+	@Override
+	public String toString() {
+		return "[" + getAttack() + "," + getMagic() + "," + getDefense() + "," + getDifficulty() + "]";
 	}
 }

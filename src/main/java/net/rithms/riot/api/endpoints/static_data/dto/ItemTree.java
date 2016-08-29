@@ -19,7 +19,9 @@ package net.rithms.riot.api.endpoints.static_data.dto;
 import java.io.Serializable;
 import java.util.List;
 
-public class ItemTree implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class ItemTree extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 7245929613325190245L;
 
@@ -32,5 +34,10 @@ public class ItemTree implements Serializable {
 
 	public List<String> getTags() {
 		return tags;
+	}
+
+	@Override
+	public String toString() {
+		return getHeader();
 	}
 }

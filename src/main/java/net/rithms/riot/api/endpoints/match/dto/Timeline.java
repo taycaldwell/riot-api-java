@@ -19,7 +19,9 @@ package net.rithms.riot.api.endpoints.match.dto;
 import java.io.Serializable;
 import java.util.List;
 
-public class Timeline implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class Timeline extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 3888184958883394435L;
 
@@ -32,5 +34,10 @@ public class Timeline implements Serializable {
 
 	public List<Frame> getFrames() {
 		return frames;
+	}
+
+	@Override
+	public String toString() {
+		return String.valueOf(getFrameInterval());
 	}
 }

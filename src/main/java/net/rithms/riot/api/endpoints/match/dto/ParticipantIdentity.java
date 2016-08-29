@@ -18,7 +18,9 @@ package net.rithms.riot.api.endpoints.match.dto;
 
 import java.io.Serializable;
 
-public class ParticipantIdentity implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class ParticipantIdentity extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 7750317217073991764L;
 
@@ -31,5 +33,10 @@ public class ParticipantIdentity implements Serializable {
 
 	public Player getPlayer() {
 		return player;
+	}
+
+	@Override
+	public String toString() {
+		return getPlayer().toString();
 	}
 }

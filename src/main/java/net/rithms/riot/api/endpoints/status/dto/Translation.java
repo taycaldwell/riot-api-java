@@ -18,7 +18,9 @@ package net.rithms.riot.api.endpoints.status.dto;
 
 import java.io.Serializable;
 
-public class Translation implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class Translation extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -8923544184113630844L;
 
@@ -36,5 +38,10 @@ public class Translation implements Serializable {
 
 	public String getUpdatedAt() {
 		return updated_at;
+	}
+
+	@Override
+	public String toString() {
+		return getContent();
 	}
 }

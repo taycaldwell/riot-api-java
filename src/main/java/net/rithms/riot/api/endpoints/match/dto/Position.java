@@ -18,7 +18,9 @@ package net.rithms.riot.api.endpoints.match.dto;
 
 import java.io.Serializable;
 
-public class Position implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class Position extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -6998248732159256525L;
 
@@ -31,5 +33,10 @@ public class Position implements Serializable {
 
 	public int getY() {
 		return y;
+	}
+
+	@Override
+	public String toString() {
+		return "[" + getX() + "," + getY() + "]";
 	}
 }

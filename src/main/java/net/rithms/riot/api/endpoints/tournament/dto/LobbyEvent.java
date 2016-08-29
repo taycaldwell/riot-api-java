@@ -18,7 +18,9 @@ package net.rithms.riot.api.endpoints.tournament.dto;
 
 import java.io.Serializable;
 
-public class LobbyEvent implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class LobbyEvent extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 2914669820313091597L;
 
@@ -36,5 +38,10 @@ public class LobbyEvent implements Serializable {
 
 	public String getTimestamp() {
 		return timestamp;
+	}
+
+	@Override
+	public String toString() {
+		return getEventType();
 	}
 }

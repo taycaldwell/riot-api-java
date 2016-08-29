@@ -18,7 +18,9 @@ package net.rithms.riot.api.endpoints.static_data.dto;
 
 import java.io.Serializable;
 
-public class BlockItem implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class BlockItem extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 716305113317412182L;
 
@@ -31,5 +33,10 @@ public class BlockItem implements Serializable {
 
 	public int getId() {
 		return id;
+	}
+
+	@Override
+	public String toString() {
+		return getId() + ": " + getCount();
 	}
 }

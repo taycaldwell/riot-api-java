@@ -19,7 +19,9 @@ package net.rithms.riot.api.endpoints.match.dto;
 import java.io.Serializable;
 import java.util.List;
 
-public class Event implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class Event extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -2911353385877952457L;
 
@@ -127,5 +129,10 @@ public class Event implements Serializable {
 
 	public String getWardType() {
 		return wardType;
+	}
+
+	@Override
+	public String toString() {
+		return getEventType();
 	}
 }

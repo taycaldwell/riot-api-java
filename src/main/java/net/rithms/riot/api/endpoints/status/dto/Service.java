@@ -19,7 +19,9 @@ package net.rithms.riot.api.endpoints.status.dto;
 import java.io.Serializable;
 import java.util.List;
 
-public class Service implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class Service extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -5472099748922109877L;
 
@@ -42,5 +44,10 @@ public class Service implements Serializable {
 
 	public String getStatus() {
 		return status;
+	}
+
+	@Override
+	public String toString() {
+		return getName();
 	}
 }

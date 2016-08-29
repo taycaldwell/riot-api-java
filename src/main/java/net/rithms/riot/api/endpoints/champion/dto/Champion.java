@@ -18,7 +18,9 @@ package net.rithms.riot.api.endpoints.champion.dto;
 
 import java.io.Serializable;
 
-public class Champion implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class Champion extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 4342849519353550572L;
 
@@ -51,5 +53,10 @@ public class Champion implements Serializable {
 
 	public boolean isRankedPlayEnabled() {
 		return rankedPlayEnabled;
+	}
+	
+	@Override
+	public String toString(){
+		return String.valueOf(getId());
 	}
 }

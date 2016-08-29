@@ -18,7 +18,9 @@ package net.rithms.riot.api.endpoints.summoner.dto;
 
 import java.io.Serializable;
 
-public class Mastery implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class Mastery extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -1053051501742552701L;
 
@@ -31,5 +33,10 @@ public class Mastery implements Serializable {
 
 	public int getRank() {
 		return rank;
+	}
+
+	@Override
+	public String toString() {
+		return getId() + ": " + getRank();
 	}
 }

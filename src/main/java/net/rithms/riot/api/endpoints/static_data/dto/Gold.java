@@ -18,7 +18,9 @@ package net.rithms.riot.api.endpoints.static_data.dto;
 
 import java.io.Serializable;
 
-public class Gold implements Serializable {
+import net.rithms.riot.api.Dto;
+
+public class Gold extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -2996361282729522012L;
 
@@ -41,5 +43,10 @@ public class Gold implements Serializable {
 
 	public boolean isPurchasable() {
 		return purchasable;
+	}
+
+	@Override
+	public String toString() {
+		return String.valueOf(getBase());
 	}
 }
