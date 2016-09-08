@@ -60,34 +60,6 @@ public class Participant extends Dto implements Serializable {
 		return bot;
 	}
 
-	public void setBot(boolean bot) {
-		this.bot = bot;
-	}
-
-	public void setChampionId(int championId) {
-		this.championId = championId;
-	}
-
-	public void setProfileIconId(int profileIconId) {
-		this.profileIconId = profileIconId;
-	}
-
-	public void setSpell1Id(int spell1Id) {
-		this.spell1Id = spell1Id;
-	}
-
-	public void setSpell2Id(int spell2Id) {
-		this.spell2Id = spell2Id;
-	}
-
-	public void setSummonerName(String summonerName) {
-		this.summonerName = summonerName;
-	}
-
-	public void setTeamId(int teamId) {
-		this.teamId = teamId;
-	}
-
 	@Override
 	public String toString() {
 		return getSummonerName();

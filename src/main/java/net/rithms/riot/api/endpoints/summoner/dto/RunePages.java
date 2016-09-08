@@ -35,14 +35,6 @@ public class RunePages extends Dto implements Serializable {
 	public long getSummonerId() {
 		return summonerId;
 	}
-	
-	public void setPages(Set<RunePage> pages) {
-		this.pages = pages;
-	}
-
-	public void setSummonerId(long summonerId) {
-		this.summonerId = summonerId;
-	}
 
 	@Override
 	public String toString() {

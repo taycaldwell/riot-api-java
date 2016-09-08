@@ -39,18 +39,6 @@ public class Skin extends Dto implements Serializable {
 	public int getNum() {
 		return num;
 	}
-	
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public void setNum(int num) {
-		this.num = num;
-	}
 
 	@Override
 	public String toString() {

@@ -40,18 +40,6 @@ public class LobbyEvent extends Dto implements Serializable {
 		return timestamp;
 	}
 
-	public void setEventType(String eventType) {
-		this.eventType = eventType;
-	}
-
-	public void setSummonerId(String summonerId) {
-		this.summonerId = summonerId;
-	}
-
-	public void setTimestamp(String timestamp) {
-		this.timestamp = timestamp;
-	}
-
 	@Override
 	public String toString() {
 		return getEventType();

@@ -61,34 +61,6 @@ public class Recommended extends Dto implements Serializable {
 		return priority;
 	}
 
-	public void setBlocks(List<Block> blocks) {
-		this.blocks = blocks;
-	}
-
-	public void setChampion(String champion) {
-		this.champion = champion;
-	}
-
-	public void setMap(String map) {
-		this.map = map;
-	}
-
-	public void setMode(String mode) {
-		this.mode = mode;
-	}
-
-	public void setPriority(boolean priority) {
-		this.priority = priority;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
 	@Override
 	public String toString() {
 		return getTitle();

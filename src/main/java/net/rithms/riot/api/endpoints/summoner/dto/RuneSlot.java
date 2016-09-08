@@ -34,14 +34,6 @@ public class RuneSlot extends Dto implements Serializable {
 	public int getRuneSlotId() {
 		return runeSlotId;
 	}
-	
-	public void setRuneId(int runeId) {
-		this.runeId = runeId;
-	}
-
-	public void setRuneSlotId(int runeSlotId) {
-		this.runeSlotId = runeSlotId;
-	}
 
 	@Override
 	public String toString() {

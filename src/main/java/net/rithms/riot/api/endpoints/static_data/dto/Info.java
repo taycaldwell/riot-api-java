@@ -44,22 +44,6 @@ public class Info extends Dto implements Serializable {
 	public int getMagic() {
 		return magic;
 	}
-	
-	public void setAttack(int attack) {
-		this.attack = attack;
-	}
-
-	public void setDefense(int defense) {
-		this.defense = defense;
-	}
-
-	public void setDifficulty(int difficulty) {
-		this.difficulty = difficulty;
-	}
-
-	public void setMagic(int magic) {
-		this.magic = magic;
-	}
 
 	@Override
 	public String toString() {

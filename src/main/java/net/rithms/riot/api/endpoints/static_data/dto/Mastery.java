@@ -67,38 +67,6 @@ public class Mastery extends Dto implements Serializable {
 		return sanitizedDescription;
 	}
 
-	public void setDescription(List<String> description) {
-		this.description = description;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public void setImage(Image image) {
-		this.image = image;
-	}
-
-	public void setMasteryTree(String masteryTree) {
-		this.masteryTree = masteryTree;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public void setPrereq(String prereq) {
-		this.prereq = prereq;
-	}
-
-	public void setRanks(int ranks) {
-		this.ranks = ranks;
-	}
-
-	public void setSanitizedDescription(List<String> sanitizedDescription) {
-		this.sanitizedDescription = sanitizedDescription;
-	}
-
 	@Override
 	public String toString() {
 		return getId() + ": " + getName();

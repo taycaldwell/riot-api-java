@@ -44,22 +44,6 @@ public class TeamStatDetail extends Dto implements Serializable {
 	public int getWins() {
 		return wins;
 	}
-	
-	public void setAverageGamesPlayed(int averageGamesPlayed) {
-		this.averageGamesPlayed = averageGamesPlayed;
-	}
-
-	public void setLosses(int losses) {
-		this.losses = losses;
-	}
-
-	public void setTeamStatType(String teamStatType) {
-		this.teamStatType = teamStatType;
-	}
-
-	public void setWins(int wins) {
-		this.wins = wins;
-	}
 
 	@Override
 	public String toString() {

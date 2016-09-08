@@ -40,18 +40,6 @@ public class Block extends Dto implements Serializable {
 	public boolean isRecMath() {
 		return recMath;
 	}
-	
-	public void setItems(List<BlockItem> items) {
-		this.items = items;
-	}
-
-	public void setRecMath(boolean recMath) {
-		this.recMath = recMath;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
 
 	@Override
 	public String toString() {

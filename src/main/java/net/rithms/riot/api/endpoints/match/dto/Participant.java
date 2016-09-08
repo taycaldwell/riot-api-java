@@ -76,46 +76,6 @@ public class Participant extends Dto implements Serializable {
 		return timeline;
 	}
 
-	public void setChampionId(int championId) {
-		this.championId = championId;
-	}
-
-	public void setHighestAchievedSeasonTier(String highestAchievedSeasonTier) {
-		this.highestAchievedSeasonTier = highestAchievedSeasonTier;
-	}
-
-	public void setMasteries(List<Mastery> masteries) {
-		this.masteries = masteries;
-	}
-
-	public void setParticipantId(int participantId) {
-		this.participantId = participantId;
-	}
-
-	public void setRunes(List<Rune> runes) {
-		this.runes = runes;
-	}
-
-	public void setSpell1Id(int spell1Id) {
-		this.spell1Id = spell1Id;
-	}
-
-	public void setSpell2Id(int spell2Id) {
-		this.spell2Id = spell2Id;
-	}
-
-	public void setStats(ParticipantStats stats) {
-		this.stats = stats;
-	}
-
-	public void setTeamId(int teamId) {
-		this.teamId = teamId;
-	}
-
-	public void setTimeline(ParticipantTimeline timeline) {
-		this.timeline = timeline;
-	}
-
 	@Override
 	public String toString() {
 		return String.valueOf(getParticipantId());

@@ -36,14 +36,6 @@ public class Timeline extends Dto implements Serializable {
 		return frames;
 	}
 
-	public void setFrameInterval(long frameInterval) {
-		this.frameInterval = frameInterval;
-	}
-
-	public void setFrames(List<Frame> frames) {
-		this.frames = frames;
-	}
-
 	@Override
 	public String toString() {
 		return String.valueOf(getFrameInterval());

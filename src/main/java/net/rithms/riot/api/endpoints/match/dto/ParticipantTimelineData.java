@@ -44,20 +44,4 @@ public class ParticipantTimelineData extends Dto implements Serializable {
 	public double getZeroToTen() {
 		return zeroToTen;
 	}
-
-	public void setTenToTwenty(double tenToTwenty) {
-		this.tenToTwenty = tenToTwenty;
-	}
-
-	public void setThirtyToEnd(double thirtyToEnd) {
-		this.thirtyToEnd = thirtyToEnd;
-	}
-
-	public void setTwentyToThirty(double twentyToThirty) {
-		this.twentyToThirty = twentyToThirty;
-	}
-
-	public void setZeroToTen(double zeroToTen) {
-		this.zeroToTen = zeroToTen;
-	}
 }

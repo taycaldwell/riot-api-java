@@ -35,13 +35,4 @@ public class FeaturedGames extends Dto implements Serializable {
 	public List<FeaturedGameInfo> getGameList() {
 		return gameList;
 	}
-
-	public void setClientRefreshInterval(long clientRefreshInterval) {
-		this.clientRefreshInterval = clientRefreshInterval;
-	}
-
-	public void setGameList(List<FeaturedGameInfo> gameList) {
-		this.gameList = gameList;
-	}
-	
 }

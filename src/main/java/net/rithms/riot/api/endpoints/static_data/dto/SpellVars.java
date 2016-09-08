@@ -51,26 +51,6 @@ public class SpellVars extends Dto implements Serializable {
 		return ranksWith;
 	}
 
-	public void setCoeff(List<Double> coeff) {
-		this.coeff = coeff;
-	}
-
-	public void setDyn(String dyn) {
-		this.dyn = dyn;
-	}
-
-	public void setKey(String key) {
-		this.key = key;
-	}
-
-	public void setLink(String link) {
-		this.link = link;
-	}
-
-	public void setRanksWith(String ranksWith) {
-		this.ranksWith = ranksWith;
-	}
-
 	@Override
 	public String toString() {
 		return getKey();

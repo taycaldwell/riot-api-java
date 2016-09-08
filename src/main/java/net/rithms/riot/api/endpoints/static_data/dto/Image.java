@@ -60,34 +60,6 @@ public class Image extends Dto implements Serializable {
 		return y;
 	}
 
-	public void setFull(String full) {
-		this.full = full;
-	}
-
-	public void setGroup(String group) {
-		this.group = group;
-	}
-
-	public void setH(int h) {
-		this.h = h;
-	}
-
-	public void setSprite(String sprite) {
-		this.sprite = sprite;
-	}
-
-	public void setW(int w) {
-		this.w = w;
-	}
-
-	public void setX(int x) {
-		this.x = x;
-	}
-
-	public void setY(int y) {
-		this.y = y;
-	}
-
 	@Override
 	public String toString() {
 		return getSprite();

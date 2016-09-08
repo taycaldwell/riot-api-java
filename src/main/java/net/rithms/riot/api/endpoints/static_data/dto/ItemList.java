@@ -57,30 +57,6 @@ public class ItemList extends Dto implements Serializable {
 		return version;
 	}
 
-	public void setBasic(BasicData basic) {
-		this.basic = basic;
-	}
-
-	public void setData(Map<String, Item> data) {
-		this.data = data;
-	}
-
-	public void setGroups(List<Group> groups) {
-		this.groups = groups;
-	}
-
-	public void setTree(List<ItemTree> tree) {
-		this.tree = tree;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public void setVersion(String version) {
-		this.version = version;
-	}
-
 	@Override
 	public String toString() {
 		return getType();

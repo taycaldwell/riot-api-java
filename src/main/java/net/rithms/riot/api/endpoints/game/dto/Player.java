@@ -40,18 +40,6 @@ public class Player extends Dto implements Serializable {
 		return teamId;
 	}
 
-	public void setChampionId(int championId) {
-		this.championId = championId;
-	}
-
-	public void setSummonerId(long summonerId) {
-		this.summonerId = summonerId;
-	}
-
-	public void setTeamId(int teamId) {
-		this.teamId = teamId;
-	}
-
 	@Override
 	public String toString() {
 		return String.valueOf(getSummonerId());

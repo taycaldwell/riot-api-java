@@ -70,42 +70,6 @@ public class Realm extends Dto implements Serializable {
 	public String getV() {
 		return v;
 	}
-	
-	public void setCdn(String cdn) {
-		this.cdn = cdn;
-	}
-
-	public void setCss(String css) {
-		this.css = css;
-	}
-
-	public void setDd(String dd) {
-		this.dd = dd;
-	}
-
-	public void setL(String l) {
-		this.l = l;
-	}
-
-	public void setLg(String lg) {
-		this.lg = lg;
-	}
-
-	public void setN(Map<String, String> n) {
-		this.n = n;
-	}
-
-	public void setProfileiconmax(int profileiconmax) {
-		this.profileiconmax = profileiconmax;
-	}
-
-	public void setStore(String store) {
-		this.store = store;
-	}
-
-	public void setV(String v) {
-		this.v = v;
-	}
 
 	@Override
 	public String toString() {

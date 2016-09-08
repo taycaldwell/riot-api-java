@@ -51,26 +51,6 @@ public class League extends Dto implements Serializable {
 		return tier;
 	}
 
-	public void setEntries(List<LeagueEntry> entries) {
-		this.entries = entries;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public void setParticipantId(String participantId) {
-		this.participantId = participantId;
-	}
-
-	public void setQueue(String queue) {
-		this.queue = queue;
-	}
-
-	public void setTier(String tier) {
-		this.tier = tier;
-	}
-
 	@Override
 	public String toString() {
 		return getName();

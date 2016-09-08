@@ -29,10 +29,6 @@ public class Observer extends Dto implements Serializable {
 	public String getEncryptionKey() {
 		return encryptionKey;
 	}
-	
-	public void setEncryptionKey(String encryptionKey) {
-		this.encryptionKey = encryptionKey;
-	}
 
 	@Override
 	public String toString() {

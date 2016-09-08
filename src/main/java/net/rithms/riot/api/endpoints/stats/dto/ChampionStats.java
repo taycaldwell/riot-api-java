@@ -35,14 +35,6 @@ public class ChampionStats extends Dto implements Serializable {
 		return stats;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public void setStats(AggregatedStats stats) {
-		this.stats = stats;
-	}
-
 	@Override
 	public String toString() {
 		return String.valueOf(getId());

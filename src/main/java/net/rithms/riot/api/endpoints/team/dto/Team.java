@@ -95,62 +95,6 @@ public class Team extends Dto implements Serializable {
 	public long getThirdLastJoinDate() {
 		return thirdLastJoinDate;
 	}
-	
-	public void setCreateDate(long createDate) {
-		this.createDate = createDate;
-	}
-
-	public void setFullId(String fullId) {
-		this.fullId = fullId;
-	}
-
-	public void setLastGameDate(long lastGameDate) {
-		this.lastGameDate = lastGameDate;
-	}
-
-	public void setLastJoinDate(long lastJoinDate) {
-		this.lastJoinDate = lastJoinDate;
-	}
-
-	public void setLastJoinedRankedTeamQueueDate(long lastJoinedRankedTeamQueueDate) {
-		this.lastJoinedRankedTeamQueueDate = lastJoinedRankedTeamQueueDate;
-	}
-
-	public void setMatchHistory(List<MatchHistorySummary> matchHistory) {
-		this.matchHistory = matchHistory;
-	}
-
-	public void setModifyDate(long modifyDate) {
-		this.modifyDate = modifyDate;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public void setRoster(Roster roster) {
-		this.roster = roster;
-	}
-
-	public void setSecondLastJoinDate(long secondLastJoinDate) {
-		this.secondLastJoinDate = secondLastJoinDate;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-	public void setTag(String tag) {
-		this.tag = tag;
-	}
-
-	public void setTeamStatDetails(List<TeamStatDetail> teamStatDetails) {
-		this.teamStatDetails = teamStatDetails;
-	}
-
-	public void setThirdLastJoinDate(long thirdLastJoinDate) {
-		this.thirdLastJoinDate = thirdLastJoinDate;
-	}
 
 	@Override
 	public String toString() {

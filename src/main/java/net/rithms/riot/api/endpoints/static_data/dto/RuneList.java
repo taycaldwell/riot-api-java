@@ -46,22 +46,6 @@ public class RuneList extends Dto implements Serializable {
 		return version;
 	}
 
-	public void setBasic(BasicData basic) {
-		this.basic = basic;
-	}
-
-	public void setData(Map<String, Rune> data) {
-		this.data = data;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public void setVersion(String version) {
-		this.version = version;
-	}
-
 	@Override
 	public String toString() {
 		return getType();

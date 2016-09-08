@@ -80,50 +80,6 @@ public class LeagueEntry extends Dto implements Serializable {
 		return isVeteran;
 	}
 
-	public void setDivision(String division) {
-		this.division = division;
-	}
-
-	public void setFreshBlood(boolean isFreshBlood) {
-		this.isFreshBlood = isFreshBlood;
-	}
-
-	public void setHotStreak(boolean isHotStreak) {
-		this.isHotStreak = isHotStreak;
-	}
-
-	public void setInactive(boolean isInactive) {
-		this.isInactive = isInactive;
-	}
-
-	public void setVeteran(boolean isVeteran) {
-		this.isVeteran = isVeteran;
-	}
-
-	public void setLeaguePoints(int leaguePoints) {
-		this.leaguePoints = leaguePoints;
-	}
-
-	public void setLosses(int losses) {
-		this.losses = losses;
-	}
-
-	public void setMiniSeries(MiniSeries miniSeries) {
-		this.miniSeries = miniSeries;
-	}
-
-	public void setPlayerOrTeamId(String playerOrTeamId) {
-		this.playerOrTeamId = playerOrTeamId;
-	}
-
-	public void setPlayerOrTeamName(String playerOrTeamName) {
-		this.playerOrTeamName = playerOrTeamName;
-	}
-
-	public void setWins(int wins) {
-		this.wins = wins;
-	}
-
 	@Override
 	public String toString() {
 		return getPlayerOrTeamName();

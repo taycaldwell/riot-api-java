@@ -46,22 +46,6 @@ public class Service extends Dto implements Serializable {
 		return status;
 	}
 
-	public void setIncidents(List<Incident> incidents) {
-		this.incidents = incidents;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public void setSlug(String slug) {
-		this.slug = slug;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
 	@Override
 	public String toString() {
 		return getName();

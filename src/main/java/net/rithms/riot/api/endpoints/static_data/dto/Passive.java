@@ -45,22 +45,6 @@ public class Passive extends Dto implements Serializable {
 		return sanitizedDescription;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public void setImage(Image image) {
-		this.image = image;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public void setSanitizedDescription(String sanitizedDescription) {
-		this.sanitizedDescription = sanitizedDescription;
-	}
-
 	@Override
 	public String toString() {
 		return getName();

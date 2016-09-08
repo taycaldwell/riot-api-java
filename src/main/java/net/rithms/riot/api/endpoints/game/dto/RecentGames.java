@@ -35,12 +35,4 @@ public class RecentGames extends Dto implements Serializable {
 	public long getSummonerId() {
 		return summonerId;
 	}
-
-	public void setGames(Set<Game> games) {
-		this.games = games;
-	}
-
-	public void setSummonerId(long summonerId) {
-		this.summonerId = summonerId;
-	}
 }

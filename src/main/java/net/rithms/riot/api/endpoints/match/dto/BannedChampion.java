@@ -35,14 +35,6 @@ public class BannedChampion extends Dto implements Serializable {
 		return pickTurn;
 	}
 
-	public void setChampionId(int championId) {
-		this.championId = championId;
-	}
-
-	public void setPickTurn(int pickTurn) {
-		this.pickTurn = pickTurn;
-	}
-
 	@Override
 	public String toString() {
 		return String.valueOf(getChampionId());

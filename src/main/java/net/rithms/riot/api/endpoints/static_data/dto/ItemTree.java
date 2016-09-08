@@ -36,14 +36,6 @@ public class ItemTree extends Dto implements Serializable {
 		return tags;
 	}
 
-	public void setHeader(String header) {
-		this.header = header;
-	}
-
-	public void setTags(List<String> tags) {
-		this.tags = tags;
-	}
-
 	@Override
 	public String toString() {
 		return getHeader();

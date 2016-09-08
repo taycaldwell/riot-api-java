@@ -30,10 +30,6 @@ public class MasteryTreeList extends Dto implements Serializable {
 	public List<MasteryTreeItem> getMasteryTreeItems() {
 		return masteryTreeItems;
 	}
-	
-	public void setMasteryTreeItems(List<MasteryTreeItem> masteryTreeItems) {
-		this.masteryTreeItems = masteryTreeItems;
-	}
 
 	@Override
 	public String toString() {

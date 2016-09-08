@@ -46,22 +46,6 @@ public class MatchList extends Dto implements Serializable {
 		return matches;
 	}
 
-	public void setEndIndex(int endIndex) {
-		this.endIndex = endIndex;
-	}
-
-	public void setMatches(List<MatchReference> matches) {
-		this.matches = matches;
-	}
-
-	public void setStartIndex(int startIndex) {
-		this.startIndex = startIndex;
-	}
-
-	public void setTotalGames(int totalGames) {
-		this.totalGames = totalGames;
-	}
-
 	@Override
 	public String toString() {
 		return "[" + getStartIndex() + "," + getEndIndex() + "]";

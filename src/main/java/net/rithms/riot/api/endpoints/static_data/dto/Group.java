@@ -37,14 +37,6 @@ public class Group extends Dto implements Serializable {
 	public String getKey() {
 		return key;
 	}
-	
-	public void setMaxGroupOwnable(String maxGroupOwnable) {
-		this.maxGroupOwnable = maxGroupOwnable;
-	}
-
-	public void setKey(String key) {
-		this.key = key;
-	}
 
 	@Override
 	public String toString() {
