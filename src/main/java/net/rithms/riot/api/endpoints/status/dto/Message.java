@@ -19,6 +19,8 @@ package net.rithms.riot.api.endpoints.status.dto;
 import java.io.Serializable;
 import java.util.List;
 
+import com.google.gson.annotations.SerializedName;
+
 import net.rithms.riot.api.Dto;
 
 public class Message extends Dto implements Serializable {
@@ -27,11 +29,13 @@ public class Message extends Dto implements Serializable {
 
 	private String author;
 	private String content;
-	private String created_at;
-	private long id;
+	@SerializedName(value = "created_at")
+	private String createdAt;
+	private String id;
 	private String severity;
 	private List<Translation> translations;
-	private String updated_at;
+	@SerializedName(value = "updated_at")
+	private String updatedAt;
 
 	public String getAuthor() {
 		return author;
@@ -42,10 +46,10 @@ public class Message extends Dto implements Serializable {
 	}
 
 	public String getCreatedAt() {
-		return created_at;
+		return createdAt;
 	}
 
-	public long getId() {
+	public String getId() {
 		return id;
 	}
 
@@ -58,7 +62,7 @@ public class Message extends Dto implements Serializable {
 	}
 
 	public String getUpdatedAt() {
-		return updated_at;
+		return updatedAt;
 	}
 
 	@Override

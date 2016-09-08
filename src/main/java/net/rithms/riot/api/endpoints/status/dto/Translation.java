@@ -18,6 +18,8 @@ package net.rithms.riot.api.endpoints.status.dto;
 
 import java.io.Serializable;
 
+import com.google.gson.annotations.SerializedName;
+
 import net.rithms.riot.api.Dto;
 
 public class Translation extends Dto implements Serializable {
@@ -26,7 +28,8 @@ public class Translation extends Dto implements Serializable {
 
 	private String content;
 	private String locale;
-	private String updated_at;
+	@SerializedName(value = "updated_at")
+	private String updatedAt;
 
 	public String getContent() {
 		return content;
@@ -37,7 +40,7 @@ public class Translation extends Dto implements Serializable {
 	}
 
 	public String getUpdatedAt() {
-		return updated_at;
+		return updatedAt;
 	}
 
 	@Override

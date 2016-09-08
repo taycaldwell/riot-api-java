@@ -18,17 +18,20 @@ package net.rithms.riot.api.endpoints.static_data.dto;
 
 import java.io.Serializable;
 
+import com.google.gson.annotations.SerializedName;
+
 import net.rithms.riot.api.Dto;
 
 public class Group extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -4691215871693156751L;
 
-	private String MaxGroupOwnable;
+	@SerializedName(value = "MaxGroupOwnable")
+	private String maxGroupOwnable;
 	private String key;
 
 	public String getMaxGroupOwnable() {
-		return MaxGroupOwnable;
+		return maxGroupOwnable;
 	}
 
 	public String getKey() {

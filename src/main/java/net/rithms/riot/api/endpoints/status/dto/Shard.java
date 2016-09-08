@@ -19,6 +19,8 @@ package net.rithms.riot.api.endpoints.status.dto;
 import java.io.Serializable;
 import java.util.List;
 
+import com.google.gson.annotations.SerializedName;
+
 import net.rithms.riot.api.Dto;
 
 public class Shard extends Dto implements Serializable {
@@ -28,7 +30,8 @@ public class Shard extends Dto implements Serializable {
 	private String hostname;
 	private List<String> locales;
 	private String name;
-	private String region_tag;
+	@SerializedName(value = "region_tag")
+	private String regionTag;
 	private String slug;
 
 	public String getHostname() {
@@ -44,7 +47,7 @@ public class Shard extends Dto implements Serializable {
 	}
 
 	public String getRegionTag() {
-		return region_tag;
+		return regionTag;
 	}
 
 	public String getSlug() {

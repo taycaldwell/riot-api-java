@@ -19,6 +19,8 @@ package net.rithms.riot.api.endpoints.status.dto;
 import java.io.Serializable;
 import java.util.List;
 
+import com.google.gson.annotations.SerializedName;
+
 import net.rithms.riot.api.Dto;
 
 public class Incident extends Dto implements Serializable {
@@ -26,12 +28,13 @@ public class Incident extends Dto implements Serializable {
 	private static final long serialVersionUID = -5984477375688730952L;
 
 	private boolean active;
-	private String created_at;
+	@SerializedName(value = "created_at")
+	private String createdAt;
 	private long id;
 	private List<Message> updates;
 
 	public String getCreatedAt() {
-		return created_at;
+		return createdAt;
 	}
 
 	public long getId() {

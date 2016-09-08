@@ -17,46 +17,79 @@
 package net.rithms.riot.api.endpoints.static_data.dto;
 
 import java.io.Serializable;
-
+import com.google.gson.annotations.SerializedName;
 import net.rithms.riot.api.Dto;
 
 public class BasicDataStats extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -6907555892482131577L;
-
-	private double FlatArmorMod;
-	private double FlatAttackSpeedMod;
-	private double FlatBlockMod;
-	private double FlatCritChanceMod;
-	private double FlatCritDamageMod;
-	private double FlatEXPBonus;
-	private double FlatEnergyPoolMod;
-	private double FlatEnergyRegenMod;
-	private double FlatHPPoolMod;
-	private double FlatHPRegenMod;
-	private double FlatMPPoolMod;
-	private double FlatMPRegenMod;
-	private double FlatMagicDamageMod;
-	private double FlatMovementSpeedMod;
-	private double FlatPhysicalDamageMod;
-	private double FlatSpellBlockMod;
-	private double PercentArmorMod;
-	private double PercentAttackSpeedMod;
-	private double PercentBlockMod;
-	private double PercentCritChanceMod;
-	private double PercentCritDamageMod;
-	private double PercentDodgeMod;
-	private double PercentEXPBonus;
-	private double PercentHPPoolMod;
-	private double PercentHPRegenMod;
-	private double PercentLifeStealMod;
-	private double PercentMPPoolMod;
-	private double PercentMPRegenMod;
-	private double PercentMagicDamageMod;
-	private double PercentMovementSpeedMod;
-	private double PercentPhysicalDamageMod;
-	private double PercentSpellBlockMod;
-	private double PercentSpellVampMod;
+	
+	@SerializedName(value = "FlatArmorMod")
+	private double flatArmorMod;
+	@SerializedName(value = "FlatAttackSpeedMod")
+	private double flatAttackSpeedMod;
+	@SerializedName(value = "FlatBlockMod")
+	private double flatBlockMod;
+	@SerializedName(value = "FlatCritChanceMod")
+	private double flatCritChanceMod;
+	@SerializedName(value = "FlatCritDamageMod")
+	private double flatCritDamageMod;
+	@SerializedName(value = "FlatEXPBonus")
+	private double flatEXPBonus;
+	@SerializedName(value = "FlatEnergyPoolMod")
+	private double flatEnergyPoolMod;
+	@SerializedName(value = "FlatEnergyRegenMod")
+	private double flatEnergyRegenMod;
+	@SerializedName(value = "FlatHPPoolMod")
+	private double flatHPPoolMod;
+	@SerializedName(value = "FlatHPRegenMod")
+	private double flatHPRegenMod;
+	@SerializedName(value = "FlatMPPoolMod")
+	private double flatMPPoolMod;
+	@SerializedName(value = "FlatMPRegenMod")
+	private double flatMPRegenMod;
+	@SerializedName(value = "FlatMagicDamageMod")
+	private double flatMagicDamageMod;
+	@SerializedName(value = "FlatMovementSpeedMod")
+	private double flatMovementSpeedMod;
+	@SerializedName(value = "FlatPhysicalDamageMod")
+	private double flatPhysicalDamageMod;
+	@SerializedName(value = "FlatSpellBlockMod")
+	private double flatSpellBlockMod;
+	@SerializedName(value = "PercentArmorMod")
+	private double percentArmorMod;
+	@SerializedName(value = "PercentAttackSpeedMod")
+	private double percentAttackSpeedMod;
+	@SerializedName(value = "PercentBlockMod")
+	private double percentBlockMod;
+	@SerializedName(value = "PercentCritChanceMod")
+	private double percentCritChanceMod;
+	@SerializedName(value = "PercentCritDamageMod")
+	private double percentCritDamageMod;
+	@SerializedName(value = "PercentDodgeMod")
+	private double percentDodgeMod;
+	@SerializedName(value = "PercentEXPBonus")
+	private double percentEXPBonus;
+	@SerializedName(value = "PercentHPPoolMod")
+	private double percentHPPoolMod;
+	@SerializedName(value = "PercentHPRegenMod")
+	private double percentHPRegenMod;
+	@SerializedName(value = "PercentLifeStealMod")
+	private double percentLifeStealMod;
+	@SerializedName(value = "PercentMPPoolMod")
+	private double percentMPPoolMod;
+	@SerializedName(value = "PercentMPRegenMod")
+	private double percentMPRegenMod;
+	@SerializedName(value = "PercentMagicDamageMod")
+	private double percentMagicDamageMod;
+	@SerializedName(value = "PercentMovementSpeedMod")
+	private double percentMovementSpeedMod;
+	@SerializedName(value = "PercentPhysicalDamageMod")
+	private double percentPhysicalDamageMod;
+	@SerializedName(value = "PercentSpellBlockMod")
+	private double percentSpellBlockMod;
+	@SerializedName(value = "PercentSpellVampMod")
+	private double percentSpellVampMod;
 	private double rFlatArmorModPerLevel;
 	private double rFlatArmorPenetrationMod;
 	private double rFlatArmorPenetrationModPerLevel;
@@ -91,261 +124,261 @@ public class BasicDataStats extends Dto implements Serializable {
 	private double rPercentTimeDeadModPerLevel;
 
 	public double getFlatArmorMod() {
-		return FlatArmorMod;
+		return flatArmorMod;
 	}
-
+	
 	public double getFlatAttackSpeedMod() {
-		return FlatAttackSpeedMod;
+		return flatAttackSpeedMod;
 	}
-
+	
 	public double getFlatBlockMod() {
-		return FlatBlockMod;
+		return flatBlockMod;
 	}
-
+	
 	public double getFlatCritChanceMod() {
-		return FlatCritChanceMod;
+		return flatCritChanceMod;
 	}
-
+	
 	public double getFlatCritDamageMod() {
-		return FlatCritDamageMod;
+		return flatCritDamageMod;
 	}
-
+	
 	public double getFlatEXPBonus() {
-		return FlatEXPBonus;
+		return flatEXPBonus;
 	}
-
+	
 	public double getFlatEnergyPoolMod() {
-		return FlatEnergyPoolMod;
+		return flatEnergyPoolMod;
 	}
-
+	
 	public double getFlatEnergyRegenMod() {
-		return FlatEnergyRegenMod;
+		return flatEnergyRegenMod;
 	}
-
+	
 	public double getFlatHPPoolMod() {
-		return FlatHPPoolMod;
+		return flatHPPoolMod;
 	}
-
+	
 	public double getFlatHPRegenMod() {
-		return FlatHPRegenMod;
+		return flatHPRegenMod;
 	}
-
+	
 	public double getFlatMPPoolMod() {
-		return FlatMPPoolMod;
+		return flatMPPoolMod;
 	}
-
+	
 	public double getFlatMPRegenMod() {
-		return FlatMPRegenMod;
+		return flatMPRegenMod;
 	}
-
+	
 	public double getFlatMagicDamageMod() {
-		return FlatMagicDamageMod;
+		return flatMagicDamageMod;
 	}
-
+	
 	public double getFlatMovementSpeedMod() {
-		return FlatMovementSpeedMod;
+		return flatMovementSpeedMod;
 	}
-
+	
 	public double getFlatPhysicalDamageMod() {
-		return FlatPhysicalDamageMod;
+		return flatPhysicalDamageMod;
 	}
-
+	
 	public double getFlatSpellBlockMod() {
-		return FlatSpellBlockMod;
+		return flatSpellBlockMod;
 	}
-
+	
 	public double getPercentArmorMod() {
-		return PercentArmorMod;
+		return percentArmorMod;
 	}
-
+	
 	public double getPercentAttackSpeedMod() {
-		return PercentAttackSpeedMod;
+		return percentAttackSpeedMod;
 	}
-
+	
 	public double getPercentBlockMod() {
-		return PercentBlockMod;
+		return percentBlockMod;
 	}
-
+	
 	public double getPercentCritChanceMod() {
-		return PercentCritChanceMod;
+		return percentCritChanceMod;
 	}
-
+	
 	public double getPercentCritDamageMod() {
-		return PercentCritDamageMod;
+		return percentCritDamageMod;
 	}
-
+	
 	public double getPercentDodgeMod() {
-		return PercentDodgeMod;
+		return percentDodgeMod;
 	}
-
+	
 	public double getPercentEXPBonus() {
-		return PercentEXPBonus;
+		return percentEXPBonus;
 	}
-
+	
 	public double getPercentHPPoolMod() {
-		return PercentHPPoolMod;
+		return percentHPPoolMod;
 	}
-
+	
 	public double getPercentHPRegenMod() {
-		return PercentHPRegenMod;
+		return percentHPRegenMod;
 	}
-
+	
 	public double getPercentLifeStealMod() {
-		return PercentLifeStealMod;
+		return percentLifeStealMod;
 	}
-
+	
 	public double getPercentMPPoolMod() {
-		return PercentMPPoolMod;
+		return percentMPPoolMod;
 	}
-
+	
 	public double getPercentMPRegenMod() {
-		return PercentMPRegenMod;
+		return percentMPRegenMod;
 	}
-
+	
 	public double getPercentMagicDamageMod() {
-		return PercentMagicDamageMod;
+		return percentMagicDamageMod;
 	}
-
+	
 	public double getPercentMovementSpeedMod() {
-		return PercentMovementSpeedMod;
+		return percentMovementSpeedMod;
 	}
-
+	
 	public double getPercentPhysicalDamageMod() {
-		return PercentPhysicalDamageMod;
+		return percentPhysicalDamageMod;
 	}
-
+	
 	public double getPercentSpellBlockMod() {
-		return PercentSpellBlockMod;
+		return percentSpellBlockMod;
 	}
-
+	
 	public double getPercentSpellVampMod() {
-		return PercentSpellVampMod;
+		return percentSpellVampMod;
 	}
-
+	
 	public double getrFlatArmorModPerLevel() {
 		return rFlatArmorModPerLevel;
 	}
-
+	
 	public double getrFlatArmorPenetrationMod() {
 		return rFlatArmorPenetrationMod;
 	}
-
+	
 	public double getrFlatArmorPenetrationModPerLevel() {
 		return rFlatArmorPenetrationModPerLevel;
 	}
-
+	
 	public double getrFlatCritChanceModPerLevel() {
 		return rFlatCritChanceModPerLevel;
 	}
-
+	
 	public double getrFlatCritDamageModPerLevel() {
 		return rFlatCritDamageModPerLevel;
 	}
-
+	
 	public double getrFlatDodgeMod() {
 		return rFlatDodgeMod;
 	}
-
+	
 	public double getrFlatDodgeModPerLevel() {
 		return rFlatDodgeModPerLevel;
 	}
-
+	
 	public double getrFlatEnergyModPerLevel() {
 		return rFlatEnergyModPerLevel;
 	}
-
+	
 	public double getrFlatEnergyRegenModPerLevel() {
 		return rFlatEnergyRegenModPerLevel;
 	}
-
+	
 	public double getrFlatGoldPer10Mod() {
 		return rFlatGoldPer10Mod;
 	}
-
+	
 	public double getrFlatHPModPerLevel() {
 		return rFlatHPModPerLevel;
 	}
-
+	
 	public double getrFlatHPRegenModPerLevel() {
 		return rFlatHPRegenModPerLevel;
 	}
-
+	
 	public double getrFlatMPModPerLevel() {
 		return rFlatMPModPerLevel;
 	}
-
+	
 	public double getrFlatMPRegenModPerLevel() {
 		return rFlatMPRegenModPerLevel;
 	}
-
+	
 	public double getrFlatMagicDamageModPerLevel() {
 		return rFlatMagicDamageModPerLevel;
 	}
-
+	
 	public double getrFlatMagicPenetrationMod() {
 		return rFlatMagicPenetrationMod;
 	}
-
+	
 	public double getrFlatMagicPenetrationModPerLevel() {
 		return rFlatMagicPenetrationModPerLevel;
 	}
-
+	
 	public double getrFlatMovementSpeedModPerLevel() {
 		return rFlatMovementSpeedModPerLevel;
 	}
-
+	
 	public double getrFlatPhysicalDamageModPerLevel() {
 		return rFlatPhysicalDamageModPerLevel;
 	}
-
+	
 	public double getrFlatSpellBlockModPerLevel() {
 		return rFlatSpellBlockModPerLevel;
 	}
-
+	
 	public double getrFlatTimeDeadMod() {
 		return rFlatTimeDeadMod;
 	}
-
+	
 	public double getrFlatTimeDeadModPerLevel() {
 		return rFlatTimeDeadModPerLevel;
 	}
-
+	
 	public double getrPercentArmorPenetrationMod() {
 		return rPercentArmorPenetrationMod;
 	}
-
+	
 	public double getrPercentArmorPenetrationModPerLevel() {
 		return rPercentArmorPenetrationModPerLevel;
 	}
-
+	
 	public double getrPercentAttackSpeedModPerLevel() {
 		return rPercentAttackSpeedModPerLevel;
 	}
-
+	
 	public double getrPercentCooldownMod() {
 		return rPercentCooldownMod;
 	}
-
+	
 	public double getrPercentCooldownModPerLevel() {
 		return rPercentCooldownModPerLevel;
 	}
-
+	
 	public double getrPercentMagicPenetrationMod() {
 		return rPercentMagicPenetrationMod;
 	}
-
+	
 	public double getrPercentMagicPenetrationModPerLevel() {
 		return rPercentMagicPenetrationModPerLevel;
 	}
-
+	
 	public double getrPercentMovementSpeedModPerLevel() {
 		return rPercentMovementSpeedModPerLevel;
 	}
-
+	
 	public double getrPercentTimeDeadMod() {
 		return rPercentTimeDeadMod;
 	}
-
+	
 	public double getrPercentTimeDeadModPerLevel() {
 		return rPercentTimeDeadModPerLevel;
 	}

@@ -18,6 +18,8 @@ package net.rithms.riot.api.endpoints.static_data.dto;
 
 import java.io.Serializable;
 
+import com.google.gson.annotations.SerializedName;
+
 import net.rithms.riot.api.Dto;
 
 public class Stats extends Dto implements Serializable {
@@ -25,64 +27,85 @@ public class Stats extends Dto implements Serializable {
 	private static final long serialVersionUID = 7631639894093703038L;
 
 	private double armor;
-	private double armorperlevel;
-	private double attackdamage;
-	private double attackdamageperlevel;
-	private double attackrange;
-	private double attackspeedoffset;
-	private double attackspeedperlevel;
+	@SerializedName(value = "armorperlevel")
+	private double armorPerLevel;
+	@SerializedName(value = "attackdamage")
+	private double attackDamage;
+	@SerializedName(value = "attackdamageperlevel")
+	private double attackDamagePerLevel;
+	@SerializedName(value = "attackrange")
+	private double attackRange;
+	private double attackSpeedOffset;
+	@SerializedName(value = "attackspeedperlevel")
+	private double attackSpeedPerLevel;
+	@SerializedName(value = "baseattackspeed")
+	private double baseAttackSpeed;
 	private double crit;
-	private double critperlevel;
+	@SerializedName(value = "critperlevel")
+	private double critPerLevel;
 	private double hp;
-	private double hpperlevel;
-	private double hpregen;
-	private double hpregenperlevel;
-	private double movespeed;
+	@SerializedName(value = "hpperlevel")
+	private double hpPerLevel;
+	@SerializedName(value = "hpregen")
+	private double hpRegen;
+	@SerializedName(value = "hpregenperlevel")
+	private double hpRegenPerLevel;
+	@SerializedName(value = "movespeed")
+	private double moveSpeed;
 	private double mp;
-	private double mpperlevel;
+	@SerializedName(value = "mpperlevel")
+	private double mpPerLevel;
+	@SerializedName(value = "mpregen")
 	private double mpregen;
-	private double mpregenperlevel;
-	private double spellblock;
-	private double spellblockperlevel;
+	@SerializedName(value = "mpregenperlevel")
+	private double mpRegenPerLevel;
+	@SerializedName(value = "spellblock")
+	private double spellBlock;
+	@SerializedName(value = "spellblockperlevel")
+	private double spellBlockPerLevel;
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 	public double getArmor() {
 		return armor;
 	}
 
 	public double getArmorPerLevel() {
-		return armorperlevel;
+		return armorPerLevel;
 	}
 
 	public double getAttackDamage() {
-		return attackdamage;
+		return attackDamage;
 	}
 
 	public double getAttackDamagePerLevel() {
-		return attackdamageperlevel;
+		return attackDamagePerLevel;
 	}
 
 	public double getAttackRange() {
-		return attackrange;
+		return attackRange;
 	}
 
 	public double getAttackSpeedOffset() {
-		return attackspeedoffset;
+		return attackSpeedOffset;
 	}
 
 	public double getAttackSpeedPerLevel() {
-		return attackspeedperlevel;
+		return attackSpeedPerLevel;
 	}
 
 	public double getBaseAttackSpeed() {
-		return (0.625 / (1.0 + attackspeedoffset));
+		return (0.625 / (1.0 + attackSpeedOffset));
 	}
-
+	
 	public double getCrit() {
 		return crit;
 	}
 
 	public double getCritPerLevel() {
-		return critperlevel;
+		return critPerLevel;
 	}
 
 	public double getHp() {
@@ -90,19 +113,19 @@ public class Stats extends Dto implements Serializable {
 	}
 
 	public double getHpPerLevel() {
-		return hpperlevel;
+		return hpPerLevel;
 	}
 
 	public double getHpRegen() {
-		return hpregen;
+		return hpRegen;
 	}
 
 	public double getHpRegenPerLevel() {
-		return hpregenperlevel;
+		return hpRegenPerLevel;
 	}
 
 	public double getMoveSpeed() {
-		return movespeed;
+		return moveSpeed;
 	}
 
 	public double getMp() {
@@ -110,22 +133,22 @@ public class Stats extends Dto implements Serializable {
 	}
 
 	public double getMpPerLevel() {
-		return mpperlevel;
+		return mpPerLevel;
 	}
 
-	public double getMpRegen() {
+	public double getMpregen() {
 		return mpregen;
 	}
 
 	public double getMpRegenPerLevel() {
-		return mpregenperlevel;
+		return mpRegenPerLevel;
 	}
 
 	public double getSpellBlock() {
-		return spellblock;
+		return spellBlock;
 	}
 
 	public double getSpellBlockPerLevel() {
-		return spellblockperlevel;
+		return spellBlockPerLevel;
 	}
 }
