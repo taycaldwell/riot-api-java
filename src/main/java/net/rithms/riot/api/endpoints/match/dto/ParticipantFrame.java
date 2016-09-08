@@ -74,4 +74,44 @@ public class ParticipantFrame extends Dto implements Serializable {
 	public int getXp() {
 		return xp;
 	}
+
+	public void setCurrentGold(int currentGold) {
+		this.currentGold = currentGold;
+	}
+
+	public void setDominionScore(int dominionScore) {
+		this.dominionScore = dominionScore;
+	}
+
+	public void setJungleMinionsKilled(int jungleMinionsKilled) {
+		this.jungleMinionsKilled = jungleMinionsKilled;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
+
+	public void setMinionsKilled(int minionsKilled) {
+		this.minionsKilled = minionsKilled;
+	}
+
+	public void setParticipantId(int participantId) {
+		this.participantId = participantId;
+	}
+
+	public void setPosition(Position position) {
+		this.position = position;
+	}
+
+	public void setTeamScore(int teamScore) {
+		this.teamScore = teamScore;
+	}
+
+	public void setTotalGold(int totalGold) {
+		this.totalGold = totalGold;
+	}
+
+	public void setXp(int xp) {
+		this.xp = xp;
+	}
 }

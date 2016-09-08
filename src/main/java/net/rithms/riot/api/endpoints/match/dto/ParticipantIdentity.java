@@ -34,6 +34,14 @@ public class ParticipantIdentity extends Dto implements Serializable {
 	public Player getPlayer() {
 		return player;
 	}
+	
+	public void setParticipantId(int participantId) {
+		this.participantId = participantId;
+	}
+
+	public void setPlayer(Player player) {
+		this.player = player;
+	}
 
 	@Override
 	public String toString() {

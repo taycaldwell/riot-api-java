@@ -34,6 +34,14 @@ public class MasteryTreeItem extends Dto implements Serializable {
 	public String getPrereq() {
 		return prereq;
 	}
+	
+	public void setMasteryId(int masteryId) {
+		this.masteryId = masteryId;
+	}
+
+	public void setPrereq(String prereq) {
+		this.prereq = prereq;
+	}
 
 	@Override
 	public String toString() {

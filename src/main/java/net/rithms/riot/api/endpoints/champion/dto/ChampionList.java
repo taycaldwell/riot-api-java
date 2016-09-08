@@ -30,4 +30,9 @@ public class ChampionList extends Dto implements Serializable {
 	public List<Champion> getChampions() {
 		return champions;
 	}
+
+	public void setChampions(List<Champion> champions) {
+		this.champions = champions;
+	}
+	
 }

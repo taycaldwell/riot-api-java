@@ -131,6 +131,90 @@ public class ChampionSpell extends Dto implements Serializable {
 		return vars;
 	}
 
+	public void setAltimages(List<Image> altimages) {
+		this.altimages = altimages;
+	}
+
+	public void setCooldown(List<Double> cooldown) {
+		this.cooldown = cooldown;
+	}
+
+	public void setCooldownBurn(String cooldownBurn) {
+		this.cooldownBurn = cooldownBurn;
+	}
+
+	public void setCost(List<Integer> cost) {
+		this.cost = cost;
+	}
+
+	public void setCostBurn(String costBurn) {
+		this.costBurn = costBurn;
+	}
+
+	public void setCostType(String costType) {
+		this.costType = costType;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public void setEffect(List<Object> effect) {
+		this.effect = effect;
+	}
+
+	public void setEffectBurn(List<String> effectBurn) {
+		this.effectBurn = effectBurn;
+	}
+
+	public void setImage(Image image) {
+		this.image = image;
+	}
+
+	public void setKey(String key) {
+		this.key = key;
+	}
+
+	public void setLeveltip(LevelTip leveltip) {
+		this.leveltip = leveltip;
+	}
+
+	public void setMaxrank(int maxrank) {
+		this.maxrank = maxrank;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setRange(Object range) {
+		this.range = range;
+	}
+
+	public void setRangeBurn(String rangeBurn) {
+		this.rangeBurn = rangeBurn;
+	}
+
+	public void setResource(String resource) {
+		this.resource = resource;
+	}
+
+	public void setSanitizedDescription(String sanitizedDescription) {
+		this.sanitizedDescription = sanitizedDescription;
+	}
+
+	public void setSanitizedTooltip(String sanitizedTooltip) {
+		this.sanitizedTooltip = sanitizedTooltip;
+	}
+
+	public void setTooltip(String tooltip) {
+		this.tooltip = tooltip;
+	}
+
+	public void setVars(List<SpellVars> vars) {
+		this.vars = vars;
+	}
+
 	@Override
 	public String toString() {
 		return getName();

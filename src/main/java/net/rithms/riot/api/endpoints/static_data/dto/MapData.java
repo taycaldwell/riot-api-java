@@ -41,6 +41,18 @@ public class MapData extends Dto implements Serializable {
 		return version;
 	}
 
+	public void setData(Map<String, MapDetails> data) {
+		this.data = data;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public void setVersion(String version) {
+		this.version = version;
+	}
+
 	@Override
 	public String toString() {
 		return getType();

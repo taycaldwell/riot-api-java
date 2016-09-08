@@ -81,6 +81,50 @@ public class FeaturedGameInfo extends Dto implements Serializable {
 		return platformId;
 	}
 
+	public void setBannedChampions(List<BannedChampion> bannedChampions) {
+		this.bannedChampions = bannedChampions;
+	}
+
+	public void setGameId(long gameId) {
+		this.gameId = gameId;
+	}
+
+	public void setGameLength(long gameLength) {
+		this.gameLength = gameLength;
+	}
+
+	public void setGameMode(String gameMode) {
+		this.gameMode = gameMode;
+	}
+
+	public void setGameQueueConfigId(int gameQueueConfigId) {
+		this.gameQueueConfigId = gameQueueConfigId;
+	}
+
+	public void setGameStartTime(long gameStartTime) {
+		this.gameStartTime = gameStartTime;
+	}
+
+	public void setGameType(String gameType) {
+		this.gameType = gameType;
+	}
+
+	public void setMapId(int mapId) {
+		this.mapId = mapId;
+	}
+
+	public void setObservers(Observer observers) {
+		this.observers = observers;
+	}
+
+	public void setParticipants(List<Participant> participants) {
+		this.participants = participants;
+	}
+
+	public void setPlatformId(String platformId) {
+		this.platformId = platformId;
+	}
+
 	@Override
 	public String toString() {
 		return getGameId() + " (" + getGameMode() + ")";

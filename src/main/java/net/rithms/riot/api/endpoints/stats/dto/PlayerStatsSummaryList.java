@@ -35,4 +35,12 @@ public class PlayerStatsSummaryList extends Dto implements Serializable {
 	public long getSummonerId() {
 		return summonerId;
 	}
+
+	public void setPlayerStatSummaries(List<PlayerStatsSummary> playerStatSummaries) {
+		this.playerStatSummaries = playerStatSummaries;
+	}
+
+	public void setSummonerId(long summonerId) {
+		this.summonerId = summonerId;
+	}
 }

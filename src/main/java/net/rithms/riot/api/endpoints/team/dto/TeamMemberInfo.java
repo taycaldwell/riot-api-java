@@ -45,6 +45,22 @@ public class TeamMemberInfo extends Dto implements Serializable {
 		return status;
 	}
 
+	public void setInviteDate(long inviteDate) {
+		this.inviteDate = inviteDate;
+	}
+
+	public void setJoinDate(long joinDate) {
+		this.joinDate = joinDate;
+	}
+
+	public void setPlayerId(long playerId) {
+		this.playerId = playerId;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	@Override
 	public String toString() {
 		return String.valueOf(getPlayerId());

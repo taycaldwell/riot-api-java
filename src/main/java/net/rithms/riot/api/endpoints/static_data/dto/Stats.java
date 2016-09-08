@@ -151,4 +151,88 @@ public class Stats extends Dto implements Serializable {
 	public double getSpellBlockPerLevel() {
 		return spellBlockPerLevel;
 	}
+
+	public void setArmor(double armor) {
+		this.armor = armor;
+	}
+
+	public void setArmorPerLevel(double armorPerLevel) {
+		this.armorPerLevel = armorPerLevel;
+	}
+
+	public void setAttackDamage(double attackDamage) {
+		this.attackDamage = attackDamage;
+	}
+
+	public void setAttackDamagePerLevel(double attackDamagePerLevel) {
+		this.attackDamagePerLevel = attackDamagePerLevel;
+	}
+
+	public void setAttackRange(double attackRange) {
+		this.attackRange = attackRange;
+	}
+
+	public void setAttackSpeedOffset(double attackSpeedOffset) {
+		this.attackSpeedOffset = attackSpeedOffset;
+	}
+
+	public void setAttackSpeedPerLevel(double attackSpeedPerLevel) {
+		this.attackSpeedPerLevel = attackSpeedPerLevel;
+	}
+
+	public void setBaseAttackSpeed(double baseAttackSpeed) {
+		this.baseAttackSpeed = baseAttackSpeed;
+	}
+
+	public void setCrit(double crit) {
+		this.crit = crit;
+	}
+
+	public void setCritPerLevel(double critPerLevel) {
+		this.critPerLevel = critPerLevel;
+	}
+
+	public void setHp(double hp) {
+		this.hp = hp;
+	}
+
+	public void setHpPerLevel(double hpPerLevel) {
+		this.hpPerLevel = hpPerLevel;
+	}
+
+	public void setHpRegen(double hpRegen) {
+		this.hpRegen = hpRegen;
+	}
+
+	public void setHpRegenPerLevel(double hpRegenPerLevel) {
+		this.hpRegenPerLevel = hpRegenPerLevel;
+	}
+
+	public void setMoveSpeed(double moveSpeed) {
+		this.moveSpeed = moveSpeed;
+	}
+
+	public void setMp(double mp) {
+		this.mp = mp;
+	}
+
+	public void setMpPerLevel(double mpPerLevel) {
+		this.mpPerLevel = mpPerLevel;
+	}
+
+	public void setMpregen(double mpregen) {
+		this.mpregen = mpregen;
+	}
+
+	public void setMpRegenPerLevel(double mpRegenPerLevel) {
+		this.mpRegenPerLevel = mpRegenPerLevel;
+	}
+
+	public void setSpellBlock(double spellBlock) {
+		this.spellBlock = spellBlock;
+	}
+
+	public void setSpellBlockPerLevel(double spellBlockPerLevel) {
+		this.spellBlockPerLevel = spellBlockPerLevel;
+	}
 }

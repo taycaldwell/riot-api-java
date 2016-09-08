@@ -47,6 +47,26 @@ public class PlayerStatsSummary extends Dto implements Serializable {
 		return wins;
 	}
 
+	public void setAggregatedStats(AggregatedStats aggregatedStats) {
+		this.aggregatedStats = aggregatedStats;
+	}
+
+	public void setLosses(int losses) {
+		this.losses = losses;
+	}
+
+	public void setModifyDate(long modifyDate) {
+		this.modifyDate = modifyDate;
+	}
+
+	public void setPlayerStatSummaryType(String playerStatSummaryType) {
+		this.playerStatSummaryType = playerStatSummaryType;
+	}
+
+	public void setWins(int wins) {
+		this.wins = wins;
+	}
+
 	@Override
 	public String toString() {
 		return getPlayerStatSummaryType();

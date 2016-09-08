@@ -45,6 +45,22 @@ public class MapDetails extends Dto implements Serializable {
 	public List<Long> getUnpurchasableItemList() {
 		return unpurchasableItemList;
 	}
+	
+	public void setImage(Image image) {
+		this.image = image;
+	}
+
+	public void setMapId(int mapId) {
+		this.mapId = mapId;
+	}
+
+	public void setMapName(String mapName) {
+		this.mapName = mapName;
+	}
+
+	public void setUnpurchasableItemList(List<Long> unpurchasableItemList) {
+		this.unpurchasableItemList = unpurchasableItemList;
+	}
 
 	@Override
 	public String toString() {

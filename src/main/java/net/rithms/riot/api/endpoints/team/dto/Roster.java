@@ -36,6 +36,14 @@ public class Roster extends Dto implements Serializable {
 		return ownerId;
 	}
 
+	public void setMemberList(List<TeamMemberInfo> memberList) {
+		this.memberList = memberList;
+	}
+
+	public void setOwnerId(long ownerId) {
+		this.ownerId = ownerId;
+	}
+
 	@Override
 	public String toString() {
 		return getMemberList().toString();

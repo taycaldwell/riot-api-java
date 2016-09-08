@@ -45,6 +45,22 @@ public class MiniSeries extends Dto implements Serializable {
 		return wins;
 	}
 
+	public void setLosses(int losses) {
+		this.losses = losses;
+	}
+
+	public void setProgress(String progress) {
+		this.progress = progress;
+	}
+
+	public void setTarget(int target) {
+		this.target = target;
+	}
+
+	public void setWins(int wins) {
+		this.wins = wins;
+	}
+
 	@Override
 	public String toString() {
 		return getProgress();

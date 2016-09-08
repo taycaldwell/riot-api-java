@@ -55,6 +55,30 @@ public class Champion extends Dto implements Serializable {
 		return rankedPlayEnabled;
 	}
 	
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	public void setBotEnabled(boolean botEnabled) {
+		this.botEnabled = botEnabled;
+	}
+
+	public void setBotMmEnabled(boolean botMmEnabled) {
+		this.botMmEnabled = botMmEnabled;
+	}
+
+	public void setFreeToPlay(boolean freeToPlay) {
+		this.freeToPlay = freeToPlay;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setRankedPlayEnabled(boolean rankedPlayEnabled) {
+		this.rankedPlayEnabled = rankedPlayEnabled;
+	}
+
 	@Override
 	public String toString(){
 		return String.valueOf(getId());

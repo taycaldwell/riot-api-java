@@ -35,6 +35,14 @@ public class LevelTip extends Dto implements Serializable {
 	public List<String> getLabel() {
 		return label;
 	}
+	
+	public void setEffect(List<String> effect) {
+		this.effect = effect;
+	}
+
+	public void setLabel(List<String> label) {
+		this.label = label;
+	}
 
 	@Override
 	public String toString() {
