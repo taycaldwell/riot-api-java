@@ -30,6 +30,10 @@ public class LobbyEventList extends Dto implements Serializable {
 	public List<LobbyEvent> getEventList() {
 		return eventList;
 	}
+	
+	public void setEventList(List<LobbyEvent> eventList) {
+		this.eventList = eventList;
+	}
 
 	@Override
 	public String toString() {

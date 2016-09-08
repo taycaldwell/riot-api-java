@@ -44,6 +44,22 @@ public class Gold extends Dto implements Serializable {
 	public boolean isPurchasable() {
 		return purchasable;
 	}
+	
+	public void setBase(int base) {
+		this.base = base;
+	}
+
+	public void setPurchasable(boolean purchasable) {
+		this.purchasable = purchasable;
+	}
+
+	public void setSell(int sell) {
+		this.sell = sell;
+	}
+
+	public void setTotal(int total) {
+		this.total = total;
+	}
 
 	@Override
 	public String toString() {

@@ -48,6 +48,22 @@ public class Incident extends Dto implements Serializable {
 	public boolean isActive() {
 		return active;
 	}
+	
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	public void setCreatedAt(String createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public void setUpdates(List<Message> updates) {
+		this.updates = updates;
+	}
 
 	@Override
 	public String toString() {

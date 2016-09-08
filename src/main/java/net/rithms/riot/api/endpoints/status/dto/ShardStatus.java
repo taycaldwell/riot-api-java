@@ -59,6 +59,30 @@ public class ShardStatus extends Dto implements Serializable {
 		return slug;
 	}
 
+	public void setHostname(String hostname) {
+		this.hostname = hostname;
+	}
+
+	public void setLocales(List<String> locales) {
+		this.locales = locales;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setRegionTag(String regionTag) {
+		this.regionTag = regionTag;
+	}
+
+	public void setServices(List<Service> services) {
+		this.services = services;
+	}
+
+	public void setSlug(String slug) {
+		this.slug = slug;
+	}
+
 	@Override
 	public String toString() {
 		return getName();

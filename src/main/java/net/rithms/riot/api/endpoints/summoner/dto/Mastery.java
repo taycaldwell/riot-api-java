@@ -34,6 +34,14 @@ public class Mastery extends Dto implements Serializable {
 	public int getRank() {
 		return rank;
 	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setRank(int rank) {
+		this.rank = rank;
+	}
 
 	@Override
 	public String toString() {

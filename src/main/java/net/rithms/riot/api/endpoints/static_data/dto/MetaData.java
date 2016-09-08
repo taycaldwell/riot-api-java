@@ -17,14 +17,15 @@
 package net.rithms.riot.api.endpoints.static_data.dto;
 
 import java.io.Serializable;
-
+import com.google.gson.annotations.SerializedName;
 import net.rithms.riot.api.Dto;
 
 public class MetaData extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 8983953859724300000L;
 
-	private boolean isRune;
+	@SerializedName(value = "isRune")
+	private boolean rune;
 	private String tier;
 	private String type;
 
@@ -37,7 +38,19 @@ public class MetaData extends Dto implements Serializable {
 	}
 
 	public boolean isRune() {
-		return isRune;
+		return rune;
+	}
+	
+	public void setRune(boolean rune) {
+		this.rune = rune;
+	}
+
+	public void setTier(String tier) {
+		this.tier = tier;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	@Override

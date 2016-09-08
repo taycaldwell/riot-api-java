@@ -41,6 +41,18 @@ public class Frame extends Dto implements Serializable {
 	public long getTimestamp() {
 		return timestamp;
 	}
+	
+	public void setEvents(List<Event> events) {
+		this.events = events;
+	}
+
+	public void setParticipantFrames(Map<String, ParticipantFrame> participantFrames) {
+		this.participantFrames = participantFrames;
+	}
+
+	public void setTimestamp(long timestamp) {
+		this.timestamp = timestamp;
+	}
 
 	@Override
 	public String toString() {

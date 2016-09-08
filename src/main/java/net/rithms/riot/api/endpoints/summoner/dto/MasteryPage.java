@@ -46,6 +46,22 @@ public class MasteryPage extends Dto implements Serializable {
 		return current;
 	}
 
+	public void setCurrent(boolean current) {
+		this.current = current;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public void setMasteries(List<Mastery> masteries) {
+		this.masteries = masteries;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	@Override
 	public String toString() {
 		return getId() + ": " + getName();

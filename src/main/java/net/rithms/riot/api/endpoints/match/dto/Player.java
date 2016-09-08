@@ -44,6 +44,22 @@ public class Player extends Dto implements Serializable {
 	public String getSummonerName() {
 		return summonerName;
 	}
+	
+	public void setMatchHistoryUri(String matchHistoryUri) {
+		this.matchHistoryUri = matchHistoryUri;
+	}
+
+	public void setProfileIcon(int profileIcon) {
+		this.profileIcon = profileIcon;
+	}
+
+	public void setSummonerId(long summonerId) {
+		this.summonerId = summonerId;
+	}
+
+	public void setSummonerName(String summonerName) {
+		this.summonerName = summonerName;
+	}
 
 	@Override
 	public String toString() {

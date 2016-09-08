@@ -69,6 +69,42 @@ public class MatchReference extends Dto implements Serializable {
 	public long getTimestamp() {
 		return timestamp;
 	}
+	
+	public void setChampion(int champion) {
+		this.champion = champion;
+	}
+
+	public void setLane(String lane) {
+		this.lane = lane;
+	}
+
+	public void setMatchId(long matchId) {
+		this.matchId = matchId;
+	}
+
+	public void setPlatformId(String platformId) {
+		this.platformId = platformId;
+	}
+
+	public void setQueue(String queue) {
+		this.queue = queue;
+	}
+
+	public void setRegion(String region) {
+		this.region = region;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public void setSeason(String season) {
+		this.season = season;
+	}
+
+	public void setTimestamp(long timestamp) {
+		this.timestamp = timestamp;
+	}
 
 	@Override
 	public String toString() {

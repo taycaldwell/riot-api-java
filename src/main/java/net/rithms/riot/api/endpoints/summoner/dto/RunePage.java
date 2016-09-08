@@ -46,6 +46,22 @@ public class RunePage extends Dto implements Serializable {
 		return current;
 	}
 
+	public void setCurrent(boolean current) {
+		this.current = current;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setSlots(Set<RuneSlot> slots) {
+		this.slots = slots;
+	}
+
 	@Override
 	public String toString() {
 		return getId() + ": " + getName();

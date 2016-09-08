@@ -51,6 +51,26 @@ public class ChampionList extends Dto implements Serializable {
 		return version;
 	}
 
+	public void setData(Map<String, Champion> data) {
+		this.data = data;
+	}
+
+	public void setFormat(String format) {
+		this.format = format;
+	}
+
+	public void setKeys(Map<String, String> keys) {
+		this.keys = keys;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public void setVersion(String version) {
+		this.version = version;
+	}
+
 	@Override
 	public String toString() {
 		return getType();

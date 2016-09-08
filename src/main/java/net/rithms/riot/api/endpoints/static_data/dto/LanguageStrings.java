@@ -40,6 +40,18 @@ public class LanguageStrings extends Dto implements Serializable {
 	public String getVersion() {
 		return version;
 	}
+	
+	public void setData(Map<String, String> data) {
+		this.data = data;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public void setVersion(String version) {
+		this.version = version;
+	}
 
 	@Override
 	public String toString() {

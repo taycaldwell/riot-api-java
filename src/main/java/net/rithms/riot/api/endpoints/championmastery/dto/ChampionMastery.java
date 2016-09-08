@@ -70,6 +70,42 @@ public class ChampionMastery extends Dto implements Serializable {
 		return chestGranted;
 	}
 
+	public void setChampionId(int championId) {
+		this.championId = championId;
+	}
+
+	public void setChampionLevel(int championLevel) {
+		this.championLevel = championLevel;
+	}
+
+	public void setChampionPoints(int championPoints) {
+		this.championPoints = championPoints;
+	}
+
+	public void setChampionPointsSinceLastLevel(long championPointsSinceLastLevel) {
+		this.championPointsSinceLastLevel = championPointsSinceLastLevel;
+	}
+
+	public void setChampionPointsUntilNextLevel(long championPointsUntilNextLevel) {
+		this.championPointsUntilNextLevel = championPointsUntilNextLevel;
+	}
+
+	public void setChestGranted(boolean chestGranted) {
+		this.chestGranted = chestGranted;
+	}
+
+	public void setLastPlayTime(long lastPlayTime) {
+		this.lastPlayTime = lastPlayTime;
+	}
+
+	public void setPlayerId(long playerId) {
+		this.playerId = playerId;
+	}
+
+	public void setTokensEarned(int tokensEarned) {
+		this.tokensEarned = tokensEarned;
+	}
+
 	@Override
 	public String toString() {
 		return getChampionId() + ": " + getChampionPoints() + " (Level " + getChampionLevel() + ")";

@@ -100,6 +100,66 @@ public class Game extends Dto implements Serializable {
 	public boolean isInvalid() {
 		return invalid;
 	}
+	
+	public void setChampionId(int championId) {
+		this.championId = championId;
+	}
+
+	public void setCreateDate(long createDate) {
+		this.createDate = createDate;
+	}
+
+	public void setFellowPlayers(List<Player> fellowPlayers) {
+		this.fellowPlayers = fellowPlayers;
+	}
+
+	public void setGameId(long gameId) {
+		this.gameId = gameId;
+	}
+
+	public void setGameMode(String gameMode) {
+		this.gameMode = gameMode;
+	}
+
+	public void setGameType(String gameType) {
+		this.gameType = gameType;
+	}
+
+	public void setInvalid(boolean invalid) {
+		this.invalid = invalid;
+	}
+
+	public void setIpEarned(int ipEarned) {
+		this.ipEarned = ipEarned;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
+
+	public void setMapId(int mapId) {
+		this.mapId = mapId;
+	}
+
+	public void setSpell1(int spell1) {
+		this.spell1 = spell1;
+	}
+
+	public void setSpell2(int spell2) {
+		this.spell2 = spell2;
+	}
+
+	public void setStats(RawStats stats) {
+		this.stats = stats;
+	}
+
+	public void setSubType(String subType) {
+		this.subType = subType;
+	}
+
+	public void setTeamId(int teamId) {
+		this.teamId = teamId;
+	}
 
 	@Override
 	public String toString() {
