@@ -35,6 +35,14 @@ public class MasteryPages extends Dto implements Serializable {
 	public long getSummonerId() {
 		return summonerId;
 	}
+	
+	public void setPages(Set<MasteryPage> pages) {
+		this.pages = pages;
+	}
+
+	public void setSummonerId(long summonerId) {
+		this.summonerId = summonerId;
+	}
 
 	@Override
 	public String toString() {

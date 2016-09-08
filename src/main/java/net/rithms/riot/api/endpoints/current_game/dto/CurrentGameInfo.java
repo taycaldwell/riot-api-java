@@ -90,4 +90,56 @@ public class CurrentGameInfo extends Dto implements Serializable {
 	public TeamInfo getTeamInfoTwo() {
 		return teamInfoTwo;
 	}
+
+	public void setBannedChampions(List<BannedChampion> bannedChampions) {
+		this.bannedChampions = bannedChampions;
+	}
+
+	public void setGameId(long gameId) {
+		this.gameId = gameId;
+	}
+
+	public void setGameLength(long gameLength) {
+		this.gameLength = gameLength;
+	}
+
+	public void setGameMode(String gameMode) {
+		this.gameMode = gameMode;
+	}
+
+	public void setGameQueueConfigId(int gameQueueConfigId) {
+		this.gameQueueConfigId = gameQueueConfigId;
+	}
+
+	public void setGameStartTime(long gameStartTime) {
+		this.gameStartTime = gameStartTime;
+	}
+
+	public void setGameType(String gameType) {
+		this.gameType = gameType;
+	}
+
+	public void setMapId(int mapId) {
+		this.mapId = mapId;
+	}
+
+	public void setObservers(Observer observers) {
+		this.observers = observers;
+	}
+
+	public void setParticipants(List<CurrentGameParticipant> participants) {
+		this.participants = participants;
+	}
+
+	public void setPlatformId(String platformId) {
+		this.platformId = platformId;
+	}
+
+	public void setTeamInfoOne(TeamInfo teamInfoOne) {
+		this.teamInfoOne = teamInfoOne;
+	}
+
+	public void setTeamInfoTwo(TeamInfo teamInfoTwo) {
+		this.teamInfoTwo = teamInfoTwo;
+	}
 }

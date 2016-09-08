@@ -91,6 +91,58 @@ public class TournamentCode extends Dto implements Serializable {
 		return tournamentId;
 	}
 
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setLobbyName(String lobbyName) {
+		this.lobbyName = lobbyName;
+	}
+
+	public void setMap(String map) {
+		this.map = map;
+	}
+
+	public void setMetaData(String metaData) {
+		this.metaData = metaData;
+	}
+
+	public void setParticipants(Set<Long> participants) {
+		this.participants = participants;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setPickType(String pickType) {
+		this.pickType = pickType;
+	}
+
+	public void setProviderId(int providerId) {
+		this.providerId = providerId;
+	}
+
+	public void setRegion(String region) {
+		this.region = region;
+	}
+
+	public void setSpectators(String spectators) {
+		this.spectators = spectators;
+	}
+
+	public void setTeamSize(int teamSize) {
+		this.teamSize = teamSize;
+	}
+
+	public void setTournamentId(int tournamentId) {
+		this.tournamentId = tournamentId;
+	}
+
 	@Override
 	public String toString() {
 		return getCode();

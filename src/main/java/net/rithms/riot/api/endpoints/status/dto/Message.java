@@ -65,6 +65,34 @@ public class Message extends Dto implements Serializable {
 		return updatedAt;
 	}
 
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public void setCreatedAt(String createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public void setSeverity(String severity) {
+		this.severity = severity;
+	}
+
+	public void setTranslations(List<Translation> translations) {
+		this.translations = translations;
+	}
+
+	public void setUpdatedAt(String updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+
 	@Override
 	public String toString() {
 		return getContent();

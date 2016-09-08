@@ -110,6 +110,74 @@ public class Champion extends Dto implements Serializable {
 	public String getTitle() {
 		return title;
 	}
+	
+	public void setAllytips(List<String> allytips) {
+		this.allytips = allytips;
+	}
+
+	public void setBlurb(String blurb) {
+		this.blurb = blurb;
+	}
+
+	public void setEnemytips(List<String> enemytips) {
+		this.enemytips = enemytips;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setImage(Image image) {
+		this.image = image;
+	}
+
+	public void setInfo(Info info) {
+		this.info = info;
+	}
+
+	public void setKey(String key) {
+		this.key = key;
+	}
+
+	public void setLore(String lore) {
+		this.lore = lore;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setPartype(String partype) {
+		this.partype = partype;
+	}
+
+	public void setPassive(Passive passive) {
+		this.passive = passive;
+	}
+
+	public void setRecommended(List<Recommended> recommended) {
+		this.recommended = recommended;
+	}
+
+	public void setSkins(List<Skin> skins) {
+		this.skins = skins;
+	}
+
+	public void setSpells(List<ChampionSpell> spells) {
+		this.spells = spells;
+	}
+
+	public void setStats(Stats stats) {
+		this.stats = stats;
+	}
+
+	public void setTags(List<String> tags) {
+		this.tags = tags;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
 	@Override
 	public String toString() {

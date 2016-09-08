@@ -80,6 +80,50 @@ public class MatchHistorySummary extends Dto implements Serializable {
 		return win;
 	}
 
+	public void setAssists(int assists) {
+		this.assists = assists;
+	}
+
+	public void setDate(long date) {
+		this.date = date;
+	}
+
+	public void setDeaths(int deaths) {
+		this.deaths = deaths;
+	}
+
+	public void setGameId(long gameId) {
+		this.gameId = gameId;
+	}
+
+	public void setGameMode(String gameMode) {
+		this.gameMode = gameMode;
+	}
+
+	public void setInvalid(boolean invalid) {
+		this.invalid = invalid;
+	}
+
+	public void setKills(int kills) {
+		this.kills = kills;
+	}
+
+	public void setMapId(int mapId) {
+		this.mapId = mapId;
+	}
+
+	public void setOpposingTeamKills(int opposingTeamKills) {
+		this.opposingTeamKills = opposingTeamKills;
+	}
+
+	public void setOpposingTeamName(String opposingTeamName) {
+		this.opposingTeamName = opposingTeamName;
+	}
+
+	public void setWin(boolean win) {
+		this.win = win;
+	}
+
 	@Override
 	public String toString() {
 		return getGameId() + " (" + getGameMode() + ")";

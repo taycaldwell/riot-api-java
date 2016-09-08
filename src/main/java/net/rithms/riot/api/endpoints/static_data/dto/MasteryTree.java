@@ -40,4 +40,16 @@ public class MasteryTree extends Dto implements Serializable {
 	public List<MasteryTreeList> getResolve() {
 		return Resolve;
 	}
+
+	public void setCunning(List<MasteryTreeList> cunning) {
+		Cunning = cunning;
+	}
+
+	public void setFerocity(List<MasteryTreeList> ferocity) {
+		Ferocity = ferocity;
+	}
+
+	public void setResolve(List<MasteryTreeList> resolve) {
+		Resolve = resolve;
+	}
 }

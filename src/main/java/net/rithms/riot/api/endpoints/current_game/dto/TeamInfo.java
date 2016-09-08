@@ -50,6 +50,30 @@ public class TeamInfo extends Dto implements Serializable {
 	public String getTag() {
 		return tag;
 	}
+	
+	public Map<String, String> getTeamId() {
+		return teamId;
+	}
+	
+	public void setMemberStatus(String memberStatus) {
+		this.memberStatus = memberStatus;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setSecondsUntilEligibleForDeletion(long secondsUntilEligibleForDeletion) {
+		this.secondsUntilEligibleForDeletion = secondsUntilEligibleForDeletion;
+	}
+
+	public void setTag(String tag) {
+		this.tag = tag;
+	}
+
+	public void setTeamId(Map<String, String> teamId) {
+		this.teamId = teamId;
+	}
 
 	@Override
 	public String toString() {

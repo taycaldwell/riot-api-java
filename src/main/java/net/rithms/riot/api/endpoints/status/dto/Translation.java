@@ -42,6 +42,18 @@ public class Translation extends Dto implements Serializable {
 	public String getUpdatedAt() {
 		return updatedAt;
 	}
+	
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public void setLocale(String locale) {
+		this.locale = locale;
+	}
+
+	public void setUpdatedAt(String updatedAt) {
+		this.updatedAt = updatedAt;
+	}
 
 	@Override
 	public String toString() {

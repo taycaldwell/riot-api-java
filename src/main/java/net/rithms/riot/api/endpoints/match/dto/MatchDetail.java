@@ -101,6 +101,66 @@ public class MatchDetail extends Dto implements Serializable {
 		return timeline;
 	}
 
+	public void setMapId(int mapId) {
+		this.mapId = mapId;
+	}
+
+	public void setMatchCreation(long matchCreation) {
+		this.matchCreation = matchCreation;
+	}
+
+	public void setMatchDuration(long matchDuration) {
+		this.matchDuration = matchDuration;
+	}
+
+	public void setMatchId(long matchId) {
+		this.matchId = matchId;
+	}
+
+	public void setMatchMode(String matchMode) {
+		this.matchMode = matchMode;
+	}
+
+	public void setMatchType(String matchType) {
+		this.matchType = matchType;
+	}
+
+	public void setMatchVersion(String matchVersion) {
+		this.matchVersion = matchVersion;
+	}
+
+	public void setParticipantIdentities(List<ParticipantIdentity> participantIdentities) {
+		this.participantIdentities = participantIdentities;
+	}
+
+	public void setParticipants(List<Participant> participants) {
+		this.participants = participants;
+	}
+
+	public void setPlatformId(String platformId) {
+		this.platformId = platformId;
+	}
+
+	public void setQueueType(String queueType) {
+		this.queueType = queueType;
+	}
+
+	public void setRegion(String region) {
+		this.region = region;
+	}
+
+	public void setSeason(String season) {
+		this.season = season;
+	}
+
+	public void setTeams(List<Team> teams) {
+		this.teams = teams;
+	}
+
+	public void setTimeline(Timeline timeline) {
+		this.timeline = timeline;
+	}
+
 	@Override
 	public String toString() {
 		return String.valueOf(getMatchId());

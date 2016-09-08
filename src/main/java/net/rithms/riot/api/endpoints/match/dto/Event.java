@@ -130,6 +130,90 @@ public class Event extends Dto implements Serializable {
 	public String getWardType() {
 		return wardType;
 	}
+	
+	public void setAscendedType(String ascendedType) {
+		this.ascendedType = ascendedType;
+	}
+
+	public void setAssistingParticipantIds(List<Integer> assistingParticipantIds) {
+		this.assistingParticipantIds = assistingParticipantIds;
+	}
+
+	public void setBuildingType(String buildingType) {
+		this.buildingType = buildingType;
+	}
+
+	public void setCreatorId(int creatorId) {
+		this.creatorId = creatorId;
+	}
+
+	public void setEventType(String eventType) {
+		this.eventType = eventType;
+	}
+
+	public void setItemAfter(int itemAfter) {
+		this.itemAfter = itemAfter;
+	}
+
+	public void setItemBefore(int itemBefore) {
+		this.itemBefore = itemBefore;
+	}
+
+	public void setItemId(int itemId) {
+		this.itemId = itemId;
+	}
+
+	public void setKillerId(int killerId) {
+		this.killerId = killerId;
+	}
+
+	public void setLaneType(String laneType) {
+		this.laneType = laneType;
+	}
+
+	public void setLevelUpType(String levelUpType) {
+		this.levelUpType = levelUpType;
+	}
+
+	public void setMonsterType(String monsterType) {
+		this.monsterType = monsterType;
+	}
+
+	public void setParticipantId(int participantId) {
+		this.participantId = participantId;
+	}
+
+	public void setPointCaptured(String pointCaptured) {
+		this.pointCaptured = pointCaptured;
+	}
+
+	public void setPosition(Position position) {
+		this.position = position;
+	}
+
+	public void setSkillSlot(int skillSlot) {
+		this.skillSlot = skillSlot;
+	}
+
+	public void setTeamId(int teamId) {
+		this.teamId = teamId;
+	}
+
+	public void setTimestamp(long timestamp) {
+		this.timestamp = timestamp;
+	}
+
+	public void setTowerType(String towerType) {
+		this.towerType = towerType;
+	}
+
+	public void setVictimId(int victimId) {
+		this.victimId = victimId;
+	}
+
+	public void setWardType(String wardType) {
+		this.wardType = wardType;
+	}
 
 	@Override
 	public String toString() {

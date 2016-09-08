@@ -34,6 +34,14 @@ public class Rune extends Dto implements Serializable {
 	public int getRuneId() {
 		return runeId;
 	}
+	
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+	public void setRuneId(int runeId) {
+		this.runeId = runeId;
+	}
 
 	@Override
 	public String toString() {

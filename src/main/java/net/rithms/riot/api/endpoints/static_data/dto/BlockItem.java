@@ -35,6 +35,14 @@ public class BlockItem extends Dto implements Serializable {
 		return id;
 	}
 
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	@Override
 	public String toString() {
 		return getId() + ": " + getCount();
