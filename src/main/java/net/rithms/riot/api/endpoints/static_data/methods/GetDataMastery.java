@@ -19,6 +19,7 @@ package net.rithms.riot.api.endpoints.static_data.methods;
 import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.UrlParameter;
 import net.rithms.riot.api.endpoints.static_data.StaticDataApiMethod;
+import net.rithms.riot.api.endpoints.static_data.constant.Locale;
 import net.rithms.riot.api.endpoints.static_data.constant.MasteryData;
 import net.rithms.riot.api.endpoints.static_data.dto.Mastery;
 import net.rithms.riot.constant.Region;
@@ -26,7 +27,7 @@ import net.rithms.util.Convert;
 
 public class GetDataMastery extends StaticDataApiMethod {
 
-	public GetDataMastery(ApiConfig config, Region region, int id, String locale, String version, MasteryData... masteryData) {
+	public GetDataMastery(ApiConfig config, Region region, int id, Locale locale, String version, MasteryData... masteryData) {
 		super(config);
 		setRegion(region);
 		setReturnType(Mastery.class);

@@ -19,12 +19,13 @@ package net.rithms.riot.api.endpoints.static_data.methods;
 import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.UrlParameter;
 import net.rithms.riot.api.endpoints.static_data.StaticDataApiMethod;
+import net.rithms.riot.api.endpoints.static_data.constant.Locale;
 import net.rithms.riot.api.endpoints.static_data.dto.LanguageStrings;
 import net.rithms.riot.constant.Region;
 
 public class GetDataLanguageStrings extends StaticDataApiMethod {
 
-	public GetDataLanguageStrings(ApiConfig config, Region region, String locale, String version) {
+	public GetDataLanguageStrings(ApiConfig config, Region region, Locale locale, String version) {
 		super(config);
 		setRegion(region);
 		setReturnType(LanguageStrings.class);

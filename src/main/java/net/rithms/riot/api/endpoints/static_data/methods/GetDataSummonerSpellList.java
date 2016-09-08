@@ -19,6 +19,7 @@ package net.rithms.riot.api.endpoints.static_data.methods;
 import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.UrlParameter;
 import net.rithms.riot.api.endpoints.static_data.StaticDataApiMethod;
+import net.rithms.riot.api.endpoints.static_data.constant.Locale;
 import net.rithms.riot.api.endpoints.static_data.constant.SpellData;
 import net.rithms.riot.api.endpoints.static_data.dto.SummonerSpellList;
 import net.rithms.riot.constant.Region;
@@ -26,7 +27,7 @@ import net.rithms.util.Convert;
 
 public class GetDataSummonerSpellList extends StaticDataApiMethod {
 
-	public GetDataSummonerSpellList(ApiConfig config, Region region, String locale, String version, boolean dataById, SpellData... spellData) {
+	public GetDataSummonerSpellList(ApiConfig config, Region region, Locale locale, String version, boolean dataById, SpellData... spellData) {
 		super(config);
 		setRegion(region);
 		setReturnType(SummonerSpellList.class);

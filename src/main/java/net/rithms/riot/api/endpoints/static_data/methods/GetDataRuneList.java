@@ -19,6 +19,7 @@ package net.rithms.riot.api.endpoints.static_data.methods;
 import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.UrlParameter;
 import net.rithms.riot.api.endpoints.static_data.StaticDataApiMethod;
+import net.rithms.riot.api.endpoints.static_data.constant.Locale;
 import net.rithms.riot.api.endpoints.static_data.constant.RuneListData;
 import net.rithms.riot.api.endpoints.static_data.dto.RuneList;
 import net.rithms.riot.constant.Region;
@@ -26,7 +27,7 @@ import net.rithms.util.Convert;
 
 public class GetDataRuneList extends StaticDataApiMethod {
 
-	public GetDataRuneList(ApiConfig config, Region region, String locale, String version, RuneListData... runeListData) {
+	public GetDataRuneList(ApiConfig config, Region region, Locale locale, String version, RuneListData... runeListData) {
 		super(config);
 		setRegion(region);
 		setReturnType(RuneList.class);

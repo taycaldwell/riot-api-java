@@ -52,6 +52,7 @@ import net.rithms.riot.api.endpoints.matchlist.methods.GetMatchList;
 import net.rithms.riot.api.endpoints.static_data.constant.ChampData;
 import net.rithms.riot.api.endpoints.static_data.constant.ItemData;
 import net.rithms.riot.api.endpoints.static_data.constant.ItemListData;
+import net.rithms.riot.api.endpoints.static_data.constant.Locale;
 import net.rithms.riot.api.endpoints.static_data.constant.MasteryData;
 import net.rithms.riot.api.endpoints.static_data.constant.MasteryListData;
 import net.rithms.riot.api.endpoints.static_data.constant.RuneData;
@@ -573,7 +574,7 @@ public class RiotApi implements Cloneable {
 	 *             If the API returns an error or unparsable result
 	 * @see net.rithms.riot.api.endpoints.static_data.dto.Champion
 	 */
-	public net.rithms.riot.api.endpoints.static_data.dto.Champion getDataChampion(Region region, int id, String locale, String version, ChampData... champData)
+	public net.rithms.riot.api.endpoints.static_data.dto.Champion getDataChampion(Region region, int id, Locale locale, String version, ChampData... champData)
 			throws RiotApiException {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetDataChampion(getConfig(), region, id, locale, version, champData);
@@ -623,7 +624,7 @@ public class RiotApi implements Cloneable {
 	 *             If the API returns an error or unparsable result
 	 * @see net.rithms.riot.api.endpoints.static_data.dto.ChampionList
 	 */
-	public net.rithms.riot.api.endpoints.static_data.dto.ChampionList getDataChampionList(Region region, String locale, String version, boolean dataById,
+	public net.rithms.riot.api.endpoints.static_data.dto.ChampionList getDataChampionList(Region region, Locale locale, String version, boolean dataById,
 			ChampData... champData) throws RiotApiException {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetDataChampionList(getConfig(), region, locale, version, dataById, champData);
@@ -669,7 +670,7 @@ public class RiotApi implements Cloneable {
 	 *             If the API returns an error or unparsable result
 	 * @see Item
 	 */
-	public Item getDataItem(Region region, int id, String locale, String version, ItemData... itemData) throws RiotApiException {
+	public Item getDataItem(Region region, int id, Locale locale, String version, ItemData... itemData) throws RiotApiException {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetDataItem(getConfig(), region, id, locale, version, itemData);
 		return endpointManager.callMethodAndReturnDto(method);
@@ -716,7 +717,7 @@ public class RiotApi implements Cloneable {
 	 *             If the API returns an error or unparsable result
 	 * @see ItemList
 	 */
-	public ItemList getDataItemList(Region region, String locale, String version, ItemListData... itemListData) throws RiotApiException {
+	public ItemList getDataItemList(Region region, Locale locale, String version, ItemListData... itemListData) throws RiotApiException {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetDataItemList(getConfig(), region, locale, version, itemListData);
 		return endpointManager.callMethodAndReturnDto(method);
@@ -774,7 +775,7 @@ public class RiotApi implements Cloneable {
 	 *             If the API returns an error or unparsable result
 	 * @see LanguageStrings
 	 */
-	public LanguageStrings getDataLanguageStrings(Region region, String locale, String version) throws RiotApiException {
+	public LanguageStrings getDataLanguageStrings(Region region, Locale locale, String version) throws RiotApiException {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetDataLanguageStrings(getConfig(), region, locale, version);
 		return endpointManager.callMethodAndReturnDto(method);
@@ -815,7 +816,7 @@ public class RiotApi implements Cloneable {
 	 *             If the API returns an error or unparsable result
 	 * @see MapData
 	 */
-	public MapData getDataMap(Region region, String locale, String version) throws RiotApiException {
+	public MapData getDataMap(Region region, Locale locale, String version) throws RiotApiException {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetDataMap(getConfig(), region, locale, version);
 		return endpointManager.callMethodAndReturnDto(method);
@@ -861,7 +862,7 @@ public class RiotApi implements Cloneable {
 	 *             If the API returns an error or unparsable result
 	 * @see Mastery
 	 */
-	public Mastery getDataMastery(Region region, int id, String locale, String version, MasteryData... masteryData) throws RiotApiException {
+	public Mastery getDataMastery(Region region, int id, Locale locale, String version, MasteryData... masteryData) throws RiotApiException {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetDataMastery(getConfig(), region, id, locale, version, masteryData);
 		return endpointManager.callMethodAndReturnDto(method);
@@ -908,7 +909,7 @@ public class RiotApi implements Cloneable {
 	 *             If the API returns an error or unparsable result
 	 * @see MasteryList
 	 */
-	public MasteryList getDataMasteryList(Region region, String locale, String version, MasteryListData... masteryListData) throws RiotApiException {
+	public MasteryList getDataMasteryList(Region region, Locale locale, String version, MasteryListData... masteryListData) throws RiotApiException {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetDataMasteryList(getConfig(), region, locale, version, masteryListData);
 		return endpointManager.callMethodAndReturnDto(method);
@@ -972,7 +973,7 @@ public class RiotApi implements Cloneable {
 	 *             If the API returns an error or unparsable result
 	 * @see Rune
 	 */
-	public Rune getDataRune(Region region, int id, String locale, String version, RuneData... runeData) throws RiotApiException {
+	public Rune getDataRune(Region region, int id, Locale locale, String version, RuneData... runeData) throws RiotApiException {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetDataRune(getConfig(), region, id, locale, version, runeData);
 		return endpointManager.callMethodAndReturnDto(method);
@@ -1019,7 +1020,7 @@ public class RiotApi implements Cloneable {
 	 *             If the API returns an error or unparsable result
 	 * @see RuneList
 	 */
-	public RuneList getDataRuneList(Region region, String locale, String version, RuneListData... runeListData) throws RiotApiException {
+	public RuneList getDataRuneList(Region region, Locale locale, String version, RuneListData... runeListData) throws RiotApiException {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetDataRuneList(getConfig(), region, locale, version, runeListData);
 		return endpointManager.callMethodAndReturnDto(method);
@@ -1065,7 +1066,7 @@ public class RiotApi implements Cloneable {
 	 *             If the API returns an error or unparsable result
 	 * @see SummonerSpell
 	 */
-	public SummonerSpell getDataSummonerSpell(Region region, int id, String locale, String version, SpellData... spellData) throws RiotApiException {
+	public SummonerSpell getDataSummonerSpell(Region region, int id, Locale locale, String version, SpellData... spellData) throws RiotApiException {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetDataSummonerSpell(getConfig(), region, id, locale, version, spellData);
 		return endpointManager.callMethodAndReturnDto(method);
@@ -1115,7 +1116,7 @@ public class RiotApi implements Cloneable {
 	 *             If the API returns an error or unparsable result
 	 * @see SummonerSpellList
 	 */
-	public SummonerSpellList getDataSummonerSpellList(Region region, String locale, String version, boolean dataById, SpellData... spellData)
+	public SummonerSpellList getDataSummonerSpellList(Region region, Locale locale, String version, boolean dataById, SpellData... spellData)
 			throws RiotApiException {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetDataSummonerSpellList(getConfig(), region, locale, version, dataById, spellData);

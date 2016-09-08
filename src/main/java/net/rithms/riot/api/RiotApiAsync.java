@@ -49,6 +49,7 @@ import net.rithms.riot.api.endpoints.matchlist.methods.GetMatchList;
 import net.rithms.riot.api.endpoints.static_data.constant.ChampData;
 import net.rithms.riot.api.endpoints.static_data.constant.ItemData;
 import net.rithms.riot.api.endpoints.static_data.constant.ItemListData;
+import net.rithms.riot.api.endpoints.static_data.constant.Locale;
 import net.rithms.riot.api.endpoints.static_data.constant.MasteryData;
 import net.rithms.riot.api.endpoints.static_data.constant.MasteryListData;
 import net.rithms.riot.api.endpoints.static_data.constant.RuneData;
@@ -404,7 +405,7 @@ public class RiotApiAsync {
 	 *             If {@code region} is {@code null}
 	 * @see net.rithms.riot.api.endpoints.static_data.dto.Champion
 	 */
-	public AsyncRequest getDataChampion(Region region, int id, String locale, String version, ChampData... champData) {
+	public AsyncRequest getDataChampion(Region region, int id, Locale locale, String version, ChampData... champData) {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetDataChampion(getConfig(), region, id, locale, version, champData);
 		return endpointManager.callMethodAsynchronously(method);
@@ -449,7 +450,7 @@ public class RiotApiAsync {
 	 *             If {@code region} is {@code null}
 	 * @see net.rithms.riot.api.endpoints.static_data.dto.ChampionList
 	 */
-	public AsyncRequest getDataChampionList(Region region, String locale, String version, boolean dataById, ChampData... champData) {
+	public AsyncRequest getDataChampionList(Region region, Locale locale, String version, boolean dataById, ChampData... champData) {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetDataChampionList(getConfig(), region, locale, version, dataById, champData);
 		return endpointManager.callMethodAsynchronously(method);
@@ -490,7 +491,7 @@ public class RiotApiAsync {
 	 *             If {@code region} is {@code null}
 	 * @see Item
 	 */
-	public AsyncRequest getDataItem(Region region, int id, String locale, String version, ItemData... itemData) {
+	public AsyncRequest getDataItem(Region region, int id, Locale locale, String version, ItemData... itemData) {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetDataItem(getConfig(), region, id, locale, version, itemData);
 		return endpointManager.callMethodAsynchronously(method);
@@ -533,7 +534,7 @@ public class RiotApiAsync {
 	 *             If {@code region} is {@code null}
 	 * @see ItemList
 	 */
-	public AsyncRequest getDataItemList(Region region, String locale, String version, ItemListData... itemListData) {
+	public AsyncRequest getDataItemList(Region region, Locale locale, String version, ItemListData... itemListData) {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetDataItemList(getConfig(), region, locale, version, itemListData);
 		return endpointManager.callMethodAsynchronously(method);
@@ -585,7 +586,7 @@ public class RiotApiAsync {
 	 *             If {@code region} is {@code null}
 	 * @see LanguageStrings
 	 */
-	public AsyncRequest getDataLanguageStrings(Region region, String locale, String version) {
+	public AsyncRequest getDataLanguageStrings(Region region, Locale locale, String version) {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetDataLanguageStrings(getConfig(), region, locale, version);
 		return endpointManager.callMethodAsynchronously(method);
@@ -622,7 +623,7 @@ public class RiotApiAsync {
 	 *             If {@code region} is {@code null}
 	 * @see MapData
 	 */
-	public AsyncRequest getDataMap(Region region, String locale, String version) {
+	public AsyncRequest getDataMap(Region region, Locale locale, String version) {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetDataMap(getConfig(), region, locale, version);
 		return endpointManager.callMethodAsynchronously(method);
@@ -664,7 +665,7 @@ public class RiotApiAsync {
 	 *             If {@code region} is {@code null}
 	 * @see Mastery
 	 */
-	public AsyncRequest getDataMastery(Region region, int id, String locale, String version, MasteryData... masteryData) {
+	public AsyncRequest getDataMastery(Region region, int id, Locale locale, String version, MasteryData... masteryData) {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetDataMastery(getConfig(), region, id, locale, version, masteryData);
 		return endpointManager.callMethodAsynchronously(method);
@@ -707,7 +708,7 @@ public class RiotApiAsync {
 	 *             If {@code region} is {@code null}
 	 * @see MasteryList
 	 */
-	public AsyncRequest getDataMasteryList(Region region, String locale, String version, MasteryListData... masteryListData) {
+	public AsyncRequest getDataMasteryList(Region region, Locale locale, String version, MasteryListData... masteryListData) {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetDataMasteryList(getConfig(), region, locale, version, masteryListData);
 		return endpointManager.callMethodAsynchronously(method);
@@ -765,7 +766,7 @@ public class RiotApiAsync {
 	 *             If {@code region} is {@code null}
 	 * @see Rune
 	 */
-	public AsyncRequest getDataRune(Region region, int id, String locale, String version, RuneData... runeData) {
+	public AsyncRequest getDataRune(Region region, int id, Locale locale, String version, RuneData... runeData) {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetDataRune(getConfig(), region, id, locale, version, runeData);
 		return endpointManager.callMethodAsynchronously(method);
@@ -808,7 +809,7 @@ public class RiotApiAsync {
 	 *             If {@code region} is {@code null}
 	 * @see RuneList
 	 */
-	public AsyncRequest getDataRuneList(Region region, String locale, String version, RuneListData... runeListData) {
+	public AsyncRequest getDataRuneList(Region region, Locale locale, String version, RuneListData... runeListData) {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetDataRuneList(getConfig(), region, locale, version, runeListData);
 		return endpointManager.callMethodAsynchronously(method);
@@ -850,7 +851,7 @@ public class RiotApiAsync {
 	 *             If {@code region} is {@code null}
 	 * @see SummonerSpell
 	 */
-	public AsyncRequest getDataSummonerSpell(Region region, int id, String locale, String version, SpellData... spellData) {
+	public AsyncRequest getDataSummonerSpell(Region region, int id, Locale locale, String version, SpellData... spellData) {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetDataSummonerSpell(getConfig(), region, id, locale, version, spellData);
 		return endpointManager.callMethodAsynchronously(method);
@@ -896,7 +897,7 @@ public class RiotApiAsync {
 	 *             If {@code region} is {@code null}
 	 * @see SummonerSpellList
 	 */
-	public AsyncRequest getDataSummonerSpellList(Region region, String locale, String version, boolean dataById, SpellData... spellData) {
+	public AsyncRequest getDataSummonerSpellList(Region region, Locale locale, String version, boolean dataById, SpellData... spellData) {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetDataSummonerSpellList(getConfig(), region, locale, version, dataById, spellData);
 		return endpointManager.callMethodAsynchronously(method);

@@ -19,12 +19,13 @@ package net.rithms.riot.api.endpoints.static_data.methods;
 import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.UrlParameter;
 import net.rithms.riot.api.endpoints.static_data.StaticDataApiMethod;
+import net.rithms.riot.api.endpoints.static_data.constant.Locale;
 import net.rithms.riot.api.endpoints.static_data.dto.MapData;
 import net.rithms.riot.constant.Region;
 
 public class GetDataMap extends StaticDataApiMethod {
 
-	public GetDataMap(ApiConfig config, Region region, String locale, String version) {
+	public GetDataMap(ApiConfig config, Region region, Locale locale, String version) {
 		super(config);
 		setRegion(region);
 		setReturnType(MapData.class);

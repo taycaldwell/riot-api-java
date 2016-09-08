@@ -20,13 +20,14 @@ import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.UrlParameter;
 import net.rithms.riot.api.endpoints.static_data.StaticDataApiMethod;
 import net.rithms.riot.api.endpoints.static_data.constant.ItemData;
+import net.rithms.riot.api.endpoints.static_data.constant.Locale;
 import net.rithms.riot.api.endpoints.static_data.dto.Item;
 import net.rithms.riot.constant.Region;
 import net.rithms.util.Convert;
 
 public class GetDataItem extends StaticDataApiMethod {
 
-	public GetDataItem(ApiConfig config, Region region, int id, String locale, String version, ItemData... itemData) {
+	public GetDataItem(ApiConfig config, Region region, int id, Locale locale, String version, ItemData... itemData) {
 		super(config);
 		setRegion(region);
 		setReturnType(Item.class);

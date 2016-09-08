@@ -20,13 +20,14 @@ import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.UrlParameter;
 import net.rithms.riot.api.endpoints.static_data.StaticDataApiMethod;
 import net.rithms.riot.api.endpoints.static_data.constant.ChampData;
+import net.rithms.riot.api.endpoints.static_data.constant.Locale;
 import net.rithms.riot.api.endpoints.static_data.dto.Champion;
 import net.rithms.riot.constant.Region;
 import net.rithms.util.Convert;
 
 public class GetDataChampion extends StaticDataApiMethod {
 
-	public GetDataChampion(ApiConfig config, Region region, int id, String locale, String version, ChampData... champData) {
+	public GetDataChampion(ApiConfig config, Region region, int id, Locale locale, String version, ChampData... champData) {
 		super(config);
 		setRegion(region);
 		setReturnType(Champion.class);
