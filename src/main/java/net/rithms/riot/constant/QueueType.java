@@ -21,6 +21,7 @@ import net.rithms.riot.api.RiotStringNotFoundException;
 
 public enum QueueType {
 	ARAM_5x5("ARAM", 65),
+	ARURF_5X5("All Random URF", 318),
 	ASCENSION_5x5("Ascension", 96),
 	BILGEWATER_5x5("Black Market Brawlers", 313),
 	BILGEWATER_ARAM_5x5("Butcher's Bridge", 100),
