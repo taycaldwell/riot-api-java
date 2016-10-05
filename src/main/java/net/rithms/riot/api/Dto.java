@@ -24,7 +24,7 @@ import java.lang.reflect.InvocationTargetException;
  * 
  * @author Daniel 'Linnun' Figge
  */
-public class Dto {
+abstract public class Dto {
 
 	/**
 	 * Returns a string representation of the {@code Dto}. In general, the toString method returns a string that "textually represents" this
