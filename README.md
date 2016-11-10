@@ -103,7 +103,7 @@ public class Example {
 	public static void main(String[] args) throws RiotApiException {
 		
 		RiotApi api = new RiotApi("YOUR-API-KEY-HERE", Region.NA);
-		api.setSeason(Season.FIVE);
+		api.setSeason(Season.CURRENT);
 		
 		RankedStats rankedStats = api.getRankedStats(api.getSummonerByName("rithms").getId());
 	}
