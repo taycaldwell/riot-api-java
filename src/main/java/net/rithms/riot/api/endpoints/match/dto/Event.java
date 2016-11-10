@@ -36,6 +36,7 @@ public class Event extends Dto implements Serializable {
 	private int killerId;
 	private String laneType;
 	private String levelUpType;
+	private String monsterSubType;
 	private String monsterType;
 	private int participantId;
 	private String pointCaptured;
@@ -89,6 +90,10 @@ public class Event extends Dto implements Serializable {
 
 	public String getLevelUpType() {
 		return levelUpType;
+	}
+
+	public String getMonsterSubType() {
+		return monsterSubType;
 	}
 
 	public String getMonsterType() {
