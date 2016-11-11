@@ -31,6 +31,8 @@ public enum PlayerStatSummaryType {
 	NightmareBot("Summoner's Rift Nightmare Bots"),
 	OdinUnranked("Dominion/Crystal Scar"),
 	OneForAll5x5("One for All"),
+	RankedFlexSR("Ranked Flex Summoner's Rift"),
+	RankedFlexTT("Ranked Flex Twisted Treeline"),
 	RankedSolo5x5("Summoner's Rift Ranked Solo"),
 	RankedTeam3x3("Twisted Treeline Ranked Team"),
 	RankedTeam5x5("Summoner's Rift Ranked Team"),

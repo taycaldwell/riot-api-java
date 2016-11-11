@@ -50,6 +50,8 @@ public enum QueueType {
 	ODIN_5x5_DRAFT("Dominion 5v5 Draft Pick", 17),
 	ONEFORALL_5x5("One for All", 70),
 	ONEFORALL_MIRRORMODE_5x5("One for All: Mirror Mode", 70),
+	RANKED_FLEX_SR("Ranked Flex Summoner's Rift", 440),
+	RANKED_FLEX_TT("Ranked Flex Twisted Treeline", 9),
 	RANKED_PREMADE_3x3("Ranked Premade 3v3", 9),
 	RANKED_PREMADE_5x5("Ranked Premade 5v5", 6),
 	RANKED_SOLO_5x5("Ranked Solo 5v5", 4),

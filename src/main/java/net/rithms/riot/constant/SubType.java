@@ -34,6 +34,8 @@ public enum SubType {
 	NORMAL_3x3("Twisted Treeline Unranked"),
 	ODIN_UNRANKED("Dominion/Crystal Scar"),
 	ONEFORALL_5x5("One for All"),
+	RANKED_FLEX_SR("Ranked Flex Summoner's Rift"),
+	RANKED_FLEX_TT("Ranked Flex Twisted Treeline"),
 	RANKED_SOLO_5x5("Summoner's Rift Ranked Solo"),
 	RANKED_TEAM_3x3("Twisted Treeline Ranked Team"),
 	RANKED_TEAM_5x5("Summoner's Rift Ranked Team"),
