@@ -1011,6 +1011,7 @@ public class RiotApiAsync {
 	 *             If {@code region} or {@code teamIds} is {@code null}
 	 * @see League
 	 */
+	@Deprecated
 	public AsyncRequest getLeagueByTeams(Region region, String... teamIds) {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(teamIds);
@@ -1067,6 +1068,7 @@ public class RiotApiAsync {
 	 *             If {@code region} or {@code teamIds} is {@code null}
 	 * @see League
 	 */
+	@Deprecated
 	public AsyncRequest getLeagueEntryByTeams(Region region, String... teamIds) {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(teamIds);
@@ -1597,6 +1599,7 @@ public class RiotApiAsync {
 	 *             If {@code region} or {@code summonerIds} is {@code null}
 	 * @see Team
 	 */
+	@Deprecated
 	public AsyncRequest getTeamsBySummonerIds(Region region, String... summonerIds) {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(summonerIds);
@@ -1616,6 +1619,7 @@ public class RiotApiAsync {
 	 *             If {@code region} or {@code summonerIds} is {@code null}
 	 * @see Team
 	 */
+	@Deprecated
 	public AsyncRequest getTeamsBySummonerIds(Region region, long... summonerIds) {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(summonerIds);
@@ -1634,6 +1638,7 @@ public class RiotApiAsync {
 	 *             If {@code region} or {@code teamIds} is {@code null}
 	 * @see Team
 	 */
+	@Deprecated
 	public AsyncRequest getTeamsByTeamIds(Region region, String... teamIds) {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(teamIds);

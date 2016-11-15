@@ -1288,6 +1288,7 @@ public class RiotApi implements Cloneable {
 	 *             If the API returns an error or unparsable result
 	 * @see League
 	 */
+	@Deprecated
 	public List<League> getLeagueByTeam(Region region, String teamId) throws RiotApiException {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(teamId);
@@ -1312,6 +1313,7 @@ public class RiotApi implements Cloneable {
 	 *             If the API returns an error or unparsable result
 	 * @see League
 	 */
+	@Deprecated
 	public Map<String, List<League>> getLeagueByTeams(Region region, String... teamIds) throws RiotApiException {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(teamIds);
@@ -1417,6 +1419,7 @@ public class RiotApi implements Cloneable {
 	 *             If the API returns an error or unparsable result
 	 * @see League
 	 */
+	@Deprecated
 	public List<League> getLeagueEntryByTeam(Region region, String teamId) throws RiotApiException {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(teamId);
@@ -1441,6 +1444,7 @@ public class RiotApi implements Cloneable {
 	 *             If the API returns an error or unparsable result
 	 * @see League
 	 */
+	@Deprecated
 	public Map<String, List<League>> getLeagueEntryByTeams(Region region, String... teamIds) throws RiotApiException {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(teamIds);
@@ -2164,6 +2168,7 @@ public class RiotApi implements Cloneable {
 	 *             If the API returns an error or unparsable result
 	 * @see Team
 	 */
+	@Deprecated
 	public Team getTeamByTeamId(Region region, String teamId) throws RiotApiException {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(teamId);
@@ -2188,6 +2193,7 @@ public class RiotApi implements Cloneable {
 	 *             If the API returns an error or unparsable result
 	 * @see Team
 	 */
+	@Deprecated
 	public List<Team> getTeamsBySummonerId(Region region, String summonerId) throws RiotApiException {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(summonerId);
@@ -2212,6 +2218,7 @@ public class RiotApi implements Cloneable {
 	 *             If the API returns an error or unparsable result
 	 * @see Team
 	 */
+	@Deprecated
 	public List<Team> getTeamsBySummonerId(Region region, long summonerId) throws RiotApiException {
 		Objects.requireNonNull(region);
 		return getTeamsBySummonerId(region, Convert.longToString(summonerId));
@@ -2231,6 +2238,7 @@ public class RiotApi implements Cloneable {
 	 *             If the API returns an error or unparsable result
 	 * @see Team
 	 */
+	@Deprecated
 	public Map<String, List<Team>> getTeamsBySummonerIds(Region region, String... summonerIds) throws RiotApiException {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(summonerIds);
@@ -2252,6 +2260,7 @@ public class RiotApi implements Cloneable {
 	 *             If the API returns an error or unparsable result
 	 * @see Team
 	 */
+	@Deprecated
 	public Map<String, List<Team>> getTeamsBySummonerIds(Region region, long... summonerIds) throws RiotApiException {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(summonerIds);
@@ -2272,6 +2281,7 @@ public class RiotApi implements Cloneable {
 	 *             If the API returns an error or unparsable result
 	 * @see Team
 	 */
+	@Deprecated
 	public Map<String, Team> getTeamsByTeamIds(Region region, String... teamIds) throws RiotApiException {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(teamIds);
