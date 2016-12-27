@@ -139,7 +139,7 @@ import net.rithms.util.Convert;
  * </p>
  *
  * @version 4.0.0 alpha
- * @author Taylor 'rithms' Caldwell
+ * @author Taylor Caldwell
  * @author Daniel 'Linnun' Figge
  * @see ApiConfig
  * @see RiotApiAsync
