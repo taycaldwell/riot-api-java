@@ -1,4 +1,4 @@
-#[RIOT-API-JAVA](http://rithms.net/riot-api-java/)
+#[RIOT-API-JAVA](http://taycaldwell.com/riot-api-java/)
 ----------
 [![JitPack](https://img.shields.io/github/tag/rithms/riot-api-java.svg?label=maven)](https://jitpack.io/#rithms/riot-api-java/v3.9.0)
 ----------
@@ -16,7 +16,7 @@ This product is not endorsed, certified or otherwise approved in any way by Riot
 
 ## Setup
 
-[Download](https://github.com/rithms/riot-api-java/releases) the .jar file, and add it as an external library to your project.
+[Download](https://github.com/taycaldwell/riot-api-java/releases) the .jar file, and add it as an external library to your project.
 
 If you are using Eclipse, this can be done by right clicking your project, and selecting:
 
@@ -113,7 +113,7 @@ public class Example {
 ```
 
 ## Documentation
-The documentation for this library can be found [here.](http://rithms.net/riot-api-java/doc/)
+The documentation for this library can be found [here.](http://taycaldwell.com/riot-api-java/doc/)
 
 ## API Versions
 The current version of this library supports the following Riot Games API versions:
@@ -137,4 +137,4 @@ All contributions are appreciated.
 If you would like to contribute to this project, please send a pull request.
 
 ## Contact
-Have a suggestion, complaint, or question? Open an [issue](https://github.com/rithms/riot-api-java/issues).
+Have a suggestion, complaint, or question? Open an [issue](https://github.com/taycaldwell/riot-api-java/issues).
