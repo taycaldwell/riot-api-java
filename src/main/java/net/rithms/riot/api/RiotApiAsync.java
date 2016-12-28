@@ -1000,26 +1000,6 @@ public class RiotApiAsync {
 	}
 
 	/**
-	 * Get a list of leagues mapped by team ID for a given list of {@code teamIds}.
-	 * 
-	 * @param region
-	 *            The region of the leagues.
-	 * @param teamIds
-	 *            List of team IDs. Maximum allowed at once is 10.
-	 * @return A map, mapping each team ID to a list of leagues
-	 * @throws NullPointerException
-	 *             If {@code region} or {@code teamIds} is {@code null}
-	 * @see League
-	 */
-	@Deprecated
-	public AsyncRequest getLeagueByTeams(Region region, String... teamIds) {
-		Objects.requireNonNull(region);
-		Objects.requireNonNull(teamIds);
-		ApiMethod method = new GetLeagueByTeams(getConfig(), region, Convert.joinString(",", teamIds));
-		return endpointManager.callMethodAsynchronously(method);
-	}
-
-	/**
 	 * Get a list of league entries mapped by summoner ID for a given list of {@code summonerIds}.
 	 * 
 	 * @param region
@@ -1054,26 +1034,6 @@ public class RiotApiAsync {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(summonerIds);
 		return getLeagueEntryBySummoners(region, Convert.longToString(summonerIds));
-	}
-
-	/**
-	 * Get a list of league entries mapped by team ID for a given list of {@code teamIds}.
-	 * 
-	 * @param region
-	 *            The region of the leagues.
-	 * @param teamIds
-	 *            List of team IDs. Maximum allowed at once is 10.
-	 * @return A map, mapping each team ID to a list of leagues
-	 * @throws NullPointerException
-	 *             If {@code region} or {@code teamIds} is {@code null}
-	 * @see League
-	 */
-	@Deprecated
-	public AsyncRequest getLeagueEntryByTeams(Region region, String... teamIds) {
-		Objects.requireNonNull(region);
-		Objects.requireNonNull(teamIds);
-		ApiMethod method = new GetLeagueEntryByTeams(getConfig(), region, Convert.joinString(",", teamIds));
-		return endpointManager.callMethodAsynchronously(method);
 	}
 
 	/**
@@ -1584,65 +1544,6 @@ public class RiotApiAsync {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(summonerNames);
 		ApiMethod method = new GetSummonersByName(getConfig(), region, Convert.joinString(",", summonerNames));
-		return endpointManager.callMethodAsynchronously(method);
-	}
-
-	/**
-	 * Get teams mapped by summoner ID for a given list of {@code summonerIds}.
-	 *
-	 * @param region
-	 *            The region of the summoner.
-	 * @param summonerIds
-	 *            Comma-separated list of summoner IDs. Maximum allowed at once is 10.
-	 * @return A map of the summoners' teams
-	 * @throws NullPointerException
-	 *             If {@code region} or {@code summonerIds} is {@code null}
-	 * @see Team
-	 */
-	@Deprecated
-	public AsyncRequest getTeamsBySummonerIds(Region region, String... summonerIds) {
-		Objects.requireNonNull(region);
-		Objects.requireNonNull(summonerIds);
-		ApiMethod method = new GetTeamsBySummonerIds(getConfig(), region, Convert.joinString(",", summonerIds));
-		return endpointManager.callMethodAsynchronously(method);
-	}
-
-	/**
-	 * Get teams mapped by summoner ID for a given list of {@code summonerIds}.
-	 *
-	 * @param region
-	 *            The region of the summoner.
-	 * @param summonerIds
-	 *            A list of summoner IDs. Maximum allowed at once is 10.
-	 * @return A map of the summoners' teams
-	 * @throws NullPointerException
-	 *             If {@code region} or {@code summonerIds} is {@code null}
-	 * @see Team
-	 */
-	@Deprecated
-	public AsyncRequest getTeamsBySummonerIds(Region region, long... summonerIds) {
-		Objects.requireNonNull(region);
-		Objects.requireNonNull(summonerIds);
-		return getTeamsBySummonerIds(region, Convert.longToString(summonerIds));
-	}
-
-	/**
-	 * Get teams mapped by team ID for a given list of {@code teamIds}.
-	 *
-	 * @param region
-	 *            The region of the summoner.
-	 * @param teamIds
-	 *            Comma-separated list of team IDs. Maximum allowed at once is 10.
-	 * @return A map of teams
-	 * @throws NullPointerException
-	 *             If {@code region} or {@code teamIds} is {@code null}
-	 * @see Team
-	 */
-	@Deprecated
-	public AsyncRequest getTeamsByTeamIds(Region region, String... teamIds) {
-		Objects.requireNonNull(region);
-		Objects.requireNonNull(teamIds);
-		ApiMethod method = new GetTeamsByTeamIds(getConfig(), region, Convert.joinString(",", teamIds));
 		return endpointManager.callMethodAsynchronously(method);
 	}
 
