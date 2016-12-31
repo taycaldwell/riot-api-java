@@ -61,6 +61,7 @@ public enum QueueType {
 	SR_6x6("Hexakill", 75),
 	TEAM_BUILDER_DRAFT_RANKED_5x5("Ranked 5v5 Draft Pick", 410),
 	TEAM_BUILDER_DRAFT_UNRANKED_5x5("Normal 5v5 Draft Pick", 400),
+	TEAM_BUILDER_RANKED_SOLO("Team Builder Ranked Solo", 420),
 	URF_5x5("Ultra Rapid Fire", 76);
 
 	private String name;
