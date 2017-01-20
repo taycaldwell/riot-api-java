@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Taylor Caldwell
+ * Copyright 2016-2017 Taylor Caldwell
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -49,7 +49,7 @@ public class AsyncSummonerTest {
 
 	@Test
 	public void testGetMasteryPages() throws RiotApiException, InterruptedException {
-		AsyncRequest reqMasteryPages = api.getMasteryPages(Region.NA, 133);
+		AsyncRequest reqMasteryPages = api.getMasteryPages(Region.NA, 81439110);
 		reqMasteryPages.addListeners(new RequestListener() {
 			@Override
 			public void onRequestFailed(RiotApiException e) {
@@ -60,7 +60,7 @@ public class AsyncSummonerTest {
 			public void onRequestSucceeded(AsyncRequest request) {
 				Map<String, MasteryPages> masteryPages = request.getDto();
 				assertNotNull(masteryPages);
-				assertEquals(133, masteryPages.get("133").getSummonerId());
+				assertEquals(81439110, masteryPages.get("81439110").getSummonerId());
 			}
 
 			@Override
@@ -73,7 +73,7 @@ public class AsyncSummonerTest {
 
 	@Test
 	public void testGetRunePages() throws RiotApiException, InterruptedException {
-		AsyncRequest reqRunePages = api.getRunePages(Region.NA, 133);
+		AsyncRequest reqRunePages = api.getRunePages(Region.NA, 81439110);
 		reqRunePages.addListeners(new RequestListener() {
 			@Override
 			public void onRequestFailed(RiotApiException e) {
@@ -84,7 +84,7 @@ public class AsyncSummonerTest {
 			public void onRequestSucceeded(AsyncRequest request) {
 				Map<String, RunePages> runePages = request.getDto();
 				assertNotNull(runePages);
-				assertEquals(133, runePages.get("133").getSummonerId());
+				assertEquals(81439110, runePages.get("81439110").getSummonerId());
 			}
 
 			@Override
@@ -97,7 +97,7 @@ public class AsyncSummonerTest {
 
 	@Test
 	public void testGetSummonersById() throws RiotApiException, InterruptedException {
-		AsyncRequest reqSummonerMap = api.getSummonersById(Region.NA, 133, 329);
+		AsyncRequest reqSummonerMap = api.getSummonersById(Region.NA, 81439110, 329);
 		reqSummonerMap.addListeners(new RequestListener() {
 			@Override
 			public void onRequestFailed(RiotApiException e) {
@@ -108,7 +108,7 @@ public class AsyncSummonerTest {
 			public void onRequestSucceeded(AsyncRequest request) {
 				Map<String, Summoner> summoners = request.getDto();
 				assertNotNull(summoners);
-				assertEquals("Tryndamere", summoners.get("133").getName());
+				assertEquals("Tryndamere", summoners.get("81439110").getName());
 				assertEquals("Ryze", summoners.get("329").getName());
 			}
 
@@ -134,7 +134,7 @@ public class AsyncSummonerTest {
 				Map<String, Summoner> summoners = request.getDto();
 				assertNotNull(summoners);
 				assertEquals(329, summoners.get("ryze").getId());
-				assertEquals(133, summoners.get("tryndamere").getId());
+				assertEquals(81439110, summoners.get("tryndamere").getId());
 			}
 
 			@Override
@@ -147,7 +147,7 @@ public class AsyncSummonerTest {
 
 	@Test
 	public void testGetSummonerNames() throws RiotApiException, InterruptedException {
-		AsyncRequest reqSummonerNameMap = api.getSummonerNames(Region.NA, 133, 329);
+		AsyncRequest reqSummonerNameMap = api.getSummonerNames(Region.NA, 81439110, 329);
 		reqSummonerNameMap.addListeners(new RequestListener() {
 			@Override
 			public void onRequestFailed(RiotApiException e) {
@@ -158,7 +158,7 @@ public class AsyncSummonerTest {
 			public void onRequestSucceeded(AsyncRequest request) {
 				Map<String, String> summoners = request.getDto();
 				assertNotNull(summoners);
-				assertEquals("Tryndamere", summoners.get("133"));
+				assertEquals("Tryndamere", summoners.get("81439110"));
 				assertEquals("Ryze", summoners.get("329"));
 			}
 
