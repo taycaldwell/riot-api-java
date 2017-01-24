@@ -16,6 +16,9 @@
 
 package net.rithms.util;
 
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Objects;
 
 public final class Convert {
@@ -78,6 +81,31 @@ public final class Convert {
 			summonerNames[i] = normalizeSummonerName(summonerNames[i]);
 		}
 		return summonerNames;
+	}
+
+	/**
+	 * Normalizes and returns a map with summoner name keys. This casts each of the keys of {@code Map<String, T> map} to lower case and
+	 * strips any whitespaces.
+	 * 
+	 * @param summonerNames
+	 *            map with summoner name keys
+	 * @return Normalized map with summoner name keys
+	 * @throws NullPointerException
+	 *             If {@code summonerNames} is {@code null}
+	 */
+	public static <T> Map<String, T> normalizeSummonerNames(Map<String, T> summonerNames) {
+		Objects.requireNonNull(summonerNames);
+		Map<String, T> map = new HashMap<String, T>(summonerNames);
+		Iterator<Map.Entry<String, T>> it = map.entrySet().iterator();
+		while (it.hasNext()) {
+			Map.Entry<String, T> pair = (Map.Entry<String, T>) it.next();
+			String normalizedKey = normalizeSummonerName(pair.getKey());
+			if (!pair.getKey().equals(normalizedKey)) {
+				it.remove();
+				map.put(normalizedKey, pair.getValue());
+			}
+		}
+		return map;
 	}
 
 	/**

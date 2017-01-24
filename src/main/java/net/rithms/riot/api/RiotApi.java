@@ -1905,6 +1905,7 @@ public class RiotApi implements Cloneable {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(summonerName);
 		Map<String, Summoner> summoners = getSummonersByName(region, summonerName);
+		summoners = Convert.normalizeSummonerNames(summoners);
 		String key = Convert.normalizeSummonerName(summonerName);
 		if (!summoners.containsKey(key)) {
 			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
