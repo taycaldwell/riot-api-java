@@ -73,6 +73,7 @@ public final class Convert {
 	 */
 	public static String[] normalizeSummonerNames(String... summonerNames) {
 		Objects.requireNonNull(summonerNames);
+
 		// Java 8
 		// return Arrays.stream(summonerNames).map(s -> normalizeSummonerName(s)).toArray(size -> new String[size]);
 
@@ -96,6 +97,11 @@ public final class Convert {
 	public static <T> Map<String, T> normalizeSummonerNames(Map<String, T> summonerNames) {
 		Objects.requireNonNull(summonerNames);
 		Map<String, T> map = new HashMap<String, T>(summonerNames);
+
+		// Java 8
+		// map = map.entrySet().stream().collect(Collectors.toMap(p -> normalizeSummonerName(p.getKey()), p -> p.getValue()));
+
+		// Java 7
 		Iterator<Map.Entry<String, T>> it = map.entrySet().iterator();
 		while (it.hasNext()) {
 			Map.Entry<String, T> pair = (Map.Entry<String, T>) it.next();
