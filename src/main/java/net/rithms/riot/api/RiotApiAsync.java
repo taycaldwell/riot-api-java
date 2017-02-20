@@ -182,6 +182,22 @@ public class RiotApiAsync {
 	}
 
 	/**
+	 * Call a custom {@code ApiMethod}
+	 *
+	 * @param method
+	 *            Custom {@code ApiMethod} object
+	 * @return Result Dto (if any)
+	 * @throws NullPointerException
+	 *             If {@code method} is {@code null}
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 */
+	public AsyncRequest callCustomApiMethod(ApiMethod method) throws RiotApiException {
+		Objects.requireNonNull(method);
+		return endpointManager.callMethodAsynchronously(method);
+	}
+
+	/**
 	 * Creates a tournament provider and returns its ID.
 	 *
 	 * @param region

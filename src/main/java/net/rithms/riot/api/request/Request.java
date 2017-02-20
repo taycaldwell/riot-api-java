@@ -334,7 +334,7 @@ public class Request {
 	}
 
 	private boolean isRateLimitExceeded() {
-		if (!rateLimitMap.containsKey(config.getKey())) {
+		if (config.getKey() == null || !rateLimitMap.containsKey(config.getKey())) {
 			return false;
 		}
 		RateLimitList rateLimitList = rateLimitMap.get(config.getKey());

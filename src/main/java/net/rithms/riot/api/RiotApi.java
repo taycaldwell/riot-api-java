@@ -172,6 +172,22 @@ public class RiotApi implements Cloneable {
 		endpointManager = new EndpointManager(config);
 	}
 
+	/**
+	 * Call a custom {@code ApiMethod}
+	 *
+	 * @param method
+	 *            Custom {@code ApiMethod} object
+	 * @return Result Dto (if any)
+	 * @throws NullPointerException
+	 *             If {@code method} is {@code null}
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 */
+	public Object callCustomApiMethod(ApiMethod method) throws RiotApiException {
+		Objects.requireNonNull(method);
+		return endpointManager.callMethodAndReturnDto(method);
+	}
+
 	@Override
 	public RiotApi clone() {
 		return new RiotApi(config.clone());
@@ -366,14 +382,16 @@ public class RiotApi implements Cloneable {
 	 * @see RiotApiAsync
 	 */
 	public RiotApiAsync getAsyncApi() {
-		if (asyncApi == null) {
+		RiotApiAsync asyncInstance = asyncApi;
+		if (asyncInstance == null) {
 			synchronized (asyncApiLock) {
-				if (asyncApi == null) {
-					asyncApi = new RiotApiAsync(config, endpointManager);
+				asyncInstance = asyncApi;
+				if (asyncInstance == null) {
+					asyncApi = asyncInstance = new RiotApiAsync(config, endpointManager);
 				}
 			}
 		}
-		return asyncApi;
+		return asyncInstance;
 	}
 
 	/**
