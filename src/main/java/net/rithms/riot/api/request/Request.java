@@ -111,10 +111,10 @@ public class Request {
 
 	private void checkRequirements() throws RiotApiException {
 		if (object.doesRequireApiKey() && (config == null || config.getKey() == null)) {
-			throw new RiotApiException(RiotApiException.FORBIDDEN);
+			throw new RiotApiException(RiotApiException.MISSING_API_KEY);
 		}
 		if (object.doesRequireTournamentApiKey() && (config == null || config.getTournamentKey() == null)) {
-			throw new RiotApiException(RiotApiException.FORBIDDEN);
+			throw new RiotApiException(RiotApiException.MISSING_TOURNAMENT_API_KEY);
 		}
 	}
 

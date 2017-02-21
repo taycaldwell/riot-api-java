@@ -37,6 +37,8 @@ public class RiotApiException extends Exception {
 	public static final int IOEXCEPTION = 601;
 	public static final int NULLPOINTEREXCEPTION = 602;
 	public static final int TIMEOUT_EXCEPTION = 603;
+	public static final int MISSING_API_KEY = 611;
+	public static final int MISSING_TOURNAMENT_API_KEY = 612;
 
 	private final int errorCode;
 
@@ -91,14 +93,14 @@ public class RiotApiException extends Exception {
 			return "I/O Exception thrown";
 		case METHOD_NOT_ALLOWED:
 			return "Method not allowed";
+		case MISSING_API_KEY:
+			return "Api Key is required but missing";
+		case MISSING_TOURNAMENT_API_KEY:
+			return "Tournament Api Key is required but missing";
 		case NULLPOINTEREXCEPTION:
 			return "NullPointerException thrown";
 		case PARSE_FAILURE:
 			return "Failed to parse the JSON response";
-		case UNPROCESSABLE_ENTITY:
-			return "Summoner has an entry, but hasn't played since the start of 2013";
-		case UNSUPPORTED_MEDIA_TYPE:
-			return "Unsupported media type";
 		case RATE_LIMITED:
 			return "Rate limit exceeded";
 		case SERVER_ERROR:
@@ -109,6 +111,10 @@ public class RiotApiException extends Exception {
 			return "Unauthorized";
 		case UNAVAILABLE:
 			return "Service unavailable";
+		case UNPROCESSABLE_ENTITY:
+			return "Summoner has an entry, but hasn't played since the start of 2013";
+		case UNSUPPORTED_MEDIA_TYPE:
+			return "Unsupported media type";
 		default:
 			return "Unknown API error (Code " + errorCode + ")";
 		}
