@@ -23,5 +23,6 @@ abstract public class LeagueApiMethod extends ApiMethod {
 
 	protected LeagueApiMethod(ApiConfig config) {
 		super(config, "league");
+		requireApiKey();
 	}
 }

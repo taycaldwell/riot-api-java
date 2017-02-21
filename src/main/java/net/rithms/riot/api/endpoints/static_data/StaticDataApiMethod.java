@@ -23,5 +23,6 @@ abstract public class StaticDataApiMethod extends ApiMethod {
 
 	protected StaticDataApiMethod(ApiConfig config) {
 		super(config, "staticdata");
+		requireApiKey();
 	}
 }

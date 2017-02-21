@@ -109,6 +109,15 @@ public class Request {
 		return true;
 	}
 
+	private void checkRequirements() throws RiotApiException {
+		if (object.doesRequireApiKey() && (config == null || config.getKey() == null)) {
+			throw new RiotApiException(RiotApiException.FORBIDDEN);
+		}
+		if (object.doesRequireTournamentApiKey() && (config == null || config.getTournamentKey() == null)) {
+			throw new RiotApiException(RiotApiException.FORBIDDEN);
+		}
+	}
+
 	/**
 	 * Executes the request
 	 * 
@@ -120,6 +129,7 @@ public class Request {
 	protected synchronized void execute() throws RiotApiException, RateLimitException {
 		setState(RequestState.Waiting);
 		try {
+			checkRequirements();
 			respectRateLimit();
 			URL url = new URL(object.getUrl());
 			connection = (HttpURLConnection) url.openConnection();

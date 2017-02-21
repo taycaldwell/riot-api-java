@@ -23,5 +23,6 @@ abstract public class StatsApiMethod extends ApiMethod {
 
 	protected StatsApiMethod(ApiConfig config) {
 		super(config, "stats");
+		requireApiKey();
 	}
 }

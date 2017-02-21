@@ -23,5 +23,6 @@ abstract public class MatchListApiMethod extends ApiMethod {
 
 	protected MatchListApiMethod(ApiConfig config) {
 		super(config, "matchlist");
+		requireApiKey();
 	}
 }

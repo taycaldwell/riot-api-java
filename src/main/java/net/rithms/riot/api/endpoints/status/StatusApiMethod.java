@@ -23,5 +23,6 @@ abstract public class StatusApiMethod extends ApiMethod {
 
 	protected StatusApiMethod(ApiConfig config) {
 		super(config, "status");
+		requireApiKey();
 	}
 }

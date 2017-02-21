@@ -23,5 +23,6 @@ abstract public class TournamentApiMethod extends ApiMethod {
 
 	protected TournamentApiMethod(ApiConfig config) {
 		super(config, "tournament");
+		requireTournamentApiKey();
 	}
 }

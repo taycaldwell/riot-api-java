@@ -23,5 +23,6 @@ abstract public class FeaturedGameApiMethod extends ApiMethod {
 
 	protected FeaturedGameApiMethod(ApiConfig config) {
 		super(config, "featuredgame");
+		requireApiKey();
 	}
 }

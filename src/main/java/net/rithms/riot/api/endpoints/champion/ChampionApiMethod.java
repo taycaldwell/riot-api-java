@@ -23,5 +23,6 @@ abstract public class ChampionApiMethod extends ApiMethod {
 
 	protected ChampionApiMethod(ApiConfig config) {
 		super(config, "champion");
+		requireApiKey();
 	}
 }

@@ -38,6 +38,9 @@ abstract public class ApiMethod {
 	private String body = null;
 	private Type returnType = null;
 
+	private boolean requireApiKey = false;
+	private boolean requireTournamentApiKey = false;
+
 	protected ApiMethod(ApiConfig config, String service) {
 		this.config = config;
 		this.service = service;
@@ -65,6 +68,14 @@ abstract public class ApiMethod {
 
 	public void buildJsonBody(Map<String, Object> map) {
 		body = new Gson().toJson(map);
+	}
+
+	public boolean doesRequireApiKey() {
+		return requireApiKey;
+	}
+
+	public boolean doesRequireTournamentApiKey() {
+		return requireTournamentApiKey;
 	}
 
 	public String getBody() {
@@ -101,11 +112,19 @@ abstract public class ApiMethod {
 		return url.toString();
 	}
 
-	public void setRegion(Region region) {
+	protected void requireApiKey() {
+		requireApiKey = true;
+	}
+
+	protected void requireTournamentApiKey() {
+		requireTournamentApiKey = true;
+	}
+
+	protected void setRegion(Region region) {
 		this.region = region;
 	}
 
-	public void setReturnType(Type returnType) {
+	protected void setReturnType(Type returnType) {
 		this.returnType = returnType;
 	}
 

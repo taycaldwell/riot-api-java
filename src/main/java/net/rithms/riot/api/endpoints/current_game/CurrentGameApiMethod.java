@@ -23,5 +23,6 @@ abstract public class CurrentGameApiMethod extends ApiMethod {
 
 	protected CurrentGameApiMethod(ApiConfig config) {
 		super(config, "currentgame");
+		requireApiKey();
 	}
 }

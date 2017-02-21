@@ -23,5 +23,6 @@ abstract public class SummonerApiMethod extends ApiMethod {
 
 	protected SummonerApiMethod(ApiConfig config) {
 		super(config, "summoner");
+		requireApiKey();
 	}
 }
