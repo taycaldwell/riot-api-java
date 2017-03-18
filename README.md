@@ -1,4 +1,4 @@
-#[RIOT-API-JAVA](http://taycaldwell.com/riot-api-java/)
+# [RIOT-API-JAVA](http://taycaldwell.com/riot-api-java/)
 ----------
 [![JitPack](https://img.shields.io/github/tag/rithms/riot-api-java.svg?label=maven)](https://jitpack.io/#rithms/riot-api-java/v3.9.0)
 ----------
