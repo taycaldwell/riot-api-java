@@ -19,12 +19,12 @@ package net.rithms.riot.api.endpoints.current_game.methods;
 import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.endpoints.current_game.CurrentGameApiMethod;
 import net.rithms.riot.api.endpoints.current_game.dto.CurrentGameInfo;
-import net.rithms.riot.constant.PlatformId;
+import net.rithms.riot.constant.Platform;
 import net.rithms.riot.constant.Region;
 
 public class GetCurrentGameInfo extends CurrentGameApiMethod {
 
-	public GetCurrentGameInfo(ApiConfig config, PlatformId platformId, long summonerId) {
+	public GetCurrentGameInfo(ApiConfig config, Platform platformId, long summonerId) {
 		super(config);
 		setRegion(Region.getRegionByPlatformId(platformId));
 		setReturnType(CurrentGameInfo.class);

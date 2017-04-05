@@ -25,6 +25,7 @@ import net.rithms.riot.constant.Season;
 
 public class GetPlayerStatsSummary extends StatsApiMethod {
 
+	@Deprecated
 	public GetPlayerStatsSummary(ApiConfig config, Region region, Season season, long summonerId) {
 		super(config);
 		setRegion(region);

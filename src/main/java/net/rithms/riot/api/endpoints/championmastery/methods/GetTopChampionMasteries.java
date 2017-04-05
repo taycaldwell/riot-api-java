@@ -24,12 +24,12 @@ import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.UrlParameter;
 import net.rithms.riot.api.endpoints.championmastery.ChampionMasteryApiMethod;
 import net.rithms.riot.api.endpoints.championmastery.dto.ChampionMastery;
-import net.rithms.riot.constant.PlatformId;
+import net.rithms.riot.constant.Platform;
 import net.rithms.riot.constant.Region;
 
 public class GetTopChampionMasteries extends ChampionMasteryApiMethod {
 
-	public GetTopChampionMasteries(ApiConfig config, PlatformId platformId, long summonerId, int count) {
+	public GetTopChampionMasteries(ApiConfig config, Platform platformId, long summonerId, int count) {
 		super(config);
 		setRegion(Region.getRegionByPlatformId(platformId));
 		setReturnType(new TypeToken<List<ChampionMastery>>() {

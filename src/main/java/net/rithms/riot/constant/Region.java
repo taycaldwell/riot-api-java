@@ -47,7 +47,7 @@ public enum Region {
 		throw new RiotStringNotFoundException("Could not find region " + name);
 	}
 
-	public static Region getRegionByPlatformId(PlatformId platformId) {
+	public static Region getRegionByPlatformId(Platform platformId) {
 		try {
 			return getRegionByName(platformId.getName());
 		} catch (RiotStringNotFoundException e) {

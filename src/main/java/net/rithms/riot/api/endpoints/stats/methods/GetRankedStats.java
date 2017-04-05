@@ -25,6 +25,7 @@ import net.rithms.riot.constant.Season;
 
 public class GetRankedStats extends StatsApiMethod {
 
+	@Deprecated
 	public GetRankedStats(ApiConfig config, Region region, Season season, long summonerId) {
 		super(config);
 		setRegion(region);

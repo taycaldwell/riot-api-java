@@ -32,6 +32,7 @@ import net.rithms.riot.api.endpoints.summoner.dto.RunePages;
 import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
 import net.rithms.riot.api.request.AsyncRequest;
 import net.rithms.riot.api.request.RequestListener;
+import net.rithms.riot.constant.Platform;
 import net.rithms.riot.constant.Region;
 import net.rithms.test.RiotApiTest;
 
@@ -97,7 +98,7 @@ public class AsyncSummonerTest {
 
 	@Test
 	public void testGetSummonersById() throws RiotApiException, InterruptedException {
-		AsyncRequest reqSummonerMap = api.getSummonersById(Region.NA, 81439110, 329);
+		AsyncRequest reqSummonerMap = api.getSummonerById(Platform.NA, 81439110);
 		reqSummonerMap.addListeners(new RequestListener() {
 			@Override
 			public void onRequestFailed(RiotApiException e) {
@@ -106,10 +107,9 @@ public class AsyncSummonerTest {
 
 			@Override
 			public void onRequestSucceeded(AsyncRequest request) {
-				Map<String, Summoner> summoners = request.getDto();
-				assertNotNull(summoners);
-				assertEquals("Tryndamere", summoners.get("81439110").getName());
-				assertEquals("Ryze", summoners.get("329").getName());
+				Summoner summoner = request.getDto();
+				assertNotNull(summoner);
+				assertEquals("Tryndamere", summoner.getName());
 			}
 
 			@Override
@@ -121,8 +121,8 @@ public class AsyncSummonerTest {
 	}
 
 	@Test
-	public void testGetSummonersByName() throws RiotApiException, InterruptedException {
-		AsyncRequest reqSummonerMap = api.getSummonersByName(Region.NA, "ryze", "tryndamere");
+	public void testGetSummonerByName() throws RiotApiException, InterruptedException {
+		AsyncRequest reqSummonerMap = api.getSummonerByName(Platform.NA, "tryndamere");
 		reqSummonerMap.addListeners(new RequestListener() {
 			@Override
 			public void onRequestFailed(RiotApiException e) {
@@ -131,35 +131,9 @@ public class AsyncSummonerTest {
 
 			@Override
 			public void onRequestSucceeded(AsyncRequest request) {
-				Map<String, Summoner> summoners = request.getDto();
-				assertNotNull(summoners);
-				assertEquals(329, summoners.get("ryze").getId());
-				assertEquals(81439110, summoners.get("tryndamere").getId());
-			}
-
-			@Override
-			public void onRequestTimeout(AsyncRequest request) {
-				fail();
-			}
-		});
-		api.awaitAll();
-	}
-
-	@Test
-	public void testGetSummonerNames() throws RiotApiException, InterruptedException {
-		AsyncRequest reqSummonerNameMap = api.getSummonerNames(Region.NA, 81439110, 329);
-		reqSummonerNameMap.addListeners(new RequestListener() {
-			@Override
-			public void onRequestFailed(RiotApiException e) {
-				fail();
-			}
-
-			@Override
-			public void onRequestSucceeded(AsyncRequest request) {
-				Map<String, String> summoners = request.getDto();
-				assertNotNull(summoners);
-				assertEquals("Tryndamere", summoners.get("81439110"));
-				assertEquals("Ryze", summoners.get("329"));
+				Summoner summoner = request.getDto();
+				assertNotNull(summoner);
+				assertEquals(81439110, summoner.getId());
 			}
 
 			@Override

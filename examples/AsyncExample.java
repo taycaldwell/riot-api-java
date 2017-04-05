@@ -10,6 +10,7 @@ import net.rithms.riot.api.endpoints.league.dto.League;
 import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
 import net.rithms.riot.api.request.AsyncRequest;
 import net.rithms.riot.api.request.RequestAdapter;
+import net.rithms.riot.constant.Platform;
 import net.rithms.riot.constant.Region;
 
 /**
@@ -29,6 +30,7 @@ public class AsyncExample {
 
 	public AsyncExample() throws RiotApiException {
 		long summonerId = 20987694; // summonerId to lookup
+		Platform platform = Platform.EUW; // platform to lookup
 		Region region = Region.EUW; // region to lookup
 		ExtendedSummoner eSummoner = new ExtendedSummoner(); // Object where we want to store the data
 
@@ -37,7 +39,7 @@ public class AsyncExample {
 		RiotApiAsync apiAsync = api.getAsyncApi();
 
 		// Asynchronously get summoner information
-		AsyncRequest requestSummoner = apiAsync.getSummonersById(region, summonerId);
+		AsyncRequest requestSummoner = apiAsync.getSummonerById(platform, summonerId);
 		requestSummoner.addListeners(new RequestAdapter() {
 			@Override
 			public void onRequestSucceeded(AsyncRequest request) {

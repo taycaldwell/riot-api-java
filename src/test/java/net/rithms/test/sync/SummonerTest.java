@@ -19,8 +19,6 @@ package net.rithms.test.sync;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import java.util.Map;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -29,6 +27,7 @@ import net.rithms.riot.api.RiotApiException;
 import net.rithms.riot.api.endpoints.summoner.dto.MasteryPages;
 import net.rithms.riot.api.endpoints.summoner.dto.RunePages;
 import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
+import net.rithms.riot.constant.Platform;
 import net.rithms.riot.constant.Region;
 import net.rithms.test.RiotApiTest;
 
@@ -59,47 +58,23 @@ public class SummonerTest {
 	}
 
 	@Test
+	public void testGetSummonerByAccountId() throws RiotApiException {
+		Summoner summoner = api.getSummonerByAccountId(Platform.NA, 235464896);
+		assertNotNull(summoner);
+		assertEquals("Tryndamere", summoner.getName());
+	}
+
+	@Test
 	public void testGetSummonerById() throws RiotApiException {
-		Summoner summoner = api.getSummonerById(Region.NA, 81439110);
+		Summoner summoner = api.getSummonerById(Platform.NA, 81439110);
 		assertNotNull(summoner);
 		assertEquals("Tryndamere", summoner.getName());
 	}
 
 	@Test
 	public void testGetSummonerByName() throws RiotApiException {
-		Summoner summoner = api.getSummonerByName(Region.NA, "tryndamere");
+		Summoner summoner = api.getSummonerByName(Platform.NA, "tryndamere");
 		assertNotNull(summoner);
 		assertEquals(81439110, summoner.getId());
-	}
-
-	@Test
-	public void testGetSummonersById() throws RiotApiException {
-		Map<String, Summoner> summoners = api.getSummonersById(Region.NA, 81439110, 329);
-		assertNotNull(summoners);
-		assertEquals("Tryndamere", summoners.get("81439110").getName());
-		assertEquals("Ryze", summoners.get("329").getName());
-	}
-
-	@Test
-	public void testGetSummonersByName() throws RiotApiException {
-		Map<String, Summoner> summoners = api.getSummonersByName(Region.NA, "ryze", "tryndamere");
-		assertNotNull(summoners);
-		assertEquals(329, summoners.get("ryze").getId());
-		assertEquals(81439110, summoners.get("tryndamere").getId());
-	}
-
-	@Test
-	public void testGetSummonerName() throws RiotApiException {
-		String summonerName = api.getSummonerName(Region.NA, 81439110);
-		assertNotNull(summonerName);
-		assertEquals("Tryndamere", summonerName);
-	}
-
-	@Test
-	public void testGetSummonerNames() throws RiotApiException {
-		Map<String, String> summoners = api.getSummonerNames(Region.NA, 81439110, 329);
-		assertNotNull(summoners);
-		assertEquals("Tryndamere", summoners.get("81439110"));
-		assertEquals("Ryze", summoners.get("329"));
 	}
 }

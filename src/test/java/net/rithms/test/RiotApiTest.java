@@ -38,7 +38,6 @@ import net.rithms.test.sync.AllSyncTests;
 @RunWith(Suite.class)
 @SuiteClasses({ UtilTest.class, AllSyncTests.class, AllAsyncTests.class })
 public class RiotApiTest {
-
 	private static final String apiKey = "YOUR-API-KEY-HERE";
 	private static final String tournamentApiKey = "YOUR-TOURNAMENT-API-KEY-HERE";
 

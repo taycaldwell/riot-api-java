@@ -16,34 +16,18 @@
 
 package net.rithms.riot.api.endpoints.summoner.methods;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.Map;
-import java.util.logging.Level;
-
-import com.google.gson.reflect.TypeToken;
-
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.RiotApi;
 import net.rithms.riot.api.endpoints.summoner.SummonerApiMethod;
 import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
-import net.rithms.riot.constant.Region;
-import net.rithms.util.Convert;
+import net.rithms.riot.constant.Platform;
 
-public class GetSummonersByName extends SummonerApiMethod {
+public class GetSummonerById extends SummonerApiMethod {
 
-	public GetSummonersByName(ApiConfig config, Region region, String summonerNames) {
+	public GetSummonerById(ApiConfig config, Platform platform, long summonerId) {
 		super(config);
-		setRegion(region);
-		summonerNames = Convert.normalizeSummonerName(summonerNames);
-		setReturnType(new TypeToken<Map<String, Summoner>>() {
-		}.getType());
-		try {
-			setUrlBase(region.getEndpoint() + "/v1.4/summoner/by-name/" + URLEncoder.encode(summonerNames, "UTF-8"));
-		} catch (UnsupportedEncodingException e) {
-			// This should never happen
-			RiotApi.log.log(Level.SEVERE, "URL Encoding Failed", e);
-		}
+		setPlatform(platform);
+		setReturnType(Summoner.class);
+		setUrlBase(platform.getHost() + "/lol/summoner/v3/summoners/" + summonerId);
 		addApiKeyParameter();
 	}
 }

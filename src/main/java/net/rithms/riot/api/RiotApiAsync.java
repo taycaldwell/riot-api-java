@@ -92,9 +92,9 @@ import net.rithms.riot.api.endpoints.summoner.dto.RunePages;
 import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
 import net.rithms.riot.api.endpoints.summoner.methods.GetMasteryPages;
 import net.rithms.riot.api.endpoints.summoner.methods.GetRunePages;
-import net.rithms.riot.api.endpoints.summoner.methods.GetSummonerNames;
-import net.rithms.riot.api.endpoints.summoner.methods.GetSummonersById;
-import net.rithms.riot.api.endpoints.summoner.methods.GetSummonersByName;
+import net.rithms.riot.api.endpoints.summoner.methods.GetSummonerByAccountId;
+import net.rithms.riot.api.endpoints.summoner.methods.GetSummonerById;
+import net.rithms.riot.api.endpoints.summoner.methods.GetSummonerByName;
 import net.rithms.riot.api.endpoints.tournament.dto.LobbyEventList;
 import net.rithms.riot.api.endpoints.tournament.dto.TournamentCode;
 import net.rithms.riot.api.endpoints.tournament.methods.CreateProvider;
@@ -105,7 +105,7 @@ import net.rithms.riot.api.endpoints.tournament.methods.UpdateTournamentCode;
 import net.rithms.riot.api.request.AsyncRequest;
 import net.rithms.riot.api.request.RequestListener;
 import net.rithms.riot.constant.PickType;
-import net.rithms.riot.constant.PlatformId;
+import net.rithms.riot.constant.Platform;
 import net.rithms.riot.constant.QueueType;
 import net.rithms.riot.constant.Region;
 import net.rithms.riot.constant.Season;
@@ -290,7 +290,7 @@ public class RiotApiAsync {
 	 *             If {@code platformId} or {@code summonerId} is {@code null}
 	 * @see ChampionMastery
 	 */
-	public AsyncRequest getChampionMasteries(PlatformId platformId, long summonerId) {
+	public AsyncRequest getChampionMasteries(Platform platformId, long summonerId) {
 		Objects.requireNonNull(platformId);
 		ApiMethod method = new GetChampionMasteries(getConfig(), platformId, summonerId);
 		return endpointManager.callMethodAsynchronously(method);
@@ -310,7 +310,7 @@ public class RiotApiAsync {
 	 *             If {@code platformId} or {@code summonerId} is {@code null}
 	 * @see ChampionMastery
 	 */
-	public AsyncRequest getChampionMastery(PlatformId platformId, long summonerId, long championId) {
+	public AsyncRequest getChampionMastery(Platform platformId, long summonerId, long championId) {
 		Objects.requireNonNull(platformId);
 		ApiMethod method = new GetChampionMastery(getConfig(), platformId, summonerId, championId);
 		return endpointManager.callMethodAsynchronously(method);
@@ -327,7 +327,7 @@ public class RiotApiAsync {
 	 * @throws NullPointerException
 	 *             If {@code platformId} or {@code summonerId} is {@code null}
 	 */
-	public AsyncRequest getChampionMasteryScore(PlatformId platformId, long summonerId) {
+	public AsyncRequest getChampionMasteryScore(Platform platformId, long summonerId) {
 		Objects.requireNonNull(platformId);
 		ApiMethod method = new GetChampionMasteryScore(getConfig(), platformId, summonerId);
 		return endpointManager.callMethodAsynchronously(method);
@@ -388,7 +388,7 @@ public class RiotApiAsync {
 	 *             If {@code platformId} or {@code summonerId} is {@code null}
 	 * @see CurrentGameInfo
 	 */
-	public AsyncRequest getCurrentGameInfo(PlatformId platformId, long summonerId) {
+	public AsyncRequest getCurrentGameInfo(Platform platformId, long summonerId) {
 		Objects.requireNonNull(platformId);
 		Objects.requireNonNull(summonerId);
 		ApiMethod method = new GetCurrentGameInfo(getConfig(), platformId, summonerId);
@@ -1304,6 +1304,7 @@ public class RiotApiAsync {
 	 *             If {@code region} is {@code null}
 	 * @see PlayerStatsSummaryList
 	 */
+	@Deprecated
 	public AsyncRequest getPlayerStatsSummary(Region region, Season season, long summonerId) {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetPlayerStatsSummary(getConfig(), region, season, summonerId);
@@ -1322,6 +1323,7 @@ public class RiotApiAsync {
 	 *             If {@code region} is {@code null}
 	 * @see PlayerStatsSummaryList
 	 */
+	@Deprecated
 	public AsyncRequest getPlayerStatsSummary(Region region, long summonerId) {
 		Objects.requireNonNull(region);
 		return getPlayerStatsSummary(region, null, summonerId);
@@ -1359,6 +1361,7 @@ public class RiotApiAsync {
 	 *             If {@code region} is {@code null}
 	 * @see RankedStats
 	 */
+	@Deprecated
 	public AsyncRequest getRankedStats(Region region, Season season, long summonerId) {
 		Objects.requireNonNull(region);
 		ApiMethod method = new GetRankedStats(getConfig(), region, season, summonerId);
@@ -1379,6 +1382,7 @@ public class RiotApiAsync {
 	 *             If {@code region} is {@code null}
 	 * @see RankedStats
 	 */
+	@Deprecated
 	public AsyncRequest getRankedStats(Region region, long summonerId) {
 		Objects.requireNonNull(region);
 		return getRankedStats(region, null, summonerId);
@@ -1467,94 +1471,60 @@ public class RiotApiAsync {
 	}
 
 	/**
-	 * Get summoner names mapped by summoner ID for a given list of {@code summonerIds}.
+	 * Get a summoner object for a given {@code accountId}.
 	 *
-	 * @param region
-	 *            Region where to retrieve the data.
-	 * @param summonerIds
-	 *            Comma-separated list of summoner IDs associated with summoner names to retrieve. Maximum allowed at once is 40.
-	 * @return A map of desired summoner names
+	 * @param platform
+	 *            Platform where to retrieve the data.
+	 * @param summonerId
+	 *            Account ID associated with summoner to retrieve.
+	 * @return The desired summoner
 	 * @throws NullPointerException
-	 *             If {@code region} or {@code summonerIds} is {@code null}
+	 *             If {@code platform} is {@code null}
+	 * @see Summoner
+	 * @version 3
 	 */
-	public AsyncRequest getSummonerNames(Region region, String... summonerIds) {
-		Objects.requireNonNull(region);
-		Objects.requireNonNull(summonerIds);
-		ApiMethod method = new GetSummonerNames(getConfig(), region, Convert.joinString(",", summonerIds));
+	public AsyncRequest getSummonerByAccountId(Platform platform, long accountId) {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetSummonerByAccountId(getConfig(), platform, accountId);
 		return endpointManager.callMethodAsynchronously(method);
 	}
 
 	/**
-	 * Get summoner names mapped by summoner ID for a given list of {@code summonerIds}.
+	 * Get a summoner object for a given {@code summonerId}.
 	 *
-	 * @param region
-	 *            Region where to retrieve the data.
-	 * @param summonerIds
-	 *            List of summoner IDs associated with summoner names to retrieve. Maximum allowed at once is 40.
-	 * @return A map of desired summoner names
+	 * @param platform
+	 *            Platform where to retrieve the data.
+	 * @param summonerId
+	 *            Summoner ID associated with summoner to retrieve.
+	 * @return The desired summoner
 	 * @throws NullPointerException
-	 *             If {@code region} or {@code summonerIds} is {@code null}
-	 */
-	public AsyncRequest getSummonerNames(Region region, long... summonerIds) {
-		Objects.requireNonNull(region);
-		Objects.requireNonNull(summonerIds);
-		return getSummonerNames(region, Convert.longToString(summonerIds));
-	}
-
-	/**
-	 * Get summoner objects mapped by summoner ID for a given list of {@code summonerIds}.
-	 *
-	 * @param region
-	 *            Region where to retrieve the data.
-	 * @param summonerIds
-	 *            Comma-separated list of summoner IDs associated with summoners to retrieve. Maximum allowed at once is 40.
-	 * @return A map of desired summoners
-	 * @throws NullPointerException
-	 *             If {@code region} or {@code summonerIds} is {@code null}
+	 *             If {@code platform} is {@code null}
 	 * @see Summoner
+	 * @version 3
 	 */
-	public AsyncRequest getSummonersById(Region region, String... summonerIds) {
-		Objects.requireNonNull(region);
-		Objects.requireNonNull(summonerIds);
-		ApiMethod method = new GetSummonersById(getConfig(), region, Convert.joinString(",", summonerIds));
+	public AsyncRequest getSummonerById(Platform platform, long summonerId) {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetSummonerById(getConfig(), platform, summonerId);
 		return endpointManager.callMethodAsynchronously(method);
 	}
 
 	/**
-	 * Get summoner objects mapped by summoner ID for a given list of {@code summonerIds}.
+	 * Get a single summoner object for a given {@code summonerName}.
 	 *
-	 * @param region
-	 *            Region where to retrieve the data.
-	 * @param summonerIds
-	 *            List of summoner IDs associated with summoners to retrieve. Maximum allowed at once is 40.
+	 * @param platform
+	 *            Platform where to retrieve the data.
+	 * @param summonerName
+	 *            Summoner name associated with summoner to retrieve.
 	 * @return A map of desired summoners
 	 * @throws NullPointerException
-	 *             If {@code region} or {@code summonerIds} is {@code null}
+	 *             If {@code platform} or {@code summonerName} is {@code null}
 	 * @see Summoner
+	 * @version 3
 	 */
-	public AsyncRequest getSummonersById(Region region, long... summonerIds) {
-		Objects.requireNonNull(region);
-		Objects.requireNonNull(summonerIds);
-		return getSummonersById(region, Convert.longToString(summonerIds));
-	}
-
-	/**
-	 * Get summoner objects mapped by standardized summoner name for a given list of {@code summonerNames}.
-	 *
-	 * @param region
-	 *            Region where to retrieve the data.
-	 * @param summonerNames
-	 *            Comma-separated list of summoner names or standardized summoner names associated with summoners to retrieve. Maximum
-	 *            allowed at once is 40.
-	 * @return A map of desired summoners
-	 * @throws NullPointerException
-	 *             If {@code region} or {@code summonerNames} is {@code null}
-	 * @see Summoner
-	 */
-	public AsyncRequest getSummonersByName(Region region, String... summonerNames) {
-		Objects.requireNonNull(region);
-		Objects.requireNonNull(summonerNames);
-		ApiMethod method = new GetSummonersByName(getConfig(), region, Convert.joinString(",", summonerNames));
+	public AsyncRequest getSummonerByName(Platform platform, String summonerName) {
+		Objects.requireNonNull(platform);
+		Objects.requireNonNull(summonerName);
+		ApiMethod method = new GetSummonerByName(getConfig(), platform, summonerName);
 		return endpointManager.callMethodAsynchronously(method);
 	}
 
@@ -1572,7 +1542,7 @@ public class RiotApiAsync {
 	 *             If {@code platformId} or {@code summonerId} is {@code null}
 	 * @see ChampionMastery
 	 */
-	public AsyncRequest getTopChampionMasteries(PlatformId platformId, long summonerId, int count) {
+	public AsyncRequest getTopChampionMasteries(Platform platformId, long summonerId, int count) {
 		Objects.requireNonNull(platformId);
 		ApiMethod method = new GetTopChampionMasteries(getConfig(), platformId, summonerId, count);
 		return endpointManager.callMethodAsynchronously(method);
@@ -1590,7 +1560,7 @@ public class RiotApiAsync {
 	 *             If {@code platformId} or {@code summonerId} is {@code null}
 	 * @see ChampionMastery
 	 */
-	public AsyncRequest getTopChampionMasteries(PlatformId platformId, long summonerId) {
+	public AsyncRequest getTopChampionMasteries(Platform platformId, long summonerId) {
 		Objects.requireNonNull(platformId);
 		Objects.requireNonNull(summonerId);
 		return getTopChampionMasteries(platformId, summonerId, -1);

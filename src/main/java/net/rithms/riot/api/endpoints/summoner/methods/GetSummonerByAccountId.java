@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Taylor Caldwell
+ * Copyright 2017 Taylor Caldwell
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,22 +16,18 @@
 
 package net.rithms.riot.api.endpoints.summoner.methods;
 
-import java.util.Map;
-
-import com.google.gson.reflect.TypeToken;
-
 import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.endpoints.summoner.SummonerApiMethod;
-import net.rithms.riot.constant.Region;
+import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
+import net.rithms.riot.constant.Platform;
 
-public class GetSummonerNames extends SummonerApiMethod {
+public class GetSummonerByAccountId extends SummonerApiMethod {
 
-	public GetSummonerNames(ApiConfig config, Region region, String summonerIds) {
+	public GetSummonerByAccountId(ApiConfig config, Platform platform, long accountId) {
 		super(config);
-		setRegion(region);
-		setReturnType(new TypeToken<Map<String, String>>() {
-		}.getType());
-		setUrlBase(region.getEndpoint() + "/v1.4/summoner/" + summonerIds + "/name");
+		setPlatform(platform);
+		setReturnType(Summoner.class);
+		setUrlBase(platform.getHost() + "/lol/summoner/v3/summoners/by-account/" + accountId);
 		addApiKeyParameter();
 	}
 }

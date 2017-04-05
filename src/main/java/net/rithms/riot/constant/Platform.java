@@ -16,7 +16,10 @@
 
 package net.rithms.riot.constant;
 
-public enum PlatformId {
+import net.rithms.riot.api.RiotApi;
+import net.rithms.riot.api.RiotStringNotFoundException;
+
+public enum Platform {
 	BR("BR1", "br"),
 	EUNE("EUN1", "eune"),
 	EUW("EUW1", "euw"),
@@ -28,12 +31,23 @@ public enum PlatformId {
 	OCE("OC1", "oce"),
 	PBE("PBE1", "pbe"),
 	RU("RU", "ru"),
-	TR("TR1", "tr");
+	TR("TR1", "tr"),
+	GLOBAL("GLOBAL", "global");
 
 	private String id;
 	private String name;
 
-	PlatformId(String id, String name) {
+	public static Platform getPlatformByName(String name) throws RiotStringNotFoundException {
+		for (Platform platform : Platform.values()) {
+			if (platform.getName().equals(name.toLowerCase())) {
+				return platform;
+			}
+		}
+		RiotApi.log.warning("Unknown region: " + name);
+		throw new RiotStringNotFoundException("Could not find region " + name);
+	}
+
+	Platform(String id, String name) {
 		this.id = id;
 		this.name = name;
 	}
@@ -44,6 +58,10 @@ public enum PlatformId {
 
 	public String getName() {
 		return name;
+	}
+
+	public String getHost() {
+		return "https://" + getId().toLowerCase() + ".api.riotgames.com";
 	}
 
 	@Override

@@ -21,6 +21,7 @@ import net.rithms.riot.api.ApiMethod;
 
 abstract public class StatsApiMethod extends ApiMethod {
 
+	@Deprecated
 	protected StatsApiMethod(ApiConfig config) {
 		super(config, "stats");
 		requireApiKey();
