@@ -14,20 +14,20 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.api.endpoints.static_data.methods;
+package net.rithms.riot.api.endpoints.summoner.methods;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.endpoints.static_data.StaticDataApiMethod;
-import net.rithms.riot.api.endpoints.static_data.dto.Realm;
+import net.rithms.riot.api.endpoints.summoner.SummonerApiMethod;
+import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
 import net.rithms.riot.constant.Platform;
 
-public class GetDataRealm extends StaticDataApiMethod {
+public class GetSummoner extends SummonerApiMethod {
 
-	public GetDataRealm(ApiConfig config, Platform platform) {
+	public GetSummoner(ApiConfig config, Platform platform, long summonerId) {
 		super(config);
 		setPlatform(platform);
-		setReturnType(Realm.class);
-		setUrlBase(platform.getHost() + "/lol/static-data/v3/realms");
+		setReturnType(Summoner.class);
+		setUrlBase(platform.getHost() + "/lol/summoner/v3/summoners/" + summonerId);
 		addApiKeyParameter();
 	}
 }

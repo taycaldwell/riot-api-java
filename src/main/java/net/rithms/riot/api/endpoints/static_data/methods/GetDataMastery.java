@@ -22,16 +22,16 @@ import net.rithms.riot.api.endpoints.static_data.StaticDataApiMethod;
 import net.rithms.riot.api.endpoints.static_data.constant.Locale;
 import net.rithms.riot.api.endpoints.static_data.constant.MasteryData;
 import net.rithms.riot.api.endpoints.static_data.dto.Mastery;
-import net.rithms.riot.constant.Region;
+import net.rithms.riot.constant.Platform;
 import net.rithms.util.Convert;
 
 public class GetDataMastery extends StaticDataApiMethod {
 
-	public GetDataMastery(ApiConfig config, Region region, int id, Locale locale, String version, MasteryData... masteryData) {
+	public GetDataMastery(ApiConfig config, Platform platform, int id, Locale locale, String version, MasteryData... masteryData) {
 		super(config);
-		setRegion(region);
+		setPlatform(platform);
 		setReturnType(Mastery.class);
-		setUrlBase("https://global.api.pvp.net/api/lol/static-data/" + region + "/v1.2/mastery/" + id);
+		setUrlBase(platform.getHost() + "/lol/static-data/v3/masteries/" + id);
 		if (locale != null) {
 			add(new UrlParameter("locale", locale));
 		}

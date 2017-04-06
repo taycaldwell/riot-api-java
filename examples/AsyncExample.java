@@ -39,7 +39,7 @@ public class AsyncExample {
 		RiotApiAsync apiAsync = api.getAsyncApi();
 
 		// Asynchronously get summoner information
-		AsyncRequest requestSummoner = apiAsync.getSummonerById(platform, summonerId);
+		AsyncRequest requestSummoner = apiAsync.getSummoner(platform, summonerId);
 		requestSummoner.addListeners(new RequestAdapter() {
 			@Override
 			public void onRequestSucceeded(AsyncRequest request) {

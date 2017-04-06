@@ -22,16 +22,16 @@ import net.rithms.riot.api.endpoints.static_data.StaticDataApiMethod;
 import net.rithms.riot.api.endpoints.static_data.constant.ItemData;
 import net.rithms.riot.api.endpoints.static_data.constant.Locale;
 import net.rithms.riot.api.endpoints.static_data.dto.Item;
-import net.rithms.riot.constant.Region;
+import net.rithms.riot.constant.Platform;
 import net.rithms.util.Convert;
 
 public class GetDataItem extends StaticDataApiMethod {
 
-	public GetDataItem(ApiConfig config, Region region, int id, Locale locale, String version, ItemData... itemData) {
+	public GetDataItem(ApiConfig config, Platform platform, int id, Locale locale, String version, ItemData... itemData) {
 		super(config);
-		setRegion(region);
+		setPlatform(platform);
 		setReturnType(Item.class);
-		setUrlBase("https://global.api.pvp.net/api/lol/static-data/" + region + "/v1.2/item/" + id);
+		setUrlBase(platform.getHost() + "/lol/static-data/v3/items/" + id);
 		if (locale != null) {
 			add(new UrlParameter("locale", locale));
 		}

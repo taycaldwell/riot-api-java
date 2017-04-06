@@ -73,7 +73,7 @@ import net.rithms.riot.api.endpoints.static_data.methods.GetDataItem;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataItemList;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataLanguageStrings;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataLanguages;
-import net.rithms.riot.api.endpoints.static_data.methods.GetDataMap;
+import net.rithms.riot.api.endpoints.static_data.methods.GetDataMaps;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataMastery;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataMasteryList;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataRealm;
@@ -95,6 +95,8 @@ import net.rithms.riot.api.endpoints.summoner.dto.RunePages;
 import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
 import net.rithms.riot.api.endpoints.summoner.methods.GetMasteryPages;
 import net.rithms.riot.api.endpoints.summoner.methods.GetRunePages;
+import net.rithms.riot.api.endpoints.summoner.methods.GetSummoner;
+import net.rithms.riot.api.endpoints.summoner.methods.GetSummonerByAccount;
 import net.rithms.riot.api.endpoints.summoner.methods.GetSummonerByName;
 import net.rithms.riot.api.endpoints.tournament.dto.LobbyEventList;
 import net.rithms.riot.api.endpoints.tournament.dto.TournamentCode;
@@ -385,6 +387,7 @@ public class RiotApi implements Cloneable {
 	 *             If {@code platform} or {@code summonerId} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 3
 	 * @see CurrentGameInfo
 	 */
 	public CurrentGameInfo getActiveGameBySummoner(Platform platform, long summonerId) throws RiotApiException {
@@ -565,8 +568,8 @@ public class RiotApi implements Cloneable {
 	/**
 	 * Retrieves a champion by its {@code id}.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @param id
 	 *            Champion ID
 	 * @param locale
@@ -580,42 +583,41 @@ public class RiotApi implements Cloneable {
 	 *            this parameter isn't specified. To return all additional data, use {@code ChampData.ALL}.
 	 * @return A single champion
 	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 3
 	 * @see net.rithms.riot.api.endpoints.static_data.dto.Champion
 	 */
-	public net.rithms.riot.api.endpoints.static_data.dto.Champion getDataChampion(Region region, int id, Locale locale, String version, ChampData... champData)
-			throws RiotApiException {
-		Objects.requireNonNull(region);
-		ApiMethod method = new GetDataChampion(getConfig(), region, id, locale, version, champData);
+	public net.rithms.riot.api.endpoints.static_data.dto.Champion getDataChampion(Platform platform, int id, Locale locale, String version,
+			ChampData... champData) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetDataChampion(getConfig(), platform, id, locale, version, champData);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
 	 * Retrieves a champion by its {@code id}.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @param id
 	 *            Champion ID
 	 * @return A single champion
-	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 3
 	 * @see net.rithms.riot.api.endpoints.static_data.dto.Champion
 	 */
-	public net.rithms.riot.api.endpoints.static_data.dto.Champion getDataChampion(Region region, int id) throws RiotApiException {
-		Objects.requireNonNull(region);
-		return getDataChampion(region, id, null, null, (ChampData) null);
+	public net.rithms.riot.api.endpoints.static_data.dto.Champion getDataChampion(Platform platform, int id) throws RiotApiException {
+		return getDataChampion(platform, id, null, null, (ChampData) null);
 	}
 
 	/**
 	 * Retrieves champion list.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @param locale
 	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
 	 *            used.
@@ -630,38 +632,39 @@ public class RiotApi implements Cloneable {
 	 *            this parameter isn't specified. To return all additional data, use {@code ChampData.ALL}.
 	 * @return A list with champions
 	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 3
 	 * @see net.rithms.riot.api.endpoints.static_data.dto.ChampionList
 	 */
-	public net.rithms.riot.api.endpoints.static_data.dto.ChampionList getDataChampionList(Region region, Locale locale, String version, boolean dataById,
+	public net.rithms.riot.api.endpoints.static_data.dto.ChampionList getDataChampionList(Platform platform, Locale locale, String version, boolean dataById,
 			ChampData... champData) throws RiotApiException {
-		Objects.requireNonNull(region);
-		ApiMethod method = new GetDataChampionList(getConfig(), region, locale, version, dataById, champData);
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetDataChampionList(getConfig(), platform, locale, version, dataById, champData);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
 	 * Retrieves champion list.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @return A list with champions
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 3
 	 * @see net.rithms.riot.api.endpoints.static_data.dto.ChampionList
 	 */
-	public net.rithms.riot.api.endpoints.static_data.dto.ChampionList getDataChampionList(Region region) throws RiotApiException {
-		Objects.requireNonNull(region);
-		return getDataChampionList(region, null, null, false, (ChampData) null);
+	public net.rithms.riot.api.endpoints.static_data.dto.ChampionList getDataChampionList(Platform platform) throws RiotApiException {
+		return getDataChampionList(platform, null, null, false, (ChampData) null);
 	}
 
 	/**
 	 * Retrieves item by its unique {@code id}.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @param id
 	 *            Item ID
 	 * @param locale
@@ -676,41 +679,40 @@ public class RiotApi implements Cloneable {
 	 *            return all additional data, use {@code ItemData.ALL}.
 	 * @return A single item
 	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 3
 	 * @see Item
 	 */
-	public Item getDataItem(Region region, int id, Locale locale, String version, ItemData... itemData) throws RiotApiException {
-		Objects.requireNonNull(region);
-		ApiMethod method = new GetDataItem(getConfig(), region, id, locale, version, itemData);
+	public Item getDataItem(Platform platform, int id, Locale locale, String version, ItemData... itemData) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetDataItem(getConfig(), platform, id, locale, version, itemData);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
 	 * Retrieves item by its unique {@code id}.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @param id
 	 *            Item ID
 	 * @return A single item
-	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 3
 	 * @see Item
 	 */
-	public Item getDataItem(Region region, int id) throws RiotApiException {
-		Objects.requireNonNull(region);
-		return getDataItem(region, id, null, null, (ItemData) null);
+	public Item getDataItem(Platform platform, int id) throws RiotApiException {
+		return getDataItem(platform, id, null, null, (ItemData) null);
 	}
 
 	/**
 	 * Retrieves item list.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @param locale
 	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
 	 *            used.
@@ -723,56 +725,56 @@ public class RiotApi implements Cloneable {
 	 *            return all additional data, use {@code ItemListData.ALL}.
 	 * @return A list of items
 	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 3
 	 * @see ItemList
 	 */
-	public ItemList getDataItemList(Region region, Locale locale, String version, ItemListData... itemListData) throws RiotApiException {
-		Objects.requireNonNull(region);
-		ApiMethod method = new GetDataItemList(getConfig(), region, locale, version, itemListData);
+	public ItemList getDataItemList(Platform platform, Locale locale, String version, ItemListData... itemListData) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetDataItemList(getConfig(), platform, locale, version, itemListData);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
 	 * Retrieves item list.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @return A list of items
-	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 3
 	 * @see ItemList
 	 */
-	public ItemList getDataItemList(Region region) throws RiotApiException {
-		Objects.requireNonNull(region);
-		return getDataItemList(region, null, null, (ItemListData) null);
+	public ItemList getDataItemList(Platform platform) throws RiotApiException {
+		return getDataItemList(platform, null, null, (ItemListData) null);
 	}
 
 	/**
 	 * Retrieve supported languages data.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @return A list with languages
 	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 3
 	 */
-	public List<String> getDataLanguages(Region region) throws RiotApiException {
-		Objects.requireNonNull(region);
-		ApiMethod method = new GetDataLanguages(getConfig(), region);
+	public List<String> getDataLanguages(Platform platform) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetDataLanguages(getConfig(), platform);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
 	 * Retrieve language strings data.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @param locale
 	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
 	 *            used.
@@ -781,39 +783,38 @@ public class RiotApi implements Cloneable {
 	 *            can be obtained from the {@link #getDataVersions()} method.
 	 * @return Language strings
 	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 3
 	 * @see LanguageStrings
 	 */
-	public LanguageStrings getDataLanguageStrings(Region region, Locale locale, String version) throws RiotApiException {
-		Objects.requireNonNull(region);
-		ApiMethod method = new GetDataLanguageStrings(getConfig(), region, locale, version);
+	public LanguageStrings getDataLanguageStrings(Platform platform, Locale locale, String version) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetDataLanguageStrings(getConfig(), platform, locale, version);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
 	 * Retrieve language strings data.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @return Language strings
-	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 3
 	 * @see LanguageStrings
 	 */
-	public LanguageStrings getDataLanguageStrings(Region region) throws RiotApiException {
-		Objects.requireNonNull(region);
-		return getDataLanguageStrings(region, null, null);
+	public LanguageStrings getDataLanguageStrings(Platform platform) throws RiotApiException {
+		return getDataLanguageStrings(platform, null, null);
 	}
 
 	/**
 	 * Retrieves map data.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @param locale
 	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
 	 *            used.
@@ -822,39 +823,38 @@ public class RiotApi implements Cloneable {
 	 *            can be obtained from the {@link #getDataVersions()} method.
 	 * @return A list of game maps
 	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 3
 	 * @see MapData
 	 */
-	public MapData getDataMap(Region region, Locale locale, String version) throws RiotApiException {
-		Objects.requireNonNull(region);
-		ApiMethod method = new GetDataMap(getConfig(), region, locale, version);
+	public MapData getDataMaps(Platform platform, Locale locale, String version) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetDataMaps(getConfig(), platform, locale, version);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
 	 * Retrieves map data.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @return A list of game maps
-	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 3
 	 * @see MapData
 	 */
-	public MapData getDataMap(Region region) throws RiotApiException {
-		Objects.requireNonNull(region);
-		return getDataMap(region, null, null);
+	public MapData getDataMaps(Platform platform) throws RiotApiException {
+		return getDataMaps(platform, null, null);
 	}
 
 	/**
 	 * Retrieves mastery item by its unique {@code id}.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @param id
 	 *            Mastery ID
 	 * @param locale
@@ -868,41 +868,40 @@ public class RiotApi implements Cloneable {
 	 *            parameter isn't specified. To return all additional data, use {@code MasteryData.ALL}.
 	 * @return A single mastery
 	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 3
 	 * @see Mastery
 	 */
-	public Mastery getDataMastery(Region region, int id, Locale locale, String version, MasteryData... masteryData) throws RiotApiException {
-		Objects.requireNonNull(region);
-		ApiMethod method = new GetDataMastery(getConfig(), region, id, locale, version, masteryData);
+	public Mastery getDataMastery(Platform platform, int id, Locale locale, String version, MasteryData... masteryData) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetDataMastery(getConfig(), platform, id, locale, version, masteryData);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
 	 * Retrieves mastery item by its unique {@code id}.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @param id
 	 *            Mastery ID
 	 * @return A single mastery
-	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 3
 	 * @see Mastery
 	 */
-	public Mastery getDataMastery(Region region, int id) throws RiotApiException {
-		Objects.requireNonNull(region);
-		return getDataMastery(region, id, null, null, (MasteryData) null);
+	public Mastery getDataMastery(Platform platform, int id) throws RiotApiException {
+		return getDataMastery(platform, id, null, null, (MasteryData) null);
 	}
 
 	/**
 	 * Retrieves mastery list.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @param locale
 	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
 	 *            used.
@@ -915,57 +914,57 @@ public class RiotApi implements Cloneable {
 	 *            {@code MasteryListData.ALL}.
 	 * @return A list with masteries
 	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 3
 	 * @see MasteryList
 	 */
-	public MasteryList getDataMasteryList(Region region, Locale locale, String version, MasteryListData... masteryListData) throws RiotApiException {
-		Objects.requireNonNull(region);
-		ApiMethod method = new GetDataMasteryList(getConfig(), region, locale, version, masteryListData);
+	public MasteryList getDataMasteryList(Platform platform, Locale locale, String version, MasteryListData... masteryListData) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetDataMasteryList(getConfig(), platform, locale, version, masteryListData);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
 	 * Retrieves mastery list.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @return A list with masteries
-	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 3
 	 * @see MasteryList
 	 */
-	public MasteryList getDataMasteryList(Region region) throws RiotApiException {
-		Objects.requireNonNull(region);
-		return getDataMasteryList(region, null, null, (MasteryListData) null);
+	public MasteryList getDataMasteryList(Platform platform) throws RiotApiException {
+		return getDataMasteryList(platform, null, null, (MasteryListData) null);
 	}
 
 	/**
 	 * Retrieve realm data.
 	 * 
-	 * @param region
-	 *            Region corresponding to data to retrieve.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @return A single realm
 	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 3
 	 * @see Realm
 	 */
-	public Realm getDataRealm(Region region) throws RiotApiException {
-		Objects.requireNonNull(region);
-		ApiMethod method = new GetDataRealm(getConfig(), region);
+	public Realm getDataRealm(Platform platform) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetDataRealm(getConfig(), platform);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
 	 * Retrieves rune by its unique {@code id}.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @param id
 	 *            Rune ID
 	 * @param locale
@@ -979,41 +978,40 @@ public class RiotApi implements Cloneable {
 	 *            default if this parameter isn't specified. To return all additional data, use {@code RuneData.ALL}.
 	 * @return A single rune
 	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 3
 	 * @see Rune
 	 */
-	public Rune getDataRune(Region region, int id, Locale locale, String version, RuneData... runeData) throws RiotApiException {
-		Objects.requireNonNull(region);
-		ApiMethod method = new GetDataRune(getConfig(), region, id, locale, version, runeData);
+	public Rune getDataRune(Platform platform, int id, Locale locale, String version, RuneData... runeData) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetDataRune(getConfig(), platform, id, locale, version, runeData);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
 	 * Retrieves rune by its unique {@code id}.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @param id
 	 *            Rune ID
 	 * @return A single rune
-	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 3
 	 * @see Rune
 	 */
-	public Rune getDataRune(Region region, int id) throws RiotApiException {
-		Objects.requireNonNull(region);
-		return getDataRune(region, id, null, null, (RuneData) null);
+	public Rune getDataRune(Platform platform, int id) throws RiotApiException {
+		return getDataRune(platform, id, null, null, (RuneData) null);
 	}
 
 	/**
 	 * Retrieves rune list.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @param locale
 	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
 	 *            used.
@@ -1026,39 +1024,38 @@ public class RiotApi implements Cloneable {
 	 *            {@code RuneListData.ALL}.
 	 * @return A list with runes
 	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 3
 	 * @see RuneList
 	 */
-	public RuneList getDataRuneList(Region region, Locale locale, String version, RuneListData... runeListData) throws RiotApiException {
-		Objects.requireNonNull(region);
-		ApiMethod method = new GetDataRuneList(getConfig(), region, locale, version, runeListData);
+	public RuneList getDataRuneList(Platform platform, Locale locale, String version, RuneListData... runeListData) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetDataRuneList(getConfig(), platform, locale, version, runeListData);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
 	 * Retrieves rune list.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @return A list with runes
-	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 3
 	 * @see RuneList
 	 */
-	public RuneList getDataRuneList(Region region) throws RiotApiException {
-		Objects.requireNonNull(region);
-		return getDataRuneList(region, null, null, (RuneListData) null);
+	public RuneList getDataRuneList(Platform platform) throws RiotApiException {
+		return getDataRuneList(platform, null, null, (RuneListData) null);
 	}
 
 	/**
 	 * Retrieves summoner spell by its unique {@code id}.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @param id
 	 *            Summoner spell ID
 	 * @param locale
@@ -1072,41 +1069,40 @@ public class RiotApi implements Cloneable {
 	 *            are returned by default if this parameter isn't specified. To return all additional data, use {@code SpellData.ALL}.
 	 * @return A single summoner spell
 	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 3
 	 * @see SummonerSpell
 	 */
-	public SummonerSpell getDataSummonerSpell(Region region, int id, Locale locale, String version, SpellData... spellData) throws RiotApiException {
-		Objects.requireNonNull(region);
-		ApiMethod method = new GetDataSummonerSpell(getConfig(), region, id, locale, version, spellData);
+	public SummonerSpell getDataSummonerSpell(Platform platform, int id, Locale locale, String version, SpellData... spellData) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetDataSummonerSpell(getConfig(), platform, id, locale, version, spellData);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
 	 * Retrieves summoner spell by its unique {@code id}.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @param id
 	 *            Summoner spell ID
 	 * @return A single summoner spell
-	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 3
 	 * @see SummonerSpell
 	 */
-	public SummonerSpell getDataSummonerSpell(Region region, int id) throws RiotApiException {
-		Objects.requireNonNull(region);
-		return getDataSummonerSpell(region, id, null, null, (SpellData) null);
+	public SummonerSpell getDataSummonerSpell(Platform platform, int id) throws RiotApiException {
+		return getDataSummonerSpell(platform, id, null, null, (SpellData) null);
 	}
 
 	/**
 	 * Retrieves summoner spell list.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @param locale
 	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
 	 *            used.
@@ -1122,47 +1118,49 @@ public class RiotApi implements Cloneable {
 	 *            additional data, use {@code SpellData.ALL}.
 	 * @return A list with summoner spells
 	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 3
 	 * @see SummonerSpellList
 	 */
-	public SummonerSpellList getDataSummonerSpellList(Region region, Locale locale, String version, boolean dataById, SpellData... spellData)
+	public SummonerSpellList getDataSummonerSpellList(Platform platform, Locale locale, String version, boolean dataById, SpellData... spellData)
 			throws RiotApiException {
-		Objects.requireNonNull(region);
-		ApiMethod method = new GetDataSummonerSpellList(getConfig(), region, locale, version, dataById, spellData);
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetDataSummonerSpellList(getConfig(), platform, locale, version, dataById, spellData);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
 	 * Retrieves summoner spell list.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @return A list with summoner spells
-	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 3
 	 * @see SummonerSpellList
 	 */
-	public SummonerSpellList getDataSummonerSpellList(Region region) throws RiotApiException {
-		Objects.requireNonNull(region);
-		return getDataSummonerSpellList(region, null, null, false, (SpellData) null);
+	public SummonerSpellList getDataSummonerSpellList(Platform platform) throws RiotApiException {
+		return getDataSummonerSpellList(platform, null, null, false, (SpellData) null);
 	}
 
 	/**
 	 * Retrieve version data.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @return A list with versions
+	 * @throws NullPointerException
+	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 3
 	 */
-	public List<String> getDataVersions(Region region) throws RiotApiException {
-		Objects.requireNonNull(region);
-		ApiMethod method = new GetDataVersions(getConfig(), region);
+	public List<String> getDataVersions(Platform platform) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetDataVersions(getConfig(), platform);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 
@@ -1176,6 +1174,7 @@ public class RiotApi implements Cloneable {
 	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 3
 	 * @see FeaturedGames
 	 */
 	public FeaturedGames getFeaturedGames(Platform platform) throws RiotApiException {
@@ -1876,11 +1875,13 @@ public class RiotApi implements Cloneable {
 	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 3
 	 * @see Summoner
 	 */
-	public Summoner getSummonerByAccountId(Platform platform, long accountId) throws RiotApiException {
+	public Summoner getSummonerByAccount(Platform platform, long accountId) throws RiotApiException {
 		Objects.requireNonNull(platform);
-		return getSummonerByAccountId(platform, accountId);
+		ApiMethod method = new GetSummonerByAccount(getConfig(), platform, accountId);
+		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
@@ -1895,11 +1896,13 @@ public class RiotApi implements Cloneable {
 	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 3
 	 * @see Summoner
 	 */
-	public Summoner getSummonerById(Platform platform, long summonerId) throws RiotApiException {
+	public Summoner getSummoner(Platform platform, long summonerId) throws RiotApiException {
 		Objects.requireNonNull(platform);
-		return getSummonerById(platform, summonerId);
+		ApiMethod method = new GetSummoner(getConfig(), platform, summonerId);
+		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
@@ -1914,6 +1917,7 @@ public class RiotApi implements Cloneable {
 	 *             If {@code platform} or {@code summonerName} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 3
 	 * @see Summoner
 	 */
 	public Summoner getSummonerByName(Platform platform, String summonerName) throws RiotApiException {

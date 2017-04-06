@@ -58,15 +58,15 @@ public class SummonerTest {
 	}
 
 	@Test
-	public void testGetSummonerByAccountId() throws RiotApiException {
-		Summoner summoner = api.getSummonerByAccountId(Platform.NA, 235464896);
+	public void testGetSummoner() throws RiotApiException {
+		Summoner summoner = api.getSummoner(Platform.NA, 81439110);
 		assertNotNull(summoner);
 		assertEquals("Tryndamere", summoner.getName());
 	}
 
 	@Test
-	public void testGetSummonerById() throws RiotApiException {
-		Summoner summoner = api.getSummonerById(Platform.NA, 81439110);
+	public void testGetSummonerByAccount() throws RiotApiException {
+		Summoner summoner = api.getSummonerByAccount(Platform.NA, 235464896);
 		assertNotNull(summoner);
 		assertEquals("Tryndamere", summoner.getName());
 	}

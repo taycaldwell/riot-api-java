@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 Taylor Caldwell
+ * Copyright 2016 Taylor Caldwell
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,20 +14,28 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.api.endpoints.summoner.methods;
+package net.rithms.riot.api.endpoints.static_data.methods;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.endpoints.summoner.SummonerApiMethod;
-import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
+import net.rithms.riot.api.UrlParameter;
+import net.rithms.riot.api.endpoints.static_data.StaticDataApiMethod;
+import net.rithms.riot.api.endpoints.static_data.constant.Locale;
+import net.rithms.riot.api.endpoints.static_data.dto.MapData;
 import net.rithms.riot.constant.Platform;
 
-public class GetSummonerByAccountId extends SummonerApiMethod {
+public class GetDataMaps extends StaticDataApiMethod {
 
-	public GetSummonerByAccountId(ApiConfig config, Platform platform, long accountId) {
+	public GetDataMaps(ApiConfig config, Platform platform, Locale locale, String version) {
 		super(config);
 		setPlatform(platform);
-		setReturnType(Summoner.class);
-		setUrlBase(platform.getHost() + "/lol/summoner/v3/summoners/by-account/" + accountId);
+		setReturnType(MapData.class);
+		setUrlBase(platform.getHost() + "/lol/static-data/v3/maps");
+		if (locale != null) {
+			add(new UrlParameter("locale", locale));
+		}
+		if (version != null) {
+			add(new UrlParameter("version", version));
+		}
 		addApiKeyParameter();
 	}
 }

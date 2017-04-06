@@ -22,16 +22,16 @@ import net.rithms.riot.api.endpoints.static_data.StaticDataApiMethod;
 import net.rithms.riot.api.endpoints.static_data.constant.Locale;
 import net.rithms.riot.api.endpoints.static_data.constant.SpellData;
 import net.rithms.riot.api.endpoints.static_data.dto.SummonerSpell;
-import net.rithms.riot.constant.Region;
+import net.rithms.riot.constant.Platform;
 import net.rithms.util.Convert;
 
 public class GetDataSummonerSpell extends StaticDataApiMethod {
 
-	public GetDataSummonerSpell(ApiConfig config, Region region, int id, Locale locale, String version, SpellData... spellData) {
+	public GetDataSummonerSpell(ApiConfig config, Platform platform, int id, Locale locale, String version, SpellData... spellData) {
 		super(config);
-		setRegion(region);
+		setPlatform(platform);
 		setReturnType(SummonerSpell.class);
-		setUrlBase("https://global.api.pvp.net/api/lol/static-data/" + region + "/v1.2/summoner-spell/" + id);
+		setUrlBase(platform.getHost() + "/lol/static-data/v3/summoner-spells/" + id);
 		if (locale != null) {
 			add(new UrlParameter("locale", locale));
 		}

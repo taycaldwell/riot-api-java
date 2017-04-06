@@ -22,16 +22,16 @@ import com.google.gson.reflect.TypeToken;
 
 import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.endpoints.static_data.StaticDataApiMethod;
-import net.rithms.riot.constant.Region;
+import net.rithms.riot.constant.Platform;
 
 public class GetDataLanguages extends StaticDataApiMethod {
 
-	public GetDataLanguages(ApiConfig config, Region region) {
+	public GetDataLanguages(ApiConfig config, Platform platform) {
 		super(config);
-		setRegion(region);
+		setPlatform(platform);
 		setReturnType(new TypeToken<List<String>>() {
 		}.getType());
-		setUrlBase("https://global.api.pvp.net/api/lol/static-data/" + region + "/v1.2/languages");
+		setUrlBase(platform.getHost() + "/lol/static-data/v3/languages");
 		addApiKeyParameter();
 	}
 }

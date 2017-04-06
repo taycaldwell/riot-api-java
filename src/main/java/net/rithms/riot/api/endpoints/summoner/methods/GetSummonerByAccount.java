@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Taylor Caldwell
+ * Copyright 2017 Taylor Caldwell
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,13 +21,13 @@ import net.rithms.riot.api.endpoints.summoner.SummonerApiMethod;
 import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
 import net.rithms.riot.constant.Platform;
 
-public class GetSummonerById extends SummonerApiMethod {
+public class GetSummonerByAccount extends SummonerApiMethod {
 
-	public GetSummonerById(ApiConfig config, Platform platform, long summonerId) {
+	public GetSummonerByAccount(ApiConfig config, Platform platform, long accountId) {
 		super(config);
 		setPlatform(platform);
 		setReturnType(Summoner.class);
-		setUrlBase(platform.getHost() + "/lol/summoner/v3/summoners/" + summonerId);
+		setUrlBase(platform.getHost() + "/lol/summoner/v3/summoners/by-account/" + accountId);
 		addApiKeyParameter();
 	}
 }

@@ -21,15 +21,15 @@ import net.rithms.riot.api.UrlParameter;
 import net.rithms.riot.api.endpoints.static_data.StaticDataApiMethod;
 import net.rithms.riot.api.endpoints.static_data.constant.Locale;
 import net.rithms.riot.api.endpoints.static_data.dto.LanguageStrings;
-import net.rithms.riot.constant.Region;
+import net.rithms.riot.constant.Platform;
 
 public class GetDataLanguageStrings extends StaticDataApiMethod {
 
-	public GetDataLanguageStrings(ApiConfig config, Region region, Locale locale, String version) {
+	public GetDataLanguageStrings(ApiConfig config, Platform platform, Locale locale, String version) {
 		super(config);
-		setRegion(region);
+		setPlatform(platform);
 		setReturnType(LanguageStrings.class);
-		setUrlBase("https://global.api.pvp.net/api/lol/static-data/" + region + "/v1.2/language-strings");
+		setUrlBase(platform.getHost() + "/lol/static-data/v3/language-strings");
 		if (locale != null) {
 			add(new UrlParameter("locale", locale));
 		}

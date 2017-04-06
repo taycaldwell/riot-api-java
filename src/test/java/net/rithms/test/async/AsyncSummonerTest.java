@@ -97,8 +97,32 @@ public class AsyncSummonerTest {
 	}
 
 	@Test
-	public void testGetSummonersById() throws RiotApiException, InterruptedException {
-		AsyncRequest reqSummonerMap = api.getSummonerById(Platform.NA, 81439110);
+	public void testGetSummoners() throws RiotApiException, InterruptedException {
+		AsyncRequest reqSummonerMap = api.getSummoner(Platform.NA, 81439110);
+		reqSummonerMap.addListeners(new RequestListener() {
+			@Override
+			public void onRequestFailed(RiotApiException e) {
+				fail();
+			}
+
+			@Override
+			public void onRequestSucceeded(AsyncRequest request) {
+				Summoner summoner = request.getDto();
+				assertNotNull(summoner);
+				assertEquals("Tryndamere", summoner.getName());
+			}
+
+			@Override
+			public void onRequestTimeout(AsyncRequest request) {
+				fail();
+			}
+		});
+		api.awaitAll();
+	}
+
+	@Test
+	public void testGetSummonersByAccount() throws RiotApiException, InterruptedException {
+		AsyncRequest reqSummonerMap = api.getSummonerByAccount(Platform.NA, 235464896);
 		reqSummonerMap.addListeners(new RequestListener() {
 			@Override
 			public void onRequestFailed(RiotApiException e) {

@@ -70,7 +70,7 @@ import net.rithms.riot.api.endpoints.static_data.methods.GetDataItem;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataItemList;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataLanguageStrings;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataLanguages;
-import net.rithms.riot.api.endpoints.static_data.methods.GetDataMap;
+import net.rithms.riot.api.endpoints.static_data.methods.GetDataMaps;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataMastery;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataMasteryList;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataRealm;
@@ -92,8 +92,8 @@ import net.rithms.riot.api.endpoints.summoner.dto.RunePages;
 import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
 import net.rithms.riot.api.endpoints.summoner.methods.GetMasteryPages;
 import net.rithms.riot.api.endpoints.summoner.methods.GetRunePages;
-import net.rithms.riot.api.endpoints.summoner.methods.GetSummonerByAccountId;
-import net.rithms.riot.api.endpoints.summoner.methods.GetSummonerById;
+import net.rithms.riot.api.endpoints.summoner.methods.GetSummoner;
+import net.rithms.riot.api.endpoints.summoner.methods.GetSummonerByAccount;
 import net.rithms.riot.api.endpoints.summoner.methods.GetSummonerByName;
 import net.rithms.riot.api.endpoints.tournament.dto.LobbyEventList;
 import net.rithms.riot.api.endpoints.tournament.dto.TournamentCode;
@@ -251,6 +251,7 @@ public class RiotApiAsync {
 	 * @return Current game info
 	 * @throws NullPointerException
 	 *             If {@code platform} or {@code summonerId} is {@code null}
+	 * @version 3
 	 * @see CurrentGameInfo
 	 */
 	public AsyncRequest getActiveGameBySummoner(Platform platform, long summonerId) {
@@ -398,8 +399,8 @@ public class RiotApiAsync {
 	/**
 	 * Retrieves a champion by its {@code id}.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @param id
 	 *            Champion ID
 	 * @param locale
@@ -413,37 +414,36 @@ public class RiotApiAsync {
 	 *            this parameter isn't specified. To return all additional data, use {@code ChampData.ALL}.
 	 * @return A single champion
 	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 *             If {@code platform} is {@code null}
+	 * @version 3
 	 * @see net.rithms.riot.api.endpoints.static_data.dto.Champion
 	 */
-	public AsyncRequest getDataChampion(Region region, int id, Locale locale, String version, ChampData... champData) {
-		Objects.requireNonNull(region);
-		ApiMethod method = new GetDataChampion(getConfig(), region, id, locale, version, champData);
+	public AsyncRequest getDataChampion(Platform platform, int id, Locale locale, String version, ChampData... champData) {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetDataChampion(getConfig(), platform, id, locale, version, champData);
 		return endpointManager.callMethodAsynchronously(method);
 	}
 
 	/**
 	 * Retrieves a champion by its {@code id}.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @param id
 	 *            Champion ID
 	 * @return A single champion
-	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 * @version 3
 	 * @see net.rithms.riot.api.endpoints.static_data.dto.Champion
 	 */
-	public AsyncRequest getDataChampion(Region region, int id) {
-		Objects.requireNonNull(region);
-		return getDataChampion(region, id, null, null, (ChampData) null);
+	public AsyncRequest getDataChampion(Platform platform, int id) {
+		return getDataChampion(platform, id, null, null, (ChampData) null);
 	}
 
 	/**
 	 * Retrieves champion list.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @param locale
 	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
 	 *            used.
@@ -458,33 +458,34 @@ public class RiotApiAsync {
 	 *            this parameter isn't specified. To return all additional data, use {@code ChampData.ALL}.
 	 * @return A list with champions
 	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 *             If {@code platform} is {@code null}
+	 * @version 3
 	 * @see net.rithms.riot.api.endpoints.static_data.dto.ChampionList
 	 */
-	public AsyncRequest getDataChampionList(Region region, Locale locale, String version, boolean dataById, ChampData... champData) {
-		Objects.requireNonNull(region);
-		ApiMethod method = new GetDataChampionList(getConfig(), region, locale, version, dataById, champData);
+	public AsyncRequest getDataChampionList(Platform platform, Locale locale, String version, boolean dataById, ChampData... champData) {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetDataChampionList(getConfig(), platform, locale, version, dataById, champData);
 		return endpointManager.callMethodAsynchronously(method);
 	}
 
 	/**
 	 * Retrieves champion list.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @return A list with champions
+	 * @version 3
 	 * @see net.rithms.riot.api.endpoints.static_data.dto.ChampionList
 	 */
-	public AsyncRequest getDataChampionList(Region region) {
-		Objects.requireNonNull(region);
-		return getDataChampionList(region, null, null, false, (ChampData) null);
+	public AsyncRequest getDataChampionList(Platform platform) {
+		return getDataChampionList(platform, null, null, false, (ChampData) null);
 	}
 
 	/**
 	 * Retrieves item by its unique {@code id}.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @param id
 	 *            Item ID
 	 * @param locale
@@ -499,37 +500,36 @@ public class RiotApiAsync {
 	 *            return all additional data, use {@code ItemData.ALL}.
 	 * @return A single item
 	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 *             If {@code platform} is {@code null}
+	 * @version 3
 	 * @see Item
 	 */
-	public AsyncRequest getDataItem(Region region, int id, Locale locale, String version, ItemData... itemData) {
-		Objects.requireNonNull(region);
-		ApiMethod method = new GetDataItem(getConfig(), region, id, locale, version, itemData);
+	public AsyncRequest getDataItem(Platform platform, int id, Locale locale, String version, ItemData... itemData) {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetDataItem(getConfig(), platform, id, locale, version, itemData);
 		return endpointManager.callMethodAsynchronously(method);
 	}
 
 	/**
 	 * Retrieves item by its unique {@code id}.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @param id
 	 *            Item ID
 	 * @return A single item
-	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 * @version 3
 	 * @see Item
 	 */
-	public AsyncRequest getDataItem(Region region, int id) {
-		Objects.requireNonNull(region);
-		return getDataItem(region, id, null, null, (ItemData) null);
+	public AsyncRequest getDataItem(Platform platform, int id) {
+		return getDataItem(platform, id, null, null, (ItemData) null);
 	}
 
 	/**
 	 * Retrieves item list.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @param locale
 	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
 	 *            used.
@@ -542,50 +542,50 @@ public class RiotApiAsync {
 	 *            return all additional data, use {@code ItemListData.ALL}.
 	 * @return A list of items
 	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 *             If {@code platform} is {@code null}
+	 * @version 3
 	 * @see ItemList
 	 */
-	public AsyncRequest getDataItemList(Region region, Locale locale, String version, ItemListData... itemListData) {
-		Objects.requireNonNull(region);
-		ApiMethod method = new GetDataItemList(getConfig(), region, locale, version, itemListData);
+	public AsyncRequest getDataItemList(Platform platform, Locale locale, String version, ItemListData... itemListData) {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetDataItemList(getConfig(), platform, locale, version, itemListData);
 		return endpointManager.callMethodAsynchronously(method);
 	}
 
 	/**
 	 * Retrieves item list.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @return A list of items
-	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 * @version 3
 	 * @see ItemList
 	 */
-	public AsyncRequest getDataItemList(Region region) {
-		Objects.requireNonNull(region);
-		return getDataItemList(region, null, null, (ItemListData) null);
+	public AsyncRequest getDataItemList(Platform platform) {
+		return getDataItemList(platform, null, null, (ItemListData) null);
 	}
 
 	/**
 	 * Retrieve supported languages data.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @return A list with languages
 	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 *             If {@code platform} is {@code null}
+	 * @version 3
 	 */
-	public AsyncRequest getDataLanguages(Region region) {
-		Objects.requireNonNull(region);
-		ApiMethod method = new GetDataLanguages(getConfig(), region);
+	public AsyncRequest getDataLanguages(Platform platform) {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetDataLanguages(getConfig(), platform);
 		return endpointManager.callMethodAsynchronously(method);
 	}
 
 	/**
 	 * Retrieve language strings data.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @param locale
 	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
 	 *            used.
@@ -594,35 +594,34 @@ public class RiotApiAsync {
 	 *            can be obtained from the {@link #getDataVersions()} method.
 	 * @return Language strings
 	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 *             If {@code platform} is {@code null}
+	 * @version 3
 	 * @see LanguageStrings
 	 */
-	public AsyncRequest getDataLanguageStrings(Region region, Locale locale, String version) {
-		Objects.requireNonNull(region);
-		ApiMethod method = new GetDataLanguageStrings(getConfig(), region, locale, version);
+	public AsyncRequest getDataLanguageStrings(Platform platform, Locale locale, String version) {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetDataLanguageStrings(getConfig(), platform, locale, version);
 		return endpointManager.callMethodAsynchronously(method);
 	}
 
 	/**
 	 * Retrieve language strings data.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @return Language strings
-	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 * @version 3
 	 * @see LanguageStrings
 	 */
-	public AsyncRequest getDataLanguageStrings(Region region) {
-		Objects.requireNonNull(region);
-		return getDataLanguageStrings(region, null, null);
+	public AsyncRequest getDataLanguageStrings(Platform platform) {
+		return getDataLanguageStrings(platform, null, null);
 	}
 
 	/**
 	 * Retrieves map data.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @param locale
 	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
 	 *            used.
@@ -631,35 +630,34 @@ public class RiotApiAsync {
 	 *            can be obtained from the {@link #getDataVersions()} method.
 	 * @return A list of game maps
 	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 *             If {@code platform} is {@code null}
+	 * @version 3
 	 * @see MapData
 	 */
-	public AsyncRequest getDataMap(Region region, Locale locale, String version) {
-		Objects.requireNonNull(region);
-		ApiMethod method = new GetDataMap(getConfig(), region, locale, version);
+	public AsyncRequest getDataMaps(Platform platform, Locale locale, String version) {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetDataMaps(getConfig(), platform, locale, version);
 		return endpointManager.callMethodAsynchronously(method);
 	}
 
 	/**
 	 * Retrieves map data.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @return A list of game maps
-	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 * @version 3
 	 * @see MapData
 	 */
-	public AsyncRequest getDataMap(Region region) {
-		Objects.requireNonNull(region);
-		return getDataMap(region, null, null);
+	public AsyncRequest getDataMaps(Platform platform) {
+		return getDataMaps(platform, null, null);
 	}
 
 	/**
 	 * Retrieves mastery item by its unique {@code id}.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @param id
 	 *            Mastery ID
 	 * @param locale
@@ -673,37 +671,36 @@ public class RiotApiAsync {
 	 *            parameter isn't specified. To return all additional data, use {@code MasteryData.ALL}.
 	 * @return A single mastery
 	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 *             If {@code platform} is {@code null}
+	 * @version 3
 	 * @see Mastery
 	 */
-	public AsyncRequest getDataMastery(Region region, int id, Locale locale, String version, MasteryData... masteryData) {
-		Objects.requireNonNull(region);
-		ApiMethod method = new GetDataMastery(getConfig(), region, id, locale, version, masteryData);
+	public AsyncRequest getDataMastery(Platform platform, int id, Locale locale, String version, MasteryData... masteryData) {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetDataMastery(getConfig(), platform, id, locale, version, masteryData);
 		return endpointManager.callMethodAsynchronously(method);
 	}
 
 	/**
 	 * Retrieves mastery item by its unique {@code id}.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @param id
 	 *            Mastery ID
 	 * @return A single mastery
-	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 * @version 3
 	 * @see Mastery
 	 */
-	public AsyncRequest getDataMastery(Region region, int id) {
-		Objects.requireNonNull(region);
-		return getDataMastery(region, id, null, null, (MasteryData) null);
+	public AsyncRequest getDataMastery(Platform platform, int id) {
+		return getDataMastery(platform, id, null, null, (MasteryData) null);
 	}
 
 	/**
 	 * Retrieves mastery list.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @param locale
 	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
 	 *            used.
@@ -716,51 +713,51 @@ public class RiotApiAsync {
 	 *            {@code MasteryListData.ALL}.
 	 * @return A list with masteries
 	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 *             If {@code platform} is {@code null}
+	 * @version 3
 	 * @see MasteryList
 	 */
-	public AsyncRequest getDataMasteryList(Region region, Locale locale, String version, MasteryListData... masteryListData) {
-		Objects.requireNonNull(region);
-		ApiMethod method = new GetDataMasteryList(getConfig(), region, locale, version, masteryListData);
+	public AsyncRequest getDataMasteryList(Platform platform, Locale locale, String version, MasteryListData... masteryListData) {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetDataMasteryList(getConfig(), platform, locale, version, masteryListData);
 		return endpointManager.callMethodAsynchronously(method);
 	}
 
 	/**
 	 * Retrieves mastery list.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @return A list with masteries
-	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 * @version 3
 	 * @see MasteryList
 	 */
-	public AsyncRequest getDataMasteryList(Region region) {
-		Objects.requireNonNull(region);
-		return getDataMasteryList(region, null, null, (MasteryListData) null);
+	public AsyncRequest getDataMasteryList(Platform platform) {
+		return getDataMasteryList(platform, null, null, (MasteryListData) null);
 	}
 
 	/**
 	 * Retrieve realm data.
 	 * 
-	 * @param region
-	 *            Region corresponding to data to retrieve.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @return A single realm
 	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 *             If {@code platform} is {@code null}
+	 * @version 3
 	 * @see Realm
 	 */
-	public AsyncRequest getDataRealm(Region region) {
-		Objects.requireNonNull(region);
-		ApiMethod method = new GetDataRealm(getConfig(), region);
+	public AsyncRequest getDataRealm(Platform platform) {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetDataRealm(getConfig(), platform);
 		return endpointManager.callMethodAsynchronously(method);
 	}
 
 	/**
 	 * Retrieves rune by its unique {@code id}.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @param id
 	 *            Rune ID
 	 * @param locale
@@ -774,37 +771,36 @@ public class RiotApiAsync {
 	 *            default if this parameter isn't specified. To return all additional data, use {@code RuneData.ALL}.
 	 * @return A single rune
 	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 *             If {@code platform} is {@code null}
+	 * @version 3
 	 * @see Rune
 	 */
-	public AsyncRequest getDataRune(Region region, int id, Locale locale, String version, RuneData... runeData) {
-		Objects.requireNonNull(region);
-		ApiMethod method = new GetDataRune(getConfig(), region, id, locale, version, runeData);
+	public AsyncRequest getDataRune(Platform platform, int id, Locale locale, String version, RuneData... runeData) {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetDataRune(getConfig(), platform, id, locale, version, runeData);
 		return endpointManager.callMethodAsynchronously(method);
 	}
 
 	/**
 	 * Retrieves rune by its unique {@code id}.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @param id
 	 *            Rune ID
 	 * @return A single rune
-	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 * @version 3
 	 * @see Rune
 	 */
-	public AsyncRequest getDataRune(Region region, int id) {
-		Objects.requireNonNull(region);
-		return getDataRune(region, id, null, null, (RuneData) null);
+	public AsyncRequest getDataRune(Platform platform, int id) {
+		return getDataRune(platform, id, null, null, (RuneData) null);
 	}
 
 	/**
 	 * Retrieves rune list.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @param locale
 	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
 	 *            used.
@@ -817,35 +813,34 @@ public class RiotApiAsync {
 	 *            {@code RuneListData.ALL}.
 	 * @return A list with runes
 	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 *             If {@code platform} is {@code null}
+	 * @version 3
 	 * @see RuneList
 	 */
-	public AsyncRequest getDataRuneList(Region region, Locale locale, String version, RuneListData... runeListData) {
-		Objects.requireNonNull(region);
-		ApiMethod method = new GetDataRuneList(getConfig(), region, locale, version, runeListData);
+	public AsyncRequest getDataRuneList(Platform platform, Locale locale, String version, RuneListData... runeListData) {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetDataRuneList(getConfig(), platform, locale, version, runeListData);
 		return endpointManager.callMethodAsynchronously(method);
 	}
 
 	/**
 	 * Retrieves rune list.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @return A list with runes
-	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 * @version 3
 	 * @see RuneList
 	 */
-	public AsyncRequest getDataRuneList(Region region) {
-		Objects.requireNonNull(region);
-		return getDataRuneList(region, null, null, (RuneListData) null);
+	public AsyncRequest getDataRuneList(Platform platform) {
+		return getDataRuneList(platform, null, null, (RuneListData) null);
 	}
 
 	/**
 	 * Retrieves summoner spell by its unique {@code id}.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @param id
 	 *            Summoner spell ID
 	 * @param locale
@@ -859,37 +854,36 @@ public class RiotApiAsync {
 	 *            are returned by default if this parameter isn't specified. To return all additional data, use {@code SpellData.ALL}.
 	 * @return A single summoner spell
 	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 *             If {@code platform} is {@code null}
+	 * @version 3
 	 * @see SummonerSpell
 	 */
-	public AsyncRequest getDataSummonerSpell(Region region, int id, Locale locale, String version, SpellData... spellData) {
-		Objects.requireNonNull(region);
-		ApiMethod method = new GetDataSummonerSpell(getConfig(), region, id, locale, version, spellData);
+	public AsyncRequest getDataSummonerSpell(Platform platform, int id, Locale locale, String version, SpellData... spellData) {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetDataSummonerSpell(getConfig(), platform, id, locale, version, spellData);
 		return endpointManager.callMethodAsynchronously(method);
 	}
 
 	/**
 	 * Retrieves summoner spell by its unique {@code id}.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @param id
 	 *            Summoner spell ID
 	 * @return A single summoner spell
-	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 * @version 3
 	 * @see SummonerSpell
 	 */
-	public AsyncRequest getDataSummonerSpell(Region region, int id) {
-		Objects.requireNonNull(region);
-		return getDataSummonerSpell(region, id, null, null, (SpellData) null);
+	public AsyncRequest getDataSummonerSpell(Platform platform, int id) {
+		return getDataSummonerSpell(platform, id, null, null, (SpellData) null);
 	}
 
 	/**
 	 * Retrieves summoner spell list.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @param locale
 	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
 	 *            used.
@@ -905,28 +899,28 @@ public class RiotApiAsync {
 	 *            additional data, use {@code SpellData.ALL}.
 	 * @return A list with summoner spells
 	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 *             If {@code platform} is {@code null}
+	 * @version 3
 	 * @see SummonerSpellList
 	 */
-	public AsyncRequest getDataSummonerSpellList(Region region, Locale locale, String version, boolean dataById, SpellData... spellData) {
-		Objects.requireNonNull(region);
-		ApiMethod method = new GetDataSummonerSpellList(getConfig(), region, locale, version, dataById, spellData);
+	public AsyncRequest getDataSummonerSpellList(Platform platform, Locale locale, String version, boolean dataById, SpellData... spellData) {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetDataSummonerSpellList(getConfig(), platform, locale, version, dataById, spellData);
 		return endpointManager.callMethodAsynchronously(method);
 	}
 
 	/**
 	 * Retrieves summoner spell list.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @return A list with summoner spells
-	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 * @version 3
 	 * @see SummonerSpellList
 	 */
-	public AsyncRequest getDataSummonerSpellList(Region region) {
-		Objects.requireNonNull(region);
-		return getDataSummonerSpellList(region, null, null, false, (SpellData) null);
+	public AsyncRequest getDataSummonerSpellList(Platform platform) {
+		Objects.requireNonNull(platform);
+		return getDataSummonerSpellList(platform, null, null, false, (SpellData) null);
 	}
 
 	/**
@@ -935,10 +929,13 @@ public class RiotApiAsync {
 	 * @param region
 	 *            Region from which to retrieve data.
 	 * @return A list with versions
+	 * @throws NullPointerException
+	 *             If {@code platform} is {@code null}
+	 * @version 3
 	 */
-	public AsyncRequest getDataVersions(Region region) {
-		Objects.requireNonNull(region);
-		ApiMethod method = new GetDataVersions(getConfig(), region);
+	public AsyncRequest getDataVersions(Platform platform) {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetDataVersions(getConfig(), platform);
 		return endpointManager.callMethodAsynchronously(method);
 	}
 
@@ -950,6 +947,7 @@ public class RiotApiAsync {
 	 * @return Featured games
 	 * @throws NullPointerException
 	 *             If {@code platform} is {@code null}
+	 * @version 3
 	 * @see FeaturedGames
 	 */
 	public AsyncRequest getFeaturedGames(Platform platform) {
@@ -1480,12 +1478,12 @@ public class RiotApiAsync {
 	 * @return The desired summoner
 	 * @throws NullPointerException
 	 *             If {@code platform} is {@code null}
-	 * @see Summoner
 	 * @version 3
+	 * @see Summoner
 	 */
-	public AsyncRequest getSummonerByAccountId(Platform platform, long accountId) {
+	public AsyncRequest getSummonerByAccount(Platform platform, long accountId) {
 		Objects.requireNonNull(platform);
-		ApiMethod method = new GetSummonerByAccountId(getConfig(), platform, accountId);
+		ApiMethod method = new GetSummonerByAccount(getConfig(), platform, accountId);
 		return endpointManager.callMethodAsynchronously(method);
 	}
 
@@ -1499,12 +1497,12 @@ public class RiotApiAsync {
 	 * @return The desired summoner
 	 * @throws NullPointerException
 	 *             If {@code platform} is {@code null}
-	 * @see Summoner
 	 * @version 3
+	 * @see Summoner
 	 */
-	public AsyncRequest getSummonerById(Platform platform, long summonerId) {
+	public AsyncRequest getSummoner(Platform platform, long summonerId) {
 		Objects.requireNonNull(platform);
-		ApiMethod method = new GetSummonerById(getConfig(), platform, summonerId);
+		ApiMethod method = new GetSummoner(getConfig(), platform, summonerId);
 		return endpointManager.callMethodAsynchronously(method);
 	}
 
@@ -1518,8 +1516,8 @@ public class RiotApiAsync {
 	 * @return A map of desired summoners
 	 * @throws NullPointerException
 	 *             If {@code platform} or {@code summonerName} is {@code null}
-	 * @see Summoner
 	 * @version 3
+	 * @see Summoner
 	 */
 	public AsyncRequest getSummonerByName(Platform platform, String summonerName) {
 		Objects.requireNonNull(platform);

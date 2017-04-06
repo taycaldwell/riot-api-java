@@ -22,16 +22,16 @@ import net.rithms.riot.api.endpoints.static_data.StaticDataApiMethod;
 import net.rithms.riot.api.endpoints.static_data.constant.Locale;
 import net.rithms.riot.api.endpoints.static_data.constant.RuneListData;
 import net.rithms.riot.api.endpoints.static_data.dto.RuneList;
-import net.rithms.riot.constant.Region;
+import net.rithms.riot.constant.Platform;
 import net.rithms.util.Convert;
 
 public class GetDataRuneList extends StaticDataApiMethod {
 
-	public GetDataRuneList(ApiConfig config, Region region, Locale locale, String version, RuneListData... runeListData) {
+	public GetDataRuneList(ApiConfig config, Platform platform, Locale locale, String version, RuneListData... runeListData) {
 		super(config);
-		setRegion(region);
+		setPlatform(platform);
 		setReturnType(RuneList.class);
-		setUrlBase("https://global.api.pvp.net/api/lol/static-data/" + region + "/v1.2/rune");
+		setUrlBase(platform.getHost() + "/lol/static-data/v3/runes");
 		if (locale != null) {
 			add(new UrlParameter("locale", locale));
 		}
