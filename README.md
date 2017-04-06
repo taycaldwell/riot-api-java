@@ -117,10 +117,12 @@ The documentation for this library can be found [here.](http://taycaldwell.com/r
 
 ## API Versions
 The current version of this library supports the following Riot Games API versions:
+- **SPECTATOR-3
+- **SUMMONER-3
+
+The current version of this library also supports the following legacy Riot Games API versions while they are still being converted to the new system:
 - **champion-v1.2 [BR, EUNE, EUW, JP, KR, LAN, LAS, NA, OCE, RU, TR]**
 - **championmastery [BR, EUNE, EUW, JP, KR, LAN, LAS, NA, OCE, RU, TR]**
-- **current-game-v1.0 [BR, EUNE, EUW, JP, KR, LAN, LAS, NA, OCE, PBE, RU, TR]**
-- **featured-games-v1.0 [BR, EUNE, EUW, JP, KR, LAN, LAS, NA, OCE, PBE, RU, TR]**
 - **game-v1.3 [BR, EUNE, EUW, JP, KR, LAN, LAS, NA, OCE, RU, TR]**
 - **league-v2.5 [BR, EUNE, EUW, JP, KR, LAN, LAS, NA, OCE, RU, TR]**
 - **lol-static-data-v1.2 [BR, EUNE, EUW, JP, KR, LAN, LAS, NA, OCE, PBE, RU, TR]**
@@ -128,8 +130,6 @@ The current version of this library supports the following Riot Games API versio
 - **match-v2.2 [BR, EUNE, EUW, JP, KR, LAN, LAS, NA, OCE, RU, TR]**
 - **matchlist-v2.2 [BR, EUNE, EUW, JP, KR, LAN, LAS, NA, OCE, RU, TR]**
 - **stats-v1.3 [BR, EUNE, EUW, JP, KR, LAN, LAS, NA, OCE, RU, TR]**
-- **summoner-v1.4 [BR, EUNE, EUW, JP, KR, LAN, LAS, NA, OCE, RU, TR]**
-- **team-v2.4 [BR, EUNE, EUW, JP, KR, LAN, LAS, NA, OCE, RU, TR]**
 - **tournament-provider-v1 [BR, EUNE, EUW, LAN, LAS, NA, OCE, RU, TR]**
 
 ## Contributing
