@@ -30,10 +30,6 @@ import net.rithms.riot.api.endpoints.championmastery.methods.GetChampionMasterie
 import net.rithms.riot.api.endpoints.championmastery.methods.GetChampionMastery;
 import net.rithms.riot.api.endpoints.championmastery.methods.GetChampionMasteryScore;
 import net.rithms.riot.api.endpoints.championmastery.methods.GetTopChampionMasteries;
-import net.rithms.riot.api.endpoints.current_game.dto.CurrentGameInfo;
-import net.rithms.riot.api.endpoints.current_game.methods.GetCurrentGameInfo;
-import net.rithms.riot.api.endpoints.featured_game.dto.FeaturedGames;
-import net.rithms.riot.api.endpoints.featured_game.methods.GetFeaturedGames;
 import net.rithms.riot.api.endpoints.game.dto.RecentGames;
 import net.rithms.riot.api.endpoints.game.methods.GetRecentGames;
 import net.rithms.riot.api.endpoints.league.dto.League;
@@ -47,6 +43,10 @@ import net.rithms.riot.api.endpoints.match.methods.GetMatchForTournament;
 import net.rithms.riot.api.endpoints.match.methods.GetMatchesByTournament;
 import net.rithms.riot.api.endpoints.matchlist.dto.MatchList;
 import net.rithms.riot.api.endpoints.matchlist.methods.GetMatchList;
+import net.rithms.riot.api.endpoints.spectator.dto.CurrentGameInfo;
+import net.rithms.riot.api.endpoints.spectator.dto.FeaturedGames;
+import net.rithms.riot.api.endpoints.spectator.methods.GetActiveGameBySummoner;
+import net.rithms.riot.api.endpoints.spectator.methods.GetFeaturedGames;
 import net.rithms.riot.api.endpoints.static_data.constant.ChampData;
 import net.rithms.riot.api.endpoints.static_data.constant.ItemData;
 import net.rithms.riot.api.endpoints.static_data.constant.ItemListData;
@@ -374,6 +374,27 @@ public class RiotApi implements Cloneable {
 	}
 
 	/**
+	 * Get current game information for the given summoner ID.
+	 * 
+	 * @param platform
+	 *            The platform for which to fetch data.
+	 * @param summonerId
+	 *            The ID of the summoner.
+	 * @return Current game info
+	 * @throws NullPointerException
+	 *             If {@code platform} or {@code summonerId} is {@code null}
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 * @see CurrentGameInfo
+	 */
+	public CurrentGameInfo getActiveGameBySummoner(Platform platform, long summonerId) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		Objects.requireNonNull(summonerId);
+		ApiMethod method = new GetActiveGameBySummoner(getConfig(), platform, summonerId);
+		return endpointManager.callMethodAndReturnDto(method);
+	}
+
+	/**
 	 * Provides a RiotApiAsync object to use for asynchronous api calls.
 	 * 
 	 * @return RotApiAsync object
@@ -539,27 +560,6 @@ public class RiotApi implements Cloneable {
 	 */
 	protected ApiConfig getConfig() {
 		return config;
-	}
-
-	/**
-	 * Get current game information for the given summoner ID.
-	 * 
-	 * @param platformId
-	 *            The platform ID for which to fetch data.
-	 * @param summonerId
-	 *            The ID of the summoner.
-	 * @return Current game info
-	 * @throws NullPointerException
-	 *             If {@code platformId} or {@code summonerId} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
-	 * @see CurrentGameInfo
-	 */
-	public CurrentGameInfo getCurrentGameInfo(Platform platformId, long summonerId) throws RiotApiException {
-		Objects.requireNonNull(platformId);
-		Objects.requireNonNull(summonerId);
-		ApiMethod method = new GetCurrentGameInfo(getConfig(), platformId, summonerId);
-		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
@@ -1169,18 +1169,18 @@ public class RiotApi implements Cloneable {
 	/**
 	 * Get list of featured games.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @return Featured games
 	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 * @see FeaturedGames
 	 */
-	public FeaturedGames getFeaturedGames(Region region) throws RiotApiException {
-		Objects.requireNonNull(region);
-		ApiMethod method = new GetFeaturedGames(getConfig(), region);
+	public FeaturedGames getFeaturedGames(Platform platform) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetFeaturedGames(getConfig(), platform);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 

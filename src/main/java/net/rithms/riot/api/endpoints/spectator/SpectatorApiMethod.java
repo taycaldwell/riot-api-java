@@ -14,20 +14,15 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.api.endpoints.featured_game.methods;
+package net.rithms.riot.api.endpoints.spectator;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.endpoints.featured_game.FeaturedGameApiMethod;
-import net.rithms.riot.api.endpoints.featured_game.dto.FeaturedGames;
-import net.rithms.riot.constant.Region;
+import net.rithms.riot.api.ApiMethod;
 
-public class GetFeaturedGames extends FeaturedGameApiMethod {
+abstract public class SpectatorApiMethod extends ApiMethod {
 
-	public GetFeaturedGames(ApiConfig config, Region region) {
-		super(config);
-		setRegion(region);
-		setReturnType(FeaturedGames.class);
-		setUrlBase("https://" + region + ".api.pvp.net/observer-mode/rest/featured");
-		addApiKeyParameter();
+	protected SpectatorApiMethod(ApiConfig config) {
+		super(config, "spectator");
+		requireApiKey();
 	}
 }

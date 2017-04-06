@@ -14,15 +14,20 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.api.endpoints.current_game;
+package net.rithms.riot.api.endpoints.spectator.methods;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.ApiMethod;
+import net.rithms.riot.api.endpoints.spectator.SpectatorApiMethod;
+import net.rithms.riot.api.endpoints.spectator.dto.CurrentGameInfo;
+import net.rithms.riot.constant.Platform;
 
-abstract public class CurrentGameApiMethod extends ApiMethod {
+public class GetActiveGameBySummoner extends SpectatorApiMethod {
 
-	protected CurrentGameApiMethod(ApiConfig config) {
-		super(config, "currentgame");
-		requireApiKey();
+	public GetActiveGameBySummoner(ApiConfig config, Platform platform, long summonerId) {
+		super(config);
+		setPlatform(platform);
+		setReturnType(CurrentGameInfo.class);
+		setUrlBase(platform.getHost() + "/lol/spectator/v3/active-games/by-summoner/" + summonerId);
+		addApiKeyParameter();
 	}
 }

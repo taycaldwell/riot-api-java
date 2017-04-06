@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.api.endpoints.featured_game.dto;
+package net.rithms.riot.api.endpoints.spectator.dto;
 
 import java.io.Serializable;
 
@@ -22,7 +22,7 @@ import net.rithms.riot.api.Dto;
 
 public class Observer extends Dto implements Serializable {
 
-	private static final long serialVersionUID = -8034830134572570668L;
+	private static final long serialVersionUID = 1866998515867420059L;
 
 	private String encryptionKey;
 

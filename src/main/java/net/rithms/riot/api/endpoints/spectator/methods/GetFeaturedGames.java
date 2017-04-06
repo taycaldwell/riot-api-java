@@ -14,22 +14,20 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.api.endpoints.current_game.methods;
+package net.rithms.riot.api.endpoints.spectator.methods;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.endpoints.current_game.CurrentGameApiMethod;
-import net.rithms.riot.api.endpoints.current_game.dto.CurrentGameInfo;
+import net.rithms.riot.api.endpoints.spectator.SpectatorApiMethod;
+import net.rithms.riot.api.endpoints.spectator.dto.FeaturedGames;
 import net.rithms.riot.constant.Platform;
-import net.rithms.riot.constant.Region;
 
-public class GetCurrentGameInfo extends CurrentGameApiMethod {
+public class GetFeaturedGames extends SpectatorApiMethod {
 
-	public GetCurrentGameInfo(ApiConfig config, Platform platformId, long summonerId) {
+	public GetFeaturedGames(ApiConfig config, Platform platform) {
 		super(config);
-		setRegion(Region.getRegionByPlatformId(platformId));
-		setReturnType(CurrentGameInfo.class);
-		setUrlBase(
-				"https://" + platformId.getName() + ".api.pvp.net/observer-mode/rest/consumer/getSpectatorGameInfo/" + platformId.getId() + '/' + summonerId);
+		setPlatform(platform);
+		setReturnType(FeaturedGames.class);
+		setUrlBase(platform.getHost() + "/lol/spectator/v3/featured-games");
 		addApiKeyParameter();
 	}
 }

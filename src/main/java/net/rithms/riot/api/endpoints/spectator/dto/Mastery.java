@@ -14,29 +14,29 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.api.endpoints.current_game.dto;
+package net.rithms.riot.api.endpoints.spectator.dto;
 
 import java.io.Serializable;
 
 import net.rithms.riot.api.Dto;
 
-public class Rune extends Dto implements Serializable {
+public class Mastery extends Dto implements Serializable {
 
-	private static final long serialVersionUID = -5212321615648903989L;
+	private static final long serialVersionUID = -7365282903295128662L;
 
-	private int count;
-	private int runeId;
+	private int masteryId;
+	private int rank;
 
-	public int getCount() {
-		return count;
+	public int getMasteryId() {
+		return masteryId;
 	}
 
-	public int getRuneId() {
-		return runeId;
+	public int getRank() {
+		return rank;
 	}
 
 	@Override
 	public String toString() {
-		return getRuneId() + ": " + getCount();
+		return getMasteryId() + ": " + getRank();
 	}
 }

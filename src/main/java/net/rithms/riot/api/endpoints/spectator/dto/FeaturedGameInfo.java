@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.api.endpoints.current_game.dto;
+package net.rithms.riot.api.endpoints.spectator.dto;
 
 import java.io.Serializable;
 import java.util.List;
 
 import net.rithms.riot.api.Dto;
 
-public class CurrentGameInfo extends Dto implements Serializable {
+public class FeaturedGameInfo extends Dto implements Serializable {
 
-	private static final long serialVersionUID = -6094147804616587912L;
+	private static final long serialVersionUID = -3351906462835367100L;
 
 	private List<BannedChampion> bannedChampions;
 	private long gameId;
@@ -34,10 +34,8 @@ public class CurrentGameInfo extends Dto implements Serializable {
 	private String gameType;
 	private int mapId;
 	private Observer observers;
-	private List<CurrentGameParticipant> participants;
+	private List<Participant> participants;
 	private String platformId;
-	private TeamInfo teamInfoOne;
-	private TeamInfo teamInfoTwo;
 
 	public List<BannedChampion> getBannedChampions() {
 		return bannedChampions;
@@ -75,7 +73,7 @@ public class CurrentGameInfo extends Dto implements Serializable {
 		return observers;
 	}
 
-	public List<CurrentGameParticipant> getParticipants() {
+	public List<Participant> getParticipants() {
 		return participants;
 	}
 
@@ -83,11 +81,8 @@ public class CurrentGameInfo extends Dto implements Serializable {
 		return platformId;
 	}
 
-	public TeamInfo getTeamInfoOne() {
-		return teamInfoOne;
-	}
-
-	public TeamInfo getTeamInfoTwo() {
-		return teamInfoTwo;
+	@Override
+	public String toString() {
+		return getGameId() + " (" + getGameMode() + ")";
 	}
 }

@@ -14,34 +14,25 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.api.endpoints.featured_game.dto;
+package net.rithms.riot.api.endpoints.spectator.dto;
 
 import java.io.Serializable;
+import java.util.List;
 
 import net.rithms.riot.api.Dto;
 
-public class BannedChampion extends Dto implements Serializable {
+public class FeaturedGames extends Dto implements Serializable {
 
-	private static final long serialVersionUID = -1094265845803914995L;
+	private static final long serialVersionUID = -8500784155234313042L;
 
-	private int championId;
-	private int pickTurn;
-	private int teamId;
+	private long clientRefreshInterval;
+	private List<FeaturedGameInfo> gameList;
 
-	public int getChampionId() {
-		return championId;
+	public long getClientRefreshInterval() {
+		return clientRefreshInterval;
 	}
 
-	public int getPickTurn() {
-		return pickTurn;
-	}
-
-	public int getTeamId() {
-		return teamId;
-	}
-
-	@Override
-	public String toString() {
-		return String.valueOf(getChampionId());
+	public List<FeaturedGameInfo> getGameList() {
+		return gameList;
 	}
 }

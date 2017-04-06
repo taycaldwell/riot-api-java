@@ -14,45 +14,29 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.api.endpoints.current_game.dto;
+package net.rithms.riot.api.endpoints.spectator.dto;
 
 import java.io.Serializable;
-import java.util.Map;
 
 import net.rithms.riot.api.Dto;
 
-public class TeamInfo extends Dto implements Serializable {
+public class Rune extends Dto implements Serializable {
 
-	private static final long serialVersionUID = -1268634988633731822L;
+	private static final long serialVersionUID = -5212321615648903989L;
 
-	private String memberStatus;
-	private String name;
-	private long secondsUntilEligibleForDeletion;
-	private String tag;
-	private Map<String, String> teamId;
+	private int count;
+	private int runeId;
 
-	public String getFullTeamId() {
-		return teamId.get("fullId");
+	public int getCount() {
+		return count;
 	}
 
-	public String getMemberStatus() {
-		return memberStatus;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public long getSecondsUntilEligibleForDeletion() {
-		return secondsUntilEligibleForDeletion;
-	}
-
-	public String getTag() {
-		return tag;
+	public int getRuneId() {
+		return runeId;
 	}
 
 	@Override
 	public String toString() {
-		return getName();
+		return getRuneId() + ": " + getCount();
 	}
 }
