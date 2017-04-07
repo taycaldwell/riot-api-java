@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.api.endpoints.tournament.dto;
+package net.rithms.riot.api.endpoints.tournament_stub.dto;
 
 import java.io.Serializable;
 

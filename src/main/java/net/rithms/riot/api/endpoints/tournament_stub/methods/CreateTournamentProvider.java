@@ -14,26 +14,27 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.api.endpoints.tournament.methods;
+package net.rithms.riot.api.endpoints.tournament_stub.methods;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.endpoints.tournament.TournamentApiMethod;
+import net.rithms.riot.api.endpoints.tournament_stub.TournamentStubApiMethod;
 import net.rithms.riot.api.request.RequestMethod;
-import net.rithms.riot.constant.Region;
+import net.rithms.riot.constant.Platform;
 
-public class CreateProvider extends TournamentApiMethod {
+public class CreateTournamentProvider extends TournamentStubApiMethod {
 
-	public CreateProvider(ApiConfig config, Region region, String callbackUrl) {
+	public CreateTournamentProvider(ApiConfig config, String region, String callbackUrl) {
 		super(config);
 		setMethod(RequestMethod.POST);
 		setReturnType(Integer.class);
-		setUrlBase("https://global.api.pvp.net/tournament/public/v1/provider");
+		setUrlBase(Platform.GLOBAL.getHost() + "/lol/tournament-stub/v3/providers");
 		addTournamentApiKeyParameter();
+
 		Map<String, Object> body = new HashMap<String, Object>();
-		body.put("region", region.getName().toUpperCase());
+		body.put("region", region);
 		body.put("url", callbackUrl);
 		buildJsonBody(body);
 	}

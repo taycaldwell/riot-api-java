@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.api.endpoints.tournament;
+package net.rithms.riot.api.endpoints.tournament_stub;
 
 import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.ApiMethod;
 
-abstract public class TournamentApiMethod extends ApiMethod {
+abstract public class TournamentStubApiMethod extends ApiMethod {
 
-	protected TournamentApiMethod(ApiConfig config) {
-		super(config, "tournament");
+	protected TournamentStubApiMethod(ApiConfig config) {
+		super(config, "tournamentstub");
 		requireTournamentApiKey();
 	}
 }

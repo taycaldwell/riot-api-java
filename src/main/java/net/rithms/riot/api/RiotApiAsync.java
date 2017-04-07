@@ -94,13 +94,11 @@ import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
 import net.rithms.riot.api.endpoints.summoner.methods.GetSummoner;
 import net.rithms.riot.api.endpoints.summoner.methods.GetSummonerByAccount;
 import net.rithms.riot.api.endpoints.summoner.methods.GetSummonerByName;
-import net.rithms.riot.api.endpoints.tournament.dto.LobbyEventList;
-import net.rithms.riot.api.endpoints.tournament.dto.TournamentCode;
-import net.rithms.riot.api.endpoints.tournament.methods.CreateProvider;
-import net.rithms.riot.api.endpoints.tournament.methods.CreateTournament;
-import net.rithms.riot.api.endpoints.tournament.methods.GetLobbyEventsByTournament;
-import net.rithms.riot.api.endpoints.tournament.methods.GetTournamentCode;
-import net.rithms.riot.api.endpoints.tournament.methods.UpdateTournamentCode;
+import net.rithms.riot.api.endpoints.tournament_stub.dto.LobbyEventWrapper;
+import net.rithms.riot.api.endpoints.tournament_stub.methods.CreateTournament;
+import net.rithms.riot.api.endpoints.tournament_stub.methods.CreateTournamentCodes;
+import net.rithms.riot.api.endpoints.tournament_stub.methods.CreateTournamentProvider;
+import net.rithms.riot.api.endpoints.tournament_stub.methods.GetLobbyEventsByCode;
 import net.rithms.riot.api.request.AsyncRequest;
 import net.rithms.riot.api.request.RequestListener;
 import net.rithms.riot.constant.PickType;
@@ -197,25 +195,6 @@ public class RiotApiAsync {
 	}
 
 	/**
-	 * Creates a tournament provider and returns its ID.
-	 *
-	 * @param region
-	 *            The region in which the provider will be running tournaments.
-	 * @param callbackUrl
-	 *            The provider's callback URL to which tournament game results in this region should be posted. (http URLs must use port 80,
-	 *            https URLs must use port 443).
-	 * @return A provider ID
-	 * @throws NullPointerException
-	 *             If {@code region} or {@code callbackUrl} is {@code null}
-	 */
-	public AsyncRequest createProvider(Region region, String callbackUrl) {
-		Objects.requireNonNull(region);
-		Objects.requireNonNull(callbackUrl);
-		ApiMethod method = new CreateProvider(getConfig(), region, callbackUrl);
-		return endpointManager.callMethodAsynchronously(method);
-	}
-
-	/**
 	 * Creates a tournament and returns its ID.
 	 *
 	 * @param tournamentName
@@ -223,6 +202,7 @@ public class RiotApiAsync {
 	 * @param providerId
 	 *            The provider ID to specify the regional registered provider data to associate this tournament.
 	 * @return A tournament ID
+	 * @version 3
 	 */
 	public AsyncRequest createTournament(String tournamentName, int providerId) {
 		ApiMethod method = new CreateTournament(getConfig(), tournamentName, providerId);
@@ -235,9 +215,90 @@ public class RiotApiAsync {
 	 * @param providerId
 	 *            The provider ID to specify the regional registered provider data to associate this tournament.
 	 * @return A tournament Id
+	 * @version 3
 	 */
 	public AsyncRequest createTournament(int providerId) {
 		return createTournament(null, providerId);
+	}
+
+	/**
+	 * Create tournament codes for the given tournament.
+	 *
+	 * @param tournamentId
+	 *            The tournament ID
+	 * @param count
+	 *            The number of codes to create (max 1000)
+	 * @param teamSize
+	 *            The team size of the game. Valid values are 1-5.
+	 * @param mapType
+	 *            The map type of the game.
+	 * @param pickType
+	 *            The pick type of the game.
+	 * @param spectatorType
+	 *            The spectator type of the game.
+	 * @param metaData
+	 *            Optional string that may contain any data in any format, if specified at all. Used to denote any custom information about
+	 *            the game.
+	 * @param allowedSummonerIds
+	 *            Optional list of participants in order to validate the players eligible to join the lobby.
+	 * @return A list of tournament codes
+	 * @throws NullPointerException
+	 *             If {@code mapType} or {@code pickType} or {@code spectatorType} is {@code null}
+	 * @version 3
+	 */
+	public AsyncRequest createTournamentCodes(int tournamentId, int count, int teamSize, TournamentMap mapType, PickType pickType, SpectatorType spectatorType,
+			String metaData, long... allowedSummonerIds) throws RiotApiException {
+		Objects.requireNonNull(mapType);
+		Objects.requireNonNull(pickType);
+		Objects.requireNonNull(spectatorType);
+		ApiMethod method = new CreateTournamentCodes(getConfig(), tournamentId, count, teamSize, mapType, pickType, spectatorType, metaData,
+				allowedSummonerIds);
+		return endpointManager.callMethodAsynchronously(method);
+	}
+
+	/**
+	 * Create tournament codes for the given tournament.
+	 *
+	 * @param tournamentId
+	 *            The tournament ID
+	 * @param count
+	 *            The number of codes to create (max 1000)
+	 * @param teamSize
+	 *            The team size of the game. Valid values are 1-5.
+	 * @param mapType
+	 *            The map type of the game.
+	 * @param pickType
+	 *            The pick type of the game.
+	 * @param spectatorType
+	 *            The spectator type of the game.
+	 * @param allowedSummonerIds
+	 *            Optional list of participants in order to validate the players eligible to join the lobby.
+	 * @return A list of tournament codes
+	 * @version 3
+	 */
+	public AsyncRequest createTournamentCodes(int tournamentId, int count, int teamSize, TournamentMap mapType, PickType pickType, SpectatorType spectatorType,
+			long... allowedSummonerIds) throws RiotApiException {
+		return createTournamentCodes(tournamentId, count, teamSize, mapType, pickType, spectatorType, null, allowedSummonerIds);
+	}
+
+	/**
+	 * Creates a tournament provider and returns its ID.
+	 *
+	 * @param region
+	 *            The region in which the provider will be running tournaments.
+	 * @param callbackUrl
+	 *            The provider's callback URL to which tournament game results in this region should be posted. (http URLs must use port 80,
+	 *            https URLs must use port 443).
+	 * @return A provider ID
+	 * @throws NullPointerException
+	 *             If {@code region} or {@code callbackUrl} is {@code null}
+	 * @version 3
+	 */
+	public AsyncRequest createTournamentProvider(String region, String callbackUrl) {
+		Objects.requireNonNull(region);
+		Objects.requireNonNull(callbackUrl);
+		ApiMethod method = new CreateTournamentProvider(getConfig(), region, callbackUrl);
+		return endpointManager.callMethodAsynchronously(method);
 	}
 
 	/**
@@ -1040,11 +1101,11 @@ public class RiotApiAsync {
 	 * @return Lobby event data
 	 * @throws NullPointerException
 	 *             If {@code tournamentCode} is {@code null}
-	 * @see LobbyEventList
+	 * @see LobbyEventWrapper
 	 */
 	public AsyncRequest getLobbyEventsByTournament(String tournamentCode) {
 		Objects.requireNonNull(tournamentCode);
-		ApiMethod method = new GetLobbyEventsByTournament(getConfig(), tournamentCode);
+		ApiMethod method = new GetLobbyEventsByCode(getConfig(), tournamentCode);
 		return endpointManager.callMethodAsynchronously(method);
 	}
 
@@ -1478,22 +1539,6 @@ public class RiotApiAsync {
 	}
 
 	/**
-	 * Returns the tournament code DTO associated with a {@code tournamentCode} string.
-	 * 
-	 * @param tournamentCode
-	 *            Tournament code corresponding to data to retrieve.
-	 * @return Data associated with a tournament code
-	 * @throws NullPointerException
-	 *             If {@code tournamentCode} is {@code null}
-	 * @see TournamentCode
-	 */
-	public AsyncRequest getTournamentCode(String tournamentCode) {
-		Objects.requireNonNull(tournamentCode);
-		ApiMethod method = new GetTournamentCode(getConfig(), tournamentCode);
-		return endpointManager.callMethodAsynchronously(method);
-	}
-
-	/**
 	 * Removes one or more {@link RequestListener} from getting informed when asynchronous requests finish.
 	 * 
 	 * @param listeners
@@ -1502,135 +1547,5 @@ public class RiotApiAsync {
 	 */
 	public void removeListeners(RequestListener... listeners) {
 		endpointManager.removeListeners(listeners);
-	}
-
-	/**
-	 * Update the pick type, map, spectator type, or allowed summoners for a {@code tournamentCode}
-	 *
-	 * @param tournamentCode
-	 *            The tournament code to update.
-	 * @param mapType
-	 *            The map type of the game.
-	 * @param pickType
-	 *            The pick type of the game.
-	 * @param spectatorType
-	 *            The spectator type of the game.
-	 * @param allowedSummonerIds
-	 *            Optional list of participants in order to validate the players eligible to join the lobby.
-	 * @throws NullPointerException
-	 *             If {@code tournamentCode} is {@code null}
-	 */
-	public void updateTournamentCode(String tournamentCode, TournamentMap mapType, PickType pickType, SpectatorType spectatorType, long... allowedSummonerIds) {
-		Objects.requireNonNull(tournamentCode);
-		ApiMethod method = new UpdateTournamentCode(getConfig(), tournamentCode, mapType, pickType, spectatorType, allowedSummonerIds);
-		endpointManager.callMethodAsynchronously(method);
-	}
-
-	/**
-	 * Update the pick type, map, spectator type, or allowed summoners for a {@code tournamentCode}
-	 *
-	 * @param tournamentCode
-	 *            The tournament code to update.
-	 * @param pickType
-	 *            The pick type of the game.
-	 * @param spectatorType
-	 *            The spectator type of the game.
-	 * @param allowedSummonerIds
-	 *            Optional list of participants in order to validate the players eligible to join the lobby.
-	 * @throws NullPointerException
-	 *             If {@code tournamentCode} is {@code null}
-	 */
-	public void updateTournamentCode(String tournamentCode, PickType pickType, SpectatorType spectatorType, long... allowedSummonerIds) {
-		Objects.requireNonNull(tournamentCode);
-		updateTournamentCode(tournamentCode, null, pickType, spectatorType, allowedSummonerIds);
-	}
-
-	/**
-	 * Update the pick type, map, spectator type, or allowed summoners for a {@code tournamentCode}
-	 *
-	 * @param tournamentCode
-	 *            The tournament code to update.
-	 * @param mapType
-	 *            The map type of the game.
-	 * @param spectatorType
-	 *            The spectator type of the game.
-	 * @param allowedSummonerIds
-	 *            Optional list of participants in order to validate the players eligible to join the lobby.
-	 * @throws NullPointerException
-	 *             If {@code tournamentCode} is {@code null}
-	 */
-	public void updateTournamentCode(String tournamentCode, TournamentMap mapType, SpectatorType spectatorType, long... allowedSummonerIds) {
-		Objects.requireNonNull(tournamentCode);
-		updateTournamentCode(tournamentCode, mapType, null, spectatorType, allowedSummonerIds);
-	}
-
-	/**
-	 * Update the pick type, map, spectator type, or allowed summoners for a {@code tournamentCode}
-	 *
-	 * @param tournamentCode
-	 *            The tournament code to update.
-	 * @param mapType
-	 *            The map type of the game.
-	 * @param pickType
-	 *            The pick type of the game.
-	 * @param allowedSummonerIds
-	 *            Optional list of participants in order to validate the players eligible to join the lobby.
-	 * @throws NullPointerException
-	 *             If {@code tournamentCode} is {@code null}
-	 */
-	public void updateTournamentCode(String tournamentCode, TournamentMap mapType, PickType pickType, long... allowedSummonerIds) {
-		Objects.requireNonNull(tournamentCode);
-		updateTournamentCode(tournamentCode, mapType, pickType, null, allowedSummonerIds);
-	}
-
-	/**
-	 * Update the pick type, map, spectator type, or allowed summoners for a {@code tournamentCode}
-	 *
-	 * @param tournamentCode
-	 *            The tournament code to update.
-	 * @param mapType
-	 *            The map type of the game.
-	 * @param allowedSummonerIds
-	 *            Optional list of participants in order to validate the players eligible to join the lobby.
-	 * @throws NullPointerException
-	 *             If {@code tournamentCode} is {@code null}
-	 */
-	public void updateTournamentCode(String tournamentCode, TournamentMap mapType, long... allowedSummonerIds) {
-		Objects.requireNonNull(tournamentCode);
-		updateTournamentCode(tournamentCode, mapType, null, null, allowedSummonerIds);
-	}
-
-	/**
-	 * Update the pick type, map, spectator type, or allowed summoners for a {@code tournamentCode}
-	 *
-	 * @param tournamentCode
-	 *            The tournament code to update.
-	 * @param pickType
-	 *            The pick type of the game.
-	 * @param allowedSummonerIds
-	 *            Optional list of participants in order to validate the players eligible to join the lobby.
-	 * @throws NullPointerException
-	 *             If {@code tournamentCode} is {@code null}
-	 */
-	public void updateTournamentCode(String tournamentCode, PickType pickType, long... allowedSummonerIds) {
-		Objects.requireNonNull(tournamentCode);
-		updateTournamentCode(tournamentCode, null, pickType, null, allowedSummonerIds);
-	}
-
-	/**
-	 * Update the pick type, map, spectator type, or allowed summoners for a {@code tournamentCode}
-	 *
-	 * @param tournamentCode
-	 *            The tournament code to update.
-	 * @param spectatorType
-	 *            The spectator type of the game.
-	 * @param allowedSummonerIds
-	 *            Optional list of participants in order to validate the players eligible to join the lobby.
-	 * @throws NullPointerException
-	 *             If {@code tournamentCode} is {@code null}
-	 */
-	public void updateTournamentCode(String tournamentCode, SpectatorType spectatorType, long... allowedSummonerIds) {
-		Objects.requireNonNull(tournamentCode);
-		updateTournamentCode(tournamentCode, null, null, spectatorType, allowedSummonerIds);
 	}
 }

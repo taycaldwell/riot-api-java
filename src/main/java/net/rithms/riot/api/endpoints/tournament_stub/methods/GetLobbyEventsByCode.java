@@ -14,18 +14,19 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.api.endpoints.tournament.methods;
+package net.rithms.riot.api.endpoints.tournament_stub.methods;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.endpoints.tournament.TournamentApiMethod;
-import net.rithms.riot.api.endpoints.tournament.dto.LobbyEventList;
+import net.rithms.riot.api.endpoints.tournament_stub.TournamentStubApiMethod;
+import net.rithms.riot.api.endpoints.tournament_stub.dto.LobbyEventWrapper;
+import net.rithms.riot.constant.Platform;
 
-public class GetLobbyEventsByTournament extends TournamentApiMethod {
+public class GetLobbyEventsByCode extends TournamentStubApiMethod {
 
-	public GetLobbyEventsByTournament(ApiConfig config, String tournamentCode) {
+	public GetLobbyEventsByCode(ApiConfig config, String tournamentCode) {
 		super(config);
-		setReturnType(LobbyEventList.class);
-		setUrlBase("https://global.api.pvp.net/tournament/public/v1/lobby/events/by-code/" + tournamentCode);
+		setReturnType(LobbyEventWrapper.class);
+		setUrlBase(Platform.GLOBAL.getHost() + "/lol/tournament-stub/v3/lobby-events/by-code/" + tournamentCode);
 		addTournamentApiKeyParameter();
 	}
 }

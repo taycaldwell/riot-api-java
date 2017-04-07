@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.api.endpoints.tournament.dto;
+package net.rithms.riot.api.endpoints.tournament_stub.dto;
 
 import java.io.Serializable;
 import java.util.List;
 
 import net.rithms.riot.api.Dto;
 
-public class LobbyEventList extends Dto implements Serializable {
+public class LobbyEventWrapper extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -7830193432118565589L;
 

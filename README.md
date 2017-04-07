@@ -124,6 +124,7 @@ The current version of this library supports the following Riot Games API versio
 - **RUNES-V3**
 - **SPECTATOR-V3**
 - **SUMMONER-V3**
+- **TOURNAMENT-STUB-V3**
 
 The current version of this library also supports the following legacy Riot Games API versions while they are still being converted to the new system:
 - **game-v1.3 [BR, EUNE, EUW, JP, KR, LAN, LAS, NA, OCE, RU, TR]**
@@ -132,7 +133,6 @@ The current version of this library also supports the following legacy Riot Game
 - **match-v2.2 [BR, EUNE, EUW, JP, KR, LAN, LAS, NA, OCE, RU, TR]**
 - **matchlist-v2.2 [BR, EUNE, EUW, JP, KR, LAN, LAS, NA, OCE, RU, TR]**
 - **stats-v1.3 [BR, EUNE, EUW, JP, KR, LAN, LAS, NA, OCE, RU, TR]**
-- **tournament-provider-v1 [BR, EUNE, EUW, LAN, LAS, NA, OCE, RU, TR]**
 
 ## Contributing
 All contributions are appreciated.

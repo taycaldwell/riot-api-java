@@ -31,7 +31,8 @@ public enum Platform {
 	OCE("OC1", "oce"),
 	PBE("PBE1", "pbe"),
 	RU("RU", "ru"),
-	TR("TR1", "tr");
+	TR("TR1", "tr"),
+	GLOBAL("GLOBAL", "global");
 
 	private String id;
 	private String name;
