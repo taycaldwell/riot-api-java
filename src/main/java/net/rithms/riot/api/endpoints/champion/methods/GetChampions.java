@@ -20,15 +20,15 @@ import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.UrlParameter;
 import net.rithms.riot.api.endpoints.champion.ChampionApiMethod;
 import net.rithms.riot.api.endpoints.champion.dto.ChampionList;
-import net.rithms.riot.constant.Region;
+import net.rithms.riot.constant.Platform;
 
 public class GetChampions extends ChampionApiMethod {
 
-	public GetChampions(ApiConfig config, Region region, boolean freeToPlay) {
+	public GetChampions(ApiConfig config, Platform platform, boolean freeToPlay) {
 		super(config);
-		setRegion(region);
+		setPlatform(platform);
 		setReturnType(ChampionList.class);
-		setUrlBase(region.getEndpoint() + "/v1.2/champion");
+		setUrlBase(platform.getHost() + "/lol/platform/v3/champions");
 		if (freeToPlay) {
 			add(new UrlParameter("freeToPlay", freeToPlay));
 		}

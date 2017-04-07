@@ -19,15 +19,15 @@ package net.rithms.riot.api.endpoints.champion.methods;
 import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.endpoints.champion.ChampionApiMethod;
 import net.rithms.riot.api.endpoints.champion.dto.Champion;
-import net.rithms.riot.constant.Region;
+import net.rithms.riot.constant.Platform;
 
-public class GetChampionById extends ChampionApiMethod {
+public class GetChampion extends ChampionApiMethod {
 
-	public GetChampionById(ApiConfig config, Region region, int id) {
+	public GetChampion(ApiConfig config, Platform platform, int id) {
 		super(config);
-		setRegion(region);
+		setPlatform(platform);
 		setReturnType(Champion.class);
-		setUrlBase(region.getEndpoint() + "/v1.2/champion/" + id);
+		setUrlBase(platform.getHost() + "/lol/platform/v3/champions/" + id);
 		addApiKeyParameter();
 	}
 }

@@ -23,7 +23,7 @@ import java.util.logging.Logger;
 
 import net.rithms.riot.api.endpoints.champion.dto.Champion;
 import net.rithms.riot.api.endpoints.champion.dto.ChampionList;
-import net.rithms.riot.api.endpoints.champion.methods.GetChampionById;
+import net.rithms.riot.api.endpoints.champion.methods.GetChampion;
 import net.rithms.riot.api.endpoints.champion.methods.GetChampions;
 import net.rithms.riot.api.endpoints.championmastery.dto.ChampionMastery;
 import net.rithms.riot.api.endpoints.championmastery.methods.GetChampionMasteries;
@@ -440,20 +440,21 @@ public class RiotApi implements Cloneable {
 	/**
 	 * Retrieve champion by {@code id}.
 	 *
-	 * @param region
-	 *            Region where to retrieve the data.
+	 * @param platform
+	 *            Platform where to retrieve the data.
 	 * @param id
 	 *            The ID of the desired champion
 	 * @return The champion of the given ID
 	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 3
 	 * @see Champion
 	 */
-	public Champion getChampionById(Region region, int id) throws RiotApiException {
-		Objects.requireNonNull(region);
-		ApiMethod method = new GetChampionById(getConfig(), region, id);
+	public Champion getChampion(Platform platform, int id) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetChampion(getConfig(), platform, id);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 
@@ -521,38 +522,37 @@ public class RiotApi implements Cloneable {
 	/**
 	 * Retrieve all champions.
 	 *
-	 * @param region
-	 *            Region where to retrieve the data.
+	 * @param platform
+	 *            Platform where to retrieve the data.
 	 * @param freeToPlay
 	 *            Optional filter param to retrieve only free to play champions.
-	 * @return A list of champions for the given region
+	 * @return This object contains a collection of champion information.
 	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 3
 	 * @see ChampionList
 	 */
-	public ChampionList getChampions(Region region, boolean freeToPlay) throws RiotApiException {
-		Objects.requireNonNull(region);
-		ApiMethod method = new GetChampions(getConfig(), region, freeToPlay);
+	public ChampionList getChampions(Platform platform, boolean freeToPlay) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetChampions(getConfig(), platform, freeToPlay);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
 	 * Retrieve all champions.
 	 *
-	 * @param region
-	 *            Region where to retrieve the data.
-	 * @return A list of champions for the given region
-	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 * @param platform
+	 *            Platform where to retrieve the data.
+	 * @return This object contains a collection of champion information.
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 3
 	 * @see ChampionList
 	 */
-	public ChampionList getChampions(Region region) throws RiotApiException {
-		Objects.requireNonNull(region);
-		return getChampions(region, false);
+	public ChampionList getChampions(Platform platform) throws RiotApiException {
+		return getChampions(platform, false);
 	}
 
 	/**
@@ -1181,23 +1181,6 @@ public class RiotApi implements Cloneable {
 		Objects.requireNonNull(platform);
 		ApiMethod method = new GetFeaturedGames(getConfig(), platform);
 		return endpointManager.callMethodAndReturnDto(method);
-	}
-
-	/**
-	 * Retrieve all champions that are free-to-play.
-	 *
-	 * @param region
-	 *            Region where to retrieve the data.
-	 * @return A list of all the free to play champions for the given region
-	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
-	 * @see ChampionList
-	 */
-	public ChampionList getFreeToPlayChampions(Region region) throws RiotApiException {
-		Objects.requireNonNull(region);
-		return getChampions(region, true);
 	}
 
 	/**
