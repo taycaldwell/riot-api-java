@@ -14,25 +14,20 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.api.endpoints.summoner.methods;
-
-import java.util.Map;
-
-import com.google.gson.reflect.TypeToken;
+package net.rithms.riot.api.endpoints.runes.methods;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.endpoints.summoner.SummonerApiMethod;
-import net.rithms.riot.api.endpoints.summoner.dto.RunePages;
-import net.rithms.riot.constant.Region;
+import net.rithms.riot.api.endpoints.runes.RunesApiMethod;
+import net.rithms.riot.api.endpoints.runes.dto.RunePages;
+import net.rithms.riot.constant.Platform;
 
-public class GetRunePages extends SummonerApiMethod {
+public class GetRunesBySummoner extends RunesApiMethod {
 
-	public GetRunePages(ApiConfig config, Region region, String summonerIds) {
+	public GetRunesBySummoner(ApiConfig config, Platform platform, long summonerId) {
 		super(config);
-		setRegion(region);
-		setReturnType(new TypeToken<Map<String, RunePages>>() {
-		}.getType());
-		setUrlBase(region.getEndpoint() + "/v1.4/summoner/" + summonerIds + "/runes");
+		setPlatform(platform);
+		setReturnType(RunePages.class);
+		setUrlBase(platform.getHost() + "/lol/platform/v3/runes/by-summoner/" + summonerId);
 		addApiKeyParameter();
 	}
 }

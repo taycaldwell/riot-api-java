@@ -14,30 +14,29 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.api.endpoints.summoner.dto;
+package net.rithms.riot.api.endpoints.masteries.dto;
 
 import java.io.Serializable;
-import java.util.Set;
 
 import net.rithms.riot.api.Dto;
 
-public class MasteryPages extends Dto implements Serializable {
+public class Mastery extends Dto implements Serializable {
 
-	private static final long serialVersionUID = 2574314573359467443L;
+	private static final long serialVersionUID = -1053051501742552701L;
 
-	private Set<MasteryPage> pages;
-	private long summonerId;
+	private int id;
+	private int rank;
 
-	public Set<MasteryPage> getPages() {
-		return pages;
+	public int getId() {
+		return id;
 	}
 
-	public long getSummonerId() {
-		return summonerId;
+	public int getRank() {
+		return rank;
 	}
 
 	@Override
 	public String toString() {
-		return getPages().toString();
+		return getId() + ": " + getRank();
 	}
 }

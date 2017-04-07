@@ -118,6 +118,8 @@ The documentation for this library can be found [here.](http://taycaldwell.com/r
 ## API Versions
 The current version of this library supports the following Riot Games API versions:
 - **LOL-STATIC-DATA-V3**
+- **MASTERIES-V3**
+- **RUNES-V3**
 - **SPECTATOR-V3**
 - **SUMMONER-V3**
 

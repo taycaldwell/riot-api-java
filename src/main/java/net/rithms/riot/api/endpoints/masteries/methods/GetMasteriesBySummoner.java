@@ -14,25 +14,20 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.api.endpoints.summoner.methods;
-
-import java.util.Map;
-
-import com.google.gson.reflect.TypeToken;
+package net.rithms.riot.api.endpoints.masteries.methods;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.endpoints.summoner.SummonerApiMethod;
-import net.rithms.riot.api.endpoints.summoner.dto.MasteryPages;
-import net.rithms.riot.constant.Region;
+import net.rithms.riot.api.endpoints.masteries.MasteriesApiMethod;
+import net.rithms.riot.api.endpoints.masteries.dto.MasteryPages;
+import net.rithms.riot.constant.Platform;
 
-public class GetMasteryPages extends SummonerApiMethod {
+public class GetMasteriesBySummoner extends MasteriesApiMethod {
 
-	public GetMasteryPages(ApiConfig config, Region region, String summonerIds) {
+	public GetMasteriesBySummoner(ApiConfig config, Platform platform, long summonerId) {
 		super(config);
-		setRegion(region);
-		setReturnType(new TypeToken<Map<String, MasteryPages>>() {
-		}.getType());
-		setUrlBase(region.getEndpoint() + "/v1.4/summoner/" + summonerIds + "/masteries");
+		setPlatform(platform);
+		setReturnType(MasteryPages.class);
+		setUrlBase(platform.getHost() + "/lol/platform/v3/masteries/by-summoner/" + summonerId);
 		addApiKeyParameter();
 	}
 }

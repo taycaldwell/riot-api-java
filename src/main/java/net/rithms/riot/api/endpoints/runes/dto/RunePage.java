@@ -14,29 +14,40 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.api.endpoints.summoner.dto;
+package net.rithms.riot.api.endpoints.runes.dto;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import net.rithms.riot.api.Dto;
 
-public class Mastery extends Dto implements Serializable {
+public class RunePage extends Dto implements Serializable {
 
-	private static final long serialVersionUID = -1053051501742552701L;
+	private static final long serialVersionUID = 97699628656087959L;
 
-	private int id;
-	private int rank;
+	private boolean current;
+	private long id;
+	private String name;
+	private Set<RuneSlot> slots;
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public int getRank() {
-		return rank;
+	public String getName() {
+		return name;
+	}
+
+	public Set<RuneSlot> getSlots() {
+		return slots;
+	}
+
+	public boolean isCurrent() {
+		return current;
 	}
 
 	@Override
 	public String toString() {
-		return getId() + ": " + getRank();
+		return getId() + ": " + getName();
 	}
 }

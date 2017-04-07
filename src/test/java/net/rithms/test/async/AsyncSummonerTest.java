@@ -27,13 +27,12 @@ import org.junit.Test;
 
 import net.rithms.riot.api.RiotApiAsync;
 import net.rithms.riot.api.RiotApiException;
-import net.rithms.riot.api.endpoints.summoner.dto.MasteryPages;
-import net.rithms.riot.api.endpoints.summoner.dto.RunePages;
+import net.rithms.riot.api.endpoints.masteries.dto.MasteryPages;
+import net.rithms.riot.api.endpoints.runes.dto.RunePages;
 import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
 import net.rithms.riot.api.request.AsyncRequest;
 import net.rithms.riot.api.request.RequestListener;
 import net.rithms.riot.constant.Platform;
-import net.rithms.riot.constant.Region;
 import net.rithms.test.RiotApiTest;
 
 /**
@@ -50,7 +49,7 @@ public class AsyncSummonerTest {
 
 	@Test
 	public void testGetMasteryPages() throws RiotApiException, InterruptedException {
-		AsyncRequest reqMasteryPages = api.getMasteryPages(Region.NA, 81439110);
+		AsyncRequest reqMasteryPages = api.getMasteriesBySummoner(Platform.NA, 81439110);
 		reqMasteryPages.addListeners(new RequestListener() {
 			@Override
 			public void onRequestFailed(RiotApiException e) {
@@ -74,7 +73,7 @@ public class AsyncSummonerTest {
 
 	@Test
 	public void testGetRunePages() throws RiotApiException, InterruptedException {
-		AsyncRequest reqRunePages = api.getRunePages(Region.NA, 81439110);
+		AsyncRequest reqRunePages = api.getRunesBySummoner(Platform.NA, 81439110);
 		reqRunePages.addListeners(new RequestListener() {
 			@Override
 			public void onRequestFailed(RiotApiException e) {

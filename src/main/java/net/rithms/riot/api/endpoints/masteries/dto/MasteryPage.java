@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.api.endpoints.summoner.dto;
+package net.rithms.riot.api.endpoints.masteries.dto;
 
 import java.io.Serializable;
 import java.util.List;

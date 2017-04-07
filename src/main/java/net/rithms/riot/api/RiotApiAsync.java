@@ -34,12 +34,16 @@ import net.rithms.riot.api.endpoints.league.methods.GetChallengerLeague;
 import net.rithms.riot.api.endpoints.league.methods.GetLeagueBySummoners;
 import net.rithms.riot.api.endpoints.league.methods.GetLeagueEntryBySummoners;
 import net.rithms.riot.api.endpoints.league.methods.GetMasterLeague;
+import net.rithms.riot.api.endpoints.masteries.dto.MasteryPages;
+import net.rithms.riot.api.endpoints.masteries.methods.GetMasteriesBySummoner;
 import net.rithms.riot.api.endpoints.match.dto.MatchDetail;
 import net.rithms.riot.api.endpoints.match.methods.GetMatch;
 import net.rithms.riot.api.endpoints.match.methods.GetMatchForTournament;
 import net.rithms.riot.api.endpoints.match.methods.GetMatchesByTournament;
 import net.rithms.riot.api.endpoints.matchlist.dto.MatchList;
 import net.rithms.riot.api.endpoints.matchlist.methods.GetMatchList;
+import net.rithms.riot.api.endpoints.runes.dto.RunePages;
+import net.rithms.riot.api.endpoints.runes.methods.GetRunesBySummoner;
 import net.rithms.riot.api.endpoints.spectator.dto.CurrentGameInfo;
 import net.rithms.riot.api.endpoints.spectator.dto.FeaturedGames;
 import net.rithms.riot.api.endpoints.spectator.methods.GetActiveGameBySummoner;
@@ -87,11 +91,7 @@ import net.rithms.riot.api.endpoints.status.dto.Shard;
 import net.rithms.riot.api.endpoints.status.dto.ShardStatus;
 import net.rithms.riot.api.endpoints.status.methods.GetShardStatus;
 import net.rithms.riot.api.endpoints.status.methods.GetShards;
-import net.rithms.riot.api.endpoints.summoner.dto.MasteryPages;
-import net.rithms.riot.api.endpoints.summoner.dto.RunePages;
 import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
-import net.rithms.riot.api.endpoints.summoner.methods.GetMasteryPages;
-import net.rithms.riot.api.endpoints.summoner.methods.GetRunePages;
 import net.rithms.riot.api.endpoints.summoner.methods.GetSummoner;
 import net.rithms.riot.api.endpoints.summoner.methods.GetSummonerByAccount;
 import net.rithms.riot.api.endpoints.summoner.methods.GetSummonerByName;
@@ -1081,40 +1081,22 @@ public class RiotApiAsync {
 	}
 
 	/**
-	 * Get mastery pages mapped by summoner ID for a given list of {@code summonerIds}.
+	 * Get mastery pages for a given {@code summonerId}.
 	 *
-	 * @param region
-	 *            Region where to retrieve the data.
-	 * @param summonerIds
-	 *            Comma-separated list of summoner IDs associated with masteries to retrieve. Maximum allowed at once is 40.
-	 * @return A map of mastery pages of the given summoners
+	 * @param platform
+	 *            Platform where to retrieve the data.
+	 * @param summonerId
+	 *            Summoner ID associated with masteries to retrieve.
+	 * @return Mastery pages of the given summoners
 	 * @throws NullPointerException
-	 *             If {@code region} or {@code summonerIds} is {@code null}
+	 *             If {@code platform} is {@code null}
+	 * @version 3
 	 * @see MasteryPages
 	 */
-	public AsyncRequest getMasteryPages(Region region, String... summonerIds) {
-		Objects.requireNonNull(region);
-		Objects.requireNonNull(summonerIds);
-		ApiMethod method = new GetMasteryPages(getConfig(), region, Convert.joinString(",", summonerIds));
+	public AsyncRequest getMasteriesBySummoner(Platform platform, long summonerId) {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetMasteriesBySummoner(getConfig(), platform, summonerId);
 		return endpointManager.callMethodAsynchronously(method);
-	}
-
-	/**
-	 * Get mastery pages mapped by summoner ID for a given list of {@code summonerIds}.
-	 *
-	 * @param region
-	 *            Region where to retrieve the data.
-	 * @param summonerIds
-	 *            List of summoner IDs associated with masteries to retrieve. Maximum allowed at once is 40.
-	 * @return A map of mastery pages of the given summoners
-	 * @throws NullPointerException
-	 *             If {@code region} or {@code summonerIds} is {@code null}
-	 * @see MasteryPages
-	 */
-	public AsyncRequest getMasteryPages(Region region, long... summonerIds) {
-		Objects.requireNonNull(region);
-		Objects.requireNonNull(summonerIds);
-		return getMasteryPages(region, Convert.longToString(summonerIds));
 	}
 
 	/**
@@ -1406,40 +1388,22 @@ public class RiotApiAsync {
 	}
 
 	/**
-	 * Get rune pages mapped by summoner ID for a given list of {@code summonerIds}.
+	 * Get rune pages for a given {@code summonerId}.
 	 *
-	 * @param region
-	 *            Region where to retrieve the data.
-	 * @param summonerIds
-	 *            Comma-separated list of summoner IDs associated with runes to retrieve. Maximum allowed at once is 40.
-	 * @return A map of rune pages of the given summoners
+	 * @param platform
+	 *            Platform where to retrieve the data.
+	 * @param summonerId
+	 *            Summoner ID associated with runes to retrieve.
+	 * @return Rune pages of the given summoners
 	 * @throws NullPointerException
-	 *             If {@code region} or {@code summonerIds} is {@code null}
+	 *             If {@code platform} is {@code null}
+	 * @version 3
 	 * @see RunePages
 	 */
-	public AsyncRequest getRunePages(Region region, String... summonerIds) {
-		Objects.requireNonNull(region);
-		Objects.requireNonNull(summonerIds);
-		ApiMethod method = new GetRunePages(getConfig(), region, Convert.joinString(",", summonerIds));
+	public AsyncRequest getRunesBySummoner(Platform platform, long summonerId) {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetRunesBySummoner(getConfig(), platform, summonerId);
 		return endpointManager.callMethodAsynchronously(method);
-	}
-
-	/**
-	 * Get rune pages mapped by summoner ID for a given list of {@code summonerIds}.
-	 *
-	 * @param region
-	 *            Region where to retrieve the data.
-	 * @param summonerIds
-	 *            List of summoner IDs associated with runes to retrieve. Maximum allowed at once is 40.
-	 * @return A map of rune pages of the given summoners
-	 * @throws NullPointerException
-	 *             If {@code region} or {@code summonerIds} is {@code null}
-	 * @see RunePages
-	 */
-	public AsyncRequest getRunePages(Region region, long... summonerIds) {
-		Objects.requireNonNull(region);
-		Objects.requireNonNull(summonerIds);
-		return getRunePages(region, Convert.longToString(summonerIds));
 	}
 
 	/**
