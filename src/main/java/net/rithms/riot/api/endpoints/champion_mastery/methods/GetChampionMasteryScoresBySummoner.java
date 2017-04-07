@@ -14,22 +14,19 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.api.endpoints.championmastery.methods;
+package net.rithms.riot.api.endpoints.champion_mastery.methods;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.endpoints.championmastery.ChampionMasteryApiMethod;
-import net.rithms.riot.api.endpoints.championmastery.dto.ChampionMastery;
+import net.rithms.riot.api.endpoints.champion_mastery.ChampionMasteryApiMethod;
 import net.rithms.riot.constant.Platform;
-import net.rithms.riot.constant.Region;
 
-public class GetChampionMastery extends ChampionMasteryApiMethod {
+public class GetChampionMasteryScoresBySummoner extends ChampionMasteryApiMethod {
 
-	public GetChampionMastery(ApiConfig config, Platform platformId, long summonerId, long championId) {
+	public GetChampionMasteryScoresBySummoner(ApiConfig config, Platform platform, long summonerId) {
 		super(config);
-		setRegion(Region.getRegionByPlatformId(platformId));
-		setReturnType(ChampionMastery.class);
-		setUrlBase("https://" + platformId.getName() + ".api.pvp.net/championmastery/location/" + platformId.getId() + "/player/" + summonerId + "/champion/"
-				+ championId);
+		setPlatform(platform);
+		setReturnType(Integer.class);
+		setUrlBase(platform.getHost() + "/lol/champion-mastery/v3/scores/by-summoner/" + summonerId);
 		addApiKeyParameter();
 	}
 }

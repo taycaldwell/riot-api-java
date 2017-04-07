@@ -14,31 +14,25 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.api.endpoints.championmastery.methods;
+package net.rithms.riot.api.endpoints.champion_mastery.methods;
 
 import java.util.List;
 
 import com.google.gson.reflect.TypeToken;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.UrlParameter;
-import net.rithms.riot.api.endpoints.championmastery.ChampionMasteryApiMethod;
-import net.rithms.riot.api.endpoints.championmastery.dto.ChampionMastery;
+import net.rithms.riot.api.endpoints.champion_mastery.ChampionMasteryApiMethod;
+import net.rithms.riot.api.endpoints.champion_mastery.dto.ChampionMastery;
 import net.rithms.riot.constant.Platform;
-import net.rithms.riot.constant.Region;
 
-public class GetTopChampionMasteries extends ChampionMasteryApiMethod {
+public class GetChampionMasteriesBySummoner extends ChampionMasteryApiMethod {
 
-	public GetTopChampionMasteries(ApiConfig config, Platform platformId, long summonerId, int count) {
+	public GetChampionMasteriesBySummoner(ApiConfig config, Platform platform, long summonerId) {
 		super(config);
-		setRegion(Region.getRegionByPlatformId(platformId));
+		setPlatform(platform);
 		setReturnType(new TypeToken<List<ChampionMastery>>() {
 		}.getType());
-		setUrlBase(
-				"https://" + platformId.getName() + ".api.pvp.net/championmastery/location/" + platformId.getId() + "/player/" + summonerId + "/topchampions");
-		if (count != -1) {
-			add(new UrlParameter("count", count));
-		}
+		setUrlBase(platform.getHost() + "/lol/champion-mastery/v3/champion-masteries/by-summoner/" + summonerId);
 		addApiKeyParameter();
 	}
 }

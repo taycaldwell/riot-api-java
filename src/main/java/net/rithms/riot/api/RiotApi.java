@@ -25,11 +25,10 @@ import net.rithms.riot.api.endpoints.champion.dto.Champion;
 import net.rithms.riot.api.endpoints.champion.dto.ChampionList;
 import net.rithms.riot.api.endpoints.champion.methods.GetChampion;
 import net.rithms.riot.api.endpoints.champion.methods.GetChampions;
-import net.rithms.riot.api.endpoints.championmastery.dto.ChampionMastery;
-import net.rithms.riot.api.endpoints.championmastery.methods.GetChampionMasteries;
-import net.rithms.riot.api.endpoints.championmastery.methods.GetChampionMastery;
-import net.rithms.riot.api.endpoints.championmastery.methods.GetChampionMasteryScore;
-import net.rithms.riot.api.endpoints.championmastery.methods.GetTopChampionMasteries;
+import net.rithms.riot.api.endpoints.champion_mastery.dto.ChampionMastery;
+import net.rithms.riot.api.endpoints.champion_mastery.methods.GetChampionMasteriesBySummoner;
+import net.rithms.riot.api.endpoints.champion_mastery.methods.GetChampionMasteriesBySummonerByChampion;
+import net.rithms.riot.api.endpoints.champion_mastery.methods.GetChampionMasteryScoresBySummoner;
 import net.rithms.riot.api.endpoints.game.dto.RecentGames;
 import net.rithms.riot.api.endpoints.game.methods.GetRecentGames;
 import net.rithms.riot.api.endpoints.league.dto.League;
@@ -461,61 +460,64 @@ public class RiotApi implements Cloneable {
 	/**
 	 * Get all champion mastery entries sorted by number of champion points descending
 	 *
-	 * @param platformId
-	 *            Region where to retrieve the data.
+	 * @param platform
+	 *            Platform where to retrieve the data.
 	 * @param summonerId
 	 *            Summoner ID associated with the player
 	 * @return A list of champion masteries for a given summoner.
 	 * @throws NullPointerException
-	 *             If {@code platformId} or {@code summonerId} is {@code null}
+	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 3
 	 * @see ChampionMastery
 	 */
-	public List<ChampionMastery> getChampionMasteries(Platform platformId, long summonerId) throws RiotApiException {
-		Objects.requireNonNull(platformId);
-		ApiMethod method = new GetChampionMasteries(getConfig(), platformId, summonerId);
+	public List<ChampionMastery> getChampionMasteriesBySummoner(Platform platform, long summonerId) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetChampionMasteriesBySummoner(getConfig(), platform, summonerId);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
 	 * Get a champion mastery by {@code summonerId} and {@code championId}.
 	 *
-	 * @param platformId
-	 *            Region where to retrieve the data.
+	 * @param platform
+	 *            Platform where to retrieve the data.
 	 * @param summonerId
 	 *            Summoner ID associated with the player
 	 * @param championId
 	 *            Champion ID to retrieve Champion Mastery for
 	 * @return Champion mastery for a given summoner and championId, or {@code null} if given player has no mastery for given champion.
 	 * @throws NullPointerException
-	 *             If {@code platformId} or {@code summonerId} is {@code null}
+	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 3
 	 * @see ChampionMastery
 	 */
-	public ChampionMastery getChampionMastery(Platform platformId, long summonerId, long championId) throws RiotApiException {
-		Objects.requireNonNull(platformId);
-		ApiMethod method = new GetChampionMastery(getConfig(), platformId, summonerId, championId);
+	public ChampionMastery getChampionMasteriesBySummonerByChampion(Platform platform, long summonerId, int championId) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetChampionMasteriesBySummonerByChampion(getConfig(), platform, summonerId, championId);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
 	 * Get a player's total champion mastery score, which is sum of individual champion mastery levels
 	 *
-	 * @param platformId
-	 *            Region where to retrieve the data.
+	 * @param platform
+	 *            Platform where to retrieve the data.
 	 * @param summonerId
 	 *            Summoner ID associated with the player
 	 * @return The total champion mastery score of a given summoner.
 	 * @throws NullPointerException
-	 *             If {@code platformId} or {@code summonerId} is {@code null}
+	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 3
 	 */
-	public int getChampionMasteryScore(Platform platformId, long summonerId) throws RiotApiException {
-		Objects.requireNonNull(platformId);
-		ApiMethod method = new GetChampionMasteryScore(getConfig(), platformId, summonerId);
+	public int getChampionMasteryScoresBySummoner(Platform platform, long summonerId) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetChampionMasteryScoresBySummoner(getConfig(), platform, summonerId);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 
@@ -1820,48 +1822,6 @@ public class RiotApi implements Cloneable {
 		Objects.requireNonNull(summonerName);
 		ApiMethod method = new GetSummonerByName(getConfig(), platform, summonerName);
 		return endpointManager.callMethodAndReturnDto(method);
-	}
-
-	/**
-	 * Get specified number of top champion mastery entries sorted by number of champion points descending
-	 *
-	 * @param platformId
-	 *            Region where to retrieve the data.
-	 * @param summonerId
-	 *            Summoner ID associated with the player
-	 * @param count
-	 *            Number of entries to retrieve.
-	 * @return A list of the top champion masteries of a given summoner.
-	 * @throws NullPointerException
-	 *             If {@code platformId} or {@code summonerId} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
-	 * @see ChampionMastery
-	 */
-	public List<ChampionMastery> getTopChampionMasteries(Platform platformId, long summonerId, int count) throws RiotApiException {
-		Objects.requireNonNull(platformId);
-		ApiMethod method = new GetTopChampionMasteries(getConfig(), platformId, summonerId, count);
-		return endpointManager.callMethodAndReturnDto(method);
-	}
-
-	/**
-	 * Retrieve top 3 champion masteries by {@code summonerId}.
-	 *
-	 * @param platformId
-	 *            Region where to retrieve the data.
-	 * @param summonerId
-	 *            Summoner ID associated with the player
-	 * @return A list of the top champion masteries of a given summoner.
-	 * @throws NullPointerException
-	 *             If {@code platformId} or {@code summonerId} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
-	 * @see ChampionMastery
-	 */
-	public List<ChampionMastery> getTopChampionMasteries(Platform platformId, long summonerId) throws RiotApiException {
-		Objects.requireNonNull(platformId);
-		Objects.requireNonNull(summonerId);
-		return getTopChampionMasteries(platformId, summonerId, -1);
 	}
 
 	/**

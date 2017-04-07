@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.api.endpoints.championmastery.dto;
+package net.rithms.riot.api.endpoints.champion_mastery.dto;
 
 import java.io.Serializable;
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.api.endpoints.championmastery;
+package net.rithms.riot.api.endpoints.champion_mastery;
 
 import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.ApiMethod;
