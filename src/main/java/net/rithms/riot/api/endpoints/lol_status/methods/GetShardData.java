@@ -14,22 +14,19 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.api.endpoints.status.methods;
+package net.rithms.riot.api.endpoints.lol_status.methods;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.endpoints.status.StatusApiMethod;
-import net.rithms.riot.api.endpoints.status.dto.ShardStatus;
-import net.rithms.riot.constant.Region;
+import net.rithms.riot.api.endpoints.lol_status.LolStatusApiMethod;
+import net.rithms.riot.api.endpoints.lol_status.dto.ShardStatus;
+import net.rithms.riot.constant.Platform;
 
-public class GetShardStatus extends StatusApiMethod {
+public class GetShardData extends LolStatusApiMethod {
 
-	public GetShardStatus(ApiConfig config, Region region) {
+	public GetShardData(ApiConfig config, Platform platform) {
 		super(config);
+		setPlatform(platform);
 		setReturnType(ShardStatus.class);
-		if (region == Region.PBE) {
-			setUrlBase("http://status.pbe.leagueoflegends.com/shards/pbe");
-		} else {
-			setUrlBase("http://status.leagueoflegends.com/shards/" + region);
-		}
+		setUrlBase(platform.getHost() + "/lol/status/v3/shard-data");
 	}
 }

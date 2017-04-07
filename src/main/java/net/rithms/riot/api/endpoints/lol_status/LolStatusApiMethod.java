@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.api.endpoints.status;
+package net.rithms.riot.api.endpoints.lol_status;
 
 import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.ApiMethod;
 
-abstract public class StatusApiMethod extends ApiMethod {
+abstract public class LolStatusApiMethod extends ApiMethod {
 
-	protected StatusApiMethod(ApiConfig config) {
-		super(config, "status");
+	protected LolStatusApiMethod(ApiConfig config) {
+		super(config, "lolstatus");
 		requireApiKey();
 	}
 }

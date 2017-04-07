@@ -36,6 +36,8 @@ import net.rithms.riot.api.endpoints.league.methods.GetChallengerLeague;
 import net.rithms.riot.api.endpoints.league.methods.GetLeagueBySummoners;
 import net.rithms.riot.api.endpoints.league.methods.GetLeagueEntryBySummoners;
 import net.rithms.riot.api.endpoints.league.methods.GetMasterLeague;
+import net.rithms.riot.api.endpoints.lol_status.dto.ShardStatus;
+import net.rithms.riot.api.endpoints.lol_status.methods.GetShardData;
 import net.rithms.riot.api.endpoints.masteries.dto.MasteryPages;
 import net.rithms.riot.api.endpoints.masteries.methods.GetMasteriesBySummoner;
 import net.rithms.riot.api.endpoints.match.dto.MatchDetail;
@@ -89,10 +91,6 @@ import net.rithms.riot.api.endpoints.stats.dto.PlayerStatsSummaryList;
 import net.rithms.riot.api.endpoints.stats.dto.RankedStats;
 import net.rithms.riot.api.endpoints.stats.methods.GetPlayerStatsSummary;
 import net.rithms.riot.api.endpoints.stats.methods.GetRankedStats;
-import net.rithms.riot.api.endpoints.status.dto.Shard;
-import net.rithms.riot.api.endpoints.status.dto.ShardStatus;
-import net.rithms.riot.api.endpoints.status.methods.GetShardStatus;
-import net.rithms.riot.api.endpoints.status.methods.GetShards;
 import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
 import net.rithms.riot.api.endpoints.summoner.methods.GetSummoner;
 import net.rithms.riot.api.endpoints.summoner.methods.GetSummonerByAccount;
@@ -1665,19 +1663,6 @@ public class RiotApi implements Cloneable {
 	}
 
 	/**
-	 * Get shard list.
-	 * 
-	 * @return Status for a list of shards
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
-	 * @see Shard
-	 */
-	public List<Shard> getShards() throws RiotApiException {
-		ApiMethod method = new GetShards(getConfig());
-		return endpointManager.callMethodAndReturnDto(method);
-	}
-
-	/**
 	 * Get shard status. Returns the data available on the status.leagueoflegends.com website for the given region.
 	 * 
 	 * @param region
@@ -1687,10 +1672,12 @@ public class RiotApi implements Cloneable {
 	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 3
 	 * @see ShardStatus
 	 */
-	public ShardStatus getShardStatus(Region region) throws RiotApiException {
-		ApiMethod method = new GetShardStatus(getConfig(), region);
+	public ShardStatus getShardData(Platform platform) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetShardData(getConfig(), platform);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 

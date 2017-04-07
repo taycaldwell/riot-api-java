@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.api.endpoints.status.dto;
+package net.rithms.riot.api.endpoints.lol_status.dto;
 
 import java.io.Serializable;
 import java.util.List;
@@ -23,50 +23,34 @@ import com.google.gson.annotations.SerializedName;
 
 import net.rithms.riot.api.Dto;
 
-public class Message extends Dto implements Serializable {
+public class Incident extends Dto implements Serializable {
 
-	private static final long serialVersionUID = 9036838901306467780L;
+	private static final long serialVersionUID = -5984477375688730952L;
 
-	private String author;
-	private String content;
+	private boolean active;
 	@SerializedName(value = "created_at")
 	private String createdAt;
-	private String id;
-	private String severity;
-	private List<Translation> translations;
-	@SerializedName(value = "updated_at")
-	private String updatedAt;
-
-	public String getAuthor() {
-		return author;
-	}
-
-	public String getContent() {
-		return content;
-	}
+	private long id;
+	private List<Message> updates;
 
 	public String getCreatedAt() {
 		return createdAt;
 	}
 
-	public String getId() {
+	public long getId() {
 		return id;
 	}
 
-	public String getSeverity() {
-		return severity;
+	public List<Message> getUpdates() {
+		return updates;
 	}
 
-	public List<Translation> getTranslations() {
-		return translations;
-	}
-
-	public String getUpdatedAt() {
-		return updatedAt;
+	public boolean isActive() {
+		return active;
 	}
 
 	@Override
 	public String toString() {
-		return getContent();
+		return String.valueOf(getId());
 	}
 }

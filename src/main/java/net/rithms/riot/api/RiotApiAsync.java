@@ -33,6 +33,8 @@ import net.rithms.riot.api.endpoints.league.methods.GetChallengerLeague;
 import net.rithms.riot.api.endpoints.league.methods.GetLeagueBySummoners;
 import net.rithms.riot.api.endpoints.league.methods.GetLeagueEntryBySummoners;
 import net.rithms.riot.api.endpoints.league.methods.GetMasterLeague;
+import net.rithms.riot.api.endpoints.lol_status.dto.ShardStatus;
+import net.rithms.riot.api.endpoints.lol_status.methods.GetShardData;
 import net.rithms.riot.api.endpoints.masteries.dto.MasteryPages;
 import net.rithms.riot.api.endpoints.masteries.methods.GetMasteriesBySummoner;
 import net.rithms.riot.api.endpoints.match.dto.MatchDetail;
@@ -86,10 +88,6 @@ import net.rithms.riot.api.endpoints.stats.dto.PlayerStatsSummaryList;
 import net.rithms.riot.api.endpoints.stats.dto.RankedStats;
 import net.rithms.riot.api.endpoints.stats.methods.GetPlayerStatsSummary;
 import net.rithms.riot.api.endpoints.stats.methods.GetRankedStats;
-import net.rithms.riot.api.endpoints.status.dto.Shard;
-import net.rithms.riot.api.endpoints.status.dto.ShardStatus;
-import net.rithms.riot.api.endpoints.status.methods.GetShardStatus;
-import net.rithms.riot.api.endpoints.status.methods.GetShards;
 import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
 import net.rithms.riot.api.endpoints.summoner.methods.GetSummoner;
 import net.rithms.riot.api.endpoints.summoner.methods.GetSummonerByAccount;
@@ -1455,17 +1453,6 @@ public class RiotApiAsync {
 	}
 
 	/**
-	 * Get shard list.
-	 * 
-	 * @return Status for a list of shards
-	 * @see Shard
-	 */
-	public AsyncRequest getShards() {
-		ApiMethod method = new GetShards(getConfig());
-		return endpointManager.callMethodAsynchronously(method);
-	}
-
-	/**
 	 * Get shard status. Returns the data available on the status.leagueoflegends.com website for the given region.
 	 * 
 	 * @param region
@@ -1473,10 +1460,12 @@ public class RiotApiAsync {
 	 * @return Status for a single shard
 	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
+	 * @version 3
 	 * @see ShardStatus
 	 */
-	public AsyncRequest getShardStatus(Region region) {
-		ApiMethod method = new GetShardStatus(getConfig(), region);
+	public AsyncRequest getShardData(Platform platform) {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetShardData(getConfig(), platform);
 		return endpointManager.callMethodAsynchronously(method);
 	}
 

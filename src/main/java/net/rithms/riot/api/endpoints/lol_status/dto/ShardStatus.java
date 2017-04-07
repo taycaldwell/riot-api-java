@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.api.endpoints.status.dto;
+package net.rithms.riot.api.endpoints.lol_status.dto;
 
 import java.io.Serializable;
 import java.util.List;
@@ -23,34 +23,44 @@ import com.google.gson.annotations.SerializedName;
 
 import net.rithms.riot.api.Dto;
 
-public class Incident extends Dto implements Serializable {
+public class ShardStatus extends Dto implements Serializable {
 
-	private static final long serialVersionUID = -5984477375688730952L;
+	private static final long serialVersionUID = -530404100006610537L;
 
-	private boolean active;
-	@SerializedName(value = "created_at")
-	private String createdAt;
-	private long id;
-	private List<Message> updates;
+	private String hostname;
+	private List<String> locales;
+	private String name;
+	@SerializedName(value = "region_tag")
+	private String regionTag;
+	private List<Service> services;
+	private String slug;
 
-	public String getCreatedAt() {
-		return createdAt;
+	public String getHostname() {
+		return hostname;
 	}
 
-	public long getId() {
-		return id;
+	public List<String> getLocales() {
+		return locales;
 	}
 
-	public List<Message> getUpdates() {
-		return updates;
+	public String getName() {
+		return name;
 	}
 
-	public boolean isActive() {
-		return active;
+	public String getRegionTag() {
+		return regionTag;
+	}
+
+	public List<Service> getServices() {
+		return services;
+	}
+
+	public String getSlug() {
+		return slug;
 	}
 
 	@Override
 	public String toString() {
-		return String.valueOf(getId());
+		return getName();
 	}
 }

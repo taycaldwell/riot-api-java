@@ -14,48 +14,37 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.api.endpoints.status.dto;
+package net.rithms.riot.api.endpoints.lol_status.dto;
 
 import java.io.Serializable;
-import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
 import net.rithms.riot.api.Dto;
 
-public class Shard extends Dto implements Serializable {
+public class Translation extends Dto implements Serializable {
 
-	private static final long serialVersionUID = 6812395780935318090L;
+	private static final long serialVersionUID = -8923544184113630844L;
 
-	private String hostname;
-	private List<String> locales;
-	private String name;
-	@SerializedName(value = "region_tag")
-	private String regionTag;
-	private String slug;
+	private String content;
+	private String locale;
+	@SerializedName(value = "updated_at")
+	private String updatedAt;
 
-	public String getHostname() {
-		return hostname;
+	public String getContent() {
+		return content;
 	}
 
-	public List<String> getLocales() {
-		return locales;
+	public String getLocale() {
+		return locale;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public String getRegionTag() {
-		return regionTag;
-	}
-
-	public String getSlug() {
-		return slug;
+	public String getUpdatedAt() {
+		return updatedAt;
 	}
 
 	@Override
 	public String toString() {
-		return getName();
+		return getContent();
 	}
 }

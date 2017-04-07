@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.api.endpoints.status.dto;
+package net.rithms.riot.api.endpoints.lol_status.dto;
 
 import java.io.Serializable;
 import java.util.List;
