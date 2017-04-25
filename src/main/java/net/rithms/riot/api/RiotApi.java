@@ -66,6 +66,7 @@ import net.rithms.riot.api.endpoints.static_data.dto.LanguageStrings;
 import net.rithms.riot.api.endpoints.static_data.dto.MapData;
 import net.rithms.riot.api.endpoints.static_data.dto.Mastery;
 import net.rithms.riot.api.endpoints.static_data.dto.MasteryList;
+import net.rithms.riot.api.endpoints.static_data.dto.ProfileIconData;
 import net.rithms.riot.api.endpoints.static_data.dto.Realm;
 import net.rithms.riot.api.endpoints.static_data.dto.Rune;
 import net.rithms.riot.api.endpoints.static_data.dto.RuneList;
@@ -80,6 +81,7 @@ import net.rithms.riot.api.endpoints.static_data.methods.GetDataLanguages;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataMaps;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataMastery;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataMasteryList;
+import net.rithms.riot.api.endpoints.static_data.methods.GetDataProfileIcons;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataRealm;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataRune;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataRuneList;
@@ -873,6 +875,44 @@ public class RiotApi implements Cloneable {
 	 */
 	public MasteryList getDataMasteryList(Platform platform) throws RiotApiException {
 		return getDataMasteryList(platform, null, null, (MasteryListData) null);
+	}
+
+	/**
+	 * Retrieve profile icons.
+	 * 
+	 * @param platform
+	 *            Platform from which to retrieve data.
+	 * @param locale
+	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
+	 *            used.
+	 * @param version
+	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
+	 *            can be obtained from the {@link #getDataVersions()} method.
+	 * @return Profile icons
+	 * @throws NullPointerException
+	 *             If {@code platform} is {@code null}
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 * @version 3
+	 * @see ProfileIconData
+	 */
+	public ProfileIconData getDataProfileIcons(Platform platform, Locale locale, String version) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetDataProfileIcons(getConfig(), platform, locale, version);
+		return endpointManager.callMethodAndReturnDto(method);
+	}
+
+	/**
+	 * Retrieve profile icons.
+	 * 
+	 * @param platform
+	 *            Platform from which to retrieve data.
+	 * @return Profile icons
+	 * @version 3
+	 * @see ProfileIconData
+	 */
+	public ProfileIconData getDataProfileIcons(Platform platform) throws RiotApiException {
+		return getDataProfileIcons(platform, null, null);
 	}
 
 	/**

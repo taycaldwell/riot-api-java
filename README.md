@@ -130,7 +130,7 @@ The current version of this library supports the following Riot Games API versio
 - **SUMMONER-V3**
 - **TOURNAMENT-STUB-V3**
 
-(Note: Tournament methods in the match endpoint have not been converted yet; Missing StaticData#ProfileIcons)
+(Note: Tournament methods in the match endpoint have not been converted yet)
 
 ## Contributing
 All contributions are appreciated.
