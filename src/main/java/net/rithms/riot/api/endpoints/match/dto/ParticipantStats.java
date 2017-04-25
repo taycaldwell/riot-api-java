@@ -24,17 +24,24 @@ public class ParticipantStats extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 7907342025148370788L;
 
+	private int altarsCaptured;
+	private int altarsNeutralized;
 	private int assists;
+	private boolean causedEarlySurrender;
 	private int champLevel;
 	private int combatPlayerScore;
+	private long damageDealtToObjectives;
 	private int deaths;
 	private int doubleKills;
+	private boolean earlySurrenderAccomplice;
 	private boolean firstBloodAssist;
 	private boolean firstBloodKill;
 	private boolean firstInhibitorAssist;
 	private boolean firstInhibitorKill;
 	private boolean firstTowerAssist;
 	private boolean firstTowerKill;
+	private boolean gameEndedInEarlySurrender;
+	private boolean gameEndedInSurrender;
 	private int goldEarned;
 	private int goldSpent;
 	private int inhibitorKills;
@@ -50,10 +57,11 @@ public class ParticipantStats extends Dto implements Serializable {
 	private int largestCriticalStrike;
 	private int largestKillingSpree;
 	private int largestMultiKill;
-	private int magicDamageDealt;
-	private int magicDamageDealtToChampions;
-	private int magicDamageTaken;
-	private int minionsKilled;
+	private boolean leaver;
+	private int longestTimeSpentLiving;
+	private long magicDamageDealt;
+	private long magicDamageDealtToChampions;
+	private long magicalDamageTaken;
 	private int neutralMinionsKilled;
 	private int neutralMinionsKilledEnemyJungle;
 	private int neutralMinionsKilledTeamJungle;
@@ -62,31 +70,44 @@ public class ParticipantStats extends Dto implements Serializable {
 	private int nodeNeutralize;
 	private int nodeNeutralizeAssist;
 	private int objectivePlayerScore;
+	private int participantId;
 	private int pentaKills;
-	private int physicalDamageDealt;
-	private int physicalDamageDealtToChampions;
-	private int physicalDamageTaken;
+	private long physicalDamageDealt;
+	private long physicalDamageDealtToChampions;
+	private long physicalDamageTaken;
 	private int quadraKills;
 	private int sightWardsBoughtInGame;
+	private boolean teamEarlySurrendered;
 	private int teamObjective;
-	private int totalDamageDealt;
-	private int totalDamageDealtToChampions;
-	private int totalDamageTaken;
-	private int totalHeal;
+	private int timeCCingOthers;
+	private long totalDamageDealt;
+	private long totalDamageDealtToChampions;
+	private long totalDamageTaken;
+	private long totalHeal;
+	private int totalMinionsKilled;
 	private int totalPlayerScore;
 	private int totalScoreRank;
-	private int totalTimeCrowdControlDealt;
 	private int totalUnitsHealed;
-	private int towerKills;
 	private int tripleKills;
-	private int trueDamageDealt;
-	private int trueDamageDealtToChampions;
-	private int trueDamageTaken;
+	private long trueDamageDealt;
+	private long trueDamageDealtToChampions;
+	private long trueDamageTaken;
+	private int turretKills;
 	private int unrealKills;
+	private int visionScore;
 	private int visionWardsBoughtInGame;
 	private int wardsKilled;
 	private int wardsPlaced;
-	private boolean winner;
+	private boolean wasAfk;
+	private boolean win;
+
+	public int getAltarsCaptured() {
+		return altarsCaptured;
+	}
+
+	public int getAltarsNeutralized() {
+		return altarsNeutralized;
+	}
 
 	public int getAssists() {
 		return assists;
@@ -98,6 +119,10 @@ public class ParticipantStats extends Dto implements Serializable {
 
 	public int getCombatPlayerScore() {
 		return combatPlayerScore;
+	}
+
+	public long getDamageDealtToObjectives() {
+		return damageDealtToObjectives;
 	}
 
 	public int getDeaths() {
@@ -168,20 +193,20 @@ public class ParticipantStats extends Dto implements Serializable {
 		return largestMultiKill;
 	}
 
-	public int getMagicDamageDealt() {
+	public int getLongestTimeSpentLiving() {
+		return longestTimeSpentLiving;
+	}
+
+	public long getMagicDamageDealt() {
 		return magicDamageDealt;
 	}
 
-	public int getMagicDamageDealtToChampions() {
+	public long getMagicDamageDealtToChampions() {
 		return magicDamageDealtToChampions;
 	}
 
-	public int getMagicDamageTaken() {
-		return magicDamageTaken;
-	}
-
-	public int getMinionsKilled() {
-		return minionsKilled;
+	public long getMagicalDamageTaken() {
+		return magicalDamageTaken;
 	}
 
 	public int getNeutralMinionsKilled() {
@@ -216,19 +241,23 @@ public class ParticipantStats extends Dto implements Serializable {
 		return objectivePlayerScore;
 	}
 
+	public int getParticipantId() {
+		return participantId;
+	}
+
 	public int getPentaKills() {
 		return pentaKills;
 	}
 
-	public int getPhysicalDamageDealt() {
+	public long getPhysicalDamageDealt() {
 		return physicalDamageDealt;
 	}
 
-	public int getPhysicalDamageDealtToChampions() {
+	public long getPhysicalDamageDealtToChampions() {
 		return physicalDamageDealtToChampions;
 	}
 
-	public int getPhysicalDamageTaken() {
+	public long getPhysicalDamageTaken() {
 		return physicalDamageTaken;
 	}
 
@@ -244,20 +273,28 @@ public class ParticipantStats extends Dto implements Serializable {
 		return teamObjective;
 	}
 
-	public int getTotalDamageDealt() {
+	public int getTimeCCingOthers() {
+		return timeCCingOthers;
+	}
+
+	public long getTotalDamageDealt() {
 		return totalDamageDealt;
 	}
 
-	public int getTotalDamageDealtToChampions() {
+	public long getTotalDamageDealtToChampions() {
 		return totalDamageDealtToChampions;
 	}
 
-	public int getTotalDamageTaken() {
+	public long getTotalDamageTaken() {
 		return totalDamageTaken;
 	}
 
-	public int getTotalHeal() {
+	public long getTotalHeal() {
 		return totalHeal;
+	}
+
+	public int getTotalMinionsKilled() {
+		return totalMinionsKilled;
 	}
 
 	public int getTotalPlayerScore() {
@@ -268,36 +305,36 @@ public class ParticipantStats extends Dto implements Serializable {
 		return totalScoreRank;
 	}
 
-	public int getTotalTimeCrowdControlDealt() {
-		return totalTimeCrowdControlDealt;
-	}
-
 	public int getTotalUnitsHealed() {
 		return totalUnitsHealed;
-	}
-
-	public int getTowerKills() {
-		return towerKills;
 	}
 
 	public int getTripleKills() {
 		return tripleKills;
 	}
 
-	public int getTrueDamageDealt() {
+	public long getTrueDamageDealt() {
 		return trueDamageDealt;
 	}
 
-	public int getTrueDamageDealtToChampions() {
+	public long getTrueDamageDealtToChampions() {
 		return trueDamageDealtToChampions;
 	}
 
-	public int getTrueDamageTaken() {
+	public long getTrueDamageTaken() {
 		return trueDamageTaken;
+	}
+
+	public int getTurretKills() {
+		return turretKills;
 	}
 
 	public int getUnrealKills() {
 		return unrealKills;
+	}
+
+	public int getVisionScore() {
+		return visionScore;
 	}
 
 	public int getVisionWardsBoughtInGame() {
@@ -310,6 +347,22 @@ public class ParticipantStats extends Dto implements Serializable {
 
 	public int getWardsPlaced() {
 		return wardsPlaced;
+	}
+
+	public boolean isCausedEarlySurrender() {
+		return causedEarlySurrender;
+	}
+
+	public boolean isEarlySurrenderAccomplice() {
+		return earlySurrenderAccomplice;
+	}
+
+	public boolean isGameEndedInEarlySurrender() {
+		return gameEndedInEarlySurrender;
+	}
+
+	public boolean isGameEndedInSurrender() {
+		return gameEndedInSurrender;
 	}
 
 	public boolean isFirstBloodAssist() {
@@ -336,7 +389,19 @@ public class ParticipantStats extends Dto implements Serializable {
 		return firstTowerKill;
 	}
 
-	public boolean isWinner() {
-		return winner;
+	public boolean isLeaver() {
+		return leaver;
+	}
+
+	public boolean isTeamEarlySurrendered() {
+		return teamEarlySurrendered;
+	}
+
+	public boolean isWasAfk() {
+		return wasAfk;
+	}
+
+	public boolean isWin() {
+		return win;
 	}
 }

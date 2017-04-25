@@ -17,25 +17,48 @@
 package net.rithms.riot.api.endpoints.match.dto;
 
 import java.io.Serializable;
-import java.util.List;
-import java.util.Map;
 
 import net.rithms.riot.api.Dto;
 
-public class Frame extends Dto implements Serializable {
+public class MatchReference extends Dto implements Serializable {
 
-	private static final long serialVersionUID = 4359409042534560829L;
+	private static final long serialVersionUID = 3975874858170021162L;
 
-	private List<Event> events;
-	private Map<String, ParticipantFrame> participantFrames;
+	private int champion;
+	private long gameId;
+	private String lane;
+	private String platformId;
+	private int queue;
+	private String role;
+	private int season;
 	private long timestamp;
 
-	public List<Event> getEvents() {
-		return events;
+	public int getChampion() {
+		return champion;
 	}
 
-	public Map<String, ParticipantFrame> getParticipantFrames() {
-		return participantFrames;
+	public long getGameId() {
+		return gameId;
+	}
+
+	public String getLane() {
+		return lane;
+	}
+
+	public String getPlatformId() {
+		return platformId;
+	}
+
+	public int getQueue() {
+		return queue;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public int getSeason() {
+		return season;
 	}
 
 	public long getTimestamp() {
@@ -44,6 +67,6 @@ public class Frame extends Dto implements Serializable {
 
 	@Override
 	public String toString() {
-		return String.valueOf(getTimestamp());
+		return String.valueOf(getGameId());
 	}
 }

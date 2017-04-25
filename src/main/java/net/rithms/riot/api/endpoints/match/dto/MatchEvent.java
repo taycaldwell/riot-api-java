@@ -21,7 +21,7 @@ import java.util.List;
 
 import net.rithms.riot.api.Dto;
 
-public class Event extends Dto implements Serializable {
+public class MatchEvent extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -2911353385877952457L;
 
@@ -29,7 +29,6 @@ public class Event extends Dto implements Serializable {
 	private List<Integer> assistingParticipantIds;
 	private String buildingType;
 	private int creatorId;
-	private String eventType;
 	private int itemAfter;
 	private int itemBefore;
 	private int itemId;
@@ -40,11 +39,12 @@ public class Event extends Dto implements Serializable {
 	private String monsterType;
 	private int participantId;
 	private String pointCaptured;
-	private Position position;
+	private MatchPosition position;
 	private int skillSlot;
 	private int teamId;
 	private long timestamp;
 	private String towerType;
+	private String type;
 	private int victimId;
 	private String wardType;
 
@@ -62,10 +62,6 @@ public class Event extends Dto implements Serializable {
 
 	public int getCreatorId() {
 		return creatorId;
-	}
-
-	public String getEventType() {
-		return eventType;
 	}
 
 	public int getItemAfter() {
@@ -108,7 +104,7 @@ public class Event extends Dto implements Serializable {
 		return pointCaptured;
 	}
 
-	public Position getPosition() {
+	public MatchPosition getPosition() {
 		return position;
 	}
 
@@ -128,6 +124,10 @@ public class Event extends Dto implements Serializable {
 		return towerType;
 	}
 
+	public String getType() {
+		return type;
+	}
+
 	public int getVictimId() {
 		return victimId;
 	}
@@ -138,6 +138,6 @@ public class Event extends Dto implements Serializable {
 
 	@Override
 	public String toString() {
-		return getEventType();
+		return getType();
 	}
 }

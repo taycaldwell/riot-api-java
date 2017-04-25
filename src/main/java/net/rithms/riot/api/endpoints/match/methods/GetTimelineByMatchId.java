@@ -14,15 +14,20 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.api.endpoints.game;
+package net.rithms.riot.api.endpoints.match.methods;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.ApiMethod;
+import net.rithms.riot.api.endpoints.match.MatchApiMethod;
+import net.rithms.riot.api.endpoints.match.dto.MatchTimeline;
+import net.rithms.riot.constant.Platform;
 
-abstract public class GameApiMethod extends ApiMethod {
+public class GetTimelineByMatchId extends MatchApiMethod {
 
-	protected GameApiMethod(ApiConfig config) {
-		super(config, "game");
-		requireApiKey();
+	public GetTimelineByMatchId(ApiConfig config, Platform platform, long matchId) {
+		super(config);
+		setPlatform(platform);
+		setReturnType(MatchTimeline.class);
+		setUrlBase(platform.getHost() + "/lol/match/v3/timelines/by-match/" + matchId);
+		addApiKeyParameter();
 	}
 }

@@ -17,6 +17,7 @@
 package net.rithms.riot.api.endpoints.match.dto;
 
 import java.io.Serializable;
+import java.util.Map;
 
 import net.rithms.riot.api.Dto;
 
@@ -24,139 +25,54 @@ public class ParticipantTimeline extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -6355300896423737331L;
 
-	private ParticipantTimelineData ancientGolemAssistsPerMinCounts;
-	private ParticipantTimelineData ancientGolemKillsPerMinCounts;
-	private ParticipantTimelineData assistedLaneDeathsPerMinDeltas;
-	private ParticipantTimelineData assistedLaneKillsPerMinDeltas;
-	private ParticipantTimelineData baronAssistsPerMinCounts;
-	private ParticipantTimelineData baronKillsPerMinCounts;
-	private ParticipantTimelineData creepsPerMinDeltas;
-	private ParticipantTimelineData csDiffPerMinDeltas;
-	private ParticipantTimelineData damageTakenDiffPerMinDeltas;
-	private ParticipantTimelineData damageTakenPerMinDeltas;
-	private ParticipantTimelineData dragonAssistsPerMinCounts;
-	private ParticipantTimelineData dragonKillsPerMinCounts;
-	private ParticipantTimelineData elderLizardAssistsPerMinCounts;
-	private ParticipantTimelineData elderLizardKillsPerMinCounts;
-	private ParticipantTimelineData goldPerMinDeltas;
-	private ParticipantTimelineData inhibitorAssistsPerMinCounts;
-	private ParticipantTimelineData inhibitorKillsPerMinCounts;
+	private Map<String, Double> creepsPerMinDeltas;
+	private Map<String, Double> csDiffPerMinDeltas;
+	private Map<String, Double> damageTakenDiffPerMinDeltas;
+	private Map<String, Double> damageTakenPerMinDeltas;
+	private Map<String, Double> goldPerMinDeltas;
 	private String lane;
+	private int participantId;
 	private String role;
-	private ParticipantTimelineData towerAssistsPerMinCounts;
-	private ParticipantTimelineData towerKillsPerMinCounts;
-	private ParticipantTimelineData towerKillsPerMinDeltas;
-	private ParticipantTimelineData vilemawAssistsPerMinCounts;
-	private ParticipantTimelineData vilemawKillsPerMinCounts;
-	private ParticipantTimelineData wardsPerMinDeltas;
-	private ParticipantTimelineData xpDiffPerMinDeltas;
-	private ParticipantTimelineData xpPerMinDeltas;
+	private Map<String, Double> xpDiffPerMinDeltas;
+	private Map<String, Double> xpPerMinDeltas;
 
-	public ParticipantTimelineData getAncientGolemAssistsPerMinCounts() {
-		return ancientGolemAssistsPerMinCounts;
-	}
-
-	public ParticipantTimelineData getAncientGolemKillsPerMinCounts() {
-		return ancientGolemKillsPerMinCounts;
-	}
-
-	public ParticipantTimelineData getAssistedLaneDeathsPerMinDeltas() {
-		return assistedLaneDeathsPerMinDeltas;
-	}
-
-	public ParticipantTimelineData getAssistedLaneKillsPerMinDeltas() {
-		return assistedLaneKillsPerMinDeltas;
-	}
-
-	public ParticipantTimelineData getBaronAssistsPerMinCounts() {
-		return baronAssistsPerMinCounts;
-	}
-
-	public ParticipantTimelineData getBaronKillsPerMinCounts() {
-		return baronKillsPerMinCounts;
-	}
-
-	public ParticipantTimelineData getCreepsPerMinDeltas() {
+	public Map<String, Double> getCreepsPerMinDeltas() {
 		return creepsPerMinDeltas;
 	}
 
-	public ParticipantTimelineData getCsDiffPerMinDeltas() {
+	public Map<String, Double> getCsDiffPerMinDeltas() {
 		return csDiffPerMinDeltas;
 	}
 
-	public ParticipantTimelineData getDamageTakenDiffPerMinDeltas() {
+	public Map<String, Double> getDamageTakenDiffPerMinDeltas() {
 		return damageTakenDiffPerMinDeltas;
 	}
 
-	public ParticipantTimelineData getDamageTakenPerMinDeltas() {
+	public Map<String, Double> getDamageTakenPerMinDeltas() {
 		return damageTakenPerMinDeltas;
 	}
 
-	public ParticipantTimelineData getDragonAssistsPerMinCounts() {
-		return dragonAssistsPerMinCounts;
-	}
-
-	public ParticipantTimelineData getDragonKillsPerMinCounts() {
-		return dragonKillsPerMinCounts;
-	}
-
-	public ParticipantTimelineData getElderLizardAssistsPerMinCounts() {
-		return elderLizardAssistsPerMinCounts;
-	}
-
-	public ParticipantTimelineData getElderLizardKillsPerMinCounts() {
-		return elderLizardKillsPerMinCounts;
-	}
-
-	public ParticipantTimelineData getGoldPerMinDeltas() {
+	public Map<String, Double> getGoldPerMinDeltas() {
 		return goldPerMinDeltas;
-	}
-
-	public ParticipantTimelineData getInhibitorAssistsPerMinCounts() {
-		return inhibitorAssistsPerMinCounts;
-	}
-
-	public ParticipantTimelineData getInhibitorKillsPerMinCounts() {
-		return inhibitorKillsPerMinCounts;
 	}
 
 	public String getLane() {
 		return lane;
 	}
 
+	public int getParticipantId() {
+		return participantId;
+	}
+
 	public String getRole() {
 		return role;
 	}
 
-	public ParticipantTimelineData getTowerAssistsPerMinCounts() {
-		return towerAssistsPerMinCounts;
-	}
-
-	public ParticipantTimelineData getTowerKillsPerMinCounts() {
-		return towerKillsPerMinCounts;
-	}
-
-	public ParticipantTimelineData getTowerKillsPerMinDeltas() {
-		return towerKillsPerMinDeltas;
-	}
-
-	public ParticipantTimelineData getVilemawAssistsPerMinCounts() {
-		return vilemawAssistsPerMinCounts;
-	}
-
-	public ParticipantTimelineData getVilemawKillsPerMinCounts() {
-		return vilemawKillsPerMinCounts;
-	}
-
-	public ParticipantTimelineData getWardsPerMinDeltas() {
-		return wardsPerMinDeltas;
-	}
-
-	public ParticipantTimelineData getXpDiffPerMinDeltas() {
+	public Map<String, Double> getXpDiffPerMinDeltas() {
 		return xpDiffPerMinDeltas;
 	}
 
-	public ParticipantTimelineData getXpPerMinDeltas() {
+	public Map<String, Double> getXpPerMinDeltas() {
 		return xpPerMinDeltas;
 	}
 }

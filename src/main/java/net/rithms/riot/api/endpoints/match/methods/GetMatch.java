@@ -17,21 +17,17 @@
 package net.rithms.riot.api.endpoints.match.methods;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.UrlParameter;
 import net.rithms.riot.api.endpoints.match.MatchApiMethod;
-import net.rithms.riot.api.endpoints.match.dto.MatchDetail;
-import net.rithms.riot.constant.Region;
+import net.rithms.riot.api.endpoints.match.dto.Match;
+import net.rithms.riot.constant.Platform;
 
 public class GetMatch extends MatchApiMethod {
 
-	public GetMatch(ApiConfig config, Region region, long matchId, boolean includeTimeline) {
+	public GetMatch(ApiConfig config, Platform platform, long matchId) {
 		super(config);
-		setRegion(region);
-		setReturnType(MatchDetail.class);
-		setUrlBase(region.getEndpoint() + "/v2.2/match/" + matchId);
-		if (includeTimeline) {
-			add(new UrlParameter("includeTimeline", includeTimeline));
-		}
+		setPlatform(platform);
+		setReturnType(Match.class);
+		setUrlBase(platform.getHost() + "/lol/match/v3/matches/" + matchId);
 		addApiKeyParameter();
 	}
 }

@@ -20,7 +20,7 @@ import java.io.Serializable;
 
 import net.rithms.riot.api.Dto;
 
-public class ParticipantFrame extends Dto implements Serializable {
+public class MatchParticipantFrame extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -7134736662198942818L;
 
@@ -30,7 +30,7 @@ public class ParticipantFrame extends Dto implements Serializable {
 	private int level;
 	private int minionsKilled;
 	private int participantId;
-	private Position position;
+	private MatchPosition position;
 	private int teamScore;
 	private int totalGold;
 	private int xp;
@@ -59,7 +59,7 @@ public class ParticipantFrame extends Dto implements Serializable {
 		return participantId;
 	}
 
-	public Position getPosition() {
+	public MatchPosition getPosition() {
 		return position;
 	}
 

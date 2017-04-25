@@ -14,15 +14,20 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.api.endpoints.matchlist;
+package net.rithms.riot.api.endpoints.match.methods;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.ApiMethod;
+import net.rithms.riot.api.endpoints.match.MatchApiMethod;
+import net.rithms.riot.api.endpoints.match.dto.MatchList;
+import net.rithms.riot.constant.Platform;
 
-abstract public class MatchListApiMethod extends ApiMethod {
+public class GetRecentMatchListByAccountId extends MatchApiMethod {
 
-	protected MatchListApiMethod(ApiConfig config) {
-		super(config, "matchlist");
-		requireApiKey();
+	public GetRecentMatchListByAccountId(ApiConfig config, Platform platform, long accountId) {
+		super(config);
+		setPlatform(platform);
+		setReturnType(MatchList.class);
+		setUrlBase(platform.getHost() + "/lol/match/v3/matchlists/by-account/" + accountId + "/recent");
+		addApiKeyParameter();
 	}
 }

@@ -21,11 +21,11 @@ import java.util.List;
 
 import net.rithms.riot.api.Dto;
 
-public class Team extends Dto implements Serializable {
+public class TeamStats extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -3414402914522684688L;
 
-	private List<BannedChampion> bans;
+	private List<TeamBans> bans;
 	private int baronKills;
 	private int dominionVictoryScore;
 	private int dragonKills;
@@ -40,9 +40,9 @@ public class Team extends Dto implements Serializable {
 	private int teamId;
 	private int towerKills;
 	private int vilemawKills;
-	private boolean winner;
+	private boolean win;
 
-	public List<BannedChampion> getBans() {
+	public List<TeamBans> getBans() {
 		return bans;
 	}
 
@@ -102,8 +102,8 @@ public class Team extends Dto implements Serializable {
 		return firstTower;
 	}
 
-	public boolean isWinner() {
-		return winner;
+	public boolean isWin() {
+		return win;
 	}
 
 	@Override

@@ -37,14 +37,24 @@ public enum Platform {
 	private String id;
 	private String name;
 
-	public static Platform getPlatformByName(String name) throws RiotStringNotFoundException {
+	public static Platform getPlatformById(String id) throws RiotStringNotFoundException {
 		for (Platform platform : Platform.values()) {
-			if (platform.getName().equals(name.toLowerCase())) {
+			if (platform.getId().toLowerCase().equals(id.toLowerCase())) {
 				return platform;
 			}
 		}
-		RiotApi.log.warning("Unknown region: " + name);
-		throw new RiotStringNotFoundException("Could not find region " + name);
+		RiotApi.log.warning("Unknown platform: " + id);
+		throw new RiotStringNotFoundException("Could not find platform with id " + id);
+	}
+
+	public static Platform getPlatformByName(String name) throws RiotStringNotFoundException {
+		for (Platform platform : Platform.values()) {
+			if (platform.getName().toLowerCase().equals(name.toLowerCase())) {
+				return platform;
+			}
+		}
+		RiotApi.log.warning("Unknown platform: " + name);
+		throw new RiotStringNotFoundException("Could not find platform with name " + name);
 	}
 
 	Platform(String id, String name) {

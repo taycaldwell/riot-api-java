@@ -17,26 +17,27 @@
 package net.rithms.riot.api.endpoints.match.dto;
 
 import java.io.Serializable;
+import java.util.List;
 
 import net.rithms.riot.api.Dto;
 
-public class BannedChampion extends Dto implements Serializable {
+public class MatchTimeline extends Dto implements Serializable {
 
-	private static final long serialVersionUID = 2323180505557888125L;
+	private static final long serialVersionUID = 3888184958883394435L;
 
-	private int championId;
-	private int pickTurn;
+	private long frameInterval;
+	private List<MatchFrame> frames;
 
-	public int getChampionId() {
-		return championId;
+	public long getFrameInterval() {
+		return frameInterval;
 	}
 
-	public int getPickTurn() {
-		return pickTurn;
+	public List<MatchFrame> getFrames() {
+		return frames;
 	}
 
 	@Override
 	public String toString() {
-		return String.valueOf(getChampionId());
+		return String.valueOf(getFrameInterval());
 	}
 }

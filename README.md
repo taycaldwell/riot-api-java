@@ -119,20 +119,18 @@ The documentation for this library can be found [here.](http://taycaldwell.com/r
 The current version of this library supports the following Riot Games API versions:
 - **CHAMPION-MASTERY-V3**
 - **CHAMPION-V3**
+- **LEAGUE-V2.5**
 - **LOL-STATUS-V3**
 - **MASTERIES-V3**
+- **MATCH-V3**
 - **RUNES-V3**
 - **SPECTATOR-V3**
 - **STATIC-DATA-V3**
+- **STATS-V1.3** (DEPRECATED)
 - **SUMMONER-V3**
 - **TOURNAMENT-STUB-V3**
 
-The current version of this library also supports the following legacy Riot Games API versions while they are still being converted to the new system:
-- **game-v1.3 [BR, EUNE, EUW, JP, KR, LAN, LAS, NA, OCE, RU, TR]**
-- **league-v2.5 [BR, EUNE, EUW, JP, KR, LAN, LAS, NA, OCE, RU, TR]**
-- **match-v2.2 [BR, EUNE, EUW, JP, KR, LAN, LAS, NA, OCE, RU, TR]**
-- **matchlist-v2.2 [BR, EUNE, EUW, JP, KR, LAN, LAS, NA, OCE, RU, TR]**
-- **stats-v1.3 [BR, EUNE, EUW, JP, KR, LAN, LAS, NA, OCE, RU, TR]**
+(Note: Tournament methods in the match endpoint have not been converted yet; Missing StaticData#ProfileIcons)
 
 ## Contributing
 All contributions are appreciated.

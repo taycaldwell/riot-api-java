@@ -21,23 +21,33 @@ import java.util.List;
 
 import net.rithms.riot.api.Dto;
 
-public class Timeline extends Dto implements Serializable {
+public class MatchList extends Dto implements Serializable {
 
-	private static final long serialVersionUID = 3888184958883394435L;
+	private static final long serialVersionUID = 939383850419752274L;
 
-	private long frameInterval;
-	private List<Frame> frames;
+	private int endIndex;
+	private List<MatchReference> matches;
+	private int startIndex;
+	private int totalGames;
 
-	public long getFrameInterval() {
-		return frameInterval;
+	public int getEndIndex() {
+		return endIndex;
 	}
 
-	public List<Frame> getFrames() {
-		return frames;
+	public int getStartIndex() {
+		return startIndex;
+	}
+
+	public int getTotalGames() {
+		return totalGames;
+	}
+
+	public List<MatchReference> getMatches() {
+		return matches;
 	}
 
 	@Override
 	public String toString() {
-		return String.valueOf(getFrameInterval());
+		return "[" + getStartIndex() + "," + getEndIndex() + "]";
 	}
 }

@@ -29,8 +29,6 @@ import net.rithms.riot.api.endpoints.champion_mastery.dto.ChampionMastery;
 import net.rithms.riot.api.endpoints.champion_mastery.methods.GetChampionMasteriesBySummoner;
 import net.rithms.riot.api.endpoints.champion_mastery.methods.GetChampionMasteriesBySummonerByChampion;
 import net.rithms.riot.api.endpoints.champion_mastery.methods.GetChampionMasteryScoresBySummoner;
-import net.rithms.riot.api.endpoints.game.dto.RecentGames;
-import net.rithms.riot.api.endpoints.game.methods.GetRecentGames;
 import net.rithms.riot.api.endpoints.league.dto.League;
 import net.rithms.riot.api.endpoints.league.methods.GetChallengerLeague;
 import net.rithms.riot.api.endpoints.league.methods.GetLeagueBySummoners;
@@ -40,12 +38,13 @@ import net.rithms.riot.api.endpoints.lol_status.dto.ShardStatus;
 import net.rithms.riot.api.endpoints.lol_status.methods.GetShardData;
 import net.rithms.riot.api.endpoints.masteries.dto.MasteryPages;
 import net.rithms.riot.api.endpoints.masteries.methods.GetMasteriesBySummoner;
-import net.rithms.riot.api.endpoints.match.dto.MatchDetail;
+import net.rithms.riot.api.endpoints.match.dto.Match;
+import net.rithms.riot.api.endpoints.match.dto.MatchList;
 import net.rithms.riot.api.endpoints.match.methods.GetMatch;
 import net.rithms.riot.api.endpoints.match.methods.GetMatchForTournament;
+import net.rithms.riot.api.endpoints.match.methods.GetMatchListByAccountId;
 import net.rithms.riot.api.endpoints.match.methods.GetMatchesByTournament;
-import net.rithms.riot.api.endpoints.matchlist.dto.MatchList;
-import net.rithms.riot.api.endpoints.matchlist.methods.GetMatchList;
+import net.rithms.riot.api.endpoints.match.methods.GetRecentMatchListByAccountId;
 import net.rithms.riot.api.endpoints.runes.dto.RunePages;
 import net.rithms.riot.api.endpoints.runes.methods.GetRunesBySummoner;
 import net.rithms.riot.api.endpoints.spectator.dto.CurrentGameInfo;
@@ -359,6 +358,7 @@ public class RiotApi implements Cloneable {
 	 *             If {@code region} or {@code queueType} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 2.5
 	 * @see League
 	 */
 	public League getChallengerLeague(Region region, QueueType queueType) throws RiotApiException {
@@ -1129,6 +1129,7 @@ public class RiotApi implements Cloneable {
 	 *             If {@code region} or {@code summonerId} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 2.5
 	 * @see League
 	 */
 	public List<League> getLeagueBySummoner(Region region, String summonerId) throws RiotApiException {
@@ -1153,6 +1154,7 @@ public class RiotApi implements Cloneable {
 	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 2.5
 	 * @see League
 	 */
 	public List<League> getLeagueBySummoner(Region region, long summonerId) throws RiotApiException {
@@ -1172,6 +1174,7 @@ public class RiotApi implements Cloneable {
 	 *             If {@code region} or {@code summonerIds} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 2.5
 	 * @see League
 	 */
 	public Map<String, List<League>> getLeagueBySummoners(Region region, String... summonerIds) throws RiotApiException {
@@ -1193,6 +1196,7 @@ public class RiotApi implements Cloneable {
 	 *             If {@code region} or {@code summonerIds} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 2.5
 	 * @see League
 	 */
 	public Map<String, List<League>> getLeagueBySummoners(Region region, long... summonerIds) throws RiotApiException {
@@ -1213,6 +1217,7 @@ public class RiotApi implements Cloneable {
 	 *             If {@code region} or {@code summonerId} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 2.5
 	 * @see League
 	 */
 	public List<League> getLeagueEntryBySummoner(Region region, String summonerId) throws RiotApiException {
@@ -1237,6 +1242,7 @@ public class RiotApi implements Cloneable {
 	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 2.5
 	 * @see League
 	 */
 	public List<League> getLeagueEntryBySummoner(Region region, long summonerId) throws RiotApiException {
@@ -1256,6 +1262,7 @@ public class RiotApi implements Cloneable {
 	 *             If {@code region} or {@code summonerIds} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 2.5
 	 * @see League
 	 */
 	public Map<String, List<League>> getLeagueEntryBySummoners(Region region, String... summonerIds) throws RiotApiException {
@@ -1277,6 +1284,7 @@ public class RiotApi implements Cloneable {
 	 *             If {@code region} or {@code summonerIds} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 2.5
 	 * @see League
 	 */
 	public Map<String, List<League>> getLeagueEntryBySummoners(Region region, long... summonerIds) throws RiotApiException {
@@ -1315,6 +1323,7 @@ public class RiotApi implements Cloneable {
 	 *             If {@code region} or {@code queueType} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 2.5
 	 * @see League
 	 */
 	public League getMasterLeague(Region region, QueueType queueType) throws RiotApiException {
@@ -1346,44 +1355,24 @@ public class RiotApi implements Cloneable {
 	}
 
 	/**
-	 * Retrieve match by {@code matchId}.
+	 * Get match by match ID.
 	 *
-	 * @param region
-	 *            The region of the summoner.
+	 * @param platform
+	 *            The platform of the summoner.
 	 * @param matchId
 	 *            The ID of the match.
-	 * @param includeTimeline
-	 *            Flag indicating whether or not to include match timeline data
 	 * @return A map with match details
 	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
-	 * @see MatchDetail
+	 * @version 3
+	 * @see Match
 	 */
-	public MatchDetail getMatch(Region region, long matchId, boolean includeTimeline) throws RiotApiException {
-		Objects.requireNonNull(region);
-		ApiMethod method = new GetMatch(getConfig(), region, matchId, includeTimeline);
+	public Match getMatch(Platform platform, long matchId) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetMatch(getConfig(), platform, matchId);
 		return endpointManager.callMethodAndReturnDto(method);
-	}
-
-	/**
-	 * Retrieve match by {@code matchId}.
-	 *
-	 * @param region
-	 *            The region of the summoner.
-	 * @param matchId
-	 *            The ID of the match.
-	 * @return A map with match details
-	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
-	 * @see MatchDetail
-	 */
-	public MatchDetail getMatch(Region region, long matchId) throws RiotApiException {
-		Objects.requireNonNull(region);
-		return getMatch(region, matchId, false);
 	}
 
 	/**
@@ -1422,9 +1411,9 @@ public class RiotApi implements Cloneable {
 	 *             If {@code region} or {@code tournamentCode} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
-	 * @see MatchDetail
+	 * @see Match
 	 */
-	public MatchDetail getMatchForTournament(Region region, long matchId, String tournamentCode, boolean includeTimeline) throws RiotApiException {
+	public Match getMatchForTournament(Region region, long matchId, String tournamentCode, boolean includeTimeline) throws RiotApiException {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(tournamentCode);
 		ApiMethod method = new GetMatchForTournament(getConfig(), region, matchId, tournamentCode, includeTimeline);
@@ -1445,91 +1434,94 @@ public class RiotApi implements Cloneable {
 	 *             If {@code region} or {@code tournamentCode} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
-	 * @see MatchDetail
+	 * @see Match
 	 */
-	public MatchDetail getMatchForTournament(Region region, long matchId, String tournamentCode) throws RiotApiException {
+	public Match getMatchForTournament(Region region, long matchId, String tournamentCode) throws RiotApiException {
 		Objects.requireNonNull(region);
 		Objects.requireNonNull(tournamentCode);
 		return getMatchForTournament(region, matchId, tournamentCode, false);
 	}
 
 	/**
-	 * Retrieve match list by {@code summonerId}.
+	 * Get matchlist for given account ID and platform ID.
 	 *
-	 * @param region
-	 *            The region of the summoner.
-	 * @param summonerId
-	 *            The ID of the summoner.
-	 * @param championIds
-	 *            Comma-separated list of champion IDs to use for fetching games.
-	 * @param rankedQueues
-	 *            Comma-separated list of ranked queue types to use for fetching games. Non-ranked queue types will be ignored.
-	 * @param seasons
-	 *            Comma-separated list of seasons to use for fetching games.
+	 * @param platform
+	 *            The platform of the summoner.
+	 * @param accountId
+	 *            The account ID of the summoner.
+	 * @param champion
+	 *            Set of champion IDs for which to filtering matchlist.
+	 * @param queue
+	 *            Set of queue IDs for which to filtering matchlist.
+	 * @param season
+	 *            Set of season IDs for which to filtering matchlist.
 	 * @param beginTime
-	 *            The begin time to use for fetching games specified as epoch milliseconds. Use {@code -1} to not use this parameter.
+	 *            The begin time to use for filtering matchlist specified as epoch milliseconds. Use {@code -1} to not use this parameter.
 	 * @param endTime
-	 *            The end time to use for fetching games specified as epoch milliseconds. Use {@code -1} to not use this parameter.
+	 *            The end time to use for filtering matchlist specified as epoch milliseconds. Use {@code -1} to not use this parameter.
 	 * @param beginIndex
-	 *            The begin index to use for fetching games. Use {@code -1} to not use this parameter.
+	 *            The begin index to use for filtering matchlist. Use {@code -1} to not use this parameter.
 	 * @param endIndex
-	 *            The end index to use for fetching games. Use {@code -1} to not use this parameter.
+	 *            The end index to use for filtering matchlist. Use {@code -1} to not use this parameter.
 	 * @return A list with matches
 	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 3
 	 * @see MatchList
 	 */
-	public MatchList getMatchList(Region region, long summonerId, String championIds, String rankedQueues, String seasons, long beginTime, long endTime,
+	public MatchList getMatchListByAccountId(Platform platform, long accountId, String champion, String queue, String season, long beginTime, long endTime,
 			int beginIndex, int endIndex) throws RiotApiException {
-		Objects.requireNonNull(region);
-		ApiMethod method = new GetMatchList(getConfig(), region, summonerId, championIds, rankedQueues, seasons, beginTime, endTime, beginIndex, endIndex);
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetMatchListByAccountId(getConfig(), platform, accountId, champion, queue, season, beginTime, endTime, beginIndex, endIndex);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
-	 * Retrieve match list by {@code summonerId}.
+	 * Get matchlist for given account ID and platform ID.
 	 *
-	 * @param region
-	 *            The region of the summoner.
-	 * @param summonerId
-	 *            The ID of the summoner.
-	 * @param championIds
-	 *            Comma-separated list of champion IDs to use for fetching games.
-	 * @param rankedQueues
-	 *            Comma-separated list of ranked queue types to use for fetching games. Non-ranked queue types will be ignored.
-	 * @param seasons
-	 *            Comma-separated list of seasons to use for fetching games.
+	 * @param platform
+	 *            The platform of the summoner.
+	 * @param accountId
+	 *            The account ID of the summoner.
+	 * @param champion
+	 *            Set of champion IDs for which to filtering matchlist.
+	 * @param queue
+	 *            Set of queue IDs for which to filtering matchlist.
+	 * @param season
+	 *            Set of season IDs for which to filtering matchlist.
 	 * @return A list with matches
 	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 3
 	 * @see MatchList
 	 */
-	public MatchList getMatchList(Region region, long summonerId, String championIds, String rankedQueues, String seasons) throws RiotApiException {
-		Objects.requireNonNull(region);
-		return getMatchList(region, summonerId, championIds, rankedQueues, seasons, -1, -1, -1, -1);
+	public MatchList getMatchListByAccountId(Platform platform, long accountId, String champion, String queue, String season) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		return getMatchListByAccountId(platform, accountId, champion, queue, season, -1, -1, -1, -1);
 	}
 
 	/**
-	 * Retrieve match list by {@code summonerId}.
+	 * Get matchlist for given account ID and platform ID.
 	 *
-	 * @param region
-	 *            The region of the summoner.
-	 * @param summonerId
-	 *            The ID of the summoner.
+	 * @param platform
+	 *            The platform of the summoner.
+	 * @param accountId
+	 *            The account ID of the summoner.
 	 * @return A list with matches
 	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 3
 	 * @see MatchList
 	 */
-	public MatchList getMatchList(Region region, long summonerId) throws RiotApiException {
-		Objects.requireNonNull(region);
-		return getMatchList(region, summonerId, null, null, null);
+	public MatchList getMatchListByAccountId(Platform platform, long accountId) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		return getMatchListByAccountId(platform, accountId, null, null, null);
 	}
 
 	/**
@@ -1621,23 +1613,23 @@ public class RiotApi implements Cloneable {
 	}
 
 	/**
-	 * Get recent games for a given {@code summonerId}.
+	 * Get recent matchlist for given account ID and platform ID.
 	 *
-	 * @param region
-	 *            Region where to retrieve the data.
-	 * @param summonerId
-	 *            ID of the summoner for which to retrieve recent games.
-	 * @return Recent games of the given summoner
+	 * @param platform
+	 *            The platform of the summoner.
+	 * @param accountId
+	 *            The account ID of the summoner.
+	 * @return A list with matches
 	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
-	 * @see RecentGames
+	 * @version 3
+	 * @see MatchList
 	 */
-	public RecentGames getRecentGames(Region region, long summonerId) throws RiotApiException {
-		Objects.requireNonNull(region);
-		Objects.requireNonNull(summonerId);
-		ApiMethod method = new GetRecentGames(getConfig(), region, summonerId);
+	public MatchList getRecentMatchListByAccountId(Platform platform, long accountId) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetRecentMatchListByAccountId(getConfig(), platform, accountId);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 

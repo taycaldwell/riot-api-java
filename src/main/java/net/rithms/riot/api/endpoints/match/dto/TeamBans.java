@@ -14,25 +14,29 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.api.endpoints.game.dto;
+package net.rithms.riot.api.endpoints.match.dto;
 
 import java.io.Serializable;
-import java.util.Set;
 
 import net.rithms.riot.api.Dto;
 
-public class RecentGames extends Dto implements Serializable {
+public class TeamBans extends Dto implements Serializable {
 
-	private static final long serialVersionUID = -4659064262999503692L;
+	private static final long serialVersionUID = 2323180505557888125L;
 
-	private Set<Game> games;
-	private long summonerId;
+	private int championId;
+	private int pickTurn;
 
-	public Set<Game> getGames() {
-		return games;
+	public int getChampionId() {
+		return championId;
 	}
 
-	public long getSummonerId() {
-		return summonerId;
+	public int getPickTurn() {
+		return pickTurn;
+	}
+
+	@Override
+	public String toString() {
+		return String.valueOf(getChampionId());
 	}
 }

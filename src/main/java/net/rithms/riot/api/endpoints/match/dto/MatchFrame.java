@@ -17,31 +17,33 @@
 package net.rithms.riot.api.endpoints.match.dto;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
 import net.rithms.riot.api.Dto;
 
-public class ParticipantTimelineData extends Dto implements Serializable {
+public class MatchFrame extends Dto implements Serializable {
 
-	private static final long serialVersionUID = 3515118575430099707L;
+	private static final long serialVersionUID = 4359409042534560829L;
 
-	private double tenToTwenty;
-	private double thirtyToEnd;
-	private double twentyToThirty;
-	private double zeroToTen;
+	private List<MatchEvent> events;
+	private Map<Integer, MatchParticipantFrame> participantFrames;
+	private long timestamp;
 
-	public double getTenToTwenty() {
-		return tenToTwenty;
+	public List<MatchEvent> getEvents() {
+		return events;
 	}
 
-	public double getThirtyToEnd() {
-		return thirtyToEnd;
+	public Map<Integer, MatchParticipantFrame> getParticipantFrames() {
+		return participantFrames;
 	}
 
-	public double getTwentyToThirty() {
-		return twentyToThirty;
+	public long getTimestamp() {
+		return timestamp;
 	}
 
-	public double getZeroToTen() {
-		return zeroToTen;
+	@Override
+	public String toString() {
+		return String.valueOf(getTimestamp());
 	}
 }

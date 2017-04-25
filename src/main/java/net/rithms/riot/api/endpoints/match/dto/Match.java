@@ -21,52 +21,50 @@ import java.util.List;
 
 import net.rithms.riot.api.Dto;
 
-public class MatchDetail extends Dto implements Serializable {
+public class Match extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 2606895296338330266L;
 
+	private long gameCreation;
+	private long gameDuration;
+	private long gameId;
+	private String gameMode;
+	private String gameType;
+	private String gameVersion;
 	private int mapId;
-	private long matchCreation;
-	private long matchDuration;
-	private long matchId;
-	private String matchMode;
-	private String matchType;
-	private String matchVersion;
 	private List<ParticipantIdentity> participantIdentities;
 	private List<Participant> participants;
 	private String platformId;
-	private String queueType;
-	private String region;
-	private String season;
-	private List<Team> teams;
-	private Timeline timeline;
+	private int queueId;
+	private int seasonId;
+	private List<TeamStats> teams;
+
+	public long getGameCreation() {
+		return gameCreation;
+	}
+
+	public long getGameDuration() {
+		return gameDuration;
+	}
+
+	public long getGameId() {
+		return gameId;
+	}
+
+	public String getGameMode() {
+		return gameMode;
+	}
+
+	public String getGameType() {
+		return gameType;
+	}
+
+	public String getGameVersion() {
+		return gameVersion;
+	}
 
 	public int getMapId() {
 		return mapId;
-	}
-
-	public long getMatchCreation() {
-		return matchCreation;
-	}
-
-	public long getMatchDuration() {
-		return matchDuration;
-	}
-
-	public long getMatchId() {
-		return matchId;
-	}
-
-	public String getMatchMode() {
-		return matchMode;
-	}
-
-	public String getMatchType() {
-		return matchType;
-	}
-
-	public String getMatchVersion() {
-		return matchVersion;
 	}
 
 	public List<ParticipantIdentity> getParticipantIdentities() {
@@ -81,28 +79,20 @@ public class MatchDetail extends Dto implements Serializable {
 		return platformId;
 	}
 
-	public String getQueueType() {
-		return queueType;
+	public int getQueueId() {
+		return queueId;
 	}
 
-	public String getRegion() {
-		return region;
+	public int getSeasonId() {
+		return seasonId;
 	}
 
-	public String getSeason() {
-		return season;
-	}
-
-	public List<Team> getTeams() {
+	public List<TeamStats> getTeams() {
 		return teams;
-	}
-
-	public Timeline getTimeline() {
-		return timeline;
 	}
 
 	@Override
 	public String toString() {
-		return String.valueOf(getMatchId());
+		return String.valueOf(getGameId());
 	}
 }

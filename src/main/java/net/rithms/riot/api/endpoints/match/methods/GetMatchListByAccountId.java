@@ -14,30 +14,30 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.api.endpoints.matchlist.methods;
+package net.rithms.riot.api.endpoints.match.methods;
 
 import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.UrlParameter;
-import net.rithms.riot.api.endpoints.matchlist.MatchListApiMethod;
-import net.rithms.riot.api.endpoints.matchlist.dto.MatchList;
-import net.rithms.riot.constant.Region;
+import net.rithms.riot.api.endpoints.match.MatchApiMethod;
+import net.rithms.riot.api.endpoints.match.dto.MatchList;
+import net.rithms.riot.constant.Platform;
 
-public class GetMatchList extends MatchListApiMethod {
+public class GetMatchListByAccountId extends MatchApiMethod {
 
-	public GetMatchList(ApiConfig config, Region region, long summonerId, String championIds, String rankedQueues, String seasons, long beginTime, long endTime,
+	public GetMatchListByAccountId(ApiConfig config, Platform platform, long accountId, String champion, String queue, String season, long beginTime, long endTime,
 			int beginIndex, int endIndex) {
 		super(config);
-		setRegion(region);
+		setPlatform(platform);
 		setReturnType(MatchList.class);
-		setUrlBase(region.getEndpoint() + "/v2.2/matchlist/by-summoner/" + summonerId);
-		if (championIds != null) {
-			add(new UrlParameter("championIds", championIds));
+		setUrlBase(platform.getHost() + "/lol/match/v3/matchlists/by-account/" + accountId);
+		if (champion != null) {
+			add(new UrlParameter("champion", champion));
 		}
-		if (rankedQueues != null) {
-			add(new UrlParameter("rankedQueues", rankedQueues));
+		if (queue != null) {
+			add(new UrlParameter("queue", queue));
 		}
-		if (seasons != null) {
-			add(new UrlParameter("seasons", seasons));
+		if (season != null) {
+			add(new UrlParameter("season", season));
 		}
 		if (beginTime != -1) {
 			add(new UrlParameter("beginTime", beginTime));
