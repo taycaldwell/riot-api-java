@@ -16,8 +16,9 @@
 
 package net.rithms.riot.constant;
 
+import java.util.NoSuchElementException;
+
 import net.rithms.riot.api.RiotApi;
-import net.rithms.riot.api.RiotStringNotFoundException;
 
 public enum Platform {
 	BR("BR1", "br"),
@@ -37,24 +38,24 @@ public enum Platform {
 	private String id;
 	private String name;
 
-	public static Platform getPlatformById(String id) throws RiotStringNotFoundException {
+	public static Platform getPlatformById(String id) {
 		for (Platform platform : Platform.values()) {
 			if (platform.getId().toLowerCase().equals(id.toLowerCase())) {
 				return platform;
 			}
 		}
-		RiotApi.log.warning("Unknown platform: " + id);
-		throw new RiotStringNotFoundException("Could not find platform with id " + id);
+		RiotApi.log.warning("Unknown platform ID: " + id);
+		throw new NoSuchElementException("Unknown platform ID: " + id);
 	}
 
-	public static Platform getPlatformByName(String name) throws RiotStringNotFoundException {
+	public static Platform getPlatformByName(String name) {
 		for (Platform platform : Platform.values()) {
 			if (platform.getName().toLowerCase().equals(name.toLowerCase())) {
 				return platform;
 			}
 		}
-		RiotApi.log.warning("Unknown platform: " + name);
-		throw new RiotStringNotFoundException("Could not find platform with name " + name);
+		RiotApi.log.warning("Unknown platform name: " + name);
+		throw new NoSuchElementException("Unknown platform name: " + name);
 	}
 
 	Platform(String id, String name) {

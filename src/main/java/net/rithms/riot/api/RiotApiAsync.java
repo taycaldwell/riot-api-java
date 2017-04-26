@@ -1018,7 +1018,6 @@ public class RiotApiAsync {
 	 * @see SummonerSpellList
 	 */
 	public AsyncRequest getDataSummonerSpellList(Platform platform) {
-		Objects.requireNonNull(platform);
 		return getDataSummonerSpellList(platform, null, null, false, (SpellData) null);
 	}
 
@@ -1083,14 +1082,10 @@ public class RiotApiAsync {
 	 * @param summonerIds
 	 *            List of summoner IDs. Maximum allowed at once is 10.
 	 * @return A map, mapping each summoner ID to a list of leagues
-	 * @throws NullPointerException
-	 *             If {@code region} or {@code summonerIds} is {@code null}
 	 * @version 2.5
 	 * @see League
 	 */
 	public AsyncRequest getLeagueBySummoners(Region region, long... summonerIds) {
-		Objects.requireNonNull(region);
-		Objects.requireNonNull(summonerIds);
 		return getLeagueBySummoners(region, Convert.longToString(summonerIds));
 	}
 
@@ -1122,14 +1117,10 @@ public class RiotApiAsync {
 	 * @param summonerIds
 	 *            List of summoner IDs. Maximum allowed at once is 10.
 	 * @return A map, mapping each summoner ID to a list of leagues
-	 * @throws NullPointerException
-	 *             If {@code region} or {@code summonerIds} is {@code null}
 	 * @version 2.5
 	 * @see League
 	 */
 	public AsyncRequest getLeagueEntryBySummoners(Region region, long... summonerIds) {
-		Objects.requireNonNull(region);
-		Objects.requireNonNull(summonerIds);
 		return getLeagueEntryBySummoners(region, Convert.longToString(summonerIds));
 	}
 
@@ -1258,13 +1249,9 @@ public class RiotApiAsync {
 	 * @param tournamentCode
 	 *            The code of the tournament.
 	 * @return A map with match details
-	 * @throws NullPointerException
-	 *             If {@code region} or {@code tournamentCode} is {@code null}
 	 * @see Match
 	 */
 	public AsyncRequest getMatchForTournament(Region region, long matchId, String tournamentCode) {
-		Objects.requireNonNull(region);
-		Objects.requireNonNull(tournamentCode);
 		return getMatchForTournament(region, matchId, tournamentCode, false);
 	}
 
@@ -1316,13 +1303,10 @@ public class RiotApiAsync {
 	 * @param season
 	 *            Set of season IDs for which to filtering matchlist.
 	 * @return A list with matches
-	 * @throws NullPointerException
-	 *             If {@code platform} is {@code null}
 	 * @version 3
 	 * @see MatchList
 	 */
 	public AsyncRequest getMatchListByAccountId(Platform platform, long accountId, String champion, String queue, String season) {
-		Objects.requireNonNull(platform);
 		return getMatchListByAccountId(platform, accountId, champion, queue, season, -1, -1, -1, -1);
 	}
 
@@ -1334,13 +1318,10 @@ public class RiotApiAsync {
 	 * @param accountId
 	 *            The account ID of the summoner.
 	 * @return A list with matches
-	 * @throws NullPointerException
-	 *             If {@code platform} is {@code null}
 	 * @version 3
 	 * @see MatchList
 	 */
 	public AsyncRequest getMatchListByAccountId(Platform platform, long accountId) {
-		Objects.requireNonNull(platform);
 		return getMatchListByAccountId(platform, accountId, null, null, null);
 	}
 
@@ -1373,13 +1354,10 @@ public class RiotApiAsync {
 	 * @param summonerId
 	 *            ID of the summoner for which to retrieve player stats.
 	 * @return A summary of player statistics for the given summoner
-	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
 	 * @see PlayerStatsSummaryList
 	 */
 	@Deprecated
 	public AsyncRequest getPlayerStatsSummary(Region region, long summonerId) {
-		Objects.requireNonNull(region);
 		return getPlayerStatsSummary(region, null, summonerId);
 	}
 
@@ -1432,13 +1410,10 @@ public class RiotApiAsync {
 	 * @param season
 	 *            If specified, stats for the given season are returned. Otherwise, stats for the current season are returned.
 	 * @return Ranked statistics of the given summoner
-	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
 	 * @see RankedStats
 	 */
 	@Deprecated
 	public AsyncRequest getRankedStats(Region region, long summonerId) {
-		Objects.requireNonNull(region);
 		return getRankedStats(region, null, summonerId);
 	}
 

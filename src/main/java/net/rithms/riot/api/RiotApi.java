@@ -1165,16 +1165,12 @@ public class RiotApi implements Cloneable {
 	 * @param summonerId
 	 *            Summoner ID
 	 * @return A list of leagues
-	 * @throws NullPointerException
-	 *             If {@code region} or {@code summonerId} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 * @version 2.5
 	 * @see League
 	 */
 	public List<League> getLeagueBySummoner(Region region, String summonerId) throws RiotApiException {
-		Objects.requireNonNull(region);
-		Objects.requireNonNull(summonerId);
 		Map<String, List<League>> leagues = getLeagueBySummoners(region, summonerId);
 		if (!leagues.containsKey(String.valueOf(summonerId))) {
 			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
@@ -1190,15 +1186,12 @@ public class RiotApi implements Cloneable {
 	 * @param summonerId
 	 *            Summoner ID
 	 * @return A list of leagues
-	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 * @version 2.5
 	 * @see League
 	 */
 	public List<League> getLeagueBySummoner(Region region, long summonerId) throws RiotApiException {
-		Objects.requireNonNull(region);
 		return getLeagueBySummoner(region, String.valueOf(summonerId));
 	}
 
@@ -1232,16 +1225,12 @@ public class RiotApi implements Cloneable {
 	 * @param summonerIds
 	 *            List of summoner IDs. Maximum allowed at once is 10.
 	 * @return A map, mapping each summoner ID to a list of leagues
-	 * @throws NullPointerException
-	 *             If {@code region} or {@code summonerIds} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 * @version 2.5
 	 * @see League
 	 */
 	public Map<String, List<League>> getLeagueBySummoners(Region region, long... summonerIds) throws RiotApiException {
-		Objects.requireNonNull(region);
-		Objects.requireNonNull(summonerIds);
 		return getLeagueBySummoners(region, Convert.longToString(summonerIds));
 	}
 
@@ -1253,16 +1242,12 @@ public class RiotApi implements Cloneable {
 	 * @param summonerId
 	 *            Summoner ID
 	 * @return A list of leagues
-	 * @throws NullPointerException
-	 *             If {@code region} or {@code summonerId} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 * @version 2.5
 	 * @see League
 	 */
 	public List<League> getLeagueEntryBySummoner(Region region, String summonerId) throws RiotApiException {
-		Objects.requireNonNull(region);
-		Objects.requireNonNull(summonerId);
 		Map<String, List<League>> leagues = getLeagueEntryBySummoners(region, summonerId);
 		if (!leagues.containsKey(String.valueOf(summonerId))) {
 			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
@@ -1278,15 +1263,12 @@ public class RiotApi implements Cloneable {
 	 * @param summonerId
 	 *            Summoner ID
 	 * @return A list of leagues
-	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 * @version 2.5
 	 * @see League
 	 */
 	public List<League> getLeagueEntryBySummoner(Region region, long summonerId) throws RiotApiException {
-		Objects.requireNonNull(region);
 		return getLeagueEntryBySummoner(region, String.valueOf(summonerId));
 	}
 
@@ -1320,16 +1302,12 @@ public class RiotApi implements Cloneable {
 	 * @param summonerIds
 	 *            List of summoner IDs. Maximum allowed at once is 10.
 	 * @return A map, mapping each summoner ID to a list of leagues
-	 * @throws NullPointerException
-	 *             If {@code region} or {@code summonerIds} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 * @version 2.5
 	 * @see League
 	 */
 	public Map<String, List<League>> getLeagueEntryBySummoners(Region region, long... summonerIds) throws RiotApiException {
-		Objects.requireNonNull(region);
-		Objects.requireNonNull(summonerIds);
 		return getLeagueEntryBySummoners(region, Convert.longToString(summonerIds));
 	}
 
@@ -1470,15 +1448,11 @@ public class RiotApi implements Cloneable {
 	 * @param tournamentCode
 	 *            The code of the tournament.
 	 * @return A map with match details
-	 * @throws NullPointerException
-	 *             If {@code region} or {@code tournamentCode} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 * @see Match
 	 */
 	public Match getMatchForTournament(Region region, long matchId, String tournamentCode) throws RiotApiException {
-		Objects.requireNonNull(region);
-		Objects.requireNonNull(tournamentCode);
 		return getMatchForTournament(region, matchId, tournamentCode, false);
 	}
 
@@ -1532,15 +1506,12 @@ public class RiotApi implements Cloneable {
 	 * @param season
 	 *            Set of season IDs for which to filtering matchlist.
 	 * @return A list with matches
-	 * @throws NullPointerException
-	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 * @version 3
 	 * @see MatchList
 	 */
 	public MatchList getMatchListByAccountId(Platform platform, long accountId, String champion, String queue, String season) throws RiotApiException {
-		Objects.requireNonNull(platform);
 		return getMatchListByAccountId(platform, accountId, champion, queue, season, -1, -1, -1, -1);
 	}
 
@@ -1552,15 +1523,12 @@ public class RiotApi implements Cloneable {
 	 * @param accountId
 	 *            The account ID of the summoner.
 	 * @return A list with matches
-	 * @throws NullPointerException
-	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 * @version 3
 	 * @see MatchList
 	 */
 	public MatchList getMatchListByAccountId(Platform platform, long accountId) throws RiotApiException {
-		Objects.requireNonNull(platform);
 		return getMatchListByAccountId(platform, accountId, null, null, null);
 	}
 
@@ -1595,15 +1563,12 @@ public class RiotApi implements Cloneable {
 	 * @param summonerId
 	 *            ID of the summoner for which to retrieve player stats.
 	 * @return A summary of player statistics for the given summoner
-	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 * @see PlayerStatsSummaryList
 	 */
 	@Deprecated
 	public PlayerStatsSummaryList getPlayerStatsSummary(Region region, long summonerId) throws RiotApiException {
-		Objects.requireNonNull(region);
 		return getPlayerStatsSummary(region, null, summonerId);
 	}
 
@@ -1640,15 +1605,12 @@ public class RiotApi implements Cloneable {
 	 * @param season
 	 *            If specified, stats for the given season are returned. Otherwise, stats for the current season are returned.
 	 * @return Ranked statistics of the given summoner
-	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 * @see RankedStats
 	 */
 	@Deprecated
 	public RankedStats getRankedStats(Region region, long summonerId) throws RiotApiException {
-		Objects.requireNonNull(region);
 		return getRankedStats(region, null, summonerId);
 	}
 

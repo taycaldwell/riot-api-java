@@ -16,9 +16,11 @@
 
 package net.rithms.riot.constant;
 
-import net.rithms.riot.api.RiotApi;
-import net.rithms.riot.api.RiotStringNotFoundException;
+import java.util.NoSuchElementException;
 
+import net.rithms.riot.api.RiotApi;
+
+@Deprecated
 public enum Region {
 	BR("br.api.pvp.net", "br"),
 	EUNE("eune.api.pvp.net", "eune"),
@@ -37,22 +39,18 @@ public enum Region {
 	private String endpoint;
 	private String region;
 
-	public static Region getRegionByName(String name) throws RiotStringNotFoundException {
+	public static Region getRegionByName(String name) {
 		for (Region region : Region.values()) {
 			if (region.getName().equals(name.toLowerCase())) {
 				return region;
 			}
 		}
-		RiotApi.log.warning("Unknown region: " + name);
-		throw new RiotStringNotFoundException("Could not find region " + name);
+		RiotApi.log.warning("Unknown region name: " + name);
+		throw new NoSuchElementException("Unknown region name: " + name);
 	}
 
 	public static Region getRegionByPlatformId(Platform platformId) {
-		try {
-			return getRegionByName(platformId.getName());
-		} catch (RiotStringNotFoundException e) {
-			return null;
-		}
+		return getRegionByName(platformId.getName());
 	}
 
 	Region(String endpoint, String region) {

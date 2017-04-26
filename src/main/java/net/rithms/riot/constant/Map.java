@@ -16,17 +16,18 @@
 
 package net.rithms.riot.constant;
 
+import java.util.NoSuchElementException;
+
 import net.rithms.riot.api.RiotApi;
-import net.rithms.riot.api.RiotStringNotFoundException;
 
 public enum Map {
 	ARAM(12, "Howling Abyss"),
-	BUTCHERS_BRIDGE(14,"Butcher's Bridge"),
+	BUTCHERS_BRIDGE(14, "Butcher's Bridge"),
 	CRYSTAL_SCAR(8, "The Crystal Scar"),
 	DOMINION(8, "The Crystal Scar"),
 	HOWLING_ABYSS(12, "Howling Abyss"),
 	PROVING_GROUNDS(3, "Proving Grounds"),
-    SUMMONERS_RIFT_2014(11, "Summoner's Rift"),
+	SUMMONERS_RIFT_2014(11, "Summoner's Rift"),
 	SUMMONERS_RIFT_AUTUMN(2, "Summoner's Rift"),
 	SUMMONERS_RIFT_SUMMER(1, "Summoner's Rift"),
 	TUTORIAL(3, "Proving Grounds"),
@@ -36,14 +37,14 @@ public enum Map {
 	private int id;
 	private String name;
 
-	public static Map getMapById(int mapId) throws RiotStringNotFoundException {
+	public static Map getMapById(int mapId) {
 		for (Map map : Map.values()) {
 			if (mapId == map.getId()) {
 				return map;
 			}
 		}
-		RiotApi.log.warning("Unknown MapId: " + mapId);
-		throw new RiotStringNotFoundException("Could not find map " + mapId);
+		RiotApi.log.warning("Unknown map ID: " + mapId);
+		throw new NoSuchElementException("Unknown map ID: " + mapId);
 	}
 
 	Map(int id, String name) {
