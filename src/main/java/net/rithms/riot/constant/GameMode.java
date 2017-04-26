@@ -16,13 +16,18 @@
 
 package net.rithms.riot.constant;
 
+//this is not used at all?
+@Deprecated
 public enum GameMode {
 	ARAM("ARAM"),
+	ARSR("ARAM SR"),
 	ASCENSION("Ascension"),
+	ASSASSINATE("Blood Hunt Assassin"),
 	CLASSIC("Classic"),
+	DARKSTAR("Darkstar"),
 	FIRSTBLOOD("Snowdown Showdown"),
 	KINGPORO("King Poro"),
-	ODIN("Dominion/Crystal Scar"),
+	ODIN("Dominion"),
 	ONEFORALL("One for All"),
 	SIEGE("Nexus Siege"),
 	TUTORIAL("Tutorial");

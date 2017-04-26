@@ -19,9 +19,9 @@ package net.rithms.riot.api.endpoints.stats.methods;
 import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.UrlParameter;
 import net.rithms.riot.api.endpoints.stats.StatsApiMethod;
+import net.rithms.riot.api.endpoints.stats.constant.Season;
 import net.rithms.riot.api.endpoints.stats.dto.PlayerStatsSummaryList;
 import net.rithms.riot.constant.Region;
-import net.rithms.riot.constant.Season;
 
 public class GetPlayerStatsSummary extends StatsApiMethod {
 

@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.constant;
+package net.rithms.riot.api.endpoints.stats.constant;
 
+@Deprecated
 public enum Season {
 	// Seasons with Number
 	SEASON3("SEASON3"),

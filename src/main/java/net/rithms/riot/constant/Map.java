@@ -20,17 +20,18 @@ import java.util.NoSuchElementException;
 
 import net.rithms.riot.api.RiotApi;
 
+// this is not used at all?
+@Deprecated
 public enum Map {
 	ARAM(12, "Howling Abyss"),
 	BUTCHERS_BRIDGE(14, "Butcher's Bridge"),
+	COSMIC_RUINS(16, "Cosmic Ruins"),
 	CRYSTAL_SCAR(8, "The Crystal Scar"),
-	DOMINION(8, "The Crystal Scar"),
 	HOWLING_ABYSS(12, "Howling Abyss"),
 	PROVING_GROUNDS(3, "Proving Grounds"),
-	SUMMONERS_RIFT_2014(11, "Summoner's Rift"),
+	SUMMONERS_RIFT(11, "Summoner's Rift"),
 	SUMMONERS_RIFT_AUTUMN(2, "Summoner's Rift"),
 	SUMMONERS_RIFT_SUMMER(1, "Summoner's Rift"),
-	TUTORIAL(3, "Proving Grounds"),
 	TWISTED_TREELINE_CURRENT(10, "Twisted Treeline"),
 	TWISTED_TREELINE_ORIGINAL(4, "Twisted Treeline");
 

@@ -23,8 +23,8 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import net.rithms.riot.api.RiotApiException;
+import net.rithms.riot.api.endpoints.league.constant.QueueType;
 import net.rithms.riot.api.endpoints.static_data.constant.ChampData;
-import net.rithms.riot.constant.QueueType;
 import net.rithms.util.Convert;
 
 /**

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.constant;
+package net.rithms.riot.api.endpoints.league.constant;
 
 import java.util.NoSuchElementException;
 

@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.constant;
+package net.rithms.riot.api.endpoints.stats.constant;
 
+@Deprecated
 public enum PlayerStatSummaryType {
 	AramUnranked5x5("ARAM / Howling Abyss"),
 	Ascension("Ascension"),

@@ -25,11 +25,11 @@ import com.google.gson.reflect.TypeToken;
 import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.UrlParameter;
 import net.rithms.riot.api.endpoints.tournament_stub.TournamentStubApiMethod;
+import net.rithms.riot.api.endpoints.tournament_stub.constant.PickType;
+import net.rithms.riot.api.endpoints.tournament_stub.constant.SpectatorType;
+import net.rithms.riot.api.endpoints.tournament_stub.constant.TournamentMap;
 import net.rithms.riot.api.request.RequestMethod;
-import net.rithms.riot.constant.PickType;
 import net.rithms.riot.constant.Platform;
-import net.rithms.riot.constant.SpectatorType;
-import net.rithms.riot.constant.TournamentMap;
 
 public class CreateTournamentCodes extends TournamentStubApiMethod {
 

@@ -16,6 +16,8 @@
 
 package net.rithms.riot.constant;
 
+//this is not used at all?
+@Deprecated
 public enum GameType {
 	CUSTOM_GAME("Custom"),
 	MATCHED_GAME("All"),

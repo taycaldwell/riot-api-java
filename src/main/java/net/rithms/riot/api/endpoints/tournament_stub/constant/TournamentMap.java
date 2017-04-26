@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.constant;
+package net.rithms.riot.api.endpoints.tournament_stub.constant;
 
-public enum SpectatorType {
-	ALL,
-	LOBBYONLY,
-	NONE
+public enum TournamentMap {
+	CRYSTAL_SCAR,
+	HOWLING_ABYSS,
+	SUMMONERS_RIFT,
+	TWISTED_TREELINE
 }
