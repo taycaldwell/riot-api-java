@@ -16,23 +16,22 @@
 
 package net.rithms.riot.api.endpoints.match.methods;
 
+import java.util.List;
+
+import com.google.gson.reflect.TypeToken;
+
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.UrlParameter;
 import net.rithms.riot.api.endpoints.match.MatchApiMethod;
-import net.rithms.riot.api.endpoints.match.dto.Match;
-import net.rithms.riot.constant.Region;
+import net.rithms.riot.constant.Platform;
 
-public class GetMatchForTournament extends MatchApiMethod {
+public class GetMatchIdsByTournamentCode extends MatchApiMethod {
 
-	public GetMatchForTournament(ApiConfig config, Region region, long matchId, String tournamentCode, boolean includeTimeline) {
+	public GetMatchIdsByTournamentCode(ApiConfig config, Platform platform, String tournamentCode) {
 		super(config);
-		setRegion(region);
-		setReturnType(Match.class);
-		setUrlBase(region.getEndpoint() + "/v2.2/match/for-tournament/" + matchId);
-		add(new UrlParameter("tournamentCode", tournamentCode));
-		if (includeTimeline) {
-			add(new UrlParameter("includeTimeline", includeTimeline));
-		}
+		setPlatform(platform);
+		setReturnType(new TypeToken<List<Long>>() {
+		}.getType());
+		setUrlBase(platform.getHost() + "/lol/match/v3/matches/by-tournament-code/" + tournamentCode + "/ids");
 		addTournamentApiKeyParameter();
 	}
 }

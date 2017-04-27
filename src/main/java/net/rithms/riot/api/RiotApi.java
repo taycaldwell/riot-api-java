@@ -42,9 +42,9 @@ import net.rithms.riot.api.endpoints.masteries.methods.GetMasteriesBySummoner;
 import net.rithms.riot.api.endpoints.match.dto.Match;
 import net.rithms.riot.api.endpoints.match.dto.MatchList;
 import net.rithms.riot.api.endpoints.match.methods.GetMatch;
-import net.rithms.riot.api.endpoints.match.methods.GetMatchForTournament;
+import net.rithms.riot.api.endpoints.match.methods.GetMatchByMatchIdAndTournamentCode;
+import net.rithms.riot.api.endpoints.match.methods.GetMatchIdsByTournamentCode;
 import net.rithms.riot.api.endpoints.match.methods.GetMatchListByAccountId;
-import net.rithms.riot.api.endpoints.match.methods.GetMatchesByTournament;
 import net.rithms.riot.api.endpoints.match.methods.GetRecentMatchListByAccountId;
 import net.rithms.riot.api.endpoints.runes.dto.RunePages;
 import net.rithms.riot.api.endpoints.runes.methods.GetRunesBySummoner;
@@ -1321,6 +1321,7 @@ public class RiotApi implements Cloneable {
 	 *             If {@code tournamentCode} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 3
 	 * @see LobbyEventWrapper
 	 */
 	public LobbyEventWrapper getLobbyEventsByTournament(String tournamentCode) throws RiotApiException {
@@ -1394,66 +1395,48 @@ public class RiotApi implements Cloneable {
 	}
 
 	/**
+	 * Retrieve match by {@code matchId} and {@code tournamentCode}.
+	 *
+	 * @param platform
+	 *            The platform of the match.
+	 * @param matchId
+	 *            The ID of the match.
+	 * @param tournamentCode
+	 *            The code of the tournament.
+	 * @return A map with match details
+	 * @throws NullPointerException
+	 *             If {@code platform} or {@code tournamentCode} is {@code null}
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 * @version 3
+	 * @see Match
+	 */
+	public Match getMatchByMatchIdAndTournamentCode(Platform platform, long matchId, String tournamentCode) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		Objects.requireNonNull(tournamentCode);
+		ApiMethod method = new GetMatchByMatchIdAndTournamentCode(getConfig(), platform, matchId, tournamentCode);
+		return endpointManager.callMethodAndReturnDto(method);
+	}
+
+	/**
 	 * Retrieve match IDs by {@code tournamentCode}.
 	 *
-	 * @param region
-	 *            The region of the matches/tournament.
+	 * @param platform
+	 *            The platform of the matches/tournament.
 	 * @param tournamentCode
 	 *            The code of the tournament.
 	 * @return A list of match IDs
 	 * @throws NullPointerException
-	 *             If {@code region} or {@code tournamentCode} is {@code null}
+	 *             If {@code platform} or {@code tournamentCode} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 3
 	 */
-	public List<Long> getMatchesByTournament(Region region, String tournamentCode) throws RiotApiException {
-		Objects.requireNonNull(region);
+	public List<Long> getMatchIdsByTournamentCode(Platform platform, String tournamentCode) throws RiotApiException {
+		Objects.requireNonNull(platform);
 		Objects.requireNonNull(tournamentCode);
-		ApiMethod method = new GetMatchesByTournament(getConfig(), region, tournamentCode);
+		ApiMethod method = new GetMatchIdsByTournamentCode(getConfig(), platform, tournamentCode);
 		return endpointManager.callMethodAndReturnDto(method);
-	}
-
-	/**
-	 * Retrieve match by {@code matchId} and {@code tournamentCode}.
-	 *
-	 * @param region
-	 *            The region of the match.
-	 * @param matchId
-	 *            The ID of the match.
-	 * @param tournamentCode
-	 *            The code of the tournament.
-	 * @param includeTimeline
-	 *            Flag indicating whether or not to include match timeline data
-	 * @return A map with match details
-	 * @throws NullPointerException
-	 *             If {@code region} or {@code tournamentCode} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
-	 * @see Match
-	 */
-	public Match getMatchForTournament(Region region, long matchId, String tournamentCode, boolean includeTimeline) throws RiotApiException {
-		Objects.requireNonNull(region);
-		Objects.requireNonNull(tournamentCode);
-		ApiMethod method = new GetMatchForTournament(getConfig(), region, matchId, tournamentCode, includeTimeline);
-		return endpointManager.callMethodAndReturnDto(method);
-	}
-
-	/**
-	 * Retrieve match by {@code matchId} and {@code tournamentCode}.
-	 *
-	 * @param region
-	 *            The region of the match.
-	 * @param matchId
-	 *            The ID of the match.
-	 * @param tournamentCode
-	 *            The code of the tournament.
-	 * @return A map with match details
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
-	 * @see Match
-	 */
-	public Match getMatchForTournament(Region region, long matchId, String tournamentCode) throws RiotApiException {
-		return getMatchForTournament(region, matchId, tournamentCode, false);
 	}
 
 	/**

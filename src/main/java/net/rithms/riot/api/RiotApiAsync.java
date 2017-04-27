@@ -39,9 +39,9 @@ import net.rithms.riot.api.endpoints.masteries.methods.GetMasteriesBySummoner;
 import net.rithms.riot.api.endpoints.match.dto.Match;
 import net.rithms.riot.api.endpoints.match.dto.MatchList;
 import net.rithms.riot.api.endpoints.match.methods.GetMatch;
-import net.rithms.riot.api.endpoints.match.methods.GetMatchForTournament;
+import net.rithms.riot.api.endpoints.match.methods.GetMatchByMatchIdAndTournamentCode;
+import net.rithms.riot.api.endpoints.match.methods.GetMatchIdsByTournamentCode;
 import net.rithms.riot.api.endpoints.match.methods.GetMatchListByAccountId;
-import net.rithms.riot.api.endpoints.match.methods.GetMatchesByTournament;
 import net.rithms.riot.api.endpoints.match.methods.GetRecentMatchListByAccountId;
 import net.rithms.riot.api.endpoints.runes.dto.RunePages;
 import net.rithms.riot.api.endpoints.runes.methods.GetRunesBySummoner;
@@ -1201,58 +1201,42 @@ public class RiotApiAsync {
 	/**
 	 * Retrieve match IDs by {@code tournamentCode}.
 	 *
-	 * @param region
-	 *            The region of the matches/tournament.
+	 * @param platform
+	 *            The platform of the matches/tournament.
 	 * @param tournamentCode
 	 *            The code of the tournament.
 	 * @return A list of match IDs
 	 * @throws NullPointerException
-	 *             If {@code region} or {@code tournamentCode} is {@code null}
+	 *             If {@code platform} or {@code tournamentCode} is {@code null}
+	 * @version 3
 	 */
-	public AsyncRequest getMatchesByTournament(Region region, String tournamentCode) {
-		Objects.requireNonNull(region);
+	public AsyncRequest getMatchIdsByTournamentCode(Platform platform, String tournamentCode) {
+		Objects.requireNonNull(platform);
 		Objects.requireNonNull(tournamentCode);
-		ApiMethod method = new GetMatchesByTournament(getConfig(), region, tournamentCode);
+		ApiMethod method = new GetMatchIdsByTournamentCode(getConfig(), platform, tournamentCode);
 		return endpointManager.callMethodAsynchronously(method);
 	}
 
 	/**
 	 * Retrieve match by {@code matchId} and {@code tournamentCode}.
 	 *
-	 * @param region
-	 *            The region of the match.
+	 * @param platform
+	 *            The platform of the match.
 	 * @param matchId
 	 *            The ID of the match.
 	 * @param tournamentCode
 	 *            The code of the tournament.
-	 * @param includeTimeline
-	 *            Flag indicating whether or not to include match timeline data
 	 * @return A map with match details
 	 * @throws NullPointerException
-	 *             If {@code region} or {@code tournamentCode} is {@code null}
+	 *             If {@code platform} or {@code tournamentCode} is {@code null}
+	 * @version 3
 	 * @see Match
 	 */
-	public AsyncRequest getMatchForTournament(Region region, long matchId, String tournamentCode, boolean includeTimeline) {
-		Objects.requireNonNull(region);
+	public AsyncRequest getMatchByMatchIdAndTournamentCode(Platform platform, long matchId, String tournamentCode) {
+		Objects.requireNonNull(platform);
 		Objects.requireNonNull(tournamentCode);
-		ApiMethod method = new GetMatchForTournament(getConfig(), region, matchId, tournamentCode, includeTimeline);
+		ApiMethod method = new GetMatchByMatchIdAndTournamentCode(getConfig(), platform, matchId, tournamentCode);
 		return endpointManager.callMethodAsynchronously(method);
-	}
-
-	/**
-	 * Retrieve match by {@code matchId} and {@code tournamentCode}.
-	 *
-	 * @param region
-	 *            The region of the match.
-	 * @param matchId
-	 *            The ID of the match.
-	 * @param tournamentCode
-	 *            The code of the tournament.
-	 * @return A map with match details
-	 * @see Match
-	 */
-	public AsyncRequest getMatchForTournament(Region region, long matchId, String tournamentCode) {
-		return getMatchForTournament(region, matchId, tournamentCode, false);
 	}
 
 	/**
