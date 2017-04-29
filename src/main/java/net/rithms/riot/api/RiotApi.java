@@ -62,6 +62,7 @@ import net.rithms.riot.api.endpoints.static_data.constant.MasteryListData;
 import net.rithms.riot.api.endpoints.static_data.constant.RuneData;
 import net.rithms.riot.api.endpoints.static_data.constant.RuneListData;
 import net.rithms.riot.api.endpoints.static_data.constant.SpellData;
+import net.rithms.riot.api.endpoints.static_data.constant.SpellListData;
 import net.rithms.riot.api.endpoints.static_data.dto.Item;
 import net.rithms.riot.api.endpoints.static_data.dto.ItemList;
 import net.rithms.riot.api.endpoints.static_data.dto.LanguageStrings;
@@ -1087,10 +1088,10 @@ public class RiotApi implements Cloneable {
 	 * @param dataById
 	 *            If specified as true, the returned data map will use the spells' IDs as the keys. If specified as false, the returned data
 	 *            map will use the spells' keys instead
-	 * @param spellData
+	 * @param spellListData
 	 *            Tags to return additional data. Only {@code type}, {@code version}, {@code data}, {@code id}, {@code key}, {@code name},
 	 *            {@code description}, and {@code summonerLevel} are returned by default if this parameter isn't specified. To return all
-	 *            additional data, use {@code SpellData.ALL}.
+	 *            additional data, use {@code SpellListData.ALL}.
 	 * @return A list with summoner spells
 	 * @throws NullPointerException
 	 *             If {@code platform} is {@code null}
@@ -1099,10 +1100,10 @@ public class RiotApi implements Cloneable {
 	 * @version 3
 	 * @see SummonerSpellList
 	 */
-	public SummonerSpellList getDataSummonerSpellList(Platform platform, Locale locale, String version, boolean dataById, SpellData... spellData)
+	public SummonerSpellList getDataSummonerSpellList(Platform platform, Locale locale, String version, boolean dataById, SpellListData... spellListData)
 			throws RiotApiException {
 		Objects.requireNonNull(platform);
-		ApiMethod method = new GetDataSummonerSpellList(getConfig(), platform, locale, version, dataById, spellData);
+		ApiMethod method = new GetDataSummonerSpellList(getConfig(), platform, locale, version, dataById, spellListData);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 
@@ -1118,7 +1119,7 @@ public class RiotApi implements Cloneable {
 	 * @see SummonerSpellList
 	 */
 	public SummonerSpellList getDataSummonerSpellList(Platform platform) throws RiotApiException {
-		return getDataSummonerSpellList(platform, null, null, false, (SpellData) null);
+		return getDataSummonerSpellList(platform, null, null, false, (SpellListData) null);
 	}
 
 	/**

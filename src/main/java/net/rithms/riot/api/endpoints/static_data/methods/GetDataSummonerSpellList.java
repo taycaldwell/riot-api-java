@@ -20,14 +20,14 @@ import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.UrlParameter;
 import net.rithms.riot.api.endpoints.static_data.StaticDataApiMethod;
 import net.rithms.riot.api.endpoints.static_data.constant.Locale;
-import net.rithms.riot.api.endpoints.static_data.constant.SpellData;
+import net.rithms.riot.api.endpoints.static_data.constant.SpellListData;
 import net.rithms.riot.api.endpoints.static_data.dto.SummonerSpellList;
 import net.rithms.riot.constant.Platform;
 import net.rithms.util.Convert;
 
 public class GetDataSummonerSpellList extends StaticDataApiMethod {
 
-	public GetDataSummonerSpellList(ApiConfig config, Platform platform, Locale locale, String version, boolean dataById, SpellData... spellData) {
+	public GetDataSummonerSpellList(ApiConfig config, Platform platform, Locale locale, String version, boolean dataById, SpellListData... spellListData) {
 		super(config);
 		setPlatform(platform);
 		setReturnType(SummonerSpellList.class);
@@ -39,8 +39,8 @@ public class GetDataSummonerSpellList extends StaticDataApiMethod {
 			add(new UrlParameter("version", version));
 		}
 		add(new UrlParameter("dataById", dataById));
-		if (spellData[0] != null) {
-			add(new UrlParameter("spellData", Convert.joinString(",", (Object[]) spellData)));
+		if (spellListData[0] != null) {
+			add(new UrlParameter("spellListData", Convert.joinString(",", (Object[]) spellListData)));
 		}
 		addApiKeyParameter();
 	}
