@@ -85,12 +85,16 @@ public class RiotApiException extends Exception {
 	 */
 	public static String getMessage(final int errorCode) {
 		switch (errorCode) {
+		case BAD_GATEWAY:
+			return "Bad gateway";
 		case BAD_REQUEST:
 			return "Bad request";
 		case FORBIDDEN:
 			return "Forbidden";
 		case DATA_NOT_FOUND:
 			return "Requested data not found";
+		case GATEWAY_TIMEOUT:
+			return "Gateway timeout";
 		case IOEXCEPTION:
 			return "I/O Exception thrown";
 		case METHOD_NOT_ALLOWED:
