@@ -53,6 +53,7 @@ import net.rithms.riot.api.endpoints.spectator.dto.FeaturedGames;
 import net.rithms.riot.api.endpoints.spectator.methods.GetActiveGameBySummoner;
 import net.rithms.riot.api.endpoints.spectator.methods.GetFeaturedGames;
 import net.rithms.riot.api.endpoints.static_data.constant.ChampData;
+import net.rithms.riot.api.endpoints.static_data.constant.ChampListData;
 import net.rithms.riot.api.endpoints.static_data.constant.ItemData;
 import net.rithms.riot.api.endpoints.static_data.constant.ItemListData;
 import net.rithms.riot.api.endpoints.static_data.constant.Locale;
@@ -563,9 +564,9 @@ public class RiotApi implements Cloneable {
 	 * @param dataById
 	 *            If specified as true, the returned data map will use the champions' IDs as the keys. If specified as false, the returned
 	 *            data map will use the champions' keys instead.
-	 * @param champData
+	 * @param champListData
 	 *            Tags to return additional data. Only {@code id}, {@code key}, {@code name}, and {@code title} are returned by default if
-	 *            this parameter isn't specified. To return all additional data, use {@code ChampData.ALL}.
+	 *            this parameter isn't specified. To return all additional data, use {@code ChampListData.ALL}.
 	 * @return A list with champions
 	 * @throws NullPointerException
 	 *             If {@code platform} is {@code null}
@@ -575,9 +576,9 @@ public class RiotApi implements Cloneable {
 	 * @see net.rithms.riot.api.endpoints.static_data.dto.ChampionList
 	 */
 	public net.rithms.riot.api.endpoints.static_data.dto.ChampionList getDataChampionList(Platform platform, Locale locale, String version, boolean dataById,
-			ChampData... champData) throws RiotApiException {
+			ChampListData... champListData) throws RiotApiException {
 		Objects.requireNonNull(platform);
-		ApiMethod method = new GetDataChampionList(getConfig(), platform, locale, version, dataById, champData);
+		ApiMethod method = new GetDataChampionList(getConfig(), platform, locale, version, dataById, champListData);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 
@@ -593,7 +594,7 @@ public class RiotApi implements Cloneable {
 	 * @see net.rithms.riot.api.endpoints.static_data.dto.ChampionList
 	 */
 	public net.rithms.riot.api.endpoints.static_data.dto.ChampionList getDataChampionList(Platform platform) throws RiotApiException {
-		return getDataChampionList(platform, null, null, false, (ChampData) null);
+		return getDataChampionList(platform, null, null, false, (ChampListData) null);
 	}
 
 	/**

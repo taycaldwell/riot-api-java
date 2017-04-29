@@ -19,7 +19,7 @@ package net.rithms.riot.api.endpoints.static_data.methods;
 import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.UrlParameter;
 import net.rithms.riot.api.endpoints.static_data.StaticDataApiMethod;
-import net.rithms.riot.api.endpoints.static_data.constant.ChampData;
+import net.rithms.riot.api.endpoints.static_data.constant.ChampListData;
 import net.rithms.riot.api.endpoints.static_data.constant.Locale;
 import net.rithms.riot.api.endpoints.static_data.dto.ChampionList;
 import net.rithms.riot.constant.Platform;
@@ -27,7 +27,7 @@ import net.rithms.util.Convert;
 
 public class GetDataChampionList extends StaticDataApiMethod {
 
-	public GetDataChampionList(ApiConfig config, Platform platform, Locale locale, String version, boolean dataById, ChampData... champData) {
+	public GetDataChampionList(ApiConfig config, Platform platform, Locale locale, String version, boolean dataById, ChampListData... champListData) {
 		super(config);
 		setPlatform(platform);
 		setReturnType(ChampionList.class);
@@ -39,8 +39,8 @@ public class GetDataChampionList extends StaticDataApiMethod {
 			add(new UrlParameter("version", version));
 		}
 		add(new UrlParameter("dataById", dataById));
-		if (champData[0] != null) {
-			add(new UrlParameter("champData", Convert.joinString(",", (Object[]) champData)));
+		if (champListData[0] != null) {
+			add(new UrlParameter("champListData", Convert.joinString(",", (Object[]) champListData)));
 		}
 		addApiKeyParameter();
 	}
