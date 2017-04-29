@@ -32,7 +32,9 @@ public class RiotApiException extends Exception {
 	public static final int UNPROCESSABLE_ENTITY = 422;
 	public static final int RATE_LIMITED = 429;
 	public static final int SERVER_ERROR = 500;
+	public static final int BAD_GATEWAY = 502;
 	public static final int UNAVAILABLE = 503;
+	public static final int GATEWAY_TIMEOUT = 504;
 	public static final int PARSE_FAILURE = 600;
 	public static final int IOEXCEPTION = 601;
 	public static final int NULLPOINTEREXCEPTION = 602;
