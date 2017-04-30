@@ -100,14 +100,17 @@ import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
 import net.rithms.riot.api.endpoints.summoner.methods.GetSummoner;
 import net.rithms.riot.api.endpoints.summoner.methods.GetSummonerByAccount;
 import net.rithms.riot.api.endpoints.summoner.methods.GetSummonerByName;
-import net.rithms.riot.api.endpoints.tournament_stub.constant.PickType;
-import net.rithms.riot.api.endpoints.tournament_stub.constant.SpectatorType;
-import net.rithms.riot.api.endpoints.tournament_stub.constant.TournamentMap;
-import net.rithms.riot.api.endpoints.tournament_stub.dto.LobbyEventWrapper;
-import net.rithms.riot.api.endpoints.tournament_stub.methods.CreateTournament;
-import net.rithms.riot.api.endpoints.tournament_stub.methods.CreateTournamentCodes;
-import net.rithms.riot.api.endpoints.tournament_stub.methods.CreateTournamentProvider;
-import net.rithms.riot.api.endpoints.tournament_stub.methods.GetLobbyEventsByCode;
+import net.rithms.riot.api.endpoints.tournament.constant.PickType;
+import net.rithms.riot.api.endpoints.tournament.constant.SpectatorType;
+import net.rithms.riot.api.endpoints.tournament.constant.TournamentMap;
+import net.rithms.riot.api.endpoints.tournament.dto.LobbyEventWrapper;
+import net.rithms.riot.api.endpoints.tournament.dto.TournamentCode;
+import net.rithms.riot.api.endpoints.tournament.methods.CreateTournament;
+import net.rithms.riot.api.endpoints.tournament.methods.CreateTournamentCodes;
+import net.rithms.riot.api.endpoints.tournament.methods.CreateTournamentProvider;
+import net.rithms.riot.api.endpoints.tournament.methods.GetLobbyEventsByCode;
+import net.rithms.riot.api.endpoints.tournament.methods.GetTournamentCode;
+import net.rithms.riot.api.endpoints.tournament.methods.UpdateTournamentCode;
 import net.rithms.riot.constant.Platform;
 import net.rithms.riot.constant.Region;
 import net.rithms.util.Convert;
@@ -1722,5 +1725,50 @@ public class RiotApi implements Cloneable {
 		Objects.requireNonNull(summonerName);
 		ApiMethod method = new GetSummonerByName(getConfig(), platform, summonerName);
 		return endpointManager.callMethodAndReturnDto(method);
+	}
+
+	/**
+	 * Returns the tournament code DTO associated with a {@code tournamentCode}.
+	 *
+	 * @param tournamentCode
+	 *            The tournament code
+	 * @return Tournament code DTO
+	 * @throws NullPointerException
+	 *             If {@code tournamentCode} is {@code null}
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 * @version 3
+	 * @see TournamentCode
+	 */
+	public TournamentCode getTournamentCode(String tournamentCode) throws RiotApiException {
+		Objects.requireNonNull(tournamentCode);
+		ApiMethod method = new GetTournamentCode(getConfig(), tournamentCode);
+		return endpointManager.callMethodAndReturnDto(method);
+	}
+
+	/**
+	 * Update the pick type, map, spectator type, or allowed summoners for a code.
+	 *
+	 * @param tournamentCode
+	 *            The tournament code
+	 * @param mapType
+	 *            The map type of the game.
+	 * @param pickType
+	 *            The pick type of the game.
+	 * @param spectatorType
+	 *            The spectator type of the game.
+	 * @param allowedSummonerIds
+	 *            Optional list of participants in order to validate the players eligible to join the lobby.
+	 * @throws NullPointerException
+	 *             If {@code tournamentCode} is {@code null}
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 * @version 3
+	 */
+	public void updateTournamentCode(String tournamentCode, TournamentMap mapType, PickType pickType, SpectatorType spectatorType, long... allowedSummonerIds)
+			throws RiotApiException {
+		Objects.requireNonNull(tournamentCode);
+		ApiMethod method = new UpdateTournamentCode(getConfig(), tournamentCode, mapType, pickType, spectatorType, allowedSummonerIds);
+		endpointManager.callMethod(method);
 	}
 }

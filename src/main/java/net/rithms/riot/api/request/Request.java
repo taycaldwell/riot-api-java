@@ -109,15 +109,6 @@ public class Request {
 		return true;
 	}
 
-	private void checkRequirements() throws RiotApiException {
-		if (object.doesRequireApiKey() && (config == null || config.getKey() == null)) {
-			throw new RiotApiException(RiotApiException.MISSING_API_KEY);
-		}
-		if (object.doesRequireTournamentApiKey() && (config == null || config.getTournamentKey() == null)) {
-			throw new RiotApiException(RiotApiException.MISSING_TOURNAMENT_API_KEY);
-		}
-	}
-
 	/**
 	 * Executes the request
 	 * 
@@ -129,7 +120,7 @@ public class Request {
 	protected synchronized void execute() throws RiotApiException, RateLimitException {
 		setState(RequestState.Waiting);
 		try {
-			checkRequirements();
+			object.checkRequirements();
 			respectRateLimit();
 			URL url = new URL(object.getUrl());
 			connection = (HttpURLConnection) url.openConnection();
@@ -245,6 +236,10 @@ public class Request {
 			return null;
 		}
 		Type type = object.getReturnType();
+		if (type == Void.class) {
+			// The method explicitly does not want to return a result
+			return null;
+		}
 		if (type == null) {
 			throw new NullPointerException("The ApiMethod \"" + object
 					+ "\" has not set a dtoType. If this method is supposed to return something and you encounter this issue, please file a bug.");

@@ -42,7 +42,6 @@ abstract public class ApiMethod {
 	private Type returnType = null;
 
 	private boolean requireApiKey = false;
-	private boolean requireTournamentApiKey = false;
 
 	protected ApiMethod(ApiConfig config, String service) {
 		this.config = config;
@@ -61,28 +60,26 @@ abstract public class ApiMethod {
 		add(new UrlParameter("api_key", config.getKey()));
 	}
 
-	protected void addTournamentApiKeyHttpHeadParameter() {
-		add(new HttpHeadParameter("X-Riot-Token", config.getTournamentKey()));
-	}
-
-	protected void addTournamentApiKeyParameter() {
-		add(new UrlParameter("api_key", config.getTournamentKey()));
-	}
-
 	public void buildJsonBody(Map<String, Object> map) {
 		body = new Gson().toJson(map);
+	}
+
+	public void checkRequirements() throws RiotApiException {
+		if (doesRequireApiKey() && getConfig().getKey() == null) {
+			throw new RiotApiException(RiotApiException.MISSING_API_KEY);
+		}
 	}
 
 	public boolean doesRequireApiKey() {
 		return requireApiKey;
 	}
 
-	public boolean doesRequireTournamentApiKey() {
-		return requireTournamentApiKey;
-	}
-
 	public String getBody() {
 		return body;
+	}
+
+	protected ApiConfig getConfig() {
+		return config;
 	}
 
 	public Platform getPlatform() {
@@ -121,10 +118,6 @@ abstract public class ApiMethod {
 
 	protected void requireApiKey() {
 		requireApiKey = true;
-	}
-
-	protected void requireTournamentApiKey() {
-		requireTournamentApiKey = true;
 	}
 
 	protected void setPlatform(Platform platform) {

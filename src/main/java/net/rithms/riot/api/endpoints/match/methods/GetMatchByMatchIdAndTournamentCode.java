@@ -18,11 +18,11 @@ package net.rithms.riot.api.endpoints.match.methods;
 
 import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.UrlParameter;
-import net.rithms.riot.api.endpoints.match.MatchApiMethod;
 import net.rithms.riot.api.endpoints.match.dto.Match;
+import net.rithms.riot.api.endpoints.tournament.TournamentApiMethod;
 import net.rithms.riot.constant.Platform;
 
-public class GetMatchByMatchIdAndTournamentCode extends MatchApiMethod {
+public class GetMatchByMatchIdAndTournamentCode extends TournamentApiMethod {
 
 	public GetMatchByMatchIdAndTournamentCode(ApiConfig config, Platform platform, long matchId, String tournamentCode) {
 		super(config);
@@ -31,5 +31,6 @@ public class GetMatchByMatchIdAndTournamentCode extends MatchApiMethod {
 		setUrlBase(platform.getHost() + "/lol/match/v3/matches/" + matchId + "/by-tournament-code/" + tournamentCode);
 		add(new UrlParameter("tournamentCode", tournamentCode));
 		addTournamentApiKeyParameter();
+		allowMockMode();
 	}
 }

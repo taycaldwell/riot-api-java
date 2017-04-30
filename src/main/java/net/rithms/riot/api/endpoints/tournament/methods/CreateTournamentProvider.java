@@ -14,28 +14,33 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.api.endpoints.tournament_stub.methods;
+package net.rithms.riot.api.endpoints.tournament.methods;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.endpoints.tournament_stub.TournamentStubApiMethod;
+import net.rithms.riot.api.endpoints.tournament.TournamentApiMethod;
 import net.rithms.riot.api.request.RequestMethod;
 import net.rithms.riot.constant.Platform;
 
-public class CreateTournament extends TournamentStubApiMethod {
+public class CreateTournamentProvider extends TournamentApiMethod {
 
-	public CreateTournament(ApiConfig config, String tournamentName, int providerId) {
+	public CreateTournamentProvider(ApiConfig config, String region, String callbackUrl) {
 		super(config);
 		setMethod(RequestMethod.POST);
 		setReturnType(Integer.class);
-		setUrlBase(Platform.GLOBAL.getHost() + "/lol/tournament-stub/v3/tournaments");
+		if (config.getTournamentMockMode()) {
+			setUrlBase(Platform.GLOBAL.getHost() + "/lol/tournament-stub/v3/providers");
+		} else {
+			setUrlBase(Platform.GLOBAL.getHost() + "/lol/tournament/v3/providers");
+		}
 		addTournamentApiKeyParameter();
+		allowMockMode();
 
 		Map<String, Object> body = new HashMap<String, Object>();
-		body.put("name", (tournamentName == null) ? "" : tournamentName);
-		body.put("providerId", providerId);
+		body.put("region", region);
+		body.put("url", callbackUrl);
 		buildJsonBody(body);
 	}
 }

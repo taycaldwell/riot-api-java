@@ -21,10 +21,10 @@ import java.util.List;
 import com.google.gson.reflect.TypeToken;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.endpoints.match.MatchApiMethod;
+import net.rithms.riot.api.endpoints.tournament.TournamentApiMethod;
 import net.rithms.riot.constant.Platform;
 
-public class GetMatchIdsByTournamentCode extends MatchApiMethod {
+public class GetMatchIdsByTournamentCode extends TournamentApiMethod {
 
 	public GetMatchIdsByTournamentCode(ApiConfig config, Platform platform, String tournamentCode) {
 		super(config);
@@ -33,5 +33,6 @@ public class GetMatchIdsByTournamentCode extends MatchApiMethod {
 		}.getType());
 		setUrlBase(platform.getHost() + "/lol/match/v3/matches/by-tournament-code/" + tournamentCode + "/ids");
 		addTournamentApiKeyParameter();
+		allowMockMode();
 	}
 }

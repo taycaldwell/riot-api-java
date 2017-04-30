@@ -14,19 +14,24 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.api.endpoints.tournament_stub.methods;
+package net.rithms.riot.api.endpoints.tournament.methods;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.endpoints.tournament_stub.TournamentStubApiMethod;
-import net.rithms.riot.api.endpoints.tournament_stub.dto.LobbyEventWrapper;
+import net.rithms.riot.api.endpoints.tournament.TournamentApiMethod;
+import net.rithms.riot.api.endpoints.tournament.dto.LobbyEventWrapper;
 import net.rithms.riot.constant.Platform;
 
-public class GetLobbyEventsByCode extends TournamentStubApiMethod {
+public class GetLobbyEventsByCode extends TournamentApiMethod {
 
 	public GetLobbyEventsByCode(ApiConfig config, String tournamentCode) {
 		super(config);
 		setReturnType(LobbyEventWrapper.class);
-		setUrlBase(Platform.GLOBAL.getHost() + "/lol/tournament-stub/v3/lobby-events/by-code/" + tournamentCode);
+		if (config.getTournamentMockMode()) {
+			setUrlBase(Platform.GLOBAL.getHost() + "/lol/tournament-stub/v3/lobby-events/by-code/" + tournamentCode);
+		} else {
+			setUrlBase(Platform.GLOBAL.getHost() + "/lol/tournament/v3/lobby-events/by-code/" + tournamentCode);
+		}
 		addTournamentApiKeyParameter();
+		allowMockMode();
 	}
 }

@@ -14,15 +14,19 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.api.endpoints.tournament_stub;
+package net.rithms.riot.api.endpoints.tournament.methods;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.ApiMethod;
+import net.rithms.riot.api.endpoints.tournament.TournamentApiMethod;
+import net.rithms.riot.api.endpoints.tournament.dto.TournamentCode;
+import net.rithms.riot.constant.Platform;
 
-abstract public class TournamentStubApiMethod extends ApiMethod {
+public class GetTournamentCode extends TournamentApiMethod {
 
-	protected TournamentStubApiMethod(ApiConfig config) {
-		super(config, "tournamentstub");
-		requireTournamentApiKey();
+	public GetTournamentCode(ApiConfig config, String tournamentCode) {
+		super(config);
+		setReturnType(TournamentCode.class);
+		setUrlBase(Platform.GLOBAL.getHost() + "/lol/tournament/v3/codes/" + tournamentCode);
+		addTournamentApiKeyParameter();
 	}
 }

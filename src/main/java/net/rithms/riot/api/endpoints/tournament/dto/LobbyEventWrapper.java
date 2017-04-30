@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 Taylor Caldwell
+ * Copyright 2015 Taylor Caldwell
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,10 +14,25 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.api.endpoints.tournament_stub.constant;
+package net.rithms.riot.api.endpoints.tournament.dto;
 
-public enum SpectatorType {
-	ALL,
-	LOBBYONLY,
-	NONE
+import java.io.Serializable;
+import java.util.List;
+
+import net.rithms.riot.api.Dto;
+
+public class LobbyEventWrapper extends Dto implements Serializable {
+
+	private static final long serialVersionUID = -7830193432118565589L;
+
+	private List<LobbyEvent> eventList;
+
+	public List<LobbyEvent> getEventList() {
+		return eventList;
+	}
+
+	@Override
+	public String toString() {
+		return getEventList().toString();
+	}
 }

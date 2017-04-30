@@ -32,6 +32,7 @@ public class ApiConfig implements Cloneable {
 	private int requestTimeout = 0;
 	private boolean respectRateLimit = true;
 	private String tournamentKey = null;
+	private boolean tournamentMockMode = false;
 
 	@Override
 	public ApiConfig clone() {
@@ -70,6 +71,10 @@ public class ApiConfig implements Cloneable {
 
 	public String getTournamentKey() {
 		return tournamentKey;
+	}
+
+	public boolean getTournamentMockMode() {
+		return tournamentMockMode;
 	}
 
 	/**
@@ -204,6 +209,22 @@ public class ApiConfig implements Cloneable {
 	public ApiConfig setTournamentKey(String tournamentKey) {
 		Objects.requireNonNull(tournamentKey, "tournamentKey must not be null");
 		this.tournamentKey = tournamentKey;
+		return this;
+	}
+
+	/**
+	 * Sets whether the api should redirect tournament method calls should be redirected to the {@code TOURNAMENT-STUB} endpoint.
+	 * <p>
+	 * The {@code TOURNAMENT-STUB} endpoint provides dummy data meant for testing your app before going into production. Note that not all
+	 * tournament methods are available in mock mode.
+	 * </p>
+	 * 
+	 * @param tournamentMockMode
+	 *            {@code true} if tournament methods should be called in mock mode
+	 * @return This ApiConfig object for chaining
+	 */
+	public ApiConfig setTournamentMockMode(boolean tournamentMockMode) {
+		this.tournamentMockMode = tournamentMockMode;
 		return this;
 	}
 }
