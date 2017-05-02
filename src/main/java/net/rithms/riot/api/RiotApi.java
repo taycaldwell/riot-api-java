@@ -130,7 +130,7 @@ import net.rithms.riot.constant.Region;
  * </p>
  * 
  * <p>
- * To fire asynchronous api calls, you need an instance of {@link RiotApiAsync}, which you can get by calling {@link RiotApi#getAsyncApi()}.
+ * To fire asynchronous api calls, you need an instance of {@link RiotApiAsync}, which you can get by calling {@link #getAsyncApi()}.
  * </p>
  *
  * @version 4.0.0 alpha
@@ -200,7 +200,7 @@ public class RiotApi implements Cloneable {
 	 *            The optional name of the tournament.
 	 * @param providerId
 	 *            The provider ID to specify the regional registered provider data to associate this tournament.
-	 * @return A tournament ID
+	 * @return Tournament ID
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 * @version 3
@@ -215,7 +215,7 @@ public class RiotApi implements Cloneable {
 	 *
 	 * @param providerId
 	 *            The provider ID to specify the regional registered provider data to associate this tournament.
-	 * @return A tournament Id
+	 * @return Tournament ID
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 * @version 3
@@ -1422,6 +1422,7 @@ public class RiotApi implements Cloneable {
 	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 1.3
 	 * @see PlayerStatsSummaryList
 	 */
 	@Deprecated
@@ -1441,6 +1442,7 @@ public class RiotApi implements Cloneable {
 	 * @return A summary of player statistics for the given summoner
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 1.3
 	 * @see PlayerStatsSummaryList
 	 */
 	@Deprecated
@@ -1462,6 +1464,7 @@ public class RiotApi implements Cloneable {
 	 *             If {@code region} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 1.3
 	 * @see RankedStats
 	 */
 	@Deprecated
@@ -1483,6 +1486,7 @@ public class RiotApi implements Cloneable {
 	 * @return Ranked statistics of the given summoner
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
+	 * @version 1.3
 	 * @see RankedStats
 	 */
 	@Deprecated

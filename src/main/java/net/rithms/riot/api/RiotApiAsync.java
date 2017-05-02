@@ -1296,6 +1296,7 @@ public class RiotApiAsync {
 	 * @return A summary of player statistics for the given summoner
 	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
+	 * @version 1.3
 	 * @see PlayerStatsSummaryList
 	 */
 	@Deprecated
@@ -1313,6 +1314,7 @@ public class RiotApiAsync {
 	 * @param summonerId
 	 *            ID of the summoner for which to retrieve player stats.
 	 * @return A summary of player statistics for the given summoner
+	 * @version 1.3
 	 * @see PlayerStatsSummaryList
 	 */
 	@Deprecated
@@ -1350,6 +1352,7 @@ public class RiotApiAsync {
 	 * @return Ranked statistics of the given summoner
 	 * @throws NullPointerException
 	 *             If {@code region} is {@code null}
+	 * @version 1.3
 	 * @see RankedStats
 	 */
 	@Deprecated
@@ -1369,6 +1372,7 @@ public class RiotApiAsync {
 	 * @param season
 	 *            If specified, stats for the given season are returned. Otherwise, stats for the current season are returned.
 	 * @return Ranked statistics of the given summoner
+	 * @version 1.3
 	 * @see RankedStats
 	 */
 	@Deprecated

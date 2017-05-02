@@ -343,7 +343,7 @@ public class Request {
 			return false;
 		}
 		RateLimitList rateLimitList = rateLimitMap.get(config.getKey());
-		return rateLimitList.isLimitExceeded(object.getService(), object.getRegion());
+		return rateLimitList.isLimitExceeded(object.getService(), object.getPlatform());
 	}
 
 	/**
@@ -385,7 +385,7 @@ public class Request {
 			return;
 		}
 		if (isRateLimitExceeded()) {
-			RateLimit rateLimit = rateLimitMap.get(config.getKey()).getRateLimit(object.getService(), object.getRegion());
+			RateLimit rateLimit = rateLimitMap.get(config.getKey()).getRateLimit(object.getService(), object.getPlatform());
 			if (rateLimit == null) {
 				return;
 			}
@@ -413,7 +413,7 @@ public class Request {
 		if (!rateLimitMap.containsKey(key)) {
 			rateLimitMap.put(key, new RateLimitList());
 		}
-		rateLimitMap.get(key).setRateLimit(object.getService(), object.getRegion(), rateLimitType, retryAfter);
+		rateLimitMap.get(key).setRateLimit(object.getService(), object.getPlatform(), rateLimitType, retryAfter);
 	}
 
 	/**
