@@ -23,7 +23,6 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import net.rithms.riot.api.RiotApiException;
-import net.rithms.riot.api.endpoints.league.constant.QueueType;
 import net.rithms.riot.api.endpoints.static_data.constant.ChampData;
 import net.rithms.util.Convert;
 
@@ -71,8 +70,7 @@ public class UtilTest {
 		assertEquals("abc", Convert.joinString(",", "abc"));
 		assertEquals("abc,def,ghi", Convert.joinString(",", "abc", "def", "ghi"));
 		// Valid Usage for other objects
-		assertEquals("RANKED_SOLO_5x5,TEAM_BUILDER_DRAFT_RANKED_5x5",
-				Convert.joinString(",", QueueType.RANKED_SOLO_5x5, QueueType.TEAM_BUILDER_DRAFT_RANKED_5x5));
+		assertEquals("RANKED_SOLO_5x5,TEAM_BUILDER_DRAFT_RANKED_5x5", Convert.joinString(",", "RANKED_SOLO_5x5", "TEAM_BUILDER_DRAFT_RANKED_5x5"));
 		assertEquals("info,lore", Convert.joinString(",", ChampData.INFO, ChampData.LORE));
 		// NullPointerException
 		thrown.expect(NullPointerException.class);

@@ -17,23 +17,22 @@
 package net.rithms.riot.api.endpoints.league.methods;
 
 import java.util.List;
-import java.util.Map;
 
 import com.google.gson.reflect.TypeToken;
 
 import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.endpoints.league.LeagueApiMethod;
-import net.rithms.riot.api.endpoints.league.dto.League;
-import net.rithms.riot.constant.Region;
+import net.rithms.riot.api.endpoints.league.dto.LeagueList;
+import net.rithms.riot.constant.Platform;
 
-public class GetLeagueEntryBySummoners extends LeagueApiMethod {
+public class GetLeagueBySummonerId extends LeagueApiMethod {
 
-	public GetLeagueEntryBySummoners(ApiConfig config, Region region, String summonerIds) {
+	public GetLeagueBySummonerId(ApiConfig config, Platform platform, long summonerId) {
 		super(config);
-		setRegion(region);
-		setReturnType(new TypeToken<Map<String, List<League>>>() {
+		setPlatform(platform);
+		setReturnType(new TypeToken<List<LeagueList>>() {
 		}.getType());
-		setUrlBase(region.getEndpoint() + "/v2.5/league/by-summoner/" + summonerIds + "/entry");
+		setUrlBase(platform.getHost() + "/lol/league/v3/leagues/by-summoner/" + summonerId);
 		addApiKeyParameter();
 	}
 }

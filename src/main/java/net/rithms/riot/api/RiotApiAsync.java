@@ -26,12 +26,11 @@ import net.rithms.riot.api.endpoints.champion_mastery.dto.ChampionMastery;
 import net.rithms.riot.api.endpoints.champion_mastery.methods.GetChampionMasteriesBySummoner;
 import net.rithms.riot.api.endpoints.champion_mastery.methods.GetChampionMasteriesBySummonerByChampion;
 import net.rithms.riot.api.endpoints.champion_mastery.methods.GetChampionMasteryScoresBySummoner;
-import net.rithms.riot.api.endpoints.league.constant.QueueType;
-import net.rithms.riot.api.endpoints.league.dto.League;
-import net.rithms.riot.api.endpoints.league.methods.GetChallengerLeague;
-import net.rithms.riot.api.endpoints.league.methods.GetLeagueBySummoners;
-import net.rithms.riot.api.endpoints.league.methods.GetLeagueEntryBySummoners;
-import net.rithms.riot.api.endpoints.league.methods.GetMasterLeague;
+import net.rithms.riot.api.endpoints.league.dto.LeagueList;
+import net.rithms.riot.api.endpoints.league.methods.GetChallengerLeagueByQueue;
+import net.rithms.riot.api.endpoints.league.methods.GetLeagueBySummonerId;
+import net.rithms.riot.api.endpoints.league.methods.GetLeaguePositionsBySummonerId;
+import net.rithms.riot.api.endpoints.league.methods.GetMasterLeagueByQueue;
 import net.rithms.riot.api.endpoints.lol_status.dto.ShardStatus;
 import net.rithms.riot.api.endpoints.lol_status.methods.GetShardData;
 import net.rithms.riot.api.endpoints.masteries.dto.MasteryPages;
@@ -112,7 +111,6 @@ import net.rithms.riot.api.request.AsyncRequest;
 import net.rithms.riot.api.request.RequestListener;
 import net.rithms.riot.constant.Platform;
 import net.rithms.riot.constant.Region;
-import net.rithms.util.Convert;
 
 /**
  * This class is used to fire asynchronous requests. You can get an instance of this object by calling {@link RiotApi#getAsyncApi()} on your
@@ -326,22 +324,22 @@ public class RiotApiAsync {
 	}
 
 	/**
-	 * Get challenger tier league for the given {@code queueType}.
+	 * Get the challenger league for a given {@code queue}.
 	 * 
-	 * @param region
-	 *            The region of the leagues.
+	 * @param platform
+	 *            Platform where to retrieve the data.
 	 * @param queueType
 	 *            Game queue type.
-	 * @return A single league
+	 * @return A league list
 	 * @throws NullPointerException
-	 *             If {@code region} or {@code queueType} is {@code null}
-	 * @version 2.5
-	 * @see League
+	 *             If {@code platform} or {@code queue} is {@code null}
+	 * @version 3
+	 * @see LeagueList
 	 */
-	public AsyncRequest getChallengerLeague(Region region, QueueType queueType) {
-		Objects.requireNonNull(region);
-		Objects.requireNonNull(queueType);
-		ApiMethod method = new GetChallengerLeague(getConfig(), region, queueType);
+	public AsyncRequest getChallengerLeagueByQueue(Platform platform, String queue) {
+		Objects.requireNonNull(platform);
+		Objects.requireNonNull(queue);
+		ApiMethod method = new GetChallengerLeagueByQueue(getConfig(), platform, queue);
 		return endpointManager.callMethodAsynchronously(method);
 	}
 
@@ -1060,73 +1058,43 @@ public class RiotApiAsync {
 	}
 
 	/**
-	 * Get a list of leagues mapped by summoner ID for a given list of {@code summonerIds}.
+	 * Get leagues in all queues for a given {@code summonerId}.
 	 * 
-	 * @param region
-	 *            The region of the leagues.
-	 * @param summonerIds
-	 *            List of summoner IDs. Maximum allowed at once is 10.
-	 * @return A map, mapping each summoner ID to a list of leagues
+	 * @param platform
+	 *            Platform from which to retrieve data.
+	 * @param summonerId
+	 *            Summoner ID
+	 * @return List of league lists
 	 * @throws NullPointerException
-	 *             If {@code region} or {@code summonerIds} is {@code null}
-	 * @version 2.5
-	 * @see League
+	 *             If {@code platform} is {@code null}
+	 * @version 3
+	 * @see LeagueList
 	 */
-	public AsyncRequest getLeagueBySummoners(Region region, String... summonerIds) {
-		Objects.requireNonNull(region);
-		Objects.requireNonNull(summonerIds);
-		ApiMethod method = new GetLeagueBySummoners(getConfig(), region, Convert.joinString(",", summonerIds));
+	public AsyncRequest getLeagueBySummonerId(Platform platform, long summonerId) {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetLeagueBySummonerId(getConfig(), platform, summonerId);
 		return endpointManager.callMethodAsynchronously(method);
 	}
 
 	/**
-	 * Get a list of leagues mapped by summoner ID for a given list of {@code summonerIds}.
+	 * Get league positions in all queues for a given {@code summonerId}.
 	 * 
-	 * @param region
-	 *            The region of the leagues.
-	 * @param summonerIds
-	 *            List of summoner IDs. Maximum allowed at once is 10.
-	 * @return A map, mapping each summoner ID to a list of leagues
-	 * @version 2.5
-	 * @see League
-	 */
-	public AsyncRequest getLeagueBySummoners(Region region, long... summonerIds) {
-		return getLeagueBySummoners(region, Convert.longToString(summonerIds));
-	}
-
-	/**
-	 * Get a list of league entries mapped by summoner ID for a given list of {@code summonerIds}.
-	 * 
-	 * @param region
-	 *            The region of the leagues.
-	 * @param summonerIds
-	 *            List of summoner IDs. Maximum allowed at once is 10.
-	 * @return A map, mapping each summoner ID to a list of leagues
+	 * @param platform
+	 *            Platform from which to retrieve data.
+	 * @param summonerId
+	 *            Summoner ID
+	 * @return List of league positions
 	 * @throws NullPointerException
-	 *             If {@code region} or {@code summonerIds} is {@code null}
-	 * @version 2.5
-	 * @see League
+	 *             If {@code platform} is {@code null}
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 * @version 3
+	 * @see LeagueList
 	 */
-	public AsyncRequest getLeagueEntryBySummoners(Region region, String... summonerIds) {
-		Objects.requireNonNull(region);
-		Objects.requireNonNull(summonerIds);
-		ApiMethod method = new GetLeagueEntryBySummoners(getConfig(), region, Convert.joinString(",", summonerIds));
+	public AsyncRequest getLeaguePositionsBySummonerId(Platform platform, long summonerId) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetLeaguePositionsBySummonerId(getConfig(), platform, summonerId);
 		return endpointManager.callMethodAsynchronously(method);
-	}
-
-	/**
-	 * Get a list of league entries mapped by summoner ID for a given list of {@code summonerIds}.
-	 * 
-	 * @param region
-	 *            The region of the leagues.
-	 * @param summonerIds
-	 *            List of summoner IDs. Maximum allowed at once is 10.
-	 * @return A map, mapping each summoner ID to a list of leagues
-	 * @version 2.5
-	 * @see League
-	 */
-	public AsyncRequest getLeagueEntryBySummoners(Region region, long... summonerIds) {
-		return getLeagueEntryBySummoners(region, Convert.longToString(summonerIds));
 	}
 
 	/**
@@ -1146,22 +1114,24 @@ public class RiotApiAsync {
 	}
 
 	/**
-	 * Get master tier league for the given {@code queueType}.
+	 * Get the master league for a given {@code queue}.
 	 * 
-	 * @param region
-	 *            The region of the leagues.
+	 * @param platform
+	 *            Platform where to retrieve the data.
 	 * @param queueType
 	 *            Game queue type.
-	 * @return A single league
+	 * @return A league list
 	 * @throws NullPointerException
-	 *             If {@code region} or {@code queueType} is {@code null}
-	 * @version 2.5
-	 * @see League
+	 *             If {@code platform} or {@code queue} is {@code null}
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 * @version 3
+	 * @see LeagueList
 	 */
-	public AsyncRequest getMasterLeague(Region region, QueueType queueType) {
-		Objects.requireNonNull(region);
-		Objects.requireNonNull(queueType);
-		ApiMethod method = new GetMasterLeague(getConfig(), region, queueType);
+	public AsyncRequest getMasterLeagueByQueue(Platform platform, String queue) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		Objects.requireNonNull(queue);
+		ApiMethod method = new GetMasterLeagueByQueue(getConfig(), platform, queue);
 		return endpointManager.callMethodAsynchronously(method);
 	}
 

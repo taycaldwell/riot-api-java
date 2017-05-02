@@ -17,20 +17,17 @@
 package net.rithms.riot.api.endpoints.league.methods;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.UrlParameter;
 import net.rithms.riot.api.endpoints.league.LeagueApiMethod;
-import net.rithms.riot.api.endpoints.league.constant.QueueType;
-import net.rithms.riot.api.endpoints.league.dto.League;
-import net.rithms.riot.constant.Region;
+import net.rithms.riot.api.endpoints.league.dto.LeagueList;
+import net.rithms.riot.constant.Platform;
 
-public class GetChallengerLeague extends LeagueApiMethod {
+public class GetMasterLeagueByQueue extends LeagueApiMethod {
 
-	public GetChallengerLeague(ApiConfig config, Region region, QueueType queueType) {
+	public GetMasterLeagueByQueue(ApiConfig config, Platform platform, String queue) {
 		super(config);
-		setRegion(region);
-		setReturnType(League.class);
-		setUrlBase(region.getEndpoint() + "/v2.5/league/challenger");
-		add(new UrlParameter("type", queueType.name()));
+		setPlatform(platform);
+		setReturnType(LeagueList.class);
+		setUrlBase(platform.getHost() + "/lol/league/v3/masterleagues/by-queue/" + queue);
 		addApiKeyParameter();
 	}
 }

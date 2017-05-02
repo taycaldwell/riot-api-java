@@ -20,25 +20,21 @@ import java.io.Serializable;
 
 import net.rithms.riot.api.Dto;
 
-public class LeagueEntry extends Dto implements Serializable {
+public class LeagueItem extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 3987113536371700279L;
 
-	private String division;
-	private boolean isFreshBlood;
-	private boolean isHotStreak;
-	private boolean isInactive;
-	private boolean isVeteran;
+	private boolean freshBlood;
+	private boolean hotStreak;
+	private boolean inactive;
 	private int leaguePoints;
 	private int losses;
 	private MiniSeries miniSeries;
 	private String playerOrTeamId;
 	private String playerOrTeamName;
+	private String rank;
+	private boolean veteran;
 	private int wins;
-
-	public String getDivision() {
-		return division;
-	}
 
 	public int getLeaguePoints() {
 		return leaguePoints;
@@ -60,24 +56,28 @@ public class LeagueEntry extends Dto implements Serializable {
 		return playerOrTeamName;
 	}
 
+	public String getRank() {
+		return rank;
+	}
+
 	public int getWins() {
 		return wins;
 	}
 
 	public boolean isFreshBlood() {
-		return isFreshBlood;
+		return freshBlood;
 	}
 
 	public boolean isHotStreak() {
-		return isHotStreak;
+		return hotStreak;
 	}
 
 	public boolean isInactive() {
-		return isInactive;
+		return inactive;
 	}
 
 	public boolean isVeteran() {
-		return isVeteran;
+		return veteran;
 	}
 
 	@Override

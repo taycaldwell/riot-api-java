@@ -19,6 +19,7 @@ package net.rithms.riot.api;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import net.rithms.riot.api.endpoints.champion.dto.Champion;
@@ -29,12 +30,12 @@ import net.rithms.riot.api.endpoints.champion_mastery.dto.ChampionMastery;
 import net.rithms.riot.api.endpoints.champion_mastery.methods.GetChampionMasteriesBySummoner;
 import net.rithms.riot.api.endpoints.champion_mastery.methods.GetChampionMasteriesBySummonerByChampion;
 import net.rithms.riot.api.endpoints.champion_mastery.methods.GetChampionMasteryScoresBySummoner;
-import net.rithms.riot.api.endpoints.league.constant.QueueType;
-import net.rithms.riot.api.endpoints.league.dto.League;
-import net.rithms.riot.api.endpoints.league.methods.GetChallengerLeague;
-import net.rithms.riot.api.endpoints.league.methods.GetLeagueBySummoners;
-import net.rithms.riot.api.endpoints.league.methods.GetLeagueEntryBySummoners;
-import net.rithms.riot.api.endpoints.league.methods.GetMasterLeague;
+import net.rithms.riot.api.endpoints.league.dto.LeagueList;
+import net.rithms.riot.api.endpoints.league.dto.LeaguePosition;
+import net.rithms.riot.api.endpoints.league.methods.GetChallengerLeagueByQueue;
+import net.rithms.riot.api.endpoints.league.methods.GetLeagueBySummonerId;
+import net.rithms.riot.api.endpoints.league.methods.GetLeaguePositionsBySummonerId;
+import net.rithms.riot.api.endpoints.league.methods.GetMasterLeagueByQueue;
 import net.rithms.riot.api.endpoints.lol_status.dto.ShardStatus;
 import net.rithms.riot.api.endpoints.lol_status.methods.GetShardData;
 import net.rithms.riot.api.endpoints.masteries.dto.MasteryPages;
@@ -113,7 +114,6 @@ import net.rithms.riot.api.endpoints.tournament.methods.GetTournamentCode;
 import net.rithms.riot.api.endpoints.tournament.methods.UpdateTournamentCode;
 import net.rithms.riot.constant.Platform;
 import net.rithms.riot.constant.Region;
-import net.rithms.util.Convert;
 
 /**
  * This is the main class for using this riot api wrapper. This api is typically used by first constructing a RiotApi instance, and then
@@ -354,24 +354,24 @@ public class RiotApi implements Cloneable {
 	}
 
 	/**
-	 * Get challenger tier league for the given {@code queueType}.
+	 * Get the challenger league for a given {@code queue}.
 	 * 
-	 * @param region
-	 *            The region of the leagues.
+	 * @param platform
+	 *            Platform where to retrieve the data.
 	 * @param queueType
 	 *            Game queue type.
-	 * @return A single league
+	 * @return A league list
 	 * @throws NullPointerException
-	 *             If {@code region} or {@code queueType} is {@code null}
+	 *             If {@code platform} or {@code queue} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
-	 * @version 2.5
-	 * @see League
+	 * @version 3
+	 * @see LeagueList
 	 */
-	public League getChallengerLeague(Region region, QueueType queueType) throws RiotApiException {
-		Objects.requireNonNull(region);
-		Objects.requireNonNull(queueType);
-		ApiMethod method = new GetChallengerLeague(getConfig(), region, queueType);
+	public LeagueList getChallengerLeagueByQueue(Platform platform, String queue) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		Objects.requireNonNull(queue);
+		ApiMethod method = new GetChallengerLeagueByQueue(getConfig(), platform, queue);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 
@@ -1163,157 +1163,45 @@ public class RiotApi implements Cloneable {
 	}
 
 	/**
-	 * Get a list of leagues for a given {@code summonerId}
+	 * Get leagues in all queues for a given {@code summonerId}.
 	 * 
-	 * @param region
-	 *            The region of the leagues.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @param summonerId
 	 *            Summoner ID
-	 * @return A list of leagues
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
-	 * @version 2.5
-	 * @see League
-	 */
-	public List<League> getLeagueBySummoner(Region region, String summonerId) throws RiotApiException {
-		Map<String, List<League>> leagues = getLeagueBySummoners(region, summonerId);
-		if (!leagues.containsKey(String.valueOf(summonerId))) {
-			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
-		}
-		return leagues.get(summonerId);
-	}
-
-	/**
-	 * Get a list of leagues for a given {@code summonerId}
-	 * 
-	 * @param region
-	 *            The region of the leagues.
-	 * @param summonerId
-	 *            Summoner ID
-	 * @return A list of leagues
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
-	 * @version 2.5
-	 * @see League
-	 */
-	public List<League> getLeagueBySummoner(Region region, long summonerId) throws RiotApiException {
-		return getLeagueBySummoner(region, String.valueOf(summonerId));
-	}
-
-	/**
-	 * Get a list of leagues mapped by summoner ID for a given list of {@code summonerIds}.
-	 * 
-	 * @param region
-	 *            The region of the leagues.
-	 * @param summonerIds
-	 *            List of summoner IDs. Maximum allowed at once is 10.
-	 * @return A map, mapping each summoner ID to a list of leagues
+	 * @return List of league lists
 	 * @throws NullPointerException
-	 *             If {@code region} or {@code summonerIds} is {@code null}
+	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
-	 * @version 2.5
-	 * @see League
+	 * @version 3
+	 * @see LeagueList
 	 */
-	public Map<String, List<League>> getLeagueBySummoners(Region region, String... summonerIds) throws RiotApiException {
-		Objects.requireNonNull(region);
-		Objects.requireNonNull(summonerIds);
-		ApiMethod method = new GetLeagueBySummoners(getConfig(), region, Convert.joinString(",", summonerIds));
+	public Map<String, List<LeagueList>> getLeagueBySummonerId(Platform platform, long summonerId) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetLeagueBySummonerId(getConfig(), platform, summonerId);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
-	 * Get a list of leagues mapped by summoner ID for a given list of {@code summonerIds}.
+	 * Get league positions in all queues for a given {@code summonerId}.
 	 * 
-	 * @param region
-	 *            The region of the leagues.
-	 * @param summonerIds
-	 *            List of summoner IDs. Maximum allowed at once is 10.
-	 * @return A map, mapping each summoner ID to a list of leagues
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
-	 * @version 2.5
-	 * @see League
-	 */
-	public Map<String, List<League>> getLeagueBySummoners(Region region, long... summonerIds) throws RiotApiException {
-		return getLeagueBySummoners(region, Convert.longToString(summonerIds));
-	}
-
-	/**
-	 * Get a list of league entries for a given {@code summonerId}.
-	 * 
-	 * @param region
-	 *            The region of the leagues.
+	 * @param platform
+	 *            Platform from which to retrieve data.
 	 * @param summonerId
 	 *            Summoner ID
-	 * @return A list of leagues
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
-	 * @version 2.5
-	 * @see League
-	 */
-	public List<League> getLeagueEntryBySummoner(Region region, String summonerId) throws RiotApiException {
-		Map<String, List<League>> leagues = getLeagueEntryBySummoners(region, summonerId);
-		if (!leagues.containsKey(String.valueOf(summonerId))) {
-			throw new RiotApiException(RiotApiException.DATA_NOT_FOUND);
-		}
-		return leagues.get(summonerId);
-	}
-
-	/**
-	 * Get a list of league entries for a given {@code summonerId}.
-	 * 
-	 * @param region
-	 *            The region of the leagues.
-	 * @param summonerId
-	 *            Summoner ID
-	 * @return A list of leagues
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
-	 * @version 2.5
-	 * @see League
-	 */
-	public List<League> getLeagueEntryBySummoner(Region region, long summonerId) throws RiotApiException {
-		return getLeagueEntryBySummoner(region, String.valueOf(summonerId));
-	}
-
-	/**
-	 * Get a list of league entries mapped by summoner ID for a given list of {@code summonerIds}.
-	 * 
-	 * @param region
-	 *            The region of the leagues.
-	 * @param summonerIds
-	 *            List of summoner IDs. Maximum allowed at once is 10.
-	 * @return A map, mapping each summoner ID to a list of leagues
+	 * @return List of league positions
 	 * @throws NullPointerException
-	 *             If {@code region} or {@code summonerIds} is {@code null}
+	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
-	 * @version 2.5
-	 * @see League
+	 * @version 3
+	 * @see LeagueList
 	 */
-	public Map<String, List<League>> getLeagueEntryBySummoners(Region region, String... summonerIds) throws RiotApiException {
-		Objects.requireNonNull(region);
-		Objects.requireNonNull(summonerIds);
-		ApiMethod method = new GetLeagueEntryBySummoners(getConfig(), region, Convert.joinString(",", summonerIds));
+	public Set<LeaguePosition> getLeaguePositionsBySummonerId(Platform platform, long summonerId) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetLeaguePositionsBySummonerId(getConfig(), platform, summonerId);
 		return endpointManager.callMethodAndReturnDto(method);
-	}
-
-	/**
-	 * Get a list of league entries mapped by summoner ID for a given list of {@code summonerIds}.
-	 * 
-	 * @param region
-	 *            The region of the leagues.
-	 * @param summonerIds
-	 *            List of summoner IDs. Maximum allowed at once is 10.
-	 * @return A map, mapping each summoner ID to a list of leagues
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
-	 * @version 2.5
-	 * @see League
-	 */
-	public Map<String, List<League>> getLeagueEntryBySummoners(Region region, long... summonerIds) throws RiotApiException {
-		return getLeagueEntryBySummoners(region, Convert.longToString(summonerIds));
 	}
 
 	/**
@@ -1336,24 +1224,24 @@ public class RiotApi implements Cloneable {
 	}
 
 	/**
-	 * Get master tier league for the given {@code queueType}.
+	 * Get the master league for a given {@code queue}.
 	 * 
-	 * @param region
-	 *            The region of the leagues.
+	 * @param platform
+	 *            Platform where to retrieve the data.
 	 * @param queueType
 	 *            Game queue type.
-	 * @return A single league
+	 * @return A league list
 	 * @throws NullPointerException
-	 *             If {@code region} or {@code queueType} is {@code null}
+	 *             If {@code platform} or {@code queue} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
-	 * @version 2.5
-	 * @see League
+	 * @version 3
+	 * @see LeagueList
 	 */
-	public League getMasterLeague(Region region, QueueType queueType) throws RiotApiException {
-		Objects.requireNonNull(region);
-		Objects.requireNonNull(queueType);
-		ApiMethod method = new GetMasterLeague(getConfig(), region, queueType);
+	public LeagueList getMasterLeagueByQueue(Platform platform, String queue) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		Objects.requireNonNull(queue);
+		ApiMethod method = new GetMasterLeagueByQueue(getConfig(), platform, queue);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 

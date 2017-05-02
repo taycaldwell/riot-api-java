@@ -86,7 +86,7 @@ public class Example {
 ```
 
 
-It is important to be aware of your personal rate limit. Any method call from the RiotAPI is a request that counts towards your rate limit, with exceptions to the accessors/mutators of region, key, and season, as well as any requests regarding static data. The below code makes 2 requests; one request for a summoner, and another for ranked stats of a summoner.
+It is important to be aware of your personal rate limit. Any method call from the RiotAPI is a request that counts towards your rate limit, except any requests regarding static data. The below code makes 2 requests; one request for a summoner, and another for ranked stats of a summoner.
 
 
 
@@ -119,7 +119,7 @@ The documentation for this library can be found [here.](http://taycaldwell.com/r
 The current version of this library supports the following Riot Games API versions:
 - **CHAMPION-MASTERY-V3**
 - **CHAMPION-V3**
-- **LEAGUE-V2.5**
+- **LEAGUE-V3**
 - **LOL-STATUS-V3**
 - **MASTERIES-V3**
 - **MATCH-V3**

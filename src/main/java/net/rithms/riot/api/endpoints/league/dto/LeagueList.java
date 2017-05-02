@@ -14,32 +14,36 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.constant;
+package net.rithms.riot.api.endpoints.league.dto;
 
-//this is not used at all?
-@Deprecated
-public enum GameMode {
-	ARAM("ARAM"),
-	ARSR("ARAM SR"),
-	ASCENSION("Ascension"),
-	ASSASSINATE("Blood Hunt Assassin"),
-	CLASSIC("Classic"),
-	DARKSTAR("Darkstar"),
-	FIRSTBLOOD("Snowdown Showdown"),
-	KINGPORO("King Poro"),
-	ODIN("Dominion"),
-	ONEFORALL("One for All"),
-	SIEGE("Nexus Siege"),
-	TUTORIAL("Tutorial");
+import java.io.Serializable;
+import java.util.List;
 
+import net.rithms.riot.api.Dto;
+
+public class LeagueList extends Dto implements Serializable {
+
+	private static final long serialVersionUID = 1878237445691308532L;
+
+	private List<LeagueItem> entries;
 	private String name;
+	private String queue;
+	private String tier;
 
-	GameMode(String name) {
-		this.name = name;
+	public List<LeagueItem> getEntries() {
+		return entries;
 	}
 
 	public String getName() {
 		return name;
+	}
+
+	public String getQueue() {
+		return queue;
+	}
+
+	public String getTier() {
+		return tier;
 	}
 
 	@Override
