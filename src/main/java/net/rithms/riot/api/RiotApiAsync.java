@@ -307,7 +307,7 @@ public class RiotApiAsync {
 	 * Get current game information for the given summoner ID.
 	 * 
 	 * @param platform
-	 *            The platform for which to fetch data.
+	 *            Platform to execute the method call against.
 	 * @param summonerId
 	 *            The ID of the summoner.
 	 * @return Current game info
@@ -327,7 +327,7 @@ public class RiotApiAsync {
 	 * Get the challenger league for a given {@code queue}.
 	 * 
 	 * @param platform
-	 *            Platform where to retrieve the data.
+	 *            Platform to execute the method call against.
 	 * @param queueType
 	 *            Game queue type.
 	 * @return A league list
@@ -347,7 +347,7 @@ public class RiotApiAsync {
 	 * Retrieve champion by {@code id}.
 	 *
 	 * @param platform
-	 *            Platform where to retrieve the data.
+	 *            Platform to execute the method call against.
 	 * @param id
 	 *            The ID of the desired champion
 	 * @return The champion of the given ID
@@ -366,7 +366,7 @@ public class RiotApiAsync {
 	 * Get all champion mastery entries sorted by number of champion points descending
 	 *
 	 * @param platform
-	 *            Platform where to retrieve the data.
+	 *            Platform to execute the method call against.
 	 * @param summonerId
 	 *            Summoner ID associated with the player
 	 * @return A list of champion masteries for a given summoner.
@@ -385,7 +385,7 @@ public class RiotApiAsync {
 	 * Get a champion mastery by {@code summonerId} and {@code championId}.
 	 *
 	 * @param platform
-	 *            Platform where to retrieve the data.
+	 *            Platform to execute the method call against.
 	 * @param summonerId
 	 *            Summoner ID associated with the player
 	 * @param championId
@@ -406,7 +406,7 @@ public class RiotApiAsync {
 	 * Get a player's total champion mastery score, which is sum of individual champion mastery levels
 	 *
 	 * @param platform
-	 *            Platform where to retrieve the data.
+	 *            Platform to execute the method call against.
 	 * @param summonerId
 	 *            Summoner ID associated with the player
 	 * @return The total champion mastery score of a given summoner.
@@ -424,7 +424,7 @@ public class RiotApiAsync {
 	 * Retrieve all champions.
 	 *
 	 * @param platform
-	 *            Platform where to retrieve the data.
+	 *            Platform to execute the method call against.
 	 * @param freeToPlay
 	 *            Optional filter param to retrieve only free to play champions.
 	 * @return This object contains a collection of champion information.
@@ -443,7 +443,7 @@ public class RiotApiAsync {
 	 * Retrieve all champions.
 	 *
 	 * @param platform
-	 *            Platform where to retrieve the data.
+	 *            Platform to execute the method call against.
 	 * @return This object contains a collection of champion information.
 	 * @version 3
 	 * @see ChampionList
@@ -466,7 +466,7 @@ public class RiotApiAsync {
 	 * Retrieves a champion by its {@code id}.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @param id
 	 *            Champion ID
 	 * @param locale
@@ -494,7 +494,7 @@ public class RiotApiAsync {
 	 * Retrieves a champion by its {@code id}.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @param id
 	 *            Champion ID
 	 * @return A single champion
@@ -509,7 +509,7 @@ public class RiotApiAsync {
 	 * Retrieves champion list.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @param locale
 	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
 	 *            used.
@@ -538,7 +538,7 @@ public class RiotApiAsync {
 	 * Retrieves champion list.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @return A list with champions
 	 * @version 3
 	 * @see net.rithms.riot.api.endpoints.static_data.dto.ChampionList
@@ -551,7 +551,7 @@ public class RiotApiAsync {
 	 * Retrieves item by its unique {@code id}.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @param id
 	 *            Item ID
 	 * @param locale
@@ -580,7 +580,7 @@ public class RiotApiAsync {
 	 * Retrieves item by its unique {@code id}.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @param id
 	 *            Item ID
 	 * @return A single item
@@ -595,7 +595,7 @@ public class RiotApiAsync {
 	 * Retrieves item list.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @param locale
 	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
 	 *            used.
@@ -622,7 +622,7 @@ public class RiotApiAsync {
 	 * Retrieves item list.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @return A list of items
 	 * @version 3
 	 * @see ItemList
@@ -635,7 +635,7 @@ public class RiotApiAsync {
 	 * Retrieve supported languages data.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @return A list with languages
 	 * @throws NullPointerException
 	 *             If {@code platform} is {@code null}
@@ -651,7 +651,7 @@ public class RiotApiAsync {
 	 * Retrieve language strings data.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @param locale
 	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
 	 *            used.
@@ -674,7 +674,7 @@ public class RiotApiAsync {
 	 * Retrieve language strings data.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @return Language strings
 	 * @version 3
 	 * @see LanguageStrings
@@ -687,7 +687,7 @@ public class RiotApiAsync {
 	 * Retrieves map data.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @param locale
 	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
 	 *            used.
@@ -710,7 +710,7 @@ public class RiotApiAsync {
 	 * Retrieves map data.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @return A list of game maps
 	 * @version 3
 	 * @see MapData
@@ -723,7 +723,7 @@ public class RiotApiAsync {
 	 * Retrieves mastery item by its unique {@code id}.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @param id
 	 *            Mastery ID
 	 * @param locale
@@ -751,7 +751,7 @@ public class RiotApiAsync {
 	 * Retrieves mastery item by its unique {@code id}.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @param id
 	 *            Mastery ID
 	 * @return A single mastery
@@ -766,7 +766,7 @@ public class RiotApiAsync {
 	 * Retrieves mastery list.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @param locale
 	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
 	 *            used.
@@ -793,7 +793,7 @@ public class RiotApiAsync {
 	 * Retrieves mastery list.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @return A list with masteries
 	 * @version 3
 	 * @see MasteryList
@@ -806,7 +806,7 @@ public class RiotApiAsync {
 	 * Retrieve profile icons.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @param locale
 	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
 	 *            used.
@@ -829,7 +829,7 @@ public class RiotApiAsync {
 	 * Retrieve profile icons.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @return Profile icons
 	 * @version 3
 	 * @see ProfileIconData
@@ -842,7 +842,7 @@ public class RiotApiAsync {
 	 * Retrieve realm data.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @return A single realm
 	 * @throws NullPointerException
 	 *             If {@code platform} is {@code null}
@@ -859,7 +859,7 @@ public class RiotApiAsync {
 	 * Retrieves rune by its unique {@code id}.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @param id
 	 *            Rune ID
 	 * @param locale
@@ -887,7 +887,7 @@ public class RiotApiAsync {
 	 * Retrieves rune by its unique {@code id}.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @param id
 	 *            Rune ID
 	 * @return A single rune
@@ -902,7 +902,7 @@ public class RiotApiAsync {
 	 * Retrieves rune list.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @param locale
 	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
 	 *            used.
@@ -929,7 +929,7 @@ public class RiotApiAsync {
 	 * Retrieves rune list.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @return A list with runes
 	 * @version 3
 	 * @see RuneList
@@ -942,7 +942,7 @@ public class RiotApiAsync {
 	 * Retrieves summoner spell by its unique {@code id}.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @param id
 	 *            Summoner spell ID
 	 * @param locale
@@ -970,7 +970,7 @@ public class RiotApiAsync {
 	 * Retrieves summoner spell by its unique {@code id}.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @param id
 	 *            Summoner spell ID
 	 * @return A single summoner spell
@@ -985,7 +985,7 @@ public class RiotApiAsync {
 	 * Retrieves summoner spell list.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @param locale
 	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
 	 *            used.
@@ -1015,7 +1015,7 @@ public class RiotApiAsync {
 	 * Retrieves summoner spell list.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @return A list with summoner spells
 	 * @version 3
 	 * @see SummonerSpellList
@@ -1027,8 +1027,8 @@ public class RiotApiAsync {
 	/**
 	 * Retrieve version data.
 	 * 
-	 * @param region
-	 *            Region from which to retrieve data.
+	 * @param platform
+	 *            Platform to execute the method call against.
 	 * @return A list with versions
 	 * @throws NullPointerException
 	 *             If {@code platform} is {@code null}
@@ -1044,7 +1044,7 @@ public class RiotApiAsync {
 	 * Get list of featured games.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @return Featured games
 	 * @throws NullPointerException
 	 *             If {@code platform} is {@code null}
@@ -1061,7 +1061,7 @@ public class RiotApiAsync {
 	 * Get leagues in all queues for a given {@code summonerId}.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @param summonerId
 	 *            Summoner ID
 	 * @return List of league lists
@@ -1080,7 +1080,7 @@ public class RiotApiAsync {
 	 * Get league positions in all queues for a given {@code summonerId}.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @param summonerId
 	 *            Summoner ID
 	 * @return List of league positions
@@ -1117,7 +1117,7 @@ public class RiotApiAsync {
 	 * Get the master league for a given {@code queue}.
 	 * 
 	 * @param platform
-	 *            Platform where to retrieve the data.
+	 *            Platform to execute the method call against.
 	 * @param queueType
 	 *            Game queue type.
 	 * @return A league list
@@ -1139,7 +1139,7 @@ public class RiotApiAsync {
 	 * Get mastery pages for a given {@code summonerId}.
 	 *
 	 * @param platform
-	 *            Platform where to retrieve the data.
+	 *            Platform to execute the method call against.
 	 * @param summonerId
 	 *            Summoner ID associated with masteries to retrieve.
 	 * @return Mastery pages of the given summoners
@@ -1158,7 +1158,7 @@ public class RiotApiAsync {
 	 * Get match by match ID.
 	 *
 	 * @param platform
-	 *            The platform of the summoner.
+	 *            Platform to execute the method call against.
 	 * @param matchId
 	 *            The ID of the match.
 	 * @return A map with match details
@@ -1177,7 +1177,7 @@ public class RiotApiAsync {
 	 * Retrieve match IDs by {@code tournamentCode}.
 	 *
 	 * @param platform
-	 *            The platform of the matches/tournament.
+	 *            Platform to execute the method call against.
 	 * @param tournamentCode
 	 *            The code of the tournament.
 	 * @return A list of match IDs
@@ -1196,7 +1196,7 @@ public class RiotApiAsync {
 	 * Retrieve match by {@code matchId} and {@code tournamentCode}.
 	 *
 	 * @param platform
-	 *            The platform of the match.
+	 *            Platform to execute the method call against.
 	 * @param matchId
 	 *            The ID of the match.
 	 * @param tournamentCode
@@ -1218,7 +1218,7 @@ public class RiotApiAsync {
 	 * Get matchlist for given account ID and platform ID.
 	 *
 	 * @param platform
-	 *            The platform of the summoner.
+	 *            Platform to execute the method call against.
 	 * @param accountId
 	 *            The account ID of the summoner.
 	 * @param champion
@@ -1252,7 +1252,7 @@ public class RiotApiAsync {
 	 * Get matchlist for given account ID and platform ID.
 	 *
 	 * @param platform
-	 *            The platform of the summoner.
+	 *            Platform to execute the method call against.
 	 * @param accountId
 	 *            The account ID of the summoner.
 	 * @param champion
@@ -1273,7 +1273,7 @@ public class RiotApiAsync {
 	 * Get matchlist for given account ID and platform ID.
 	 *
 	 * @param platform
-	 *            The platform of the summoner.
+	 *            Platform to execute the method call against.
 	 * @param accountId
 	 *            The account ID of the summoner.
 	 * @return A list with matches
@@ -1384,7 +1384,7 @@ public class RiotApiAsync {
 	 * Get recent matchlist for given account ID and platform ID.
 	 *
 	 * @param platform
-	 *            The platform of the summoner.
+	 *            Platform to execute the method call against.
 	 * @param accountId
 	 *            The account ID of the summoner.
 	 * @return A list with matches
@@ -1405,7 +1405,7 @@ public class RiotApiAsync {
 	 * Get rune pages for a given {@code summonerId}.
 	 *
 	 * @param platform
-	 *            Platform where to retrieve the data.
+	 *            Platform to execute the method call against.
 	 * @param summonerId
 	 *            Summoner ID associated with runes to retrieve.
 	 * @return Rune pages of the given summoners
@@ -1423,11 +1423,11 @@ public class RiotApiAsync {
 	/**
 	 * Get shard status. Returns the data available on the status.leagueoflegends.com website for the given region.
 	 * 
-	 * @param region
-	 *            The region for which to fetch data.
+	 * @param platform
+	 *            Platform to execute the method call against.
 	 * @return Status for a single shard
 	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 *             If {@code platform} is {@code null}
 	 * @version 3
 	 * @see ShardStatus
 	 */
@@ -1441,7 +1441,7 @@ public class RiotApiAsync {
 	 * Get a summoner object for a given {@code accountId}.
 	 *
 	 * @param platform
-	 *            Platform where to retrieve the data.
+	 *            Platform to execute the method call against.
 	 * @param summonerId
 	 *            Account ID associated with summoner to retrieve.
 	 * @return The desired summoner
@@ -1460,7 +1460,7 @@ public class RiotApiAsync {
 	 * Get a summoner object for a given {@code summonerId}.
 	 *
 	 * @param platform
-	 *            Platform where to retrieve the data.
+	 *            Platform to execute the method call against.
 	 * @param summonerId
 	 *            Summoner ID associated with summoner to retrieve.
 	 * @return The desired summoner
@@ -1479,7 +1479,7 @@ public class RiotApiAsync {
 	 * Get a single summoner object for a given {@code summonerName}.
 	 *
 	 * @param platform
-	 *            Platform where to retrieve the data.
+	 *            Platform to execute the method call against.
 	 * @param summonerName
 	 *            Summoner name associated with summoner to retrieve.
 	 * @return A map of desired summoners

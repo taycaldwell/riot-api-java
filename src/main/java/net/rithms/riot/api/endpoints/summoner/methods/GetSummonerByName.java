@@ -25,14 +25,14 @@ import net.rithms.riot.api.RiotApi;
 import net.rithms.riot.api.endpoints.summoner.SummonerApiMethod;
 import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
 import net.rithms.riot.constant.Platform;
-import net.rithms.util.Convert;
+import net.rithms.util.RiotApiUtil;
 
 public class GetSummonerByName extends SummonerApiMethod {
 
 	public GetSummonerByName(ApiConfig config, Platform platform, String summonerName) {
 		super(config);
 		setPlatform(platform);
-		summonerName = Convert.normalizeSummonerName(summonerName);
+		summonerName = RiotApiUtil.normalizeSummonerName(summonerName);
 		setReturnType(Summoner.class);
 		try {
 			setUrlBase(platform.getHost() + "/lol/summoner/v3/summoners/by-name/" + URLEncoder.encode(summonerName, "UTF-8"));

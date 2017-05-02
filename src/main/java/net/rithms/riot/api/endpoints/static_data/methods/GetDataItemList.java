@@ -23,7 +23,7 @@ import net.rithms.riot.api.endpoints.static_data.constant.ItemListData;
 import net.rithms.riot.api.endpoints.static_data.constant.Locale;
 import net.rithms.riot.api.endpoints.static_data.dto.ItemList;
 import net.rithms.riot.constant.Platform;
-import net.rithms.util.Convert;
+import net.rithms.util.RiotApiUtil;
 
 public class GetDataItemList extends StaticDataApiMethod {
 
@@ -39,7 +39,7 @@ public class GetDataItemList extends StaticDataApiMethod {
 			add(new UrlParameter("version", version));
 		}
 		if (itemListData[0] != null) {
-			add(new UrlParameter("itemListData", Convert.joinString(",", (Object[]) itemListData)));
+			add(new UrlParameter("itemListData", RiotApiUtil.joinString(",", (Object[]) itemListData)));
 		}
 		addApiKeyParameter();
 	}

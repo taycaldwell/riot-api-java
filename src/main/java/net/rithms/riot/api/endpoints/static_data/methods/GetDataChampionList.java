@@ -23,7 +23,7 @@ import net.rithms.riot.api.endpoints.static_data.constant.ChampListData;
 import net.rithms.riot.api.endpoints.static_data.constant.Locale;
 import net.rithms.riot.api.endpoints.static_data.dto.ChampionList;
 import net.rithms.riot.constant.Platform;
-import net.rithms.util.Convert;
+import net.rithms.util.RiotApiUtil;
 
 public class GetDataChampionList extends StaticDataApiMethod {
 
@@ -40,7 +40,7 @@ public class GetDataChampionList extends StaticDataApiMethod {
 		}
 		add(new UrlParameter("dataById", dataById));
 		if (champListData[0] != null) {
-			add(new UrlParameter("champListData", Convert.joinString(",", (Object[]) champListData)));
+			add(new UrlParameter("champListData", RiotApiUtil.joinString(",", (Object[]) champListData)));
 		}
 		addApiKeyParameter();
 	}

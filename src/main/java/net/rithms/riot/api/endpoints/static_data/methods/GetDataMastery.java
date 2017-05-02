@@ -23,7 +23,7 @@ import net.rithms.riot.api.endpoints.static_data.constant.Locale;
 import net.rithms.riot.api.endpoints.static_data.constant.MasteryData;
 import net.rithms.riot.api.endpoints.static_data.dto.Mastery;
 import net.rithms.riot.constant.Platform;
-import net.rithms.util.Convert;
+import net.rithms.util.RiotApiUtil;
 
 public class GetDataMastery extends StaticDataApiMethod {
 
@@ -39,7 +39,7 @@ public class GetDataMastery extends StaticDataApiMethod {
 			add(new UrlParameter("version", version));
 		}
 		if (masteryData[0] != null) {
-			add(new UrlParameter("masteryData", Convert.joinString(",", (Object[]) masteryData)));
+			add(new UrlParameter("masteryData", RiotApiUtil.joinString(",", (Object[]) masteryData)));
 		}
 		addApiKeyParameter();
 	}

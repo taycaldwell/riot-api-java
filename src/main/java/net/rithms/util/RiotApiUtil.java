@@ -21,30 +21,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Objects;
 
-public final class Convert {
-
-	/**
-	 * Returns a new String composed of copies of the {@code long elements} joined together with a comma as separator.
-	 * 
-	 * @param elements
-	 *            the elements to join together
-	 * @return Comma-separated String of numbers
-	 * @throws NullPointerException
-	 *             If {@code elements} is {@code null}
-	 */
-	public static String longToString(long... elements) {
-		Objects.requireNonNull(elements);
-		// Java 8
-		// return Arrays.stream(elements).mapToObj(l -> ((Long) l).toString()).collect(Collectors.joining(","));
-
-		// Java 7
-		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < elements.length - 1; i++) {
-			sb.append(elements[i]).append(',');
-		}
-		sb.append(elements[elements.length - 1]);
-		return sb.toString();
-	}
+public final class RiotApiUtil {
 
 	/**
 	 * Normalizes and returns a summoner name. This casts {@code String summonerName} to lower case and strips any whitespaces.

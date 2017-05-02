@@ -125,7 +125,7 @@ import net.rithms.riot.constant.Region;
  * <pre>
  * ApiConfig config = new ApiConfig().setKey("YOUR-API-KEY-HERE");
  * RiotApi api = new RiotApi(config);
- * Summoner summoner = api.getSummonerByName(Region.NA, "Tryndamere"); // Gets a Summoner object for the summoner Tryndamere on NA
+ * Summoner summoner = api.getSummonerByName(Platform.NA, "Tryndamere"); // Gets a Summoner object for the summoner Tryndamere on NA
  * </pre>
  * </p>
  * 
@@ -316,7 +316,7 @@ public class RiotApi implements Cloneable {
 	 * Get current game information for the given summoner ID.
 	 * 
 	 * @param platform
-	 *            The platform for which to fetch data.
+	 *            Platform to execute the method call against.
 	 * @param summonerId
 	 *            The ID of the summoner.
 	 * @return Current game info
@@ -357,7 +357,7 @@ public class RiotApi implements Cloneable {
 	 * Get the challenger league for a given {@code queue}.
 	 * 
 	 * @param platform
-	 *            Platform where to retrieve the data.
+	 *            Platform to execute the method call against.
 	 * @param queueType
 	 *            Game queue type.
 	 * @return A league list
@@ -379,7 +379,7 @@ public class RiotApi implements Cloneable {
 	 * Retrieve champion by {@code id}.
 	 *
 	 * @param platform
-	 *            Platform where to retrieve the data.
+	 *            Platform to execute the method call against.
 	 * @param id
 	 *            The ID of the desired champion
 	 * @return The champion of the given ID
@@ -400,7 +400,7 @@ public class RiotApi implements Cloneable {
 	 * Get all champion mastery entries sorted by number of champion points descending
 	 *
 	 * @param platform
-	 *            Platform where to retrieve the data.
+	 *            Platform to execute the method call against.
 	 * @param summonerId
 	 *            Summoner ID associated with the player
 	 * @return A list of champion masteries for a given summoner.
@@ -421,7 +421,7 @@ public class RiotApi implements Cloneable {
 	 * Get a champion mastery by {@code summonerId} and {@code championId}.
 	 *
 	 * @param platform
-	 *            Platform where to retrieve the data.
+	 *            Platform to execute the method call against.
 	 * @param summonerId
 	 *            Summoner ID associated with the player
 	 * @param championId
@@ -444,7 +444,7 @@ public class RiotApi implements Cloneable {
 	 * Get a player's total champion mastery score, which is sum of individual champion mastery levels
 	 *
 	 * @param platform
-	 *            Platform where to retrieve the data.
+	 *            Platform to execute the method call against.
 	 * @param summonerId
 	 *            Summoner ID associated with the player
 	 * @return The total champion mastery score of a given summoner.
@@ -464,7 +464,7 @@ public class RiotApi implements Cloneable {
 	 * Retrieve all champions.
 	 *
 	 * @param platform
-	 *            Platform where to retrieve the data.
+	 *            Platform to execute the method call against.
 	 * @param freeToPlay
 	 *            Optional filter param to retrieve only free to play champions.
 	 * @return This object contains a collection of champion information.
@@ -485,7 +485,7 @@ public class RiotApi implements Cloneable {
 	 * Retrieve all champions.
 	 *
 	 * @param platform
-	 *            Platform where to retrieve the data.
+	 *            Platform to execute the method call against.
 	 * @return This object contains a collection of champion information.
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
@@ -510,7 +510,7 @@ public class RiotApi implements Cloneable {
 	 * Retrieves a champion by its {@code id}.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @param id
 	 *            Champion ID
 	 * @param locale
@@ -541,7 +541,7 @@ public class RiotApi implements Cloneable {
 	 * Retrieves a champion by its {@code id}.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @param id
 	 *            Champion ID
 	 * @return A single champion
@@ -558,7 +558,7 @@ public class RiotApi implements Cloneable {
 	 * Retrieves champion list.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @param locale
 	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
 	 *            used.
@@ -590,7 +590,7 @@ public class RiotApi implements Cloneable {
 	 * Retrieves champion list.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @return A list with champions
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
@@ -605,7 +605,7 @@ public class RiotApi implements Cloneable {
 	 * Retrieves item by its unique {@code id}.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @param id
 	 *            Item ID
 	 * @param locale
@@ -636,7 +636,7 @@ public class RiotApi implements Cloneable {
 	 * Retrieves item by its unique {@code id}.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @param id
 	 *            Item ID
 	 * @return A single item
@@ -653,7 +653,7 @@ public class RiotApi implements Cloneable {
 	 * Retrieves item list.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @param locale
 	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
 	 *            used.
@@ -682,7 +682,7 @@ public class RiotApi implements Cloneable {
 	 * Retrieves item list.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @return A list of items
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
@@ -697,7 +697,7 @@ public class RiotApi implements Cloneable {
 	 * Retrieve supported languages data.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @return A list with languages
 	 * @throws NullPointerException
 	 *             If {@code platform} is {@code null}
@@ -715,7 +715,7 @@ public class RiotApi implements Cloneable {
 	 * Retrieve language strings data.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @param locale
 	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
 	 *            used.
@@ -740,7 +740,7 @@ public class RiotApi implements Cloneable {
 	 * Retrieve language strings data.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @return Language strings
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
@@ -755,7 +755,7 @@ public class RiotApi implements Cloneable {
 	 * Retrieves map data.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @param locale
 	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
 	 *            used.
@@ -780,7 +780,7 @@ public class RiotApi implements Cloneable {
 	 * Retrieves map data.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @return A list of game maps
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
@@ -795,7 +795,7 @@ public class RiotApi implements Cloneable {
 	 * Retrieves mastery item by its unique {@code id}.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @param id
 	 *            Mastery ID
 	 * @param locale
@@ -825,7 +825,7 @@ public class RiotApi implements Cloneable {
 	 * Retrieves mastery item by its unique {@code id}.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @param id
 	 *            Mastery ID
 	 * @return A single mastery
@@ -842,7 +842,7 @@ public class RiotApi implements Cloneable {
 	 * Retrieves mastery list.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @param locale
 	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
 	 *            used.
@@ -871,7 +871,7 @@ public class RiotApi implements Cloneable {
 	 * Retrieves mastery list.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @return A list with masteries
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
@@ -886,7 +886,7 @@ public class RiotApi implements Cloneable {
 	 * Retrieve profile icons.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @param locale
 	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
 	 *            used.
@@ -911,7 +911,7 @@ public class RiotApi implements Cloneable {
 	 * Retrieve profile icons.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @return Profile icons
 	 * @version 3
 	 * @see ProfileIconData
@@ -924,7 +924,7 @@ public class RiotApi implements Cloneable {
 	 * Retrieve realm data.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @return A single realm
 	 * @throws NullPointerException
 	 *             If {@code platform} is {@code null}
@@ -943,7 +943,7 @@ public class RiotApi implements Cloneable {
 	 * Retrieves rune by its unique {@code id}.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @param id
 	 *            Rune ID
 	 * @param locale
@@ -973,7 +973,7 @@ public class RiotApi implements Cloneable {
 	 * Retrieves rune by its unique {@code id}.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @param id
 	 *            Rune ID
 	 * @return A single rune
@@ -990,7 +990,7 @@ public class RiotApi implements Cloneable {
 	 * Retrieves rune list.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @param locale
 	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
 	 *            used.
@@ -1019,7 +1019,7 @@ public class RiotApi implements Cloneable {
 	 * Retrieves rune list.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @return A list with runes
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
@@ -1034,7 +1034,7 @@ public class RiotApi implements Cloneable {
 	 * Retrieves summoner spell by its unique {@code id}.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @param id
 	 *            Summoner spell ID
 	 * @param locale
@@ -1064,7 +1064,7 @@ public class RiotApi implements Cloneable {
 	 * Retrieves summoner spell by its unique {@code id}.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @param id
 	 *            Summoner spell ID
 	 * @return A single summoner spell
@@ -1081,7 +1081,7 @@ public class RiotApi implements Cloneable {
 	 * Retrieves summoner spell list.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @param locale
 	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
 	 *            used.
@@ -1114,7 +1114,7 @@ public class RiotApi implements Cloneable {
 	 * Retrieves summoner spell list.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @return A list with summoner spells
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
@@ -1129,7 +1129,7 @@ public class RiotApi implements Cloneable {
 	 * Retrieve version data.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @return A list with versions
 	 * @throws NullPointerException
 	 *             If {@code platform} is {@code null}
@@ -1147,7 +1147,7 @@ public class RiotApi implements Cloneable {
 	 * Get list of featured games.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @return Featured games
 	 * @throws NullPointerException
 	 *             If {@code platform} is {@code null}
@@ -1166,7 +1166,7 @@ public class RiotApi implements Cloneable {
 	 * Get leagues in all queues for a given {@code summonerId}.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @param summonerId
 	 *            Summoner ID
 	 * @return List of league lists
@@ -1187,7 +1187,7 @@ public class RiotApi implements Cloneable {
 	 * Get league positions in all queues for a given {@code summonerId}.
 	 * 
 	 * @param platform
-	 *            Platform from which to retrieve data.
+	 *            Platform to execute the method call against.
 	 * @param summonerId
 	 *            Summoner ID
 	 * @return List of league positions
@@ -1227,7 +1227,7 @@ public class RiotApi implements Cloneable {
 	 * Get the master league for a given {@code queue}.
 	 * 
 	 * @param platform
-	 *            Platform where to retrieve the data.
+	 *            Platform to execute the method call against.
 	 * @param queueType
 	 *            Game queue type.
 	 * @return A league list
@@ -1249,7 +1249,7 @@ public class RiotApi implements Cloneable {
 	 * Get mastery pages for a given {@code summonerId}.
 	 *
 	 * @param platform
-	 *            Platform where to retrieve the data.
+	 *            Platform to execute the method call against.
 	 * @param summonerIds
 	 *            Summoner ID associated with masteries to retrieve.
 	 * @return Mastery pages of the given summoners
@@ -1270,7 +1270,7 @@ public class RiotApi implements Cloneable {
 	 * Get match by match ID.
 	 *
 	 * @param platform
-	 *            The platform of the summoner.
+	 *            Platform to execute the method call against.
 	 * @param matchId
 	 *            The ID of the match.
 	 * @return A map with match details
@@ -1291,7 +1291,7 @@ public class RiotApi implements Cloneable {
 	 * Retrieve match by {@code matchId} and {@code tournamentCode}.
 	 *
 	 * @param platform
-	 *            The platform of the match.
+	 *            Platform to execute the method call against.
 	 * @param matchId
 	 *            The ID of the match.
 	 * @param tournamentCode
@@ -1315,7 +1315,7 @@ public class RiotApi implements Cloneable {
 	 * Retrieve match IDs by {@code tournamentCode}.
 	 *
 	 * @param platform
-	 *            The platform of the matches/tournament.
+	 *            Platform to execute the method call against.
 	 * @param tournamentCode
 	 *            The code of the tournament.
 	 * @return A list of match IDs
@@ -1336,7 +1336,7 @@ public class RiotApi implements Cloneable {
 	 * Get matchlist for given account ID and platform ID.
 	 *
 	 * @param platform
-	 *            The platform of the summoner.
+	 *            Platform to execute the method call against.
 	 * @param accountId
 	 *            The account ID of the summoner.
 	 * @param champion
@@ -1372,7 +1372,7 @@ public class RiotApi implements Cloneable {
 	 * Get matchlist for given account ID and platform ID.
 	 *
 	 * @param platform
-	 *            The platform of the summoner.
+	 *            Platform to execute the method call against.
 	 * @param accountId
 	 *            The account ID of the summoner.
 	 * @param champion
@@ -1395,7 +1395,7 @@ public class RiotApi implements Cloneable {
 	 * Get matchlist for given account ID and platform ID.
 	 *
 	 * @param platform
-	 *            The platform of the summoner.
+	 *            Platform to execute the method call against.
 	 * @param accountId
 	 *            The account ID of the summoner.
 	 * @return A list with matches
@@ -1498,7 +1498,7 @@ public class RiotApi implements Cloneable {
 	 * Get recent matchlist for given account ID and platform ID.
 	 *
 	 * @param platform
-	 *            The platform of the summoner.
+	 *            Platform to execute the method call against.
 	 * @param accountId
 	 *            The account ID of the summoner.
 	 * @return A list with matches
@@ -1519,7 +1519,7 @@ public class RiotApi implements Cloneable {
 	 * Get rune pages for a given {@code summonerId}.
 	 *
 	 * @param platform
-	 *            Platform where to retrieve the data.
+	 *            Platform to execute the method call against.
 	 * @param summonerIds
 	 *            Summoner ID associated with runes to retrieve.
 	 * @return Rune pages of the given summoners
@@ -1539,11 +1539,11 @@ public class RiotApi implements Cloneable {
 	/**
 	 * Get shard status. Returns the data available on the status.leagueoflegends.com website for the given region.
 	 * 
-	 * @param region
-	 *            The region for which to fetch data.
+	 * @param platform
+	 *            Platform to execute the method call against.
 	 * @return Status for a single shard
 	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
+	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 * @version 3
@@ -1559,7 +1559,7 @@ public class RiotApi implements Cloneable {
 	 * Get a summoner object for a given {@code accountId}.
 	 *
 	 * @param platform
-	 *            Platform where to retrieve the data.
+	 *            Platform to execute the method call against.
 	 * @param accountId
 	 *            Account ID associated with summoner to retrieve.
 	 * @return The desired summoner
@@ -1580,7 +1580,7 @@ public class RiotApi implements Cloneable {
 	 * Get a summoner object for a given {@code summonerId}.
 	 *
 	 * @param platform
-	 *            Platform where to retrieve the data.
+	 *            Platform to execute the method call against.
 	 * @param summonerId
 	 *            Summoner ID associated with summoner to retrieve.
 	 * @return The desired summoner
@@ -1601,7 +1601,7 @@ public class RiotApi implements Cloneable {
 	 * Get a single summoner object for a given {@code summonerName}.
 	 *
 	 * @param platform
-	 *            Platform where to retrieve the data.
+	 *            Platform to execute the method call against.
 	 * @param summonerName
 	 *            Summoner name associated with summoner to retrieve.
 	 * @return Desired summoner

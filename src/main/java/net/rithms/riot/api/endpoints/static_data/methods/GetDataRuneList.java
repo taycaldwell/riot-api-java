@@ -23,7 +23,7 @@ import net.rithms.riot.api.endpoints.static_data.constant.Locale;
 import net.rithms.riot.api.endpoints.static_data.constant.RuneListData;
 import net.rithms.riot.api.endpoints.static_data.dto.RuneList;
 import net.rithms.riot.constant.Platform;
-import net.rithms.util.Convert;
+import net.rithms.util.RiotApiUtil;
 
 public class GetDataRuneList extends StaticDataApiMethod {
 
@@ -39,7 +39,7 @@ public class GetDataRuneList extends StaticDataApiMethod {
 			add(new UrlParameter("version", version));
 		}
 		if (runeListData[0] != null) {
-			add(new UrlParameter("runeListData", Convert.joinString(",", (Object[]) runeListData)));
+			add(new UrlParameter("runeListData", RiotApiUtil.joinString(",", (Object[]) runeListData)));
 		}
 		addApiKeyParameter();
 	}

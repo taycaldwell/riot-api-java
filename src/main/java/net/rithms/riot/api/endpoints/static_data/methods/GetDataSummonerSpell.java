@@ -23,7 +23,7 @@ import net.rithms.riot.api.endpoints.static_data.constant.Locale;
 import net.rithms.riot.api.endpoints.static_data.constant.SpellData;
 import net.rithms.riot.api.endpoints.static_data.dto.SummonerSpell;
 import net.rithms.riot.constant.Platform;
-import net.rithms.util.Convert;
+import net.rithms.util.RiotApiUtil;
 
 public class GetDataSummonerSpell extends StaticDataApiMethod {
 
@@ -39,7 +39,7 @@ public class GetDataSummonerSpell extends StaticDataApiMethod {
 			add(new UrlParameter("version", version));
 		}
 		if (spellData[0] != null) {
-			add(new UrlParameter("spellData", Convert.joinString(",", (Object[]) spellData)));
+			add(new UrlParameter("spellData", RiotApiUtil.joinString(",", (Object[]) spellData)));
 		}
 		addApiKeyParameter();
 	}
