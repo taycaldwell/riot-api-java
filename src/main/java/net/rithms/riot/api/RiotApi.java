@@ -1361,8 +1361,8 @@ public class RiotApi implements Cloneable {
 	 * @version 3
 	 * @see MatchList
 	 */
-	public MatchList getMatchListByAccountId(Platform platform, long accountId, String champion, String queue, String season, long beginTime, long endTime,
-			int beginIndex, int endIndex) throws RiotApiException {
+	public MatchList getMatchListByAccountId(Platform platform, long accountId, Set<Integer> champion, Set<Integer> queue, Set<Integer> season, long beginTime,
+			long endTime, int beginIndex, int endIndex) throws RiotApiException {
 		Objects.requireNonNull(platform);
 		ApiMethod method = new GetMatchListByAccountId(getConfig(), platform, accountId, champion, queue, season, beginTime, endTime, beginIndex, endIndex);
 		return endpointManager.callMethodAndReturnDto(method);
@@ -1387,7 +1387,8 @@ public class RiotApi implements Cloneable {
 	 * @version 3
 	 * @see MatchList
 	 */
-	public MatchList getMatchListByAccountId(Platform platform, long accountId, String champion, String queue, String season) throws RiotApiException {
+	public MatchList getMatchListByAccountId(Platform platform, long accountId, Set<Integer> champion, Set<Integer> queue, Set<Integer> season)
+			throws RiotApiException {
 		return getMatchListByAccountId(platform, accountId, champion, queue, season, -1, -1, -1, -1);
 	}
 

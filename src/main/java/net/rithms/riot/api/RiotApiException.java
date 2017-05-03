@@ -52,7 +52,7 @@ public class RiotApiException extends Exception {
 	 * @param message
 	 *            Error message
 	 */
-	public RiotApiException(final int errorCode, String message) {
+	public RiotApiException(int errorCode, String message) {
 		super(message);
 		this.errorCode = errorCode;
 	}
@@ -63,7 +63,7 @@ public class RiotApiException extends Exception {
 	 * @param errorCode
 	 *            Error code
 	 */
-	public RiotApiException(final int errorCode) {
+	public RiotApiException(int errorCode) {
 		this(errorCode, getMessage(errorCode));
 	}
 
@@ -83,7 +83,7 @@ public class RiotApiException extends Exception {
 	 *            Error code
 	 * @return Short description for the specified error code
 	 */
-	public static String getMessage(final int errorCode) {
+	public static String getMessage(int errorCode) {
 		switch (errorCode) {
 		case BAD_GATEWAY:
 			return "Bad gateway";

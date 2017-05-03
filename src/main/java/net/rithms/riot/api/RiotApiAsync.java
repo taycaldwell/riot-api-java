@@ -17,6 +17,7 @@
 package net.rithms.riot.api;
 
 import java.util.Objects;
+import java.util.Set;
 
 import net.rithms.riot.api.endpoints.champion.dto.Champion;
 import net.rithms.riot.api.endpoints.champion.dto.ChampionList;
@@ -1241,8 +1242,8 @@ public class RiotApiAsync {
 	 * @version 3
 	 * @see MatchList
 	 */
-	public AsyncRequest getMatchListByAccountId(Platform platform, long accountId, String champion, String queue, String season, long beginTime, long endTime,
-			int beginIndex, int endIndex) {
+	public AsyncRequest getMatchListByAccountId(Platform platform, long accountId, Set<Integer> champion, Set<Integer> queue, Set<Integer> season,
+			long beginTime, long endTime, int beginIndex, int endIndex) {
 		Objects.requireNonNull(platform);
 		ApiMethod method = new GetMatchListByAccountId(getConfig(), platform, accountId, champion, queue, season, beginTime, endTime, beginIndex, endIndex);
 		return endpointManager.callMethodAsynchronously(method);
@@ -1265,7 +1266,7 @@ public class RiotApiAsync {
 	 * @version 3
 	 * @see MatchList
 	 */
-	public AsyncRequest getMatchListByAccountId(Platform platform, long accountId, String champion, String queue, String season) {
+	public AsyncRequest getMatchListByAccountId(Platform platform, long accountId, Set<Integer> champion, Set<Integer> queue, Set<Integer> season) {
 		return getMatchListByAccountId(platform, accountId, champion, queue, season, -1, -1, -1, -1);
 	}
 
