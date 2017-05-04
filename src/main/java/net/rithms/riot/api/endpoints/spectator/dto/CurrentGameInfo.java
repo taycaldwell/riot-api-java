@@ -36,8 +36,6 @@ public class CurrentGameInfo extends Dto implements Serializable {
 	private Observer observers;
 	private List<CurrentGameParticipant> participants;
 	private String platformId;
-	private TeamInfo teamInfoOne;
-	private TeamInfo teamInfoTwo;
 
 	public List<BannedChampion> getBannedChampions() {
 		return bannedChampions;
@@ -80,8 +78,7 @@ public class CurrentGameInfo extends Dto implements Serializable {
 	 * 
 	 * @param summonerId
 	 *            Summoner ID
-	 * @return Participant from {@link #getParticipants()} matching the provided {@code summonerId}, or {@code null} if there is no such
-	 *         participant.
+	 * @return Participant from {@link #getParticipants()} matching {@code summonerId}, or {@code null} if there is no such participant.
 	 */
 	public CurrentGameParticipant getParticipantByParticipantId(long summonerId) {
 		List<CurrentGameParticipant> participants = getParticipants();
@@ -100,8 +97,7 @@ public class CurrentGameInfo extends Dto implements Serializable {
 	 * 
 	 * @param summonerName
 	 *            Summoner name
-	 * @return Participant from {@link #getParticipants()} matching the provided {@code summonerName}, or {@code null} if there is no such
-	 *         participant.
+	 * @return Participant from {@link #getParticipants()} matching {@code summonerName}, or {@code null} if there is no such participant.
 	 */
 	public CurrentGameParticipant getParticipantByParticipantName(String summonerName) {
 		List<CurrentGameParticipant> participants = getParticipants();
@@ -121,13 +117,5 @@ public class CurrentGameInfo extends Dto implements Serializable {
 
 	public String getPlatformId() {
 		return platformId;
-	}
-
-	public TeamInfo getTeamInfoOne() {
-		return teamInfoOne;
-	}
-
-	public TeamInfo getTeamInfoTwo() {
-		return teamInfoTwo;
 	}
 }

@@ -76,8 +76,7 @@ public class Match extends Dto implements Serializable {
 	 * 
 	 * @param accountId
 	 *            Account ID
-	 * @return Participant from {@link #getParticipants()} matching the provided {@code accountId}, or {@code null} if there is no such
-	 *         participant.
+	 * @return Participant from {@link #getParticipants()} matching {@code accountId}, or {@code null} if there is no such participant.
 	 */
 	public Participant getParticipantByAccountId(long accountId) {
 		List<ParticipantIdentity> participantIdentities = getParticipantIdentities();
@@ -100,8 +99,7 @@ public class Match extends Dto implements Serializable {
 	 * 
 	 * @param participantId
 	 *            Participant ID
-	 * @return Participant from {@link #getParticipants()} matching the provided {@code participantId}, or {@code null} if there is no such
-	 *         participant.
+	 * @return Participant from {@link #getParticipants()} matching {@code participantId}, or {@code null} if there is no such participant.
 	 */
 	public Participant getParticipantByParticipantId(int participantId) {
 		List<Participant> participants = getParticipants();
@@ -124,8 +122,7 @@ public class Match extends Dto implements Serializable {
 	 * 
 	 * @param summonerId
 	 *            Summoner ID
-	 * @return Participant from {@link #getParticipants()} matching the provided {@code summonerId}, or {@code null} if there is no such
-	 *         participant.
+	 * @return Participant from {@link #getParticipants()} matching {@code summonerId}, or {@code null} if there is no such participant.
 	 */
 	public Participant getParticipantBySummonerId(long summonerId) {
 		List<ParticipantIdentity> participantIdentities = getParticipantIdentities();
@@ -152,8 +149,7 @@ public class Match extends Dto implements Serializable {
 	 * 
 	 * @param summonerName
 	 *            Summoner name
-	 * @return Participant from {@link #getParticipants()} matching the provided {@code summonerName}, or {@code null} if there is no such
-	 *         participant.
+	 * @return Participant from {@link #getParticipants()} matching {@code summonerName}, or {@code null} if there is no such participant.
 	 */
 	public Participant getParticipantBySummonerName(String summonerName) {
 		List<ParticipantIdentity> participantIdentities = getParticipantIdentities();
@@ -196,8 +192,7 @@ public class Match extends Dto implements Serializable {
 	 * 
 	 * @param teamId
 	 *            Team ID
-	 * @return Team from {@link #getTeams()} matching the provided {@code teamId}, or {@code null} if there is no team matching the
-	 *         {@code teamId}.
+	 * @return Team from {@link #getTeams()} matching {@code teamId}, or {@code null} if there is no team matching the {@code teamId}.
 	 */
 	public TeamStats getTeamByTeamId(int teamId) {
 		List<TeamStats> teams = getTeams();
