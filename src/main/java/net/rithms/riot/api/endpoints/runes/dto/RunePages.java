@@ -28,6 +28,23 @@ public class RunePages extends Dto implements Serializable {
 	private Set<RunePage> pages;
 	private long summonerId;
 
+	/**
+	 * Utility method to get the current rune page.
+	 * 
+	 * @return Current rune page, or {@code null} if there is no such rune page.
+	 */
+	public RunePage getCurrentPage() {
+		Set<RunePage> pages = getPages();
+		if (pages != null) {
+			for (RunePage page : pages) {
+				if (page.isCurrent()) {
+					return page;
+				}
+			}
+		}
+		return null;
+	}
+
 	public Set<RunePage> getPages() {
 		return pages;
 	}

@@ -67,6 +67,110 @@ public class Match extends Dto implements Serializable {
 		return mapId;
 	}
 
+	/**
+	 * Utility method to get the participant by {@code accountId}.
+	 * <p>
+	 * Note that Match data can be made anonymous by Riot, so in some cases it might be not possible to determine which participant is which
+	 * summoner.
+	 * </p>
+	 * 
+	 * @param accountId
+	 *            Account ID
+	 * @return Participant from {@link #getParticipants()} matching the provided {@code accountId}, or {@code null} if there is no such
+	 *         participant.
+	 */
+	public Participant getParticipantByAccountId(long accountId) {
+		List<ParticipantIdentity> participantIdentities = getParticipantIdentities();
+		if (participantIdentities != null) {
+			for (ParticipantIdentity participantIdentity : participantIdentities) {
+				Player player = participantIdentity.getPlayer();
+				if (player == null) {
+					continue;
+				}
+				if (player.getAccountId() == accountId) {
+					return getParticipantByParticipantId(participantIdentity.getParticipantId());
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Utility method to get the participant by {@code participantId}.
+	 * 
+	 * @param participantId
+	 *            Participant ID
+	 * @return Participant from {@link #getParticipants()} matching the provided {@code participantId}, or {@code null} if there is no such
+	 *         participant.
+	 */
+	public Participant getParticipantByParticipantId(int participantId) {
+		List<Participant> participants = getParticipants();
+		if (participants != null) {
+			for (Participant participant : participants) {
+				if (participant.getParticipantId() == participantId) {
+					return participant;
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Utility method to get the participant by {@code summonerId}.
+	 * <p>
+	 * Note that Match data can be made anonymous by Riot, so in some cases it might be not possible to determine which participant is which
+	 * summoner.
+	 * </p>
+	 * 
+	 * @param summonerId
+	 *            Summoner ID
+	 * @return Participant from {@link #getParticipants()} matching the provided {@code summonerId}, or {@code null} if there is no such
+	 *         participant.
+	 */
+	public Participant getParticipantBySummonerId(long summonerId) {
+		List<ParticipantIdentity> participantIdentities = getParticipantIdentities();
+		if (participantIdentities != null) {
+			for (ParticipantIdentity participantIdentity : participantIdentities) {
+				Player player = participantIdentity.getPlayer();
+				if (player == null) {
+					continue;
+				}
+				if (player.getSummonerId() == summonerId) {
+					return getParticipantByParticipantId(participantIdentity.getParticipantId());
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Utility method to get the participant by {@code summonerName}.
+	 * <p>
+	 * Note that Match data can be made anonymous by Riot, so in some cases it might be not possible to determine which participant is which
+	 * summoner.
+	 * </p>
+	 * 
+	 * @param summonerName
+	 *            Summoner name
+	 * @return Participant from {@link #getParticipants()} matching the provided {@code summonerName}, or {@code null} if there is no such
+	 *         participant.
+	 */
+	public Participant getParticipantBySummonerName(String summonerName) {
+		List<ParticipantIdentity> participantIdentities = getParticipantIdentities();
+		if (participantIdentities != null) {
+			for (ParticipantIdentity participantIdentity : participantIdentities) {
+				Player player = participantIdentity.getPlayer();
+				if (player == null) {
+					continue;
+				}
+				if (player.getSummonerName().equalsIgnoreCase(summonerName)) {
+					return getParticipantByParticipantId(participantIdentity.getParticipantId());
+				}
+			}
+		}
+		return null;
+	}
+
 	public List<ParticipantIdentity> getParticipantIdentities() {
 		return participantIdentities;
 	}
@@ -85,6 +189,26 @@ public class Match extends Dto implements Serializable {
 
 	public int getSeasonId() {
 		return seasonId;
+	}
+
+	/**
+	 * Utility method to get the team by {@code teamId}.
+	 * 
+	 * @param teamId
+	 *            Team ID
+	 * @return Team from {@link #getTeams()} matching the provided {@code teamId}, or {@code null} if there is no team matching the
+	 *         {@code teamId}.
+	 */
+	public TeamStats getTeamByTeamId(int teamId) {
+		List<TeamStats> teams = getTeams();
+		if (teams != null) {
+			for (TeamStats team : teams) {
+				if (team.getTeamId() == teamId) {
+					return team;
+				}
+			}
+		}
+		return null;
 	}
 
 	public List<TeamStats> getTeams() {

@@ -28,6 +28,23 @@ public class MasteryPages extends Dto implements Serializable {
 	private Set<MasteryPage> pages;
 	private long summonerId;
 
+	/**
+	 * Utility method to get the current rune page.
+	 * 
+	 * @return Current mastery page, or {@code null} if there is no such mastery page.
+	 */
+	public MasteryPage getCurrentPage() {
+		Set<MasteryPage> pages = getPages();
+		if (pages != null) {
+			for (MasteryPage page : pages) {
+				if (page.isCurrent()) {
+					return page;
+				}
+			}
+		}
+		return null;
+	}
+
 	public Set<MasteryPage> getPages() {
 		return pages;
 	}

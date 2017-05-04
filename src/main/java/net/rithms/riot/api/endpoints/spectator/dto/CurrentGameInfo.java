@@ -75,6 +75,46 @@ public class CurrentGameInfo extends Dto implements Serializable {
 		return observers;
 	}
 
+	/**
+	 * Utility method to get the participant by {@code summonerId}.
+	 * 
+	 * @param summonerId
+	 *            Summoner ID
+	 * @return Participant from {@link #getParticipants()} matching the provided {@code summonerId}, or {@code null} if there is no such
+	 *         participant.
+	 */
+	public CurrentGameParticipant getParticipantByParticipantId(long summonerId) {
+		List<CurrentGameParticipant> participants = getParticipants();
+		if (participants != null) {
+			for (CurrentGameParticipant participant : participants) {
+				if (participant.getSummonerId() == summonerId) {
+					return participant;
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Utility method to get the participant by {@code summonerName}.
+	 * 
+	 * @param summonerName
+	 *            Summoner name
+	 * @return Participant from {@link #getParticipants()} matching the provided {@code summonerName}, or {@code null} if there is no such
+	 *         participant.
+	 */
+	public CurrentGameParticipant getParticipantByParticipantName(String summonerName) {
+		List<CurrentGameParticipant> participants = getParticipants();
+		if (participants != null) {
+			for (CurrentGameParticipant participant : participants) {
+				if (participant.getSummonerName().equalsIgnoreCase(summonerName)) {
+					return participant;
+				}
+			}
+		}
+		return null;
+	}
+
 	public List<CurrentGameParticipant> getParticipants() {
 		return participants;
 	}

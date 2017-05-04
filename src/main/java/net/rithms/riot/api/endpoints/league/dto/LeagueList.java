@@ -34,6 +34,44 @@ public class LeagueList extends Dto implements Serializable {
 		return entries;
 	}
 
+	/**
+	 * Utility method to get the entry by {@code summonerId}.
+	 * 
+	 * @param summonerId
+	 *            Summoner ID
+	 * @return Entry from {@link #getParticipants()} matching the provided {@code summonerId}, or {@code null} if there is no such entry.
+	 */
+	public LeagueItem getEntryBySummonerId(long summonerId) {
+		List<LeagueItem> entries = getEntries();
+		if (entries != null) {
+			for (LeagueItem entry : entries) {
+				if (entry.getPlayerOrTeamId().equals(String.valueOf(summonerId))) {
+					return entry;
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Utility method to get the entry by {@code summonerName}.
+	 * 
+	 * @param summonerName
+	 *            Summoner name
+	 * @return Entry from {@link #getParticipants()} matching the provided {@code summonerName}, or {@code null} if there is no such entry.
+	 */
+	public LeagueItem getEntryBySummonerName(String summonerName) {
+		List<LeagueItem> entries = getEntries();
+		if (entries != null) {
+			for (LeagueItem entry : entries) {
+				if (entry.getPlayerOrTeamName().equalsIgnoreCase(summonerName)) {
+					return entry;
+				}
+			}
+		}
+		return null;
+	}
+
 	public String getName() {
 		return name;
 	}
