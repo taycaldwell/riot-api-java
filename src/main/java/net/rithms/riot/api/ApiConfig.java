@@ -24,21 +24,29 @@ import java.util.logging.Level;
  */
 public class ApiConfig implements Cloneable {
 
-	private int asyncRequestTimeout = 10000;
-	private Level debugLevel = Level.WARNING;
-	private boolean debugToFile = false;
+	public final int DEFAULT_ASYNC_REQUEST_TIMEOUT = 10000;
+	public final Level DEFAULT_DEBUG_LEVEL = Level.WARNING;
+	public final boolean DEFAULT_DEBUG_TO_FILE = false;
+	public final int DEFAULT_MAX_ASYNC_THREADS = 0;
+	public final int DEFAULT_REQUEST_TIMEOUT = 0;
+	public final boolean DEFAULT_RESPECT_RATE_LIMIT = true;
+	public final boolean DEFAULT_TOURNAMENT_MOCK_MODE = false;
+
+	private int asyncRequestTimeout = DEFAULT_ASYNC_REQUEST_TIMEOUT;
+	private Level debugLevel = DEFAULT_DEBUG_LEVEL;
+	private boolean debugToFile = DEFAULT_DEBUG_TO_FILE;
 	private String key = null;
-	private int maxAsyncThreads = 0;
-	private int requestTimeout = 0;
-	private boolean respectRateLimit = true;
+	private int maxAsyncThreads = DEFAULT_MAX_ASYNC_THREADS;
+	private int requestTimeout = DEFAULT_REQUEST_TIMEOUT;
+	private boolean respectRateLimit = DEFAULT_RESPECT_RATE_LIMIT;
 	private String tournamentKey = null;
-	private boolean tournamentMockMode = false;
+	private boolean tournamentMockMode = DEFAULT_TOURNAMENT_MOCK_MODE;
 
 	@Override
 	public ApiConfig clone() {
 		return new ApiConfig().setAsyncRequestTimeout(getAsyncRequestTimeout()).setDebugLevel(getDebugLevel()).setDebugToFile(getDebugToFile()).setKey(getKey())
 				.setMaxAsyncThreads(getMaxAsyncThreads()).setRequestTimeout(getRequestTimeout()).setRespectRateLimit(getRespectRateLimit())
-				.setTournamentKey(getTournamentKey());
+				.setTournamentKey(getTournamentKey()).setTournamentMockMode(getTournamentMockMode());
 	}
 
 	public int getAsyncRequestTimeout() {
@@ -78,8 +86,8 @@ public class ApiConfig implements Cloneable {
 	}
 
 	/**
-	 * Sets how many milliseconds a call in {@link RiotApiAsync} waits for a response at most before timing out. This value can be set to
-	 * zero to disable the request timeout. By default, the timeout value for asynchronous requests is 10 seconds.
+	 * Sets a specified timeout value, in milliseconds, for calls in {@link RiotApiAsync} to wait at most for a response. If set to zero,
+	 * asynchronous requests won't time out.
 	 * 
 	 * <p>
 	 * To set the timeout for synchronous requests use {@link #setRequestTimeout(int)} instead.
@@ -100,7 +108,7 @@ public class ApiConfig implements Cloneable {
 	}
 
 	/**
-	 * Sets the debug level for the Riot Api.
+	 * Sets the debug level.
 	 * 
 	 * @param debugLevel
 	 *            Debug level
@@ -113,10 +121,14 @@ public class ApiConfig implements Cloneable {
 	}
 
 	/**
-	 * Sets whether the debug log should be saved in a file
+	 * Sets whether the debug log should be saved in a file.
+	 * <p>
+	 * If debug logging to file is activated, a file named {@code riot-api.log} will be created and contain all logging messages for the
+	 * level set via {@link #setDebugLevel(Level)}.
+	 * </p>
 	 * 
 	 * @param debugToFile
-	 *            {@code true} if the debug log should be saved in a file
+	 *            {@code true} if the debug log should be saved in a file, {@code false} otherwise
 	 * @return This ApiConfig object for chaining
 	 */
 	public ApiConfig setDebugToFile(boolean debugToFile) {
@@ -140,8 +152,7 @@ public class ApiConfig implements Cloneable {
 	}
 
 	/**
-	 * Sets the maximum amount of threads for asynchronous api calls running at once. This value can be set to zero to disable the limit. By
-	 * default, there is no limit.
+	 * Sets the maximum amount of threads for asynchronous api calls running at once. If set to zero, there is no limit.
 	 * 
 	 * <p>
 	 * If you make asynchronous calls, and the current thread limit is reached, the api call will be queued and executed when resources
@@ -163,8 +174,8 @@ public class ApiConfig implements Cloneable {
 	}
 
 	/**
-	 * Sets how many milliseconds a call in {@link RiotApi} should block at most until an api call is cancelled. This value can be set to
-	 * zero to disable the request timeout. By default, there is no timeout.
+	 * Sets a specified timeout value, in milliseconds, for calls in {@link RiotApi} to wait at most for a response. If set to zero,
+	 * requests won't time out.
 	 * 
 	 * <p>
 	 * To set the timeout for asynchronous requests use {@link #setAsyncRequestTimeout(int)} instead.
