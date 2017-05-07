@@ -24,7 +24,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 import net.rithms.riot.api.request.AsyncRequest;
 
-public class AsyncRequestPool {
+class AsyncRequestPool {
 
 	private final ApiConfig config;
 	private final Queue<AsyncRequest> queue = new ConcurrentLinkedQueue<AsyncRequest>();
@@ -35,12 +35,12 @@ public class AsyncRequestPool {
 		this.config = config;
 	}
 
-	public void add(AsyncRequest request) {
+	void add(AsyncRequest request) {
 		queue.add(request);
 		invokeSupervisor();
 	}
 
-	public void awaitAll() throws InterruptedException {
+	void awaitAll() throws InterruptedException {
 		if (pool.isEmpty() && queue.isEmpty()) {
 			return;
 		}
@@ -77,11 +77,11 @@ public class AsyncRequestPool {
 		return Integer.MAX_VALUE;
 	}
 
-	public int getPoolSize() {
+	int getPoolSize() {
 		return pool.size();
 	}
 
-	public int getQueueSize() {
+	int getQueueSize() {
 		return queue.size();
 	}
 
@@ -90,6 +90,10 @@ public class AsyncRequestPool {
 			supervisor = new AsyncRequestPoolSupervisor(this);
 			supervisor.start();
 		}
+	}
+
+	boolean isEmpty() {
+		return (pool.isEmpty() && queue.isEmpty());
 	}
 
 	synchronized boolean pollQueue() {

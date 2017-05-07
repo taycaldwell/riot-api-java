@@ -18,7 +18,7 @@ package net.rithms.riot.api;
 
 import java.util.logging.Level;
 
-public class AsyncRequestPoolSupervisor extends Thread {
+class AsyncRequestPoolSupervisor extends Thread {
 
 	private static final long IDLE_TIME_RESIGN = 5000;
 
@@ -27,7 +27,7 @@ public class AsyncRequestPoolSupervisor extends Thread {
 	private boolean running = true;
 
 	AsyncRequestPoolSupervisor(AsyncRequestPool pool) {
-		super("Riot Api - Async Request Pool Supervisor Thread");
+		super("Riot Api - Async Request Pool Supervisor");
 		this.pool = pool;
 	}
 
@@ -55,8 +55,8 @@ public class AsyncRequestPoolSupervisor extends Thread {
 		while (running) {
 			clearPool();
 			pollQueue();
-			// Resign, if idle for a while
-			if (lastJob + IDLE_TIME_RESIGN < System.currentTimeMillis()) {
+			// Resign, if pool is empty and supervisor is idle for a while
+			if (pool.isEmpty() && lastJob + IDLE_TIME_RESIGN < System.currentTimeMillis()) {
 				pool.resignSupervisor();
 			}
 
@@ -68,7 +68,7 @@ public class AsyncRequestPoolSupervisor extends Thread {
 		}
 	}
 
-	public void shutdown() {
+	void shutdown() {
 		running = false;
 	}
 }

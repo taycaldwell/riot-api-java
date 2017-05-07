@@ -85,11 +85,9 @@ public class AsyncRequest extends Request implements Runnable {
 	 *             If the method is interrupted by calling {@link Thread#interrupt()}. The interrupt flag will be cleared
 	 */
 	public void await() throws InterruptedException {
-		if (!isDone()) {
+		while (!isDone()) {
 			synchronized (signal) {
-				while (!isDone()) {
-					signal.wait();
-				}
+				signal.wait();
 			}
 		}
 	}
@@ -142,11 +140,9 @@ public class AsyncRequest extends Request implements Runnable {
 	 */
 	public void await(long timeout, TimeUnit unit, boolean cancelOnTimeout) throws InterruptedException, TimeoutException {
 		final long end = System.currentTimeMillis() + unit.toMillis(timeout);
-		if (!isDone() && System.currentTimeMillis() < end) {
+		while (!isDone() && System.currentTimeMillis() < end) {
 			synchronized (signal) {
-				while (!isDone() && System.currentTimeMillis() < end) {
-					signal.wait(end - System.currentTimeMillis());
-				}
+				signal.wait(end - System.currentTimeMillis());
 			}
 		}
 		if (!isDone()) {
