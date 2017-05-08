@@ -196,7 +196,7 @@ public class AsyncRequest extends Request implements Runnable {
 		try {
 			return super.getDto(true);
 		} catch (RiotApiException e) {
-			RiotApi.log.log(Level.FINE, "Retrieving Dto Failed", e);
+			RiotApi.log.log(Level.WARNING, "Retrieving Dto Failed", e);
 		}
 		return null;
 	}
