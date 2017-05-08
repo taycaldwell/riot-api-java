@@ -32,7 +32,7 @@ abstract public class ApiMethod {
 	private final ApiConfig config;
 	private final String service;
 	private Platform platform = null;
-	// we might be able to remove the region variable when the switch to API 3 is done
+	@Deprecated
 	private Region region = null;
 	private String urlBase;
 	private final List<UrlParameter> urlParameters = new LinkedList<UrlParameter>();
@@ -86,6 +86,7 @@ abstract public class ApiMethod {
 		return platform;
 	}
 
+	@Deprecated
 	public Region getRegion() {
 		return region;
 	}
@@ -124,6 +125,7 @@ abstract public class ApiMethod {
 		this.platform = platform;
 	}
 
+	@Deprecated
 	protected void setRegion(Region region) {
 		this.region = region;
 	}
