@@ -38,11 +38,13 @@ import net.rithms.riot.api.endpoints.masteries.dto.MasteryPages;
 import net.rithms.riot.api.endpoints.masteries.methods.GetMasteriesBySummoner;
 import net.rithms.riot.api.endpoints.match.dto.Match;
 import net.rithms.riot.api.endpoints.match.dto.MatchList;
+import net.rithms.riot.api.endpoints.match.dto.MatchTimeline;
 import net.rithms.riot.api.endpoints.match.methods.GetMatch;
 import net.rithms.riot.api.endpoints.match.methods.GetMatchByMatchIdAndTournamentCode;
 import net.rithms.riot.api.endpoints.match.methods.GetMatchIdsByTournamentCode;
 import net.rithms.riot.api.endpoints.match.methods.GetMatchListByAccountId;
 import net.rithms.riot.api.endpoints.match.methods.GetRecentMatchListByAccountId;
+import net.rithms.riot.api.endpoints.match.methods.GetTimelineByMatchId;
 import net.rithms.riot.api.endpoints.runes.dto.RunePages;
 import net.rithms.riot.api.endpoints.runes.methods.GetRunesBySummoner;
 import net.rithms.riot.api.endpoints.spectator.dto.CurrentGameInfo;
@@ -1156,7 +1158,7 @@ public class RiotApiAsync {
 	}
 
 	/**
-	 * Get match by match ID.
+	 * Get match by {@code matchId}.
 	 *
 	 * @param platform
 	 *            Platform to execute the method call against.
@@ -1493,6 +1495,25 @@ public class RiotApiAsync {
 		Objects.requireNonNull(platform);
 		Objects.requireNonNull(summonerName);
 		ApiMethod method = new GetSummonerByName(getConfig(), platform, summonerName);
+		return endpointManager.callMethodAsynchronously(method);
+	}
+
+	/**
+	 * Get match timeline by {@code matchId}.
+	 *
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param matchId
+	 *            The ID of the match.
+	 * @return A map with match timeline details
+	 * @throws NullPointerException
+	 *             If {@code platform} is {@code null}
+	 * @version 3
+	 * @see MatchTimeline
+	 */
+	public AsyncRequest getTimelineByMatchId(Platform platform, long matchId) {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetTimelineByMatchId(getConfig(), platform, matchId);
 		return endpointManager.callMethodAsynchronously(method);
 	}
 

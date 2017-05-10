@@ -1268,7 +1268,7 @@ public class RiotApi implements Cloneable {
 	}
 
 	/**
-	 * Get match by match ID.
+	 * Get match by {@code matchId}.
 	 *
 	 * @param platform
 	 *            Platform to execute the method call against.
@@ -1285,27 +1285,6 @@ public class RiotApi implements Cloneable {
 	public Match getMatch(Platform platform, long matchId) throws RiotApiException {
 		Objects.requireNonNull(platform);
 		ApiMethod method = new GetMatch(getConfig(), platform, matchId);
-		return endpointManager.callMethodAndReturnDto(method);
-	}
-
-	/**
-	 * Get match timeline by match ID.
-	 *
-	 * @param platform
-	 *            Platform to execute the method call against.
-	 * @param matchId
-	 *            The ID of the match.
-	 * @return A map with match timeline details
-	 * @throws NullPointerException
-	 *             If {@code platform} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
-	 * @version 3
-	 * @see Match
-	 */
-        public MatchTimeline getTimelineByMatchId(Platform platform, long matchId) throws RiotApiException {
-		Objects.requireNonNull(platform);
-		ApiMethod method = new GetTimelineByMatchId(getConfig(), platform, matchId);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 
@@ -1639,6 +1618,27 @@ public class RiotApi implements Cloneable {
 		Objects.requireNonNull(platform);
 		Objects.requireNonNull(summonerName);
 		ApiMethod method = new GetSummonerByName(getConfig(), platform, summonerName);
+		return endpointManager.callMethodAndReturnDto(method);
+	}
+
+	/**
+	 * Get match timeline by {@code matchId}.
+	 *
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param matchId
+	 *            The ID of the match.
+	 * @return A map with match timeline details
+	 * @throws NullPointerException
+	 *             If {@code platform} is {@code null}
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 * @version 3
+	 * @see MatchTimeline
+	 */
+	public MatchTimeline getTimelineByMatchId(Platform platform, long matchId) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetTimelineByMatchId(getConfig(), platform, matchId);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 
