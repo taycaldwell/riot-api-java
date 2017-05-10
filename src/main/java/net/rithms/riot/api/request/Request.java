@@ -63,15 +63,23 @@ public class Request {
 	public static final int CODE_ERROR_SERVER_ERROR = 500;
 	public static final int CODE_ERROR_SERVICE_UNAVAILABLE = 503;
 
+	protected enum RequestState {
+		Waiting,
+		Cancelled,
+		Succeeded,
+		Failed,
+		Timeout
+	}
+
 	private static final Map<String, RateLimitList> rateLimitMap = new ConcurrentHashMap<String, RateLimitList>();
 
-	private RequestState state = RequestState.Waiting;
+	private volatile RequestState state = RequestState.Waiting;
 	private RequestResponse response = null;
 
 	protected ApiConfig config;
 	protected ApiMethod object;
 	protected HttpURLConnection connection = null;
-	private RiotApiException exception = null;
+	private volatile RiotApiException exception = null;
 
 	/**
 	 * Constructs a synchronous request
