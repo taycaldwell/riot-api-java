@@ -41,11 +41,13 @@ import net.rithms.riot.api.endpoints.masteries.dto.MasteryPages;
 import net.rithms.riot.api.endpoints.masteries.methods.GetMasteriesBySummoner;
 import net.rithms.riot.api.endpoints.match.dto.Match;
 import net.rithms.riot.api.endpoints.match.dto.MatchList;
+import net.rithms.riot.api.endpoints.match.dto.MatchTimeline;
 import net.rithms.riot.api.endpoints.match.methods.GetMatch;
 import net.rithms.riot.api.endpoints.match.methods.GetMatchByMatchIdAndTournamentCode;
 import net.rithms.riot.api.endpoints.match.methods.GetMatchIdsByTournamentCode;
 import net.rithms.riot.api.endpoints.match.methods.GetMatchListByAccountId;
 import net.rithms.riot.api.endpoints.match.methods.GetRecentMatchListByAccountId;
+import net.rithms.riot.api.endpoints.match.methods.GetTimelineByMatchId;
 import net.rithms.riot.api.endpoints.runes.dto.RunePages;
 import net.rithms.riot.api.endpoints.runes.methods.GetRunesBySummoner;
 import net.rithms.riot.api.endpoints.spectator.dto.CurrentGameInfo;
@@ -1283,6 +1285,27 @@ public class RiotApi implements Cloneable {
 	public Match getMatch(Platform platform, long matchId) throws RiotApiException {
 		Objects.requireNonNull(platform);
 		ApiMethod method = new GetMatch(getConfig(), platform, matchId);
+		return endpointManager.callMethodAndReturnDto(method);
+	}
+
+	/**
+	 * Get match timeline by match ID.
+	 *
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param matchId
+	 *            The ID of the match.
+	 * @return A map with match timeline details
+	 * @throws NullPointerException
+	 *             If {@code platform} is {@code null}
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 * @version 3
+	 * @see Match
+	 */
+        public MatchTimeline getTimelineByMatchId(Platform platform, long matchId) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetTimelineByMatchId(getConfig(), platform, matchId);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 
