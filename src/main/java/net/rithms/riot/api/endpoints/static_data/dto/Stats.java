@@ -64,10 +64,6 @@ public class Stats extends Dto implements Serializable {
 	@SerializedName(value = "spellblockperlevel")
 	private double spellBlockPerLevel;
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 	public double getArmor() {
 		return armor;
 	}
@@ -99,7 +95,7 @@ public class Stats extends Dto implements Serializable {
 	public double getBaseAttackSpeed() {
 		return (0.625 / (1.0 + attackSpeedOffset));
 	}
-	
+
 	public double getCrit() {
 		return crit;
 	}
