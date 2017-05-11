@@ -28,5 +28,6 @@ public class GetShardData extends LolStatusApiMethod {
 		setPlatform(platform);
 		setReturnType(ShardStatus.class);
 		setUrlBase(platform.getHost() + "/lol/status/v3/shard-data");
+		addApiKeyParameter();
 	}
 }
