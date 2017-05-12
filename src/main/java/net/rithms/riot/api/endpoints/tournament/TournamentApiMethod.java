@@ -20,7 +20,6 @@ import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.ApiMethod;
 import net.rithms.riot.api.HttpHeadParameter;
 import net.rithms.riot.api.RiotApiException;
-import net.rithms.riot.api.UrlParameter;
 
 abstract public class TournamentApiMethod extends ApiMethod {
 
@@ -33,7 +32,6 @@ abstract public class TournamentApiMethod extends ApiMethod {
 	}
 
 	protected void addTournamentApiKeyParameter() {
-		add(new UrlParameter("api_key", getConfig().getTournamentKey()));
 		add(new HttpHeadParameter("X-Riot-Token", getConfig().getTournamentKey()));
 	}
 

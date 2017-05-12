@@ -57,7 +57,7 @@ abstract public class ApiMethod {
 	}
 
 	protected void addApiKeyParameter() {
-		add(new UrlParameter("api_key", config.getKey()));
+		add(new HttpHeadParameter("X-Riot-Token", getConfig().getKey()));
 	}
 
 	public void buildJsonBody(Map<String, Object> map) {
