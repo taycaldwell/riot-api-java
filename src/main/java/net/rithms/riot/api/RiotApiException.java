@@ -16,6 +16,8 @@
 
 package net.rithms.riot.api;
 
+import net.rithms.riot.api.request.RiotApiError;
+
 /**
  * Thrown when the Riot Api returns an error code, or if the Riot Api's response can not be parsed successfully.
  */
@@ -43,6 +45,20 @@ public class RiotApiException extends Exception {
 	public static final int MISSING_TOURNAMENT_API_KEY = 612;
 
 	private final int errorCode;
+	private final RiotApiError errorDto;
+
+	/**
+	 * Constructs a {@code RiotApiException} with the specified error code and error dto, as sent by the Riot Api.
+	 *
+	 * @param errorCode
+	 *            Error code
+	 * @param message
+	 *            Error message
+	 */
+	public RiotApiException(int errorCode, RiotApiError errorDto) {
+		this.errorCode = errorCode;
+		this.errorDto = errorDto;
+	}
 
 	/**
 	 * Constructs a {@code RiotApiException} with the specified error code and error message.
@@ -55,6 +71,7 @@ public class RiotApiException extends Exception {
 	public RiotApiException(int errorCode, String message) {
 		super(message);
 		this.errorCode = errorCode;
+		errorDto = null;
 	}
 
 	/**
@@ -74,6 +91,24 @@ public class RiotApiException extends Exception {
 	 */
 	public int getErrorCode() {
 		return errorCode;
+	}
+
+	/**
+	 * Gets the error DTO as sent by the Riot Api
+	 * 
+	 * @return Error DTO
+	 * @see RiotApiError
+	 */
+	public RiotApiError getErrorDto() {
+		return errorDto;
+	}
+
+	@Override
+	public String getMessage() {
+		if (errorDto != null) {
+			return errorDto.toString();
+		}
+		return super.getMessage();
 	}
 
 	/**

@@ -19,12 +19,13 @@ package net.rithms.riot.api.request;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
 import java.net.URL;
-import java.util.Map;
+import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
@@ -61,7 +62,9 @@ public class Request {
 	public static final int CODE_ERROR_UNPROCESSABLE_ENTITY = 422;
 	public static final int CODE_ERROR_RATE_LIMITED = 429;
 	public static final int CODE_ERROR_SERVER_ERROR = 500;
+	public static final int CODE_ERROR_BAD_GATEWAY = 502;
 	public static final int CODE_ERROR_SERVICE_UNAVAILABLE = 503;
+	public static final int CODE_ERROR_GATEWAY_TIMEOUT = 504;
 
 	protected enum RequestState {
 		Waiting,
@@ -71,7 +74,7 @@ public class Request {
 		Timeout
 	}
 
-	private static final Map<String, RateLimitList> rateLimitMap = new ConcurrentHashMap<String, RateLimitList>();
+	private static final ConcurrentHashMap<String, RateLimitList> rateLimitMap = new ConcurrentHashMap<String, RateLimitList>();
 
 	private volatile RequestState state = RequestState.Waiting;
 	private RequestResponse response = null;
@@ -148,8 +151,9 @@ public class Request {
 				dos.flush();
 				dos.close();
 			}
-
 			int responseCode = connection.getResponseCode();
+
+			// Handle rate limit
 			if (responseCode == CODE_ERROR_RATE_LIMITED) {
 				String retryAfterString = connection.getHeaderField("Retry-After");
 				String rateLimitType = connection.getHeaderField("X-Rate-Limit-Type");
@@ -160,19 +164,31 @@ public class Request {
 				} else {
 					throw new RateLimitException(0, rateLimitType);
 				}
-			} else if (responseCode < 200 || responseCode >= 300) {
-				throw new RiotApiException(responseCode);
 			}
 
+			// Get body
+			InputStream is = null;
+			if (responseCode < 400) {
+				is = connection.getInputStream();
+			} else {
+				is = connection.getErrorStream();
+			}
 			StringBuilder responseBodyBuilder = new StringBuilder();
 			if (responseCode != CODE_SUCCESS_NO_CONTENT) {
-				BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
+				BufferedReader br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
 				String line;
 				while ((line = br.readLine()) != null) {
 					responseBodyBuilder.append(line).append(System.lineSeparator());
 				}
 				br.close();
 			}
+
+			// Handle error
+			if (responseCode >= 300) {
+				RiotApiError errorDto = new Gson().fromJson(responseBodyBuilder.toString(), RiotApiError.class);
+				throw new RiotApiException(responseCode, errorDto);
+			}
+
 			setResponse(new RequestResponse(connection.getResponseCode(), responseBodyBuilder.toString(), connection.getHeaderFields()));
 			setState(RequestState.Succeeded);
 		} catch (RateLimitException e) {
