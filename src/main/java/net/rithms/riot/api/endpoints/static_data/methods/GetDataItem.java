@@ -19,15 +19,14 @@ package net.rithms.riot.api.endpoints.static_data.methods;
 import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.UrlParameter;
 import net.rithms.riot.api.endpoints.static_data.StaticDataApiMethod;
-import net.rithms.riot.api.endpoints.static_data.constant.ItemData;
+import net.rithms.riot.api.endpoints.static_data.constant.ItemTags;
 import net.rithms.riot.api.endpoints.static_data.constant.Locale;
 import net.rithms.riot.api.endpoints.static_data.dto.Item;
 import net.rithms.riot.constant.Platform;
-import net.rithms.util.RiotApiUtil;
 
 public class GetDataItem extends StaticDataApiMethod {
 
-	public GetDataItem(ApiConfig config, Platform platform, int id, Locale locale, String version, ItemData... itemData) {
+	public GetDataItem(ApiConfig config, Platform platform, int id, Locale locale, String version, ItemTags... tags) {
 		super(config);
 		setPlatform(platform);
 		setReturnType(Item.class);
@@ -38,8 +37,10 @@ public class GetDataItem extends StaticDataApiMethod {
 		if (version != null) {
 			add(new UrlParameter("version", version));
 		}
-		if (itemData[0] != null) {
-			add(new UrlParameter("itemData", RiotApiUtil.joinString(",", (Object[]) itemData)));
+		if (tags != null) {
+			for (ItemTags tag : tags) {
+				add(new UrlParameter("tags", tag));
+			}
 		}
 		addApiKeyParameter();
 	}

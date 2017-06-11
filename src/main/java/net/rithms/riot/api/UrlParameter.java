@@ -46,6 +46,7 @@ public class UrlParameter implements Cloneable {
 		this(key, value.toString());
 	}
 
+	@Override
 	public UrlParameter clone() {
 		return new UrlParameter(key, value);
 	}

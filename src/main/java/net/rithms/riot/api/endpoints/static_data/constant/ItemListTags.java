@@ -16,18 +16,32 @@
 
 package net.rithms.riot.api.endpoints.static_data.constant;
 
-public enum MasteryListData {
+public enum ItemListTags {
 	ALL("all"),
+	COLLOQ("colloq"),
+	CONSUME_ON_FULL("consumeOnFull"),
+	CONSUMED("consumed"),
+	DEPTH("depth"),
+	EFFECT("effect"),
+	FROM("from"),
+	GOLD("gold"),
+	GROUPS("groups"),
+	HIDE_FROM_ALL("hideFromAll"),
 	IMAGE("image"),
-	MASTERY_TREE("masteryTree"),
-	PREREQ("prereq"),
-	RANKS("ranks"),
+	IN_STORE("inStore"),
+	INTO("into"),
+	MAPS("maps"),
+	REQUIRED_CHAMPION("requiredChampion"),
 	SANITIZED_DESCRIPTION("sanitizedDescription"),
+	SPECIAL_RECIPE("specialRecipe"),
+	STACKS("stacks"),
+	STATS("stats"),
+	TAGS("tags"),
 	TREE("tree");
 
 	private String name;
 
-	MasteryListData(String name) {
+	ItemListTags(String name) {
 		this.name = name;
 	}
 

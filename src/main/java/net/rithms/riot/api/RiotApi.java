@@ -54,17 +54,17 @@ import net.rithms.riot.api.endpoints.spectator.dto.CurrentGameInfo;
 import net.rithms.riot.api.endpoints.spectator.dto.FeaturedGames;
 import net.rithms.riot.api.endpoints.spectator.methods.GetActiveGameBySummoner;
 import net.rithms.riot.api.endpoints.spectator.methods.GetFeaturedGames;
-import net.rithms.riot.api.endpoints.static_data.constant.ChampData;
-import net.rithms.riot.api.endpoints.static_data.constant.ChampListData;
-import net.rithms.riot.api.endpoints.static_data.constant.ItemData;
-import net.rithms.riot.api.endpoints.static_data.constant.ItemListData;
+import net.rithms.riot.api.endpoints.static_data.constant.ChampionListTags;
+import net.rithms.riot.api.endpoints.static_data.constant.ChampionTags;
+import net.rithms.riot.api.endpoints.static_data.constant.ItemListTags;
+import net.rithms.riot.api.endpoints.static_data.constant.ItemTags;
 import net.rithms.riot.api.endpoints.static_data.constant.Locale;
-import net.rithms.riot.api.endpoints.static_data.constant.MasteryData;
-import net.rithms.riot.api.endpoints.static_data.constant.MasteryListData;
-import net.rithms.riot.api.endpoints.static_data.constant.RuneData;
-import net.rithms.riot.api.endpoints.static_data.constant.RuneListData;
-import net.rithms.riot.api.endpoints.static_data.constant.SpellData;
-import net.rithms.riot.api.endpoints.static_data.constant.SpellListData;
+import net.rithms.riot.api.endpoints.static_data.constant.MasteryListTags;
+import net.rithms.riot.api.endpoints.static_data.constant.MasteryTags;
+import net.rithms.riot.api.endpoints.static_data.constant.RuneListTags;
+import net.rithms.riot.api.endpoints.static_data.constant.RuneTags;
+import net.rithms.riot.api.endpoints.static_data.constant.SpellListTags;
+import net.rithms.riot.api.endpoints.static_data.constant.SpellTags;
 import net.rithms.riot.api.endpoints.static_data.dto.Item;
 import net.rithms.riot.api.endpoints.static_data.dto.ItemList;
 import net.rithms.riot.api.endpoints.static_data.dto.LanguageStrings;
@@ -520,9 +520,9 @@ public class RiotApi implements Cloneable {
 	 * @param version
 	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
 	 *            can be obtained from the {@link #getDataVersions()} method.
-	 * @param champData
+	 * @param tags
 	 *            Tags to return additional data. Only {@code id}, {@code key}, {@code name}, and {@code title} are returned by default if
-	 *            this parameter isn't specified. To return all additional data, use {@code ChampData.ALL}.
+	 *            this parameter isn't specified. To return all additional data, use {@code ChampionTags.ALL}.
 	 * @return A single champion
 	 * @throws NullPointerException
 	 *             If {@code platform} is {@code null}
@@ -532,9 +532,9 @@ public class RiotApi implements Cloneable {
 	 * @see net.rithms.riot.api.endpoints.static_data.dto.Champion
 	 */
 	public net.rithms.riot.api.endpoints.static_data.dto.Champion getDataChampion(Platform platform, int id, Locale locale, String version,
-			ChampData... champData) throws RiotApiException {
+			ChampionTags... tags) throws RiotApiException {
 		Objects.requireNonNull(platform);
-		ApiMethod method = new GetDataChampion(getConfig(), platform, id, locale, version, champData);
+		ApiMethod method = new GetDataChampion(getConfig(), platform, id, locale, version, tags);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 
@@ -552,7 +552,7 @@ public class RiotApi implements Cloneable {
 	 * @see net.rithms.riot.api.endpoints.static_data.dto.Champion
 	 */
 	public net.rithms.riot.api.endpoints.static_data.dto.Champion getDataChampion(Platform platform, int id) throws RiotApiException {
-		return getDataChampion(platform, id, null, null, (ChampData) null);
+		return getDataChampion(platform, id, null, null, (ChampionTags) null);
 	}
 
 	/**
@@ -569,9 +569,9 @@ public class RiotApi implements Cloneable {
 	 * @param dataById
 	 *            If specified as true, the returned data map will use the champions' IDs as the keys. If specified as false, the returned
 	 *            data map will use the champions' keys instead.
-	 * @param champListData
+	 * @param tags
 	 *            Tags to return additional data. Only {@code id}, {@code key}, {@code name}, and {@code title} are returned by default if
-	 *            this parameter isn't specified. To return all additional data, use {@code ChampListData.ALL}.
+	 *            this parameter isn't specified. To return all additional data, use {@code ChampionListTags.ALL}.
 	 * @return A list with champions
 	 * @throws NullPointerException
 	 *             If {@code platform} is {@code null}
@@ -581,9 +581,9 @@ public class RiotApi implements Cloneable {
 	 * @see net.rithms.riot.api.endpoints.static_data.dto.ChampionList
 	 */
 	public net.rithms.riot.api.endpoints.static_data.dto.ChampionList getDataChampionList(Platform platform, Locale locale, String version, boolean dataById,
-			ChampListData... champListData) throws RiotApiException {
+			ChampionListTags... tags) throws RiotApiException {
 		Objects.requireNonNull(platform);
-		ApiMethod method = new GetDataChampionList(getConfig(), platform, locale, version, dataById, champListData);
+		ApiMethod method = new GetDataChampionList(getConfig(), platform, locale, version, dataById, tags);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 
@@ -599,7 +599,7 @@ public class RiotApi implements Cloneable {
 	 * @see net.rithms.riot.api.endpoints.static_data.dto.ChampionList
 	 */
 	public net.rithms.riot.api.endpoints.static_data.dto.ChampionList getDataChampionList(Platform platform) throws RiotApiException {
-		return getDataChampionList(platform, null, null, false, (ChampListData) null);
+		return getDataChampionList(platform, null, null, false, (ChampionListTags) null);
 	}
 
 	/**
@@ -615,10 +615,10 @@ public class RiotApi implements Cloneable {
 	 * @param version
 	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
 	 *            can be obtained from the {@link #getDataVersions()} method.
-	 * @param itemData
+	 * @param tags
 	 *            Tags to return additional data. Only {@code type}, {@code version}, {@code basic}, {@code data}, {@code id}, {@code name},
 	 *            {@code plaintext}, {@code group}, and {@code description} are returned by default if this parameter isn't specified. To
-	 *            return all additional data, use {@code ItemData.ALL}.
+	 *            return all additional data, use {@code ItemTags.ALL}.
 	 * @return A single item
 	 * @throws NullPointerException
 	 *             If {@code platform} is {@code null}
@@ -627,9 +627,9 @@ public class RiotApi implements Cloneable {
 	 * @version 3
 	 * @see Item
 	 */
-	public Item getDataItem(Platform platform, int id, Locale locale, String version, ItemData... itemData) throws RiotApiException {
+	public Item getDataItem(Platform platform, int id, Locale locale, String version, ItemTags... tags) throws RiotApiException {
 		Objects.requireNonNull(platform);
-		ApiMethod method = new GetDataItem(getConfig(), platform, id, locale, version, itemData);
+		ApiMethod method = new GetDataItem(getConfig(), platform, id, locale, version, tags);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 
@@ -647,7 +647,7 @@ public class RiotApi implements Cloneable {
 	 * @see Item
 	 */
 	public Item getDataItem(Platform platform, int id) throws RiotApiException {
-		return getDataItem(platform, id, null, null, (ItemData) null);
+		return getDataItem(platform, id, null, null, (ItemTags) null);
 	}
 
 	/**
@@ -661,10 +661,10 @@ public class RiotApi implements Cloneable {
 	 * @param version
 	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
 	 *            can be obtained from the {@link #getDataVersions()} method.
-	 * @param itemListData
+	 * @param tags
 	 *            Tags to return additional data. Only {@code type}, {@code version}, {@code basic}, {@code data}, {@code id}, {@code name},
 	 *            {@code plaintext}, {@code group}, and {@code description} are returned by default if this parameter isn't specified. To
-	 *            return all additional data, use {@code ItemListData.ALL}.
+	 *            return all additional data, use {@code ItemListTags.ALL}.
 	 * @return A list of items
 	 * @throws NullPointerException
 	 *             If {@code platform} is {@code null}
@@ -673,9 +673,9 @@ public class RiotApi implements Cloneable {
 	 * @version 3
 	 * @see ItemList
 	 */
-	public ItemList getDataItemList(Platform platform, Locale locale, String version, ItemListData... itemListData) throws RiotApiException {
+	public ItemList getDataItemList(Platform platform, Locale locale, String version, ItemListTags... tags) throws RiotApiException {
 		Objects.requireNonNull(platform);
-		ApiMethod method = new GetDataItemList(getConfig(), platform, locale, version, itemListData);
+		ApiMethod method = new GetDataItemList(getConfig(), platform, locale, version, tags);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 
@@ -691,7 +691,7 @@ public class RiotApi implements Cloneable {
 	 * @see ItemList
 	 */
 	public ItemList getDataItemList(Platform platform) throws RiotApiException {
-		return getDataItemList(platform, null, null, (ItemListData) null);
+		return getDataItemList(platform, null, null, (ItemListTags) null);
 	}
 
 	/**
@@ -805,9 +805,9 @@ public class RiotApi implements Cloneable {
 	 * @param version
 	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
 	 *            can be obtained from the {@link #getDataVersions()} method.
-	 * @param masteryData
+	 * @param tags
 	 *            Tags to return additional data. Only {@code id}, {@code name}, and {@code description} are returned by default if this
-	 *            parameter isn't specified. To return all additional data, use {@code MasteryData.ALL}.
+	 *            parameter isn't specified. To return all additional data, use {@code MasteryTags.ALL}.
 	 * @return A single mastery
 	 * @throws NullPointerException
 	 *             If {@code platform} is {@code null}
@@ -816,9 +816,9 @@ public class RiotApi implements Cloneable {
 	 * @version 3
 	 * @see Mastery
 	 */
-	public Mastery getDataMastery(Platform platform, int id, Locale locale, String version, MasteryData... masteryData) throws RiotApiException {
+	public Mastery getDataMastery(Platform platform, int id, Locale locale, String version, MasteryTags... tags) throws RiotApiException {
 		Objects.requireNonNull(platform);
-		ApiMethod method = new GetDataMastery(getConfig(), platform, id, locale, version, masteryData);
+		ApiMethod method = new GetDataMastery(getConfig(), platform, id, locale, version, tags);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 
@@ -836,7 +836,7 @@ public class RiotApi implements Cloneable {
 	 * @see Mastery
 	 */
 	public Mastery getDataMastery(Platform platform, int id) throws RiotApiException {
-		return getDataMastery(platform, id, null, null, (MasteryData) null);
+		return getDataMastery(platform, id, null, null, (MasteryTags) null);
 	}
 
 	/**
@@ -850,10 +850,10 @@ public class RiotApi implements Cloneable {
 	 * @param version
 	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
 	 *            can be obtained from the {@link #getDataVersions()} method.
-	 * @param masteryListData
+	 * @param tags
 	 *            Tags to return additional data. Only {@code type}, {@code version}, {@code data}, {@code id}, {@code name}, and
 	 *            {@code description} are returned by default if this parameter isn't specified. To return all additional data, use
-	 *            {@code MasteryListData.ALL}.
+	 *            {@code MasteryListTags.ALL}.
 	 * @return A list with masteries
 	 * @throws NullPointerException
 	 *             If {@code platform} is {@code null}
@@ -862,9 +862,9 @@ public class RiotApi implements Cloneable {
 	 * @version 3
 	 * @see MasteryList
 	 */
-	public MasteryList getDataMasteryList(Platform platform, Locale locale, String version, MasteryListData... masteryListData) throws RiotApiException {
+	public MasteryList getDataMasteryList(Platform platform, Locale locale, String version, MasteryListTags... tags) throws RiotApiException {
 		Objects.requireNonNull(platform);
-		ApiMethod method = new GetDataMasteryList(getConfig(), platform, locale, version, masteryListData);
+		ApiMethod method = new GetDataMasteryList(getConfig(), platform, locale, version, tags);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 
@@ -880,7 +880,7 @@ public class RiotApi implements Cloneable {
 	 * @see MasteryList
 	 */
 	public MasteryList getDataMasteryList(Platform platform) throws RiotApiException {
-		return getDataMasteryList(platform, null, null, (MasteryListData) null);
+		return getDataMasteryList(platform, null, null, (MasteryListTags) null);
 	}
 
 	/**
@@ -953,9 +953,9 @@ public class RiotApi implements Cloneable {
 	 * @param version
 	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
 	 *            can be obtained from the {@link #getDataVersions()} method.
-	 * @param runeData
+	 * @param tags
 	 *            Tags to return additional data. Only {@code id}, {@code name}, {@code rune}, and {@code description} are returned by
-	 *            default if this parameter isn't specified. To return all additional data, use {@code RuneData.ALL}.
+	 *            default if this parameter isn't specified. To return all additional data, use {@code RuneTags.ALL}.
 	 * @return A single rune
 	 * @throws NullPointerException
 	 *             If {@code platform} is {@code null}
@@ -964,9 +964,9 @@ public class RiotApi implements Cloneable {
 	 * @version 3
 	 * @see Rune
 	 */
-	public Rune getDataRune(Platform platform, int id, Locale locale, String version, RuneData... runeData) throws RiotApiException {
+	public Rune getDataRune(Platform platform, int id, Locale locale, String version, RuneTags... tags) throws RiotApiException {
 		Objects.requireNonNull(platform);
-		ApiMethod method = new GetDataRune(getConfig(), platform, id, locale, version, runeData);
+		ApiMethod method = new GetDataRune(getConfig(), platform, id, locale, version, tags);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 
@@ -984,7 +984,7 @@ public class RiotApi implements Cloneable {
 	 * @see Rune
 	 */
 	public Rune getDataRune(Platform platform, int id) throws RiotApiException {
-		return getDataRune(platform, id, null, null, (RuneData) null);
+		return getDataRune(platform, id, null, null, (RuneTags) null);
 	}
 
 	/**
@@ -998,10 +998,10 @@ public class RiotApi implements Cloneable {
 	 * @param version
 	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
 	 *            can be obtained from the {@link #getDataVersions()} method.
-	 * @param runeListData
+	 * @param tags
 	 *            Tags to return additional data. Only {@code type}, {@code version}, {@code data}, {@code id}, {@code name}, {@code rune},
 	 *            and {@code description} are returned by default if this parameter isn't specified. To return all additional data, use
-	 *            {@code RuneListData.ALL}.
+	 *            {@code RuneListTags.ALL}.
 	 * @return A list with runes
 	 * @throws NullPointerException
 	 *             If {@code platform} is {@code null}
@@ -1010,9 +1010,9 @@ public class RiotApi implements Cloneable {
 	 * @version 3
 	 * @see RuneList
 	 */
-	public RuneList getDataRuneList(Platform platform, Locale locale, String version, RuneListData... runeListData) throws RiotApiException {
+	public RuneList getDataRuneList(Platform platform, Locale locale, String version, RuneListTags... tags) throws RiotApiException {
 		Objects.requireNonNull(platform);
-		ApiMethod method = new GetDataRuneList(getConfig(), platform, locale, version, runeListData);
+		ApiMethod method = new GetDataRuneList(getConfig(), platform, locale, version, tags);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 
@@ -1028,7 +1028,7 @@ public class RiotApi implements Cloneable {
 	 * @see RuneList
 	 */
 	public RuneList getDataRuneList(Platform platform) throws RiotApiException {
-		return getDataRuneList(platform, null, null, (RuneListData) null);
+		return getDataRuneList(platform, null, null, (RuneListTags) null);
 	}
 
 	/**
@@ -1044,9 +1044,9 @@ public class RiotApi implements Cloneable {
 	 * @param version
 	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
 	 *            can be obtained from the {@link #getDataVersions()} method.
-	 * @param spellData
+	 * @param tags
 	 *            Tags to return additional data. Only {@code id}, {@code key}, {@code name}, {@code description}, and {@code summonerLevel}
-	 *            are returned by default if this parameter isn't specified. To return all additional data, use {@code SpellData.ALL}.
+	 *            are returned by default if this parameter isn't specified. To return all additional data, use {@code SpellTags.ALL}.
 	 * @return A single summoner spell
 	 * @throws NullPointerException
 	 *             If {@code platform} is {@code null}
@@ -1055,9 +1055,9 @@ public class RiotApi implements Cloneable {
 	 * @version 3
 	 * @see SummonerSpell
 	 */
-	public SummonerSpell getDataSummonerSpell(Platform platform, int id, Locale locale, String version, SpellData... spellData) throws RiotApiException {
+	public SummonerSpell getDataSummonerSpell(Platform platform, int id, Locale locale, String version, SpellTags... tags) throws RiotApiException {
 		Objects.requireNonNull(platform);
-		ApiMethod method = new GetDataSummonerSpell(getConfig(), platform, id, locale, version, spellData);
+		ApiMethod method = new GetDataSummonerSpell(getConfig(), platform, id, locale, version, tags);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 
@@ -1075,7 +1075,7 @@ public class RiotApi implements Cloneable {
 	 * @see SummonerSpell
 	 */
 	public SummonerSpell getDataSummonerSpell(Platform platform, int id) throws RiotApiException {
-		return getDataSummonerSpell(platform, id, null, null, (SpellData) null);
+		return getDataSummonerSpell(platform, id, null, null, (SpellTags) null);
 	}
 
 	/**
@@ -1092,10 +1092,10 @@ public class RiotApi implements Cloneable {
 	 * @param dataById
 	 *            If specified as true, the returned data map will use the spells' IDs as the keys. If specified as false, the returned data
 	 *            map will use the spells' keys instead
-	 * @param spellListData
+	 * @param tags
 	 *            Tags to return additional data. Only {@code type}, {@code version}, {@code data}, {@code id}, {@code key}, {@code name},
 	 *            {@code description}, and {@code summonerLevel} are returned by default if this parameter isn't specified. To return all
-	 *            additional data, use {@code SpellListData.ALL}.
+	 *            additional data, use {@code SpellListTags.ALL}.
 	 * @return A list with summoner spells
 	 * @throws NullPointerException
 	 *             If {@code platform} is {@code null}
@@ -1104,10 +1104,10 @@ public class RiotApi implements Cloneable {
 	 * @version 3
 	 * @see SummonerSpellList
 	 */
-	public SummonerSpellList getDataSummonerSpellList(Platform platform, Locale locale, String version, boolean dataById, SpellListData... spellListData)
+	public SummonerSpellList getDataSummonerSpellList(Platform platform, Locale locale, String version, boolean dataById, SpellListTags... tags)
 			throws RiotApiException {
 		Objects.requireNonNull(platform);
-		ApiMethod method = new GetDataSummonerSpellList(getConfig(), platform, locale, version, dataById, spellListData);
+		ApiMethod method = new GetDataSummonerSpellList(getConfig(), platform, locale, version, dataById, tags);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 
@@ -1123,7 +1123,7 @@ public class RiotApi implements Cloneable {
 	 * @see SummonerSpellList
 	 */
 	public SummonerSpellList getDataSummonerSpellList(Platform platform) throws RiotApiException {
-		return getDataSummonerSpellList(platform, null, null, false, (SpellListData) null);
+		return getDataSummonerSpellList(platform, null, null, false, (SpellListTags) null);
 	}
 
 	/**

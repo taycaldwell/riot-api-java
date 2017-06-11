@@ -26,6 +26,7 @@ import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
@@ -74,7 +75,7 @@ public class Request {
 		Timeout
 	}
 
-	private static final ConcurrentHashMap<String, RateLimitList> rateLimitMap = new ConcurrentHashMap<String, RateLimitList>();
+	private static final Map<String, RateLimitList> rateLimitMap = new ConcurrentHashMap<String, RateLimitList>();
 
 	private volatile RequestState state = RequestState.Waiting;
 	private RequestResponse response = null;

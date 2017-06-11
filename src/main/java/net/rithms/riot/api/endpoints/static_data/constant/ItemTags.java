@@ -16,13 +16,13 @@
 
 package net.rithms.riot.api.endpoints.static_data.constant;
 
-public enum RuneListData {
+public enum ItemTags {
 	ALL("all"),
-	BASIC("basic"),
 	COLLOQ("colloq"),
 	CONSUME_ON_FULL("consumeOnFull"),
 	CONSUMED("consumed"),
 	DEPTH("depth"),
+	EFFECT("effect"),
 	FROM("from"),
 	GOLD("gold"),
 	HIDE_FROM_ALL("hideFromAll"),
@@ -39,7 +39,7 @@ public enum RuneListData {
 
 	private String name;
 
-	RuneListData(String name) {
+	ItemTags(String name) {
 		this.name = name;
 	}
 

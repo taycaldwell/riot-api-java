@@ -44,11 +44,10 @@ public class Item extends Dto implements Serializable {
 	private String name;
 	private String plaintext;
 	private String requiredChampion;
-	private MetaData rune;
 	private String sanitizedDescription;
 	private int specialRecipe;
 	private int stacks;
-	private BasicDataStats stats;
+	private InventoryDataStats stats;
 	private List<String> tags;
 
 	public String getColloq() {
@@ -107,10 +106,6 @@ public class Item extends Dto implements Serializable {
 		return requiredChampion;
 	}
 
-	public MetaData getRune() {
-		return rune;
-	}
-
 	public String getSanitizedDescription() {
 		return sanitizedDescription;
 	}
@@ -123,7 +118,7 @@ public class Item extends Dto implements Serializable {
 		return stacks;
 	}
 
-	public BasicDataStats getStats() {
+	public InventoryDataStats getStats() {
 		return stats;
 	}
 

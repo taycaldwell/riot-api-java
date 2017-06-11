@@ -26,6 +26,7 @@ public class HttpHeadParameter implements Cloneable {
 		this.value = value;
 	}
 
+	@Override
 	public HttpHeadParameter clone() {
 		return new HttpHeadParameter(key, value);
 	}

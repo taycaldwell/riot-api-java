@@ -23,6 +23,8 @@ import net.rithms.riot.api.RiotApiException;
 
 abstract public class TournamentApiMethod extends ApiMethod {
 
+	protected final String HOST = "https://americas.api.riotgames.com";
+
 	private boolean allowMockMode = false;
 	private boolean requireTournamentApiKey = false;
 

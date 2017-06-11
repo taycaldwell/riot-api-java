@@ -16,31 +16,16 @@
 
 package net.rithms.riot.api.endpoints.static_data.constant;
 
-public enum SpellData {
+public enum RuneListTags {
 	ALL("all"),
-	COOLDOWN("cooldown"),
-	COOLDOWN_BURN("cooldownBurn"),
-	COST("cost"),
-	COST_BURN("costBurn"),
-	COST_TYPE("costType"),
-	EFFECT("effect"),
-	EFFECT_BURN("effectBurn"),
 	IMAGE("image"),
-	KEY("key"),
-	LEVELTIP("leveltip"),
-	MAXRANK("maxrank"),
-	MODES("modes"),
-	RANGE("range"),
-	RANGE_BURN("rangeBurn"),
-	RESOURCE("resource"),
 	SANITIZED_DESCRIPTION("sanitizedDescription"),
-	SANITIZED_TOOLTIP("sanitizedTooltip"),
-	TOOLTIP("tooltip"),
-	VARS("vars");
+	STATS("stats"),
+	TAGS("tags");
 
 	private String name;
 
-	SpellData(String name) {
+	RuneListTags(String name) {
 		this.name = name;
 	}
 

@@ -20,14 +20,13 @@ import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.UrlParameter;
 import net.rithms.riot.api.endpoints.static_data.StaticDataApiMethod;
 import net.rithms.riot.api.endpoints.static_data.constant.Locale;
-import net.rithms.riot.api.endpoints.static_data.constant.SpellData;
+import net.rithms.riot.api.endpoints.static_data.constant.SpellTags;
 import net.rithms.riot.api.endpoints.static_data.dto.SummonerSpell;
 import net.rithms.riot.constant.Platform;
-import net.rithms.util.RiotApiUtil;
 
 public class GetDataSummonerSpell extends StaticDataApiMethod {
 
-	public GetDataSummonerSpell(ApiConfig config, Platform platform, int id, Locale locale, String version, SpellData... spellData) {
+	public GetDataSummonerSpell(ApiConfig config, Platform platform, int id, Locale locale, String version, SpellTags... tags) {
 		super(config);
 		setPlatform(platform);
 		setReturnType(SummonerSpell.class);
@@ -38,8 +37,10 @@ public class GetDataSummonerSpell extends StaticDataApiMethod {
 		if (version != null) {
 			add(new UrlParameter("version", version));
 		}
-		if (spellData[0] != null) {
-			add(new UrlParameter("spellData", RiotApiUtil.joinString(",", (Object[]) spellData)));
+		if (tags != null) {
+			for (SpellTags tag : tags) {
+				add(new UrlParameter("tags", tag));
+			}
 		}
 		addApiKeyParameter();
 	}

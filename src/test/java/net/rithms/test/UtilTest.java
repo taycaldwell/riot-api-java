@@ -23,7 +23,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import net.rithms.riot.api.RiotApiException;
-import net.rithms.riot.api.endpoints.static_data.constant.ChampData;
+import net.rithms.riot.api.endpoints.static_data.constant.ChampionTags;
 import net.rithms.util.RiotApiUtil;
 
 /**
@@ -61,7 +61,7 @@ public class UtilTest {
 		assertEquals("abc,def,ghi", RiotApiUtil.joinString(",", "abc", "def", "ghi"));
 		// Valid Usage for other objects
 		assertEquals("RANKED_SOLO_5x5,TEAM_BUILDER_DRAFT_RANKED_5x5", RiotApiUtil.joinString(",", "RANKED_SOLO_5x5", "TEAM_BUILDER_DRAFT_RANKED_5x5"));
-		assertEquals("info,lore", RiotApiUtil.joinString(",", ChampData.INFO, ChampData.LORE));
+		assertEquals("info,lore", RiotApiUtil.joinString(",", ChampionTags.INFO, ChampionTags.LORE));
 		// NullPointerException
 		thrown.expect(NullPointerException.class);
 		RiotApiUtil.joinString(null, (CharSequence[]) null);

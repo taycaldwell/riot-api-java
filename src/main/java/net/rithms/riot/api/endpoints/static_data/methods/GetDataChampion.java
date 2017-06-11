@@ -19,15 +19,14 @@ package net.rithms.riot.api.endpoints.static_data.methods;
 import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.UrlParameter;
 import net.rithms.riot.api.endpoints.static_data.StaticDataApiMethod;
-import net.rithms.riot.api.endpoints.static_data.constant.ChampData;
+import net.rithms.riot.api.endpoints.static_data.constant.ChampionTags;
 import net.rithms.riot.api.endpoints.static_data.constant.Locale;
 import net.rithms.riot.api.endpoints.static_data.dto.Champion;
 import net.rithms.riot.constant.Platform;
-import net.rithms.util.RiotApiUtil;
 
 public class GetDataChampion extends StaticDataApiMethod {
 
-	public GetDataChampion(ApiConfig config, Platform platform, int id, Locale locale, String version, ChampData... champData) {
+	public GetDataChampion(ApiConfig config, Platform platform, int id, Locale locale, String version, ChampionTags... tags) {
 		super(config);
 		setPlatform(platform);
 		setReturnType(Champion.class);
@@ -38,8 +37,10 @@ public class GetDataChampion extends StaticDataApiMethod {
 		if (version != null) {
 			add(new UrlParameter("version", version));
 		}
-		if (champData[0] != null) {
-			add(new UrlParameter("champData", RiotApiUtil.joinString(",", (Object[]) champData)));
+		if (tags != null) {
+			for (ChampionTags tag : tags) {
+				add(new UrlParameter("tags", tag));
+			}
 		}
 		addApiKeyParameter();
 	}

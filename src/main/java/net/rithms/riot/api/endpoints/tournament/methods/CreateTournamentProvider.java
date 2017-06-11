@@ -22,7 +22,6 @@ import java.util.Map;
 import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.endpoints.tournament.TournamentApiMethod;
 import net.rithms.riot.api.request.RequestMethod;
-import net.rithms.riot.constant.Platform;
 
 public class CreateTournamentProvider extends TournamentApiMethod {
 
@@ -31,9 +30,9 @@ public class CreateTournamentProvider extends TournamentApiMethod {
 		setMethod(RequestMethod.POST);
 		setReturnType(Integer.class);
 		if (config.getTournamentMockMode()) {
-			setUrlBase(Platform.GLOBAL.getHost() + "/lol/tournament-stub/v3/providers");
+			setUrlBase(HOST + "/lol/tournament-stub/v3/providers");
 		} else {
-			setUrlBase(Platform.GLOBAL.getHost() + "/lol/tournament/v3/providers");
+			setUrlBase(HOST + "/lol/tournament/v3/providers");
 		}
 		addTournamentApiKeyParameter();
 		allowMockMode();

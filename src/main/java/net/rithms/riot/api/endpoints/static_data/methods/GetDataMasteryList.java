@@ -20,14 +20,13 @@ import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.UrlParameter;
 import net.rithms.riot.api.endpoints.static_data.StaticDataApiMethod;
 import net.rithms.riot.api.endpoints.static_data.constant.Locale;
-import net.rithms.riot.api.endpoints.static_data.constant.MasteryListData;
+import net.rithms.riot.api.endpoints.static_data.constant.MasteryListTags;
 import net.rithms.riot.api.endpoints.static_data.dto.MasteryList;
 import net.rithms.riot.constant.Platform;
-import net.rithms.util.RiotApiUtil;
 
 public class GetDataMasteryList extends StaticDataApiMethod {
 
-	public GetDataMasteryList(ApiConfig config, Platform platform, Locale locale, String version, MasteryListData... masteryListData) {
+	public GetDataMasteryList(ApiConfig config, Platform platform, Locale locale, String version, MasteryListTags... tags) {
 		super(config);
 		setPlatform(platform);
 		setReturnType(MasteryList.class);
@@ -38,8 +37,10 @@ public class GetDataMasteryList extends StaticDataApiMethod {
 		if (version != null) {
 			add(new UrlParameter("version", version));
 		}
-		if (masteryListData[0] != null) {
-			add(new UrlParameter("masteryListData", RiotApiUtil.joinString(",", (Object[]) masteryListData)));
+		if (tags != null) {
+			for (MasteryListTags tag : tags) {
+				add(new UrlParameter("tags", tag));
+			}
 		}
 		addApiKeyParameter();
 	}

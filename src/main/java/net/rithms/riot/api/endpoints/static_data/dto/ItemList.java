@@ -26,16 +26,11 @@ public class ItemList extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -1708490617004185357L;
 
-	private BasicData basic;
 	private Map<String, Item> data;
 	private List<Group> groups;
 	private List<ItemTree> tree;
 	private String type;
 	private String version;
-
-	public BasicData getBasic() {
-		return basic;
-	}
 
 	public Map<String, Item> getData() {
 		return data;

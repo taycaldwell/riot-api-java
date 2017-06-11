@@ -16,7 +16,7 @@
 
 package net.rithms.riot.api.endpoints.static_data.constant;
 
-public enum SpellListData {
+public enum SpellListTags {
 	ALL("all"),
 	COOLDOWN("cooldown"),
 	COOLDOWN_BURN("cooldownBurn"),
@@ -40,7 +40,7 @@ public enum SpellListData {
 
 	private String name;
 
-	SpellListData(String name) {
+	SpellListTags(String name) {
 		this.name = name;
 	}
 

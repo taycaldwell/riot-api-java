@@ -29,7 +29,6 @@ import net.rithms.riot.api.endpoints.tournament.constant.PickType;
 import net.rithms.riot.api.endpoints.tournament.constant.SpectatorType;
 import net.rithms.riot.api.endpoints.tournament.constant.TournamentMap;
 import net.rithms.riot.api.request.RequestMethod;
-import net.rithms.riot.constant.Platform;
 
 public class CreateTournamentCodes extends TournamentApiMethod {
 
@@ -40,9 +39,9 @@ public class CreateTournamentCodes extends TournamentApiMethod {
 		setReturnType(new TypeToken<List<String>>() {
 		}.getType());
 		if (config.getTournamentMockMode()) {
-			setUrlBase(Platform.GLOBAL.getHost() + "/lol/tournament-stub/v3/codes");
+			setUrlBase(HOST + "/lol/tournament-stub/v3/codes");
 		} else {
-			setUrlBase(Platform.GLOBAL.getHost() + "/lol/tournament/v3/codes");
+			setUrlBase(HOST + "/lol/tournament/v3/codes");
 		}
 		add(new UrlParameter("tournamentId", tournamentId));
 		add(new UrlParameter("count", count));

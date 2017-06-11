@@ -19,7 +19,6 @@ package net.rithms.riot.api.endpoints.tournament.methods;
 import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.endpoints.tournament.TournamentApiMethod;
 import net.rithms.riot.api.endpoints.tournament.dto.LobbyEventWrapper;
-import net.rithms.riot.constant.Platform;
 
 public class GetLobbyEventsByCode extends TournamentApiMethod {
 
@@ -27,9 +26,9 @@ public class GetLobbyEventsByCode extends TournamentApiMethod {
 		super(config);
 		setReturnType(LobbyEventWrapper.class);
 		if (config.getTournamentMockMode()) {
-			setUrlBase(Platform.GLOBAL.getHost() + "/lol/tournament-stub/v3/lobby-events/by-code/" + tournamentCode);
+			setUrlBase(HOST + "/lol/tournament-stub/v3/lobby-events/by-code/" + tournamentCode);
 		} else {
-			setUrlBase(Platform.GLOBAL.getHost() + "/lol/tournament/v3/lobby-events/by-code/" + tournamentCode);
+			setUrlBase(HOST + "/lol/tournament/v3/lobby-events/by-code/" + tournamentCode);
 		}
 		addTournamentApiKeyParameter();
 		allowMockMode();

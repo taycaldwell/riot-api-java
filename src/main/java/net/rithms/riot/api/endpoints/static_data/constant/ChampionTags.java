@@ -16,7 +16,7 @@
 
 package net.rithms.riot.api.endpoints.static_data.constant;
 
-public enum ChampData {
+public enum ChampionTags {
 	ALL("all"),
 	ALLYTIPS("allytips"),
 	ALTIMAGES("altimages"),
@@ -35,7 +35,7 @@ public enum ChampData {
 
 	private String name;
 
-	ChampData(String name) {
+	ChampionTags(String name) {
 		this.name = name;
 	}
 

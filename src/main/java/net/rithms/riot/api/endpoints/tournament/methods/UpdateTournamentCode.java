@@ -25,7 +25,6 @@ import net.rithms.riot.api.endpoints.tournament.constant.PickType;
 import net.rithms.riot.api.endpoints.tournament.constant.SpectatorType;
 import net.rithms.riot.api.endpoints.tournament.constant.TournamentMap;
 import net.rithms.riot.api.request.RequestMethod;
-import net.rithms.riot.constant.Platform;
 
 public class UpdateTournamentCode extends TournamentApiMethod {
 
@@ -34,7 +33,7 @@ public class UpdateTournamentCode extends TournamentApiMethod {
 		super(config);
 		setMethod(RequestMethod.PUT);
 		setReturnType(Void.class);
-		setUrlBase(Platform.GLOBAL.getHost() + "/lol/tournament/v3/codes/" + tournamentCode);
+		setUrlBase(HOST + "/lol/tournament/v3/codes/" + tournamentCode);
 		addTournamentApiKeyParameter();
 
 		Map<String, Object> body = new HashMap<String, Object>();
