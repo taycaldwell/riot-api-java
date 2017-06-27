@@ -1,4 +1,3 @@
-import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
 
@@ -41,8 +40,7 @@ public class AsyncExample {
 		requestSummoner.addListeners(new RequestAdapter() {
 			@Override
 			public void onRequestSucceeded(AsyncRequest request) {
-				Map<String, Summoner> summoners = request.getDto();
-				eSummoner.summoner = summoners.get(String.valueOf(summonerId));
+				eSummoner.summoner = request.getDto();
 			}
 		});
 		// Asynchronously get league information
