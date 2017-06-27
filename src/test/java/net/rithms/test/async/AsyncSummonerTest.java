@@ -58,9 +58,9 @@ public class AsyncSummonerTest {
 
 			@Override
 			public void onRequestSucceeded(AsyncRequest request) {
-				Map<String, MasteryPages> masteryPages = request.getDto();
+				MasteryPages masteryPages = request.getDto();
 				assertNotNull(masteryPages);
-				assertEquals(81439110, masteryPages.get("81439110").getSummonerId());
+				assertEquals(81439110, masteryPages.getSummonerId());
 			}
 
 			@Override
@@ -82,9 +82,9 @@ public class AsyncSummonerTest {
 
 			@Override
 			public void onRequestSucceeded(AsyncRequest request) {
-				Map<String, RunePages> runePages = request.getDto();
+				RunePages runePages = request.getDto();
 				assertNotNull(runePages);
-				assertEquals(81439110, runePages.get("81439110").getSummonerId());
+				assertEquals(81439110, runePages.getSummonerId());
 			}
 
 			@Override
