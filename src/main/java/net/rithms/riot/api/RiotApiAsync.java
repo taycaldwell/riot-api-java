@@ -27,6 +27,7 @@ import net.rithms.riot.api.endpoints.champion_mastery.dto.ChampionMastery;
 import net.rithms.riot.api.endpoints.champion_mastery.methods.GetChampionMasteriesBySummoner;
 import net.rithms.riot.api.endpoints.champion_mastery.methods.GetChampionMasteriesBySummonerByChampion;
 import net.rithms.riot.api.endpoints.champion_mastery.methods.GetChampionMasteryScoresBySummoner;
+import net.rithms.riot.api.endpoints.league.constant.LeagueQueue;
 import net.rithms.riot.api.endpoints.league.dto.LeagueList;
 import net.rithms.riot.api.endpoints.league.methods.GetChallengerLeagueByQueue;
 import net.rithms.riot.api.endpoints.league.methods.GetLeagueBySummonerId;
@@ -252,7 +253,7 @@ public class RiotApiAsync {
 	 * @version 3
 	 */
 	public AsyncRequest createTournamentCodes(int tournamentId, int count, int teamSize, TournamentMap mapType, PickType pickType, SpectatorType spectatorType,
-			String metaData, long... allowedSummonerIds) throws RiotApiException {
+			String metaData, long... allowedSummonerIds) {
 		Objects.requireNonNull(mapType);
 		Objects.requireNonNull(pickType);
 		Objects.requireNonNull(spectatorType);
@@ -282,7 +283,7 @@ public class RiotApiAsync {
 	 * @version 3
 	 */
 	public AsyncRequest createTournamentCodes(int tournamentId, int count, int teamSize, TournamentMap mapType, PickType pickType, SpectatorType spectatorType,
-			long... allowedSummonerIds) throws RiotApiException {
+			long... allowedSummonerIds) {
 		return createTournamentCodes(tournamentId, count, teamSize, mapType, pickType, spectatorType, null, allowedSummonerIds);
 	}
 
@@ -331,7 +332,7 @@ public class RiotApiAsync {
 	 * 
 	 * @param platform
 	 *            Platform to execute the method call against.
-	 * @param queueType
+	 * @param queue
 	 *            Game queue type.
 	 * @return A league list
 	 * @throws NullPointerException
@@ -344,6 +345,24 @@ public class RiotApiAsync {
 		Objects.requireNonNull(queue);
 		ApiMethod method = new GetChallengerLeagueByQueue(getConfig(), platform, queue);
 		return endpointManager.callMethodAsynchronously(method);
+	}
+
+	/**
+	 * Get the challenger league for a given {@code queue}.
+	 * 
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param queue
+	 *            Game queue type.
+	 * @return A league list
+	 * @throws NullPointerException
+	 *             If {@code queue} is {@code null}
+	 * @version 3
+	 * @see LeagueList
+	 */
+	public AsyncRequest getChallengerLeagueByQueue(Platform platform, LeagueQueue queue) {
+		Objects.requireNonNull(queue);
+		return getChallengerLeagueByQueue(platform, queue.toString());
 	}
 
 	/**
@@ -822,7 +841,7 @@ public class RiotApiAsync {
 	 * @version 3
 	 * @see ProfileIconData
 	 */
-	public AsyncRequest getDataProfileIcons(Platform platform, Locale locale, String version) throws RiotApiException {
+	public AsyncRequest getDataProfileIcons(Platform platform, Locale locale, String version) {
 		Objects.requireNonNull(platform);
 		ApiMethod method = new GetDataProfileIcons(getConfig(), platform, locale, version);
 		return endpointManager.callMethodAsynchronously(method);
@@ -837,7 +856,7 @@ public class RiotApiAsync {
 	 * @version 3
 	 * @see ProfileIconData
 	 */
-	public AsyncRequest getDataProfileIcons(Platform platform) throws RiotApiException {
+	public AsyncRequest getDataProfileIcons(Platform platform) {
 		return getDataProfileIcons(platform, null, null);
 	}
 
@@ -1089,12 +1108,10 @@ public class RiotApiAsync {
 	 * @return List of league positions
 	 * @throws NullPointerException
 	 *             If {@code platform} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @version 3
 	 * @see LeagueList
 	 */
-	public AsyncRequest getLeaguePositionsBySummonerId(Platform platform, long summonerId) throws RiotApiException {
+	public AsyncRequest getLeaguePositionsBySummonerId(Platform platform, long summonerId) {
 		Objects.requireNonNull(platform);
 		ApiMethod method = new GetLeaguePositionsBySummonerId(getConfig(), platform, summonerId);
 		return endpointManager.callMethodAsynchronously(method);
@@ -1126,16 +1143,32 @@ public class RiotApiAsync {
 	 * @return A league list
 	 * @throws NullPointerException
 	 *             If {@code platform} or {@code queue} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @version 3
 	 * @see LeagueList
 	 */
-	public AsyncRequest getMasterLeagueByQueue(Platform platform, String queue) throws RiotApiException {
+	public AsyncRequest getMasterLeagueByQueue(Platform platform, String queue) {
 		Objects.requireNonNull(platform);
 		Objects.requireNonNull(queue);
 		ApiMethod method = new GetMasterLeagueByQueue(getConfig(), platform, queue);
 		return endpointManager.callMethodAsynchronously(method);
+	}
+
+	/**
+	 * Get the master league for a given {@code queue}.
+	 * 
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param queue
+	 *            Game queue type.
+	 * @return A league list
+	 * @throws NullPointerException
+	 *             If {@code queue} is {@code null}
+	 * @version 3
+	 * @see LeagueList
+	 */
+	public AsyncRequest getMasterLeagueByQueue(Platform platform, LeagueQueue queue) {
+		Objects.requireNonNull(queue);
+		return getMasterLeagueByQueue(platform, queue.toString());
 	}
 
 	/**
@@ -1393,12 +1426,10 @@ public class RiotApiAsync {
 	 * @return A list with matches
 	 * @throws NullPointerException
 	 *             If {@code platform} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
 	 * @version 3
 	 * @see MatchList
 	 */
-	public AsyncRequest getRecentMatchListByAccountId(Platform platform, long accountId) throws RiotApiException {
+	public AsyncRequest getRecentMatchListByAccountId(Platform platform, long accountId) {
 		Objects.requireNonNull(platform);
 		ApiMethod method = new GetRecentMatchListByAccountId(getConfig(), platform, accountId);
 		return endpointManager.callMethodAsynchronously(method);

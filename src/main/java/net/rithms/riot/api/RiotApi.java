@@ -29,6 +29,7 @@ import net.rithms.riot.api.endpoints.champion_mastery.dto.ChampionMastery;
 import net.rithms.riot.api.endpoints.champion_mastery.methods.GetChampionMasteriesBySummoner;
 import net.rithms.riot.api.endpoints.champion_mastery.methods.GetChampionMasteriesBySummonerByChampion;
 import net.rithms.riot.api.endpoints.champion_mastery.methods.GetChampionMasteryScoresBySummoner;
+import net.rithms.riot.api.endpoints.league.constant.LeagueQueue;
 import net.rithms.riot.api.endpoints.league.dto.LeagueList;
 import net.rithms.riot.api.endpoints.league.dto.LeaguePosition;
 import net.rithms.riot.api.endpoints.league.methods.GetChallengerLeagueByQueue;
@@ -359,7 +360,7 @@ public class RiotApi implements Cloneable {
 	 * 
 	 * @param platform
 	 *            Platform to execute the method call against.
-	 * @param queueType
+	 * @param queue
 	 *            Game queue type.
 	 * @return A league list
 	 * @throws NullPointerException
@@ -374,6 +375,26 @@ public class RiotApi implements Cloneable {
 		Objects.requireNonNull(queue);
 		ApiMethod method = new GetChallengerLeagueByQueue(getConfig(), platform, queue);
 		return endpointManager.callMethodAndReturnDto(method);
+	}
+
+	/**
+	 * Get the challenger league for a given {@code queue}.
+	 * 
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param queue
+	 *            Game queue type.
+	 * @return A league list
+	 * @throws NullPointerException
+	 *             If {@code queue} is {@code null}
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 * @version 3
+	 * @see LeagueList
+	 */
+	public LeagueList getChallengerLeagueByQueue(Platform platform, LeagueQueue queue) throws RiotApiException {
+		Objects.requireNonNull(queue);
+		return getChallengerLeagueByQueue(platform, queue.toString());
 	}
 
 	/**
@@ -1229,7 +1250,7 @@ public class RiotApi implements Cloneable {
 	 * 
 	 * @param platform
 	 *            Platform to execute the method call against.
-	 * @param queueType
+	 * @param queue
 	 *            Game queue type.
 	 * @return A league list
 	 * @throws NullPointerException
@@ -1244,6 +1265,26 @@ public class RiotApi implements Cloneable {
 		Objects.requireNonNull(queue);
 		ApiMethod method = new GetMasterLeagueByQueue(getConfig(), platform, queue);
 		return endpointManager.callMethodAndReturnDto(method);
+	}
+
+	/**
+	 * Get the master league for a given {@code queue}.
+	 * 
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param queue
+	 *            Game queue type.
+	 * @return A league list
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 * @throws NullPointerException
+	 *             If {@code queue} is {@code null}
+	 * @version 3
+	 * @see LeagueList
+	 */
+	public LeagueList getMasterLeagueByQueue(Platform platform, LeagueQueue queue) throws RiotApiException {
+		Objects.requireNonNull(queue);
+		return getMasterLeagueByQueue(platform, queue.toString());
 	}
 
 	/**
