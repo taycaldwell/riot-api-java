@@ -63,7 +63,7 @@ public class RateLimitList {
 	}
 
 	public void setRateLimit(String service, Platform platform, String type, int retryAfter) {
-		if (type.equals("user")) {
+		if (type.equals("application")) {
 			userLimits.put(platform, new RateLimit(type, retryAfter));
 		} else if (type.equals("service")) {
 			if (!serviceLimits.containsKey(platform)) {
