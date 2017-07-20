@@ -1332,6 +1332,24 @@ public class RiotApiAsync {
 	}
 
 	/**
+	 * Returns the number of elements in the asynchronous request pool.
+	 *
+	 * @return Number of elements in the asynchronous request pool
+	 */
+	public int getPoolSize() {
+		return endpointManager.getPoolSize();
+	}
+
+	/**
+	 * Returns the number of elements in the asynchronous request queue.
+	 *
+	 * @return Number of elements in the asynchronous request queue
+	 */
+	public int getQueueSize() {
+		return endpointManager.getQueueSize();
+	}
+
+	/**
 	 * Get recent matchlist for given account ID and platform ID.
 	 *
 	 * @param platform
