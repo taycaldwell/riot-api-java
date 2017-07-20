@@ -94,11 +94,6 @@ import net.rithms.riot.api.endpoints.static_data.methods.GetDataRuneList;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataSummonerSpell;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataSummonerSpellList;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataVersions;
-import net.rithms.riot.api.endpoints.stats.constant.Season;
-import net.rithms.riot.api.endpoints.stats.dto.PlayerStatsSummaryList;
-import net.rithms.riot.api.endpoints.stats.dto.RankedStats;
-import net.rithms.riot.api.endpoints.stats.methods.GetPlayerStatsSummary;
-import net.rithms.riot.api.endpoints.stats.methods.GetRankedStats;
 import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
 import net.rithms.riot.api.endpoints.summoner.methods.GetSummoner;
 import net.rithms.riot.api.endpoints.summoner.methods.GetSummonerByAccount;
@@ -115,7 +110,6 @@ import net.rithms.riot.api.endpoints.tournament.methods.GetLobbyEventsByCode;
 import net.rithms.riot.api.endpoints.tournament.methods.GetTournamentCode;
 import net.rithms.riot.api.endpoints.tournament.methods.UpdateTournamentCode;
 import net.rithms.riot.constant.Platform;
-import net.rithms.riot.constant.Region;
 
 /**
  * This is the main class for using this riot api wrapper. This api is typically used by first constructing a RiotApi instance, and then
@@ -1468,92 +1462,6 @@ public class RiotApi implements Cloneable {
 	 */
 	public MatchList getMatchListByAccountId(Platform platform, long accountId) throws RiotApiException {
 		return getMatchListByAccountId(platform, accountId, null, null, null);
-	}
-
-	/**
-	 * Get player stats summaries by {@code summonerId}.
-	 *
-	 * @param region
-	 *            Region where to retrieve the data.
-	 * @param summonerId
-	 *            ID of the summoner for which to retrieve player stats.
-	 * @param season
-	 *            If specified, stats for the given season are returned. Otherwise, stats for the current season are returned.
-	 * @return A summary of player statistics for the given summoner
-	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
-	 * @version 1.3
-	 * @see PlayerStatsSummaryList
-	 */
-	@Deprecated
-	public PlayerStatsSummaryList getPlayerStatsSummary(Region region, Season season, long summonerId) throws RiotApiException {
-		Objects.requireNonNull(region);
-		ApiMethod method = new GetPlayerStatsSummary(getConfig(), region, season, summonerId);
-		return endpointManager.callMethodAndReturnDto(method);
-	}
-
-	/**
-	 * Get player stats summaries by {@code summonerId}.
-	 *
-	 * @param region
-	 *            Region where to retrieve the data.
-	 * @param summonerId
-	 *            ID of the summoner for which to retrieve player stats.
-	 * @return A summary of player statistics for the given summoner
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
-	 * @version 1.3
-	 * @see PlayerStatsSummaryList
-	 */
-	@Deprecated
-	public PlayerStatsSummaryList getPlayerStatsSummary(Region region, long summonerId) throws RiotApiException {
-		return getPlayerStatsSummary(region, null, summonerId);
-	}
-
-	/**
-	 * Get ranked stats by {@code summonerId}.
-	 *
-	 * @param region
-	 *            Region where to retrieve the data.
-	 * @param summonerId
-	 *            ID of the summoner for which to retrieve ranked stats.
-	 * @param season
-	 *            If specified, stats for the given season are returned. Otherwise, stats for the current season are returned.
-	 * @return Ranked statistics of the given summoner
-	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
-	 * @version 1.3
-	 * @see RankedStats
-	 */
-	@Deprecated
-	public RankedStats getRankedStats(Region region, Season season, long summonerId) throws RiotApiException {
-		Objects.requireNonNull(region);
-		ApiMethod method = new GetRankedStats(getConfig(), region, season, summonerId);
-		return endpointManager.callMethodAndReturnDto(method);
-	}
-
-	/**
-	 * Get ranked stats by {@code summonerId}.
-	 *
-	 * @param region
-	 *            Region where to retrieve the data.
-	 * @param summonerId
-	 *            ID of the summoner for which to retrieve ranked stats.
-	 * @param season
-	 *            If specified, stats for the given season are returned. Otherwise, stats for the current season are returned.
-	 * @return Ranked statistics of the given summoner
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
-	 * @version 1.3
-	 * @see RankedStats
-	 */
-	@Deprecated
-	public RankedStats getRankedStats(Region region, long summonerId) throws RiotApiException {
-		return getRankedStats(region, null, summonerId);
 	}
 
 	/**

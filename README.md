@@ -126,7 +126,6 @@ The current version of this library supports the following Riot Games API versio
 - **RUNES-V3**
 - **SPECTATOR-V3**
 - **STATIC-DATA-V3**
-- **STATS-V1.3** (DEPRECATED)
 - **SUMMONER-V3**
 - **TOURNAMENT-V3**
 - **TOURNAMENT-STUB-V3**

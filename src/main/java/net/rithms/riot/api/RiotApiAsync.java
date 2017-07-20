@@ -91,11 +91,6 @@ import net.rithms.riot.api.endpoints.static_data.methods.GetDataRuneList;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataSummonerSpell;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataSummonerSpellList;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataVersions;
-import net.rithms.riot.api.endpoints.stats.constant.Season;
-import net.rithms.riot.api.endpoints.stats.dto.PlayerStatsSummaryList;
-import net.rithms.riot.api.endpoints.stats.dto.RankedStats;
-import net.rithms.riot.api.endpoints.stats.methods.GetPlayerStatsSummary;
-import net.rithms.riot.api.endpoints.stats.methods.GetRankedStats;
 import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
 import net.rithms.riot.api.endpoints.summoner.methods.GetSummoner;
 import net.rithms.riot.api.endpoints.summoner.methods.GetSummonerByAccount;
@@ -114,7 +109,6 @@ import net.rithms.riot.api.endpoints.tournament.methods.UpdateTournamentCode;
 import net.rithms.riot.api.request.AsyncRequest;
 import net.rithms.riot.api.request.RequestListener;
 import net.rithms.riot.constant.Platform;
-import net.rithms.riot.constant.Region;
 
 /**
  * This class is used to fire asynchronous requests. You can get an instance of this object by calling {@link RiotApi#getAsyncApi()} on your
@@ -1335,102 +1329,6 @@ public class RiotApiAsync {
 	 */
 	public AsyncRequest getMatchListByAccountId(Platform platform, long accountId) {
 		return getMatchListByAccountId(platform, accountId, null, null, null);
-	}
-
-	/**
-	 * Get player stats summaries by {@code summonerId}.
-	 *
-	 * @param region
-	 *            Region where to retrieve the data.
-	 * @param summonerId
-	 *            ID of the summoner for which to retrieve player stats.
-	 * @param season
-	 *            If specified, stats for the given season are returned. Otherwise, stats for the current season are returned.
-	 * @return A summary of player statistics for the given summoner
-	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
-	 * @version 1.3
-	 * @see PlayerStatsSummaryList
-	 */
-	@Deprecated
-	public AsyncRequest getPlayerStatsSummary(Region region, Season season, long summonerId) {
-		Objects.requireNonNull(region);
-		ApiMethod method = new GetPlayerStatsSummary(getConfig(), region, season, summonerId);
-		return endpointManager.callMethodAsynchronously(method);
-	}
-
-	/**
-	 * Get player stats summaries by {@code summonerId}.
-	 *
-	 * @param region
-	 *            Region where to retrieve the data.
-	 * @param summonerId
-	 *            ID of the summoner for which to retrieve player stats.
-	 * @return A summary of player statistics for the given summoner
-	 * @version 1.3
-	 * @see PlayerStatsSummaryList
-	 */
-	@Deprecated
-	public AsyncRequest getPlayerStatsSummary(Region region, long summonerId) {
-		return getPlayerStatsSummary(region, null, summonerId);
-	}
-
-	/**
-	 * Returns the number of elements in the asynchronous request pool.
-	 *
-	 * @return Number of elements in the asynchronous request pool
-	 */
-	public int getPoolSize() {
-		return endpointManager.getPoolSize();
-	}
-
-	/**
-	 * Returns the number of elements in the asynchronous request queue.
-	 *
-	 * @return Number of elements in the asynchronous request queue
-	 */
-	public int getQueueSize() {
-		return endpointManager.getQueueSize();
-	}
-
-	/**
-	 * Get ranked stats by {@code summonerId}.
-	 *
-	 * @param region
-	 *            Region where to retrieve the data.
-	 * @param summonerId
-	 *            ID of the summoner for which to retrieve ranked stats.
-	 * @param season
-	 *            If specified, stats for the given season are returned. Otherwise, stats for the current season are returned.
-	 * @return Ranked statistics of the given summoner
-	 * @throws NullPointerException
-	 *             If {@code region} is {@code null}
-	 * @version 1.3
-	 * @see RankedStats
-	 */
-	@Deprecated
-	public AsyncRequest getRankedStats(Region region, Season season, long summonerId) {
-		Objects.requireNonNull(region);
-		ApiMethod method = new GetRankedStats(getConfig(), region, season, summonerId);
-		return endpointManager.callMethodAsynchronously(method);
-	}
-
-	/**
-	 * Get ranked stats by {@code summonerId}.
-	 *
-	 * @param region
-	 *            Region where to retrieve the data.
-	 * @param summonerId
-	 *            ID of the summoner for which to retrieve ranked stats.
-	 * @param season
-	 *            If specified, stats for the given season are returned. Otherwise, stats for the current season are returned.
-	 * @return Ranked statistics of the given summoner
-	 * @version 1.3
-	 * @see RankedStats
-	 */
-	@Deprecated
-	public AsyncRequest getRankedStats(Region region, long summonerId) {
-		return getRankedStats(region, null, summonerId);
 	}
 
 	/**
