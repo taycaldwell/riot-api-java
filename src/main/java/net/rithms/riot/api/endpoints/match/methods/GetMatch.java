@@ -17,17 +17,21 @@
 package net.rithms.riot.api.endpoints.match.methods;
 
 import net.rithms.riot.api.ApiConfig;
+import net.rithms.riot.api.UrlParameter;
 import net.rithms.riot.api.endpoints.match.MatchApiMethod;
 import net.rithms.riot.api.endpoints.match.dto.Match;
 import net.rithms.riot.constant.Platform;
 
 public class GetMatch extends MatchApiMethod {
 
-	public GetMatch(ApiConfig config, Platform platform, long matchId) {
+	public GetMatch(ApiConfig config, Platform platform, long matchId, long forAccountId) {
 		super(config);
 		setPlatform(platform);
 		setReturnType(Match.class);
 		setUrlBase(platform.getHost() + "/lol/match/v3/matches/" + matchId);
+		if (forAccountId != -1) {
+			add(new UrlParameter("forAccountId", forAccountId));
+		}
 		addApiKeyParameter();
 	}
 }

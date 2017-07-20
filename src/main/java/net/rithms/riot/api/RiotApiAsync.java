@@ -1197,16 +1197,33 @@ public class RiotApiAsync {
 	 *            Platform to execute the method call against.
 	 * @param matchId
 	 *            The ID of the match.
+	 * @param forAccountId
+	 *            If provided, used to identify the participant to be unobfuscated.
 	 * @return A map with match details
 	 * @throws NullPointerException
 	 *             If {@code platform} is {@code null}
 	 * @version 3
 	 * @see Match
 	 */
-	public AsyncRequest getMatch(Platform platform, long matchId) {
+	public AsyncRequest getMatch(Platform platform, long matchId, long forAccountId) {
 		Objects.requireNonNull(platform);
-		ApiMethod method = new GetMatch(getConfig(), platform, matchId);
+		ApiMethod method = new GetMatch(getConfig(), platform, matchId, forAccountId);
 		return endpointManager.callMethodAsynchronously(method);
+	}
+
+	/**
+	 * Get match by {@code matchId}.
+	 *
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param matchId
+	 *            The ID of the match.
+	 * @return A map with match details
+	 * @version 3
+	 * @see Match
+	 */
+	public AsyncRequest getMatch(Platform platform, long matchId) {
+		return getMatch(platform, matchId, -1);
 	}
 
 	/**

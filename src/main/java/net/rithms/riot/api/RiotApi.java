@@ -1315,6 +1315,8 @@ public class RiotApi implements Cloneable {
 	 *            Platform to execute the method call against.
 	 * @param matchId
 	 *            The ID of the match.
+	 * @param forAccountId
+	 *            If provided, used to identify the participant to be unobfuscated.
 	 * @return A map with match details
 	 * @throws NullPointerException
 	 *             If {@code platform} is {@code null}
@@ -1323,10 +1325,27 @@ public class RiotApi implements Cloneable {
 	 * @version 3
 	 * @see Match
 	 */
-	public Match getMatch(Platform platform, long matchId) throws RiotApiException {
+	public Match getMatch(Platform platform, long matchId, long forAccountId) throws RiotApiException {
 		Objects.requireNonNull(platform);
-		ApiMethod method = new GetMatch(getConfig(), platform, matchId);
+		ApiMethod method = new GetMatch(getConfig(), platform, matchId, forAccountId);
 		return endpointManager.callMethodAndReturnDto(method);
+	}
+
+	/**
+	 * Get match by {@code matchId}.
+	 *
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param matchId
+	 *            The ID of the match.
+	 * @return A map with match details
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 * @version 3
+	 * @see Match
+	 */
+	public Match getMatch(Platform platform, long matchId) throws RiotApiException {
+		return getMatch(platform, matchId, -1);
 	}
 
 	/**
