@@ -25,15 +25,12 @@ import com.google.gson.Gson;
 
 import net.rithms.riot.api.request.RequestMethod;
 import net.rithms.riot.constant.Platform;
-import net.rithms.riot.constant.Region;
 
 abstract public class ApiMethod {
 
 	private final ApiConfig config;
 	private final String service;
 	private Platform platform = null;
-	@Deprecated
-	private Region region = null;
 	private String urlBase;
 	private final List<UrlParameter> urlParameters = new LinkedList<UrlParameter>();
 	private final List<HttpHeadParameter> httpHeadParameters = new LinkedList<HttpHeadParameter>();
@@ -86,11 +83,6 @@ abstract public class ApiMethod {
 		return platform;
 	}
 
-	@Deprecated
-	public Region getRegion() {
-		return region;
-	}
-
 	public Type getReturnType() {
 		return returnType;
 	}
@@ -123,11 +115,6 @@ abstract public class ApiMethod {
 
 	protected void setPlatform(Platform platform) {
 		this.platform = platform;
-	}
-
-	@Deprecated
-	protected void setRegion(Region region) {
-		this.region = region;
 	}
 
 	protected void setReturnType(Type returnType) {
