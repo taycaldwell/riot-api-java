@@ -5,15 +5,20 @@ import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
 import net.rithms.riot.constant.Platform;
 
 /**
- * This is a simple example using the RiotApi to request summoner information for a few given summoner names
+ * This example demonstrates using the RiotApi to request summoner information for a given summoner name
  */
-public class SimpleExample {
+public class SummonerExample {
 
 	public static void main(String[] args) throws RiotApiException {
 		ApiConfig config = new ApiConfig().setKey("YOUR-API-KEY-HERE");
 		RiotApi api = new RiotApi(config);
 
 		Summoner summoner = api.getSummonerByName(Platform.NA, "tryndamere");
-		System.out.println("Name: " + summoner.getName() + ", ID: " + summoner.getId());
+
+		System.out.println("Name: " + summoner.getName());
+		System.out.println("Summoner ID: " + summoner.getId());
+		System.out.println("Account ID: " + summoner.getAccountId());
+		System.out.println("Summoner Level: " + summoner.getSummonerLevel());
+		System.out.println("Profile Icon ID: " + summoner.getProfileIconId());
 	}
 }

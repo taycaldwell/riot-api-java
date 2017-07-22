@@ -32,85 +32,70 @@ This project is also available on [Jitpack](https://jitpack.io/#rithms/riot-api-
 This library can be used strictly according to the [Riot API Documentation](https://developer.riotgames.com/api/methods) like so:
 
 ```java
-import java.util.Map;
-import net.rithms.riot.constant.Region;
-import net.rithms.riot.dto.Summoner.Summoner;
+import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.RiotApi;
 import net.rithms.riot.api.RiotApiException;
-import com.google.gson*;
+import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
+import net.rithms.riot.constant.Platform;
 
-public class Example {
+/**
+ * This example demonstrates using the RiotApi to request summoner information for a given summoner name
+ */
+public class SummonerExample {
 
 	public static void main(String[] args) throws RiotApiException {
-		
-		RiotApi api = new RiotApi("YOUR-API-KEY-HERE");
+		ApiConfig config = new ApiConfig().setKey("YOUR-API-KEY-HERE");
+		RiotApi api = new RiotApi(config);
 
-		Map<String, Summoner> summoners = api.getSummonersByName(Region.NA, "rithms, tryndamere");
-		Summoner summoner = summoners.get("rithms");
-		long id = summoner.getId();
-		System.out.println(id);
+		Summoner summoner = api.getSummonerByName(Platform.NA, "tryndamere");
+		System.out.println("Name: " + summoner.getName());
+		System.out.println("Summoner ID: " + summoner.getId());
+		System.out.println("Account ID: " + summoner.getAccountId());
+		System.out.println("Summoner Level: " + summoner.getSummonerLevel());
+		System.out.println("Profile Icon ID: " + summoner.getProfileIconId());
 	}
-
 }
-
 ```
 
-
-Available accessors allow you to accomplish similar tasks in a different way.
-Below is an example of how to set your region. Because the region was set before a method was called, there is no need to pass in the region parameter. This is great for people that know they will only be working in one region when making multiple requests. The same can be done for the season.
-
+It is important to be aware of your personal rate limit. Any method call from the RiotAPI is a request that counts towards your rate limit, except any requests regarding static data. The below code makes 2 requests; one request for a summoner, and another for the match list of a summoner.
 
 ```java
-import java.util.Map;
-import net.rithms.riot.constant.Region;
-import net.rithms.riot.dto.Summoner.Summoner;
+import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.RiotApi;
 import net.rithms.riot.api.RiotApiException;
-import com.google.gson*;
+import net.rithms.riot.api.endpoints.match.dto.MatchList;
+import net.rithms.riot.api.endpoints.match.dto.MatchReference;
+import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
+import net.rithms.riot.constant.Platform;
 
-public class Example {
-
-	public static void main(String[] args) throws RiotApiException {
-		
-		RiotApi api = new RiotApi("YOUR-API-KEY-HERE");
-		
-		api.setRegion(Region.NA);
-		Map<String, Summoner> summoners = api.getSummonersByName("rithms, tryndamere");
-		Summoner summoner = summoners.get("rithms");
-		long id = summoner.getId();
-		System.out.println(id);
-	}
-
-}
-
-```
-
-
-It is important to be aware of your personal rate limit. Any method call from the RiotAPI is a request that counts towards your rate limit, except any requests regarding static data. The below code makes 2 requests; one request for a summoner, and another for ranked stats of a summoner.
-
-
-
-```java
-import net.rithms.riot.constant.Region;
-import net.rithms.riot.constant.Season;
-import net.rithms.riot.dto.Stats.RankedStats;
-import net.rithms.riot.api.RiotApi;
-import net.rithms.riot.api.RiotApiException;
-import com.google.gson*;
-
-public class Example {
+/**
+ * This example demonstrates using the RiotApi to request the match list for a given summoner name and iterating over the match list
+ */
+public class MatchListExample {
 
 	public static void main(String[] args) throws RiotApiException {
-		
-		RiotApi api = new RiotApi("YOUR-API-KEY-HERE", Region.NA);
-		api.setSeason(Season.CURRENT);
-		
-		RankedStats rankedStats = api.getRankedStats(api.getSummonerByName("rithms").getId());
+		ApiConfig config = new ApiConfig().setKey("YOUR-API-KEY-HERE");
+		RiotApi api = new RiotApi(config);
+
+		// First we need to request the summoner because we will need it's account ID
+		Summoner summoner = api.getSummonerByName(Platform.NA, "tryndamere");
+
+		// Then we can use the account ID to request the summoner's match list
+		MatchList matchList = api.getMatchListByAccountId(Platform.NA, summoner.getAccountId());
+
+		System.out.println("Total Games in requested match list: " + matchList.getTotalGames());
+
+		// We can now iterate over the match list to access the data
+		if (matchList.getMatches() != null) {
+			for (MatchReference match : matchList.getMatches()) {
+				System.out.println("GameID: " + match.getGameId());
+			}
+		}
 	}
-
 }
-
 ```
+
+You can find these and more examples in the repository's "examples" directory.
 
 ## Documentation
 The documentation for this library can be found [here.](http://taycaldwell.com/riot-api-java/doc/)

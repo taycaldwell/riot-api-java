@@ -5,6 +5,7 @@ import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.RiotApi;
 import net.rithms.riot.api.RiotApiAsync;
 import net.rithms.riot.api.RiotApiException;
+import net.rithms.riot.api.endpoints.league.constant.LeagueQueue;
 import net.rithms.riot.api.endpoints.league.dto.LeaguePosition;
 import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
 import net.rithms.riot.api.request.AsyncRequest;
@@ -12,8 +13,9 @@ import net.rithms.riot.api.request.RequestAdapter;
 import net.rithms.riot.constant.Platform;
 
 /**
- * This is an example for how to use asynchronous requests. In this example we get a summoner's base information, as well as league
- * information asynchronously. Requesting these information asynchronously saves a lot of time, since the requests do not block each other.
+ * This example demonstrates how to use asynchronous requests. In this example we get a summoner's base information, as well as league
+ * information asynchronously. Requesting these information asynchronously can save a lot of time, since the requests do not block each
+ * other.
  */
 public class AsyncExample {
 
@@ -21,19 +23,22 @@ public class AsyncExample {
 		new AsyncExample();
 	}
 
+	// Inner class to store information in
 	private class ExtendedSummoner {
 		public Summoner summoner;
-		public LeaguePosition league;
+		public LeaguePosition leagueSolo;
+		public LeaguePosition leagueFlexSR;
+		public LeaguePosition leagueFlexTT;
 	}
 
 	public AsyncExample() throws RiotApiException {
-		long summonerId = 20987694; // summonerId to lookup
-		Platform platform = Platform.EUW; // platform to lookup
-		ExtendedSummoner eSummoner = new ExtendedSummoner(); // Object where we want to store the data
-
 		ApiConfig config = new ApiConfig().setKey("YOUR-API-KEY-HERE");
 		RiotApi api = new RiotApi(config);
 		RiotApiAsync apiAsync = api.getAsyncApi();
+
+		long summonerId = 20987694; // summonerId to request
+		Platform platform = Platform.EUW; // platform to request
+		final ExtendedSummoner eSummoner = new ExtendedSummoner(); // Object where we want to store the data
 
 		// Asynchronously get summoner information
 		AsyncRequest requestSummoner = apiAsync.getSummoner(platform, summonerId);
@@ -43,6 +48,7 @@ public class AsyncExample {
 				eSummoner.summoner = request.getDto();
 			}
 		});
+
 		// Asynchronously get league information
 		AsyncRequest requestLeague = apiAsync.getLeaguePositionsBySummonerId(platform, summonerId);
 		requestLeague.addListeners(new RequestAdapter() {
@@ -52,7 +58,15 @@ public class AsyncExample {
 				if (leaguePositions == null || leaguePositions.isEmpty()) {
 					return;
 				}
-				eSummoner.league = leaguePositions.iterator().next();
+				for (LeaguePosition leaguePosition : leaguePositions) {
+					if (leaguePosition.getQueueType().equals(LeagueQueue.RANKED_SOLO_5x5.name())) {
+						eSummoner.leagueSolo = leaguePosition;
+					} else if (leaguePosition.getQueueType().equals(LeagueQueue.RANKED_FLEX_SR.name())) {
+						eSummoner.leagueFlexSR = leaguePosition;
+					} else if (leaguePosition.getQueueType().equals(LeagueQueue.RANKED_FLEX_TT.name())) {
+						eSummoner.leagueFlexTT = leaguePosition;
+					}
+				}
 			}
 		});
 
@@ -64,11 +78,28 @@ public class AsyncExample {
 			RiotApi.log.log(Level.SEVERE, "Waiting Interrupted", e);
 		}
 
+		// Print information stored in eSummoner
 		System.out.println("Summoner name: " + eSummoner.summoner.getName());
-		if (eSummoner.league == null) {
-			System.out.println("Rank: unranked");
+
+		System.out.print("Solo Rank: ");
+		if (eSummoner.leagueSolo == null) {
+			System.out.println("unranked");
 		} else {
-			System.out.println("Rank: " + eSummoner.league.getTier());
+			System.out.println(eSummoner.leagueSolo.getTier() + " " + eSummoner.leagueSolo.getRank());
+		}
+
+		System.out.print("Flex SR Rank: ");
+		if (eSummoner.leagueFlexSR == null) {
+			System.out.println("unranked");
+		} else {
+			System.out.println(eSummoner.leagueFlexSR.getTier() + " " + eSummoner.leagueFlexSR.getRank());
+		}
+
+		System.out.print("Flex TT Rank: ");
+		if (eSummoner.leagueFlexTT == null) {
+			System.out.println("unranked");
+		} else {
+			System.out.println(eSummoner.leagueFlexTT.getTier() + " " + eSummoner.leagueFlexTT.getRank());
 		}
 	}
 }

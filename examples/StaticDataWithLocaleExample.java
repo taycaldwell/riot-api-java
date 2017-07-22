@@ -10,9 +10,10 @@ import net.rithms.riot.api.endpoints.static_data.dto.ChampionList;
 import net.rithms.riot.constant.Platform;
 
 /**
- * This is a simple example using the RiotApi to request some static data using a Locale
+ * This example demonstrates using the RiotApi to request some static data using a Locale. Specifically, here we will list all champions
+ * with their German name and title
  */
-public class StaticDataWithLocale {
+public class StaticDataWithLocaleExample {
 
 	public static void main(String[] args) throws RiotApiException {
 		ApiConfig config = new ApiConfig().setKey("YOUR-API-KEY-HERE");
