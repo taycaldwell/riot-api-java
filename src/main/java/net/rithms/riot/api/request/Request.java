@@ -192,6 +192,11 @@ public class Request {
 
 			setResponse(new RequestResponse(connection.getResponseCode(), responseBodyBuilder.toString(), connection.getHeaderFields()));
 			setState(RequestState.Succeeded);
+		} catch (RespectedRateLimitException e) {
+			setException(e);
+			setState(RequestState.Failed);
+			RiotApi.log.fine("[" + object + "] Request > RespectedRateLimitException: " + e.getMessage());
+			throw e;
 		} catch (RateLimitException e) {
 			setException(e);
 			setState(RequestState.Failed);
@@ -368,7 +373,7 @@ public class Request {
 			return false;
 		}
 		RateLimitList rateLimitList = rateLimitMap.get(config.getKey());
-		return rateLimitList.isLimitExceeded(object.getService(), object.getPlatform());
+		return rateLimitList.isLimitExceeded(object.getPlatform(), object.getService(), object.getClass().getName());
 	}
 
 	/**
@@ -410,7 +415,7 @@ public class Request {
 			return;
 		}
 		if (isRateLimitExceeded()) {
-			RateLimit rateLimit = rateLimitMap.get(config.getKey()).getRateLimit(object.getService(), object.getPlatform());
+			RateLimit rateLimit = rateLimitMap.get(config.getKey()).getRateLimit(object.getPlatform(), object.getService(), object.getClass().getName());
 			if (rateLimit == null) {
 				return;
 			}
@@ -438,7 +443,7 @@ public class Request {
 		if (!rateLimitMap.containsKey(key)) {
 			rateLimitMap.put(key, new RateLimitList());
 		}
-		rateLimitMap.get(key).setRateLimit(object.getService(), object.getPlatform(), rateLimitType, retryAfter);
+		rateLimitMap.get(key).setRateLimit(object.getPlatform(), object.getService(), object.getClass().getName(), rateLimitType, retryAfter);
 	}
 
 	/**

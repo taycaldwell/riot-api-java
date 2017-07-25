@@ -39,7 +39,7 @@ public class RateLimitException extends RiotApiException {
 	 *            The type of rate limit that has been exceeded
 	 */
 	public RateLimitException(int retryAfter, String rateLimitType) {
-		super(RATE_LIMITED, getMessage(RATE_LIMITED) + " (Retry After: " + retryAfter + ")");
+		super(RATE_LIMITED, getMessage(RATE_LIMITED) + " (Type: " + rateLimitType + "; Retry After: " + retryAfter + ")");
 		this.retryAfter = retryAfter;
 		this.rateLimitType = rateLimitType;
 	}

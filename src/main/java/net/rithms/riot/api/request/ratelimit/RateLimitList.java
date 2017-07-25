@@ -25,13 +25,14 @@ import net.rithms.riot.constant.Platform;
  */
 public class RateLimitList {
 
-	private final Map<Platform, RateLimit> userLimits = new ConcurrentHashMap<Platform, RateLimit>();
+	private final Map<Platform, RateLimit> applicationLimits = new ConcurrentHashMap<Platform, RateLimit>();
 	private final Map<Platform, Map<String, RateLimit>> serviceLimits = new ConcurrentHashMap<Platform, Map<String, RateLimit>>();
+	private final Map<Platform, Map<String, RateLimit>> methodLimits = new ConcurrentHashMap<Platform, Map<String, RateLimit>>();
 
-	public RateLimit getRateLimit(String service, Platform platform) {
-		if (userLimits.containsKey(platform)) {
-			if (userLimits.get(platform).isLimitExceeded()) {
-				return userLimits.get(platform);
+	public RateLimit getRateLimit(Platform platform, String service, String method) {
+		if (applicationLimits.containsKey(platform)) {
+			if (applicationLimits.get(platform).isLimitExceeded()) {
+				return applicationLimits.get(platform);
 			}
 		}
 
@@ -42,12 +43,20 @@ public class RateLimitList {
 				}
 			}
 		}
+
+		if (methodLimits.containsKey(platform)) {
+			if (methodLimits.get(platform).containsKey(method)) {
+				if (methodLimits.get(platform).get(method).isLimitExceeded()) {
+					return methodLimits.get(platform).get(method);
+				}
+			}
+		}
 		return null;
 	}
 
-	public boolean isLimitExceeded(String service, Platform platform) {
-		if (userLimits.containsKey(platform)) {
-			if (userLimits.get(platform).isLimitExceeded()) {
+	public boolean isLimitExceeded(Platform platform, String service, String method) {
+		if (applicationLimits.containsKey(platform)) {
+			if (applicationLimits.get(platform).isLimitExceeded()) {
 				return true;
 			}
 		}
@@ -59,17 +68,30 @@ public class RateLimitList {
 				}
 			}
 		}
+
+		if (methodLimits.containsKey(platform)) {
+			if (methodLimits.get(platform).containsKey(method)) {
+				if (methodLimits.get(platform).get(method).isLimitExceeded()) {
+					return true;
+				}
+			}
+		}
 		return false;
 	}
 
-	public void setRateLimit(String service, Platform platform, String type, int retryAfter) {
+	public void setRateLimit(Platform platform, String service, String method, String type, int retryAfter) {
 		if (type.equals("application")) {
-			userLimits.put(platform, new RateLimit(type, retryAfter));
+			applicationLimits.put(platform, new RateLimit(type, retryAfter));
 		} else if (type.equals("service")) {
 			if (!serviceLimits.containsKey(platform)) {
 				serviceLimits.put(platform, new ConcurrentHashMap<String, RateLimit>());
 			}
 			serviceLimits.get(platform).put(service, new RateLimit(type, retryAfter));
+		} else if (type.equals("method")) {
+			if (!methodLimits.containsKey(platform)) {
+				methodLimits.put(platform, new ConcurrentHashMap<String, RateLimit>());
+			}
+			methodLimits.get(platform).put(method, new RateLimit(type, retryAfter));
 		}
 	}
 }

@@ -33,6 +33,6 @@ public class RespectedRateLimitException extends RateLimitException {
 	 *            The type of rate limit that has been exceeded
 	 */
 	public RespectedRateLimitException(final int retryAfter, final String rateLimitType) {
-		super(getMessage(RATE_LIMITED) + " (Respected; Retry After: " + retryAfter + ")", retryAfter, rateLimitType);
+		super(getMessage(RATE_LIMITED) + " (Respected; Type: " + rateLimitType + "; Retry After: " + retryAfter + ")", retryAfter, rateLimitType);
 	}
 }
