@@ -110,6 +110,7 @@ import net.rithms.riot.api.endpoints.tournament.methods.GetLobbyEventsByCode;
 import net.rithms.riot.api.endpoints.tournament.methods.GetTournamentCode;
 import net.rithms.riot.api.endpoints.tournament.methods.UpdateTournamentCode;
 import net.rithms.riot.constant.Platform;
+import net.rithms.util.RiotApiUtil;
 
 /**
  * This is the main class for using this riot api wrapper. This api is typically used by first constructing a RiotApi instance, and then
@@ -1575,6 +1576,8 @@ public class RiotApi implements Cloneable {
 	 * @param summonerName
 	 *            Summoner name associated with summoner to retrieve.
 	 * @return Desired summoner
+	 * @throws IllegalArgumentException
+	 *             If {@code summonerName} is not a valid summoner name
 	 * @throws NullPointerException
 	 *             If {@code platform} or {@code summonerName} is {@code null}
 	 * @throws RiotApiException
@@ -1585,6 +1588,7 @@ public class RiotApi implements Cloneable {
 	public Summoner getSummonerByName(Platform platform, String summonerName) throws RiotApiException {
 		Objects.requireNonNull(platform);
 		Objects.requireNonNull(summonerName);
+		RiotApiUtil.requireValidSummonerName(summonerName);
 		ApiMethod method = new GetSummonerByName(getConfig(), platform, summonerName);
 		return endpointManager.callMethodAndReturnDto(method);
 	}

@@ -21,10 +21,13 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Objects;
 
+import net.rithms.riot.api.RiotApi;
+
 public final class RiotApiUtil {
 
 	/**
-	 * Normalizes and returns a summoner name. This casts {@code String summonerName} to lower case and strips any whitespaces.
+	 * Normalizes and returns a summoner name. Specifically, this casts {@code String summonerName} to lower case and strips any
+	 * whitespaces.
 	 * 
 	 * @param summonerName
 	 *            summoner name
@@ -39,8 +42,8 @@ public final class RiotApiUtil {
 	}
 
 	/**
-	 * Normalizes and returns an array of summoner names. This casts each of {@code String[] summonerNames} to lower case and strips any
-	 * whitespaces.
+	 * Normalizes and returns an array of summoner names. Specifically, this casts each of {@code String[] summonerNames} to lower case and
+	 * strips any whitespaces.
 	 * 
 	 * @param summonerNames
 	 *            summoner names
@@ -130,5 +133,23 @@ public final class RiotApiUtil {
 	 */
 	public static String joinString(CharSequence delimiter, CharSequence... elements) {
 		return joinString(delimiter, (Object[]) elements);
+	}
+
+	/**
+	 * Checks that the specified String is not an invalid summoner name. This method is designed primarily to be called by the
+	 * {@link RiotApi} to check the validity of a summoner name before firing a request to the Riot Api.
+	 * 
+	 * @param summonerName
+	 *            The summoner name to to check for validity
+	 * @throws IllegalArgumentException
+	 *             If {@code summonerName} is not valid
+	 * @return {@code summonerName} if not invalid
+	 */
+	public static String requireValidSummonerName(String summonerName) throws IllegalArgumentException {
+		// TODO This is only filtering out empty Strings right now. Need proper validity check
+		if (summonerName.trim().isEmpty()) {
+			throw new IllegalArgumentException("Invalid summoner name \"" + summonerName + "\"");
+		}
+		return summonerName;
 	}
 }

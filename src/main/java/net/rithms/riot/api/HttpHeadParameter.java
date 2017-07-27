@@ -38,4 +38,9 @@ public class HttpHeadParameter implements Cloneable {
 	public String getValue() {
 		return value;
 	}
+
+	@Override
+	public String toString() {
+		return getKey() + ":" + getValue();
+	}
 }

@@ -109,6 +109,7 @@ import net.rithms.riot.api.endpoints.tournament.methods.UpdateTournamentCode;
 import net.rithms.riot.api.request.AsyncRequest;
 import net.rithms.riot.api.request.RequestListener;
 import net.rithms.riot.constant.Platform;
+import net.rithms.util.RiotApiUtil;
 
 /**
  * This class is used to fire asynchronous requests. You can get an instance of this object by calling {@link RiotApi#getAsyncApi()} on your
@@ -1450,6 +1451,8 @@ public class RiotApiAsync {
 	 * @param summonerName
 	 *            Summoner name associated with summoner to retrieve.
 	 * @return A map of desired summoners
+	 * @throws IllegalArgumentException
+	 *             If {@code summonerName} is not a valid summoner name
 	 * @throws NullPointerException
 	 *             If {@code platform} or {@code summonerName} is {@code null}
 	 * @version 3
@@ -1458,6 +1461,7 @@ public class RiotApiAsync {
 	public AsyncRequest getSummonerByName(Platform platform, String summonerName) {
 		Objects.requireNonNull(platform);
 		Objects.requireNonNull(summonerName);
+		RiotApiUtil.requireValidSummonerName(summonerName);
 		ApiMethod method = new GetSummonerByName(getConfig(), platform, summonerName);
 		return endpointManager.callMethodAsynchronously(method);
 	}
