@@ -35,7 +35,7 @@ public class CreateTournamentCodes extends TournamentApiMethod {
 	public CreateTournamentCodes(ApiConfig config, int tournamentId, int count, int teamSize, TournamentMap mapType, PickType pickType,
 			SpectatorType spectatorType, String metaData, long... allowedSummonerIds) {
 		super(config);
-		setMethod(RequestMethod.POST);
+		setHttpMethod(RequestMethod.POST);
 		setReturnType(new TypeToken<List<String>>() {
 		}.getType());
 		if (config.getTournamentMockMode()) {

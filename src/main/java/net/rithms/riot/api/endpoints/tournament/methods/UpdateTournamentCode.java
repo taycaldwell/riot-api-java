@@ -31,7 +31,7 @@ public class UpdateTournamentCode extends TournamentApiMethod {
 	public UpdateTournamentCode(ApiConfig config, String tournamentCode, TournamentMap mapType, PickType pickType, SpectatorType spectatorType,
 			long... allowedSummonerIds) {
 		super(config);
-		setMethod(RequestMethod.PUT);
+		setHttpMethod(RequestMethod.PUT);
 		setReturnType(Void.class);
 		setUrlBase(HOST + "/lol/tournament/v3/codes/" + tournamentCode);
 		addTournamentApiKeyParameter();

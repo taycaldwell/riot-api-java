@@ -17,7 +17,7 @@
 package net.rithms.riot.api;
 
 import java.lang.reflect.Type;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -32,9 +32,9 @@ abstract public class ApiMethod {
 	private final String service;
 	private Platform platform = null;
 	private String urlBase;
-	private final List<UrlParameter> urlParameters = new LinkedList<UrlParameter>();
-	private final List<HttpHeadParameter> httpHeadParameters = new LinkedList<HttpHeadParameter>();
-	private RequestMethod method = RequestMethod.GET;
+	private final List<UrlParameter> urlParameters = new ArrayList<UrlParameter>();
+	private final List<HttpHeadParameter> httpHeadParameters = new ArrayList<HttpHeadParameter>();
+	private RequestMethod httpMethod = RequestMethod.GET;
 	private String body = null;
 	private Type returnType = null;
 
@@ -79,20 +79,20 @@ abstract public class ApiMethod {
 		return config;
 	}
 
+	public List<HttpHeadParameter> getHttpHeadParameters() {
+		return httpHeadParameters;
+	}
+
+	public RequestMethod getHttpMethod() {
+		return httpMethod;
+	}
+
 	public Platform getPlatform() {
 		return platform;
 	}
 
 	public Type getReturnType() {
 		return returnType;
-	}
-
-	public List<HttpHeadParameter> getHttpHeadParameters() {
-		return httpHeadParameters;
-	}
-
-	public RequestMethod getMethod() {
-		return method;
 	}
 
 	public String getService() {
@@ -121,8 +121,8 @@ abstract public class ApiMethod {
 		this.returnType = returnType;
 	}
 
-	protected void setMethod(RequestMethod method) {
-		this.method = method;
+	protected void setHttpMethod(RequestMethod httpMethod) {
+		this.httpMethod = httpMethod;
 	}
 
 	protected void setUrlBase(String urlBase) {

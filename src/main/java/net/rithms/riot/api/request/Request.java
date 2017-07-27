@@ -139,7 +139,7 @@ public class Request {
 			setTimeout();
 			connection.setDoInput(true);
 			connection.setInstanceFollowRedirects(false);
-			connection.setRequestMethod(getMethod().name());
+			connection.setRequestMethod(getHttpMethod().name());
 			for (HttpHeadParameter p : object.getHttpHeadParameters()) {
 				connection.setRequestProperty(p.getKey(), p.getValue());
 			}
@@ -299,8 +299,8 @@ public class Request {
 		return exception;
 	}
 
-	private RequestMethod getMethod() {
-		RequestMethod method = object.getMethod();
+	private RequestMethod getHttpMethod() {
+		RequestMethod method = object.getHttpMethod();
 		Objects.requireNonNull(method);
 		return method;
 	}

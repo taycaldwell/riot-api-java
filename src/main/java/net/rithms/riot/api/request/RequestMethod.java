@@ -24,9 +24,7 @@ package net.rithms.riot.api.request;
 public enum RequestMethod {
 	DELETE,
 	GET,
-	HEAD,
-	OPTIONS,
+	PATCH,
 	POST,
 	PUT,
-	TRACE
 }
