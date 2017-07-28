@@ -19,6 +19,9 @@ package net.rithms.riot.api;
 import java.util.Objects;
 import java.util.logging.Level;
 
+import net.rithms.riot.api.request.ratelimit.DefaultRateLimitHandler;
+import net.rithms.riot.api.request.ratelimit.RateLimitHandler;
+
 /**
  * Configuration class to use with the {@link RiotApi}.
  */
@@ -28,8 +31,8 @@ public class ApiConfig implements Cloneable {
 	public final Level DEFAULT_DEBUG_LEVEL = Level.WARNING;
 	public final boolean DEFAULT_DEBUG_TO_FILE = false;
 	public final int DEFAULT_MAX_ASYNC_THREADS = 0;
+	public final RateLimitHandler DEFAULT_RATE_LIMIT_HANDLER = new DefaultRateLimitHandler();
 	public final int DEFAULT_REQUEST_TIMEOUT = 0;
-	public final boolean DEFAULT_RESPECT_RATE_LIMIT = true;
 	public final boolean DEFAULT_TOURNAMENT_MOCK_MODE = false;
 
 	private int asyncRequestTimeout = DEFAULT_ASYNC_REQUEST_TIMEOUT;
@@ -37,15 +40,15 @@ public class ApiConfig implements Cloneable {
 	private boolean debugToFile = DEFAULT_DEBUG_TO_FILE;
 	private String key = null;
 	private int maxAsyncThreads = DEFAULT_MAX_ASYNC_THREADS;
+	private RateLimitHandler rateLimitHandler = DEFAULT_RATE_LIMIT_HANDLER;
 	private int requestTimeout = DEFAULT_REQUEST_TIMEOUT;
-	private boolean respectRateLimit = DEFAULT_RESPECT_RATE_LIMIT;
 	private String tournamentKey = null;
 	private boolean tournamentMockMode = DEFAULT_TOURNAMENT_MOCK_MODE;
 
 	@Override
 	public ApiConfig clone() {
 		return new ApiConfig().setAsyncRequestTimeout(getAsyncRequestTimeout()).setDebugLevel(getDebugLevel()).setDebugToFile(getDebugToFile()).setKey(getKey())
-				.setMaxAsyncThreads(getMaxAsyncThreads()).setRequestTimeout(getRequestTimeout()).setRespectRateLimit(getRespectRateLimit())
+				.setMaxAsyncThreads(getMaxAsyncThreads()).setRateLimitHandler(getRateLimitHandler()).setRequestTimeout(getRequestTimeout())
 				.setTournamentKey(getTournamentKey()).setTournamentMockMode(getTournamentMockMode());
 	}
 
@@ -69,12 +72,12 @@ public class ApiConfig implements Cloneable {
 		return maxAsyncThreads;
 	}
 
-	public int getRequestTimeout() {
-		return requestTimeout;
+	public RateLimitHandler getRateLimitHandler() {
+		return rateLimitHandler;
 	}
 
-	public boolean getRespectRateLimit() {
-		return respectRateLimit;
+	public int getRequestTimeout() {
+		return requestTimeout;
 	}
 
 	public String getTournamentKey() {
@@ -174,6 +177,18 @@ public class ApiConfig implements Cloneable {
 	}
 
 	/**
+	 * Sets the {@link RateLimitHandler} to take care of rate limiting. Can bet set to {@code null} to ignore rate limiting.
+	 * 
+	 * @param rateLimitHandler
+	 *            {@code RateLimitHandler} instance
+	 * @return This ApiConfig object for chaining
+	 */
+	public ApiConfig setRateLimitHandler(RateLimitHandler rateLimitHandler) {
+		this.rateLimitHandler = rateLimitHandler;
+		return this;
+	}
+
+	/**
 	 * Sets a specified timeout value, in milliseconds, for calls in {@link RiotApi} to wait at most for a response. If set to zero,
 	 * requests won't time out.
 	 * 
@@ -192,19 +207,6 @@ public class ApiConfig implements Cloneable {
 			throw new IllegalArgumentException("The timeout value must be greater than or equal to 0");
 		}
 		this.requestTimeout = requestTimeout;
-		return this;
-	}
-
-	/**
-	 * Sets whether the api should attempt to automatically respect rate limits. If set to {@code true}, the api will listen to
-	 * rate-limit-specific headers from the Riot Api and try to respect them.
-	 *
-	 * @param respectRateLimit
-	 *            {@code true} if the api should attempt to automatically respect rate limits
-	 * @return This ApiConfig object for chaining
-	 */
-	public ApiConfig setRespectRateLimit(boolean respectRateLimit) {
-		this.respectRateLimit = respectRateLimit;
 		return this;
 	}
 

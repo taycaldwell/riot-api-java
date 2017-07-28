@@ -72,4 +72,22 @@ public class RequestResponse {
 	public Map<String, List<String>> getHeaderFields() {
 		return headerFields;
 	}
+
+	/**
+	 * Returns the value for a given HTTP header field name.
+	 * 
+	 * <p>
+	 * If called on a header field with multiple values, only the last value is returned.
+	 * </p>
+	 * 
+	 * @param name
+	 *            the name of the header field
+	 * @return the value of the named header field, or {@code null} if there is no such field in the header.
+	 */
+	public String getHeaderField(String name) {
+		if (!headerFields.containsKey(name) || headerFields.get(name).isEmpty()) {
+			return null;
+		}
+		return headerFields.get(name).get(headerFields.get(name).size() - 1);
+	}
 }

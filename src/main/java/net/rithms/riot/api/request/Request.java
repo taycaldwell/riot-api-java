@@ -26,9 +26,7 @@ import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.util.Map;
 import java.util.Objects;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 
 import com.google.gson.Gson;
@@ -39,9 +37,7 @@ import net.rithms.riot.api.ApiMethod;
 import net.rithms.riot.api.HttpHeadParameter;
 import net.rithms.riot.api.RiotApi;
 import net.rithms.riot.api.RiotApiException;
-import net.rithms.riot.api.request.ratelimit.RateLimit;
 import net.rithms.riot.api.request.ratelimit.RateLimitException;
-import net.rithms.riot.api.request.ratelimit.RateLimitList;
 import net.rithms.riot.api.request.ratelimit.RespectedRateLimitException;
 
 /**
@@ -74,8 +70,6 @@ public class Request {
 		Failed,
 		Timeout
 	}
-
-	private static final Map<String, RateLimitList> rateLimitMap = new ConcurrentHashMap<String, RateLimitList>();
 
 	private volatile RequestState state = RequestState.Waiting;
 	private RequestResponse response = null;
@@ -133,7 +127,12 @@ public class Request {
 		setState(RequestState.Waiting);
 		try {
 			object.checkRequirements();
-			respectRateLimit();
+
+			// Notify RateLimitHandler
+			if (config.getRateLimitHandler() != null) {
+				config.getRateLimitHandler().onRequestAboutToFire(this);
+			}
+
 			URL url = new URL(object.getUrl());
 			connection = (HttpURLConnection) url.openConnection();
 			setTimeout();
@@ -154,19 +153,6 @@ public class Request {
 			}
 			int responseCode = connection.getResponseCode();
 
-			// Handle rate limit
-			if (responseCode == CODE_ERROR_RATE_LIMITED) {
-				String retryAfterString = connection.getHeaderField("Retry-After");
-				String rateLimitType = connection.getHeaderField("X-Rate-Limit-Type");
-				if (retryAfterString != null) {
-					int retryAfter = Integer.parseInt(retryAfterString);
-					setRetryAfter(rateLimitType, retryAfter);
-					throw new RateLimitException(retryAfter, rateLimitType);
-				} else {
-					throw new RateLimitException(0, rateLimitType);
-				}
-			}
-
 			// Get body
 			InputStream is = null;
 			if (responseCode < 400) {
@@ -184,13 +170,30 @@ public class Request {
 				br.close();
 			}
 
-			// Handle error
-			if (responseCode >= 300) {
+			// Handle error (except rate limit)
+			if (responseCode >= 300 && responseCode != CODE_ERROR_RATE_LIMITED) {
 				RiotApiError errorDto = new Gson().fromJson(responseBodyBuilder.toString(), RiotApiError.class);
 				throw new RiotApiException(responseCode, errorDto);
 			}
-
 			setResponse(new RequestResponse(connection.getResponseCode(), responseBodyBuilder.toString(), connection.getHeaderFields()));
+
+			// Notify RateLimitHandler
+			if (config.getRateLimitHandler() != null) {
+				config.getRateLimitHandler().onRequestDone(this);
+			}
+
+			// Handle rate limit error
+			if (responseCode == CODE_ERROR_RATE_LIMITED) {
+				String retryAfterString = connection.getHeaderField("Retry-After");
+				String rateLimitType = connection.getHeaderField("X-Rate-Limit-Type");
+				if (retryAfterString != null) {
+					int retryAfter = Integer.parseInt(retryAfterString);
+					throw new RateLimitException(retryAfter, rateLimitType);
+				} else {
+					throw new RateLimitException(0, rateLimitType);
+				}
+			}
+
 			setState(RequestState.Succeeded);
 		} catch (RespectedRateLimitException e) {
 			setException(e);
@@ -306,6 +309,16 @@ public class Request {
 	}
 
 	/**
+	 * Returns the object defining the request
+	 * 
+	 * @return An {@link ApiMethod} object
+	 * @see ApiMethod
+	 */
+	public ApiMethod getObject() {
+		return object;
+	}
+
+	/**
 	 * Returns the raw response from the Riot Api
 	 * 
 	 * @return A {@link RequestResponse} object, providing raw data of the Riot Api's response
@@ -368,14 +381,6 @@ public class Request {
 		return state == RequestState.Waiting;
 	}
 
-	private boolean isRateLimitExceeded() {
-		if (config.getKey() == null || !rateLimitMap.containsKey(config.getKey())) {
-			return false;
-		}
-		RateLimitList rateLimitList = rateLimitMap.get(config.getKey());
-		return rateLimitList.isLimitExceeded(object.getPlatform(), object.getService(), object.getClass().getName());
-	}
-
 	/**
 	 * Returns {@code true} if this request completed successfully.
 	 * 
@@ -410,19 +415,6 @@ public class Request {
 		}
 	}
 
-	private void respectRateLimit() throws RespectedRateLimitException {
-		if (!config.getRespectRateLimit()) {
-			return;
-		}
-		if (isRateLimitExceeded()) {
-			RateLimit rateLimit = rateLimitMap.get(config.getKey()).getRateLimit(object.getPlatform(), object.getService(), object.getClass().getName());
-			if (rateLimit == null) {
-				return;
-			}
-			throw new RespectedRateLimitException(rateLimit.getRetryAfter(), rateLimit.getType());
-		}
-	}
-
 	/**
 	 * Sets the Exception that was thrown when executing this request
 	 * 
@@ -436,14 +428,6 @@ public class Request {
 
 	private void setResponse(RequestResponse response) {
 		this.response = response;
-	}
-
-	private void setRetryAfter(String rateLimitType, int retryAfter) {
-		String key = config.getKey();
-		if (!rateLimitMap.containsKey(key)) {
-			rateLimitMap.put(key, new RateLimitList());
-		}
-		rateLimitMap.get(key).setRateLimit(object.getPlatform(), object.getService(), object.getClass().getName(), rateLimitType, retryAfter);
 	}
 
 	/**
