@@ -30,7 +30,6 @@ public enum Platform {
 	LAS("LA2", "las"),
 	NA("NA1", "na"),
 	OCE("OC1", "oce"),
-	PBE("PBE1", "pbe"),
 	RU("RU", "ru"),
 	TR("TR1", "tr");
 
