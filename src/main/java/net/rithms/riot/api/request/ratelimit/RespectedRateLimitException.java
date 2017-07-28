@@ -17,8 +17,8 @@
 package net.rithms.riot.api.request.ratelimit;
 
 /**
- * Thrown when the Riot Api previously returned error code 429 (rate limit exceeded), combined with HTTP headers, asking to not retry again
- * for a certain time.
+ * Thrown when the {@link RateLimitHandler} decides to drop a request instead of sending it to the Riot API to prevent violating the rate
+ * limit.
  */
 public class RespectedRateLimitException extends RateLimitException {
 

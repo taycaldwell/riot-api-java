@@ -19,9 +19,8 @@ package net.rithms.riot.api.request.ratelimit;
 import net.rithms.riot.api.RiotApiException;
 
 /**
- * Thrown when the Riot Api returns error code 429 (rate limit exceeded). This can either mean, that the limits of your api key have been
- * exceeded, or that Riot has reached some internal limits for the api you are trying to use. You can find out whose rate limit was exceeded
- * by calling {@link #getRateLimitType()}.
+ * Thrown when the Riot Api returns error code 429 (rate limit exceeded). This means that either you or Riot themselves have exceeded their
+ * rate limits. You can find out what type of rate limit was violated by calling {@link #getRateLimitType()}.
  */
 public class RateLimitException extends RiotApiException {
 

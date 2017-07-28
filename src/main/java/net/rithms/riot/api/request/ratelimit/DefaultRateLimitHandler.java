@@ -25,8 +25,8 @@ import net.rithms.riot.api.request.RequestResponse;
 import net.rithms.riot.constant.Platform;
 
 /**
- * This is the default {@link RateLimitHandler}. It keeps track of rate limits when they happen and prevents further requests from being
- * fired if they would violate a known rate limit.
+ * This is the default {@link RateLimitHandler}. It keeps track of rate limits when they are exceeded and prevents further requests from
+ * being fired if they would violate a known rate limit.
  * <p>
  * If you want to keep the functionality of this {@code DefaultRateLimitHandler} but want to extend it, you can simply inherit this class
  * and call the super methods like this:
