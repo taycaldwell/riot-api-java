@@ -40,7 +40,7 @@ public class TeamStats extends Dto implements Serializable {
 	private int teamId;
 	private int towerKills;
 	private int vilemawKills;
-	private boolean win;
+	private String win;
 
 	public List<TeamBans> getBans() {
 		return bans;
@@ -78,6 +78,10 @@ public class TeamStats extends Dto implements Serializable {
 		return vilemawKills;
 	}
 
+	public String getWin() {
+		return win;
+	}
+
 	public boolean isFirstBaron() {
 		return firstBaron;
 	}
@@ -100,10 +104,6 @@ public class TeamStats extends Dto implements Serializable {
 
 	public boolean isFirstTower() {
 		return firstTower;
-	}
-
-	public boolean isWin() {
-		return win;
 	}
 
 	@Override
