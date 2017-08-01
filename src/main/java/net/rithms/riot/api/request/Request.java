@@ -70,8 +70,6 @@ public class Request {
 		Failed,
 		Timeout
 	}
-	
-	public int atomicCount = 0;
 
 	private volatile RequestState state = RequestState.Waiting;
 	private RequestResponse response = null;
