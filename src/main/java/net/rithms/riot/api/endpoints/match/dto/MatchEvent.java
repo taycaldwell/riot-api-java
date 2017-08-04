@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 Taylor Caldwell
+ * Copyright 2014-2017 Taylor Caldwell
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,12 +25,13 @@ public class MatchEvent extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -2911353385877952457L;
 
+	private int afterId;
 	private String ascendedType;
 	private List<Integer> assistingParticipantIds;
+	private int beforeId;
 	private String buildingType;
 	private int creatorId;
-	private int itemAfter;
-	private int itemBefore;
+	private String eventType;
 	private int itemId;
 	private int killerId;
 	private String laneType;
@@ -48,12 +49,20 @@ public class MatchEvent extends Dto implements Serializable {
 	private int victimId;
 	private String wardType;
 
+	public int getAfterId() {
+		return afterId;
+	}
+
 	public String getAscendedType() {
 		return ascendedType;
 	}
 
 	public List<Integer> getAssistingParticipantIds() {
 		return assistingParticipantIds;
+	}
+
+	public int getBeforeId() {
+		return beforeId;
 	}
 
 	public String getBuildingType() {
@@ -64,12 +73,8 @@ public class MatchEvent extends Dto implements Serializable {
 		return creatorId;
 	}
 
-	public int getItemAfter() {
-		return itemAfter;
-	}
-
-	public int getItemBefore() {
-		return itemBefore;
+	public String getEventType() {
+		return eventType;
 	}
 
 	public int getItemId() {
