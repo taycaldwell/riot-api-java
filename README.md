@@ -24,8 +24,51 @@ Build Path -> Configure Build Path -> Libraries -> Add External Jars
 
 and selecting the jar under the Order and Export tab.
 
-
 This project is also available on [Jitpack](https://jitpack.io/#rithms/riot-api-java/v4.0.0)
+
+### Gradle
+
+Add Jitpack to your root build.gradle at the end of repositories:
+
+```java
+allprojects {
+	repositories {
+		...
+		maven { url 'https://jitpack.io' }
+	}
+}
+```
+
+Add the project as a dependency:
+
+```java
+dependencies {
+	compile 'com.github.taycaldwell:riot-api-java:v4.0.0'
+}
+```
+
+### Maven
+
+Add Jitpack as a repository:
+
+```xml
+<repositories>
+	<repository>
+	    <id>jitpack.io</id>
+	    <url>https://jitpack.io</url>
+	</repository>
+</repositories>
+```
+
+Add the project as a dependency:
+
+```xml
+<dependency>
+    <groupId>com.github.taycaldwell</groupId>
+    <artifactId>riot-api-java</artifactId>
+    <version>v4.0.0</version>
+</dependency>
+```
 
 ## Usage
 
