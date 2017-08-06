@@ -519,7 +519,7 @@ public class RiotApiAsync {
 	 * @see net.rithms.riot.api.endpoints.static_data.dto.Champion
 	 */
 	public AsyncRequest getDataChampion(Platform platform, int id) {
-		return getDataChampion(platform, id, null, null, (ChampionTags) null);
+		return getDataChampion(platform, id, null, null);
 	}
 
 	/**
@@ -561,7 +561,7 @@ public class RiotApiAsync {
 	 * @see net.rithms.riot.api.endpoints.static_data.dto.ChampionList
 	 */
 	public AsyncRequest getDataChampionList(Platform platform) {
-		return getDataChampionList(platform, null, null, false, (ChampionListTags) null);
+		return getDataChampionList(platform, null, null, false);
 	}
 
 	/**
@@ -605,7 +605,7 @@ public class RiotApiAsync {
 	 * @see Item
 	 */
 	public AsyncRequest getDataItem(Platform platform, int id) {
-		return getDataItem(platform, id, null, null, (ItemTags) null);
+		return getDataItem(platform, id, null, null);
 	}
 
 	/**
@@ -645,7 +645,7 @@ public class RiotApiAsync {
 	 * @see ItemList
 	 */
 	public AsyncRequest getDataItemList(Platform platform) {
-		return getDataItemList(platform, null, null, (ItemListTags) null);
+		return getDataItemList(platform, null, null);
 	}
 
 	/**
@@ -776,7 +776,7 @@ public class RiotApiAsync {
 	 * @see Mastery
 	 */
 	public AsyncRequest getDataMastery(Platform platform, int id) {
-		return getDataMastery(platform, id, null, null, (MasteryTags) null);
+		return getDataMastery(platform, id, null, null);
 	}
 
 	/**
@@ -816,7 +816,7 @@ public class RiotApiAsync {
 	 * @see MasteryList
 	 */
 	public AsyncRequest getDataMasteryList(Platform platform) {
-		return getDataMasteryList(platform, null, null, (MasteryListTags) null);
+		return getDataMasteryList(platform, null, null);
 	}
 
 	/**
@@ -912,7 +912,7 @@ public class RiotApiAsync {
 	 * @see Rune
 	 */
 	public AsyncRequest getDataRune(Platform platform, int id) {
-		return getDataRune(platform, id, null, null, (RuneTags) null);
+		return getDataRune(platform, id, null, null);
 	}
 
 	/**
@@ -952,7 +952,7 @@ public class RiotApiAsync {
 	 * @see RuneList
 	 */
 	public AsyncRequest getDataRuneList(Platform platform) {
-		return getDataRuneList(platform, null, null, (RuneListTags) null);
+		return getDataRuneList(platform, null, null);
 	}
 
 	/**
@@ -995,7 +995,7 @@ public class RiotApiAsync {
 	 * @see SummonerSpell
 	 */
 	public AsyncRequest getDataSummonerSpell(Platform platform, int id) {
-		return getDataSummonerSpell(platform, id, null, null, (SpellTags) null);
+		return getDataSummonerSpell(platform, id, null, null);
 	}
 
 	/**
@@ -1038,7 +1038,7 @@ public class RiotApiAsync {
 	 * @see SummonerSpellList
 	 */
 	public AsyncRequest getDataSummonerSpellList(Platform platform) {
-		return getDataSummonerSpellList(platform, null, null, false, (SpellListTags) null);
+		return getDataSummonerSpellList(platform, null, null, false);
 	}
 
 	/**

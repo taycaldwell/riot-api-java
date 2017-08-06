@@ -568,7 +568,7 @@ public class RiotApi implements Cloneable {
 	 * @see net.rithms.riot.api.endpoints.static_data.dto.Champion
 	 */
 	public net.rithms.riot.api.endpoints.static_data.dto.Champion getDataChampion(Platform platform, int id) throws RiotApiException {
-		return getDataChampion(platform, id, null, null, (ChampionTags) null);
+		return getDataChampion(platform, id, null, null);
 	}
 
 	/**
@@ -615,7 +615,7 @@ public class RiotApi implements Cloneable {
 	 * @see net.rithms.riot.api.endpoints.static_data.dto.ChampionList
 	 */
 	public net.rithms.riot.api.endpoints.static_data.dto.ChampionList getDataChampionList(Platform platform) throws RiotApiException {
-		return getDataChampionList(platform, null, null, false, (ChampionListTags) null);
+		return getDataChampionList(platform, null, null, false);
 	}
 
 	/**
@@ -663,7 +663,7 @@ public class RiotApi implements Cloneable {
 	 * @see Item
 	 */
 	public Item getDataItem(Platform platform, int id) throws RiotApiException {
-		return getDataItem(platform, id, null, null, (ItemTags) null);
+		return getDataItem(platform, id, null, null);
 	}
 
 	/**
@@ -707,7 +707,7 @@ public class RiotApi implements Cloneable {
 	 * @see ItemList
 	 */
 	public ItemList getDataItemList(Platform platform) throws RiotApiException {
-		return getDataItemList(platform, null, null, (ItemListTags) null);
+		return getDataItemList(platform, null, null);
 	}
 
 	/**
@@ -852,7 +852,7 @@ public class RiotApi implements Cloneable {
 	 * @see Mastery
 	 */
 	public Mastery getDataMastery(Platform platform, int id) throws RiotApiException {
-		return getDataMastery(platform, id, null, null, (MasteryTags) null);
+		return getDataMastery(platform, id, null, null);
 	}
 
 	/**
@@ -896,7 +896,7 @@ public class RiotApi implements Cloneable {
 	 * @see MasteryList
 	 */
 	public MasteryList getDataMasteryList(Platform platform) throws RiotApiException {
-		return getDataMasteryList(platform, null, null, (MasteryListTags) null);
+		return getDataMasteryList(platform, null, null);
 	}
 
 	/**
@@ -1000,7 +1000,7 @@ public class RiotApi implements Cloneable {
 	 * @see Rune
 	 */
 	public Rune getDataRune(Platform platform, int id) throws RiotApiException {
-		return getDataRune(platform, id, null, null, (RuneTags) null);
+		return getDataRune(platform, id, null, null);
 	}
 
 	/**
@@ -1044,7 +1044,7 @@ public class RiotApi implements Cloneable {
 	 * @see RuneList
 	 */
 	public RuneList getDataRuneList(Platform platform) throws RiotApiException {
-		return getDataRuneList(platform, null, null, (RuneListTags) null);
+		return getDataRuneList(platform, null, null);
 	}
 
 	/**
@@ -1091,7 +1091,7 @@ public class RiotApi implements Cloneable {
 	 * @see SummonerSpell
 	 */
 	public SummonerSpell getDataSummonerSpell(Platform platform, int id) throws RiotApiException {
-		return getDataSummonerSpell(platform, id, null, null, (SpellTags) null);
+		return getDataSummonerSpell(platform, id, null, null);
 	}
 
 	/**
@@ -1139,7 +1139,7 @@ public class RiotApi implements Cloneable {
 	 * @see SummonerSpellList
 	 */
 	public SummonerSpellList getDataSummonerSpellList(Platform platform) throws RiotApiException {
-		return getDataSummonerSpellList(platform, null, null, false, (SpellListTags) null);
+		return getDataSummonerSpellList(platform, null, null, false);
 	}
 
 	/**
