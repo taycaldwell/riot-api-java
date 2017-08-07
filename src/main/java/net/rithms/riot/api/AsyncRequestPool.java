@@ -85,7 +85,7 @@ class AsyncRequestPool {
 		return queue.size();
 	}
 
-	private void invokeSupervisor() {
+	private synchronized void invokeSupervisor() {
 		if (supervisor == null) {
 			supervisor = new AsyncRequestPoolSupervisor(this);
 			supervisor.start();
