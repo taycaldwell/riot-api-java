@@ -161,7 +161,7 @@ public class Request {
 				is = connection.getErrorStream();
 			}
 			StringBuilder responseBodyBuilder = new StringBuilder();
-			if (responseCode != CODE_SUCCESS_NO_CONTENT) {
+			if (responseCode != CODE_SUCCESS_NO_CONTENT && is != null) {
 				BufferedReader br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
 				String line;
 				while ((line = br.readLine()) != null) {
