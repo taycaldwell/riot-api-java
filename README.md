@@ -66,7 +66,7 @@ Add the project as a dependency:
 <dependency>
     <groupId>com.github.taycaldwell</groupId>
     <artifactId>riot-api-java</artifactId>
-    <version>v4.0.1</version>
+    <version>4.0.1</version>
 </dependency>
 ```
 
