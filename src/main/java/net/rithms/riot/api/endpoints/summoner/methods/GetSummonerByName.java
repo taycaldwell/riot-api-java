@@ -32,7 +32,7 @@ public class GetSummonerByName extends SummonerApiMethod {
 	public GetSummonerByName(ApiConfig config, Platform platform, String summonerName) {
 		super(config);
 		setPlatform(platform);
-		summonerName = RiotApiUtil.normalizeSummonerName(platform, summonerName);
+		summonerName = RiotApiUtil.normalizeSummonerName(summonerName);
 		setReturnType(Summoner.class);
 		try {
 			setUrlBase(platform.getHost() + "/lol/summoner/v3/summoners/by-name/" + URLEncoder.encode(summonerName, "UTF-8"));

@@ -24,7 +24,6 @@ import org.junit.rules.ExpectedException;
 
 import net.rithms.riot.api.RiotApiException;
 import net.rithms.riot.api.endpoints.static_data.constant.ChampionTags;
-import net.rithms.riot.constant.Platform;
 import net.rithms.util.RiotApiUtil;
 
 /**
@@ -39,8 +38,8 @@ public class UtilTest {
 	public void testNormalizeSummonerName() throws RiotApiException {
 		// Valid Usage
 		assertEquals("abc", RiotApiUtil.normalizeSummonerName("A b     C"));
-		// Valid Turkish region-specific special characters
-		assertEquals("rivenbanlamaa", RiotApiUtil.normalizeSummonerName(Platform.TR, "RİVEN BANLAMAA"));
+		// Test fix for special case characters
+		assertEquals("i", RiotApiUtil.normalizeSummonerName("İ"));
 		// NullPointerException
 		thrown.expect(NullPointerException.class);
 		RiotApiUtil.normalizeSummonerName(null);

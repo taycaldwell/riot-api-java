@@ -18,12 +18,10 @@ package net.rithms.util;
 
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
 import net.rithms.riot.api.RiotApi;
-import net.rithms.riot.constant.Platform;
 
 public final class RiotApiUtil {
 
@@ -34,60 +32,26 @@ public final class RiotApiUtil {
 	 * @param summonerName
 	 *            summoner name
 	 * @return Normalized summoner name
-	 */
-	public static String normalizeSummonerName(String summonerName) {
-		return normalizeSummonerName(null, summonerName);
-	}
-
-	/**
-	 * Normalizes and returns a summoner name. Specifically, this casts {@code String summonerName} to lower case and strips any
-	 * whitespaces.
-	 * 
-	 * @param platform
-	 *            platform to validate the summoner name for
-	 * @param summonerName
-	 *            summoner name
-	 * @return Normalized summoner name
 	 * @throws NullPointerException
 	 *             If {@code summonerName} is {@code null}
 	 */
-	public static String normalizeSummonerName(Platform platform, String summonerName) {
+	public static String normalizeSummonerName(String summonerName) {
 		Objects.requireNonNull(summonerName);
-		Locale locale = Locale.ENGLISH;
-		if (platform != null) {
-			// Specific treatment for a few TR-specific special characters
-			if (platform == Platform.TR) {
-				locale = Locale.forLanguageTag("tr");
-			}
-		}
-		return summonerName.toLowerCase(locale).replaceAll("\\s+", "");
+		summonerName = summonerName.replaceAll("\u0130", "i"); // LATIN CAPITAL LETTER I DOT
+		return summonerName.toLowerCase().replaceAll("\\s+", "");
 	}
 
 	/**
 	 * Normalizes and returns an array of summoner names. Specifically, this casts each of {@code String[] summonerNames} to lower case and
 	 * strips any whitespaces.
 	 * 
-	 * @param summonerNames
-	 *            summoner names
-	 * @return Normalized summoner names
-	 */
-	public static String[] normalizeSummonerNames(String... summonerNames) {
-		return normalizeSummonerNames(null, summonerNames);
-	}
-
-	/**
-	 * Normalizes and returns an array of summoner names. Specifically, this casts each of {@code String[] summonerNames} to lower case and
-	 * strips any whitespaces.
-	 * 
-	 * @param platform
-	 *            platform to validate the summoner name for
 	 * @param summonerNames
 	 *            summoner names
 	 * @return Normalized summoner names
 	 * @throws NullPointerException
 	 *             If {@code summonerNames} is {@code null}
 	 */
-	public static String[] normalizeSummonerNames(Platform platform, String... summonerNames) {
+	public static String[] normalizeSummonerNames(String... summonerNames) {
 		Objects.requireNonNull(summonerNames);
 
 		// Java 8
@@ -95,7 +59,7 @@ public final class RiotApiUtil {
 
 		// Java 7
 		for (int i = 0; i < summonerNames.length; i++) {
-			summonerNames[i] = normalizeSummonerName(platform, summonerNames[i]);
+			summonerNames[i] = normalizeSummonerName(summonerNames[i]);
 		}
 		return summonerNames;
 	}
@@ -107,24 +71,10 @@ public final class RiotApiUtil {
 	 * @param summonerNames
 	 *            map with summoner name keys
 	 * @return Normalized map with summoner name keys
-	 */
-	public static <T> Map<String, T> normalizeSummonerNames(Map<String, T> summonerNames) {
-		return normalizeSummonerNames(null, summonerNames);
-	}
-
-	/**
-	 * Normalizes and returns a map with summoner name keys. This casts each of the keys of {@code Map<String, T> map} to lower case and
-	 * strips any whitespaces.
-	 * 
-	 * @param platform
-	 *            platform to validate the summoner name for
-	 * @param summonerNames
-	 *            map with summoner name keys
-	 * @return Normalized map with summoner name keys
 	 * @throws NullPointerException
 	 *             If {@code summonerNames} is {@code null}
 	 */
-	public static <T> Map<String, T> normalizeSummonerNames(Platform platform, Map<String, T> summonerNames) {
+	public static <T> Map<String, T> normalizeSummonerNames(Map<String, T> summonerNames) {
 		Objects.requireNonNull(summonerNames);
 		Map<String, T> map = new HashMap<String, T>(summonerNames);
 
@@ -135,7 +85,7 @@ public final class RiotApiUtil {
 		Iterator<Map.Entry<String, T>> it = map.entrySet().iterator();
 		while (it.hasNext()) {
 			Map.Entry<String, T> pair = (Map.Entry<String, T>) it.next();
-			String normalizedKey = normalizeSummonerName(platform, pair.getKey());
+			String normalizedKey = normalizeSummonerName(pair.getKey());
 			if (!pair.getKey().equals(normalizedKey)) {
 				it.remove();
 				map.put(normalizedKey, pair.getValue());
