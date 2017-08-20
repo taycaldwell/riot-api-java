@@ -183,28 +183,6 @@ public class Match extends Dto implements Serializable {
 		return queueId;
 	}
 
-	/**
-	 * Utility method to check if the game ended early using the {@code /remake} functionality.
-	 * <p>
-	 * Remake games typically don't have a winner. This method basically checks if there is any winner in this game.
-	 * </p>
-	 * 
-	 * @return {@code true} if the game ended via {@code /remake}, {@code false} otherwise
-	 */
-	public boolean isRemakeGame() {
-		if (participants != null) {
-			for (Participant participant : participants) {
-				if (participant.getStats() == null) {
-					continue;
-				}
-				if (participant.getStats().isWin()) {
-					return false;
-				}
-			}
-		}
-		return true;
-	}
-
 	public int getSeasonId() {
 		return seasonId;
 	}
