@@ -25,9 +25,9 @@ import net.rithms.riot.api.endpoints.league.LeagueApiMethod;
 import net.rithms.riot.api.endpoints.league.dto.LeagueList;
 import net.rithms.riot.constant.Platform;
 
-public class GetLeagueBySummonerId extends LeagueApiMethod {
+public class GetLeaguesBySummonerId extends LeagueApiMethod {
 
-	public GetLeagueBySummonerId(ApiConfig config, Platform platform, long summonerId) {
+	public GetLeaguesBySummonerId(ApiConfig config, Platform platform, long summonerId) {
 		super(config);
 		setPlatform(platform);
 		setReturnType(new TypeToken<List<LeagueList>>() {

@@ -30,7 +30,7 @@ import net.rithms.riot.api.endpoints.champion_mastery.methods.GetChampionMastery
 import net.rithms.riot.api.endpoints.league.constant.LeagueQueue;
 import net.rithms.riot.api.endpoints.league.dto.LeagueList;
 import net.rithms.riot.api.endpoints.league.methods.GetChallengerLeagueByQueue;
-import net.rithms.riot.api.endpoints.league.methods.GetLeagueBySummonerId;
+import net.rithms.riot.api.endpoints.league.methods.GetLeaguesBySummonerId;
 import net.rithms.riot.api.endpoints.league.methods.GetLeaguePositionsBySummonerId;
 import net.rithms.riot.api.endpoints.league.methods.GetMasterLeagueByQueue;
 import net.rithms.riot.api.endpoints.lol_status.dto.ShardStatus;
@@ -1075,25 +1075,6 @@ public class RiotApiAsync {
 	}
 
 	/**
-	 * Get leagues in all queues for a given {@code summonerId}.
-	 * 
-	 * @param platform
-	 *            Platform to execute the method call against.
-	 * @param summonerId
-	 *            Summoner ID
-	 * @return List of league lists
-	 * @throws NullPointerException
-	 *             If {@code platform} is {@code null}
-	 * @version 3
-	 * @see LeagueList
-	 */
-	public AsyncRequest getLeagueBySummonerId(Platform platform, long summonerId) {
-		Objects.requireNonNull(platform);
-		ApiMethod method = new GetLeagueBySummonerId(getConfig(), platform, summonerId);
-		return endpointManager.callMethodAsynchronously(method);
-	}
-
-	/**
 	 * Get league positions in all queues for a given {@code summonerId}.
 	 * 
 	 * @param platform
@@ -1109,6 +1090,25 @@ public class RiotApiAsync {
 	public AsyncRequest getLeaguePositionsBySummonerId(Platform platform, long summonerId) {
 		Objects.requireNonNull(platform);
 		ApiMethod method = new GetLeaguePositionsBySummonerId(getConfig(), platform, summonerId);
+		return endpointManager.callMethodAsynchronously(method);
+	}
+
+	/**
+	 * Get leagues in all queues for a given {@code summonerId}.
+	 * 
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param summonerId
+	 *            Summoner ID
+	 * @return List of league lists
+	 * @throws NullPointerException
+	 *             If {@code platform} is {@code null}
+	 * @version 3
+	 * @see LeagueList
+	 */
+	public AsyncRequest getLeaguesBySummonerId(Platform platform, long summonerId) {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetLeaguesBySummonerId(getConfig(), platform, summonerId);
 		return endpointManager.callMethodAsynchronously(method);
 	}
 
