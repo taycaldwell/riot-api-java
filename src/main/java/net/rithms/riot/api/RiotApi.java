@@ -33,8 +33,8 @@ import net.rithms.riot.api.endpoints.league.constant.LeagueQueue;
 import net.rithms.riot.api.endpoints.league.dto.LeagueList;
 import net.rithms.riot.api.endpoints.league.dto.LeaguePosition;
 import net.rithms.riot.api.endpoints.league.methods.GetChallengerLeagueByQueue;
-import net.rithms.riot.api.endpoints.league.methods.GetLeaguesBySummonerId;
 import net.rithms.riot.api.endpoints.league.methods.GetLeaguePositionsBySummonerId;
+import net.rithms.riot.api.endpoints.league.methods.GetLeaguesBySummonerId;
 import net.rithms.riot.api.endpoints.league.methods.GetMasterLeagueByQueue;
 import net.rithms.riot.api.endpoints.lol_status.dto.ShardStatus;
 import net.rithms.riot.api.endpoints.lol_status.methods.GetShardData;
@@ -524,7 +524,10 @@ public class RiotApi implements Cloneable {
 	}
 
 	/**
-	 * Retrieves a champion by its {@code id}.
+	 * Retrieves a champion by {@code id}.
+	 * <p>
+	 * <i>Not all data is returned by default. See the tags parameter for more information.</i>
+	 * </p>
 	 * 
 	 * @param platform
 	 *            Platform to execute the method call against.
@@ -555,7 +558,10 @@ public class RiotApi implements Cloneable {
 	}
 
 	/**
-	 * Retrieves a champion by its {@code id}.
+	 * Retrieves a champion by {@code id}.
+	 * <p>
+	 * <i>Not all data is returned by default. See the tags parameter for more information.</i>
+	 * </p>
 	 * 
 	 * @param platform
 	 *            Platform to execute the method call against.
@@ -573,6 +579,9 @@ public class RiotApi implements Cloneable {
 
 	/**
 	 * Retrieves champion list.
+	 * <p>
+	 * <i>Not all data is returned by default. See the tags parameter for more information.</i>
+	 * </p>
 	 * 
 	 * @param platform
 	 *            Platform to execute the method call against.
@@ -605,6 +614,9 @@ public class RiotApi implements Cloneable {
 
 	/**
 	 * Retrieves champion list.
+	 * <p>
+	 * <i>Not all data is returned by default. See the tags parameter for more information.</i>
+	 * </p>
 	 * 
 	 * @param platform
 	 *            Platform to execute the method call against.
@@ -619,7 +631,10 @@ public class RiotApi implements Cloneable {
 	}
 
 	/**
-	 * Retrieves item by its unique {@code id}.
+	 * Retrieves item by {@code id}.
+	 * <p>
+	 * <i>Not all data is returned by default. See the tags parameter for more information.</i>
+	 * </p>
 	 * 
 	 * @param platform
 	 *            Platform to execute the method call against.
@@ -650,7 +665,10 @@ public class RiotApi implements Cloneable {
 	}
 
 	/**
-	 * Retrieves item by its unique {@code id}.
+	 * Retrieves item by {@code id}.
+	 * <p>
+	 * <i>Not all data is returned by default. See the tags parameter for more information.</i>
+	 * </p>
 	 * 
 	 * @param platform
 	 *            Platform to execute the method call against.
@@ -668,6 +686,9 @@ public class RiotApi implements Cloneable {
 
 	/**
 	 * Retrieves item list.
+	 * <p>
+	 * <i>Not all data is returned by default. See the tags parameter for more information.</i>
+	 * </p>
 	 * 
 	 * @param platform
 	 *            Platform to execute the method call against.
@@ -697,6 +718,9 @@ public class RiotApi implements Cloneable {
 
 	/**
 	 * Retrieves item list.
+	 * <p>
+	 * <i>Not all data is returned by default. See the tags parameter for more information.</i>
+	 * </p>
 	 * 
 	 * @param platform
 	 *            Platform to execute the method call against.
@@ -809,7 +833,10 @@ public class RiotApi implements Cloneable {
 	}
 
 	/**
-	 * Retrieves mastery item by its unique {@code id}.
+	 * Retrieves mastery item by {@code id}.
+	 * <p>
+	 * <i>Not all data is returned by default. See the tags parameter for more information.</i>
+	 * </p>
 	 * 
 	 * @param platform
 	 *            Platform to execute the method call against.
@@ -839,7 +866,10 @@ public class RiotApi implements Cloneable {
 	}
 
 	/**
-	 * Retrieves mastery item by its unique {@code id}.
+	 * Retrieves mastery item by {@code id}.
+	 * <p>
+	 * <i>Not all data is returned by default. See the tags parameter for more information.</i>
+	 * </p>
 	 * 
 	 * @param platform
 	 *            Platform to execute the method call against.
@@ -857,6 +887,9 @@ public class RiotApi implements Cloneable {
 
 	/**
 	 * Retrieves mastery list.
+	 * <p>
+	 * <i>Not all data is returned by default. See the tags parameter for more information.</i>
+	 * </p>
 	 * 
 	 * @param platform
 	 *            Platform to execute the method call against.
@@ -886,6 +919,9 @@ public class RiotApi implements Cloneable {
 
 	/**
 	 * Retrieves mastery list.
+	 * <p>
+	 * <i>Not all data is returned by default. See the tags parameter for more information.</i>
+	 * </p>
 	 * 
 	 * @param platform
 	 *            Platform to execute the method call against.
@@ -957,7 +993,10 @@ public class RiotApi implements Cloneable {
 	}
 
 	/**
-	 * Retrieves rune by its unique {@code id}.
+	 * Retrieves rune by {@code id}.
+	 * <p>
+	 * <i>Not all data is returned by default. See the tags parameter for more information.</i>
+	 * </p>
 	 * 
 	 * @param platform
 	 *            Platform to execute the method call against.
@@ -987,7 +1026,10 @@ public class RiotApi implements Cloneable {
 	}
 
 	/**
-	 * Retrieves rune by its unique {@code id}.
+	 * Retrieves rune by {@code id}.
+	 * <p>
+	 * <i>Not all data is returned by default. See the tags parameter for more information.</i>
+	 * </p>
 	 * 
 	 * @param platform
 	 *            Platform to execute the method call against.
@@ -1005,6 +1047,9 @@ public class RiotApi implements Cloneable {
 
 	/**
 	 * Retrieves rune list.
+	 * <p>
+	 * <i>Not all data is returned by default. See the tags parameter for more information.</i>
+	 * </p>
 	 * 
 	 * @param platform
 	 *            Platform to execute the method call against.
@@ -1034,6 +1079,9 @@ public class RiotApi implements Cloneable {
 
 	/**
 	 * Retrieves rune list.
+	 * <p>
+	 * <i>Not all data is returned by default. See the tags parameter for more information.</i>
+	 * </p>
 	 * 
 	 * @param platform
 	 *            Platform to execute the method call against.
@@ -1048,7 +1096,10 @@ public class RiotApi implements Cloneable {
 	}
 
 	/**
-	 * Retrieves summoner spell by its unique {@code id}.
+	 * Retrieves summoner spell by {@code id}.
+	 * <p>
+	 * <i>Not all data is returned by default. See the tags parameter for more information.</i>
+	 * </p>
 	 * 
 	 * @param platform
 	 *            Platform to execute the method call against.
@@ -1078,7 +1129,10 @@ public class RiotApi implements Cloneable {
 	}
 
 	/**
-	 * Retrieves summoner spell by its unique {@code id}.
+	 * Retrieves summoner spell by {@code id}.
+	 * <p>
+	 * <i>Not all data is returned by default. See the tags parameter for more information.</i>
+	 * </p>
 	 * 
 	 * @param platform
 	 *            Platform to execute the method call against.
@@ -1096,6 +1150,9 @@ public class RiotApi implements Cloneable {
 
 	/**
 	 * Retrieves summoner spell list.
+	 * <p>
+	 * <i>Not all data is returned by default. See the tags parameter for more information.</i>
+	 * </p>
 	 * 
 	 * @param platform
 	 *            Platform to execute the method call against.
@@ -1129,6 +1186,9 @@ public class RiotApi implements Cloneable {
 
 	/**
 	 * Retrieves summoner spell list.
+	 * <p>
+	 * <i>Not all data is returned by default. See the tags parameter for more information.</i>
+	 * </p>
 	 * 
 	 * @param platform
 	 *            Platform to execute the method call against.
