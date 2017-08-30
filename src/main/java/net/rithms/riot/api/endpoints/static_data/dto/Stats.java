@@ -22,6 +22,9 @@ import com.google.gson.annotations.SerializedName;
 
 import net.rithms.riot.api.Dto;
 
+/**
+ * This object contains champion stats data.
+ */
 public class Stats extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 7631639894093703038L;

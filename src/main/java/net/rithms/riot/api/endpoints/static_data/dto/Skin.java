@@ -20,6 +20,9 @@ import java.io.Serializable;
 
 import net.rithms.riot.api.Dto;
 
+/**
+ * This object contains champion skin data.
+ */
 public class Skin extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -8984891033284072910L;

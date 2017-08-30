@@ -20,6 +20,9 @@ import java.io.Serializable;
 
 import net.rithms.riot.api.Dto;
 
+/**
+ * This object contains profile icon details data. 
+ */
 public class ProfileIconDetails extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 3518094705310465723L;

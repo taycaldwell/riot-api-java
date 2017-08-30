@@ -22,6 +22,9 @@ import com.google.gson.annotations.SerializedName;
 
 import net.rithms.riot.api.Dto;
 
+/**
+ * This object contains meta data.
+ */
 public class MetaData extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 8983953859724300000L;

@@ -21,6 +21,9 @@ import java.util.List;
 
 import net.rithms.riot.api.Dto;
 
+/**
+ * This object contains rune data.
+ */
 public class Rune extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -4823668922402235509L;

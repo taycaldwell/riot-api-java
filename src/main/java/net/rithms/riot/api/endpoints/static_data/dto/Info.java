@@ -20,6 +20,9 @@ import java.io.Serializable;
 
 import net.rithms.riot.api.Dto;
 
+/**
+ * This object contains champion information.
+ */
 public class Info extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -671408952920494867L;

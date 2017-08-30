@@ -21,6 +21,9 @@ import java.util.Map;
 
 import net.rithms.riot.api.Dto;
 
+/**
+ * This object contains summoner spell list data. 
+ */
 public class SummonerSpellList extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 3109246145319877891L;

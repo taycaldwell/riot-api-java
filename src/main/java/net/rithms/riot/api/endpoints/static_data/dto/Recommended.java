@@ -21,6 +21,9 @@ import java.util.List;
 
 import net.rithms.riot.api.Dto;
 
+/**
+ * This object contains champion recommended data.
+ */
 public class Recommended extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 8722523053273835114L;

@@ -21,6 +21,9 @@ import java.util.List;
 
 import net.rithms.riot.api.Dto;
 
+/**
+ * This object contains champion level tip data. 
+ */
 public class LevelTip extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -3061786573868823081L;

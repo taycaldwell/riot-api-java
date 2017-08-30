@@ -20,6 +20,9 @@ import java.io.Serializable;
 
 import net.rithms.riot.api.Dto;
 
+/**
+ * This object contains item gold data.
+ */
 public class Gold extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -2996361282729522012L;

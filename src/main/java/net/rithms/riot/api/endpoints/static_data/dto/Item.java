@@ -22,6 +22,9 @@ import java.util.Map;
 
 import net.rithms.riot.api.Dto;
 
+/**
+ * This object contains item data.
+ */
 public class Item extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -2356960824032495693L;

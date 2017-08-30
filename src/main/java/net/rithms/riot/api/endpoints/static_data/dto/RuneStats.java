@@ -22,6 +22,9 @@ import com.google.gson.annotations.SerializedName;
 
 import net.rithms.riot.api.Dto;
 
+/**
+ * This object contains stats for runes.
+ */
 public class RuneStats extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 8756197541522296210L;

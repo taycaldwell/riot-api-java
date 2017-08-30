@@ -20,6 +20,9 @@ import java.io.Serializable;
 
 import net.rithms.riot.api.Dto;
 
+/**
+ * This object contains champion passive data.
+ */
 public class Passive extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 3894157958044991050L;

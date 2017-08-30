@@ -20,6 +20,9 @@ import java.io.Serializable;
 
 import net.rithms.riot.api.Dto;
 
+/**
+ * This object contains image data.
+ */
 public class Image extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 5802273643884377746L;

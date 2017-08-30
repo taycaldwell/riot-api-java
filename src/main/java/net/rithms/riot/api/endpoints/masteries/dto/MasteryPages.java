@@ -21,6 +21,9 @@ import java.util.Set;
 
 import net.rithms.riot.api.Dto;
 
+/**
+ * This object contains masteries information.
+ */
 public class MasteryPages extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 2574314573359467443L;

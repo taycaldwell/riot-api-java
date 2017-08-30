@@ -20,6 +20,9 @@ import java.io.Serializable;
 
 import net.rithms.riot.api.Dto;
 
+/**
+ * This object contains rune slot information.
+ */
 public class RuneSlot extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -8204125507572318573L;

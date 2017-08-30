@@ -22,6 +22,9 @@ import com.google.gson.annotations.SerializedName;
 
 import net.rithms.riot.api.Dto;
 
+/**
+ * This object contains item group data.
+ */
 public class Group extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -4691215871693156751L;

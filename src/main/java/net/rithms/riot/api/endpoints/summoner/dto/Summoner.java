@@ -20,6 +20,9 @@ import java.io.Serializable;
 
 import net.rithms.riot.api.Dto;
 
+/**
+ * represents a summoner
+ */
 public class Summoner extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -8213488199644701555L;

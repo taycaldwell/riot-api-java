@@ -21,6 +21,9 @@ import java.util.List;
 
 import net.rithms.riot.api.Dto;
 
+/**
+ * This object contains spell vars data.
+ */
 public class SpellVars extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -8316487089517907400L;

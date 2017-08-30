@@ -21,6 +21,9 @@ import java.util.Map;
 
 import net.rithms.riot.api.Dto;
 
+/**
+ * This object contains language strings data.
+ */
 public class LanguageStrings extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -5097401216029512928L;

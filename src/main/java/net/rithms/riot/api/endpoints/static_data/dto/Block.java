@@ -21,6 +21,9 @@ import java.util.List;
 
 import net.rithms.riot.api.Dto;
 
+/**
+ * This object contains champion recommended block data.
+ */
 public class Block extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -4041031408263653499L;

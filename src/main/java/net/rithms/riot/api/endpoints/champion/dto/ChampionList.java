@@ -21,6 +21,9 @@ import java.util.List;
 
 import net.rithms.riot.api.Dto;
 
+/**
+ * This object contains a collection of champion information.
+ */
 public class ChampionList extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 987562252588662376L;

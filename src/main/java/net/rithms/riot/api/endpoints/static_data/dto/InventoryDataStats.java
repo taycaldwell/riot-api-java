@@ -22,6 +22,9 @@ import com.google.gson.annotations.SerializedName;
 
 import net.rithms.riot.api.Dto;
 
+/**
+ * This object contains stats for inventory (e.g., runes and items).
+ */
 public class InventoryDataStats extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 6417194857864439349L;

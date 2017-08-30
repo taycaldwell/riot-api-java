@@ -20,6 +20,9 @@ import java.io.Serializable;
 
 import net.rithms.riot.api.Dto;
 
+/**
+ * This object contains champion recommended block item data.
+ */
 public class BlockItem extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 716305113317412182L;

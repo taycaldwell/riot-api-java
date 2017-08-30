@@ -20,6 +20,9 @@ import java.io.Serializable;
 
 import net.rithms.riot.api.Dto;
 
+/**
+ * This object contains single Champion Mastery information for player and champion combination.
+ */
 public class ChampionMastery extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 1980259216579071478L;

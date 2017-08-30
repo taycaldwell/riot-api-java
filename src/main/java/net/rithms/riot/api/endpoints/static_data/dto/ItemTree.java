@@ -21,6 +21,9 @@ import java.util.List;
 
 import net.rithms.riot.api.Dto;
 
+/**
+ * This object contains item tree data.
+ */
 public class ItemTree extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 7245929613325190245L;

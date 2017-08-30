@@ -21,6 +21,9 @@ import java.util.Set;
 
 import net.rithms.riot.api.Dto;
 
+/**
+ * This object contains rune page information.
+ */
 public class RunePage extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 97699628656087959L;
