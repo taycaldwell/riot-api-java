@@ -1423,6 +1423,7 @@ public class RiotApiAsync {
 	 * @version 3
 	 * @see MatchList
 	 */
+	@Deprecated
 	public AsyncRequest getRecentMatchListByAccountId(Platform platform, long accountId) {
 		Objects.requireNonNull(platform);
 		ApiMethod method = new GetRecentMatchListByAccountId(getConfig(), platform, accountId);

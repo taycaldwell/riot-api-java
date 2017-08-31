@@ -21,6 +21,7 @@ import net.rithms.riot.api.endpoints.match.MatchApiMethod;
 import net.rithms.riot.api.endpoints.match.dto.MatchList;
 import net.rithms.riot.constant.Platform;
 
+@Deprecated
 public class GetRecentMatchListByAccountId extends MatchApiMethod {
 
 	public GetRecentMatchListByAccountId(ApiConfig config, Platform platform, long accountId) {

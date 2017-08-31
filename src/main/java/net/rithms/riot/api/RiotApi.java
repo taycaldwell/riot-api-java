@@ -1540,6 +1540,7 @@ public class RiotApi implements Cloneable {
 	 * @version 3
 	 * @see MatchList
 	 */
+	@Deprecated
 	public MatchList getRecentMatchListByAccountId(Platform platform, long accountId) throws RiotApiException {
 		Objects.requireNonNull(platform);
 		ApiMethod method = new GetRecentMatchListByAccountId(getConfig(), platform, accountId);
