@@ -20,11 +20,15 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import net.rithms.riot.api.RiotApi;
 
 public final class RiotApiUtil {
 
+	private static final Pattern SUMMONER_VALIDATOR = Pattern.compile("^[0-9\\p{L} _.]+$");
+	
 	/**
 	 * Normalizes and returns a summoner name. Specifically, this casts {@code String summonerName} to lower case and strips any
 	 * whitespaces.
@@ -146,8 +150,9 @@ public final class RiotApiUtil {
 	 * @return {@code summonerName} if not invalid
 	 */
 	public static String requireValidSummonerName(String summonerName) throws IllegalArgumentException {
-		// TODO This is only filtering out empty Strings right now. Need proper validity check
-		if (summonerName.trim().isEmpty()) {
+		Matcher summonerMatch = SUMMONER_VALIDATOR.matcher(summonerName);
+		
+		if (summonerName.trim().isEmpty() || !summonerMatch.matches()) {
 			throw new IllegalArgumentException("Invalid summoner name \"" + summonerName + "\"");
 		}
 		return summonerName;
