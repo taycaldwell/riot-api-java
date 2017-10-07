@@ -27,7 +27,7 @@ import net.rithms.riot.api.RiotApi;
 
 public final class RiotApiUtil {
 
-	private static final Pattern SUMMONER_VALIDATOR = Pattern.compile("^[0-9\\p{L} _.]+$");
+	private static final Pattern SUMMONER_NAME_VALIDATOR = Pattern.compile("^[0-9\\p{L} _.]+$");
 	
 	/**
 	 * Normalizes and returns a summoner name. Specifically, this casts {@code String summonerName} to lower case and strips any
@@ -150,7 +150,7 @@ public final class RiotApiUtil {
 	 * @return {@code summonerName} if not invalid
 	 */
 	public static String requireValidSummonerName(String summonerName) throws IllegalArgumentException {
-		Matcher summonerMatch = SUMMONER_VALIDATOR.matcher(summonerName);
+		Matcher summonerMatch = SUMMONER_NAME_VALIDATOR.matcher(summonerName);
 		
 		if (summonerName.trim().isEmpty() || !summonerMatch.matches()) {
 			throw new IllegalArgumentException("Invalid summoner name \"" + summonerName + "\"");
