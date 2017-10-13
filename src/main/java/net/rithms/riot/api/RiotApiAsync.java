@@ -30,6 +30,7 @@ import net.rithms.riot.api.endpoints.champion_mastery.methods.GetChampionMastery
 import net.rithms.riot.api.endpoints.league.constant.LeagueQueue;
 import net.rithms.riot.api.endpoints.league.dto.LeagueList;
 import net.rithms.riot.api.endpoints.league.methods.GetChallengerLeagueByQueue;
+import net.rithms.riot.api.endpoints.league.methods.GetLeagueById;
 import net.rithms.riot.api.endpoints.league.methods.GetLeaguePositionsBySummonerId;
 import net.rithms.riot.api.endpoints.league.methods.GetLeaguesBySummonerId;
 import net.rithms.riot.api.endpoints.league.methods.GetMasterLeagueByQueue;
@@ -1135,6 +1136,26 @@ public class RiotApiAsync {
 	}
 
 	/**
+	 * Get league with given ID, including inactive entries.
+	 * 
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param leagueId
+	 *            League ID
+	 * @return League list
+	 * @throws NullPointerException
+	 *             If {@code platform} or {@code leagueId} is {@code null}
+	 * @version 3
+	 * @see LeagueList
+	 */
+	public AsyncRequest getLeagueById(Platform platform, String leagueId) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		Objects.requireNonNull(leagueId);
+		ApiMethod method = new GetLeagueById(getConfig(), platform, leagueId);
+		return endpointManager.callMethodAsynchronously(method);
+	}
+
+	/**
 	 * Get league positions in all queues for a given {@code summonerId}.
 	 * 
 	 * @param platform
@@ -1166,6 +1187,7 @@ public class RiotApiAsync {
 	 * @version 3
 	 * @see LeagueList
 	 */
+	@Deprecated
 	public AsyncRequest getLeaguesBySummonerId(Platform platform, long summonerId) {
 		Objects.requireNonNull(platform);
 		ApiMethod method = new GetLeaguesBySummonerId(getConfig(), platform, summonerId);

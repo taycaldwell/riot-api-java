@@ -26,6 +26,7 @@ public class LeagueList extends Dto implements Serializable {
 	private static final long serialVersionUID = 1878237445691308532L;
 
 	private List<LeagueItem> entries;
+	private String leagueId;
 	private String name;
 	private String queue;
 	private String tier;
@@ -71,6 +72,10 @@ public class LeagueList extends Dto implements Serializable {
 			}
 		}
 		return null;
+	}
+
+	public String getLeagueId() {
+		return leagueId;
 	}
 
 	public String getName() {

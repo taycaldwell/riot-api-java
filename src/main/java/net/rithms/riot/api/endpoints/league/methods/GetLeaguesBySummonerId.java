@@ -25,6 +25,7 @@ import net.rithms.riot.api.endpoints.league.LeagueApiMethod;
 import net.rithms.riot.api.endpoints.league.dto.LeagueList;
 import net.rithms.riot.constant.Platform;
 
+@Deprecated
 public class GetLeaguesBySummonerId extends LeagueApiMethod {
 
 	public GetLeaguesBySummonerId(ApiConfig config, Platform platform, long summonerId) {
