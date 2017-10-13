@@ -68,4 +68,27 @@ public class UtilTest {
 		thrown.expect(NullPointerException.class);
 		RiotApiUtil.joinString(null, (CharSequence[]) null);
 	}
+	
+	@Test
+	public void testRequireValidSummonerName() {
+		// Latin
+		assertEquals("_Fiddlesticks.123", RiotApiUtil.requireValidSummonerName("_Fiddlesticks.123"));
+		// Japanese
+		assertEquals("日本語を話しますか", RiotApiUtil.requireValidSummonerName("日本語を話しますか"));
+		// Korean
+		assertEquals("볼리베어브랜드말자하", RiotApiUtil.requireValidSummonerName("볼리베어브랜드말자하"));
+		// Russian
+		assertEquals("можете ознакомиться", RiotApiUtil.requireValidSummonerName("можете ознакомиться"));
+		// Chinese
+		assertEquals("综合资讯", RiotApiUtil.requireValidSummonerName("综合资讯"));
+		// Arabic
+		assertEquals("أنا لا أتكلم العربية", RiotApiUtil.requireValidSummonerName("أنا لا أتكلم العربية"));
+		
+		thrown.expect(IllegalArgumentException.class);
+		RiotApiUtil.requireValidSummonerName("   ");
+		RiotApiUtil.requireValidSummonerName("Fiddlesticks,123");
+		RiotApiUtil.requireValidSummonerName("Fiddlesticks\f123");
+		RiotApiUtil.requireValidSummonerName("Cho'Gath");
+	}
+	
 }
