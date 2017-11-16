@@ -27,9 +27,9 @@ public class CurrentGameParticipant extends Dto implements Serializable {
 
 	private boolean bot;
 	private int championId;
-	private List<Mastery> masteries;
+	private List<GameCustomizationObject> gameCustomizationObjects;
+	private Perks perks;
 	private int profileIconId;
-	private List<Rune> runes;
 	private int spell1Id;
 	private int spell2Id;
 	private long summonerId;
@@ -40,16 +40,16 @@ public class CurrentGameParticipant extends Dto implements Serializable {
 		return championId;
 	}
 
-	public List<Mastery> getMasteries() {
-		return masteries;
+	public List<GameCustomizationObject> getGameCustomizationObjects() {
+		return gameCustomizationObjects;
+	}
+
+	public Perks getPerks() {
+		return perks;
 	}
 
 	public int getProfileIconId() {
 		return profileIconId;
-	}
-
-	public List<Rune> getRunes() {
-		return runes;
 	}
 
 	public int getSpell1Id() {
