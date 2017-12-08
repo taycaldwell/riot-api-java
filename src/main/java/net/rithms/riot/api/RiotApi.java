@@ -48,7 +48,6 @@ import net.rithms.riot.api.endpoints.match.methods.GetMatch;
 import net.rithms.riot.api.endpoints.match.methods.GetMatchByMatchIdAndTournamentCode;
 import net.rithms.riot.api.endpoints.match.methods.GetMatchIdsByTournamentCode;
 import net.rithms.riot.api.endpoints.match.methods.GetMatchListByAccountId;
-import net.rithms.riot.api.endpoints.match.methods.GetRecentMatchListByAccountId;
 import net.rithms.riot.api.endpoints.match.methods.GetTimelineByMatchId;
 import net.rithms.riot.api.endpoints.runes.dto.RunePages;
 import net.rithms.riot.api.endpoints.runes.methods.GetRunesBySummoner;
@@ -1548,28 +1547,6 @@ public class RiotApi implements Cloneable {
 	 */
 	public MatchList getMatchListByAccountId(Platform platform, long accountId) throws RiotApiException {
 		return getMatchListByAccountId(platform, accountId, null, null, null);
-	}
-
-	/**
-	 * Get recent matchlist for given account ID and platform ID.
-	 *
-	 * @param platform
-	 *            Platform to execute the method call against.
-	 * @param accountId
-	 *            The account ID of the summoner.
-	 * @return A list with matches
-	 * @throws NullPointerException
-	 *             If {@code platform} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
-	 * @version 3
-	 * @see MatchList
-	 */
-	@Deprecated
-	public MatchList getRecentMatchListByAccountId(Platform platform, long accountId) throws RiotApiException {
-		Objects.requireNonNull(platform);
-		ApiMethod method = new GetRecentMatchListByAccountId(getConfig(), platform, accountId);
-		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
