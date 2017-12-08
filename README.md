@@ -155,6 +155,7 @@ The current version of this library supports the following Riot Games API versio
 - **SPECTATOR-V3**
 - **STATIC-DATA-V3**
 - **SUMMONER-V3**
+- **THIRD-PARTY-CODE-V3**
 - **TOURNAMENT-V3**
 - **TOURNAMENT-STUB-V3**
 

@@ -99,6 +99,7 @@ import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
 import net.rithms.riot.api.endpoints.summoner.methods.GetSummoner;
 import net.rithms.riot.api.endpoints.summoner.methods.GetSummonerByAccount;
 import net.rithms.riot.api.endpoints.summoner.methods.GetSummonerByName;
+import net.rithms.riot.api.endpoints.third_party_code.methods.GetThirdPartyCodeBySummoner;
 import net.rithms.riot.api.endpoints.tournament.constant.PickType;
 import net.rithms.riot.api.endpoints.tournament.constant.SpectatorType;
 import net.rithms.riot.api.endpoints.tournament.constant.TournamentMap;
@@ -1675,6 +1676,26 @@ public class RiotApi implements Cloneable {
 		Objects.requireNonNull(summonerName);
 		RiotApiUtil.requireValidSummonerName(summonerName);
 		ApiMethod method = new GetSummonerByName(getConfig(), platform, summonerName);
+		return endpointManager.callMethodAndReturnDto(method);
+	}
+
+	/**
+	 * Get the third party code for a given {@code summonerId}.
+	 *
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param summonerId
+	 *            Summoner ID associated with summoner to retrieve third party code for.
+	 * @return Third party code of the desired summoner
+	 * @throws NullPointerException
+	 *             If {@code platform} is {@code null}
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 * @version 3
+	 */
+	public String getThirdPartyCodeBySummoner(Platform platform, long summonerId) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetThirdPartyCodeBySummoner(getConfig(), platform, summonerId);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 
