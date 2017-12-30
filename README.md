@@ -149,9 +149,7 @@ The current version of this library supports the following Riot Games API versio
 - **CHAMPION-V3**
 - **LEAGUE-V3**
 - **LOL-STATUS-V3**
-- **MASTERIES-V3**
 - **MATCH-V3**
-- **RUNES-V3**
 - **SPECTATOR-V3**
 - **STATIC-DATA-V3**
 - **SUMMONER-V3**

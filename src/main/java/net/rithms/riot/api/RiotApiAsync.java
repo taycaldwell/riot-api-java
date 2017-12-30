@@ -36,8 +36,6 @@ import net.rithms.riot.api.endpoints.league.methods.GetLeaguesBySummonerId;
 import net.rithms.riot.api.endpoints.league.methods.GetMasterLeagueByQueue;
 import net.rithms.riot.api.endpoints.lol_status.dto.ShardStatus;
 import net.rithms.riot.api.endpoints.lol_status.methods.GetShardData;
-import net.rithms.riot.api.endpoints.masteries.dto.MasteryPages;
-import net.rithms.riot.api.endpoints.masteries.methods.GetMasteriesBySummoner;
 import net.rithms.riot.api.endpoints.match.dto.Match;
 import net.rithms.riot.api.endpoints.match.dto.MatchList;
 import net.rithms.riot.api.endpoints.match.dto.MatchTimeline;
@@ -46,8 +44,6 @@ import net.rithms.riot.api.endpoints.match.methods.GetMatchByMatchIdAndTournamen
 import net.rithms.riot.api.endpoints.match.methods.GetMatchIdsByTournamentCode;
 import net.rithms.riot.api.endpoints.match.methods.GetMatchListByAccountId;
 import net.rithms.riot.api.endpoints.match.methods.GetTimelineByMatchId;
-import net.rithms.riot.api.endpoints.runes.dto.RunePages;
-import net.rithms.riot.api.endpoints.runes.methods.GetRunesBySummoner;
 import net.rithms.riot.api.endpoints.spectator.dto.CurrentGameInfo;
 import net.rithms.riot.api.endpoints.spectator.dto.FeaturedGames;
 import net.rithms.riot.api.endpoints.spectator.methods.GetActiveGameBySummoner;
@@ -1249,25 +1245,6 @@ public class RiotApiAsync {
 	}
 
 	/**
-	 * Get mastery pages for a given {@code summonerId}.
-	 *
-	 * @param platform
-	 *            Platform to execute the method call against.
-	 * @param summonerId
-	 *            Summoner ID associated with masteries to retrieve.
-	 * @return Mastery pages of the given summoners
-	 * @throws NullPointerException
-	 *             If {@code platform} is {@code null}
-	 * @version 3
-	 * @see MasteryPages
-	 */
-	public AsyncRequest getMasteriesBySummoner(Platform platform, long summonerId) {
-		Objects.requireNonNull(platform);
-		ApiMethod method = new GetMasteriesBySummoner(getConfig(), platform, summonerId);
-		return endpointManager.callMethodAsynchronously(method);
-	}
-
-	/**
 	 * Get match by {@code matchId}.
 	 *
 	 * @param platform
@@ -1430,25 +1407,6 @@ public class RiotApiAsync {
 	 */
 	public int getQueueSize() {
 		return endpointManager.getQueueSize();
-	}
-
-	/**
-	 * Get rune pages for a given {@code summonerId}.
-	 *
-	 * @param platform
-	 *            Platform to execute the method call against.
-	 * @param summonerId
-	 *            Summoner ID associated with runes to retrieve.
-	 * @return Rune pages of the given summoners
-	 * @throws NullPointerException
-	 *             If {@code platform} is {@code null}
-	 * @version 3
-	 * @see RunePages
-	 */
-	public AsyncRequest getRunesBySummoner(Platform platform, long summonerId) {
-		Objects.requireNonNull(platform);
-		ApiMethod method = new GetRunesBySummoner(getConfig(), platform, summonerId);
-		return endpointManager.callMethodAsynchronously(method);
 	}
 
 	/**

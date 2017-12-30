@@ -24,8 +24,6 @@ import org.junit.Test;
 
 import net.rithms.riot.api.RiotApi;
 import net.rithms.riot.api.RiotApiException;
-import net.rithms.riot.api.endpoints.masteries.dto.MasteryPages;
-import net.rithms.riot.api.endpoints.runes.dto.RunePages;
 import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
 import net.rithms.riot.constant.Platform;
 import net.rithms.test.RiotApiTest;
@@ -40,20 +38,6 @@ public class SummonerTest {
 	@BeforeClass
 	public static void prepareApi() {
 		api = RiotApiTest.getRiotApi();
-	}
-
-	@Test
-	public void testGetMasteryPages() throws RiotApiException {
-		MasteryPages masteryPages = api.getMasteriesBySummoner(Platform.NA, 81439110);
-		assertNotNull(masteryPages);
-		assertEquals(81439110, masteryPages.getSummonerId());
-	}
-
-	@Test
-	public void testGetRunePages() throws RiotApiException {
-		RunePages runePages = api.getRunesBySummoner(Platform.NA, 81439110);
-		assertNotNull(runePages);
-		assertEquals(81439110, runePages.getSummonerId());
 	}
 
 	@Test

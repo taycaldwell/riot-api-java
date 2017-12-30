@@ -25,8 +25,6 @@ import org.junit.Test;
 
 import net.rithms.riot.api.RiotApiAsync;
 import net.rithms.riot.api.RiotApiException;
-import net.rithms.riot.api.endpoints.masteries.dto.MasteryPages;
-import net.rithms.riot.api.endpoints.runes.dto.RunePages;
 import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
 import net.rithms.riot.api.request.AsyncRequest;
 import net.rithms.riot.api.request.RequestListener;
@@ -43,54 +41,6 @@ public class AsyncSummonerTest {
 	@BeforeClass
 	public static void prepareApi() {
 		api = RiotApiTest.getRiotApiAsync();
-	}
-
-	@Test
-	public void testGetMasteryPages() throws RiotApiException, InterruptedException {
-		AsyncRequest reqMasteryPages = api.getMasteriesBySummoner(Platform.NA, 81439110);
-		reqMasteryPages.addListeners(new RequestListener() {
-			@Override
-			public void onRequestFailed(RiotApiException e) {
-				fail();
-			}
-
-			@Override
-			public void onRequestSucceeded(AsyncRequest request) {
-				MasteryPages masteryPages = request.getDto();
-				assertNotNull(masteryPages);
-				assertEquals(81439110, masteryPages.getSummonerId());
-			}
-
-			@Override
-			public void onRequestTimeout(AsyncRequest request) {
-				fail();
-			}
-		});
-		api.awaitAll();
-	}
-
-	@Test
-	public void testGetRunePages() throws RiotApiException, InterruptedException {
-		AsyncRequest reqRunePages = api.getRunesBySummoner(Platform.NA, 81439110);
-		reqRunePages.addListeners(new RequestListener() {
-			@Override
-			public void onRequestFailed(RiotApiException e) {
-				fail();
-			}
-
-			@Override
-			public void onRequestSucceeded(AsyncRequest request) {
-				RunePages runePages = request.getDto();
-				assertNotNull(runePages);
-				assertEquals(81439110, runePages.getSummonerId());
-			}
-
-			@Override
-			public void onRequestTimeout(AsyncRequest request) {
-				fail();
-			}
-		});
-		api.awaitAll();
 	}
 
 	@Test
