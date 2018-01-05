@@ -35,7 +35,6 @@ import net.rithms.riot.api.endpoints.league.dto.LeaguePosition;
 import net.rithms.riot.api.endpoints.league.methods.GetChallengerLeagueByQueue;
 import net.rithms.riot.api.endpoints.league.methods.GetLeagueById;
 import net.rithms.riot.api.endpoints.league.methods.GetLeaguePositionsBySummonerId;
-import net.rithms.riot.api.endpoints.league.methods.GetLeaguesBySummonerId;
 import net.rithms.riot.api.endpoints.league.methods.GetMasterLeagueByQueue;
 import net.rithms.riot.api.endpoints.lol_status.dto.ShardStatus;
 import net.rithms.riot.api.endpoints.lol_status.methods.GetShardData;
@@ -1276,28 +1275,6 @@ public class RiotApi implements Cloneable {
 	public Set<LeaguePosition> getLeaguePositionsBySummonerId(Platform platform, long summonerId) throws RiotApiException {
 		Objects.requireNonNull(platform);
 		ApiMethod method = new GetLeaguePositionsBySummonerId(getConfig(), platform, summonerId);
-		return endpointManager.callMethodAndReturnDto(method);
-	}
-
-	/**
-	 * Get leagues in all queues for a given {@code summonerId}.
-	 * 
-	 * @param platform
-	 *            Platform to execute the method call against.
-	 * @param summonerId
-	 *            Summoner ID
-	 * @return List of league lists
-	 * @throws NullPointerException
-	 *             If {@code platform} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
-	 * @version 3
-	 * @see LeagueList
-	 */
-	@Deprecated
-	public List<LeagueList> getLeaguesBySummonerId(Platform platform, long summonerId) throws RiotApiException {
-		Objects.requireNonNull(platform);
-		ApiMethod method = new GetLeaguesBySummonerId(getConfig(), platform, summonerId);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 
