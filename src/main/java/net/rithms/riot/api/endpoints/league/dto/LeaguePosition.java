@@ -27,6 +27,7 @@ public class LeaguePosition extends Dto implements Serializable {
 	private boolean freshBlood;
 	private boolean hotStreak;
 	private boolean inactive;
+	private String leagueId;
 	private String leagueName;
 	private int leaguePoints;
 	private int losses;
@@ -38,6 +39,10 @@ public class LeaguePosition extends Dto implements Serializable {
 	private String tier;
 	private boolean veteran;
 	private int wins;
+
+	public String getLeagueId() {
+		return leagueId;
+	}
 
 	public int getLeaguePoints() {
 		return leaguePoints;
