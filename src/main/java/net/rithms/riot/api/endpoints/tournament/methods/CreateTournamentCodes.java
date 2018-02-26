@@ -57,9 +57,7 @@ public class CreateTournamentCodes extends TournamentApiMethod {
 			body.put("metaData", metaData);
 		}
 		if (allowedSummonerIds != null && allowedSummonerIds.length > 0) {
-			HashMap<String, Object> allowedSummonerIdsMap = new HashMap<String, Object>();
-			allowedSummonerIdsMap.put("participants", allowedSummonerIds);
-			body.put("allowedSummonerIds", allowedSummonerIdsMap);
+			body.put("allowedSummonerIds", allowedSummonerIds);
 		}
 		buildJsonBody(body);
 	}
