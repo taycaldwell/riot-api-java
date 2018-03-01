@@ -88,6 +88,7 @@ import net.rithms.riot.api.endpoints.static_data.methods.GetDataRune;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataRuneList;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataSummonerSpell;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataSummonerSpellList;
+import net.rithms.riot.api.endpoints.static_data.methods.GetDataTarballLinks;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataVersions;
 import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
 import net.rithms.riot.api.endpoints.summoner.methods.GetSummoner;
@@ -1199,19 +1200,54 @@ public class RiotApi implements Cloneable {
 	}
 
 	/**
-	 * Retrieve version data.
+	 * Retrieves full tarball link.
 	 * 
 	 * @param platform
 	 *            Platform to execute the method call against.
-	 * @return A list with versions
+	 * @param version
+	 *            Patch version for returned data. If not specified, the latest version is used. List of valid versions can be obtained from
+	 *            {@link #getDataVersions()}.
+	 * @return Tarball link
 	 * @throws NullPointerException
 	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
 	 * @version 3
 	 */
-	public List<String> getDataVersions(Platform platform) throws RiotApiException {
+	public String getDataTarballLinks(Platform platform, String version) throws RiotApiException {
 		Objects.requireNonNull(platform);
+		ApiMethod method = new GetDataTarballLinks(getConfig(), platform, version);
+		return endpointManager.callMethodAndReturnDto(method);
+	}
+
+	/**
+	 * Retrieves full tarball link.
+	 * 
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @return Tarball link
+	 * @throws NullPointerException
+	 *             If {@code platform} is {@code null}
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 * @version 3
+	 */
+	public String getDataTarballLinks(Platform platform) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		return getDataTarballLinks(platform, null);
+	}
+
+	/**
+	 * Retrieve version data.
+	 * 
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @return A list with versions
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 * @version 3
+	 */
+	public List<String> getDataVersions(Platform platform) throws RiotApiException {
 		ApiMethod method = new GetDataVersions(getConfig(), platform);
 		return endpointManager.callMethodAndReturnDto(method);
 	}

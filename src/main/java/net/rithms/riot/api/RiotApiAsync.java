@@ -85,6 +85,7 @@ import net.rithms.riot.api.endpoints.static_data.methods.GetDataRune;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataRuneList;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataSummonerSpell;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataSummonerSpellList;
+import net.rithms.riot.api.endpoints.static_data.methods.GetDataTarballLinks;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataVersions;
 import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
 import net.rithms.riot.api.endpoints.summoner.methods.GetSummoner;
@@ -1095,6 +1096,40 @@ public class RiotApiAsync {
 	 */
 	public AsyncRequest getDataSummonerSpellList(Platform platform) {
 		return getDataSummonerSpellList(platform, null, null, false);
+	}
+
+	/**
+	 * Retrieves full tarball link.
+	 * 
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param version
+	 *            Patch version for returned data. If not specified, the latest version is used. List of valid versions can be obtained from
+	 *            {@link #getDataVersions()}.
+	 * @return Tarball link
+	 * @throws NullPointerException
+	 *             If {@code platform} is {@code null}
+	 * @version 3
+	 */
+	public AsyncRequest getDataTarballLinks(Platform platform, String version) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetDataTarballLinks(getConfig(), platform, version);
+		return endpointManager.callMethodAsynchronously(method);
+	}
+
+	/**
+	 * Retrieves full tarball link.
+	 * 
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @return Tarball link
+	 * @throws NullPointerException
+	 *             If {@code platform} is {@code null}
+	 * @version 3
+	 */
+	public AsyncRequest getDataTarballLinks(Platform platform) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		return getDataTarballLinks(platform, null);
 	}
 
 	/**
