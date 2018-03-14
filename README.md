@@ -100,7 +100,7 @@ public class SummonerExample {
 }
 ```
 
-It is important to be aware of your personal rate limit. Any method call from the RiotAPI is a request that counts towards your rate limit, except any requests regarding static data. The below code makes 2 requests; one request for a summoner, and another for the match list of a summoner.
+It is important to be aware of your personal rate limit. Any method call from the RiotAPI is a request that counts towards your rate limit. The below code makes 2 requests; one request for a summoner, and another for the match list of a summoner.
 
 ```java
 import net.rithms.riot.api.ApiConfig;
