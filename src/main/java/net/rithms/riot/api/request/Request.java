@@ -172,7 +172,11 @@ public class Request {
 
 			// Handle error (except rate limit)
 			if (responseCode >= 300 && responseCode != CODE_ERROR_RATE_LIMITED) {
-				RiotApiError errorDto = new Gson().fromJson(responseBodyBuilder.toString(), RiotApiError.class);
+				RiotApiError errorDto = null;
+				try {
+					errorDto = new Gson().fromJson(responseBodyBuilder.toString(), RiotApiError.class);
+				} catch (JsonSyntaxException e) {
+				}
 				throw new RiotApiException(responseCode, errorDto);
 			}
 			setResponse(new RequestResponse(connection.getResponseCode(), responseBodyBuilder.toString(), connection.getHeaderFields()));

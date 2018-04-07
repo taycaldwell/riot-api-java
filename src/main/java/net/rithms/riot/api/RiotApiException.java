@@ -101,6 +101,9 @@ public class RiotApiException extends Exception {
 
 	/**
 	 * Gets the error DTO as sent by the Riot Api
+	 * <p>
+	 * Be aware that the errorDto can be {@code null}, if no valid error response was received
+	 * </p>
 	 * 
 	 * @return Error DTO
 	 * @see RiotApiError
