@@ -29,10 +29,10 @@ import net.rithms.test.RiotApiTest;
  * <p>
  * For these tests to work, you need to insert your api key in {@link RiotApiTest}.
  * </p>
- * 
+ *
  * @see RiotApi
- */
+        */
 @RunWith(Suite.class)
-@SuiteClasses({ SummonerTest.class })
+@SuiteClasses({ SummonerTest.class, ReforgedRuneTest.class, ReforgedRunePathTest.class })
 public class AllSyncTests {
 }
