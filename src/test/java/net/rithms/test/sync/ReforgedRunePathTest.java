@@ -26,5 +26,13 @@ public class ReforgedRunePathTest {
         assertNotNull(reforgedRunePath);
         assertEquals("Sorcery", reforgedRunePath.getName());
     }
+
+    @Test
+    public void testgetReforgedRunePaths() throws RiotApiException {
+        ReforgedRunePath[] reforgedRunePaths = api.getDataReforgedRunePathList(Platform.EUW);
+        assertNotNull(reforgedRunePaths);
+        assertEquals("Precision", reforgedRunePaths[2].getName());
+
+    }
 }
 
