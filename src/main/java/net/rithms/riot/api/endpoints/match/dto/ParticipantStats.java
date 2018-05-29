@@ -97,6 +97,46 @@ public class ParticipantStats extends Dto implements Serializable {
 	private int wardsPlaced;
 	private boolean win;
 
+	/*
+	 * Rune Reforged fields
+	 */
+	private int perk0;
+	private int perk1;
+	private int perk2;
+	private int perk3;
+	private int perk4;
+	private int perk5;
+	private long perk0Var1;
+	private long perk0Var2;
+	private long perk0Var3;
+	private long perk1Var1;
+	private long perk1Var2;
+	private long perk1Var3;
+	private long perk2Var1;
+	private long perk2Var2;
+	private long perk2Var3;
+	private long perk3Var1;
+	private long perk3Var2;
+	private long perk3Var3;
+	private long perk4Var1;
+	private long perk4Var2;
+	private long perk4Var3;
+	private long perk5Var1;
+	private long perk5Var2;
+	private long perk5Var3;
+	private long playerScore0;
+	private long playerScore1;
+	private long playerScore2;
+	private long playerScore3;
+	private long playerScore4;
+	private long playerScore5;
+	private long playerScore6;
+	private long playerScore7;
+	private long playerScore8;
+	private long playerScore9;
+	private int perkPrimaryStyle;
+	private int perkSubStyle;
+
 	public int getAltarsCaptured() {
 		return altarsCaptured;
 	}
@@ -383,5 +423,149 @@ public class ParticipantStats extends Dto implements Serializable {
 
 	public boolean isWin() {
 		return win;
+	}
+
+	public int getPerk0() {
+		return perk0;
+	}
+
+	public int getPerk1() {
+		return perk1;
+	}
+
+	public int getPerk2() {
+		return perk2;
+	}
+
+	public int getPerk3() {
+		return perk3;
+	}
+
+	public int getPerk4() {
+		return perk4;
+	}
+
+	public int getPerk5() {
+		return perk5;
+	}
+
+	public long getPerk0Var1() {
+		return perk0Var1;
+	}
+
+	public long getPerk0Var2() {
+		return perk0Var2;
+	}
+
+	public long getPerk0Var3() {
+		return perk0Var3;
+	}
+
+	public long getPerk1Var1() {
+		return perk1Var1;
+	}
+
+	public long getPerk1Var2() {
+		return perk1Var2;
+	}
+
+	public long getPerk1Var3() {
+		return perk1Var3;
+	}
+
+	public long getPerk2Var1() {
+		return perk2Var1;
+	}
+
+	public long getPerk2Var2() {
+		return perk2Var2;
+	}
+
+	public long getPerk2Var3() {
+		return perk2Var3;
+	}
+
+	public long getPerk3Var1() {
+		return perk3Var1;
+	}
+
+	public long getPerk3Var2() {
+		return perk3Var2;
+	}
+
+	public long getPerk3Var3() {
+		return perk3Var3;
+	}
+
+	public long getPerk4Var1() {
+		return perk4Var1;
+	}
+
+	public long getPerk4Var2() {
+		return perk4Var2;
+	}
+
+	public long getPerk4Var3() {
+		return perk4Var3;
+	}
+
+	public long getPerk5Var1() {
+		return perk5Var1;
+	}
+
+	public long getPerk5Var2() {
+		return perk5Var2;
+	}
+
+	public long getPerk5Var3() {
+		return perk5Var3;
+	}
+
+	public long getPlayerScore0() {
+		return playerScore0;
+	}
+
+	public long getPlayerScore1() {
+		return playerScore1;
+	}
+
+	public long getPlayerScore2() {
+		return playerScore2;
+	}
+
+	public long getPlayerScore3() {
+		return playerScore3;
+	}
+
+	public long getPlayerScore4() {
+		return playerScore4;
+	}
+
+	public long getPlayerScore5() {
+		return playerScore5;
+	}
+
+	public long getPlayerScore6() {
+		return playerScore6;
+	}
+
+	public long getPlayerScore7() {
+		return playerScore7;
+	}
+
+	public long getPlayerScore8() {
+		return playerScore8;
+	}
+
+	public long getPlayerScore9() {
+		return playerScore9;
+	}
+
+	public int getPerkPrimaryStyle() {
+		return perkPrimaryStyle;
+	}
+
+	public int getPerkSubStyle() {
+		return perkSubStyle;
 	}
 }
