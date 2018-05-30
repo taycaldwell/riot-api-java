@@ -2,7 +2,6 @@ package net.rithms.test.sync;
 
 import net.rithms.riot.api.RiotApi;
 import net.rithms.riot.api.RiotApiException;
-import net.rithms.riot.api.endpoints.static_data.dto.ReforgedRune;
 import net.rithms.riot.api.endpoints.static_data.dto.ReforgedRunePath;
 import net.rithms.riot.constant.Platform;
 import net.rithms.test.RiotApiTest;
@@ -21,14 +20,14 @@ public class ReforgedRunePathTest {
     }
 
     @Test
-    public void testgetReforgedRunePath() throws RiotApiException {
+    public void testGetReforgedRunePath() throws RiotApiException {
         ReforgedRunePath reforgedRunePath = api.getDataReforgedRunePath(Platform.EUW, 8200);
         assertNotNull(reforgedRunePath);
         assertEquals("Sorcery", reforgedRunePath.getName());
     }
 
     @Test
-    public void testgetReforgedRunePaths() throws RiotApiException {
+    public void testGetReforgedRunePaths() throws RiotApiException {
         ReforgedRunePath[] reforgedRunePaths = api.getDataReforgedRunePathList(Platform.EUW);
         assertNotNull(reforgedRunePaths);
         assertEquals("Precision", reforgedRunePaths[2].getName());

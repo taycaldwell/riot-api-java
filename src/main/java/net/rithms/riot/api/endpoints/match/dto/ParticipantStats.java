@@ -96,10 +96,6 @@ public class ParticipantStats extends Dto implements Serializable {
 	private int wardsKilled;
 	private int wardsPlaced;
 	private boolean win;
-
-	/*
-	 * Rune Reforged fields
-	 */
 	private int perk0;
 	private int perk1;
 	private int perk2;

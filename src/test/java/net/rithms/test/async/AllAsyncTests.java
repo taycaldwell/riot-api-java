@@ -33,6 +33,6 @@ import net.rithms.test.RiotApiTest;
  * @see RiotApiAsync
  */
 @RunWith(Suite.class)
-@SuiteClasses({ AsyncSummonerTest.class })
+@SuiteClasses({ AsyncSummonerTest.class, AsyncReforgedRuneTest.class, AsyncReforgedRunePathTest.class })
 public class AllAsyncTests {
 }

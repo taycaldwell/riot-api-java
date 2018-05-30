@@ -21,9 +21,18 @@ public class ReforgedRuneTest {
     }
 
     @Test
-    public void testgetReforgedRune() throws RiotApiException {
+    public void testGetReforgedRune() throws RiotApiException {
         ReforgedRune reforgedRune = api.getDataReforgedRune(Platform.EUW, 8014);
         assertNotNull(reforgedRune);
         assertEquals("Coup de Grace", reforgedRune.getName());
+    }
+
+
+    @Test
+    public void testGetReforgedRunes() throws RiotApiException {
+        ReforgedRune[] reforgedRunes = api.getDataReforgedRuneList(Platform.EUW);
+        assertNotNull(reforgedRunes);
+        assertEquals("Coup de Grace", reforgedRunes[6].getName());
+
     }
 }
