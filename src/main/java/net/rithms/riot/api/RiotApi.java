@@ -69,6 +69,8 @@ import net.rithms.riot.api.endpoints.static_data.dto.Mastery;
 import net.rithms.riot.api.endpoints.static_data.dto.MasteryList;
 import net.rithms.riot.api.endpoints.static_data.dto.ProfileIconData;
 import net.rithms.riot.api.endpoints.static_data.dto.Realm;
+import net.rithms.riot.api.endpoints.static_data.dto.ReforgedRune;
+import net.rithms.riot.api.endpoints.static_data.dto.ReforgedRunePath;
 import net.rithms.riot.api.endpoints.static_data.dto.Rune;
 import net.rithms.riot.api.endpoints.static_data.dto.RuneList;
 import net.rithms.riot.api.endpoints.static_data.dto.SummonerSpell;
@@ -84,6 +86,10 @@ import net.rithms.riot.api.endpoints.static_data.methods.GetDataMastery;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataMasteryList;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataProfileIcons;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataRealm;
+import net.rithms.riot.api.endpoints.static_data.methods.GetDataReforgedRune;
+import net.rithms.riot.api.endpoints.static_data.methods.GetDataReforgedRuneList;
+import net.rithms.riot.api.endpoints.static_data.methods.GetDataReforgedRunePath;
+import net.rithms.riot.api.endpoints.static_data.methods.GetDataReforgedRunePathList;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataRune;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataRuneList;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataSummonerSpell;
@@ -990,6 +996,174 @@ public class RiotApi implements Cloneable {
 	}
 
 	/**
+	 * Retrieves reforged rune by {@code id}.
+	 *
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param id
+	 *            Reforged rune ID
+	 * @param locale
+	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
+	 *            used.
+	 * @param version
+	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
+	 *            can be obtained from the {@link #getDataVersions()} method.
+	 * @return A single reforged rune
+	 * @throws NullPointerException
+	 *             If {@code platform} is {@code null}
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 * @version 3
+	 * @see ReforgedRune
+	 */
+	public ReforgedRune getDataReforgedRune(Platform platform, int id, Locale locale, String version) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetDataReforgedRune(getConfig(), platform, id, locale, version);
+		return endpointManager.callMethodAndReturnDto(method);
+	}
+
+	/**
+	 * Retrieves reforged rune by {@code id}.
+	 *
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param id
+	 *            Reforged rune ID
+	 * @return A single reforged rune
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 * @version 3
+	 * @see ReforgedRune
+	 */
+	public ReforgedRune getDataReforgedRune(Platform platform, int id) throws RiotApiException {
+		return getDataReforgedRune(platform, id, null, null);
+	}
+
+	/**
+	 * Retrieves reforged rune array.
+	 *
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param locale
+	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
+	 *            used.
+	 * @param version
+	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
+	 *            can be obtained from the {@link #getDataVersions()} method.
+	 * @return An array of reforged runes
+	 * @throws NullPointerException
+	 *             If {@code platform} is {@code null}
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 * @version 3
+	 * @see ReforgedRune
+	 */
+	public ReforgedRune[] getDataReforgedRuneList(Platform platform, Locale locale, String version) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetDataReforgedRuneList(getConfig(), platform, locale, version);
+		return endpointManager.callMethodAndReturnDto(method);
+	}
+
+	/**
+	 * Retrieves reforged rune array.
+	 *
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @return An array of reforged runes
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 * @version 3
+	 * @see ReforgedRune
+	 */
+	public ReforgedRune[] getDataReforgedRuneList(Platform platform) throws RiotApiException {
+		return getDataReforgedRuneList(platform, null, null);
+	}
+
+	/**
+	 * Retrieves reforged rune path by {@code id}.
+	 *
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param id
+	 *            Reforged rune path ID
+	 * @param locale
+	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
+	 *            used.
+	 * @param version
+	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
+	 *            can be obtained from the {@link #getDataVersions()} method.
+	 * @return A single reforged rune path
+	 * @throws NullPointerException
+	 *             If {@code platform} is {@code null}
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 * @version 3
+	 * @see ReforgedRunePath
+	 */
+	public ReforgedRunePath getDataReforgedRunePath(Platform platform, int id, Locale locale, String version) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetDataReforgedRunePath(getConfig(), platform, id, locale, version);
+		return endpointManager.callMethodAndReturnDto(method);
+	}
+
+	/**
+	 * Retrieves reforged rune path by {@code id}.
+	 *
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param id
+	 *            Reforged rune path ID
+	 * @return A single reforged rune path
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 * @version 3
+	 * @see ReforgedRunePath
+	 */
+	public ReforgedRunePath getDataReforgedRunePath(Platform platform, int id) throws RiotApiException {
+		return getDataReforgedRunePath(platform, id, null, null);
+	}
+
+	/**
+	 * Retrieves reforged rune path array.
+	 *
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param locale
+	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
+	 *            used.
+	 * @param version
+	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
+	 *            can be obtained from the {@link #getDataVersions()} method.
+	 * @return An array of reforged runes path
+	 * @throws NullPointerException
+	 *             If {@code platform} is {@code null}
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 * @version 3
+	 * @see ReforgedRunePath
+	 */
+	public ReforgedRunePath[] getDataReforgedRunePathList(Platform platform, Locale locale, String version) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetDataReforgedRunePathList(getConfig(), platform, locale, version);
+		return endpointManager.callMethodAndReturnDto(method);
+	}
+
+	/**
+	 * Retrieves reforged rune path array.
+	 *
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @return An array of reforged runes path
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 * @version 3
+	 * @see ReforgedRunePath
+	 */
+	public ReforgedRunePath[] getDataReforgedRunePathList(Platform platform) throws RiotApiException {
+		return getDataReforgedRunePathList(platform, null, null);
+	}
+
+	/**
 	 * Retrieves rune by {@code id}.
 	 * <p>
 	 * <i>Not all data is returned by default. See the tags parameter for more information.</i>
@@ -1047,7 +1221,7 @@ public class RiotApi implements Cloneable {
 	 * <p>
 	 * <i>Not all data is returned by default. See the tags parameter for more information.</i>
 	 * </p>
-	 * 
+	 *
 	 * @param platform
 	 *            Platform to execute the method call against.
 	 * @param locale

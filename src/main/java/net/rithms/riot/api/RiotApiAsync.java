@@ -66,6 +66,8 @@ import net.rithms.riot.api.endpoints.static_data.dto.Mastery;
 import net.rithms.riot.api.endpoints.static_data.dto.MasteryList;
 import net.rithms.riot.api.endpoints.static_data.dto.ProfileIconData;
 import net.rithms.riot.api.endpoints.static_data.dto.Realm;
+import net.rithms.riot.api.endpoints.static_data.dto.ReforgedRune;
+import net.rithms.riot.api.endpoints.static_data.dto.ReforgedRunePath;
 import net.rithms.riot.api.endpoints.static_data.dto.Rune;
 import net.rithms.riot.api.endpoints.static_data.dto.RuneList;
 import net.rithms.riot.api.endpoints.static_data.dto.SummonerSpell;
@@ -81,6 +83,10 @@ import net.rithms.riot.api.endpoints.static_data.methods.GetDataMastery;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataMasteryList;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataProfileIcons;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataRealm;
+import net.rithms.riot.api.endpoints.static_data.methods.GetDataReforgedRune;
+import net.rithms.riot.api.endpoints.static_data.methods.GetDataReforgedRuneList;
+import net.rithms.riot.api.endpoints.static_data.methods.GetDataReforgedRunePath;
+import net.rithms.riot.api.endpoints.static_data.methods.GetDataReforgedRunePathList;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataRune;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataRuneList;
 import net.rithms.riot.api.endpoints.static_data.methods.GetDataSummonerSpell;
@@ -903,6 +909,158 @@ public class RiotApiAsync {
 		Objects.requireNonNull(platform);
 		ApiMethod method = new GetDataRealm(getConfig(), platform);
 		return endpointManager.callMethodAsynchronously(method);
+	}
+
+	/**
+	 * Retrieves reforged rune by {@code id} asynchronously.
+	 *
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param id
+	 *            Reforged rune ID
+	 * @param locale
+	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
+	 *            used.
+	 * @param version
+	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
+	 *            can be obtained from the {@link #getDataVersions()} method.
+	 * @return A single reforged rune
+	 * @throws NullPointerException
+	 *             If {@code platform} is {@code null}
+	 * @version 3
+	 * @see ReforgedRune
+	 */
+	public AsyncRequest getDataReforgedRune(Platform platform, int id, Locale locale, String version) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetDataReforgedRune(getConfig(), platform, id, locale, version);
+		return endpointManager.callMethodAsynchronously(method);
+	}
+
+	/**
+	 * Retrieves reforged rune by {@code id} asynchronously.
+	 *
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param id
+	 *            Reforged rune ID
+	 * @return A single reforged rune
+	 * @version 3
+	 * @see ReforgedRune
+	 */
+	public AsyncRequest getDataReforgedRune(Platform platform, int id) throws RiotApiException {
+		return getDataReforgedRune(platform, id, null, null);
+	}
+
+	/**
+	 * Retrieves reforged rune array asynchronously.
+	 *
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param locale
+	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
+	 *            used.
+	 * @param version
+	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
+	 *            can be obtained from the {@link #getDataVersions()} method.
+	 * @return An array of reforged runes
+	 * @throws NullPointerException
+	 *             If {@code platform} is {@code null}
+	 * @version 3
+	 * @see ReforgedRune
+	 */
+	public AsyncRequest getDataReforgedRuneList(Platform platform, Locale locale, String version) {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetDataReforgedRuneList(getConfig(), platform, locale, version);
+		return endpointManager.callMethodAsynchronously(method);
+	}
+
+	/**
+	 * Retrieves reforged rune array asynchronously.
+	 *
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @return An array of reforged runes
+	 * @version 3
+	 * @see ReforgedRune
+	 */
+	public AsyncRequest getDataReforgedRuneList(Platform platform) {
+		return getDataReforgedRuneList(platform, null, null);
+	}
+
+	/**
+	 * Retrieves reforged rune path by {@code id} asynchronously.
+	 *
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param id
+	 *            Reforged rune path ID
+	 * @param locale
+	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
+	 *            used.
+	 * @param version
+	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
+	 *            can be obtained from the {@link #getDataVersions()} method.
+	 * @return A single reforged rune path
+	 * @throws NullPointerException
+	 *             If {@code platform} is {@code null}
+	 * @version 3
+	 * @see ReforgedRunePath
+	 */
+	public AsyncRequest getDataReforgedRunePath(Platform platform, int id, Locale locale, String version) {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetDataReforgedRunePath(getConfig(), platform, id, locale, version);
+		return endpointManager.callMethodAsynchronously(method);
+	}
+
+	/**
+	 * Retrieves reforged rune path by {@code id} asynchronously.
+	 *
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param id
+	 *            Reforged rune path ID
+	 * @return A single reforged rune path
+	 * @version 3
+	 * @see ReforgedRunePath
+	 */
+	public AsyncRequest getDataReforgedRunePath(Platform platform, int id) {
+		return getDataReforgedRunePath(platform, id, null, null);
+	}
+
+	/**
+	 * Retrieves reforged rune path array asynchronously.
+	 *
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param locale
+	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}). If not specified, the default locale for the region is
+	 *            used.
+	 * @param version
+	 *            Data dragon version for returned data. If not specified, the latest version for the region is used. List of valid versions
+	 *            can be obtained from the {@link #getDataVersions()} method.
+	 * @return An array of reforged runes path
+	 * @throws NullPointerException
+	 *             If {@code platform} is {@code null}
+	 * @version 3
+	 * @see ReforgedRunePath
+	 */
+	public AsyncRequest getDataReforgedRunePathList(Platform platform, Locale locale, String version) {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetDataReforgedRunePathList(getConfig(), platform, locale, version);
+		return endpointManager.callMethodAsynchronously(method);
+	}
+
+	/**
+	 * Retrieves reforged rune path array asynchronously.
+	 *
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @return An array of reforged runes path
+	 * @version 3
+	 * @see ReforgedRunePath
+	 */
+	public AsyncRequest getDataReforgedRunePathList(Platform platform) {
+		return getDataReforgedRunePathList(platform, null, null);
 	}
 
 	/**
