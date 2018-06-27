@@ -133,7 +133,7 @@ import net.rithms.util.RiotApiUtil;
  * To fire asynchronous api calls, you need an instance of {@link RiotApiAsync}, which you can get by calling {@link #getAsyncApi()}.
  * </p>
  *
- * @version 4.0.1
+ * @version 4.1.0
  * @author Taylor Caldwell
  * @author Daniel 'Linnun' Figge
  * @see ApiConfig
