@@ -176,6 +176,7 @@ public class Request {
 				try {
 					errorDto = new Gson().fromJson(responseBodyBuilder.toString(), RiotApiError.class);
 				} catch (JsonSyntaxException e) {
+					RiotApi.log.warning("[" + object + "] Request > JsonSyntaxException: " + e.getMessage());
 				}
 				throw new RiotApiException(responseCode, errorDto);
 			}
@@ -261,6 +262,8 @@ public class Request {
 	 * @return The object returned by the api call
 	 * @throws IllegalStateException
 	 *             If this request did not complete yet or did not succeed
+	 * @throws NullPointerException
+	 *             If this request is not properly implemented to have a dto to return
 	 * @throws RiotApiException
 	 *             If parsing the Riot Api's response fails
 	 */
@@ -278,8 +281,10 @@ public class Request {
 			return null;
 		}
 		if (type == null) {
-			throw new NullPointerException("The ApiMethod \"" + object
-					+ "\" has not set a dtoType. If this method is supposed to return something and you encounter this issue, please file a bug.");
+			NullPointerException exception = new NullPointerException("The ApiMethod '" + object
+					+ "' has not set a dtoType. If you think this method is supposed to return something and you encounter this issue, please file a bug.");
+			RiotApi.log.log(Level.INFO, "[" + object + "] Request > NullPointerException", exception);
+			throw exception;
 		}
 		T dto = null;
 		try {
@@ -287,11 +292,13 @@ public class Request {
 		} catch (JsonSyntaxException e) {
 			RiotApiException exception = new RiotApiException(RiotApiException.PARSE_FAILURE);
 			setException(exception);
+			RiotApi.log.log(Level.WARNING, "[" + object + "] Request > Parse Failure", exception);
 			throw exception;
 		}
 		if (dto == null) {
 			RiotApiException exception = new RiotApiException(RiotApiException.PARSE_FAILURE);
 			setException(exception);
+			RiotApi.log.log(Level.WARNING, "[" + object + "] Request > Parse Failure", exception);
 			throw exception;
 		}
 		return dto;
