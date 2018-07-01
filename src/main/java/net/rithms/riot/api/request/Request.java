@@ -259,11 +259,9 @@ public class Request {
 	 * @param overrideStateRequirement
 	 *            If set to {@code true}, this method will not check the status of the request, and thus not throw an
 	 *            {@code IllegalStateException}
-	 * @return The object returned by the api call
+	 * @return The object returned by the api call, or {@code null} if the method explicitly has no return value.
 	 * @throws IllegalStateException
 	 *             If this request did not complete yet or did not succeed
-	 * @throws NullPointerException
-	 *             If this request is not properly implemented to have a dto to return
 	 * @throws RiotApiException
 	 *             If parsing the Riot Api's response fails
 	 */
@@ -281,19 +279,17 @@ public class Request {
 			return null;
 		}
 		if (type == null) {
-			NullPointerException exception = new NullPointerException("The ApiMethod '" + object
-					+ "' has not set a dtoType. If you think this method is supposed to return something and you encounter this issue, please file a bug.");
-			RiotApi.log.log(Level.INFO, "[" + object + "] Request > NullPointerException", exception);
-			throw exception;
+			RiotApi.log.log(Level.SEVERE,
+					"[" + object
+							+ "] Request > dtoType not specified by method implementation. If this is no custom request implementation, please file a bug.",
+					exception);
+			return null;
 		}
 		T dto = null;
 		try {
 			dto = new Gson().fromJson(response.getBody(), type);
 		} catch (JsonSyntaxException e) {
-			RiotApiException exception = new RiotApiException(RiotApiException.PARSE_FAILURE);
-			setException(exception);
-			RiotApi.log.log(Level.WARNING, "[" + object + "] Request > Parse Failure", exception);
-			throw exception;
+			// Parse failures are detected and thrown below
 		}
 		if (dto == null) {
 			RiotApiException exception = new RiotApiException(RiotApiException.PARSE_FAILURE);
