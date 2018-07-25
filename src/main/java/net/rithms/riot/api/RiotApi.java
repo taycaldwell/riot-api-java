@@ -561,6 +561,40 @@ public class RiotApi implements Cloneable {
 	}
 
 	/**
+	 * Retrieves a list of champion with one champion by {@code championName}.
+	 * 
+	 * @param cdn
+	 * 			  Url of ddragon cdn of Realm {@link #getDDataRealm()} method
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param championName name of champion (ex: "Aatrox")
+	 * @param locale
+	 * 	 *        Locale code for returned data (e.g., {@code en_US}, {@code es_ES}).
+	 * @param version
+	 *            Data dragon version for returned data. List of valid versions
+	 *            can be obtained from the {@link #getDDataVersions()} method.
+	 * @return A list of single champion
+	 * @throws NullPointerException
+	 *             If {@code cdn} is {@code null}
+	 *             If {@code platform} is {@code null}
+	 *             If {@code version} is {@code null}
+	 *             If {@code locale} is {@code null}
+	 *             If {@code championName} is {@code null}
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 */
+	public net.rithms.riot.api.endpoints.data_dragon.dto.ChampionList getDDataChampion(String cdn, Platform platform, String championName, net.rithms.riot.api.endpoints.data_dragon.constant.Locale locale, String version) throws RiotApiException {
+		Objects.requireNonNull(cdn);
+		Objects.requireNonNull(platform);
+		Objects.requireNonNull(version);
+		Objects.requireNonNull(locale);
+		Objects.requireNonNull(championName);
+		ApiMethod method = new net.rithms.riot.api.endpoints.data_dragon.methods.GetDataChampion(getConfig(), cdn, platform, championName, locale, version);
+		return endpointManager.callMethodAndReturnDto(method);
+	}
+	
+	
+	/**
 	 * Retrieves a champion by {@code id}.
 	 * <p>
 	 * <i>Not all data is returned by default. See the tags parameter for more information.</i>
@@ -612,6 +646,37 @@ public class RiotApi implements Cloneable {
 			ChampionListTags... tags) throws RiotApiException {
 		Objects.requireNonNull(platform);
 		ApiMethod method = new GetDataChampionList(getConfig(), platform, locale, version, dataById, tags);
+		return endpointManager.callMethodAndReturnDto(method);
+	}
+	
+	/**
+	 * Retrieves champion list.
+	 * 
+	 * @param cdn
+	 * 			  Url of ddragon cdn of Realm {@link #getDDataRealm()} method
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param locale
+	 * 	 *        Locale code for returned data (e.g., {@code en_US}, {@code es_ES}).
+	 * @param version
+	 *            Data dragon version for returned data. List of valid versions
+	 *            can be obtained from the {@link #getDDataVersions()} method.
+	 * @return A list with champions
+	 * @throws NullPointerException
+	 *             If {@code cdn} is {@code null}
+	 *             If {@code platform} is {@code null}
+	 *             If {@code version} is {@code null}
+	 *             If {@code locale} is {@code null}
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 * @see net.rithms.riot.api.endpoints.data_dragon.dto.ChampionList
+	 */
+	public net.rithms.riot.api.endpoints.data_dragon.dto.ChampionList getDDataChampionList(String cdn, Platform platform, net.rithms.riot.api.endpoints.data_dragon.constant.Locale locale, String version) throws RiotApiException {
+		Objects.requireNonNull(cdn);
+		Objects.requireNonNull(platform);
+		Objects.requireNonNull(version);
+		Objects.requireNonNull(locale);
+		ApiMethod method = new net.rithms.riot.api.endpoints.data_dragon.methods.GetDataChampionList(getConfig(), cdn, platform, locale, version);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 
@@ -736,6 +801,35 @@ public class RiotApi implements Cloneable {
 	public ItemList getDataItemList(Platform platform) throws RiotApiException {
 		return getDataItemList(platform, null, null);
 	}
+	
+	/**
+	 * Retrieves item list.
+	 * 
+	 * @param cdn
+	 * 			  Url of ddragon cdn of Realm {@link #getDDataRealm()} method
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param locale
+	 * 	 *        Locale code for returned data (e.g., {@code en_US}, {@code es_ES}).
+	 * @param version
+	 *            Data dragon version for returned data. List of valid versions
+	 *            can be obtained from the {@link #getDDataVersions()} method.
+	 * @return A list of items
+	 * @throws NullPointerException
+	 *             If {@code cdn} is {@code null}
+	 *             If {@code platform} is {@code null}
+	 *             If {@code version} is {@code null}
+	 *             If {@code locale} is {@code null}
+	 * @see ItemList
+	 */
+	public net.rithms.riot.api.endpoints.data_dragon.dto.ItemList getDDataItemList(String cdn, Platform platform, net.rithms.riot.api.endpoints.data_dragon.constant.Locale locale, String version) throws RiotApiException {
+		Objects.requireNonNull(cdn);
+		Objects.requireNonNull(platform);
+		Objects.requireNonNull(version);
+		Objects.requireNonNull(locale);
+		ApiMethod method =  new net.rithms.riot.api.endpoints.data_dragon.methods.GetDataItemList(getConfig(), cdn, platform, locale, version);
+		return endpointManager.callMethodAndReturnDto(method);
+	}
 
 	/**
 	 * Retrieve supported languages data.
@@ -779,6 +873,34 @@ public class RiotApi implements Cloneable {
 		ApiMethod method = new GetDataLanguageStrings(getConfig(), platform, locale, version);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
+	
+	/**
+	 * Retrieve language strings data.
+	 * 
+	 * @param cdn
+	 * 			  Url of ddragon cdn of Realm {@link #getDDataRealm()} method
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param locale
+	 * 	 *        Locale code for returned data (e.g., {@code en_US}, {@code es_ES}).
+	 * @param version
+	 *            Data dragon version for returned data. List of valid versions
+	 *            can be obtained from the {@link #getDDataVersions()} method.
+	 * @return Language String
+	 * @throws NullPointerException
+	 *             If {@code cdn} is {@code null}
+	 *             If {@code platform} is {@code null}
+	 *             If {@code version} is {@code null}
+	 *             If {@code locale} is {@code null}
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 * @see LanguageStrings
+	 */
+	public net.rithms.riot.api.endpoints.data_dragon.dto.LanguageStrings getDataLanguageStrings(String cdn, Platform platform, net.rithms.riot.api.endpoints.data_dragon.constant.Locale locale, String version) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new net.rithms.riot.api.endpoints.data_dragon.methods.GetDataLanguageStrings(getConfig(), cdn, platform, locale, version);
+		return endpointManager.callMethodAndReturnDto(method);
+	}
 
 	/**
 	 * Retrieve language strings data.
@@ -819,6 +941,39 @@ public class RiotApi implements Cloneable {
 		ApiMethod method = new GetDataMaps(getConfig(), platform, locale, version);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
+	
+	/**
+	 * Retrieves map data.
+	 * 
+	 * @param cdn
+	 * 			  Url of ddragon cdn of Realm {@link #getDDataRealm()} method
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param locale
+	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}).
+	 * @param version
+	 *            Data dragon version for returned data. List of valid versions
+	 *            can be obtained from the {@link #getDDataVersions()} method.
+	 * @return A list of game maps
+	 * @throws NullPointerException
+	 *             If {@code cdn} is {@code null}
+	 *             If {@code platform} is {@code null}
+	 *             If {@code version} is {@code null}
+	 *             If {@code locale} is {@code null}
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 * @see MapData
+	 */
+	public net.rithms.riot.api.endpoints.data_dragon.dto.MapData getDDataMaps(String cdn, Platform platform, net.rithms.riot.api.endpoints.data_dragon.constant.Locale locale, String version) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		Objects.requireNonNull(cdn);
+		Objects.requireNonNull(version);
+		Objects.requireNonNull(locale);
+		
+		ApiMethod method = new net.rithms.riot.api.endpoints.data_dragon.methods.GetDataMaps(getConfig(), cdn, platform, locale, version);
+		return endpointManager.callMethodAndReturnDto(method);
+	}
+	
 
 	/**
 	 * Retrieves map data.
@@ -922,6 +1077,34 @@ public class RiotApi implements Cloneable {
 
 	/**
 	 * Retrieves mastery list.
+	 * 
+	 * @param cdn
+	 * 			  Url of ddragon cdn of Realm {@link #getDDataRealm()} method
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param locale
+	 * 	 *        Locale code for returned data (e.g., {@code en_US}, {@code es_ES}).
+	 * @param version
+	 *            Data dragon version for returned data. List of valid versions
+	 *            can be obtained from the {@link #getDDataVersions()} method.
+	 * @return A list with masteries
+	 * @throws NullPointerException
+	 *             If {@code cdn} is {@code null}
+	 *             If {@code platform} is {@code null}
+	 *             If {@code version} is {@code null}
+	 *             If {@code locale} is {@code null}
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 * @see MasteryList
+	 */
+	public net.rithms.riot.api.endpoints.data_dragon.dto.MasteryList getDDataMasteryList(String cdn, Platform platform, net.rithms.riot.api.endpoints.data_dragon.constant.Locale locale, String version) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new net.rithms.riot.api.endpoints.data_dragon.methods.GetDataMasteryList(getConfig(), cdn, platform, locale, version);
+		return endpointManager.callMethodAndReturnDto(method);
+	}
+
+	/**
+	 * Retrieves mastery list.
 	 * <p>
 	 * <i>Not all data is returned by default. See the tags parameter for more information.</i>
 	 * </p>
@@ -962,6 +1145,36 @@ public class RiotApi implements Cloneable {
 		ApiMethod method = new GetDataProfileIcons(getConfig(), platform, locale, version);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
+	
+	/**
+	 * Retrieve profile icons.
+	 * 
+	 * @param cdn
+	 * 			  Url of ddragon cdn of Realm {@link #getDDataRealm()} method
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param locale
+	 * 	 *        Locale code for returned data (e.g., {@code en_US}, {@code es_ES}).
+	 * @param version
+	 *            Data dragon version for returned data. List of valid versions
+	 *            can be obtained from the {@link #getDDataVersions()} method.
+	 * @return Profile icons
+	 * @throws NullPointerException
+	 *             If {@code cdn} is {@code null}
+	 *             If {@code platform} is {@code null}
+	 *             If {@code version} is {@code null}
+	 *             If {@code locale} is {@code null}
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 * @version 3
+	 * @see ProfileIconData
+	 */
+	public net.rithms.riot.api.endpoints.data_dragon.dto.ProfileIconData getDDataProfileIcons(String cdn, Platform platform, net.rithms.riot.api.endpoints.data_dragon.constant.Locale locale, String version) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new net.rithms.riot.api.endpoints.data_dragon.methods.GetDataProfileIcons(getConfig(), cdn, platform, locale, version);
+		return endpointManager.callMethodAndReturnDto(method);
+	}
+	
 
 	/**
 	 * Retrieve profile icons.
@@ -992,6 +1205,24 @@ public class RiotApi implements Cloneable {
 	public Realm getDataRealm(Platform platform) throws RiotApiException {
 		Objects.requireNonNull(platform);
 		ApiMethod method = new GetDataRealm(getConfig(), platform);
+		return endpointManager.callMethodAndReturnDto(method);
+	}
+	
+	/**
+	 * Retrieve realm data.
+	 * 
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @return A single realm
+	 * @throws NullPointerException
+	 *             If {@code platform} is {@code null}
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 * @see Realm
+	 */
+	public net.rithms.riot.api.endpoints.data_dragon.dto.Realm getDDataRealm(Platform platform) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new net.rithms.riot.api.endpoints.data_dragon.methods.GetDataRealm(getConfig(), platform);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 
@@ -1247,6 +1478,35 @@ public class RiotApi implements Cloneable {
 		ApiMethod method = new GetDataRuneList(getConfig(), platform, locale, version, tags);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
+	
+	/**
+	 * Retrieves rune list.
+	 *
+	 * @param cdn
+	 * 			  Url of ddragon cdn of Realm {@link #getDDataRealm()} method
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param locale
+	 * 	 *        Locale code for returned data (e.g., {@code en_US}, {@code es_ES}).
+	 * @param version
+	 *            Data dragon version for returned data. List of valid versions
+	 *            can be obtained from the {@link #getDDataVersions()} method.
+	 * @return A list of runes
+	 * @throws NullPointerException
+	 *             If {@code cdn} is {@code null}
+	 *             If {@code platform} is {@code null}
+	 *             If {@code version} is {@code null}
+	 *             If {@code locale} is {@code null}
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 * @version 3
+	 * @see RuneList
+	 */
+	public net.rithms.riot.api.endpoints.data_dragon.dto.RuneList getDDataRuneList(String cdn, Platform platform, net.rithms.riot.api.endpoints.data_dragon.constant.Locale locale, String version) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new net.rithms.riot.api.endpoints.data_dragon.methods.GetDataRuneList(getConfig(), cdn, platform, locale, version);
+		return endpointManager.callMethodAndReturnDto(method);
+	}
 
 	/**
 	 * Retrieves rune list.
@@ -1354,6 +1614,37 @@ public class RiotApi implements Cloneable {
 		ApiMethod method = new GetDataSummonerSpellList(getConfig(), platform, locale, version, dataById, tags);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
+	
+	
+	/**
+	 * Retrieves summoner spell list.
+	 * 
+	 * @param cdn
+	 * 			  Url of ddragon cdn of Realm {@link #getDDataRealm()} method
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param locale
+	 * 	 *        Locale code for returned data (e.g., {@code en_US}, {@code es_ES}).
+	 * @param version
+	 *            Data dragon version for returned data. List of valid versions
+	 *            can be obtained from the {@link #getDDataVersions()} method.
+	 * @return A list with summoner spells
+	 * @throws NullPointerException
+	 *             If {@code cdn} is {@code null}
+	 *             If {@code platform} is {@code null}
+	 *             If {@code version} is {@code null}
+	 *             If {@code locale} is {@code null}
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 */
+	public net.rithms.riot.api.endpoints.data_dragon.dto.SummonerSpellList getDDataSummonerSpellList(String cdn, Platform platform, net.rithms.riot.api.endpoints.data_dragon.constant.Locale locale, String version) throws RiotApiException {
+		Objects.requireNonNull(cdn);
+		Objects.requireNonNull(platform);
+		Objects.requireNonNull(version);
+		Objects.requireNonNull(locale);
+		ApiMethod method = new net.rithms.riot.api.endpoints.data_dragon.methods.GetDataSummonerSpellList(getConfig(), cdn, platform, locale, version);
+		return endpointManager.callMethodAndReturnDto(method);
+	}
 
 	/**
 	 * Retrieves summoner spell list.
@@ -1423,6 +1714,26 @@ public class RiotApi implements Cloneable {
 	 */
 	public List<String> getDataVersions(Platform platform) throws RiotApiException {
 		ApiMethod method = new GetDataVersions(getConfig(), platform);
+		return endpointManager.callMethodAndReturnDto(method);
+	}
+	
+	
+	
+	/**
+	 * Retrieve version data.
+	 * 
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @return A list with versions
+	 * @throws NullPointerException
+	 *             If {@code platform} is {@code null}
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 */
+	public List<String> getDDataVersions(Platform platform) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		
+		ApiMethod method = new net.rithms.riot.api.endpoints.data_dragon.methods.GetDataVersions(getConfig(), platform);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 

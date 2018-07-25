@@ -266,6 +266,7 @@ public class Request {
 	 *             If parsing the Riot Api's response fails
 	 */
 	protected <T> T getDto(boolean overrideStateRequirement) throws RiotApiException {
+		
 		if (!overrideStateRequirement) {
 			requireSucceededRequestState();
 		}
@@ -290,6 +291,7 @@ public class Request {
 			dto = new Gson().fromJson(response.getBody(), type);
 		} catch (JsonSyntaxException e) {
 			// Parse failures are detected and thrown below
+			e.printStackTrace();
 		}
 		if (dto == null) {
 			RiotApiException exception = new RiotApiException(RiotApiException.PARSE_FAILURE);

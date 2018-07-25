@@ -33,6 +33,6 @@ import net.rithms.test.RiotApiTest;
  * @see RiotApi
         */
 @RunWith(Suite.class)
-@SuiteClasses({ SummonerTest.class, ReforgedRuneTest.class, ReforgedRunePathTest.class })
+@SuiteClasses({ SummonerTest.class, ReforgedRuneTest.class, ReforgedRunePathTest.class, DataDragonTest.class })
 public class AllSyncTests {
 }

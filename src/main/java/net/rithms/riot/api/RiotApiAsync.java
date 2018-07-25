@@ -16,6 +16,7 @@
 
 package net.rithms.riot.api;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -1745,5 +1746,283 @@ public class RiotApiAsync {
 		Objects.requireNonNull(tournamentCode);
 		ApiMethod method = new UpdateTournamentCode(getConfig(), tournamentCode, mapType, pickType, spectatorType, allowedSummonerIds);
 		endpointManager.callMethodAsynchronously(method);
+	}
+	
+	/**
+	 * Retrieves a list of champion with one champion by {@code championName}.
+	 * 
+	 * @param cdn
+	 * 			  Url of ddragon cdn of Realm {@link #getDDataRealm()} method
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param championName name of champion (ex: "Aatrox")
+	 * @param locale
+	 * 	 *        Locale code for returned data (e.g., {@code en_US}, {@code es_ES}).
+	 * @param version
+	 *            Data dragon version for returned data. List of valid versions
+	 *            can be obtained from the {@link #getDDataVersions()} method.
+	 * @return A list of single champion
+	 * @throws NullPointerException
+	 *             If {@code cdn} is {@code null}
+	 *             If {@code platform} is {@code null}
+	 *             If {@code version} is {@code null}
+	 *             If {@code locale} is {@code null}
+	 *             If {@code championName} is {@code null}
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 */
+	public AsyncRequest getDDataChampion(String cdn, Platform platform, String championName, net.rithms.riot.api.endpoints.data_dragon.constant.Locale locale, String version) throws RiotApiException {
+		Objects.requireNonNull(cdn);
+		Objects.requireNonNull(platform);
+		Objects.requireNonNull(version);
+		Objects.requireNonNull(locale);
+		Objects.requireNonNull(championName);
+		ApiMethod method = new net.rithms.riot.api.endpoints.data_dragon.methods.GetDataChampion(getConfig(), cdn, platform, championName, locale, version);
+		return endpointManager.callMethodAsynchronously(method);
+	}
+	
+
+	/**
+	 * Retrieves champion list.
+	 * 
+	 * @param cdn
+	 * 			  Url of ddragon cdn of Realm {@link #getDDataRealm()} method
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param locale
+	 * 	 *        Locale code for returned data (e.g., {@code en_US}, {@code es_ES}).
+	 * @param version
+	 *            Data dragon version for returned data. List of valid versions
+	 *            can be obtained from the {@link #getDDataVersions()} method.
+	 * @return A list with champions
+	 * @throws NullPointerException
+	 *             If {@code cdn} is {@code null}
+	 *             If {@code platform} is {@code null}
+	 *             If {@code version} is {@code null}
+	 *             If {@code locale} is {@code null}
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 * @see net.rithms.riot.api.endpoints.data_dragon.dto.ChampionList
+	 */
+	public AsyncRequest getDDataChampionList(String cdn, Platform platform, net.rithms.riot.api.endpoints.data_dragon.constant.Locale locale, String version) throws RiotApiException {
+		Objects.requireNonNull(cdn);
+		Objects.requireNonNull(platform);
+		Objects.requireNonNull(version);
+		Objects.requireNonNull(locale);
+		ApiMethod method = new net.rithms.riot.api.endpoints.data_dragon.methods.GetDataChampionList(getConfig(), cdn, platform, locale, version);
+		return endpointManager.callMethodAsynchronously(method);
+	}
+	
+	/**
+	 * Retrieves item list.
+	 * 
+	 * @param cdn
+	 * 			  Url of ddragon cdn of Realm {@link #getDDataRealm()} method
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param locale
+	 * 	 *        Locale code for returned data (e.g., {@code en_US}, {@code es_ES}).
+	 * @param version
+	 *            Data dragon version for returned data. List of valid versions
+	 *            can be obtained from the {@link #getDDataVersions()} method.
+	 * @return A list of items
+	 * @throws NullPointerException
+	 *             If {@code cdn} is {@code null}
+	 *             If {@code platform} is {@code null}
+	 *             If {@code version} is {@code null}
+	 *             If {@code locale} is {@code null}
+	 * @see ItemList
+	 */
+	public AsyncRequest getDDataItemList(String cdn, Platform platform, net.rithms.riot.api.endpoints.data_dragon.constant.Locale locale, String version) throws RiotApiException {
+		Objects.requireNonNull(cdn);
+		Objects.requireNonNull(platform);
+		Objects.requireNonNull(version);
+		Objects.requireNonNull(locale);
+		ApiMethod method =  new net.rithms.riot.api.endpoints.data_dragon.methods.GetDataItemList(getConfig(), cdn, platform, locale, version);
+		return endpointManager.callMethodAsynchronously(method);
+	}
+	
+	/**
+	 * Retrieves map data.
+	 * 
+	 * @param cdn
+	 * 			  Url of ddragon cdn of Realm {@link #getDDataRealm()} method
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param locale
+	 *            Locale code for returned data (e.g., {@code en_US}, {@code es_ES}).
+	 * @param version
+	 *            Data dragon version for returned data. List of valid versions
+	 *            can be obtained from the {@link #getDDataVersions()} method.
+	 * @return A list of game maps
+	 * @throws NullPointerException
+	 *             If {@code cdn} is {@code null}
+	 *             If {@code platform} is {@code null}
+	 *             If {@code version} is {@code null}
+	 *             If {@code locale} is {@code null}
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 * @see MapData
+	 */
+	public AsyncRequest getDDataMaps(String cdn, Platform platform, net.rithms.riot.api.endpoints.data_dragon.constant.Locale locale, String version) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		Objects.requireNonNull(cdn);
+		Objects.requireNonNull(version);
+		Objects.requireNonNull(locale);
+		
+		ApiMethod method = new net.rithms.riot.api.endpoints.data_dragon.methods.GetDataMaps(getConfig(), cdn, platform, locale, version);
+		return endpointManager.callMethodAsynchronously(method);
+	}
+	
+	/**
+	 * Retrieves mastery list.
+	 * 
+	 * @param cdn
+	 * 			  Url of ddragon cdn of Realm {@link #getDDataRealm()} method
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param locale
+	 * 	 *        Locale code for returned data (e.g., {@code en_US}, {@code es_ES}).
+	 * @param version
+	 *            Data dragon version for returned data. List of valid versions
+	 *            can be obtained from the {@link #getDDataVersions()} method.
+	 * @return A list with masteries
+	 * @throws NullPointerException
+	 *             If {@code cdn} is {@code null}
+	 *             If {@code platform} is {@code null}
+	 *             If {@code version} is {@code null}
+	 *             If {@code locale} is {@code null}
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 * @see MasteryList
+	 */
+	public AsyncRequest getDDataMasteryList(String cdn, Platform platform, net.rithms.riot.api.endpoints.data_dragon.constant.Locale locale, String version) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new net.rithms.riot.api.endpoints.data_dragon.methods.GetDataMasteryList(getConfig(), cdn, platform, locale, version);
+		return endpointManager.callMethodAsynchronously(method);
+	}
+	
+	/**
+	 * Retrieve profile icons.
+	 * 
+	 * @param cdn
+	 * 			  Url of ddragon cdn of Realm {@link #getDDataRealm()} method
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param locale
+	 * 	 *        Locale code for returned data (e.g., {@code en_US}, {@code es_ES}).
+	 * @param version
+	 *            Data dragon version for returned data. List of valid versions
+	 *            can be obtained from the {@link #getDDataVersions()} method.
+	 * @return Profile icons
+	 * @throws NullPointerException
+	 *             If {@code cdn} is {@code null}
+	 *             If {@code platform} is {@code null}
+	 *             If {@code version} is {@code null}
+	 *             If {@code locale} is {@code null}
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 * @version 3
+	 * @see ProfileIconData
+	 */
+	public AsyncRequest getDDataProfileIcons(String cdn, Platform platform, net.rithms.riot.api.endpoints.data_dragon.constant.Locale locale, String version) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new net.rithms.riot.api.endpoints.data_dragon.methods.GetDataProfileIcons(getConfig(), cdn, platform, locale, version);
+		return endpointManager.callMethodAsynchronously(method);
+	}
+	
+	/**
+	 * Retrieve realm data.
+	 * 
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @return A single realm
+	 * @throws NullPointerException
+	 *             If {@code platform} is {@code null}
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 * @see Realm
+	 */
+	public AsyncRequest getDDataRealm(Platform platform) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new net.rithms.riot.api.endpoints.data_dragon.methods.GetDataRealm(getConfig(), platform);
+		return endpointManager.callMethodAsynchronously(method);
+	}
+	
+	/**
+	 * Retrieves rune list.
+	 *
+	 * @param cdn
+	 * 			  Url of ddragon cdn of Realm {@link #getDDataRealm()} method
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param locale
+	 * 	 *        Locale code for returned data (e.g., {@code en_US}, {@code es_ES}).
+	 * @param version
+	 *            Data dragon version for returned data. List of valid versions
+	 *            can be obtained from the {@link #getDDataVersions()} method.
+	 * @return A list of runes
+	 * @throws NullPointerException
+	 *             If {@code cdn} is {@code null}
+	 *             If {@code platform} is {@code null}
+	 *             If {@code version} is {@code null}
+	 *             If {@code locale} is {@code null}
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 * @version 3
+	 * @see RuneList
+	 */
+	public AsyncRequest getDDataRuneList(String cdn, Platform platform, net.rithms.riot.api.endpoints.data_dragon.constant.Locale locale, String version) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new net.rithms.riot.api.endpoints.data_dragon.methods.GetDataRuneList(getConfig(), cdn, platform, locale, version);
+		return endpointManager.callMethodAsynchronously(method);
+	}
+	
+	/**
+	 * Retrieves summoner spell list.
+	 * 
+	 * @param cdn
+	 * 			  Url of ddragon cdn of Realm {@link #getDDataRealm()} method
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param locale
+	 * 	 *        Locale code for returned data (e.g., {@code en_US}, {@code es_ES}).
+	 * @param version
+	 *            Data dragon version for returned data. List of valid versions
+	 *            can be obtained from the {@link #getDDataVersions()} method.
+	 * @return A list with summoner spells
+	 * @throws NullPointerException
+	 *             If {@code cdn} is {@code null}
+	 *             If {@code platform} is {@code null}
+	 *             If {@code version} is {@code null}
+	 *             If {@code locale} is {@code null}
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 */
+	public AsyncRequest getDDataSummonerSpellList(String cdn, Platform platform, net.rithms.riot.api.endpoints.data_dragon.constant.Locale locale, String version) throws RiotApiException {
+		Objects.requireNonNull(cdn);
+		Objects.requireNonNull(platform);
+		Objects.requireNonNull(version);
+		Objects.requireNonNull(locale);
+		ApiMethod method = new net.rithms.riot.api.endpoints.data_dragon.methods.GetDataSummonerSpellList(getConfig(), cdn, platform, locale, version);
+		return endpointManager.callMethodAsynchronously(method);
+	}
+	
+	/**
+	 * Retrieve version data.
+	 * 
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @return A list with versions
+	 * @throws NullPointerException
+	 *             If {@code platform} is {@code null}
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 */
+	public AsyncRequest getDDataVersions(Platform platform) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		
+		ApiMethod method = new net.rithms.riot.api.endpoints.data_dragon.methods.GetDataVersions(getConfig(), platform);
+		return endpointManager.callMethodAsynchronously(method);
 	}
 }
