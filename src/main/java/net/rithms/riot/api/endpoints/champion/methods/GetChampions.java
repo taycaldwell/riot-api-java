@@ -22,6 +22,7 @@ import net.rithms.riot.api.endpoints.champion.ChampionApiMethod;
 import net.rithms.riot.api.endpoints.champion.dto.ChampionList;
 import net.rithms.riot.constant.Platform;
 
+@Deprecated
 public class GetChampions extends ChampionApiMethod {
 
 	public GetChampions(ApiConfig config, Platform platform, boolean freeToPlay) {

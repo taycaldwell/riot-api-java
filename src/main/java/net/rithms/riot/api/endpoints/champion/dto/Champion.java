@@ -23,6 +23,7 @@ import net.rithms.riot.api.Dto;
 /**
  * This object contains champion information.
  */
+@Deprecated
 public class Champion extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 4342849519353550572L;

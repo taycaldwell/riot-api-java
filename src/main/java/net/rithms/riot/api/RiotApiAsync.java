@@ -20,8 +20,10 @@ import java.util.Objects;
 import java.util.Set;
 
 import net.rithms.riot.api.endpoints.champion.dto.Champion;
+import net.rithms.riot.api.endpoints.champion.dto.ChampionInfo;
 import net.rithms.riot.api.endpoints.champion.dto.ChampionList;
 import net.rithms.riot.api.endpoints.champion.methods.GetChampion;
+import net.rithms.riot.api.endpoints.champion.methods.GetChampionRotations;
 import net.rithms.riot.api.endpoints.champion.methods.GetChampions;
 import net.rithms.riot.api.endpoints.champion_mastery.dto.ChampionMastery;
 import net.rithms.riot.api.endpoints.champion_mastery.methods.GetChampionMasteriesBySummoner;
@@ -376,6 +378,7 @@ public class RiotApiAsync {
 	 * @version 3
 	 * @see Champion
 	 */
+	@Deprecated
 	public AsyncRequest getChampion(Platform platform, int id) {
 		Objects.requireNonNull(platform);
 		ApiMethod method = new GetChampion(getConfig(), platform, id);
@@ -453,6 +456,7 @@ public class RiotApiAsync {
 	 * @version 3
 	 * @see ChampionList
 	 */
+	@Deprecated
 	public AsyncRequest getChampions(Platform platform, boolean freeToPlay) {
 		Objects.requireNonNull(platform);
 		ApiMethod method = new GetChampions(getConfig(), platform, freeToPlay);
@@ -468,8 +472,26 @@ public class RiotApiAsync {
 	 * @version 3
 	 * @see ChampionList
 	 */
+	@Deprecated
 	public AsyncRequest getChampions(Platform platform) {
 		return getChampions(platform, false);
+	}
+
+	/**
+	 * Returns champion rotations, including free-to-play and low-level free-to-play rotations.
+	 *
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @return This object contains information about champion rotations.
+	 * @throws NullPointerException
+	 *             If {@code platform} is {@code null}
+	 * @version 3
+	 * @see ChampionInfo
+	 */
+	public AsyncRequest getChampionRotations(Platform platform) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetChampionRotations(getConfig(), platform);
+		return endpointManager.callMethodAsynchronously(method);
 	}
 
 	/**

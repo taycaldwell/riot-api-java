@@ -22,8 +22,10 @@ import java.util.Set;
 import java.util.logging.Logger;
 
 import net.rithms.riot.api.endpoints.champion.dto.Champion;
+import net.rithms.riot.api.endpoints.champion.dto.ChampionInfo;
 import net.rithms.riot.api.endpoints.champion.dto.ChampionList;
 import net.rithms.riot.api.endpoints.champion.methods.GetChampion;
+import net.rithms.riot.api.endpoints.champion.methods.GetChampionRotations;
 import net.rithms.riot.api.endpoints.champion.methods.GetChampions;
 import net.rithms.riot.api.endpoints.champion_mastery.dto.ChampionMastery;
 import net.rithms.riot.api.endpoints.champion_mastery.methods.GetChampionMasteriesBySummoner;
@@ -410,6 +412,7 @@ public class RiotApi implements Cloneable {
 	 * @version 3
 	 * @see Champion
 	 */
+	@Deprecated
 	public Champion getChampion(Platform platform, int id) throws RiotApiException {
 		Objects.requireNonNull(platform);
 		ApiMethod method = new GetChampion(getConfig(), platform, id);
@@ -495,6 +498,7 @@ public class RiotApi implements Cloneable {
 	 * @version 3
 	 * @see ChampionList
 	 */
+	@Deprecated
 	public ChampionList getChampions(Platform platform, boolean freeToPlay) throws RiotApiException {
 		Objects.requireNonNull(platform);
 		ApiMethod method = new GetChampions(getConfig(), platform, freeToPlay);
@@ -512,8 +516,28 @@ public class RiotApi implements Cloneable {
 	 * @version 3
 	 * @see ChampionList
 	 */
+	@Deprecated
 	public ChampionList getChampions(Platform platform) throws RiotApiException {
 		return getChampions(platform, false);
+	}
+
+	/**
+	 * Returns champion rotations, including free-to-play and low-level free-to-play rotations.
+	 *
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @return This object contains information about champion rotations.
+	 * @throws NullPointerException
+	 *             If {@code platform} is {@code null}
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 * @version 3
+	 * @see ChampionInfo
+	 */
+	public ChampionInfo getChampionRotations(Platform platform) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetChampionRotations(getConfig(), platform);
+		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
