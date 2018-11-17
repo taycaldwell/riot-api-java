@@ -132,6 +132,9 @@ public class ParticipantStats extends Dto implements Serializable {
 	private long playerScore9;
 	private int perkPrimaryStyle;
 	private int perkSubStyle;
+	private int statPerk0;
+	private int statPerk1;
+	private int statPerk2;
 
 	public int getAltarsCaptured() {
 		return altarsCaptured;
@@ -563,5 +566,17 @@ public class ParticipantStats extends Dto implements Serializable {
 
 	public int getPerkSubStyle() {
 		return perkSubStyle;
+	}
+
+	public int getStatPerk0() {
+		return statPerk0;
+	}
+
+	public int getStatPerk1() {
+		return statPerk1;
+	}
+
+	public int getStatPerk2() {
+		return statPerk2;
 	}
 }
