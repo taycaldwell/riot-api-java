@@ -24,8 +24,8 @@ public class Player extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -4459702825178547603L;
 
-	private long accountId;
-	private long currentAccountId;
+	private String accountId;
+	private String currentAccountId;
 	private String currentPlatformId;
 	private String matchHistoryUri;
 	private String platformId;
@@ -33,11 +33,11 @@ public class Player extends Dto implements Serializable {
 	private long summonerId;
 	private String summonerName;
 
-	public long getAccountId() {
+	public String getAccountId() {
 		return accountId;
 	}
 
-	public long getCurrentAccountId() {
+	public String getCurrentAccountId() {
 		return currentAccountId;
 	}
 

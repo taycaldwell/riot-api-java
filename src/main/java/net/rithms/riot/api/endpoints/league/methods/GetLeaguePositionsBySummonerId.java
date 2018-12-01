@@ -27,12 +27,12 @@ import net.rithms.riot.constant.Platform;
 
 public class GetLeaguePositionsBySummonerId extends LeagueApiMethod {
 
-	public GetLeaguePositionsBySummonerId(ApiConfig config, Platform platform, long summonerId) {
+	public GetLeaguePositionsBySummonerId(ApiConfig config, Platform platform, String summonerId) {
 		super(config);
 		setPlatform(platform);
 		setReturnType(new TypeToken<Set<LeaguePosition>>() {
 		}.getType());
-		setUrlBase(platform.getHost() + "/lol/league/v3/positions/by-summoner/" + summonerId);
+		setUrlBase(platform.getHost() + "/lol/league/v4/positions/by-summoner/" + summonerId);
 		addApiKeyParameter();
 	}
 }

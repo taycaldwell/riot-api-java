@@ -23,11 +23,11 @@ import net.rithms.riot.constant.Platform;
 
 public class GetActiveGameBySummoner extends SpectatorApiMethod {
 
-	public GetActiveGameBySummoner(ApiConfig config, Platform platform, long summonerId) {
+	public GetActiveGameBySummoner(ApiConfig config, Platform platform, String summonerId) {
 		super(config);
 		setPlatform(platform);
 		setReturnType(CurrentGameInfo.class);
-		setUrlBase(platform.getHost() + "/lol/spectator/v3/active-games/by-summoner/" + summonerId);
+		setUrlBase(platform.getHost() + "/lol/spectator/v4/active-games/by-summoner/" + summonerId);
 		addApiKeyParameter();
 	}
 }

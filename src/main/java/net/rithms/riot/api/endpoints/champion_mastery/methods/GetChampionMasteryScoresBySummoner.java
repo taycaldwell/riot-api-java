@@ -22,11 +22,11 @@ import net.rithms.riot.constant.Platform;
 
 public class GetChampionMasteryScoresBySummoner extends ChampionMasteryApiMethod {
 
-	public GetChampionMasteryScoresBySummoner(ApiConfig config, Platform platform, long summonerId) {
+	public GetChampionMasteryScoresBySummoner(ApiConfig config, Platform platform, String summonerId) {
 		super(config);
 		setPlatform(platform);
 		setReturnType(Integer.class);
-		setUrlBase(platform.getHost() + "/lol/champion-mastery/v3/scores/by-summoner/" + summonerId);
+		setUrlBase(platform.getHost() + "/lol/champion-mastery/v4/scores/by-summoner/" + summonerId);
 		addApiKeyParameter();
 	}
 }

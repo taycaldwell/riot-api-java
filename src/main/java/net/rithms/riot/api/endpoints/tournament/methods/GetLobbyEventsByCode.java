@@ -26,7 +26,7 @@ public class GetLobbyEventsByCode extends TournamentApiMethod {
 		super(config);
 		setReturnType(LobbyEventWrapper.class);
 		if (config.getTournamentMockMode()) {
-			setUrlBase(HOST + "/lol/tournament-stub/v3/lobby-events/by-code/" + tournamentCode);
+			setUrlBase(HOST + "/lol/tournament-stub/v4/lobby-events/by-code/" + tournamentCode);
 		} else {
 			setUrlBase(HOST + "/lol/tournament/v3/lobby-events/by-code/" + tournamentCode);
 		}

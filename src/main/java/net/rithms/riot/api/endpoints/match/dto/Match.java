@@ -83,10 +83,10 @@ public class Match extends Dto implements Serializable {
 		if (participantIdentities != null) {
 			for (ParticipantIdentity participantIdentity : participantIdentities) {
 				Player player = participantIdentity.getPlayer();
-				if (player == null) {
+				if (player == null || player.getAccountId() == null) {
 					continue;
 				}
-				if (player.getAccountId() == accountId) {
+				if (player.getAccountId().equals(accountId)) {
 					return getParticipantByParticipantId(participantIdentity.getParticipantId());
 				}
 			}

@@ -30,7 +30,7 @@ public class TournamentCode extends Dto implements Serializable {
 	private String lobbyName;
 	private String map;
 	private String metaData;
-	private Set<Long> participants;
+	private Set<String> participants;
 	private String password;
 	private String pickType;
 	private int providerId;
@@ -59,7 +59,7 @@ public class TournamentCode extends Dto implements Serializable {
 		return metaData;
 	}
 
-	public Set<Long> getParticipants() {
+	public Set<String> getParticipants() {
 		return participants;
 	}
 

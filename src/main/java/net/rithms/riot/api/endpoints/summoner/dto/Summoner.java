@@ -27,19 +27,24 @@ public class Summoner extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -8213488199644701555L;
 
-	private long accountId;
-	private long id;
+	private String accountId;
+	private String id;
+	private String puuid;
 	private String name;
 	private int profileIconId;
 	private long revisionDate;
 	private int summonerLevel;
 
-	public long getAccountId() {
+	public String getAccountId() {
 		return accountId;
 	}
 
-	public long getId() {
+	public String getId() {
 		return id;
+	}
+
+	public String getPuuid() {
+		return puuid;
 	}
 
 	public String getName() {

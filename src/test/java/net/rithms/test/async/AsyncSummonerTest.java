@@ -45,7 +45,8 @@ public class AsyncSummonerTest {
 
 	@Test
 	public void testGetSummoners() throws RiotApiException, InterruptedException {
-		AsyncRequest reqSummonerMap = api.getSummoner(Platform.NA, 81439110);
+		// TODO This test is currently expected to fail, due to summonerIds being encrypted differently for each app.
+		AsyncRequest reqSummonerMap = api.getSummoner(Platform.NA, "81439110");
 		reqSummonerMap.addListeners(new RequestListener() {
 			@Override
 			public void onRequestFailed(RiotApiException e) {
@@ -69,7 +70,8 @@ public class AsyncSummonerTest {
 
 	@Test
 	public void testGetSummonersByAccount() throws RiotApiException, InterruptedException {
-		AsyncRequest reqSummonerMap = api.getSummonerByAccount(Platform.NA, 235464896);
+		// TODO This test is currently expected to fail, due to summonerIds being encrypted differently for each app.
+		AsyncRequest reqSummonerMap = api.getSummonerByAccount(Platform.NA, "235464896");
 		reqSummonerMap.addListeners(new RequestListener() {
 			@Override
 			public void onRequestFailed(RiotApiException e) {
@@ -93,6 +95,7 @@ public class AsyncSummonerTest {
 
 	@Test
 	public void testGetSummonerByName() throws RiotApiException, InterruptedException {
+		// TODO This test is currently expected to fail, due to summonerIds being encrypted differently for each app.
 		AsyncRequest reqSummonerMap = api.getSummonerByName(Platform.NA, "tryndamere");
 		reqSummonerMap.addListeners(new RequestListener() {
 			@Override
@@ -104,7 +107,7 @@ public class AsyncSummonerTest {
 			public void onRequestSucceeded(AsyncRequest request) {
 				Summoner summoner = request.getDto();
 				assertNotNull(summoner);
-				assertEquals(81439110, summoner.getId());
+				assertEquals("81439110", summoner.getId());
 			}
 
 			@Override

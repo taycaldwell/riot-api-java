@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Taylor Caldwell
+ * Copyright 2017 Taylor Caldwell
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,21 +14,20 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.api.endpoints.champion.methods;
+package net.rithms.riot.api.endpoints.summoner.methods;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.endpoints.champion.ChampionApiMethod;
-import net.rithms.riot.api.endpoints.champion.dto.Champion;
+import net.rithms.riot.api.endpoints.summoner.SummonerApiMethod;
+import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
 import net.rithms.riot.constant.Platform;
 
-@Deprecated
-public class GetChampion extends ChampionApiMethod {
+public class GetSummonerByPuuid extends SummonerApiMethod {
 
-	public GetChampion(ApiConfig config, Platform platform, int id) {
+	public GetSummonerByPuuid(ApiConfig config, Platform platform, String puuid) {
 		super(config);
 		setPlatform(platform);
-		setReturnType(Champion.class);
-		setUrlBase(platform.getHost() + "/lol/platform/v3/champions/" + id);
+		setReturnType(Summoner.class);
+		setUrlBase(platform.getHost() + "/lol/summoner/v4/summoners/by-puuid/" + puuid);
 		addApiKeyParameter();
 	}
 }

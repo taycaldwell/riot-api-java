@@ -27,7 +27,7 @@ public class GetTimelineByMatchId extends MatchApiMethod {
 		super(config);
 		setPlatform(platform);
 		setReturnType(MatchTimeline.class);
-		setUrlBase(platform.getHost() + "/lol/match/v3/timelines/by-match/" + matchId);
+		setUrlBase(platform.getHost() + "/lol/match/v4/timelines/by-match/" + matchId);
 		addApiKeyParameter();
 	}
 }

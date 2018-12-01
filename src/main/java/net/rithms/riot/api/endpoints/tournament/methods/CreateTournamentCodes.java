@@ -33,13 +33,13 @@ import net.rithms.riot.api.request.RequestMethod;
 public class CreateTournamentCodes extends TournamentApiMethod {
 
 	public CreateTournamentCodes(ApiConfig config, int tournamentId, int count, int teamSize, TournamentMap mapType, PickType pickType,
-			SpectatorType spectatorType, String metaData, long... allowedSummonerIds) {
+			SpectatorType spectatorType, String metaData, String... allowedSummonerIds) {
 		super(config);
 		setHttpMethod(RequestMethod.POST);
 		setReturnType(new TypeToken<List<String>>() {
 		}.getType());
 		if (config.getTournamentMockMode()) {
-			setUrlBase(HOST + "/lol/tournament-stub/v3/codes");
+			setUrlBase(HOST + "/lol/tournament-stub/v4/codes");
 		} else {
 			setUrlBase(HOST + "/lol/tournament/v3/codes");
 		}

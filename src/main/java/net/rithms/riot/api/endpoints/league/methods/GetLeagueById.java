@@ -32,7 +32,7 @@ public class GetLeagueById extends LeagueApiMethod {
 		setPlatform(platform);
 		setReturnType(new TypeToken<List<LeagueList>>() {
 		}.getType());
-		setUrlBase(platform.getHost() + "/lol/league/v3/leagues/" + leagueId);
+		setUrlBase(platform.getHost() + "/lol/league/v4/leagues/" + leagueId);
 		addApiKeyParameter();
 	}
 }

@@ -42,22 +42,25 @@ public class SummonerTest {
 
 	@Test
 	public void testGetSummoner() throws RiotApiException {
-		Summoner summoner = api.getSummoner(Platform.NA, 81439110);
+		// TODO This test is currently expected to fail, due to summonerIds being encrypted differently for each app.
+		Summoner summoner = api.getSummoner(Platform.NA, "81439110");
 		assertNotNull(summoner);
 		assertEquals("Tryndamere", summoner.getName());
 	}
 
 	@Test
 	public void testGetSummonerByAccount() throws RiotApiException {
-		Summoner summoner = api.getSummonerByAccount(Platform.NA, 235464896);
+		// TODO This test is currently expected to fail, due to summonerIds being encrypted differently for each app.
+		Summoner summoner = api.getSummonerByAccount(Platform.NA, "235464896");
 		assertNotNull(summoner);
 		assertEquals("Tryndamere", summoner.getName());
 	}
 
 	@Test
 	public void testGetSummonerByName() throws RiotApiException {
+		// TODO This test is currently expected to fail, due to summonerIds being encrypted differently for each app.
 		Summoner summoner = api.getSummonerByName(Platform.NA, "tryndamere");
 		assertNotNull(summoner);
-		assertEquals(81439110, summoner.getId());
+		assertEquals("81439110", summoner.getId());
 	}
 }

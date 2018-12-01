@@ -35,7 +35,7 @@ public class GetSummonerByName extends SummonerApiMethod {
 		summonerName = RiotApiUtil.normalizeSummonerName(summonerName);
 		setReturnType(Summoner.class);
 		try {
-			setUrlBase(platform.getHost() + "/lol/summoner/v3/summoners/by-name/" + URLEncoder.encode(summonerName, "UTF-8"));
+			setUrlBase(platform.getHost() + "/lol/summoner/v4/summoners/by-name/" + URLEncoder.encode(summonerName, "UTF-8"));
 		} catch (UnsupportedEncodingException e) {
 			// This should never happen
 			RiotApi.log.log(Level.SEVERE, "URL Encoding Failed", e);

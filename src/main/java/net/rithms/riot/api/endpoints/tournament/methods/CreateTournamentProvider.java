@@ -30,7 +30,7 @@ public class CreateTournamentProvider extends TournamentApiMethod {
 		setHttpMethod(RequestMethod.POST);
 		setReturnType(Integer.class);
 		if (config.getTournamentMockMode()) {
-			setUrlBase(HOST + "/lol/tournament-stub/v3/providers");
+			setUrlBase(HOST + "/lol/tournament-stub/v4/providers");
 		} else {
 			setUrlBase(HOST + "/lol/tournament/v3/providers");
 		}

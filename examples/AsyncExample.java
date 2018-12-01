@@ -36,7 +36,8 @@ public class AsyncExample {
 		RiotApi api = new RiotApi(config);
 		RiotApiAsync apiAsync = api.getAsyncApi();
 
-		long summonerId = 20987694; // summonerId to request
+		// TODO need to rewrite this example to properly work with v4 endpoints
+		String summonerId = "20987694"; // Encrypted summonerId to request
 		Platform platform = Platform.EUW; // platform to request
 		final ExtendedSummoner eSummoner = new ExtendedSummoner(); // Object where we want to store the data
 

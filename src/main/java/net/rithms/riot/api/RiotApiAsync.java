@@ -19,12 +19,8 @@ package net.rithms.riot.api;
 import java.util.Objects;
 import java.util.Set;
 
-import net.rithms.riot.api.endpoints.champion.dto.Champion;
 import net.rithms.riot.api.endpoints.champion.dto.ChampionInfo;
-import net.rithms.riot.api.endpoints.champion.dto.ChampionList;
-import net.rithms.riot.api.endpoints.champion.methods.GetChampion;
 import net.rithms.riot.api.endpoints.champion.methods.GetChampionRotations;
-import net.rithms.riot.api.endpoints.champion.methods.GetChampions;
 import net.rithms.riot.api.endpoints.champion_mastery.dto.ChampionMastery;
 import net.rithms.riot.api.endpoints.champion_mastery.methods.GetChampionMasteriesBySummoner;
 import net.rithms.riot.api.endpoints.champion_mastery.methods.GetChampionMasteriesBySummonerByChampion;
@@ -99,6 +95,7 @@ import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
 import net.rithms.riot.api.endpoints.summoner.methods.GetSummoner;
 import net.rithms.riot.api.endpoints.summoner.methods.GetSummonerByAccount;
 import net.rithms.riot.api.endpoints.summoner.methods.GetSummonerByName;
+import net.rithms.riot.api.endpoints.summoner.methods.GetSummonerByPuuid;
 import net.rithms.riot.api.endpoints.third_party_code.methods.GetThirdPartyCodeBySummoner;
 import net.rithms.riot.api.endpoints.tournament.constant.PickType;
 import net.rithms.riot.api.endpoints.tournament.constant.SpectatorType;
@@ -208,7 +205,7 @@ public class RiotApiAsync {
 	 * @param providerId
 	 *            The provider ID to specify the regional registered provider data to associate this tournament.
 	 * @return A tournament ID
-	 * @version 3
+	 * @version 4
 	 */
 	public AsyncRequest createTournament(String tournamentName, int providerId) {
 		ApiMethod method = new CreateTournament(getConfig(), tournamentName, providerId);
@@ -221,7 +218,7 @@ public class RiotApiAsync {
 	 * @param providerId
 	 *            The provider ID to specify the regional registered provider data to associate this tournament.
 	 * @return A tournament Id
-	 * @version 3
+	 * @version 4
 	 */
 	public AsyncRequest createTournament(int providerId) {
 		return createTournament(null, providerId);
@@ -250,10 +247,10 @@ public class RiotApiAsync {
 	 * @return A list of tournament codes
 	 * @throws NullPointerException
 	 *             If {@code mapType} or {@code pickType} or {@code spectatorType} is {@code null}
-	 * @version 3
+	 * @version 4
 	 */
 	public AsyncRequest createTournamentCodes(int tournamentId, int count, int teamSize, TournamentMap mapType, PickType pickType, SpectatorType spectatorType,
-			String metaData, long... allowedSummonerIds) {
+			String metaData, String... allowedSummonerIds) {
 		Objects.requireNonNull(mapType);
 		Objects.requireNonNull(pickType);
 		Objects.requireNonNull(spectatorType);
@@ -280,10 +277,10 @@ public class RiotApiAsync {
 	 * @param allowedSummonerIds
 	 *            Optional list of participants in order to validate the players eligible to join the lobby.
 	 * @return A list of tournament codes
-	 * @version 3
+	 * @version 4
 	 */
 	public AsyncRequest createTournamentCodes(int tournamentId, int count, int teamSize, TournamentMap mapType, PickType pickType, SpectatorType spectatorType,
-			long... allowedSummonerIds) {
+			String... allowedSummonerIds) {
 		return createTournamentCodes(tournamentId, count, teamSize, mapType, pickType, spectatorType, null, allowedSummonerIds);
 	}
 
@@ -298,7 +295,7 @@ public class RiotApiAsync {
 	 * @return A provider ID
 	 * @throws NullPointerException
 	 *             If {@code region} or {@code callbackUrl} is {@code null}
-	 * @version 3
+	 * @version 4
 	 */
 	public AsyncRequest createTournamentProvider(String region, String callbackUrl) {
 		Objects.requireNonNull(region);
@@ -317,10 +314,10 @@ public class RiotApiAsync {
 	 * @return Current game info
 	 * @throws NullPointerException
 	 *             If {@code platform} or {@code summonerId} is {@code null}
-	 * @version 3
+	 * @version 4
 	 * @see CurrentGameInfo
 	 */
-	public AsyncRequest getActiveGameBySummoner(Platform platform, long summonerId) {
+	public AsyncRequest getActiveGameBySummoner(Platform platform, String summonerId) {
 		Objects.requireNonNull(platform);
 		Objects.requireNonNull(summonerId);
 		ApiMethod method = new GetActiveGameBySummoner(getConfig(), platform, summonerId);
@@ -337,7 +334,7 @@ public class RiotApiAsync {
 	 * @return A league list
 	 * @throws NullPointerException
 	 *             If {@code platform} or {@code queue} is {@code null}
-	 * @version 3
+	 * @version 4
 	 * @see LeagueList
 	 */
 	public AsyncRequest getChallengerLeagueByQueue(Platform platform, String queue) {
@@ -357,32 +354,12 @@ public class RiotApiAsync {
 	 * @return A league list
 	 * @throws NullPointerException
 	 *             If {@code queue} is {@code null}
-	 * @version 3
+	 * @version 4
 	 * @see LeagueList
 	 */
 	public AsyncRequest getChallengerLeagueByQueue(Platform platform, LeagueQueue queue) {
 		Objects.requireNonNull(queue);
 		return getChallengerLeagueByQueue(platform, queue.toString());
-	}
-
-	/**
-	 * Retrieve champion by {@code id}.
-	 *
-	 * @param platform
-	 *            Platform to execute the method call against.
-	 * @param id
-	 *            The ID of the desired champion
-	 * @return The champion of the given ID
-	 * @throws NullPointerException
-	 *             If {@code platform} is {@code null}
-	 * @version 3
-	 * @see Champion
-	 */
-	@Deprecated
-	public AsyncRequest getChampion(Platform platform, int id) {
-		Objects.requireNonNull(platform);
-		ApiMethod method = new GetChampion(getConfig(), platform, id);
-		return endpointManager.callMethodAsynchronously(method);
 	}
 
 	/**
@@ -395,10 +372,10 @@ public class RiotApiAsync {
 	 * @return A list of champion masteries for a given summoner.
 	 * @throws NullPointerException
 	 *             If {@code platform} is {@code null}
-	 * @version 3
+	 * @version 4
 	 * @see ChampionMastery
 	 */
-	public AsyncRequest getChampionMasteriesBySummoner(Platform platform, long summonerId) {
+	public AsyncRequest getChampionMasteriesBySummoner(Platform platform, String summonerId) {
 		Objects.requireNonNull(platform);
 		ApiMethod method = new GetChampionMasteriesBySummoner(getConfig(), platform, summonerId);
 		return endpointManager.callMethodAsynchronously(method);
@@ -416,10 +393,10 @@ public class RiotApiAsync {
 	 * @return Champion mastery for a given summoner and championId, or {@code null} if given player has no mastery for given champion.
 	 * @throws NullPointerException
 	 *             If {@code platform} is {@code null}
-	 * @version 3
+	 * @version 4
 	 * @see ChampionMastery
 	 */
-	public AsyncRequest getChampionMasteriesBySummonerByChampion(Platform platform, long summonerId, int championId) {
+	public AsyncRequest getChampionMasteriesBySummonerByChampion(Platform platform, String summonerId, int championId) {
 		Objects.requireNonNull(platform);
 		ApiMethod method = new GetChampionMasteriesBySummonerByChampion(getConfig(), platform, summonerId, championId);
 		return endpointManager.callMethodAsynchronously(method);
@@ -435,46 +412,12 @@ public class RiotApiAsync {
 	 * @return The total champion mastery score of a given summoner.
 	 * @throws NullPointerException
 	 *             If {@code platform} is {@code null}
-	 * @version 3
+	 * @version 4
 	 */
-	public AsyncRequest getChampionMasteryScoresBySummoner(Platform platform, long summonerId) {
+	public AsyncRequest getChampionMasteryScoresBySummoner(Platform platform, String summonerId) {
 		Objects.requireNonNull(platform);
 		ApiMethod method = new GetChampionMasteryScoresBySummoner(getConfig(), platform, summonerId);
 		return endpointManager.callMethodAsynchronously(method);
-	}
-
-	/**
-	 * Retrieve all champions.
-	 *
-	 * @param platform
-	 *            Platform to execute the method call against.
-	 * @param freeToPlay
-	 *            Optional filter param to retrieve only free to play champions.
-	 * @return This object contains a collection of champion information.
-	 * @throws NullPointerException
-	 *             If {@code platform} is {@code null}
-	 * @version 3
-	 * @see ChampionList
-	 */
-	@Deprecated
-	public AsyncRequest getChampions(Platform platform, boolean freeToPlay) {
-		Objects.requireNonNull(platform);
-		ApiMethod method = new GetChampions(getConfig(), platform, freeToPlay);
-		return endpointManager.callMethodAsynchronously(method);
-	}
-
-	/**
-	 * Retrieve all champions.
-	 *
-	 * @param platform
-	 *            Platform to execute the method call against.
-	 * @return This object contains a collection of champion information.
-	 * @version 3
-	 * @see ChampionList
-	 */
-	@Deprecated
-	public AsyncRequest getChampions(Platform platform) {
-		return getChampions(platform, false);
 	}
 
 	/**
@@ -1336,7 +1279,7 @@ public class RiotApiAsync {
 	 * @return Featured games
 	 * @throws NullPointerException
 	 *             If {@code platform} is {@code null}
-	 * @version 3
+	 * @version 4
 	 * @see FeaturedGames
 	 */
 	public AsyncRequest getFeaturedGames(Platform platform) {
@@ -1355,7 +1298,7 @@ public class RiotApiAsync {
 	 * @return League list
 	 * @throws NullPointerException
 	 *             If {@code platform} or {@code leagueId} is {@code null}
-	 * @version 3
+	 * @version 4
 	 * @see LeagueList
 	 */
 	public AsyncRequest getLeagueById(Platform platform, String leagueId) throws RiotApiException {
@@ -1375,10 +1318,10 @@ public class RiotApiAsync {
 	 * @return List of league positions
 	 * @throws NullPointerException
 	 *             If {@code platform} is {@code null}
-	 * @version 3
+	 * @version 4
 	 * @see LeagueList
 	 */
-	public AsyncRequest getLeaguePositionsBySummonerId(Platform platform, long summonerId) {
+	public AsyncRequest getLeaguePositionsBySummonerId(Platform platform, String summonerId) {
 		Objects.requireNonNull(platform);
 		ApiMethod method = new GetLeaguePositionsBySummonerId(getConfig(), platform, summonerId);
 		return endpointManager.callMethodAsynchronously(method);
@@ -1392,6 +1335,7 @@ public class RiotApiAsync {
 	 * @return Lobby event data
 	 * @throws NullPointerException
 	 *             If {@code tournamentCode} is {@code null}
+	 * @version 4
 	 * @see LobbyEventWrapper
 	 */
 	public AsyncRequest getLobbyEventsByTournament(String tournamentCode) {
@@ -1410,7 +1354,7 @@ public class RiotApiAsync {
 	 * @return A league list
 	 * @throws NullPointerException
 	 *             If {@code platform} or {@code queue} is {@code null}
-	 * @version 3
+	 * @version 4
 	 * @see LeagueList
 	 */
 	public AsyncRequest getMasterLeagueByQueue(Platform platform, String queue) {
@@ -1430,7 +1374,7 @@ public class RiotApiAsync {
 	 * @return A league list
 	 * @throws NullPointerException
 	 *             If {@code queue} is {@code null}
-	 * @version 3
+	 * @version 4
 	 * @see LeagueList
 	 */
 	public AsyncRequest getMasterLeagueByQueue(Platform platform, LeagueQueue queue) {
@@ -1450,10 +1394,10 @@ public class RiotApiAsync {
 	 * @return A map with match details
 	 * @throws NullPointerException
 	 *             If {@code platform} is {@code null}
-	 * @version 3
+	 * @version 4
 	 * @see Match
 	 */
-	public AsyncRequest getMatch(Platform platform, long matchId, long forAccountId) {
+	public AsyncRequest getMatch(Platform platform, long matchId, String forAccountId) {
 		Objects.requireNonNull(platform);
 		ApiMethod method = new GetMatch(getConfig(), platform, matchId, forAccountId);
 		return endpointManager.callMethodAsynchronously(method);
@@ -1467,11 +1411,11 @@ public class RiotApiAsync {
 	 * @param matchId
 	 *            The ID of the match.
 	 * @return A map with match details
-	 * @version 3
+	 * @version 4
 	 * @see Match
 	 */
 	public AsyncRequest getMatch(Platform platform, long matchId) {
-		return getMatch(platform, matchId, -1);
+		return getMatch(platform, matchId, null);
 	}
 
 	/**
@@ -1484,7 +1428,7 @@ public class RiotApiAsync {
 	 * @return A list of match IDs
 	 * @throws NullPointerException
 	 *             If {@code platform} or {@code tournamentCode} is {@code null}
-	 * @version 3
+	 * @version 4
 	 */
 	public AsyncRequest getMatchIdsByTournamentCode(Platform platform, String tournamentCode) {
 		Objects.requireNonNull(platform);
@@ -1505,7 +1449,7 @@ public class RiotApiAsync {
 	 * @return A map with match details
 	 * @throws NullPointerException
 	 *             If {@code platform} or {@code tournamentCode} is {@code null}
-	 * @version 3
+	 * @version 4
 	 * @see Match
 	 */
 	public AsyncRequest getMatchByMatchIdAndTournamentCode(Platform platform, long matchId, String tournamentCode) {
@@ -1539,10 +1483,10 @@ public class RiotApiAsync {
 	 * @return A list with matches
 	 * @throws NullPointerException
 	 *             If {@code platform} is {@code null}
-	 * @version 3
+	 * @version 4
 	 * @see MatchList
 	 */
-	public AsyncRequest getMatchListByAccountId(Platform platform, long accountId, Set<Integer> champion, Set<Integer> queue, Set<Integer> season,
+	public AsyncRequest getMatchListByAccountId(Platform platform, String accountId, Set<Integer> champion, Set<Integer> queue, Set<Integer> season,
 			long beginTime, long endTime, int beginIndex, int endIndex) {
 		Objects.requireNonNull(platform);
 		ApiMethod method = new GetMatchListByAccountId(getConfig(), platform, accountId, champion, queue, season, beginTime, endTime, beginIndex, endIndex);
@@ -1563,10 +1507,10 @@ public class RiotApiAsync {
 	 * @param season
 	 *            Set of season IDs for which to filtering matchlist.
 	 * @return A list with matches
-	 * @version 3
+	 * @version 4
 	 * @see MatchList
 	 */
-	public AsyncRequest getMatchListByAccountId(Platform platform, long accountId, Set<Integer> champion, Set<Integer> queue, Set<Integer> season) {
+	public AsyncRequest getMatchListByAccountId(Platform platform, String accountId, Set<Integer> champion, Set<Integer> queue, Set<Integer> season) {
 		return getMatchListByAccountId(platform, accountId, champion, queue, season, -1, -1, -1, -1);
 	}
 
@@ -1578,10 +1522,10 @@ public class RiotApiAsync {
 	 * @param accountId
 	 *            The account ID of the summoner.
 	 * @return A list with matches
-	 * @version 3
+	 * @version 4
 	 * @see MatchList
 	 */
-	public AsyncRequest getMatchListByAccountId(Platform platform, long accountId) {
+	public AsyncRequest getMatchListByAccountId(Platform platform, String accountId) {
 		return getMatchListByAccountId(platform, accountId, null, null, null);
 	}
 
@@ -1625,15 +1569,15 @@ public class RiotApiAsync {
 	 *
 	 * @param platform
 	 *            Platform to execute the method call against.
-	 * @param summonerId
+	 * @param accountId
 	 *            Account ID associated with summoner to retrieve.
 	 * @return The desired summoner
 	 * @throws NullPointerException
 	 *             If {@code platform} is {@code null}
-	 * @version 3
+	 * @version 4
 	 * @see Summoner
 	 */
-	public AsyncRequest getSummonerByAccount(Platform platform, long accountId) {
+	public AsyncRequest getSummonerByAccount(Platform platform, String accountId) {
 		Objects.requireNonNull(platform);
 		ApiMethod method = new GetSummonerByAccount(getConfig(), platform, accountId);
 		return endpointManager.callMethodAsynchronously(method);
@@ -1649,10 +1593,10 @@ public class RiotApiAsync {
 	 * @return The desired summoner
 	 * @throws NullPointerException
 	 *             If {@code platform} is {@code null}
-	 * @version 3
+	 * @version 4
 	 * @see Summoner
 	 */
-	public AsyncRequest getSummoner(Platform platform, long summonerId) {
+	public AsyncRequest getSummoner(Platform platform, String summonerId) {
 		Objects.requireNonNull(platform);
 		ApiMethod method = new GetSummoner(getConfig(), platform, summonerId);
 		return endpointManager.callMethodAsynchronously(method);
@@ -1670,7 +1614,7 @@ public class RiotApiAsync {
 	 *             If {@code summonerName} is not a valid summoner name
 	 * @throws NullPointerException
 	 *             If {@code platform} or {@code summonerName} is {@code null}
-	 * @version 3
+	 * @version 4
 	 * @see Summoner
 	 */
 	public AsyncRequest getSummonerByName(Platform platform, String summonerName) {
@@ -1678,6 +1622,25 @@ public class RiotApiAsync {
 		Objects.requireNonNull(summonerName);
 		RiotApiUtil.requireValidSummonerName(summonerName);
 		ApiMethod method = new GetSummonerByName(getConfig(), platform, summonerName);
+		return endpointManager.callMethodAsynchronously(method);
+	}
+
+	/**
+	 * Get a summoner object for a given {@code puuid}.
+	 *
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param puuid
+	 *            PUUID associated with summoner to retrieve.
+	 * @return The desired summoner
+	 * @throws NullPointerException
+	 *             If {@code platform} is {@code null}
+	 * @version 4
+	 * @see Summoner
+	 */
+	public AsyncRequest getSummonerByPuuid(Platform platform, String puuid) {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetSummonerByPuuid(getConfig(), platform, puuid);
 		return endpointManager.callMethodAsynchronously(method);
 	}
 
@@ -1691,9 +1654,9 @@ public class RiotApiAsync {
 	 * @return Third party code of the desired summoner
 	 * @throws NullPointerException
 	 *             If {@code platform} is {@code null}
-	 * @version 3
+	 * @version 4
 	 */
-	public AsyncRequest getThirdPartyCodeBySummoner(Platform platform, long summonerId) {
+	public AsyncRequest getThirdPartyCodeBySummoner(Platform platform, String summonerId) {
 		Objects.requireNonNull(platform);
 		ApiMethod method = new GetThirdPartyCodeBySummoner(getConfig(), platform, summonerId);
 		return endpointManager.callMethodAsynchronously(method);
@@ -1709,7 +1672,7 @@ public class RiotApiAsync {
 	 * @return A map with match timeline details
 	 * @throws NullPointerException
 	 *             If {@code platform} is {@code null}
-	 * @version 3
+	 * @version 4
 	 * @see MatchTimeline
 	 */
 	public AsyncRequest getTimelineByMatchId(Platform platform, long matchId) {
@@ -1726,7 +1689,7 @@ public class RiotApiAsync {
 	 * @return Tournament code DTO
 	 * @throws NullPointerException
 	 *             If {@code tournamentCode} is {@code null}
-	 * @version 3
+	 * @version 4
 	 * @see TournamentCode
 	 */
 	public AsyncRequest getTournamentCode(String tournamentCode) {
@@ -1761,9 +1724,10 @@ public class RiotApiAsync {
 	 *            Optional list of participants in order to validate the players eligible to join the lobby.
 	 * @throws NullPointerException
 	 *             If {@code tournamentCode} is {@code null}
-	 * @version 3
+	 * @version 4
 	 */
-	public void updateTournamentCode(String tournamentCode, TournamentMap mapType, PickType pickType, SpectatorType spectatorType, long... allowedSummonerIds) {
+	public void updateTournamentCode(String tournamentCode, TournamentMap mapType, PickType pickType, SpectatorType spectatorType,
+			String... allowedSummonerIds) {
 		Objects.requireNonNull(tournamentCode);
 		ApiMethod method = new UpdateTournamentCode(getConfig(), tournamentCode, mapType, pickType, spectatorType, allowedSummonerIds);
 		endpointManager.callMethodAsynchronously(method);

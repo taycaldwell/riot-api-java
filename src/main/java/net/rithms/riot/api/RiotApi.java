@@ -21,12 +21,8 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.logging.Logger;
 
-import net.rithms.riot.api.endpoints.champion.dto.Champion;
 import net.rithms.riot.api.endpoints.champion.dto.ChampionInfo;
-import net.rithms.riot.api.endpoints.champion.dto.ChampionList;
-import net.rithms.riot.api.endpoints.champion.methods.GetChampion;
 import net.rithms.riot.api.endpoints.champion.methods.GetChampionRotations;
-import net.rithms.riot.api.endpoints.champion.methods.GetChampions;
 import net.rithms.riot.api.endpoints.champion_mastery.dto.ChampionMastery;
 import net.rithms.riot.api.endpoints.champion_mastery.methods.GetChampionMasteriesBySummoner;
 import net.rithms.riot.api.endpoints.champion_mastery.methods.GetChampionMasteriesBySummonerByChampion;
@@ -102,6 +98,7 @@ import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
 import net.rithms.riot.api.endpoints.summoner.methods.GetSummoner;
 import net.rithms.riot.api.endpoints.summoner.methods.GetSummonerByAccount;
 import net.rithms.riot.api.endpoints.summoner.methods.GetSummonerByName;
+import net.rithms.riot.api.endpoints.summoner.methods.GetSummonerByPuuid;
 import net.rithms.riot.api.endpoints.third_party_code.methods.GetThirdPartyCodeBySummoner;
 import net.rithms.riot.api.endpoints.tournament.constant.PickType;
 import net.rithms.riot.api.endpoints.tournament.constant.SpectatorType;
@@ -205,7 +202,7 @@ public class RiotApi implements Cloneable {
 	 * @return Tournament ID
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
-	 * @version 3
+	 * @version 4
 	 */
 	public int createTournament(String tournamentName, int providerId) throws RiotApiException {
 		ApiMethod method = new CreateTournament(getConfig(), tournamentName, providerId);
@@ -220,7 +217,7 @@ public class RiotApi implements Cloneable {
 	 * @return Tournament ID
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
-	 * @version 3
+	 * @version 4
 	 */
 	public int createTournament(int providerId) throws RiotApiException {
 		return createTournament(null, providerId);
@@ -251,10 +248,10 @@ public class RiotApi implements Cloneable {
 	 *             If {@code mapType} or {@code pickType} or {@code spectatorType} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
-	 * @version 3
+	 * @version 4
 	 */
 	public List<String> createTournamentCodes(int tournamentId, int count, int teamSize, TournamentMap mapType, PickType pickType, SpectatorType spectatorType,
-			String metaData, long... allowedSummonerIds) throws RiotApiException {
+			String metaData, String... allowedSummonerIds) throws RiotApiException {
 		Objects.requireNonNull(mapType);
 		Objects.requireNonNull(pickType);
 		Objects.requireNonNull(spectatorType);
@@ -285,10 +282,10 @@ public class RiotApi implements Cloneable {
 	 *             If {@code mapType} or {@code pickType} or {@code spectatorType} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
-	 * @version 3
+	 * @version 4
 	 */
 	public List<String> createTournamentCodes(int tournamentId, int count, int teamSize, TournamentMap mapType, PickType pickType, SpectatorType spectatorType,
-			long... allowedSummonerIds) throws RiotApiException {
+			String... allowedSummonerIds) throws RiotApiException {
 		return createTournamentCodes(tournamentId, count, teamSize, mapType, pickType, spectatorType, null, allowedSummonerIds);
 	}
 
@@ -305,7 +302,7 @@ public class RiotApi implements Cloneable {
 	 *             If {@code region} or {@code callbackUrl} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
-	 * @version 3
+	 * @version 4
 	 */
 	public int createTournamentProvider(String region, String callbackUrl) throws RiotApiException {
 		Objects.requireNonNull(region);
@@ -326,10 +323,10 @@ public class RiotApi implements Cloneable {
 	 *             If {@code platform} or {@code summonerId} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
-	 * @version 3
+	 * @version 4
 	 * @see CurrentGameInfo
 	 */
-	public CurrentGameInfo getActiveGameBySummoner(Platform platform, long summonerId) throws RiotApiException {
+	public CurrentGameInfo getActiveGameBySummoner(Platform platform, String summonerId) throws RiotApiException {
 		Objects.requireNonNull(platform);
 		Objects.requireNonNull(summonerId);
 		ApiMethod method = new GetActiveGameBySummoner(getConfig(), platform, summonerId);
@@ -367,7 +364,7 @@ public class RiotApi implements Cloneable {
 	 *             If {@code platform} or {@code queue} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
-	 * @version 3
+	 * @version 4
 	 * @see LeagueList
 	 */
 	public LeagueList getChallengerLeagueByQueue(Platform platform, String queue) throws RiotApiException {
@@ -389,34 +386,12 @@ public class RiotApi implements Cloneable {
 	 *             If {@code queue} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
-	 * @version 3
+	 * @version 4
 	 * @see LeagueList
 	 */
 	public LeagueList getChallengerLeagueByQueue(Platform platform, LeagueQueue queue) throws RiotApiException {
 		Objects.requireNonNull(queue);
 		return getChallengerLeagueByQueue(platform, queue.toString());
-	}
-
-	/**
-	 * Retrieve champion by {@code id}.
-	 *
-	 * @param platform
-	 *            Platform to execute the method call against.
-	 * @param id
-	 *            The ID of the desired champion
-	 * @return The champion of the given ID
-	 * @throws NullPointerException
-	 *             If {@code platform} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
-	 * @version 3
-	 * @see Champion
-	 */
-	@Deprecated
-	public Champion getChampion(Platform platform, int id) throws RiotApiException {
-		Objects.requireNonNull(platform);
-		ApiMethod method = new GetChampion(getConfig(), platform, id);
-		return endpointManager.callMethodAndReturnDto(method);
 	}
 
 	/**
@@ -431,10 +406,10 @@ public class RiotApi implements Cloneable {
 	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
-	 * @version 3
+	 * @version 4
 	 * @see ChampionMastery
 	 */
-	public List<ChampionMastery> getChampionMasteriesBySummoner(Platform platform, long summonerId) throws RiotApiException {
+	public List<ChampionMastery> getChampionMasteriesBySummoner(Platform platform, String summonerId) throws RiotApiException {
 		Objects.requireNonNull(platform);
 		ApiMethod method = new GetChampionMasteriesBySummoner(getConfig(), platform, summonerId);
 		return endpointManager.callMethodAndReturnDto(method);
@@ -454,10 +429,10 @@ public class RiotApi implements Cloneable {
 	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
-	 * @version 3
+	 * @version 4
 	 * @see ChampionMastery
 	 */
-	public ChampionMastery getChampionMasteriesBySummonerByChampion(Platform platform, long summonerId, int championId) throws RiotApiException {
+	public ChampionMastery getChampionMasteriesBySummonerByChampion(Platform platform, String summonerId, int championId) throws RiotApiException {
 		Objects.requireNonNull(platform);
 		ApiMethod method = new GetChampionMasteriesBySummonerByChampion(getConfig(), platform, summonerId, championId);
 		return endpointManager.callMethodAndReturnDto(method);
@@ -475,50 +450,12 @@ public class RiotApi implements Cloneable {
 	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
-	 * @version 3
+	 * @version 4
 	 */
-	public int getChampionMasteryScoresBySummoner(Platform platform, long summonerId) throws RiotApiException {
+	public int getChampionMasteryScoresBySummoner(Platform platform, String summonerId) throws RiotApiException {
 		Objects.requireNonNull(platform);
 		ApiMethod method = new GetChampionMasteryScoresBySummoner(getConfig(), platform, summonerId);
 		return endpointManager.callMethodAndReturnDto(method);
-	}
-
-	/**
-	 * Retrieve all champions.
-	 *
-	 * @param platform
-	 *            Platform to execute the method call against.
-	 * @param freeToPlay
-	 *            Optional filter param to retrieve only free to play champions.
-	 * @return This object contains a collection of champion information.
-	 * @throws NullPointerException
-	 *             If {@code platform} is {@code null}
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
-	 * @version 3
-	 * @see ChampionList
-	 */
-	@Deprecated
-	public ChampionList getChampions(Platform platform, boolean freeToPlay) throws RiotApiException {
-		Objects.requireNonNull(platform);
-		ApiMethod method = new GetChampions(getConfig(), platform, freeToPlay);
-		return endpointManager.callMethodAndReturnDto(method);
-	}
-
-	/**
-	 * Retrieve all champions.
-	 *
-	 * @param platform
-	 *            Platform to execute the method call against.
-	 * @return This object contains a collection of champion information.
-	 * @throws RiotApiException
-	 *             If the API returns an error or unparsable result
-	 * @version 3
-	 * @see ChampionList
-	 */
-	@Deprecated
-	public ChampionList getChampions(Platform platform) throws RiotApiException {
-		return getChampions(platform, false);
 	}
 
 	/**
@@ -1460,7 +1397,7 @@ public class RiotApi implements Cloneable {
 	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
-	 * @version 3
+	 * @version 4
 	 * @see FeaturedGames
 	 */
 	public FeaturedGames getFeaturedGames(Platform platform) throws RiotApiException {
@@ -1481,7 +1418,7 @@ public class RiotApi implements Cloneable {
 	 *             If {@code platform} or {@code leagueId} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
-	 * @version 3
+	 * @version 4
 	 * @see LeagueList
 	 */
 	public LeagueList getLeagueById(Platform platform, String leagueId) throws RiotApiException {
@@ -1503,10 +1440,10 @@ public class RiotApi implements Cloneable {
 	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
-	 * @version 3
+	 * @version 4
 	 * @see LeagueList
 	 */
-	public Set<LeaguePosition> getLeaguePositionsBySummonerId(Platform platform, long summonerId) throws RiotApiException {
+	public Set<LeaguePosition> getLeaguePositionsBySummonerId(Platform platform, String summonerId) throws RiotApiException {
 		Objects.requireNonNull(platform);
 		ApiMethod method = new GetLeaguePositionsBySummonerId(getConfig(), platform, summonerId);
 		return endpointManager.callMethodAndReturnDto(method);
@@ -1522,7 +1459,7 @@ public class RiotApi implements Cloneable {
 	 *             If {@code tournamentCode} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
-	 * @version 3
+	 * @version 4
 	 * @see LobbyEventWrapper
 	 */
 	public LobbyEventWrapper getLobbyEventsByTournament(String tournamentCode) throws RiotApiException {
@@ -1543,7 +1480,7 @@ public class RiotApi implements Cloneable {
 	 *             If {@code platform} or {@code queue} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
-	 * @version 3
+	 * @version 4
 	 * @see LeagueList
 	 */
 	public LeagueList getMasterLeagueByQueue(Platform platform, String queue) throws RiotApiException {
@@ -1565,7 +1502,7 @@ public class RiotApi implements Cloneable {
 	 *             If the API returns an error or unparsable result
 	 * @throws NullPointerException
 	 *             If {@code queue} is {@code null}
-	 * @version 3
+	 * @version 4
 	 * @see LeagueList
 	 */
 	public LeagueList getMasterLeagueByQueue(Platform platform, LeagueQueue queue) throws RiotApiException {
@@ -1587,10 +1524,10 @@ public class RiotApi implements Cloneable {
 	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
-	 * @version 3
+	 * @version 4
 	 * @see Match
 	 */
-	public Match getMatch(Platform platform, long matchId, long forAccountId) throws RiotApiException {
+	public Match getMatch(Platform platform, long matchId, String forAccountId) throws RiotApiException {
 		Objects.requireNonNull(platform);
 		ApiMethod method = new GetMatch(getConfig(), platform, matchId, forAccountId);
 		return endpointManager.callMethodAndReturnDto(method);
@@ -1606,11 +1543,11 @@ public class RiotApi implements Cloneable {
 	 * @return A map with match details
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
-	 * @version 3
+	 * @version 4
 	 * @see Match
 	 */
 	public Match getMatch(Platform platform, long matchId) throws RiotApiException {
-		return getMatch(platform, matchId, -1);
+		return getMatch(platform, matchId, null);
 	}
 
 	/**
@@ -1627,7 +1564,7 @@ public class RiotApi implements Cloneable {
 	 *             If {@code platform} or {@code tournamentCode} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
-	 * @version 3
+	 * @version 4
 	 * @see Match
 	 */
 	public Match getMatchByMatchIdAndTournamentCode(Platform platform, long matchId, String tournamentCode) throws RiotApiException {
@@ -1649,7 +1586,7 @@ public class RiotApi implements Cloneable {
 	 *             If {@code platform} or {@code tournamentCode} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
-	 * @version 3
+	 * @version 4
 	 */
 	public List<Long> getMatchIdsByTournamentCode(Platform platform, String tournamentCode) throws RiotApiException {
 		Objects.requireNonNull(platform);
@@ -1684,11 +1621,11 @@ public class RiotApi implements Cloneable {
 	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
-	 * @version 3
+	 * @version 4
 	 * @see MatchList
 	 */
-	public MatchList getMatchListByAccountId(Platform platform, long accountId, Set<Integer> champion, Set<Integer> queue, Set<Integer> season, long beginTime,
-			long endTime, int beginIndex, int endIndex) throws RiotApiException {
+	public MatchList getMatchListByAccountId(Platform platform, String accountId, Set<Integer> champion, Set<Integer> queue, Set<Integer> season,
+			long beginTime, long endTime, int beginIndex, int endIndex) throws RiotApiException {
 		Objects.requireNonNull(platform);
 		ApiMethod method = new GetMatchListByAccountId(getConfig(), platform, accountId, champion, queue, season, beginTime, endTime, beginIndex, endIndex);
 		return endpointManager.callMethodAndReturnDto(method);
@@ -1710,10 +1647,10 @@ public class RiotApi implements Cloneable {
 	 * @return A list with matches
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
-	 * @version 3
+	 * @version 4
 	 * @see MatchList
 	 */
-	public MatchList getMatchListByAccountId(Platform platform, long accountId, Set<Integer> champion, Set<Integer> queue, Set<Integer> season)
+	public MatchList getMatchListByAccountId(Platform platform, String accountId, Set<Integer> champion, Set<Integer> queue, Set<Integer> season)
 			throws RiotApiException {
 		return getMatchListByAccountId(platform, accountId, champion, queue, season, -1, -1, -1, -1);
 	}
@@ -1728,10 +1665,10 @@ public class RiotApi implements Cloneable {
 	 * @return A list with matches
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
-	 * @version 3
+	 * @version 4
 	 * @see MatchList
 	 */
-	public MatchList getMatchListByAccountId(Platform platform, long accountId) throws RiotApiException {
+	public MatchList getMatchListByAccountId(Platform platform, String accountId) throws RiotApiException {
 		return getMatchListByAccountId(platform, accountId, null, null, null);
 	}
 
@@ -1766,10 +1703,10 @@ public class RiotApi implements Cloneable {
 	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
-	 * @version 3
+	 * @version 4
 	 * @see Summoner
 	 */
-	public Summoner getSummonerByAccount(Platform platform, long accountId) throws RiotApiException {
+	public Summoner getSummonerByAccount(Platform platform, String accountId) throws RiotApiException {
 		Objects.requireNonNull(platform);
 		ApiMethod method = new GetSummonerByAccount(getConfig(), platform, accountId);
 		return endpointManager.callMethodAndReturnDto(method);
@@ -1787,10 +1724,10 @@ public class RiotApi implements Cloneable {
 	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
-	 * @version 3
+	 * @version 4
 	 * @see Summoner
 	 */
-	public Summoner getSummoner(Platform platform, long summonerId) throws RiotApiException {
+	public Summoner getSummoner(Platform platform, String summonerId) throws RiotApiException {
 		Objects.requireNonNull(platform);
 		ApiMethod method = new GetSummoner(getConfig(), platform, summonerId);
 		return endpointManager.callMethodAndReturnDto(method);
@@ -1810,7 +1747,7 @@ public class RiotApi implements Cloneable {
 	 *             If {@code platform} or {@code summonerName} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
-	 * @version 3
+	 * @version 4
 	 * @see Summoner
 	 */
 	public Summoner getSummonerByName(Platform platform, String summonerName) throws RiotApiException {
@@ -1818,6 +1755,27 @@ public class RiotApi implements Cloneable {
 		Objects.requireNonNull(summonerName);
 		RiotApiUtil.requireValidSummonerName(summonerName);
 		ApiMethod method = new GetSummonerByName(getConfig(), platform, summonerName);
+		return endpointManager.callMethodAndReturnDto(method);
+	}
+
+	/**
+	 * Get a summoner object for a given {@code puuid}.
+	 *
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param puuid
+	 *            PUUID associated with summoner to retrieve.
+	 * @return The desired summoner
+	 * @throws NullPointerException
+	 *             If {@code platform} is {@code null}
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 * @version 4
+	 * @see Summoner
+	 */
+	public Summoner getSummonerByPuuid(Platform platform, String puuid) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetSummonerByPuuid(getConfig(), platform, puuid);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
 
@@ -1833,9 +1791,9 @@ public class RiotApi implements Cloneable {
 	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
-	 * @version 3
+	 * @version 4
 	 */
-	public String getThirdPartyCodeBySummoner(Platform platform, long summonerId) throws RiotApiException {
+	public String getThirdPartyCodeBySummoner(Platform platform, String summonerId) throws RiotApiException {
 		Objects.requireNonNull(platform);
 		ApiMethod method = new GetThirdPartyCodeBySummoner(getConfig(), platform, summonerId);
 		return endpointManager.callMethodAndReturnDto(method);
@@ -1853,7 +1811,7 @@ public class RiotApi implements Cloneable {
 	 *             If {@code platform} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
-	 * @version 3
+	 * @version 4
 	 * @see MatchTimeline
 	 */
 	public MatchTimeline getTimelineByMatchId(Platform platform, long matchId) throws RiotApiException {
@@ -1872,7 +1830,7 @@ public class RiotApi implements Cloneable {
 	 *             If {@code tournamentCode} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
-	 * @version 3
+	 * @version 4
 	 * @see TournamentCode
 	 */
 	public TournamentCode getTournamentCode(String tournamentCode) throws RiotApiException {
@@ -1898,9 +1856,9 @@ public class RiotApi implements Cloneable {
 	 *             If {@code tournamentCode} is {@code null}
 	 * @throws RiotApiException
 	 *             If the API returns an error or unparsable result
-	 * @version 3
+	 * @version 4
 	 */
-	public void updateTournamentCode(String tournamentCode, TournamentMap mapType, PickType pickType, SpectatorType spectatorType, long... allowedSummonerIds)
+	public void updateTournamentCode(String tournamentCode, TournamentMap mapType, PickType pickType, SpectatorType spectatorType, String... allowedSummonerIds)
 			throws RiotApiException {
 		Objects.requireNonNull(tournamentCode);
 		ApiMethod method = new UpdateTournamentCode(getConfig(), tournamentCode, mapType, pickType, spectatorType, allowedSummonerIds);
