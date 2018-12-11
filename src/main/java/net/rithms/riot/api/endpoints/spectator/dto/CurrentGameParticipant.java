@@ -32,7 +32,7 @@ public class CurrentGameParticipant extends Dto implements Serializable {
 	private int profileIconId;
 	private int spell1Id;
 	private int spell2Id;
-	private long summonerId;
+	private String summonerId;
 	private String summonerName;
 	private int teamId;
 
@@ -60,7 +60,7 @@ public class CurrentGameParticipant extends Dto implements Serializable {
 		return spell2Id;
 	}
 
-	public long getSummonerId() {
+	public String getSummonerId() {
 		return summonerId;
 	}
 

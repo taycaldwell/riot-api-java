@@ -22,11 +22,11 @@ import net.rithms.riot.constant.Platform;
 
 public class GetThirdPartyCodeBySummoner extends SummonerApiMethod {
 
-	public GetThirdPartyCodeBySummoner(ApiConfig config, Platform platform, long summonerId) {
+	public GetThirdPartyCodeBySummoner(ApiConfig config, Platform platform, String summonerId) {
 		super(config);
 		setPlatform(platform);
 		setReturnType(String.class);
-		setUrlBase(platform.getHost() + "/lol/platform/v3/third-party-code/by-summoner/" + summonerId);
+		setUrlBase(platform.getHost() + "/lol/platform/v4/third-party-code/by-summoner/" + summonerId);
 		addApiKeyParameter();
 	}
 }

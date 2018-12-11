@@ -27,7 +27,7 @@ public class GetMasterLeagueByQueue extends LeagueApiMethod {
 		super(config);
 		setPlatform(platform);
 		setReturnType(LeagueList.class);
-		setUrlBase(platform.getHost() + "/lol/league/v3/masterleagues/by-queue/" + queue);
+		setUrlBase(platform.getHost() + "/lol/league/v4/masterleagues/by-queue/" + queue);
 		addApiKeyParameter();
 	}
 }

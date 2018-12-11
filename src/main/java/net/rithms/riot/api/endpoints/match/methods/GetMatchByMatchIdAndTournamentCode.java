@@ -28,7 +28,7 @@ public class GetMatchByMatchIdAndTournamentCode extends TournamentApiMethod {
 		super(config);
 		setPlatform(platform);
 		setReturnType(Match.class);
-		setUrlBase(platform.getHost() + "/lol/match/v3/matches/" + matchId + "/by-tournament-code/" + tournamentCode);
+		setUrlBase(platform.getHost() + "/lol/match/v4/matches/" + matchId + "/by-tournament-code/" + tournamentCode);
 		add(new UrlParameter("tournamentCode", tournamentCode));
 		addTournamentApiKeyParameter();
 		allowMockMode();

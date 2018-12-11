@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Taylor Caldwell
+ * Copyright 2018 Taylor Caldwell
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,16 +18,16 @@ package net.rithms.riot.api.endpoints.champion.methods;
 
 import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.endpoints.champion.ChampionApiMethod;
-import net.rithms.riot.api.endpoints.champion.dto.Champion;
+import net.rithms.riot.api.endpoints.champion.dto.ChampionInfo;
 import net.rithms.riot.constant.Platform;
 
-public class GetChampion extends ChampionApiMethod {
+public class GetChampionRotations extends ChampionApiMethod {
 
-	public GetChampion(ApiConfig config, Platform platform, int id) {
+	public GetChampionRotations(ApiConfig config, Platform platform) {
 		super(config);
 		setPlatform(platform);
-		setReturnType(Champion.class);
-		setUrlBase(platform.getHost() + "/lol/platform/v3/champions/" + id);
+		setReturnType(ChampionInfo.class);
+		setUrlBase(platform.getHost() + "/lol/platform/v3/champion-rotations");
 		addApiKeyParameter();
 	}
 }

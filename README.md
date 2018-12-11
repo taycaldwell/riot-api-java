@@ -94,6 +94,7 @@ public class SummonerExample {
 		System.out.println("Name: " + summoner.getName());
 		System.out.println("Summoner ID: " + summoner.getId());
 		System.out.println("Account ID: " + summoner.getAccountId());
+		System.out.println("PUUID: " + summoner.getPuuid());
 		System.out.println("Summoner Level: " + summoner.getSummonerLevel());
 		System.out.println("Profile Icon ID: " + summoner.getProfileIconId());
 	}
@@ -145,17 +146,17 @@ The documentation for this library can be found [here.](http://taycaldwell.com/r
 
 ## API Versions
 The current version of this library supports the following Riot Games API versions:
-- **CHAMPION-MASTERY-V3**
+- **CHAMPION-MASTERY-V4**
 - **CHAMPION-V3**
-- **LEAGUE-V3**
+- **LEAGUE-V4**
 - **LOL-STATUS-V3**
-- **MATCH-V3**
-- **SPECTATOR-V3**
-- **STATIC-DATA-V3**
-- **SUMMONER-V3**
-- **THIRD-PARTY-CODE-V3**
+- **MATCH-V4**
+- **SPECTATOR-V4**
+- **STATIC-DATA-V3** (deprecated)
+- **SUMMONER-V4**
+- **THIRD-PARTY-CODE-V4**
 - **TOURNAMENT-V3**
-- **TOURNAMENT-STUB-V3**
+- **TOURNAMENT-STUB-V4**
 
 ## Contributing
 All contributions are appreciated.

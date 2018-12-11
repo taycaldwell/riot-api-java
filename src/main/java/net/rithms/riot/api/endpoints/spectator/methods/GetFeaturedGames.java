@@ -27,7 +27,7 @@ public class GetFeaturedGames extends SpectatorApiMethod {
 		super(config);
 		setPlatform(platform);
 		setReturnType(FeaturedGames.class);
-		setUrlBase(platform.getHost() + "/lol/spectator/v3/featured-games");
+		setUrlBase(platform.getHost() + "/lol/spectator/v4/featured-games");
 		addApiKeyParameter();
 	}
 }

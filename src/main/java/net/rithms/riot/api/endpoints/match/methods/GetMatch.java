@@ -24,12 +24,12 @@ import net.rithms.riot.constant.Platform;
 
 public class GetMatch extends MatchApiMethod {
 
-	public GetMatch(ApiConfig config, Platform platform, long matchId, long forAccountId) {
+	public GetMatch(ApiConfig config, Platform platform, long matchId, String forAccountId) {
 		super(config);
 		setPlatform(platform);
 		setReturnType(Match.class);
-		setUrlBase(platform.getHost() + "/lol/match/v3/matches/" + matchId);
-		if (forAccountId != -1) {
+		setUrlBase(platform.getHost() + "/lol/match/v4/matches/" + matchId);
+		if (forAccountId != null && !forAccountId.isEmpty()) {
 			add(new UrlParameter("forAccountId", forAccountId));
 		}
 		addApiKeyParameter();

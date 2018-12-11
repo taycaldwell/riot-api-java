@@ -80,11 +80,11 @@ public class CurrentGameInfo extends Dto implements Serializable {
 	 *            Summoner ID
 	 * @return Participant from {@link #getParticipants()} matching {@code summonerId}, or {@code null} if there is no such participant.
 	 */
-	public CurrentGameParticipant getParticipantByParticipantId(long summonerId) {
+	public CurrentGameParticipant getParticipantByParticipantId(String summonerId) {
 		List<CurrentGameParticipant> participants = getParticipants();
 		if (participants != null) {
 			for (CurrentGameParticipant participant : participants) {
-				if (participant.getSummonerId() == summonerId) {
+				if (participant.getSummonerId().equals(summonerId)) {
 					return participant;
 				}
 			}

@@ -18,10 +18,9 @@ package net.rithms.riot.api.endpoints.match.dto;
 
 import java.io.Serializable;
 
-import lombok.Data;
 import net.rithms.riot.api.Dto;
 
-public @Data class ParticipantStats extends Dto implements Serializable {
+public class ParticipantStats extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 7907342025148370788L;
 
@@ -133,5 +132,451 @@ public @Data class ParticipantStats extends Dto implements Serializable {
 	private long playerScore9;
 	private int perkPrimaryStyle;
 	private int perkSubStyle;
+	private int statPerk0;
+	private int statPerk1;
+	private int statPerk2;
 
+	public int getAltarsCaptured() {
+		return altarsCaptured;
+	}
+
+	public int getAltarsNeutralized() {
+		return altarsNeutralized;
+	}
+
+	public int getAssists() {
+		return assists;
+	}
+
+	public int getChampLevel() {
+		return champLevel;
+	}
+
+	public int getCombatPlayerScore() {
+		return combatPlayerScore;
+	}
+
+	public long getDamageDealtToObjectives() {
+		return damageDealtToObjectives;
+	}
+
+	public long getDamageDealtToTurrets() {
+		return damageDealtToTurrets;
+	}
+
+	public long getDamageSelfMitigated() {
+		return damageSelfMitigated;
+	}
+
+	public int getDeaths() {
+		return deaths;
+	}
+
+	public int getDoubleKills() {
+		return doubleKills;
+	}
+
+	public int getGoldEarned() {
+		return goldEarned;
+	}
+
+	public int getGoldSpent() {
+		return goldSpent;
+	}
+
+	public int getInhibitorKills() {
+		return inhibitorKills;
+	}
+
+	public int getItem0() {
+		return item0;
+	}
+
+	public int getItem1() {
+		return item1;
+	}
+
+	public int getItem2() {
+		return item2;
+	}
+
+	public int getItem3() {
+		return item3;
+	}
+
+	public int getItem4() {
+		return item4;
+	}
+
+	public int getItem5() {
+		return item5;
+	}
+
+	public int getItem6() {
+		return item6;
+	}
+
+	public int getKillingSprees() {
+		return killingSprees;
+	}
+
+	public int getKills() {
+		return kills;
+	}
+
+	public int getLargestCriticalStrike() {
+		return largestCriticalStrike;
+	}
+
+	public int getLargestKillingSpree() {
+		return largestKillingSpree;
+	}
+
+	public int getLargestMultiKill() {
+		return largestMultiKill;
+	}
+
+	public int getLongestTimeSpentLiving() {
+		return longestTimeSpentLiving;
+	}
+
+	public long getMagicDamageDealt() {
+		return magicDamageDealt;
+	}
+
+	public long getMagicDamageDealtToChampions() {
+		return magicDamageDealtToChampions;
+	}
+
+	public long getMagicalDamageTaken() {
+		return magicalDamageTaken;
+	}
+
+	public int getNeutralMinionsKilled() {
+		return neutralMinionsKilled;
+	}
+
+	public int getNeutralMinionsKilledEnemyJungle() {
+		return neutralMinionsKilledEnemyJungle;
+	}
+
+	public int getNeutralMinionsKilledTeamJungle() {
+		return neutralMinionsKilledTeamJungle;
+	}
+
+	public int getNodeCapture() {
+		return nodeCapture;
+	}
+
+	public int getNodeCaptureAssist() {
+		return nodeCaptureAssist;
+	}
+
+	public int getNodeNeutralize() {
+		return nodeNeutralize;
+	}
+
+	public int getNodeNeutralizeAssist() {
+		return nodeNeutralizeAssist;
+	}
+
+	public int getObjectivePlayerScore() {
+		return objectivePlayerScore;
+	}
+
+	public int getParticipantId() {
+		return participantId;
+	}
+
+	public int getPentaKills() {
+		return pentaKills;
+	}
+
+	public long getPhysicalDamageDealt() {
+		return physicalDamageDealt;
+	}
+
+	public long getPhysicalDamageDealtToChampions() {
+		return physicalDamageDealtToChampions;
+	}
+
+	public long getPhysicalDamageTaken() {
+		return physicalDamageTaken;
+	}
+
+	public int getQuadraKills() {
+		return quadraKills;
+	}
+
+	public int getSightWardsBoughtInGame() {
+		return sightWardsBoughtInGame;
+	}
+
+	public int getTeamObjective() {
+		return teamObjective;
+	}
+
+	public int getTimeCCingOthers() {
+		return timeCCingOthers;
+	}
+
+	public long getTotalDamageDealt() {
+		return totalDamageDealt;
+	}
+
+	public long getTotalDamageDealtToChampions() {
+		return totalDamageDealtToChampions;
+	}
+
+	public long getTotalDamageTaken() {
+		return totalDamageTaken;
+	}
+
+	public long getTotalHeal() {
+		return totalHeal;
+	}
+
+	public int getTotalMinionsKilled() {
+		return totalMinionsKilled;
+	}
+
+	public int getTotalPlayerScore() {
+		return totalPlayerScore;
+	}
+
+	public int getTotalScoreRank() {
+		return totalScoreRank;
+	}
+
+	public int getTotalTimeCrowdControlDealt() {
+		return totalTimeCrowdControlDealt;
+	}
+
+	public int getTotalUnitsHealed() {
+		return totalUnitsHealed;
+	}
+
+	public int getTripleKills() {
+		return tripleKills;
+	}
+
+	public long getTrueDamageDealt() {
+		return trueDamageDealt;
+	}
+
+	public long getTrueDamageDealtToChampions() {
+		return trueDamageDealtToChampions;
+	}
+
+	public long getTrueDamageTaken() {
+		return trueDamageTaken;
+	}
+
+	public int getTurretKills() {
+		return turretKills;
+	}
+
+	public int getUnrealKills() {
+		return unrealKills;
+	}
+
+	public long getVisionScore() {
+		return visionScore;
+	}
+
+	public int getVisionWardsBoughtInGame() {
+		return visionWardsBoughtInGame;
+	}
+
+	public int getWardsKilled() {
+		return wardsKilled;
+	}
+
+	public int getWardsPlaced() {
+		return wardsPlaced;
+	}
+
+	public boolean isFirstBloodAssist() {
+		return firstBloodAssist;
+	}
+
+	public boolean isFirstBloodKill() {
+		return firstBloodKill;
+	}
+
+	public boolean isFirstInhibitorAssist() {
+		return firstInhibitorAssist;
+	}
+
+	public boolean isFirstInhibitorKill() {
+		return firstInhibitorKill;
+	}
+
+	public boolean isFirstTowerAssist() {
+		return firstTowerAssist;
+	}
+
+	public boolean isFirstTowerKill() {
+		return firstTowerKill;
+	}
+
+	public boolean isWin() {
+		return win;
+	}
+
+	public int getPerk0() {
+		return perk0;
+	}
+
+	public int getPerk1() {
+		return perk1;
+	}
+
+	public int getPerk2() {
+		return perk2;
+	}
+
+	public int getPerk3() {
+		return perk3;
+	}
+
+	public int getPerk4() {
+		return perk4;
+	}
+
+	public int getPerk5() {
+		return perk5;
+	}
+
+	public long getPerk0Var1() {
+		return perk0Var1;
+	}
+
+	public long getPerk0Var2() {
+		return perk0Var2;
+	}
+
+	public long getPerk0Var3() {
+		return perk0Var3;
+	}
+
+	public long getPerk1Var1() {
+		return perk1Var1;
+	}
+
+	public long getPerk1Var2() {
+		return perk1Var2;
+	}
+
+	public long getPerk1Var3() {
+		return perk1Var3;
+	}
+
+	public long getPerk2Var1() {
+		return perk2Var1;
+	}
+
+	public long getPerk2Var2() {
+		return perk2Var2;
+	}
+
+	public long getPerk2Var3() {
+		return perk2Var3;
+	}
+
+	public long getPerk3Var1() {
+		return perk3Var1;
+	}
+
+	public long getPerk3Var2() {
+		return perk3Var2;
+	}
+
+	public long getPerk3Var3() {
+		return perk3Var3;
+	}
+
+	public long getPerk4Var1() {
+		return perk4Var1;
+	}
+
+	public long getPerk4Var2() {
+		return perk4Var2;
+	}
+
+	public long getPerk4Var3() {
+		return perk4Var3;
+	}
+
+	public long getPerk5Var1() {
+		return perk5Var1;
+	}
+
+	public long getPerk5Var2() {
+		return perk5Var2;
+	}
+
+	public long getPerk5Var3() {
+		return perk5Var3;
+	}
+
+	public long getPlayerScore0() {
+		return playerScore0;
+	}
+
+	public long getPlayerScore1() {
+		return playerScore1;
+	}
+
+	public long getPlayerScore2() {
+		return playerScore2;
+	}
+
+	public long getPlayerScore3() {
+		return playerScore3;
+	}
+
+	public long getPlayerScore4() {
+		return playerScore4;
+	}
+
+	public long getPlayerScore5() {
+		return playerScore5;
+	}
+
+	public long getPlayerScore6() {
+		return playerScore6;
+	}
+
+	public long getPlayerScore7() {
+		return playerScore7;
+	}
+
+	public long getPlayerScore8() {
+		return playerScore8;
+	}
+
+	public long getPlayerScore9() {
+		return playerScore9;
+	}
+
+	public int getPerkPrimaryStyle() {
+		return perkPrimaryStyle;
+	}
+
+	public int getPerkSubStyle() {
+		return perkSubStyle;
+	}
+
+	public int getStatPerk0() {
+		return statPerk0;
+	}
+
+	public int getStatPerk1() {
+		return statPerk1;
+	}
+
+	public int getStatPerk2() {
+		return statPerk2;
+	}
 }

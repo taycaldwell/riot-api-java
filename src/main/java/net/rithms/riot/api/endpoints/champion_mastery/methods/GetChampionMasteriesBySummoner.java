@@ -27,12 +27,12 @@ import net.rithms.riot.constant.Platform;
 
 public class GetChampionMasteriesBySummoner extends ChampionMasteryApiMethod {
 
-	public GetChampionMasteriesBySummoner(ApiConfig config, Platform platform, long summonerId) {
+	public GetChampionMasteriesBySummoner(ApiConfig config, Platform platform, String summonerId) {
 		super(config);
 		setPlatform(platform);
 		setReturnType(new TypeToken<List<ChampionMastery>>() {
 		}.getType());
-		setUrlBase(platform.getHost() + "/lol/champion-mastery/v3/champion-masteries/by-summoner/" + summonerId);
+		setUrlBase(platform.getHost() + "/lol/champion-mastery/v4/champion-masteries/by-summoner/" + summonerId);
 		addApiKeyParameter();
 	}
 }

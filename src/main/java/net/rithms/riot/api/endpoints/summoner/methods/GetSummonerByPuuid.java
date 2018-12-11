@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Taylor Caldwell
+ * Copyright 2017 Taylor Caldwell
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,24 +14,20 @@
  * limitations under the License.
  */
 
-package net.rithms.riot.api.endpoints.champion.methods;
+package net.rithms.riot.api.endpoints.summoner.methods;
 
 import net.rithms.riot.api.ApiConfig;
-import net.rithms.riot.api.UrlParameter;
-import net.rithms.riot.api.endpoints.champion.ChampionApiMethod;
-import net.rithms.riot.api.endpoints.champion.dto.ChampionList;
+import net.rithms.riot.api.endpoints.summoner.SummonerApiMethod;
+import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
 import net.rithms.riot.constant.Platform;
 
-public class GetChampions extends ChampionApiMethod {
+public class GetSummonerByPuuid extends SummonerApiMethod {
 
-	public GetChampions(ApiConfig config, Platform platform, boolean freeToPlay) {
+	public GetSummonerByPuuid(ApiConfig config, Platform platform, String puuid) {
 		super(config);
 		setPlatform(platform);
-		setReturnType(ChampionList.class);
-		setUrlBase(platform.getHost() + "/lol/platform/v3/champions");
-		if (freeToPlay) {
-			add(new UrlParameter("freeToPlay", freeToPlay));
-		}
+		setReturnType(Summoner.class);
+		setUrlBase(platform.getHost() + "/lol/summoner/v4/summoners/by-puuid/" + puuid);
 		addApiKeyParameter();
 	}
 }

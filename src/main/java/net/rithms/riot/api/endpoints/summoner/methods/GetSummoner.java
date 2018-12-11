@@ -23,11 +23,11 @@ import net.rithms.riot.constant.Platform;
 
 public class GetSummoner extends SummonerApiMethod {
 
-	public GetSummoner(ApiConfig config, Platform platform, long summonerId) {
+	public GetSummoner(ApiConfig config, Platform platform, String summonerId) {
 		super(config);
 		setPlatform(platform);
 		setReturnType(Summoner.class);
-		setUrlBase(platform.getHost() + "/lol/summoner/v3/summoners/" + summonerId);
+		setUrlBase(platform.getHost() + "/lol/summoner/v4/summoners/" + summonerId);
 		addApiKeyParameter();
 	}
 }

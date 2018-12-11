@@ -27,7 +27,7 @@ public class GetChallengerLeagueByQueue extends LeagueApiMethod {
 		super(config);
 		setPlatform(platform);
 		setReturnType(LeagueList.class);
-		setUrlBase(platform.getHost() + "/lol/league/v3/challengerleagues/by-queue/" + queue);
+		setUrlBase(platform.getHost() + "/lol/league/v4/challengerleagues/by-queue/" + queue);
 		addApiKeyParameter();
 	}
 }

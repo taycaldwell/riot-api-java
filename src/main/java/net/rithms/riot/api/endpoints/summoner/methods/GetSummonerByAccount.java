@@ -23,11 +23,11 @@ import net.rithms.riot.constant.Platform;
 
 public class GetSummonerByAccount extends SummonerApiMethod {
 
-	public GetSummonerByAccount(ApiConfig config, Platform platform, long accountId) {
+	public GetSummonerByAccount(ApiConfig config, Platform platform, String accountId) {
 		super(config);
 		setPlatform(platform);
 		setReturnType(Summoner.class);
-		setUrlBase(platform.getHost() + "/lol/summoner/v3/summoners/by-account/" + accountId);
+		setUrlBase(platform.getHost() + "/lol/summoner/v4/summoners/by-account/" + accountId);
 		addApiKeyParameter();
 	}
 }

@@ -42,12 +42,11 @@ public class LeagueList extends Dto implements Serializable {
 	 *            Summoner ID
 	 * @return Entry from {@link #getEntries()} matching {@code summonerId}, or {@code null} if there is no such entry.
 	 */
-	public LeagueItem getEntryBySummonerId(long summonerId) {
+	public LeagueItem getEntryBySummonerId(String summonerId) {
 		List<LeagueItem> entries = getEntries();
 		if (entries != null) {
-			String summonerIdString = String.valueOf(summonerId);
 			for (LeagueItem entry : entries) {
-				if (entry.getPlayerOrTeamId().equals(summonerIdString)) {
+				if (entry.getSummonerId().equals(summonerId)) {
 					return entry;
 				}
 			}
@@ -66,7 +65,7 @@ public class LeagueList extends Dto implements Serializable {
 		List<LeagueItem> entries = getEntries();
 		if (entries != null) {
 			for (LeagueItem entry : entries) {
-				if (entry.getPlayerOrTeamName().equalsIgnoreCase(summonerName)) {
+				if (entry.getSummonerName().equalsIgnoreCase(summonerName)) {
 					return entry;
 				}
 			}

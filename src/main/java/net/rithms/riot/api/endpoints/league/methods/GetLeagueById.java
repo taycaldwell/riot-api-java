@@ -16,10 +16,6 @@
 
 package net.rithms.riot.api.endpoints.league.methods;
 
-import java.util.List;
-
-import com.google.gson.reflect.TypeToken;
-
 import net.rithms.riot.api.ApiConfig;
 import net.rithms.riot.api.endpoints.league.LeagueApiMethod;
 import net.rithms.riot.api.endpoints.league.dto.LeagueList;
@@ -30,9 +26,8 @@ public class GetLeagueById extends LeagueApiMethod {
 	public GetLeagueById(ApiConfig config, Platform platform, String leagueId) {
 		super(config);
 		setPlatform(platform);
-		setReturnType(new TypeToken<List<LeagueList>>() {
-		}.getType());
-		setUrlBase(platform.getHost() + "/lol/league/v3/leagues/" + leagueId);
+		setReturnType(LeagueList.class);
+		setUrlBase(platform.getHost() + "/lol/league/v4/leagues/" + leagueId);
 		addApiKeyParameter();
 	}
 }

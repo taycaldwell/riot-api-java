@@ -26,12 +26,12 @@ import net.rithms.riot.constant.Platform;
 
 public class GetMatchListByAccountId extends MatchApiMethod {
 
-	public GetMatchListByAccountId(ApiConfig config, Platform platform, long accountId, Set<Integer> champion, Set<Integer> queue, Set<Integer> season,
+	public GetMatchListByAccountId(ApiConfig config, Platform platform, String accountId, Set<Integer> champion, Set<Integer> queue, Set<Integer> season,
 			long beginTime, long endTime, int beginIndex, int endIndex) {
 		super(config);
 		setPlatform(platform);
 		setReturnType(MatchList.class);
-		setUrlBase(platform.getHost() + "/lol/match/v3/matchlists/by-account/" + accountId);
+		setUrlBase(platform.getHost() + "/lol/match/v4/matchlists/by-account/" + accountId);
 		if (champion != null) {
 			for (int param : champion) {
 				add(new UrlParameter("champion", param));
