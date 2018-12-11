@@ -30,9 +30,9 @@ public class LeagueItem extends Dto implements Serializable {
 	private int leaguePoints;
 	private int losses;
 	private MiniSeries miniSeries;
-	private String playerOrTeamId;
-	private String playerOrTeamName;
 	private String rank;
+	private String summonerId;
+	private String summonerName;
 	private boolean veteran;
 	private int wins;
 
@@ -48,16 +48,16 @@ public class LeagueItem extends Dto implements Serializable {
 		return miniSeries;
 	}
 
-	public String getPlayerOrTeamId() {
-		return playerOrTeamId;
-	}
-
-	public String getPlayerOrTeamName() {
-		return playerOrTeamName;
-	}
-
 	public String getRank() {
 		return rank;
+	}
+
+	public String getSummonerId() {
+		return summonerId;
+	}
+
+	public String getSummonerName() {
+		return summonerName;
 	}
 
 	public int getWins() {
@@ -82,6 +82,6 @@ public class LeagueItem extends Dto implements Serializable {
 
 	@Override
 	public String toString() {
-		return getPlayerOrTeamName();
+		return getSummonerName();
 	}
 }

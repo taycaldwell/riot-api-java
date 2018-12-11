@@ -32,10 +32,10 @@ public class LeaguePosition extends Dto implements Serializable {
 	private int leaguePoints;
 	private int losses;
 	private MiniSeries miniSeries;
-	private String playerOrTeamId;
-	private String playerOrTeamName;
 	private String queueType;
 	private String rank;
+	private String summonerId;
+	private String summonerName;
 	private String tier;
 	private boolean veteran;
 	private int wins;
@@ -60,20 +60,20 @@ public class LeaguePosition extends Dto implements Serializable {
 		return miniSeries;
 	}
 
-	public String getPlayerOrTeamId() {
-		return playerOrTeamId;
-	}
-
-	public String getPlayerOrTeamName() {
-		return playerOrTeamName;
-	}
-
 	public String getQueueType() {
 		return queueType;
 	}
 
 	public String getRank() {
 		return rank;
+	}
+
+	public String getSummonerId() {
+		return summonerId;
+	}
+
+	public String getSummonerName() {
+		return summonerName;
 	}
 
 	public String getTier() {
