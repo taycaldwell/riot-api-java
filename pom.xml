@@ -4,7 +4,7 @@
 
   <groupId>com.github.rithms</groupId>
   <artifactId>riot-api-java</artifactId>
-  <version>4.2.0</version>
+  <version>4.3.0-kbl</version>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
