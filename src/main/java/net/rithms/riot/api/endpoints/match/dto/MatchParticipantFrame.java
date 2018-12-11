@@ -18,9 +18,10 @@ package net.rithms.riot.api.endpoints.match.dto;
 
 import java.io.Serializable;
 
+import lombok.Data;
 import net.rithms.riot.api.Dto;
 
-public class MatchParticipantFrame extends Dto implements Serializable {
+public @Data class MatchParticipantFrame extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -7134736662198942818L;
 
@@ -35,43 +36,4 @@ public class MatchParticipantFrame extends Dto implements Serializable {
 	private int totalGold;
 	private int xp;
 
-	public int getCurrentGold() {
-		return currentGold;
-	}
-
-	public int getDominionScore() {
-		return dominionScore;
-	}
-
-	public int getJungleMinionsKilled() {
-		return jungleMinionsKilled;
-	}
-
-	public int getLevel() {
-		return level;
-	}
-
-	public int getMinionsKilled() {
-		return minionsKilled;
-	}
-
-	public int getParticipantId() {
-		return participantId;
-	}
-
-	public MatchPosition getPosition() {
-		return position;
-	}
-
-	public int getTeamScore() {
-		return teamScore;
-	}
-
-	public int getTotalGold() {
-		return totalGold;
-	}
-
-	public int getXp() {
-		return xp;
-	}
 }

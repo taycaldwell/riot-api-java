@@ -19,9 +19,10 @@ package net.rithms.riot.api.endpoints.match.dto;
 import java.io.Serializable;
 import java.util.List;
 
+import lombok.Data;
 import net.rithms.riot.api.Dto;
 
-public class MatchEvent extends Dto implements Serializable {
+public @Data class MatchEvent extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -2911353385877952457L;
 
@@ -48,98 +49,6 @@ public class MatchEvent extends Dto implements Serializable {
 	private String type;
 	private int victimId;
 	private String wardType;
-
-	public int getAfterId() {
-		return afterId;
-	}
-
-	public String getAscendedType() {
-		return ascendedType;
-	}
-
-	public List<Integer> getAssistingParticipantIds() {
-		return assistingParticipantIds;
-	}
-
-	public int getBeforeId() {
-		return beforeId;
-	}
-
-	public String getBuildingType() {
-		return buildingType;
-	}
-
-	public int getCreatorId() {
-		return creatorId;
-	}
-
-	public String getEventType() {
-		return eventType;
-	}
-
-	public int getItemId() {
-		return itemId;
-	}
-
-	public int getKillerId() {
-		return killerId;
-	}
-
-	public String getLaneType() {
-		return laneType;
-	}
-
-	public String getLevelUpType() {
-		return levelUpType;
-	}
-
-	public String getMonsterSubType() {
-		return monsterSubType;
-	}
-
-	public String getMonsterType() {
-		return monsterType;
-	}
-
-	public int getParticipantId() {
-		return participantId;
-	}
-
-	public String getPointCaptured() {
-		return pointCaptured;
-	}
-
-	public MatchPosition getPosition() {
-		return position;
-	}
-
-	public int getSkillSlot() {
-		return skillSlot;
-	}
-
-	public int getTeamId() {
-		return teamId;
-	}
-
-	public long getTimestamp() {
-		return timestamp;
-	}
-
-	public String getTowerType() {
-		return towerType;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public int getVictimId() {
-		return victimId;
-	}
-
-	public String getWardType() {
-		return wardType;
-	}
 
 	@Override
 	public String toString() {

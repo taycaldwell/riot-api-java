@@ -41,6 +41,8 @@ import net.rithms.riot.api.endpoints.lol_status.methods.GetShardData;
 import net.rithms.riot.api.endpoints.match.dto.Match;
 import net.rithms.riot.api.endpoints.match.dto.MatchList;
 import net.rithms.riot.api.endpoints.match.dto.MatchTimeline;
+import net.rithms.riot.api.endpoints.match.methods.GetAcsMatch;
+import net.rithms.riot.api.endpoints.match.methods.GetAcsTimelineByMatchId;
 import net.rithms.riot.api.endpoints.match.methods.GetMatch;
 import net.rithms.riot.api.endpoints.match.methods.GetMatchByMatchIdAndTournamentCode;
 import net.rithms.riot.api.endpoints.match.methods.GetMatchIdsByTournamentCode;
@@ -1882,6 +1884,32 @@ public class RiotApi implements Cloneable {
 		ApiMethod method = new GetMatch(getConfig(), platform, matchId, forAccountId);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
+	
+	/**
+	 * Get acs match by {@code matchId}.
+	 *
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param matchId
+	 *            The ID of the match.
+	 * @param gameHash
+	 *            gameHash.
+	 * @return A map with match details
+	 * @throws NullPointerException
+	 *             If {@code platform} is {@code null}
+	 *             If {@code gameHash} is {@code null}
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 * @version 3
+	 * @see Match
+	 */
+	public Match getAcsMatch(Platform platform, String platformTourney, long matchId, String gameHash) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		Objects.requireNonNull(platformTourney);
+		Objects.requireNonNull(gameHash);
+		ApiMethod method = new GetAcsMatch(getConfig(), platform, platformTourney, matchId, gameHash);
+		return endpointManager.callMethodAndReturnDto(method);
+	}
 
 	/**
 	 * Get match by {@code matchId}.
@@ -2148,7 +2176,31 @@ public class RiotApi implements Cloneable {
 		ApiMethod method = new GetTimelineByMatchId(getConfig(), platform, matchId);
 		return endpointManager.callMethodAndReturnDto(method);
 	}
-
+	
+	/**
+	 * Get match timeline by {@code matchId}.
+	 *
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param matchId
+	 *            The ID of the match.
+	 * @param gameHash
+	 *            The Game Hash.
+	 * @return A map with match timeline details
+	 * @throws NullPointerException
+	 *             If {@code platform} is {@code null}
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 * @see MatchTimeline
+	 */
+	public MatchTimeline getAcsTimelineByMatchId(Platform platform, String platformTourney, long matchId, String gameHash) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		Objects.requireNonNull(platformTourney);
+		Objects.requireNonNull(gameHash);
+		ApiMethod method = new GetAcsTimelineByMatchId(getConfig(), platform, platformTourney, matchId, gameHash);
+		return endpointManager.callMethodAndReturnDto(method);
+	}
+	
 	/**
 	 * Returns the tournament code DTO associated with a {@code tournamentCode}.
 	 *

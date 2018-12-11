@@ -18,22 +18,15 @@ package net.rithms.riot.api.endpoints.match.dto;
 
 import java.io.Serializable;
 
+import lombok.Data;
 import net.rithms.riot.api.Dto;
 
-public class ParticipantIdentity extends Dto implements Serializable {
+public @Data class ParticipantIdentity extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 7750317217073991764L;
 
 	private int participantId;
 	private Player player;
-
-	public int getParticipantId() {
-		return participantId;
-	}
-
-	public Player getPlayer() {
-		return player;
-	}
 
 	@Override
 	public String toString() {

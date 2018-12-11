@@ -18,9 +18,10 @@ package net.rithms.riot.api.endpoints.match.dto;
 
 import java.io.Serializable;
 
+import lombok.Data;
 import net.rithms.riot.api.Dto;
 
-public class Player extends Dto implements Serializable {
+public @Data class Player extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -4459702825178547603L;
 
@@ -32,38 +33,6 @@ public class Player extends Dto implements Serializable {
 	private int profileIcon;
 	private long summonerId;
 	private String summonerName;
-
-	public long getAccountId() {
-		return accountId;
-	}
-
-	public long getCurrentAccountId() {
-		return currentAccountId;
-	}
-
-	public String getCurrentPlatformId() {
-		return currentPlatformId;
-	}
-
-	public String getMatchHistoryUri() {
-		return matchHistoryUri;
-	}
-
-	public String getPlatformId() {
-		return platformId;
-	}
-
-	public int getProfileIcon() {
-		return profileIcon;
-	}
-
-	public long getSummonerId() {
-		return summonerId;
-	}
-
-	public String getSummonerName() {
-		return summonerName;
-	}
 
 	@Override
 	public String toString() {

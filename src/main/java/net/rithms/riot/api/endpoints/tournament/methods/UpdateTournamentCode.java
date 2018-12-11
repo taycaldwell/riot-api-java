@@ -29,7 +29,7 @@ import net.rithms.riot.api.request.RequestMethod;
 public class UpdateTournamentCode extends TournamentApiMethod {
 
 	public UpdateTournamentCode(ApiConfig config, String tournamentCode, TournamentMap mapType, PickType pickType, SpectatorType spectatorType,
-			long... allowedSummonerIds) {
+			String... allowedSummonerIds) {
 		super(config);
 		setHttpMethod(RequestMethod.PUT);
 		setReturnType(Void.class);
