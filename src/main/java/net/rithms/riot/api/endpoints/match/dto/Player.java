@@ -30,7 +30,7 @@ public class Player extends Dto implements Serializable {
 	private String matchHistoryUri;
 	private String platformId;
 	private int profileIcon;
-	private long summonerId;
+	private String summonerId;
 	private String summonerName;
 
 	public String getAccountId() {
@@ -57,7 +57,7 @@ public class Player extends Dto implements Serializable {
 		return profileIcon;
 	}
 
-	public long getSummonerId() {
+	public String getSummonerId() {
 		return summonerId;
 	}
 
