@@ -38,7 +38,7 @@ public enum Platform {
 
 	public static Platform getPlatformById(String id) {
 		for (Platform platform : Platform.values()) {
-			if (platform.getId().toLowerCase().equals(id.toLowerCase())) {
+			if (platform.getId().equalsIgnoreCase(id)) {
 				return platform;
 			}
 		}
@@ -48,7 +48,7 @@ public enum Platform {
 
 	public static Platform getPlatformByName(String name) {
 		for (Platform platform : Platform.values()) {
-			if (platform.getName().toLowerCase().equals(name.toLowerCase())) {
+			if (platform.getName().equalsIgnoreCase(name)) {
 				return platform;
 			}
 		}
