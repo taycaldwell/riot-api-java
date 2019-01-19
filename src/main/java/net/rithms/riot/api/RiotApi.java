@@ -31,6 +31,7 @@ import net.rithms.riot.api.endpoints.league.constant.LeagueQueue;
 import net.rithms.riot.api.endpoints.league.dto.LeagueList;
 import net.rithms.riot.api.endpoints.league.dto.LeaguePosition;
 import net.rithms.riot.api.endpoints.league.methods.GetChallengerLeagueByQueue;
+import net.rithms.riot.api.endpoints.league.methods.GetGrandmasterLeagueByQueue;
 import net.rithms.riot.api.endpoints.league.methods.GetLeagueById;
 import net.rithms.riot.api.endpoints.league.methods.GetLeaguePositionsBySummonerId;
 import net.rithms.riot.api.endpoints.league.methods.GetMasterLeagueByQueue;
@@ -1404,6 +1405,48 @@ public class RiotApi implements Cloneable {
 		Objects.requireNonNull(platform);
 		ApiMethod method = new GetFeaturedGames(getConfig(), platform);
 		return endpointManager.callMethodAndReturnDto(method);
+	}
+
+	/**
+	 * Get the grandmaster league for a given {@code queue}.
+	 * 
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param queue
+	 *            Game queue type.
+	 * @return A league list
+	 * @throws NullPointerException
+	 *             If {@code platform} or {@code queue} is {@code null}
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 * @version 4
+	 * @see LeagueList
+	 */
+	public LeagueList getGrandmasterLeagueByQueue(Platform platform, String queue) throws RiotApiException {
+		Objects.requireNonNull(platform);
+		Objects.requireNonNull(queue);
+		ApiMethod method = new GetGrandmasterLeagueByQueue(getConfig(), platform, queue);
+		return endpointManager.callMethodAndReturnDto(method);
+	}
+
+	/**
+	 * Get the grandmaster league for a given {@code queue}.
+	 * 
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param queue
+	 *            Game queue type.
+	 * @return A league list
+	 * @throws RiotApiException
+	 *             If the API returns an error or unparsable result
+	 * @throws NullPointerException
+	 *             If {@code queue} is {@code null}
+	 * @version 4
+	 * @see LeagueList
+	 */
+	public LeagueList getGrandmasterLeagueByQueue(Platform platform, LeagueQueue queue) throws RiotApiException {
+		Objects.requireNonNull(queue);
+		return getGrandmasterLeagueByQueue(platform, queue.toString());
 	}
 
 	/**
