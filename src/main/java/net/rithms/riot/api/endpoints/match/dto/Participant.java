@@ -19,9 +19,10 @@ package net.rithms.riot.api.endpoints.match.dto;
 import java.io.Serializable;
 import java.util.List;
 
+import lombok.Data;
 import net.rithms.riot.api.Dto;
 
-public class Participant extends Dto implements Serializable {
+public @Data class Participant extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -507075680096851928L;
 
@@ -35,46 +36,6 @@ public class Participant extends Dto implements Serializable {
 	private ParticipantStats stats;
 	private int teamId;
 	private ParticipantTimeline timeline;
-
-	public int getChampionId() {
-		return championId;
-	}
-
-	public String getHighestAchievedSeasonTier() {
-		return highestAchievedSeasonTier;
-	}
-
-	public List<Mastery> getMasteries() {
-		return masteries;
-	}
-
-	public int getParticipantId() {
-		return participantId;
-	}
-
-	public List<Rune> getRunes() {
-		return runes;
-	}
-
-	public int getSpell1Id() {
-		return spell1Id;
-	}
-
-	public int getSpell2Id() {
-		return spell2Id;
-	}
-
-	public ParticipantStats getStats() {
-		return stats;
-	}
-
-	public int getTeamId() {
-		return teamId;
-	}
-
-	public ParticipantTimeline getTimeline() {
-		return timeline;
-	}
 
 	@Override
 	public String toString() {

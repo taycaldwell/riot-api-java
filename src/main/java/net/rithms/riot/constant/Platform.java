@@ -42,7 +42,7 @@ public enum Platform {
 				return platform;
 			}
 		}
-		RiotApi.log.warning("Unknown platform ID: " + id);
+		//RiotApi.log.warning("Unknown platform ID: " + id);
 		throw new NoSuchElementException("Unknown platform ID: " + id);
 	}
 

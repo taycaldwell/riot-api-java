@@ -18,10 +18,12 @@ package net.rithms.riot.api.endpoints.match.dto;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
+import lombok.Data;
 import net.rithms.riot.api.Dto;
 
-public class MatchList extends Dto implements Serializable {
+public @Data class MatchList extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 939383850419752274L;
 
@@ -29,22 +31,6 @@ public class MatchList extends Dto implements Serializable {
 	private List<MatchReference> matches;
 	private int startIndex;
 	private int totalGames;
-
-	public int getEndIndex() {
-		return endIndex;
-	}
-
-	public int getStartIndex() {
-		return startIndex;
-	}
-
-	public int getTotalGames() {
-		return totalGames;
-	}
-
-	public List<MatchReference> getMatches() {
-		return matches;
-	}
 
 	@Override
 	public String toString() {

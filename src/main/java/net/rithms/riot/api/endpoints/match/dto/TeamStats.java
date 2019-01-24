@@ -19,9 +19,10 @@ package net.rithms.riot.api.endpoints.match.dto;
 import java.io.Serializable;
 import java.util.List;
 
+import lombok.Data;
 import net.rithms.riot.api.Dto;
 
-public class TeamStats extends Dto implements Serializable {
+public @Data class TeamStats extends Dto implements Serializable {
 
 	private static final long serialVersionUID = -3414402914522684688L;
 
@@ -41,70 +42,6 @@ public class TeamStats extends Dto implements Serializable {
 	private int towerKills;
 	private int vilemawKills;
 	private String win;
-
-	public List<TeamBans> getBans() {
-		return bans;
-	}
-
-	public int getBaronKills() {
-		return baronKills;
-	}
-
-	public int getDominionVictoryScore() {
-		return dominionVictoryScore;
-	}
-
-	public int getDragonKills() {
-		return dragonKills;
-	}
-
-	public int getInhibitorKills() {
-		return inhibitorKills;
-	}
-
-	public int getRiftHeraldKills() {
-		return riftHeraldKills;
-	}
-
-	public int getTeamId() {
-		return teamId;
-	}
-
-	public int getTowerKills() {
-		return towerKills;
-	}
-
-	public int getVilemawKills() {
-		return vilemawKills;
-	}
-
-	public String getWin() {
-		return win;
-	}
-
-	public boolean isFirstBaron() {
-		return firstBaron;
-	}
-
-	public boolean isFirstBlood() {
-		return firstBlood;
-	}
-
-	public boolean isFirstDragon() {
-		return firstDragon;
-	}
-
-	public boolean isFirstInhibitor() {
-		return firstInhibitor;
-	}
-
-	public boolean isFirstRiftHerald() {
-		return firstRiftHerald;
-	}
-
-	public boolean isFirstTower() {
-		return firstTower;
-	}
 
 	@Override
 	public String toString() {

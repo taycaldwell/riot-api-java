@@ -19,9 +19,10 @@ package net.rithms.riot.api.endpoints.match.dto;
 import java.io.Serializable;
 import java.util.List;
 
+import lombok.Data;
 import net.rithms.riot.api.Dto;
 
-public class Match extends Dto implements Serializable {
+public @Data class Match extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 2606895296338330266L;
 
@@ -39,33 +40,6 @@ public class Match extends Dto implements Serializable {
 	private int seasonId;
 	private List<TeamStats> teams;
 
-	public long getGameCreation() {
-		return gameCreation;
-	}
-
-	public long getGameDuration() {
-		return gameDuration;
-	}
-
-	public long getGameId() {
-		return gameId;
-	}
-
-	public String getGameMode() {
-		return gameMode;
-	}
-
-	public String getGameType() {
-		return gameType;
-	}
-
-	public String getGameVersion() {
-		return gameVersion;
-	}
-
-	public int getMapId() {
-		return mapId;
-	}
 
 	/**
 	 * Utility method to get the participant by {@code accountId}.
@@ -167,26 +141,6 @@ public class Match extends Dto implements Serializable {
 		return null;
 	}
 
-	public List<ParticipantIdentity> getParticipantIdentities() {
-		return participantIdentities;
-	}
-
-	public List<Participant> getParticipants() {
-		return participants;
-	}
-
-	public String getPlatformId() {
-		return platformId;
-	}
-
-	public int getQueueId() {
-		return queueId;
-	}
-
-	public int getSeasonId() {
-		return seasonId;
-	}
-
 	/**
 	 * Utility method to get the team by {@code teamId}.
 	 * 
@@ -204,10 +158,6 @@ public class Match extends Dto implements Serializable {
 			}
 		}
 		return null;
-	}
-
-	public List<TeamStats> getTeams() {
-		return teams;
 	}
 
 	@Override

@@ -20,27 +20,16 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
+import lombok.Data;
 import net.rithms.riot.api.Dto;
 
-public class MatchFrame extends Dto implements Serializable {
+public @Data class MatchFrame extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 4359409042534560829L;
 
 	private List<MatchEvent> events;
 	private Map<Integer, MatchParticipantFrame> participantFrames;
 	private long timestamp;
-
-	public List<MatchEvent> getEvents() {
-		return events;
-	}
-
-	public Map<Integer, MatchParticipantFrame> getParticipantFrames() {
-		return participantFrames;
-	}
-
-	public long getTimestamp() {
-		return timestamp;
-	}
 
 	@Override
 	public String toString() {
