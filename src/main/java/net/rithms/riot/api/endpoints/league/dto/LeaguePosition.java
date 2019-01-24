@@ -32,6 +32,7 @@ public class LeaguePosition extends Dto implements Serializable {
 	private int leaguePoints;
 	private int losses;
 	private MiniSeries miniSeries;
+	private String position;
 	private String queueType;
 	private String rank;
 	private String summonerId;
@@ -58,6 +59,10 @@ public class LeaguePosition extends Dto implements Serializable {
 
 	public MiniSeries getMiniSeries() {
 		return miniSeries;
+	}
+
+	public String getPosition() {
+		return position;
 	}
 
 	public String getQueueType() {

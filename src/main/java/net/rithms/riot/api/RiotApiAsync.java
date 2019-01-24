@@ -27,11 +27,13 @@ import net.rithms.riot.api.endpoints.champion_mastery.methods.GetChampionMasteri
 import net.rithms.riot.api.endpoints.champion_mastery.methods.GetChampionMasteryScoresBySummoner;
 import net.rithms.riot.api.endpoints.league.constant.LeagueQueue;
 import net.rithms.riot.api.endpoints.league.dto.LeagueList;
+import net.rithms.riot.api.endpoints.league.methods.GetAllLeaguePositions;
 import net.rithms.riot.api.endpoints.league.methods.GetChallengerLeagueByQueue;
 import net.rithms.riot.api.endpoints.league.methods.GetGrandmasterLeagueByQueue;
 import net.rithms.riot.api.endpoints.league.methods.GetLeagueById;
 import net.rithms.riot.api.endpoints.league.methods.GetLeaguePositionsBySummonerId;
 import net.rithms.riot.api.endpoints.league.methods.GetMasterLeagueByQueue;
+import net.rithms.riot.api.endpoints.league.methods.GetPositionalRankQueues;
 import net.rithms.riot.api.endpoints.lol_status.dto.ShardStatus;
 import net.rithms.riot.api.endpoints.lol_status.methods.GetShardData;
 import net.rithms.riot.api.endpoints.match.dto.Match;
@@ -323,6 +325,63 @@ public class RiotApiAsync {
 		Objects.requireNonNull(summonerId);
 		ApiMethod method = new GetActiveGameBySummoner(getConfig(), platform, summonerId);
 		return endpointManager.callMethodAsynchronously(method);
+	}
+
+	/**
+	 * Get all the positional league entries.
+	 * 
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param positionalQueue
+	 *            Queue
+	 * @param tier
+	 *            Tier
+	 * @param division
+	 *            Division
+	 * @param position
+	 *            Position
+	 * @param page
+	 *            Starts with page 0.
+	 * @return List of league positions
+	 * @throws NullPointerException
+	 *             If {@code platform}, {@code positionalQueue}, {@code tier}, {@code division}, or {@code position} is {@code null}
+	 * @version 4
+	 * @see LeagueList
+	 */
+	public AsyncRequest getAllLeaguePositions(Platform platform, String positionalQueue, String tier, String division, String position, int page) {
+		Objects.requireNonNull(platform);
+		Objects.requireNonNull(positionalQueue);
+		Objects.requireNonNull(tier);
+		Objects.requireNonNull(division);
+		Objects.requireNonNull(position);
+		ApiMethod method = new GetAllLeaguePositions(getConfig(), platform, positionalQueue, tier, division, position, page);
+		return endpointManager.callMethodAsynchronously(method);
+	}
+
+	/**
+	 * Get all the positional league entries.
+	 * 
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @param positionalQueue
+	 *            Queue
+	 * @param tier
+	 *            Tier
+	 * @param division
+	 *            Division
+	 * @param position
+	 *            Position
+	 * @param page
+	 *            Starts with page 0.
+	 * @return List of league positions
+	 * @throws NullPointerException
+	 *             If {@code positionalQueue} is {@code null}
+	 * @version 4
+	 * @see LeagueList
+	 */
+	public AsyncRequest getAllLeaguePositions(Platform platform, LeagueQueue positionalQueue, String tier, String division, String position, int page) {
+		Objects.requireNonNull(positionalQueue);
+		return getAllLeaguePositions(platform, positionalQueue, tier, division, position, page);
 	}
 
 	/**
@@ -1575,6 +1634,23 @@ public class RiotApiAsync {
 	 */
 	public int getPoolSize() {
 		return endpointManager.getPoolSize();
+	}
+
+	/**
+	 * Get the queues that have positional ranks enabled.
+	 * 
+	 * @param platform
+	 *            Platform to execute the method call against.
+	 * @return List of league queue types
+	 * @throws NullPointerException
+	 *             If {@code platform} is {@code null}
+	 * @version 4
+	 * @see LeagueList
+	 */
+	public AsyncRequest getPositionalRankQueues(Platform platform) {
+		Objects.requireNonNull(platform);
+		ApiMethod method = new GetPositionalRankQueues(getConfig(), platform);
+		return endpointManager.callMethodAsynchronously(method);
 	}
 
 	/**
