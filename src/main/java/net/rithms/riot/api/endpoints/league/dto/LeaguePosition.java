@@ -20,6 +20,7 @@ import java.io.Serializable;
 
 import net.rithms.riot.api.Dto;
 
+@Deprecated
 public class LeaguePosition extends Dto implements Serializable {
 
 	private static final long serialVersionUID = 1753178439019663600L;

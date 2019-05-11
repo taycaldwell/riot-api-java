@@ -6,7 +6,7 @@ import net.rithms.riot.api.RiotApi;
 import net.rithms.riot.api.RiotApiAsync;
 import net.rithms.riot.api.RiotApiException;
 import net.rithms.riot.api.endpoints.league.constant.LeagueQueue;
-import net.rithms.riot.api.endpoints.league.dto.LeaguePosition;
+import net.rithms.riot.api.endpoints.league.dto.LeagueEntry;
 import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
 import net.rithms.riot.api.request.AsyncRequest;
 import net.rithms.riot.api.request.RequestAdapter;
@@ -26,9 +26,9 @@ public class AsyncExample {
 	// Inner class to store information in
 	private class ExtendedSummoner {
 		public Summoner summoner;
-		public LeaguePosition leagueSolo;
-		public LeaguePosition leagueFlexSR;
-		public LeaguePosition leagueFlexTT;
+		public LeagueEntry leagueSolo;
+		public LeagueEntry leagueFlexSR;
+		public LeagueEntry leagueFlexTT;
 	}
 
 	public AsyncExample() throws RiotApiException {
@@ -51,21 +51,21 @@ public class AsyncExample {
 		});
 
 		// Asynchronously get league information
-		AsyncRequest requestLeague = apiAsync.getLeaguePositionsBySummonerId(platform, summonerId);
+		AsyncRequest requestLeague = apiAsync.getLeagueEntriesBySummonerId(platform, summonerId);
 		requestLeague.addListeners(new RequestAdapter() {
 			@Override
 			public void onRequestSucceeded(AsyncRequest request) {
-				Set<LeaguePosition> leaguePositions = request.getDto();
-				if (leaguePositions == null || leaguePositions.isEmpty()) {
+				Set<LeagueEntry> leagueEntries = request.getDto();
+				if (leagueEntries == null || leagueEntries.isEmpty()) {
 					return;
 				}
-				for (LeaguePosition leaguePosition : leaguePositions) {
-					if (leaguePosition.getQueueType().equals(LeagueQueue.RANKED_SOLO_5x5.name())) {
-						eSummoner.leagueSolo = leaguePosition;
-					} else if (leaguePosition.getQueueType().equals(LeagueQueue.RANKED_FLEX_SR.name())) {
-						eSummoner.leagueFlexSR = leaguePosition;
-					} else if (leaguePosition.getQueueType().equals(LeagueQueue.RANKED_FLEX_TT.name())) {
-						eSummoner.leagueFlexTT = leaguePosition;
+				for (LeagueEntry leagueEntry : leagueEntries) {
+					if (leagueEntry.getQueueType().equals(LeagueQueue.RANKED_SOLO_5x5.name())) {
+						eSummoner.leagueSolo = leagueEntry;
+					} else if (leagueEntry.getQueueType().equals(LeagueQueue.RANKED_FLEX_SR.name())) {
+						eSummoner.leagueFlexSR = leagueEntry;
+					} else if (leagueEntry.getQueueType().equals(LeagueQueue.RANKED_FLEX_TT.name())) {
+						eSummoner.leagueFlexTT = leagueEntry;
 					}
 				}
 			}

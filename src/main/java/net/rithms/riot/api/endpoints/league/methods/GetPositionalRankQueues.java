@@ -27,6 +27,7 @@ import net.rithms.riot.constant.Platform;
 
 public class GetPositionalRankQueues extends LeagueApiMethod {
 
+	@Deprecated
 	public GetPositionalRankQueues(ApiConfig config, Platform platform) {
 		super(config);
 		setPlatform(platform);
