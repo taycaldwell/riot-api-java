@@ -1,9 +1,9 @@
 # [RIOT-API-JAVA](http://taycaldwell.com/riot-api-java/)
 ----------
-[![JitPack](https://img.shields.io/github/tag/rithms/riot-api-java.svg?label=maven)](https://jitpack.io/#taycaldwell/riot-api-java/4.2.0)
+[![JitPack](https://img.shields.io/github/tag/rithms/riot-api-java.svg?label=maven)](https://jitpack.io/#taycaldwell/riot-api-java/4.3.0)
 ----------
 
-A simple to use, Riot Games API wrapper for Java.
+A simple to use Riot Games API wrapper for Java.
 This library makes it easy to gather and use League of Legends data in your apps.
 
 ## Disclaimer
@@ -24,7 +24,7 @@ Build Path -> Configure Build Path -> Libraries -> Add External Jars
 
 and selecting the jar under the Order and Export tab.
 
-This project is also available on [Jitpack](https://jitpack.io/#rithms/riot-api-java/4.2.0)
+This project is also available on [Jitpack](https://jitpack.io/#rithms/riot-api-java/4.3.0)
 
 ### Gradle
 
@@ -43,7 +43,7 @@ Add the project as a dependency:
 
 ```java
 dependencies {
-	compile 'com.github.taycaldwell:riot-api-java:4.2.0'
+	compile 'com.github.taycaldwell:riot-api-java:4.3.0'
 }
 ```
 
