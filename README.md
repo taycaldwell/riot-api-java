@@ -144,7 +144,7 @@ public class MatchListExample {
 You can find these and more examples in the repository's directory "examples".
 
 ## Documentation
-The documentation for this library can be found [here.](http://taycaldwell.com/riot-api-java/doc/)
+The documentation for this library can be found [here.](https://taycaldwell.github.io/riot-api-java/doc/)
 
 ## API Versions
 The current version of this library supports the following Riot Games API versions:
